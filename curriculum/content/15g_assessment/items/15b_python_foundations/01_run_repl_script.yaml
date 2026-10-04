@@ -5,44 +5,46 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          cozum.py adında bir script yaz: çalıştırılınca ekrana alt alta üç satır yazsın: Ad: Deniz, Şehir: İzmir ve Bölüm: Bilgisayar. Başka hiçbir şey yazmasın.
+          REPL'de >>> işaretinden sonra 3 + 4 yazınca ekranda 7 görünüyor. Aynı satırı tek başına bir dosyaya yazıp python cozum.py ile çalıştırınca ise ekranda hiçbir şey görünmüyor:
+
+          3 + 4
+
+          Script'i öyle düzelt ki çalıştırılınca ekrana yalnızca 7 yazsın; toplamayı Python yapsın. cozum.py olarak kaydet.
+        required_skills: [skill.programming.state_assignment_model]
         suite:
-          - {id: three_lines_in_order, stdin: "", expected_stdout: "Ad: Deniz\nŞehir: İzmir\nBölüm: Bilgisayar\n"}
+          - {id: prints_sum, stdin: "", expected_stdout: "7\n"}
         reference: |
-          print("Ad: Deniz")
-          print("Şehir: İzmir")
-          print("Bölüm: Bilgisayar")
+          print(3 + 4)
         wrong:
           - |
-            print("Ad: Deniz")
-            print("Bölüm: Bilgisayar")
+            3 + 4
           - |
-            print("Ad: Deniz Şehir: İzmir Bölüm: Bilgisayar")
-          - |
-            print("Ad: Deniz")
-            print("Sehir: Izmir")
-            print("Bölüm: Bilgisayar")
+            print("3 + 4")
       - slug: g02
         difficulty: basic
         prompt: |
-          cozum.py adında bir script yaz: Python 19 ile 23'ü çarpsın ve ekrana yalnızca sonucu yazsın. Sonucu kendin hesaplayıp yazma; çarpmayı Python yapsın.
-        required_skills: [skill.programming.state_assignment_model]
+          Aşağıdaki script önce Selam yazıyor, sonra bir hata ile duruyor. Traceback'i oku, sorunu bul ve düzelt. Düzeltilmiş script ekrana alt alta Selam ve Nasılsın yazmalı. cozum.py olarak kaydet.
+
+          print("Selam")
+          Print("Nasılsın")
         suite:
-          - {id: prints_product, stdin: "", expected_stdout: "437\n"}
+          - {id: two_lines, stdin: "", expected_stdout: "Selam\nNasılsın\n"}
         reference: |
-          print(19 * 23)
+          print("Selam")
+          print("Nasılsın")
         wrong:
           - |
-            print("19 * 23")
+            print("Selam")
+            Print("Nasılsın")
           - |
-            print(19 + 23)
+            print("Selam")
       - slug: g03
         difficulty: basic
         prompt: |
           Aşağıdaki script hiçbir şey yazmadan bir SyntaxError veriyor. Hatayı bul, düzelt ve düzeltilmiş hâlini cozum.py olarak kaydet. Script ekrana alt alta Günaydın ve Dünya yazmalı.
 
-              print("Günaydın)
-              print("Dünya")
+          print("Günaydın)
+          print("Dünya")
         suite:
           - {id: two_lines, stdin: "", expected_stdout: "Günaydın\nDünya\n"}
         reference: |
@@ -59,9 +61,9 @@ objectives:
         prompt: |
           Aşağıdaki script önce Mesafe: yazıyor, sonra bir NameError ile duruyor. Traceback'te hatanın türünü ve satırını bul, düzelt. Düzeltilmiş script ekrana alt alta Mesafe: ve 42 yazmalı. cozum.py olarak kaydet.
 
-              mesafe = 42
-              print("Mesafe:")
-              print(mesfe)
+          mesafe = 42
+          print("Mesafe:")
+          print(mesfe)
         required_skills: [skill.programming.state_assignment_model]
         suite:
           - {id: fixed_output, stdin: "", expected_stdout: "Mesafe:\n42\n"}
@@ -98,33 +100,33 @@ objectives:
       - slug: g06
         difficulty: authentic_application
         prompt: |
-          Aşağıdaki script hiçbir şey yazmadan bir IndentationError (bir tür SyntaxError) veriyor. Traceback'i oku, hatanın satırını bul ve düzelt. Düzeltilmiş script ekrana alt alta Bir, İki ve Üç yazmalı. cozum.py olarak kaydet.
+          Aşağıdaki script hiçbir şey yazmadan bir IndentationError (bir tür SyntaxError) veriyor. Traceback'i oku, hatanın satırını bul ve düzelt. Düzeltilmiş script ekrana alt alta Kırmızı, Sarı ve Mavi yazmalı. cozum.py olarak kaydet.
 
-              print("Bir")
-                  print("İki")
-              print("Üç")
+          print("Kırmızı")
+              print("Sarı")
+          print("Mavi")
         suite:
-          - {id: three_lines, stdin: "", expected_stdout: "Bir\nİki\nÜç\n"}
+          - {id: three_lines, stdin: "", expected_stdout: "Kırmızı\nSarı\nMavi\n"}
         reference: |
-          print("Bir")
-          print("İki")
-          print("Üç")
+          print("Kırmızı")
+          print("Sarı")
+          print("Mavi")
         wrong:
           - |
-            print("Bir")
-                print("İki")
-            print("Üç")
+            print("Kırmızı")
+                print("Sarı")
+            print("Mavi")
           - |
-            print("Bir")
-            print("Üç")
+            print("Kırmızı")
+            print("Mavi")
       - slug: g07
         difficulty: authentic_application
         prompt: |
-          Aşağıdaki script çalıştırılınca hemen bir NameError ile duruyor: toplam daha tanımlanmadan kullanılıyor. Satırların sırasını düzelt; script ekrana Kalan: 32 yazmalı. cozum.py olarak kaydet.
+          Aşağıdaki script çalıştırılınca ekrana hiçbir şey yazmadan bir hata ile duruyor. Script'i çalıştır, traceback'i oku ve düzelt; düzeltilmiş script ekrana yalnızca Kalan: 32 yazmalı. cozum.py olarak kaydet.
 
-              print("Kalan:", toplam - harcanan)
-              toplam = 50
-              harcanan = 18
+          print("Kalan:", toplam - harcanan)
+          toplam = 50
+          harcanan = 18
         required_skills: [skill.programming.state_assignment_model]
         suite:
           - {id: ordered_output, stdin: "", expected_stdout: "Kalan: 32\n"}
@@ -144,19 +146,23 @@ objectives:
       - slug: g08
         difficulty: authentic_application
         prompt: |
-          Aşağıdaki script ekrana 42 yazmalıydı ama 12 + 30 yazıyor. Neden böyle olduğunu bul ve düzelt; düzeltilmiş script ekrana yalnızca 42 yazmalı ve toplamayı Python yapmalı. cozum.py olarak kaydet.
+          Aşağıdaki script hatasız çalışıyor ama dersin testi başarısız oluyor. Testin beklediği çıktı alt alta Toplam: 15 ve Ortalama: 7.5. Script'i çalıştır, çıktısını beklenenle harf harf karşılaştır ve farkı düzelt. cozum.py olarak kaydet.
 
-              print("12 + 30")
-        required_skills: [skill.programming.state_assignment_model]
+          print("Toplam:", 7 + 8)
+          print("ortalama:", (7 + 8) / 2)
+        required_skills: [skill.python.expression_evaluation]
         suite:
-          - {id: computes_sum, stdin: "", expected_stdout: "42\n"}
+          - {id: exact_output, stdin: "", expected_stdout: "Toplam: 15\nOrtalama: 7.5\n"}
         reference: |
-          print(12 + 30)
+          print("Toplam:", 7 + 8)
+          print("Ortalama:", (7 + 8) / 2)
         wrong:
           - |
-            print("12 + 30")
+            print("Toplam:", 7 + 8)
+            print("ortalama:", (7 + 8) / 2)
           - |
-            print(12 + 3)
+            print("Toplam:", 7 + 8)
+            print("Ortalama:", 7 + 8 / 2)
       - slug: g09
         difficulty: transfer_integration
         prompt: |
@@ -180,33 +186,34 @@ objectives:
       - slug: g10
         difficulty: transfer_integration
         prompt: |
-          Aşağıdaki script'te iki ayrı sorun var: biri tırnak unutulmuş bir yazı, öteki tanımlanmamış bir y değişkeni (y 5 olmalı). Python her seferinde yalnızca ilk karşılaştığı hatayı bildirir; script'i çalıştır, traceback'i oku, düzelt ve tekrar çalıştır. Düzeltilmiş script ekrana alt alta Başlıyor, Hazır ve 20 yazmalı. cozum.py olarak kaydet.
+          Aşağıdaki script bir hata ile duruyor. Düzeltilmiş script ekrana alt alta Fiyat: 25, Adet: 3 ve Tutar: 75 yazmalı. Script'i çalıştır, traceback'i oku, düzelt ve yeniden çalıştır; düzelttikten sonra başka bir hata çıkarsa onu da aynı yolla düzelt. cozum.py olarak kaydet.
 
-              print("Başlıyor")
-              print(Hazır)
-              x = 4
-              print(x * y)
+          fiyat = 25
+          print("Fiyat:", fiyt)
+          adet = 3
+          print("Adet: " + adet)
+          print("Tutar:", fiyat * adet)
         required_skills: [skill.programming.state_assignment_model]
         suite:
-          - {id: all_fixed, stdin: "", expected_stdout: "Başlıyor\nHazır\n20\n"}
+          - {id: three_lines, stdin: "", expected_stdout: "Fiyat: 25\nAdet: 3\nTutar: 75\n"}
         reference: |
-          print("Başlıyor")
-          print("Hazır")
-          x = 4
-          y = 5
-          print(x * y)
+          fiyat = 25
+          print("Fiyat:", fiyat)
+          adet = 3
+          print("Adet:", adet)
+          print("Tutar:", fiyat * adet)
         wrong:
           - |
-            print("Başlıyor")
-            print("Hazır")
-            x = 4
-            print(x * y)
+            fiyat = 25
+            print("Fiyat:", fiyat)
+            adet = 3
+            print("Adet: " + adet)
+            print("Tutar:", fiyat * adet)
           - |
-            print("Başlıyor")
-            print(Hazır)
-            x = 4
-            y = 5
-            print(x * y)
+            fiyat = 25
+            print("Fiyat:", fiyat)
+            adet = 3
+            print("Tutar:", fiyat * adet)
       - slug: g11
         difficulty: transfer_integration
         prompt: |
@@ -236,25 +243,26 @@ objectives:
       - slug: t01
         difficulty: transfer_integration
         transfer_profile: cross_topic_context
-        context_family: price_list_receipt
+        context_family: list_index_traceback
         required_skills: [skill.python.list_operations]
         prompt: |
-          cozum.py adında bir script yaz: fiyatlar = [12, 30, 8] listesini kullanarak ekrana iki satır yazsın: önce Toplam: 50, sonra En pahalı: 30. Sayıları kendin hesaplayıp yazma; toplamı ve en büyüğü Python listeden bulsun.
+          Aşağıdaki script önce bir satır yazıyor, sonra bir hata ile duruyor. Traceback'i oku: hatanın türü ne ve hangi satırda? Sorunu düzelt; düzeltilmiş script ekrana alt alta İlk: 3 ve Son: 8 yazmalı (listenin ilk ve son elemanı). cozum.py olarak kaydet.
+
+          sayilar = [3, 5, 8]
+          print("İlk:", sayilar[0])
+          print("Son:", sayilar[3])
         suite:
-          - {id: two_lines, stdin: "", expected_stdout: "Toplam: 50\nEn pahalı: 30\n"}
+          - {id: first_and_last, stdin: "", expected_stdout: "İlk: 3\nSon: 8\n"}
         reference: |
-          fiyatlar = [12, 30, 8]
-          print("Toplam:", sum(fiyatlar))
-          print("En pahalı:", max(fiyatlar))
+          sayilar = [3, 5, 8]
+          print("İlk:", sayilar[0])
+          print("Son:", sayilar[2])
         wrong:
           - |
-            fiyatlar = [12, 30, 8]
-            print("Toplam: sum(fiyatlar)")
-            print("En pahalı: max(fiyatlar)")
+            sayilar = [3, 5, 8]
+            print("İlk:", sayilar[0])
+            print("Son:", sayilar[3])
           - |
-            fiyatlar = [12, 30, 8]
-            print("En pahalı:", max(fiyatlar))
-            print("Toplam:", sum(fiyatlar))
-          - |
-            fiyatlar = [12, 30, 8]
-            print("Toplam:", sum(fiyatlar))
+            sayilar = [3, 5, 8]
+            print("İlk:", sayilar[1])
+            print("Son:", sayilar[2])

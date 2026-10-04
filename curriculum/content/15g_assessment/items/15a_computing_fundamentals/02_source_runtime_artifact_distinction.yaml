@@ -13,7 +13,6 @@ objectives:
           D: grafik.txt (program çalışırken yazdı)
         scan_options: false
         answer: B
-        misconception_options: {C: object_file_runnable}
         verify:
           mode: reference
           reference: "GCC Manual §3.2 Options Controlling the Kind of Output — -c: 'Compile or assemble the source files, but do not link. … The ultimate output is in the form of an object file for each source file.'"
@@ -45,7 +44,6 @@ objectives:
           D: Çalışma çıktısı
         scan_options: false
         answer: C
-        misconception_options: {D: screen_text_is_source}
         verify:
           mode: shell
           outcomes: {A: "kaynak", B: "ara_dosya", C: "calistirilabilir", D: "calisma_ciktisi"}
@@ -97,7 +95,6 @@ objectives:
           D: kutu_kayit.txt; program yazıyı oradan okur.
         scan_options: false
         answer: A
-        misconception_options: {D: screen_text_is_source}
         verify:
           mode: reference
           reference: "GCC Manual §3.2 Options Controlling the Kind of Output — çalıştırılabilir dosya kaynak dosyalardan derleme ve bağlamayla üretilir; davranışı değiştirmek için kaynak değiştirilip yeniden derlenir"
@@ -154,7 +151,6 @@ objectives:
           D: Önce eski, sonra yeni sürüm.
         scan_options: false
         answer: A
-        misconception_options: {B: executable_needs_source}
         verify:
           mode: script
           outcomes: {A: "yeni sürüm", B: "eski", C: "", D: "eski\nyeni sürüm"}
@@ -184,7 +180,6 @@ objectives:
           D: Çalışma çıktısı
         scan_options: false
         answer: D
-        misconception_options: {A: screen_text_is_source}
         verify:
           mode: shell
           outcomes: {A: "kaynak", B: "ara_dosya", C: "calistirilabilir", D: "calisma_ciktisi"}

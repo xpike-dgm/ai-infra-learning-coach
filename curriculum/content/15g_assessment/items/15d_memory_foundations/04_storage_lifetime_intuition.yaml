@@ -114,7 +114,6 @@ objectives:
           D: "Program derlenmez"
         scan_options: false
         answer: A
-        misconception_options: {B: local_outlives_function}
         verify:
           mode: c_sanitize
           outcomes: {A: stack-use-after-return, B: ok, C: heap-use-after-free, D: compile}
@@ -169,7 +168,6 @@ objectives:
           D: "Geçerlidir ama ekranda 0 görünür"
         scan_options: false
         answer: A
-        misconception_options: {B: local_outlives_function}
         verify:
           mode: c_sanitize
           prints: "7"
@@ -226,7 +224,6 @@ objectives:
           D: "Program derlenmez"
         scan_options: false
         answer: A
-        misconception_options: {B: local_outlives_function}
         verify:
           mode: c_sanitize
           prints: "5"

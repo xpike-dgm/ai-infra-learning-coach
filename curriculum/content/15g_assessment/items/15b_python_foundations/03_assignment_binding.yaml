@@ -5,26 +5,30 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          cozum.py adında bir program yaz: puan adında bir değişken 10 ile başlasın, *= kullanarak üç katına çıksın ve son değeri yazdırılsın. Ekranda yalnız 30 görünmeli; testler puan değişkeninin son değerine de bakar.
+          cozum.py adında bir program yaz: kod adında bir değişken boş bir yazıyla ("") başlasın; sonra += kullanarak sırasıyla "A", "7" ve "X" yazılarını eklesin; son olarak kodu yazdırsın. Ekranda yalnız A7X görünmeli; testler kod değişkeninin son değerine de bakar.
         harness: |
           import io, contextlib
           with contextlib.redirect_stdout(io.StringIO()) as cikti:
               import cozum
-          print(cikti.getvalue().strip(), "|", cozum.puan)
+          print(cikti.getvalue().strip(), "|", cozum.kod)
         suite:
-          - {id: tripled, args: [], expected_stdout: "30 | 30\n"}
+          - {id: built_code, args: [], expected_stdout: "A7X | A7X\n"}
         reference: |
-          puan = 10
-          puan *= 3
-          print(puan)
+          kod = ""
+          kod += "A"
+          kod += "7"
+          kod += "X"
+          print(kod)
         wrong:
           - |
-            puan = 10
-            puan * 3
-            print(puan)
+            kod = ""
+            kod += "A"
+            kod += "X"
+            kod += "7"
+            print(kod)
           - |
-            puan = 10
-            print(puan * 3)
+            kod = "A"
+            print("A", "7", "X")
       - slug: g02
         difficulty: basic
         prompt: |
@@ -49,57 +53,63 @@ objectives:
             ad = "Ece Kaya"
             print(ad)
       - slug: g03
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          cozum.py adında bir program yaz: stok 50 ile başlasın, 12 ürün satılsın (-= kullan) ve kalan stok yazdırılsın. Ekranda yalnız 38 görünmeli; testler stok değişkeninin son değerine de bakar.
+          cozum.py adında bir program yaz: x 10, y 3 ile başlasın. Önce x, y kadar azalsın; ARDINDAN y, x'in bu yeni değeri kadar artsın. Sonra print(x, y) ile ikisini yazdır. Testler iki değişkenin son değerine de bakar.
         harness: |
           import io, contextlib
           with contextlib.redirect_stdout(io.StringIO()) as cikti:
               import cozum
-          print(cikti.getvalue().strip(), "|", cozum.stok)
+          print(cikti.getvalue().strip(), "|", cozum.x, cozum.y)
         suite:
-          - {id: decreased, args: [], expected_stdout: "38 | 38\n"}
+          - {id: ordered_updates, args: [], expected_stdout: "7 10 | 7 10\n"}
         reference: |
-          stok = 50
-          stok -= 12
-          print(stok)
+          x = 10
+          y = 3
+          x -= y
+          y += x
+          print(x, y)
         wrong:
           - |
-            stok = 50
-            stok += 12
-            print(stok)
+            x = 10
+            y = 3
+            y += x
+            x -= 3
+            print(x, y)
           - |
-            stok = 50
-            print(stok - 12)
+            x = 10
+            y = 3
+            x -= y
+            y += x
+            print(y, x)
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          cozum.py adında bir program yaz: sayac 0 ile başlasın. Önce 5 artsın ve yazdırılsın; sonra iki katına çıksın ve yazdırılsın; sonra 3 azalsın ve yazdırılsın. Ekranda alt alta 5, 10 ve 7 görünmeli.
+          cozum.py adında bir program yaz: toplam_saniye değişkeni 200 olsun. dakika değişkeninde bunun kaç tam dakika ettiğini (// 60), kalan değişkeninde artan saniyeyi (% 60) hesapla ve print(dakika, "dk", kalan, "sn") ile yazdır. Ekranda 3 dk 20 sn görünmeli; testler dakika ve kalan değişkenlerine de bakar.
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.dakika, cozum.kalan)
         suite:
-          - {id: three_steps, stdin: "", expected_stdout: "5\n10\n7\n"}
+          - {id: minutes_seconds, args: [], expected_stdout: "3 dk 20 sn | 3 20\n"}
         reference: |
-          sayac = 0
-          sayac += 5
-          print(sayac)
-          sayac *= 2
-          print(sayac)
-          sayac -= 3
-          print(sayac)
+          toplam_saniye = 200
+          dakika = toplam_saniye // 60
+          kalan = toplam_saniye % 60
+          print(dakika, "dk", kalan, "sn")
         wrong:
           - |
-            sayac = 0
-            sayac += 5
-            print(sayac)
-            sayac += 2
-            print(sayac)
-            sayac -= 3
-            print(sayac)
+            toplam_saniye = 200
+            dakika = toplam_saniye % 60
+            kalan = toplam_saniye // 60
+            print(dakika, "dk", kalan, "sn")
           - |
-            sayac = 0
-            sayac += 5
-            sayac *= 2
-            sayac -= 3
-            print(sayac)
+            toplam_saniye = 200
+            dakika = toplam_saniye / 60
+            kalan = toplam_saniye % 60
+            print(dakika, "dk", kalan, "sn")
       - slug: g05
         difficulty: authentic_application
         prompt: |
@@ -167,30 +177,34 @@ objectives:
       - slug: g07
         difficulty: authentic_application
         prompt: |
-          cozum.py adında bir program yaz: baslangic 6 olsun; deger adında bir değişkene baslangic'in değeri kopyalansın; sonra yalnız deger *= ile dört katına çıksın. Son olarak print(baslangic, deger) yazılsın. Ekranda 6 24 görünmeli; testler iki değişkene de bakar.
+          cozum.py adında bir program yaz: puan 40 ile başlasın ve 25 artsın. Sonra etiket adında bir değişkene "Puan: " yazısı ile puanın o anki değerinin yazı hâli (str) birleştirilerek atansın. Ardından puan 0'a ayarlansın. Son olarak print(etiket, puan) yazılsın. Testler etiket ve puan değişkenlerine de bakar.
+        required_skills: [skill.python.value_type_behavior]
         harness: |
           import io, contextlib
           with contextlib.redirect_stdout(io.StringIO()) as cikti:
               import cozum
-          print(cikti.getvalue().strip(), "|", cozum.baslangic, cozum.deger)
+          print(cikti.getvalue().strip(), "|", cozum.etiket, "|", cozum.puan)
         suite:
-          - {id: copy_then_change, args: [], expected_stdout: "6 24 | 6 24\n"}
+          - {id: snapshot_label, args: [], expected_stdout: "Puan: 65 0 | Puan: 65 | 0\n"}
         reference: |
-          baslangic = 6
-          deger = baslangic
-          deger *= 4
-          print(baslangic, deger)
+          puan = 40
+          puan += 25
+          etiket = "Puan: " + str(puan)
+          puan = 0
+          print(etiket, puan)
         wrong:
           - |
-            baslangic = 6
-            baslangic *= 4
-            deger = baslangic
-            print(baslangic, deger)
+            puan = 40
+            puan += 25
+            puan = 0
+            etiket = "Puan: " + str(puan)
+            print(etiket, puan)
           - |
-            baslangic = 6
-            deger = baslangic
-            deger += 4
-            print(baslangic, deger)
+            puan = 40
+            etiket = "Puan: " + str(puan)
+            puan += 25
+            puan = 0
+            print(etiket, puan)
       - slug: g08
         difficulty: transfer_integration
         prompt: |
@@ -319,32 +333,3 @@ objectives:
             bakiye += bakiye // 10
             bakiye -= 250
             print(bakiye)
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: list_copy_append
-        required_skills: [skill.python.list_operations, skill.python.functions_parameters_return]
-        prompt: |
-          cozum.py dosyasına ekle_kopya(liste, deger) adında bir fonksiyon yaz: verilen listeyi DEĞİŞTİRMEDEN, sonuna deger eklenmiş yeni bir liste döndürsün. Örnek: a = [1, 2] ise ekle_kopya(a, 3) → [1, 2, 3] ve a hâlâ [1, 2].
-        harness: |
-          import sys, cozum
-          liste = [int(x) for x in sys.argv[1:-1]]
-          yeni = cozum.ekle_kopya(liste, int(sys.argv[-1]))
-          print(liste, yeni)
-        suite:
-          - {id: two_plus_one, args: ["1", "2", "3"], expected_stdout: "[1, 2] [1, 2, 3]\n"}
-          - {id: empty, args: ["5"], expected_stdout: "[] [5]\n"}
-          - {id: repeated, args: ["4", "4", "9"], expected_stdout: "[4, 4] [4, 4, 9]\n"}
-        reference: |
-          def ekle_kopya(liste, deger):
-              return liste + [deger]
-        wrong:
-          - |
-            def ekle_kopya(liste, deger):
-                liste.append(deger)
-                return liste
-          - |
-            def ekle_kopya(liste, deger):
-                yeni = liste
-                yeni.append(deger)
-                return yeni

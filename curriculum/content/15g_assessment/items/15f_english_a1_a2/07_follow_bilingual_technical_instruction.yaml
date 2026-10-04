@@ -149,4 +149,3 @@ objectives:
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:
-  item.english.follow_bilingual_technical_instruction.execute_known_instruction.f01: {B: it_is_new_thing}

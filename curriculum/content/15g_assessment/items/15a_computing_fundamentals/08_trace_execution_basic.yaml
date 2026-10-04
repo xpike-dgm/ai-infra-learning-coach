@@ -136,7 +136,6 @@ objectives:
           C: "4"
           D: "12"
         answer: A
-        misconception_options: {B: print_shows_final_value}
         verify:
           mode: probe
           upto: 4
@@ -228,4 +227,3 @@ objectives:
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:
   item.programming.trace_execution_basic.produce_trace.f02: {A: print_shows_final_value}
-  item.programming.trace_execution_basic.produce_trace.f06: {D: print_shows_final_value}

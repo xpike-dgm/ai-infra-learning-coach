@@ -158,7 +158,6 @@ objectives:
           D: "Bir önceki klasöre döner"
         scan_options: false
         answer: A
-        misconception_options: {C: imperative_is_description}
         verify:
           mode: reference
           reference: "Wikipedia — Imperative mood (Type ... and press ...: commands to the reader); pwd(1) — print name of current/working directory"

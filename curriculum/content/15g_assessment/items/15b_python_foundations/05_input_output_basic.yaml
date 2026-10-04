@@ -107,23 +107,22 @@ objectives:
       - slug: g06
         difficulty: authentic_application
         prompt: |
-          cozum.py adında bir program yaz: ilk satırda bir ad, ikinci satırda bir soyad okusun ve Kullanıcı adı: <ad>.<soyad> yazsın; ad, nokta ve soyad arasında boşluk olmasın. Örnek: girdi Ece ve Kaya ise çıktı Kullanıcı adı: Ece.Kaya olmalı.
+          cozum.py adında bir program yaz: bir satırda bir yaş (tam sayı) okusun ve Gelecek yıl <yaş + 1>! yazsın; sayı ile ünlem işareti arasında boşluk olmasın. Örnek: girdi 19 ise çıktı Gelecek yıl 20! olmalı.
+        required_skills: [skill.python.value_type_behavior]
         suite:
-          - {id: ece_kaya, stdin: "Ece\nKaya\n", expected_stdout: "Kullanıcı adı: Ece.Kaya\n"}
-          - {id: mert_oz, stdin: "Mert\nÖz\n", expected_stdout: "Kullanıcı adı: Mert.Öz\n"}
+          - {id: nineteen, stdin: "19\n", expected_stdout: "Gelecek yıl 20!\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "Gelecek yıl 1!\n"}
+          - {id: large, stdin: "99\n", expected_stdout: "Gelecek yıl 100!\n"}
         reference: |
-          ad = input()
-          soyad = input()
-          print("Kullanıcı adı: " + ad + "." + soyad)
+          yas = int(input())
+          print("Gelecek yıl " + str(yas + 1) + "!")
         wrong:
           - |
-            ad = input()
-            soyad = input()
-            print("Kullanıcı adı:", ad, ".", soyad)
+            yas = int(input())
+            print("Gelecek yıl", yas + 1, "!")
           - |
-            ad = input()
-            soyad = input()
-            print("Kullanıcı adı: " + ad + soyad)
+            yas = input()
+            print("Gelecek yıl " + yas + "1!")
       - slug: g07
         difficulty: authentic_application
         prompt: |
@@ -153,26 +152,29 @@ objectives:
             toplam = a + b + c
             print("Toplam:", toplam, "Ortalama:", round(a + b + c / 3, 2))
       - slug: g08
-        difficulty: transfer_integration
+        difficulty: authentic_application
         prompt: |
-          cozum.py adında bir program yaz: iki ayrı satırda iki tam sayı okusun ve tek satıra önce ikisinin yazı olarak yan yana eklenmiş hâlini, sonra sayı olarak toplamını yazsın (aralarında bir boşluk). Örnek: girdi 12 ve 34 ise çıktı 1234 46 olmalı.
+          cozum.py adında bir program yaz: üç ayrı satırda üç kelime okusun ve onları okunduğu sıranın TERSİNDE, aralarına boşluk-tire-boşluk ( - ) koyarak tek satıra yazsın. Örnek: girdi bir, iki ve üç ise çıktı üç - iki - bir olmalı.
         suite:
-          - {id: two_digit, stdin: "12\n34\n", expected_stdout: "1234 46\n"}
-          - {id: single_digit, stdin: "5\n7\n", expected_stdout: "57 12\n"}
-          - {id: with_zero, stdin: "0\n9\n", expected_stdout: "09 9\n"}
+          - {id: example, stdin: "bir\niki\nüç\n", expected_stdout: "üç - iki - bir\n"}
+          - {id: names, stdin: "Ali\nAyşe\nCan\n", expected_stdout: "Can - Ayşe - Ali\n"}
+          - {id: same_word, stdin: "x\ny\nx\n", expected_stdout: "x - y - x\n"}
         reference: |
           a = input()
           b = input()
-          print(a + b, int(a) + int(b))
+          c = input()
+          print(c + " - " + b + " - " + a)
         wrong:
-          - |
-            a = int(input())
-            b = int(input())
-            print(a + b, a + b)
           - |
             a = input()
             b = input()
-            print(a + b, a + b)
+            c = input()
+            print(a + " - " + b + " - " + c)
+          - |
+            a = input()
+            b = input()
+            c = input()
+            print(c, "-", b, "-", a, sep="")
       - slug: g09
         difficulty: transfer_integration
         prompt: |
@@ -219,32 +221,27 @@ objectives:
       - slug: g11
         difficulty: transfer_integration
         prompt: |
-          cozum.py adında bir program yaz: üç ayrı satırda bir ürün adı, birim fiyatı (tam sayı) ve adedi (tam sayı) okusun ve alt alta üç satır yazsın: Ürün: <ad>, Adet: <adet>, Toplam: <fiyat × adet>. Örnek: girdi kalem, 15 ve 3 ise çıktı Ürün: kalem, Adet: 3, Toplam: 45 satırları olmalı.
+          cozum.py adında bir program yaz: üç ayrı satırda bir ad, doğum yılı ve içinde bulunulan yılı (ikisi de tam sayı) okusun ve tek satıra Sayın <ad>, bu yıl <yaş> yaşına giriyorsun. yazsın; yaş = içinde bulunulan yıl − doğum yılı. Ad ile virgül arasında boşluk olmasın, cümle nokta ile bitsin. Örnek: girdi Ece, 2006 ve 2026 ise çıktı Sayın Ece, bu yıl 20 yaşına giriyorsun. olmalı.
         suite:
-          - {id: pens, stdin: "kalem\n15\n3\n", expected_stdout: "Ürün: kalem\nAdet: 3\nToplam: 45\n"}
-          - {id: single, stdin: "defter\n40\n1\n", expected_stdout: "Ürün: defter\nAdet: 1\nToplam: 40\n"}
+          - {id: example, stdin: "Ece\n2006\n2026\n", expected_stdout: "Sayın Ece, bu yıl 20 yaşına giriyorsun.\n"}
+          - {id: other, stdin: "Kaan\n1990\n2025\n", expected_stdout: "Sayın Kaan, bu yıl 35 yaşına giriyorsun.\n"}
+          - {id: same_year, stdin: "Su\n2026\n2026\n", expected_stdout: "Sayın Su, bu yıl 0 yaşına giriyorsun.\n"}
         reference: |
           ad = input()
-          fiyat = int(input())
-          adet = int(input())
-          print("Ürün:", ad)
-          print("Adet:", adet)
-          print("Toplam:", fiyat * adet)
+          dogum = int(input())
+          yil = int(input())
+          print("Sayın " + ad + ", bu yıl", yil - dogum, "yaşına giriyorsun.")
         wrong:
           - |
             ad = input()
-            fiyat = int(input())
-            adet = int(input())
-            print("Ürün:", ad)
-            print("Adet:", fiyat)
-            print("Toplam:", fiyat * adet)
+            dogum = int(input())
+            yil = int(input())
+            print("Sayın", ad, ", bu yıl", yil - dogum, "yaşına giriyorsun.")
           - |
             ad = input()
-            adet = int(input())
-            fiyat = int(input())
-            print("Ürün:", ad)
-            print("Adet:", adet)
-            print("Toplam:", fiyat * adet)
+            dogum = int(input())
+            yil = int(input())
+            print("Sayın " + ad + ", bu yıl", dogum - yil, "yaşına giriyorsun.")
       - slug: t01
         difficulty: transfer_integration
         transfer_profile: cross_topic_context

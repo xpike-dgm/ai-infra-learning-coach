@@ -87,7 +87,7 @@ objectives:
           D: "3 4 5"
         scan_options: false
         answer: A
-        misconception_options: {B: postfix_same_as_prefix, C: postfix_same_as_prefix}
+        misconception_options: {B: postfix_same_as_prefix}
         verify: {mode: c_stdout}
       - slug: g06
         difficulty: authentic_application

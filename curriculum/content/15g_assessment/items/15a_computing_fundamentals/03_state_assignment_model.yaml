@@ -58,7 +58,7 @@ objectives:
           C: "7 7 7"
           D: "1 1 1"
         answer: A
-        misconception_options: {B: copy_tracks_later_changes, C: copy_tracks_later_changes}
+        misconception_options: {B: copy_tracks_later_changes}
         verify: {mode: stdout}
       - slug: g06
         difficulty: authentic_application
@@ -112,7 +112,7 @@ objectives:
           D: Ekrana 1 yazılır; x x'ten çıkarılır ve 1 eklenir.
         scan_options: false
         answer: A
-        misconception_options: {B: self_update_impossible, C: assignment_is_equation}
+        misconception_options: {B: self_update_impossible}
         verify:
           mode: stdout
           outcomes: {A: "8", B: "hata", C: "7", D: "1"}

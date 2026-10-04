@@ -111,7 +111,6 @@ objectives:
           D: "Bir üst klasöre, proje'ye dönülür"
         scan_options: false
         answer: A
-        misconception_options: {B: relative_from_home}
         verify:
           mode: shell
           outcomes: {A: "error src", B: "ok docs", C: "ok docs new", D: "ok proje"}

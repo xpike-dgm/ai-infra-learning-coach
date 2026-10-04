@@ -193,4 +193,3 @@ objectives:
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:
-  item.git.stage_commit_history_basic.commit_and_verify_history.f06: {B: add_tracks_future_changes}

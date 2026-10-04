@@ -5,48 +5,30 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          print(type(3.0))
-        options:
-          A: "<class 'int'>"
-          B: "<class 'float'>"
-          C: "<class 'str'>"
-          D: "3.0"
-        answer: B
-        scan_options: false
+          x = 4 * 2.5
+          print(x, type(x))
+        required_skills: [skill.programming.state_assignment_model]
+        answer: "10.0 <class 'float'>"
         verify: {mode: stdout}
       - slug: g02
         difficulty: basic
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          print(type("False"))
-        options:
-          A: "<class 'bool'>"
-          B: "<class 'str'>"
-          C: "False"
-          D: "<class 'NoneType'>"
-        answer: B
-        scan_options: false
+          print(str(3.0) + "!", str(True) + "!")
+        required_skills: [skill.programming.state_assignment_model, skill.programming.expression_boolean_reasoning]
+        answer: "3.0! True!"
         verify: {mode: stdout}
       - slug: g03
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          print(int(9.99))
-        options:
-          A: "9"
-          B: "10"
-          C: "9.99"
-          D: Hata verir; ondalıklı bir sayı tam sayıya çevrilemez.
-        answer: A
-        scan_options: false
-        misconception_options: {B: int_rounds}
-        verify:
-          mode: stdout
-          outcomes: {A: "9", B: "10", C: "9.99", D: "<hata>"}
+          print(int(float("6.8")), float(int(6.8)))
+        answer: "6 6.0"
+        verify: {mode: stdout}
       - slug: g04
         difficulty: basic
         prompt: |
@@ -58,65 +40,39 @@ objectives:
       - slug: g05
         difficulty: authentic_application
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz. (İkinci değerdeki tırnakların arasında tek bir boşluk var.)
         code: |
-          print("3" * 3, 3 * 3)
-        answer: "333 9"
-        required_skills: [skill.programming.state_assignment_model]
+          print(bool(0.0), bool(" "), bool(None))
+        answer: "False True False"
         verify: {mode: stdout}
       - slug: g06
         difficulty: authentic_application
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          print(bool("0"), bool(0))
-        options:
-          A: "True False"
-          B: "False False"
-          C: "True True"
-          D: "False True"
-        answer: A
-        scan_options: false
-        misconception_options: {B: zero_string_false}
+          print(0 == 0.0, "0" == 0)
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        answer: "True False"
         verify: {mode: stdout}
       - slug: g07
-        difficulty: authentic_application
+        difficulty: transfer_integration
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          a = "10"
-          b = "20"
-          print(a + b, int(a) + int(b))
-        options:
-          A: "1020 30"
-          B: "30 30"
-          C: "1020 1020"
-          D: Hata verir; yazılar + ile birleştirilemez.
-        answer: A
-        scan_options: false
-        misconception_options: {B: string_plus_adds}
+          sayi = "15"
+          print(sayi + "0", int(sayi + "0"))
         required_skills: [skill.programming.state_assignment_model]
-        verify:
-          mode: stdout
-          outcomes: {A: "1020 30", B: "30 30", C: "1020 1020", D: "<hata>"}
+        answer: "150 150"
+        verify: {mode: stdout}
       - slug: g08
         difficulty: authentic_application
         prompt: |
-          Bu kod çalıştırılınca ne olur?
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          print(int("3.5"))
-        options:
-          A: Ekrana 3 yazılır.
-          B: Ekrana 4 yazılır.
-          C: Ekrana 3.5 yazılır.
-          D: Hiçbir şey yazılmaz; ondalıklı bir yazı doğrudan tam sayıya çevrilemediği için ValueError verir.
-        answer: D
-        scan_options: false
-        misconception_options: {B: int_rounds}
-        verify:
-          mode: stdout
-          expect_error: true
-          outcomes: {A: "3", B: "4", C: "3.5", D: ""}
+          print(type(str(None)), str(None) + "!")
+        required_skills: [skill.programming.state_assignment_model]
+        answer: "<class 'str'> None!"
+        verify: {mode: stdout}
       - slug: g09
         difficulty: transfer_integration
         prompt: |
@@ -135,18 +91,4 @@ objectives:
           print(float(7) + int("3"), str(2) + str(5.0))
         answer: "10.0 25.0"
         required_skills: [skill.programming.state_assignment_model]
-        verify: {mode: stdout}
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: quantity_text_repeat
-        required_skills: [skill.python.string_text_operations]
-        prompt: |
-          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi, satır satır yaz.
-        code: |
-          adet = "3"
-          print(adet * 2)
-          print(int(adet) * 2)
-        answer: "33\n6"
-        also_accept: ["33 6"]
         verify: {mode: stdout}

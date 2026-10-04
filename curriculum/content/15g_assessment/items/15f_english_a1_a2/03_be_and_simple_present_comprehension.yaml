@@ -32,7 +32,6 @@ objectives:
           D: "Bir test dosyası var mı?"
         scan_options: false
         answer: A
-        misconception_options: {D: is_means_exists}
         verify:
           mode: reference
           reference: "Wikipedia — English verbs, 'be' as copula; Wiktionary — it (pronoun), a (article)"

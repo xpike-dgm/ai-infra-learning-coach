@@ -464,7 +464,6 @@ objectives:
           D: "x'in adresi"
         scan_options: false
         answer: A
-        misconception_options: {B: p_is_the_value}
         verify:
           mode: c_stdout
           outcomes: {A: "23", B: "3", C: "13", D: "<adres>"}

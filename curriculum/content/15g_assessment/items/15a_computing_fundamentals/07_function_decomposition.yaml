@@ -186,4 +186,3 @@ misconception_options:
   item.programming.function_decomposition.define_io_responsibility.f02: {A: print_is_return}
   item.programming.function_decomposition.define_io_responsibility.f03: {B: print_is_return}
   item.programming.function_decomposition.define_io_responsibility.f04: {A: print_is_return}
-  item.programming.function_decomposition.define_io_responsibility.f07: {C: arguments_matched_by_name}

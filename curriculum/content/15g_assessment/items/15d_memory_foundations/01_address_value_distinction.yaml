@@ -22,7 +22,6 @@ objectives:
           D: Program derlenmez.
         scan_options: false
         answer: A
-        misconception_options: {B: assignment_links_variables}
         verify:
           mode: c_stdout
           outcomes: {A: "0", B: "1", C: "3", D: "derlenmez"}

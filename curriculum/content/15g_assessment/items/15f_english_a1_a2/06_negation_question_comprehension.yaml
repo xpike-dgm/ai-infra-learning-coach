@@ -15,7 +15,6 @@ objectives:
           D: "Dosyayı hazırla."
         scan_options: false
         answer: A
-        misconception_options: {B: missed_negation}
         verify:
           mode: reference
           reference: "Wikipedia — English grammar, negation: 'not' after the verb be negates the sentence"
@@ -123,7 +122,6 @@ objectives:
           D: "Araç çıktıyı ne kaydediyor ne yazdırıyor."
         scan_options: false
         answer: A
-        misconception_options: {B: missed_negation}
         verify:
           mode: reference
           reference: "Wikipedia — English grammar, short answers (No, it doesn't) negate the question's verb; Wiktionary — only (adverb)"
@@ -142,7 +140,6 @@ objectives:
           D: "İlki programın bir dosya açtığını bildiriyor; ikincisi soru soruyor."
         scan_options: false
         answer: A
-        misconception_options: {B: question_is_statement, D: question_is_statement}
         verify:
           mode: reference
           reference: "Wikipedia — English grammar: wh-questions (Which ... does ...?) and negation with doesn't"
@@ -150,8 +147,6 @@ objectives:
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:
-  item.english.negation_question_comprehension.demonstrate_capability.f01: {B: missed_negation}
   item.english.negation_question_comprehension.demonstrate_capability.f02: {B: missed_negation}
   item.english.negation_question_comprehension.demonstrate_capability.f03: {B: question_is_statement}
-  item.english.negation_question_comprehension.demonstrate_capability.f04: {B: missed_negation}
   item.english.negation_question_comprehension.demonstrate_capability.f08: {B: missed_negation, C: missed_negation}

@@ -104,7 +104,6 @@ objectives:
           D: "Bellekteki dosyaların sayısı"
         scan_options: false
         answer: A
-        misconception_options: {B: head_is_first}
         verify:
           mode: reference
           reference: "Wiktionary — total (adjective): entire; memory (noun, computing); size (noun); Wikipedia — English noun phrases (head noun last)"
@@ -141,7 +140,6 @@ objectives:
           D: "Hiçbiri; ikisi de bir dosyayı anlatır"
         scan_options: false
         answer: A
-        misconception_options: {B: head_is_first, C: head_is_first}
         verify:
           mode: reference
           reference: "Wikipedia — English noun phrases: the head noun comes last, so the last word decides what the phrase names"

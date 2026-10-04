@@ -82,7 +82,6 @@ objectives:
           D: "Hiçbir şey; dosyalardan biri olmadığı için cat hiçbir şey yazmaz"
         scan_options: false
         answer: A
-        misconception_options: {C: pipe_carries_errors}
         verify:
           mode: shell
           script: "echo zeytin > a.txt\necho armut >> a.txt\ncat a.txt b.txt 2>/dev/null | sort | head -n 1 2>&1\n"

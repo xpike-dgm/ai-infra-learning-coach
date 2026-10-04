@@ -546,6 +546,23 @@ TRANSFER_ROLE = "cross_topic_transfer"
 CROSS_TOPIC_PROFILES = {"cross_topic_context", "integrated_system_context"}
 
 
+def form_problems(it: dict, objective: dict) -> list[str]:
+    """15G (`D-120`): an item's form must be able to produce the evidence it is stored as. The evidence type is the item's
+    own declaration or its Objective's required direct type; a chosen option is never authored code, a hands-on result
+    or a written production, so a choice item cannot claim one (the store would record the wrong kind of evidence)."""
+    evidence = it.get("evidence_type") or objective.get("required_direct_type") or objective["direct_evidence_types"][0]
+    problems = []
+    if it.get("evidence_type") and it["evidence_type"] not in objective.get("acceptable_evidence_types", []):
+        problems.append(f"evidence type {it['evidence_type']!r} is not one the Objective accepts")
+    if evidence == "authored_code" and "suite" not in it:
+        problems.append("authored_code evidence comes only from a program the learner writes (a suite)")
+    if evidence == "hands_on_system_task" and "suite" not in it and not it.get("hands_on"):
+        problems.append("hands_on_system_task evidence comes only from work done at the computer (hands_on or a suite)")
+    if evidence == "written_or_spoken_production" and it.get("options"):
+        problems.append("written_or_spoken_production evidence is never a chosen option")
+    return problems
+
+
 def transfer_problems(it: dict, skill: str, declared: set[str], topic_of: dict[str, str]) -> list[str]:
     """What keeps a transfer claim from being checked (`AIV-v0` §16). The review decides whether the structure really
     changed; the build checks what it can: the profile, a named context, and a context that really comes from another
@@ -876,7 +893,7 @@ def build(content_dir: Path, partial: bool = False, supplement: dict | None = No
                 else:
                     ok, how = verify_item(it)
                 reviewed = reviewed_items.get(iid, {}).get("verdict") == "pass"
-                problems = []
+                problems = form_problems(it, o)
                 if not ok:
                     problems.append(how)
                 if hidden:

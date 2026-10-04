@@ -35,7 +35,7 @@ objectives:
           D: "İkisini de"
         scan_options: false
         answer: A
-        misconception_options: {C: brackets_required, D: brackets_required}
+        misconception_options: {D: brackets_required}
         verify:
           mode: reference
           reference: "man(1) — 'any or all arguments within [ ] are optional'"

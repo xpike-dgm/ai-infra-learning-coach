@@ -35,7 +35,7 @@ objectives:
           D: Sorun yok; ama yalnızca sayı döndüren fonksiyonlar için.
         scan_options: false
         answer: B
-        misconception_options: {A: expected_from_code, D: expected_from_code}
+        misconception_options: {A: expected_from_code}
         verify:
           mode: script
           outcomes: {A: "A", B: "B", C: "C", D: "D"}
@@ -83,7 +83,6 @@ objectives:
           C: son_rakam(3)
           D: son_rakam(58)
         answer: D
-        misconception_options: {B: any_input_detects}
         required_skills: [skill.programming.expression_boolean_reasoning]
         verify:
           mode: detects
@@ -199,6 +198,6 @@ objectives:
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:
-  item.programming.test_case_basic.design_expected_case.f03: {A: any_input_detects, B: any_input_detects, D: any_input_detects}
-  item.programming.test_case_basic.design_expected_case.f05: {A: any_input_detects, C: any_input_detects, D: any_input_detects}
+  item.programming.test_case_basic.design_expected_case.f03: {A: any_input_detects, D: any_input_detects}
+  item.programming.test_case_basic.design_expected_case.f05: {A: any_input_detects, C: any_input_detects}
   item.programming.test_case_basic.design_expected_case.f06: {A: passing_test_proves_correct, C: passing_test_proves_correct}
