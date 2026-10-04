@@ -398,3 +398,8 @@ objectives:
           }
         answer: "1 8"
         verify: {mode: c_stdout}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.memory.address_value_distinction.explain_address_vs_value.f02: {B: assignment_links_variables}
+  item.memory.address_value_distinction.trace_simple_memory_example.f03: {B: swap_without_third_box}

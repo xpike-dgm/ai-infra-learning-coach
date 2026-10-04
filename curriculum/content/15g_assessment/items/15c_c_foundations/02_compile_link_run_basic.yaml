@@ -678,3 +678,9 @@ objectives:
             else
                 echo baska
             fi
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.c.compile_link_run_basic.classify_compile_vs_runtime_failure.f02: {A: every_failure_is_compile_error}
+  item.c.compile_link_run_basic.classify_compile_vs_runtime_failure.f03: {D: compiled_means_correct}
+  item.c.compile_link_run_basic.classify_compile_vs_runtime_failure.f05: {A: every_failure_is_compile_error}

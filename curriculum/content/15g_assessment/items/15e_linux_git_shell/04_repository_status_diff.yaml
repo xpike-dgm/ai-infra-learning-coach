@@ -202,3 +202,7 @@ objectives:
         answer: "?? hesap\n?? hesap.c"
         also_accept: ["?? hesap ?? hesap.c"]
         verify: {mode: shell}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.git.repository_status_diff.inspect_change_state.f05: {B: diff_shows_everything}

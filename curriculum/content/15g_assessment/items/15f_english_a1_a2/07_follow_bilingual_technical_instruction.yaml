@@ -146,3 +146,7 @@ objectives:
           mode: reference
           reference: "Wiktionary — first / then / finally (adverbs ordering steps); it (pronoun): the thing previously mentioned"
           claim: "İngilizce sıra: sürümü kontrol et → programı güncelle → onu (programı) yeniden başlat."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.english.follow_bilingual_technical_instruction.execute_known_instruction.f01: {B: it_is_new_thing}

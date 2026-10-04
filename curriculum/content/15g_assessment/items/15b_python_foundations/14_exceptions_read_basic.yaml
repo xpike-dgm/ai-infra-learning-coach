@@ -242,3 +242,7 @@ objectives:
           print(stok["kiraz"])
         answer: "KeyError"
         verify: {mode: traceback, ask: type}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.python.exceptions_read_basic.extract_error_type_location.f03: {B: read_traceback_top_down}

@@ -196,3 +196,9 @@ objectives:
                     return tutar - 10
                 return tutar
             print(odenecek(100))
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.test_case_basic.design_expected_case.f03: {A: any_input_detects, B: any_input_detects, D: any_input_detects}
+  item.programming.test_case_basic.design_expected_case.f05: {A: any_input_detects, C: any_input_detects, D: any_input_detects}
+  item.programming.test_case_basic.design_expected_case.f06: {A: passing_test_proves_correct, C: passing_test_proves_correct}

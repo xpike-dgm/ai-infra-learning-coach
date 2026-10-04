@@ -147,3 +147,11 @@ objectives:
           mode: reference
           reference: "Wikipedia — English grammar: wh-questions (Which ... does ...?) and negation with doesn't"
           claim: "Which file does the program open? bir sorudur; The program doesn't open a file olumsuz bir bildirimdir."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.english.negation_question_comprehension.demonstrate_capability.f01: {B: missed_negation}
+  item.english.negation_question_comprehension.demonstrate_capability.f02: {B: missed_negation}
+  item.english.negation_question_comprehension.demonstrate_capability.f03: {B: question_is_statement}
+  item.english.negation_question_comprehension.demonstrate_capability.f04: {B: missed_negation}
+  item.english.negation_question_comprehension.demonstrate_capability.f08: {B: missed_negation, C: missed_negation}

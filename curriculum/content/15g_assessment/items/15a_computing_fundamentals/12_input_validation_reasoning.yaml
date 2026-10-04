@@ -238,3 +238,10 @@ objectives:
           name: gecerli_kat
           spec: "def spec(kat):\n    return 0 <= kat <= 20"
           cases: [[-1], [0], [1], [10], [19], [20], [21]]
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.input_validation_reasoning.demonstrate_capability.f01: {A: boundary_inclusion_ignored, B: boundary_inclusion_ignored}
+  item.programming.input_validation_reasoning.demonstrate_capability.f02: {B: boundary_inclusion_ignored, C: or_for_range, D: boundary_inclusion_ignored}
+  item.programming.input_validation_reasoning.demonstrate_capability.f05: {D: partial_rule_enough}
+  item.programming.input_validation_reasoning.demonstrate_capability.f07: {B: boundary_inclusion_ignored}

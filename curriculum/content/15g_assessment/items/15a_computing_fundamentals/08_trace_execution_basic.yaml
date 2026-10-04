@@ -224,3 +224,8 @@ objectives:
         answer: "cagri 3\ncagri 6\n18"
         also_accept: ["cagri 3 cagri 6 18"]
         verify: {mode: stdout}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.trace_execution_basic.produce_trace.f02: {A: print_shows_final_value}
+  item.programming.trace_execution_basic.produce_trace.f06: {D: print_shows_final_value}

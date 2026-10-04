@@ -146,3 +146,10 @@ objectives:
           mode: reference
           reference: "Wikipedia — English noun phrases: the head noun comes last, so the last word decides what the phrase names"
           claim: "log file name bir addır (son kelime name); file name log bir kayıttır (son kelime log)."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.f01: {B: head_is_first}
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.f02: {B: head_is_first}
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.f04: {B: adjective_describes_last_only}
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.f05: {B: adjective_describes_last_only}

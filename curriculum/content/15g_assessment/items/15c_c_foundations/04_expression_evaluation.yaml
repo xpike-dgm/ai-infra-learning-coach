@@ -204,3 +204,7 @@ objectives:
           }
         answer: "3"
         verify: {mode: c_stdout}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.c.expression_evaluation.demonstrate_capability.f02: {B: int_division_floors}

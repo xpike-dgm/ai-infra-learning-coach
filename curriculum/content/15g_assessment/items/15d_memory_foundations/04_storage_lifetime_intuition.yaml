@@ -290,3 +290,8 @@ objectives:
         verify:
           mode: c_stdout
           outcomes: {A: "3", B: "1", C: "0", D: "2"}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f03: {B: local_outlives_function}
+  item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f04: {C: free_clears_pointer}

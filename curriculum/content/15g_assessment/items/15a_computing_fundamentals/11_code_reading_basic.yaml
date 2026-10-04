@@ -280,3 +280,8 @@ objectives:
             B: "lambda a: 2 ** a"
             C: "lambda a: a * a"
             D: "lambda a: 64"
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.code_reading_basic.demonstrate_capability.f01: {D: single_case_generalization}
+  item.programming.code_reading_basic.demonstrate_capability.f03: {A: single_case_generalization}

@@ -164,3 +164,7 @@ objectives:
           print(bakiye)
         answer: "70"
         verify: {mode: stdout}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.state_assignment_model.trace_state.f05: {B: copy_tracks_later_changes}

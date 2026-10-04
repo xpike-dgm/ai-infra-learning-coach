@@ -135,3 +135,8 @@ objectives:
         verify:
           mode: stdout
           outcomes: {A: "True", B: "False", C: "81.66666666666667", D: "<hata>"}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.python.expression_evaluation.demonstrate_capability.f03: {B: minus_before_power}
+  item.python.expression_evaluation.demonstrate_capability.f04: {B: slash_gives_int}

@@ -145,3 +145,7 @@ objectives:
           print(sayac)
         answer: "5"
         verify: {mode: stdout}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.expression_boolean_reasoning.evaluate_condition.f05: {B: left_to_right_logic}

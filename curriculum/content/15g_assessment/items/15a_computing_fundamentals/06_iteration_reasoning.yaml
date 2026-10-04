@@ -313,3 +313,10 @@ objectives:
         misconception_options: {A: infinite_loop_crashes}
         required_skills: [skill.programming.expression_boolean_reasoning]
         verify: {mode: termination, keyed_terminates: false}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.iteration_reasoning.trace_iteration.f02: {A: range_counts_from_one}
+  item.programming.iteration_reasoning.trace_iteration.f07: {D: range_counts_from_one}
+  item.programming.iteration_reasoning.detect_nontermination.f03: {A: update_implies_termination}
+  item.programming.iteration_reasoning.detect_nontermination.f04: {A: update_implies_termination}

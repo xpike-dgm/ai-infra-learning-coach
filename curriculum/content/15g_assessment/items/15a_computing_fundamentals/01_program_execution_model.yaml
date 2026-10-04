@@ -183,3 +183,9 @@ objectives:
             grep -q '5 + 7' hesap.c || exit 1
             out=$(./hesap)
             if [ "$out" = "10" ]; then echo eski; elif [ "$out" = "12" ]; then echo yeni; else echo calismaz; fi
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.computing.program_execution_model.explain_pipeline.f02: {A: source_runs_directly}
+  item.computing.program_execution_model.explain_pipeline.f05: {A: interpreter_skips_syntax}
+  item.computing.program_execution_model.explain_pipeline.f07: {B: source_runs_directly}

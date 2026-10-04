@@ -184,3 +184,9 @@ objectives:
           print(kargo(1) + kargo(5) + kargo(6))
         answer: "105"
         verify: {mode: stdout}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.branching_reasoning.predict_branch.f03: {C: all_true_branches_run}
+  item.programming.branching_reasoning.predict_branch.f04: {A: separate_ifs_exclusive}
+  item.programming.branching_reasoning.predict_branch.f06: {B: condition_uses_initial_values}

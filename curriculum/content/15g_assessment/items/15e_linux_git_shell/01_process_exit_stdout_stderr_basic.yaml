@@ -136,3 +136,10 @@ objectives:
           mode: shell
           last_line: true
           outcomes: {A: "1", B: "0", C: "2", D: ""}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f03: {D: error_text_is_stdout}
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f05: {B: output_means_success}
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f07: {C: status_stays}
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f08: {C: error_text_is_stdout}

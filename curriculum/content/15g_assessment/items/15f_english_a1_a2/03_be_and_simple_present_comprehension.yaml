@@ -137,3 +137,7 @@ objectives:
           mode: reference
           reference: "Wikipedia — English verbs, 'be' as copula linking the subject to a description (here: wrong); Wiktionary — wrong (adjective)"
           claim: "The value is wrong, değerin yanlış olduğunu söyler; burada is 'var' anlamında değildir."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.english.be_and_simple_present_comprehension.demonstrate_capability.f01: {C: is_means_exists}

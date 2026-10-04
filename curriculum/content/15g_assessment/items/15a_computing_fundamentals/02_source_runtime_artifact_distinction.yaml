@@ -193,3 +193,7 @@ objectives:
             cp hata.py once.py
             python3 hata.py > out.txt 2> err.txt
             if grep -q ZeroDivisionError err.txt && ! grep -q ZeroDivisionError hata.py && cmp -s hata.py once.py; then echo calisma_ciktisi; else echo baska; fi
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.f02: {D: object_file_runnable}

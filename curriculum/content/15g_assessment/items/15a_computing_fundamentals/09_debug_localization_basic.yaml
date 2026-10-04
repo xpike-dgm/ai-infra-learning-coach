@@ -251,3 +251,11 @@ objectives:
           intended: 15
           line_options: {A: 1, B: 2, C: 3, D: 4}
           fix: "for i in range(1, 6):"
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.debug_localization_basic.locate_cause.f01: {D: symptom_is_location}
+  item.programming.debug_localization_basic.locate_cause.f02: {D: symptom_is_location}
+  item.programming.debug_localization_basic.locate_cause.f04: {D: symptom_is_location}
+  item.programming.debug_localization_basic.locate_cause.f05: {D: symptom_is_location}
+  item.programming.debug_localization_basic.locate_cause.f06: {D: symptom_is_location}

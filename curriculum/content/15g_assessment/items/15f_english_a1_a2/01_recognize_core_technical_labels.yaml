@@ -134,3 +134,7 @@ objectives:
           mode: reference
           reference: "Wiktionary — close (verb, computing): to terminate access to a file or window; delete (verb, computing): to remove"
           claim: "Close dosyayı yalnız kapatır; silmez."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.english.recognize_core_technical_labels.match_term_meaning.f08: {B: download_is_upload}

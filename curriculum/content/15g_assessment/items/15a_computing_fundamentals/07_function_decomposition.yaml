@@ -179,3 +179,11 @@ objectives:
           name: cift_say
           spec: "def spec(bas, son):\n    return len([n for n in range(bas, son + 1) if n % 2 == 0])"
           cases: [[1, 10], [2, 2], [3, 3], [0, 7], [4, 9]]
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.function_decomposition.define_io_responsibility.f01: {C: print_is_return}
+  item.programming.function_decomposition.define_io_responsibility.f02: {A: print_is_return}
+  item.programming.function_decomposition.define_io_responsibility.f03: {B: print_is_return}
+  item.programming.function_decomposition.define_io_responsibility.f04: {A: print_is_return}
+  item.programming.function_decomposition.define_io_responsibility.f07: {C: arguments_matched_by_name}
