@@ -1,0 +1,624 @@
+skill: skill.c.compile_link_run_basic
+objectives:
+  - id: objective.c.compile_link_run_basic.compile_and_run_small_program
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana iki ayrı satırda önce Ad: Deniz, sonra Yas: 20 yazsın. Derleyip çalıştırarak dene.
+        suite:
+          - {id: two_lines, expected_stdout: "Ad: Deniz\nYas: 20\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Ad: Deniz\n");
+              printf("Yas: 20\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Ad: Deniz");
+                printf("Yas: 20\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Yas: 20\n");
+                printf("Ad: Deniz\n");
+                return 0;
+            }
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana tek satırda isim, bir sekme karakteri (\t) ve puan yazsın; satır sonuyla bitsin. Derleyip çalıştırarak dene.
+        suite:
+          - {id: tab_separated, expected_stdout: "isim\tpuan\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("isim\tpuan\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("isim puan\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("isim\\tpuan\n");
+                return 0;
+            }
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Aşağıdaki program derlenmiyor. gcc'nin hata mesajını oku, hatayı düzelt ve düzeltilmiş programı cozum.c olarak kaydet. Program ekrana iki satırda Bir ve Iki yazmalı.
+
+              #include <stdio.h>
+
+              int main(void) {
+                  printf("Bir\n");
+                  printf("Iki\n")
+                  return 0;
+              }
+        suite:
+          - {id: two_lines, expected_stdout: "Bir\nIki\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Bir\n");
+              printf("Iki\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Bir\n");
+                printf("Iki\n")
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Bir\n");
+                return 0;
+            }
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana tek satırda bir Windows yolu olan C:\Users\ali yazsın (ters bölüler dahil). Ters bölüyü bir C yazısında nasıl yazacağını düşün. Derleyip çalıştırarak dene.
+        suite:
+          - {id: backslashes, expected_stdout: "C:\\Users\\ali\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("C:\\Users\\ali\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("C:/Users/ali\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("C:\\\\Users\\\\ali\n");
+                return 0;
+            }
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir C programı yaz: iki ayrı printf çağrısıyla ekrana tek bir satırda Yukleniyor...tamam yazsın (ilk printf Yukleniyor..., ikincisi tamam ve satır sonu yazsın). Derleyip çalıştırarak dene.
+        suite:
+          - {id: one_line, expected_stdout: "Yukleniyor...tamam\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Yukleniyor...");
+              printf("tamam\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Yukleniyor...\n");
+                printf("tamam\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Yukleniyor... ");
+                printf("tamam\n");
+                return 0;
+            }
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana Toplam: 437 yazsın; 437'yi program 19 ile 23'ü çarparak hesaplasın ve printf'e %d ile versin. Derleyip çalıştırarak dene.
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: product, expected_stdout: "Toplam: 437\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Toplam: %d\n", 19 * 23);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Toplam: 19 * 23\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Toplam: %d\n", 19 + 23);
+                return 0;
+            }
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki program derlenmiyor. gcc'nin hata mesajını oku (mesaj dosyanın sonunu gösteriyor), eksik olanı bul, düzelt ve cozum.c olarak kaydet. Program ekrana Hazir yazmalı.
+
+              #include <stdio.h>
+
+              int main(void) {
+                  printf("Hazir\n");
+                  return 0;
+        suite:
+          - {id: ready, expected_stdout: "Hazir\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Hazir\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Hazir\n");
+                return 0;
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("hazir\n");
+                return 0;
+            }
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana Hata kodu: 3 yazsın ve main 3 döndürsün (return 3;), böylece program işletim sistemine 3 çıkış koduyla bitsin. Testler hem çıktıya hem çıkış koduna bakar. Terminalde ./cozum; echo $? ile kendin de görebilirsin.
+        suite:
+          - {id: exit_three, expected_stdout: "Hata kodu: 3\n", expected_exit_code: 3}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Hata kodu: 3\n");
+              return 3;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Hata kodu: 3\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Hata kodu: 0\n");
+                return 3;
+            }
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana tek satırda 2 * (3 + 4) = 14 yazsın. Eşittirin solundaki ifade yazı olarak, sağdaki 14 ise programın aynı ifadeyi hesaplamasıyla %d ile yazılsın. Derleyip çalıştırarak dene.
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: expression, expected_stdout: "2 * (3 + 4) = 14\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("2 * (3 + 4) = %d\n", 2 * (3 + 4));
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("2 * (3 + 4) = %d\n", 2 * 3 + 4);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("%d = 14\n", 2 * (3 + 4));
+                return 0;
+            }
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki program derlenmiyor. gcc'nin hata mesajını oku: derleyici bilmediği bir fonksiyon adından söz ediyor. Hatayı düzelt ve cozum.c olarak kaydet. Program ekrana alt alta Basla ve Bitti yazmalı.
+
+              #include <stdio.h>
+
+              int main(void) {
+                  printf("Basla\n");
+                  prinft("Bitti\n");
+                  return 0;
+              }
+        suite:
+          - {id: both_lines, expected_stdout: "Basla\nBitti\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Basla\n");
+              printf("Bitti\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Basla\n");
+                prinft("Bitti\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Basla\n");
+                return 0;
+            }
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana tek satırda "ad" ve "soyad" kelimelerini çift tırnaklarıyla birlikte, aralarında bir sekme karakteriyle yazsın: önce "ad", sonra sekme, sonra "soyad" ve satır sonu. Derleyip çalıştırarak dene.
+        suite:
+          - {id: quoted_tab, expected_stdout: "\"ad\"\t\"soyad\"\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("\"ad\"\t\"soyad\"\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("ad\tsoyad\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("\"ad\" \"soyad\"\n");
+                return 0;
+            }
+  - id: objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure
+    items:
+      - slug: g01
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Bu program gcc -std=c11 -Wall -Wextra ile derlenip çalıştırılınca ne olur? İstersen kendin derleyip çalıştırarak gör.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Merhaba\n");
+              return 0
+          }
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: g02
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Bu programda main yanlış yazılmış (mian). Program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int mian(void) {
+              printf("Merhaba\n");
+              return 0;
+          }
+        required_skills: [skill.c.functions_basic]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır"
+        scan_options: false
+        answer: B
+        misconception_options: {A: every_failure_is_compile_error}
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: g03
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Bu program -Wall -Wextra ile derlenince gcc kullanılmayan bir değişken için bir uyarı (warning) yazıyor. Program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int kullanilmayan = 3;
+              printf("Calisti\n");
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model]
+        options:
+          A: "Derleme hatası; uyarı derlemeyi durdurur"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır ve Calisti yazar; uyarı derlemeyi durdurmaz"
+        scan_options: false
+        answer: D
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: g04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Bu program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int sifir = 0;
+              printf("Kalan: %d\n", 10 % sifir);
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model, skill.c.expression_evaluation]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır"
+        scan_options: false
+        answer: C
+        misconception_options: {A: every_failure_is_compile_error, D: compiled_means_correct}
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: g05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Bu programda kare fonksiyonu main'den sonra tanımlanmış ve main'den önce hiç bildirilmemiş. Program gcc -std=c11 -Wall -Wextra ile derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%d\n", kare(4));
+              return 0;
+          }
+
+          int kare(int x) {
+              return x * x;
+          }
+        required_skills: [skill.c.functions_basic]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır ve 16 yazar"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: g06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Bu programda #include <stdio.h> satırı unutulmuş. Program gcc -std=c11 -Wall -Wextra ile derlenip çalıştırılınca ne olur?
+        code: |
+          int main(void) {
+              printf("Merhaba\n");
+              return 0;
+          }
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: g07
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Bu programda bir int değişkenine sayı yerine bir yazı veriliyor. Program gcc -std=c11 -Wall -Wextra ile derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int adet = "5";
+              printf("%d\n", adet);
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır ve 5 yazar"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: g08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Bu programdaki fonksiyon kendisini hiç durmadan yeniden çağırıyor. Program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int say(int n) {
+              return say(n + 1) + 1;
+          }
+
+          int main(void) {
+              printf("%d\n", say(0));
+              return 0;
+          }
+        required_skills: [skill.c.functions_basic]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır"
+        scan_options: false
+        answer: C
+        misconception_options: {A: every_failure_is_compile_error, D: compiled_means_correct}
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: g09
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Bu programda aynı fonksiyon aynı dosyada iki kez tanımlanmış. Program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int iki_kat(int x) {
+              return 2 * x;
+          }
+
+          int iki_kat(int x) {
+              return x + x;
+          }
+
+          int main(void) {
+              printf("%d\n", iki_kat(5));
+              return 0;
+          }
+        required_skills: [skill.c.functions_basic]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır ve 10 yazar"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: g10
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Bu programda fonksiyonun bildirimi ile tanımı farklı parametre türleri söylüyor. Program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int yarim(int x);
+
+          int main(void) {
+              printf("%d\n", yarim(10));
+              return 0;
+          }
+
+          int yarim(double x) {
+              return (int)(x / 2);
+          }
+        required_skills: [skill.c.functions_basic, skill.c.declaration_type_model, skill.c.expression_evaluation]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır ve 5 yazar"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: g11
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Bu programda bir açıklama (yorum) /* ile açılmış ama hiç kapatılmamış. Program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              /* toplamı yazdır
+              printf("Toplam\n");
+              return 0;
+          }
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır ama hiçbir şey yazmaz"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}

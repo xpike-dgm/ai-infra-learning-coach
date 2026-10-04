@@ -1,0 +1,231 @@
+skill: skill.linux.terminal_filesystem_navigation
+objectives:
+  - id: objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+    items:
+      - slug: g01
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır:
+
+          mkdir -p x/y/z
+          cd x/y/z
+          cd ../..
+
+          Şimdi hangi klasördesin? Klasörün adını yaz.
+        answer: "x"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p x/y/z
+            cd x/y/z
+            cd ../..
+            basename "$PWD"
+      - slug: g02
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Terminal hangi klasörde olursa olsun şu komutları çalıştır:
+
+          cd /tmp
+          pwd
+
+          pwd ne yazar?
+        answer: "/tmp"
+        verify:
+          mode: shell
+          script: |
+            cd /tmp
+            pwd
+      - slug: g03
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p foto/2026
+          cd foto
+          cd .
+
+          Şimdi hangi klasördesin? Klasörün adını yaz.
+        answer: "foto"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p foto/2026
+            cd foto
+            cd .
+            basename "$PWD"
+      - slug: g04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p ev/mutfak ev/salon
+          cd ev/mutfak
+          cd ../salon
+          cd ../mutfak
+
+          Şimdi hangi klasördesin? Klasörün adını yaz.
+        answer: "mutfak"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p ev/mutfak ev/salon
+            cd ev/mutfak
+            cd ../salon
+            cd ../mutfak
+            basename "$PWD"
+      - slug: g05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p m/a m/b/c
+          ls m
+
+          ls ne listeler? Çıktıyı göründüğü gibi, aralarında bir boşlukla yaz.
+        answer: "a b"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p m/a m/b/c
+            echo $(ls m)
+      - slug: g06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p proje/src proje/docs
+          cd proje/src
+          cd docs
+
+          Son komut ne olur?
+        options:
+          A: "Hata verir: göreli yol çalışma dizininden (src) başlar ve src içinde docs yok; çalışma dizini src olarak kalır"
+          B: "proje/docs klasörüne girilir; göreli yollar ev dizininden ya da projenin kökünden aranır"
+          C: "src içinde yeni bir docs klasörü oluşturulup içine girilir"
+          D: "Bir üst klasöre, proje'ye dönülür"
+        scan_options: false
+        answer: A
+        misconception_options: {B: relative_from_home}
+        verify:
+          mode: shell
+          outcomes: {A: "error src", B: "ok docs", C: "ok docs new", D: "ok proje"}
+          script: |
+            mkdir -p proje/src proje/docs
+            cd proje/src
+            if cd docs 2>/dev/null; then echo "ok $(basename "$PWD")"; else echo "error $(basename "$PWD")"; fi
+      - slug: g07
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p a/b/c
+          cd a
+          cd b/c
+          cd ..
+
+          Şimdi hangi klasördesin?
+        options:
+          A: "b; .. her zaman çalışma dizininin bir üstüdür"
+          B: "a; cd .. son cd komutundan önceki klasöre döner"
+          C: "Başladığın boş klasör; cd .. başlangıç klasörüne döndürür"
+          D: "c; cd .. çalışma dizinini değiştirmez"
+        scan_options: false
+        answer: A
+        misconception_options: {B: dotdot_goes_home, C: dotdot_goes_home}
+        verify:
+          mode: shell
+          outcomes: {A: "b", B: "a", C: "start", D: "c"}
+          script: |
+            mkdir -p a/b/c
+            cd a
+            cd b/c
+            cd ..
+            basename "$PWD"
+      - slug: g08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p p/q
+          cd p/q
+          mkdir ../../r
+          cd ../../r
+          ls ..
+
+          Son ls ne listeler? Çıktıyı göründüğü gibi, aralarında birer boşlukla yaz.
+        answer: "p r"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p p/q
+            cd p/q
+            mkdir ../../r
+            cd ../../r
+            echo $(ls ..)
+      - slug: g09
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Terminal hangi klasörde olursa olsun şu komutları çalıştır (Ubuntu'da / altında usr ve tmp klasörleri her zaman vardır):
+
+          cd /
+          cd usr
+          cd ../tmp
+          pwd
+
+          pwd ne yazar?
+        answer: "/tmp"
+        verify:
+          mode: shell
+          script: |
+            cd /
+            cd usr
+            cd ../tmp
+            pwd
+      - slug: g10
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir proje
+          cd proje
+          mkdir -p src/../test
+          ls
+
+          ls ne listeler? Çıktıyı göründüğü gibi, aralarında birer boşlukla yaz.
+        answer: "src test"
+        verify:
+          mode: shell
+          script: |
+            mkdir proje
+            cd proje
+            mkdir -p src/../test
+            echo $(ls)
+      - slug: g11
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p k/l
+          cd k/l
+          cd ../../k/l/..
+
+          Şimdi hangi klasördesin? Klasörün adını yaz.
+        answer: "k"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p k/l
+            cd k/l
+            cd ../../k/l/..
+            basename "$PWD"
