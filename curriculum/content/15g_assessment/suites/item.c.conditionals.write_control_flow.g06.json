@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.conditionals.write_control_flow.g06@v1",
+  "item": "item.c.conditionals.write_control_flow.g06@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "fifteen",
+      "stdin": "15\n",
+      "expected_stdout": "FizzBuzz\n"
+    },
+    {
+      "id": "nine",
+      "stdin": "9\n",
+      "expected_stdout": "Fizz\n"
+    },
+    {
+      "id": "ten",
+      "stdin": "10\n",
+      "expected_stdout": "Buzz\n"
+    },
+    {
+      "id": "seven",
+      "stdin": "7\n",
+      "expected_stdout": "7\n"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.path_handling.read_write_small_text_file.g03@v1",
+  "item": "item.python.path_handling.read_write_small_text_file.g03@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.tasi(sys.argv[1], sys.argv[2]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "nested_target",
+      "args": [
+        "indirilenler/foto.jpg",
+        "arsiv/2026"
+      ],
+      "expected_stdout": "arsiv/2026/foto.jpg\n"
+    },
+    {
+      "id": "bare_file",
+      "args": [
+        "not.txt",
+        "yedek"
+      ],
+      "expected_stdout": "yedek/not.txt\n"
+    },
+    {
+      "id": "trailing_slash",
+      "args": [
+        "a/b/c.md",
+        "d/"
+      ],
+      "expected_stdout": "d/c.md\n"
+    }
+  ]
+}

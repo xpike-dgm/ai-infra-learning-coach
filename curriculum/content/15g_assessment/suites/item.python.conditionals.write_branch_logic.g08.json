@@ -1,0 +1,48 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.conditionals.write_branch_logic.g08@v1",
+  "item": "item.python.conditionals.write_branch_logic.g08@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "big_basket",
+      "stdin": "350\nhayır\n",
+      "expected_stdout": "Kargo: 0\n"
+    },
+    {
+      "id": "member",
+      "stdin": "100\nevet\n",
+      "expected_stdout": "Kargo: 0\n"
+    },
+    {
+      "id": "neither",
+      "stdin": "100\nhayır\n",
+      "expected_stdout": "Kargo: 30\n"
+    },
+    {
+      "id": "boundary",
+      "stdin": "300\nhayır\n",
+      "expected_stdout": "Kargo: 0\n"
+    },
+    {
+      "id": "just_below",
+      "stdin": "299\nhayır\n",
+      "expected_stdout": "Kargo: 30\n"
+    }
+  ]
+}

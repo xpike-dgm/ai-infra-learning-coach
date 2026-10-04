@@ -1,0 +1,48 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.conditionals.write_branch_logic.g07@v1",
+  "item": "item.python.conditionals.write_branch_logic.g07@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "right_triangle",
+      "stdin": "3\n4\n5\n",
+      "expected_stdout": "olur\n"
+    },
+    {
+      "id": "flat",
+      "stdin": "1\n2\n3\n",
+      "expected_stdout": "olmaz\n"
+    },
+    {
+      "id": "long_first",
+      "stdin": "10\n2\n3\n",
+      "expected_stdout": "olmaz\n"
+    },
+    {
+      "id": "long_last",
+      "stdin": "2\n3\n10\n",
+      "expected_stdout": "olmaz\n"
+    },
+    {
+      "id": "equilateral",
+      "stdin": "5\n5\n5\n",
+      "expected_stdout": "olur\n"
+    }
+  ]
+}

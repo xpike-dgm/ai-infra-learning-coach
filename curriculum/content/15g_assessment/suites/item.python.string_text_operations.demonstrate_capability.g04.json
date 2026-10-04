@@ -1,0 +1,59 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.string_text_operations.demonstrate_capability.g04@v1",
+  "item": "item.python.string_text_operations.demonstrate_capability.g04@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(\"[\" + cozum.ortadaki(sys.argv[1]) + \"]\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "odd",
+      "args": [
+        "kalem"
+      ],
+      "expected_stdout": "[l]\n"
+    },
+    {
+      "id": "even",
+      "args": [
+        "elma"
+      ],
+      "expected_stdout": "[lm]\n"
+    },
+    {
+      "id": "single",
+      "args": [
+        "a"
+      ],
+      "expected_stdout": "[a]\n"
+    },
+    {
+      "id": "two",
+      "args": [
+        "ev"
+      ],
+      "expected_stdout": "[ev]\n"
+    },
+    {
+      "id": "turkish",
+      "args": [
+        "ağaçlık"
+      ],
+      "expected_stdout": "[ç]\n"
+    }
+  ]
+}

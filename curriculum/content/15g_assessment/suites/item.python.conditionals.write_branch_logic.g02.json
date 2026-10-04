@@ -1,0 +1,53 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.conditionals.write_branch_logic.g02@v1",
+  "item": "item.python.conditionals.write_branch_logic.g02@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "december",
+      "stdin": "12\n",
+      "expected_stdout": "kış\n"
+    },
+    {
+      "id": "january",
+      "stdin": "1\n",
+      "expected_stdout": "kış\n"
+    },
+    {
+      "id": "spring",
+      "stdin": "3\n",
+      "expected_stdout": "ilkbahar\n"
+    },
+    {
+      "id": "summer_edge",
+      "stdin": "8\n",
+      "expected_stdout": "yaz\n"
+    },
+    {
+      "id": "autumn",
+      "stdin": "11\n",
+      "expected_stdout": "sonbahar\n"
+    },
+    {
+      "id": "spring_end",
+      "stdin": "5\n",
+      "expected_stdout": "ilkbahar\n"
+    }
+  ]
+}

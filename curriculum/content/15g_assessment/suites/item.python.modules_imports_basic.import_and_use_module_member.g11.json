@@ -1,0 +1,50 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.modules_imports_basic.import_and_use_module_member.g11@v1",
+  "item": "item.python.modules_imports_basic.import_and_use_module_member.g11@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.ozet([int(x) for x in sys.argv[1:]]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "four",
+      "args": [
+        "1",
+        "2",
+        "3",
+        "10"
+      ],
+      "expected_stdout": "(4, 2.5)\n"
+    },
+    {
+      "id": "single",
+      "args": [
+        "5"
+      ],
+      "expected_stdout": "(5, 5)\n"
+    },
+    {
+      "id": "odd",
+      "args": [
+        "3",
+        "1",
+        "2"
+      ],
+      "expected_stdout": "(2, 2)\n"
+    }
+  ]
+}

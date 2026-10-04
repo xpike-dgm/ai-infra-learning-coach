@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.files_paths_basic.demonstrate_capability.g03@v1",
+  "item": "item.python.files_paths_basic.demonstrate_capability.g03@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, tempfile, cozum\nfrom pathlib import Path\nwith tempfile.TemporaryDirectory() as d:\n    yol = Path(d) / \"cikti.txt\"\n    yol.write_bytes(\"eski içerik burada\".encode(\"utf-8\"))\n    cozum.dosyaya_yaz(yol, sys.argv[1])\n    with open(yol, encoding=\"utf-8\") as f:\n        print(\"[\" + f.read() + \"]\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "replaces",
+      "args": [
+        "yeni"
+      ],
+      "expected_stdout": "[yeni]\n"
+    },
+    {
+      "id": "turkish",
+      "args": [
+        "ığüşöç"
+      ],
+      "expected_stdout": "[ığüşöç]\n"
+    },
+    {
+      "id": "empty",
+      "args": [
+        ""
+      ],
+      "expected_stdout": "[]\n"
+    }
+  ]
+}

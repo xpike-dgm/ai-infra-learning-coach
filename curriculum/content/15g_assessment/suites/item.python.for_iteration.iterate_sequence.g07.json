@@ -1,0 +1,43 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.for_iteration.iterate_sequence.g07@v1",
+  "item": "item.python.for_iteration.iterate_sequence.g07@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "three",
+      "stdin": "3\n4\n5\n6\n",
+      "expected_stdout": "5.0\n"
+    },
+    {
+      "id": "half",
+      "stdin": "2\n1\n2\n",
+      "expected_stdout": "1.5\n"
+    },
+    {
+      "id": "single",
+      "stdin": "1\n7\n",
+      "expected_stdout": "7.0\n"
+    },
+    {
+      "id": "thirds",
+      "stdin": "3\n1\n1\n2\n",
+      "expected_stdout": "1.33\n"
+    }
+  ]
+}

@@ -3,7 +3,10 @@ package coach.wiring
 import coach.application.BuildDailyPlan
 import coach.application.IngestCurriculum
 import coach.curriculum.FileContentSource
+import coach.model.Criticality
 import coach.model.DailyCapacityInput
+import coach.model.LearningNeed
+import coach.model.LifecycleStatus
 import coach.model.NeedDisposition
 import coach.model.NeedTrigger
 import coach.model.PublishOutcome
@@ -22,7 +25,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * The course as it ships after 15B (`PYFX-v0`, `D-113`): the two packages in `assets`, read together by the real content
+ * The course as it ships after 15B (`PYFX-v0`, `D-113`) and every package since: the two packages in `assets`, read together by the real content
  * adapter, published into the real SQLite store by the real ingestion, and planned by the real gate and planner. The
  * first package is 15A's, untouched; the second only adds. Nothing here builds a package or a store of its own.
  */
@@ -242,5 +245,50 @@ class ShippedCourseTest {
         assertEquals(56, waiting.size, "everything downstream waits: $waiting")
         assertTrue(waiting.none { it in entry })
         assertTrue(trace.needs.none { it.disposition == NeedDisposition.NO_VALID_CANDIDATE }, "every Skill has its lesson")
+    }
+
+    // ------------------------------------------- 15G (`ACNX-v0`, `D-120`): the assessment supplement adds and changes nothing
+
+    private val assessment = File("src/main/assets/curriculum_package_v7.txt").readText()
+    private val withAssessment = FileContentSource(later = { listOf(python, c, memory, shellGit, english, assessment) }, source = { first })
+    private val addedItems = Regex("""\[item]\nref=(\S+)@v1\n""").findAll(assessment).map { skill(it.groupValues[1]) }.toList()
+
+    @Test
+    fun `all seven shipped packages are published into the real store, oldest first, and the supplement adds items, not Skills`() {
+        assertEquals((1..7).toList(), IngestCurriculum(store, withAssessment, clock).ingestAll().map { assertIs<PublishOutcome.Published>(it, "$it").version })
+        assertEquals(7, store.latestCurriculumVersion())
+        assertEquals(60, store.publishedSkills().size, "a supplement adds no Skill")
+        assertEquals(613, addedItems.size)
+        // Every added item is a published resource the store itself trusts: trust is the store's, never the item's (11D).
+        addedItems.forEach { ref ->
+            assertTrue(store.resourceVersion(ref) != null, "$ref is not published")
+            assertEquals(LifecycleStatus.VALIDATED, store.latestValidation(ref)?.status, "$ref")
+        }
+        assertEquals((1..7).map { PublishOutcome.AlreadyPublished(it) }, IngestCurriculum(store, withAssessment, clock).ingestAll())
+    }
+
+    @Test
+    fun `with the supplement, a learner who has done nothing is offered the same entry lessons, and no transfer opens before learning`() {
+        IngestCurriculum(store, withAssessment, clock).ingestAll()
+        val trace = assertIs<BuildDailyPlan.Built.Planned>(BuildDailyPlan(store, withAssessment, clock)
+            .build(DailyCapacityInput(normalProfileMinutes = 60, shortProfileMinutes = 30, intensiveProfileMinutes = 90))).trace
+
+        val entry = setOf(skill("skill.computing.program_execution_model"), skill("skill.programming.state_assignment_model"), terminal, labels)
+        assertTrue(entry.containsAll(trace.selected.map { it.primarySkill }), "only entry Skills start: ${trace.selected.map { it.primarySkill }}")
+        assertTrue(trace.selected.all { it.purpose == TaskPurpose.TEACH })
+        assertTrue(trace.selected.sumOf { it.plannedMinutes } <= 60, "the day is never extended")
+        // A lesson presents the items it always did: the supplement grew practice, check, review and repair only.
+        assertTrue(trace.selected.all { "@v1:" in it.candidateId }, trace.selected.map { it.candidateId }.toString())
+
+        assertEquals(60, trace.needs.count { it.trigger == NeedTrigger.NEW_LEARNING })
+        assertTrue(trace.needs.none { it.trigger == NeedTrigger.TRANSFER_OPPORTUNITY }, "nothing is learned, so nothing transfers")
+        val waiting = trace.needs.filter { it.disposition == NeedDisposition.BLOCKED }.flatMap { it.targetSkills }.toSet()
+        assertEquals(56, waiting.size, "everything downstream waits: $waiting")
+        assertTrue(trace.needs.none { it.disposition == NeedDisposition.NO_VALID_CANDIDATE }, "every Skill has its lesson")
+
+        // Later work on an entry Skill is the grown task, its second version.
+        val check = withAssessment.taskCandidates(LearningNeed("${NeedTrigger.VERIFICATION_DUE.id}:$labels", NeedTrigger.VERIFICATION_DUE,
+            listOf(labels), Criticality.REQUIRED)).single()
+        assertTrue("@v2:" in check.id, check.id)
     }
 }

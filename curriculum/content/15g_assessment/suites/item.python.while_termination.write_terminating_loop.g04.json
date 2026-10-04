@@ -1,0 +1,38 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.while_termination.write_terminating_loop.g04@v1",
+  "item": "item.python.while_termination.write_terminating_loop.g04@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "three_words",
+      "stdin": "elma\narmut\nkiraz\nson\n",
+      "expected_stdout": "3 kelime, son kelime: kiraz\n"
+    },
+    {
+      "id": "one_word",
+      "stdin": "tek\nson\n",
+      "expected_stdout": "1 kelime, son kelime: tek\n"
+    },
+    {
+      "id": "none",
+      "stdin": "son\n",
+      "expected_stdout": "0 kelime\n"
+    }
+  ]
+}

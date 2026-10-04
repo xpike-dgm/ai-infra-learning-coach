@@ -1,0 +1,60 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.conditionals.write_control_flow.g01@v1",
+  "item": "item.c.conditionals.write_control_flow.g01@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "morning_edges",
+      "stdin": "6\n",
+      "expected_stdout": "sabah\n"
+    },
+    {
+      "id": "noon",
+      "stdin": "12\n",
+      "expected_stdout": "ogle\n"
+    },
+    {
+      "id": "evening_end",
+      "stdin": "21\n",
+      "expected_stdout": "aksam\n"
+    },
+    {
+      "id": "late",
+      "stdin": "22\n",
+      "expected_stdout": "gece\n"
+    },
+    {
+      "id": "early",
+      "stdin": "5\n",
+      "expected_stdout": "gece\n"
+    },
+    {
+      "id": "before_noon",
+      "stdin": "11\n",
+      "expected_stdout": "sabah\n"
+    },
+    {
+      "id": "midnight",
+      "stdin": "0\n",
+      "expected_stdout": "gece\n"
+    }
+  ]
+}

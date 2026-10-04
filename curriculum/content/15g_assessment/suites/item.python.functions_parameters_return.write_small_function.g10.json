@@ -1,0 +1,59 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.functions_parameters_return.write_small_function.g10@v1",
+  "item": "item.python.functions_parameters_return.write_small_function.g10@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.en_yakin_on(int(sys.argv[1])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "half_up",
+      "args": [
+        "25"
+      ],
+      "expected_stdout": "30\n"
+    },
+    {
+      "id": "down",
+      "args": [
+        "24"
+      ],
+      "expected_stdout": "20\n"
+    },
+    {
+      "id": "already",
+      "args": [
+        "30"
+      ],
+      "expected_stdout": "30\n"
+    },
+    {
+      "id": "small_up",
+      "args": [
+        "7"
+      ],
+      "expected_stdout": "10\n"
+    },
+    {
+      "id": "small_down",
+      "args": [
+        "4"
+      ],
+      "expected_stdout": "0\n"
+    }
+  ]
+}

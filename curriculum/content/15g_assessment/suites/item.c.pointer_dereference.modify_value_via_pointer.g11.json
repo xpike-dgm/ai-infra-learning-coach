@@ -1,0 +1,29 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.pointer_dereference.modify_value_via_pointer.g11@v1",
+  "item": "item.c.pointer_dereference.modify_value_via_pointer.g11@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nvoid dondur3(int *a, int *b, int *c);\n\nint main(void) {\n    int x = 0, y = 0, z = 0;\n    while (scanf(\"%d %d %d\", &x, &y, &z) == 3) {\n        dondur3(&x, &y, &z);\n        printf(\"%d %d %d\\n\", x, y, z);\n    }\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -c ders_test.c -o ders_test.o && gcc -g -fsanitize=address,undefined cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0",
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "values",
+      "stdin": "1 2 3\n7 8 9\n",
+      "expected_stdout": "2 3 1\n8 9 7\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

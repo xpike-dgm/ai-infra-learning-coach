@@ -971,7 +971,10 @@ def build(content_dir: Path, partial: bool = False, supplement: dict | None = No
                     ("variant_family_id", family), ("forbidden_not_yet_concepts", sorted(set(introduced) - reachable)),
                     ("expected_active_minutes", it.get("minutes", notation["minutes_code" if at_computer else "minutes"][difficulty])),
                     ("blueprint_roles", sorted(set(roles))),
-                ] + ([("transfer_profile", transfer), ("context_family_id", f"context.{it['context_family']}")] if transfer is not None else [])))
+                ] + ([("transfer_profile", transfer)] if transfer is not None else [])
+                  # A transfer item without a named context is already a reported failure (`transfer_problems`); it is
+                  # written without one, never a crash of the whole build (found by the 15G builder mutation run).
+                  + ([("context_family_id", f"context.{it['context_family']}")] if transfer is not None and it.get("context_family") else [])))
                 if it.get("misconception_options"):
                     answer_misconceptions_out.extend(
                         answer_misconception_sections(iid, base, ns, it, it["misconception_options"], misconception_slugs, report))

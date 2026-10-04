@@ -1,0 +1,56 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.modules_imports_basic.import_and_use_module_member.g07@v1",
+  "item": "item.python.modules_imports_basic.import_and_use_module_member.g07@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.kombinasyon(int(sys.argv[1]), int(sys.argv[2])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "five_two",
+      "args": [
+        "5",
+        "2"
+      ],
+      "expected_stdout": "10\n"
+    },
+    {
+      "id": "choose_none",
+      "args": [
+        "6",
+        "0"
+      ],
+      "expected_stdout": "1\n"
+    },
+    {
+      "id": "choose_all",
+      "args": [
+        "4",
+        "4"
+      ],
+      "expected_stdout": "1\n"
+    },
+    {
+      "id": "ten_three",
+      "args": [
+        "10",
+        "3"
+      ],
+      "expected_stdout": "120\n"
+    }
+  ]
+}

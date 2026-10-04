@@ -1,0 +1,62 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.tuple_immutable_sequence.demonstrate_capability.g08@v1",
+  "item": "item.python.tuple_immutable_sequence.demonstrate_capability.g08@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\naranan = sys.argv[1]\na = sys.argv[2:]\nrehber = [(a[i], a[i + 1]) for i in range(0, len(a), 2)]\nprint(cozum.telefon_bul(rehber, aranan))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "found_second",
+      "args": [
+        "Ece",
+        "Ali",
+        "555",
+        "Ece",
+        "444"
+      ],
+      "expected_stdout": "444\n"
+    },
+    {
+      "id": "found_first",
+      "args": [
+        "Ali",
+        "Ali",
+        "555",
+        "Ece",
+        "444"
+      ],
+      "expected_stdout": "555\n"
+    },
+    {
+      "id": "missing",
+      "args": [
+        "Can",
+        "Ali",
+        "555"
+      ],
+      "expected_stdout": "None\n"
+    },
+    {
+      "id": "empty",
+      "args": [
+        "Can"
+      ],
+      "expected_stdout": "None\n"
+    }
+  ]
+}

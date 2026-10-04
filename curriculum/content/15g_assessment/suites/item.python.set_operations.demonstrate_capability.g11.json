@@ -1,0 +1,64 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.set_operations.demonstrate_capability.g11@v1",
+  "item": "item.python.set_operations.demonstrate_capability.g11@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nayrac = sys.argv.index(\"|\")\nprint(cozum.ayni_kelimeler_mi(sys.argv[1:ayrac], sys.argv[ayrac + 1:]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "same_set",
+      "args": [
+        "elma",
+        "armut",
+        "elma",
+        "|",
+        "armut",
+        "elma"
+      ],
+      "expected_stdout": "True\n"
+    },
+    {
+      "id": "extra_word",
+      "args": [
+        "elma",
+        "|",
+        "elma",
+        "kiraz"
+      ],
+      "expected_stdout": "False\n"
+    },
+    {
+      "id": "both_empty",
+      "args": [
+        "|"
+      ],
+      "expected_stdout": "True\n"
+    },
+    {
+      "id": "same_length_different",
+      "args": [
+        "a",
+        "b",
+        "|",
+        "a",
+        "c"
+      ],
+      "expected_stdout": "False\n"
+    }
+  ]
+}

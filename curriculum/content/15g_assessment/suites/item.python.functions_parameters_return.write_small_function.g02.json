@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.functions_parameters_return.write_small_function.g02@v1",
+  "item": "item.python.functions_parameters_return.write_small_function.g02@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(\"[\" + cozum.sure_yazisi(int(sys.argv[1])) + \"]\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "example",
+      "args": [
+        "135"
+      ],
+      "expected_stdout": "[2 sa 15 dk]\n"
+    },
+    {
+      "id": "under_hour",
+      "args": [
+        "45"
+      ],
+      "expected_stdout": "[0 sa 45 dk]\n"
+    },
+    {
+      "id": "exact",
+      "args": [
+        "120"
+      ],
+      "expected_stdout": "[2 sa 0 dk]\n"
+    }
+  ]
+}

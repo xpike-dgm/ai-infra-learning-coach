@@ -1,0 +1,29 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.assignment_binding.write_state_change.g08@v1",
+  "item": "item.python.assignment_binding.write_state_change.g08@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import io, contextlib\nwith contextlib.redirect_stdout(io.StringIO()) as cikti:\n    import cozum\nprint(cikti.getvalue().strip(), \"|\", cozum.toplam, cozum.ortalama)"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "total_and_mean",
+      "args": [],
+      "expected_stdout": "Toplam: 246 Ortalama: 82 | 246 82\n"
+    }
+  ]
+}
