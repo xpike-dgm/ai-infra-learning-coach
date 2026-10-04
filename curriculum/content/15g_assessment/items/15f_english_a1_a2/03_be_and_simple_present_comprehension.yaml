@@ -2,23 +2,6 @@ skill: skill.english.be_and_simple_present_comprehension
 objectives:
   - id: objective.english.be_and_simple_present_comprehension.demonstrate_capability
     items:
-      - slug: g01
-        difficulty: basic
-        prompt: |
-          Bu cümle ne söylüyor?
-        code: |
-          The program is ready.
-        options:
-          A: "Program hazır."
-          B: "Programı hazırla."
-          C: "Program hazır mı?"
-          D: "Program hazır değil."
-        scan_options: false
-        answer: A
-        verify:
-          mode: reference
-          reference: "Wikipedia — English verbs, 'be' (copula linking a subject to a description); Wiktionary — ready (adjective)"
-          claim: "The program is ready, programın hazır olduğunu bildirir."
       - slug: g02
         difficulty: basic
         prompt: |
@@ -54,88 +37,42 @@ objectives:
           mode: reference
           reference: "Wikipedia — Simple present (English): third-person singular -s marks the verb (saves) with a singular subject (the tool)"
           claim: "The tool saves the output; tekil bir araç her zaman yaptığı işi (kaydetme) anlatır. -s fiilde tekil öznenin işaretidir."
-      - slug: g04
+      - slug: g09
         difficulty: authentic_application
         prompt: |
-          Bu cümle ne söylüyor?
+          Bu iki cümle bir aracın belgesinde geçiyor. Her cümlede kaç test var?
         code: |
-          These files are different.
+          The test has two errors.
+          The tests have two errors.
         options:
-          A: "Bu dosyalar farklı."
-          B: "Bu dosyalar aynı."
-          C: "Bu dosya farklı."
-          D: "Bu dosyaları farklılaştır."
+          A: "1. cümlede tek bir test, 2. cümlede birden çok test"
+          B: "1. cümlede birden çok test (has'taki -s), 2. cümlede tek bir test"
+          C: "İki cümlede de tek bir test"
+          D: "İki cümlede de birden çok test"
         scan_options: false
         answer: A
+        misconception_options: {B: s_means_plural_verb}
         verify:
           mode: reference
-          reference: "Wiktionary — these (determiner, plural of this); different (adjective); Wikipedia — English verbs, 'are' with a plural subject"
-          claim: "These files are different, bu dosyaların birbirinden farklı olduğunu söyler."
-      - slug: g05
+          reference: "Wikipedia — English verbs, simple present: third-person singular -s (the test has) vs plural subject (the tests have); English plurals (tests)"
+          claim: "The test has: tek özne, fiil -s alır (has). The tests have: çoğul özne (tests), fiil -s almaz."
+      - slug: g10
         difficulty: authentic_application
         prompt: |
-          Bu cümleye göre program kaç değer döndürür? Yalnız sayıyı yaz.
+          Bir klasördeki dosyalar için bu iki cümle yazılmış. Hangisi doğru?
         code: |
-          The program uses one file and returns two values.
-        answer: "2"
-        also_accept: ["iki"]
-        verify:
-          mode: reference
-          reference: "Wiktionary — return (verb, computing): to give a value back; two (numeral)"
-          claim: "returns two values, iki değer döndürdüğünü söyler."
-      - slug: g06
-        difficulty: authentic_application
-        prompt: |
-          İki satırdan hangisi bir durumu anlatıyor, hangisi bir emir veriyor?
-        code: |
-          The test runs now.
-          Run the test now.
+          These files are large. This file is small.
         options:
-          A: "İlki bir durumu anlatıyor (test şimdi çalışıyor); ikincisi bir emir (testi şimdi çalıştır)."
-          B: "İkisi de emir veriyor."
-          C: "İkisi de bir durumu anlatıyor."
-          D: "İlki emir, ikincisi durum."
+          A: "Birden çok dosya büyük; bir dosya küçük"
+          B: "Bir dosya büyük; birden çok dosya küçük"
+          C: "Bütün dosyalar büyük"
+          D: "Bütün dosyalar küçük"
         scan_options: false
         answer: A
         verify:
           mode: reference
-          reference: "Wikipedia — Simple present (statement with subject + verb-s); Wikipedia — Imperative mood (verb first, no subject)"
-          claim: "The test runs now özneli bir bildirimdir; Run the test now öznesiz, fiille başlayan bir emirdir."
-      - slug: g07
-        difficulty: transfer_integration
-        prompt: |
-          Bu cümleye göre hangi dosya açılır?
-        code: |
-          The command copies the file and opens the copy.
-        options:
-          A: "Kopya"
-          B: "Asıl dosya"
-          C: "İkisi de"
-          D: "Hiçbiri; komut yalnız kopyalar"
-        scan_options: false
-        answer: A
-        verify:
-          mode: reference
-          reference: "Wiktionary — copy (noun): an item that is a duplicate; open (verb); Wikipedia — Simple present (opens: third-person -s)"
-          claim: "opens the copy, kopyanın açıldığını söyler."
-      - slug: g08
-        difficulty: transfer_integration
-        prompt: |
-          Bu cümle ne söylüyor?
-        code: |
-          The value is wrong.
-        options:
-          A: "Değer yanlış."
-          B: "Bir değer var."
-          C: "Değeri yanlış yap."
-          D: "Yanlış bir değer yok."
-        scan_options: false
-        answer: A
-        misconception_options: {B: is_means_exists}
-        verify:
-          mode: reference
-          reference: "Wikipedia — English verbs, 'be' as copula linking the subject to a description (here: wrong); Wiktionary — wrong (adjective)"
-          claim: "The value is wrong, değerin yanlış olduğunu söyler; burada is 'var' anlamında değildir."
+          reference: "Wiktionary — these (determiner, plural of this); this (determiner, singular); large (adjective); small (adjective); Wikipedia — English verbs: is (singular) / are (plural)"
+          claim: "These files are large: birden çok dosya büyük; This file is small: bir dosya küçük."
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

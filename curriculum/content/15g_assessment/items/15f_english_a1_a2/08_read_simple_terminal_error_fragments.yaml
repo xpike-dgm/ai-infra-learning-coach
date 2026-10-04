@@ -177,22 +177,3 @@ objectives:
             bash s.sh > out.txt 2> err.txt
             grep -qxF "cat: veri.txt: No such file or directory" err.txt && [ "$(cat out.txt)" = "$(printf 'start\ndone')" ] && echo ikinci
           outcomes: {A: "ikinci", B: "birinci", C: "ucuncu", D: "hicbiri"}
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: python_script_missing
-        required_skills: [skill.python.run_repl_script, skill.english.negation_question_comprehension]
-        prompt: |
-          /tmp/ders15g klasöründe python3 yok.py yazdın ve terminal bu satırı yazdı. Python hangi dosyayı açamadı? Yalnız dosyanın adını yaz.
-        code: |
-          python3: can't open file '/tmp/ders15g/yok.py': [Errno 2] No such file or directory
-        answer: "yok.py"
-        also_accept: ["/tmp/ders15g/yok.py"]
-        verify:
-          mode: shell
-          script: |
-            mkdir -p /tmp/ders15g
-            cd /tmp/ders15g
-            python3 yok.py 2>&1 | grep -qxF "python3: can't open file '/tmp/ders15g/yok.py': [Errno 2] No such file or directory" && [ ! -e yok.py ] && echo yok.py
-            cd /
-            rmdir /tmp/ders15g

@@ -184,13 +184,15 @@ objectives:
         prompt: |
           Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          def kare(x):
-              return x * x
+          def sifirla():
+              toplam = 100
+              return toplam
 
-          def hesap():
-              kare = 3
-              return kare
+          def hesapla():
+              toplam = 5
+              sifirla()
+              return toplam + 1
 
-          print(hesap(), kare(4))
-        answer: "3 16"
+          print(hesapla())
+        answer: "6"
         verify: {mode: stdout}

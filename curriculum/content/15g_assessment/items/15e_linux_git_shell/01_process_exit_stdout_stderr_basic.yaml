@@ -107,25 +107,29 @@ objectives:
             durum=$?
             if [ "$cikti" = "bir" ] && [ "$durum" = "3" ]; then echo A; else echo B; fi
       - slug: g06
-        difficulty: transfer_integration
+        difficulty: authentic_application
+        hands_on: true
         prompt: |
-          Boş bir klasörde bu komutlar sırayla çalıştırıldı. -p seçeneği, klasör zaten varsa hata vermemesini söyler. Son satırda ne görünür?
+          Bu komut iki satır yazıyor. Satırlar hangi kanala gider?
         code: |
-          mkdir -p arsiv/2026
-          mkdir -p arsiv/2026
-          echo $?
-        required_skills: [skill.linux.terminal_filesystem_navigation]
+          bash -c 'echo "Uyari: disk dolu"; echo tamam >&2'
         options:
-          A: "0"
-          B: 0'dan farklı bir sayı; klasör zaten vardı
-          C: Hiçbir şey; mkdir -p bir şey yazmaz
-          D: "2026"
+          A: "\"tamam\" stderr'e, \"Uyari: disk dolu\" stdout'a gider"
+          B: "\"Uyari: disk dolu\" stderr'e, \"tamam\" stdout'a gider"
+          C: İkisi de stdout'a gider
+          D: İkisi de stderr'e gider
         scan_options: false
         answer: A
         verify:
           mode: shell
-          last_line: true
-          outcomes: {A: "0", B: "1", C: "", D: "2026"}
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            err=$(bash -c 'echo "Uyari: disk dolu"; echo tamam >&2' 2>&1 >/dev/null)
+            out=$(bash -c 'echo "Uyari: disk dolu"; echo tamam >&2' 2>/dev/null)
+            if [ "$err" = "tamam" ] && [ "$out" = "Uyari: disk dolu" ]; then echo A
+            elif [ "$out" = "tamam" ]; then echo B
+            elif [ -z "$err" ]; then echo C
+            else echo D; fi
       - slug: g07
         difficulty: transfer_integration
         prompt: |

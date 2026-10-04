@@ -224,27 +224,27 @@ objectives:
       - slug: g07
         difficulty: authentic_application
         prompt: |
-          Aşağıdaki program, aralarında BOŞLUK olan iki tam sayı okuyup çarpımlarını yazmalı (girdi 3 4 → çıktı 12). Ama 12 yerine 0 yazıyor. scanf'in biçim yazısıyla girdinin nasıl eşleştiğini düşün, hatayı düzelt ve cozum.c olarak kaydet.
+          Aşağıdaki program, aralarında BOŞLUK olan iki tam sayı okuyup onları ters sırayla yazmalı (girdi 3 4 → çıktı 4 3). Ama 4 3 yerine 0 3 yazıyor. scanf'in biçim yazısıyla girdinin nasıl eşleştiğini düşün, hatayı düzelt ve cozum.c olarak kaydet.
 
           #include <stdio.h>
 
           int main(void) {
               int a = 0, b = 0;
               scanf("%d,%d", &a, &b);
-              printf("%d\n", a * b);
+              printf("%d %d\n", b, a);
               return 0;
           }
         suite:
-          - {id: example, stdin: "3 4\n", expected_stdout: "12\n"}
-          - {id: newline_separated, stdin: "5\n6\n", expected_stdout: "30\n"}
-          - {id: negative, stdin: "-2 7\n", expected_stdout: "-14\n"}
+          - {id: example, stdin: "3 4\n", expected_stdout: "4 3\n"}
+          - {id: newline_separated, stdin: "5\n6\n", expected_stdout: "6 5\n"}
+          - {id: negative, stdin: "-2 7\n", expected_stdout: "7 -2\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
               int a = 0, b = 0;
               scanf("%d %d", &a, &b);
-              printf("%d\n", a * b);
+              printf("%d %d\n", b, a);
               return 0;
           }
         wrong:
@@ -254,7 +254,7 @@ objectives:
             int main(void) {
                 int a = 0, b = 0;
                 scanf("%d,%d", &a, &b);
-                printf("%d\n", a * b);
+                printf("%d %d\n", b, a);
                 return 0;
             }
           - |
@@ -262,8 +262,8 @@ objectives:
 
             int main(void) {
                 int a = 0, b = 0;
-                scanf("%d", &a);
-                printf("%d\n", a * b);
+                scanf("%d %d", &a, &b);
+                printf("%d %d\n", a, b);
                 return 0;
             }
       - slug: g08

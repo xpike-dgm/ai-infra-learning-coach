@@ -28,26 +28,34 @@ objectives:
       - slug: g02
         difficulty: authentic_application
         prompt: |
-          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+          Bu program kare(a) çağrısının içindeyken — return satırına gelmeden hemen önce — bellekte bu programın kendi bildirdiği kaç ayrı int değişken vardır?
         code: |
           #include <stdio.h>
 
-          int ekle(int d) {
-              d = d + 100;
-              return d;
+          int kare(int s) {
+              int r = s * s;
+              return r;
           }
 
           int main(void) {
-              int puan = 8;
-              ekle(puan);
-              printf("%d ", puan);
-              puan = ekle(puan);
-              printf("%d\n", puan);
+              int a = 3;
+              int b = kare(a);
+              printf("%d\n", b);
               return 0;
           }
         required_skills: [skill.c.functions_basic]
-        answer: "8 108"
-        verify: {mode: c_stdout}
+        options:
+          A: "4: main'in a ve b'si, kare'nin s ve r'si; s, a'nın değerinin kopyasını tutan ayrı bir değişkendir"
+          B: "3: s ayrı bir değişken değildir, a'nın kendisidir"
+          C: "2: yalnız main'de bildirilenler bellekte yer tutar"
+          D: "1: a, s ve r aynı değeri taşıdığı için tek bir yerde durur"
+        scan_options: false
+        answer: A
+        misconception_options: {D: same_value_same_place}
+        verify:
+          mode: reference
+          reference: "C11 §6.9.1p9 (each parameter has automatic storage duration; its identifier denotes an object); C11 §6.2.4p6 (an object with automatic storage duration lives from entry into its block until that block ends); C11 §6.5.2.2p4 (each parameter is assigned the value of the corresponding argument)"
+          claim: "Çağrı sürerken main'in a ve b'si yaşamaya devam eder, kare'nin parametresi s ve yereli r de kendi yerleri olan ayrı nesnelerdir: dört int."
       - slug: g03
         difficulty: basic
         prompt: |
@@ -66,24 +74,19 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+          Bu program bu kursun ortamında (Linux, x86_64, gcc) çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
           #include <stdio.h>
 
-          void arttir(int n) {
-              n = n + 1;
-              printf("%d ", n);
-          }
-
           int main(void) {
-              int a = 1;
-              arttir(a);
-              arttir(a);
-              printf("%d\n", a);
+              double olcum = 7.75;
+              int tam = olcum;
+              olcum = olcum * 2;
+              printf("%d %d %zu\n", tam, tam == olcum, sizeof tam);
               return 0;
           }
-        required_skills: [skill.c.functions_basic]
-        answer: "2 2 1"
+        required_skills: [skill.c.declaration_type_model, skill.c.expression_evaluation]
+        answer: "7 0 4"
         verify: {mode: c_stdout}
       - slug: g05
         difficulty: basic
@@ -139,30 +142,27 @@ objectives:
         answer: A
         verify: {mode: c_stdout}
       - slug: g07
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          Bu program çalışınca ekrana ne yazılır?
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
           #include <stdio.h>
 
+          void goster(void) {
+              int x = 7;
+              printf("%d ", x);
+          }
+
           int main(void) {
-              int a = 9;
-              int b = 9;
-              a = 1;
-              printf("%d\n", b);
+              int x = 1;
+              goster();
+              x = x + 1;
+              printf("%d\n", x);
               return 0;
           }
-        options:
-          A: "9"
-          B: "1"
-          C: "10"
-          D: "0"
-        scan_options: false
-        answer: A
-        misconception_options: {B: same_value_same_place}
-        verify:
-          mode: c_stdout
-          outcomes: {A: "9", B: "1", C: "10", D: "0"}
+        required_skills: [skill.c.functions_basic]
+        answer: "7 2"
+        verify: {mode: c_stdout}
       - slug: g08
         difficulty: authentic_application
         prompt: |

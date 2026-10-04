@@ -103,16 +103,16 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          cozum.c adında bir program yaz: genislik ve yukseklik adında iki int değişkeni TEK bir bildirim satırında bildirip sırasıyla 6 ve 9 değerlerini versin; ekrana tek satırda önce alanı (genislik * yukseklik), sonra çevreyi (2 * (genislik + yukseklik)) aralarında bir boşlukla yazsın.
-        required_skills: [skill.c.expression_evaluation]
+          cozum.c adında bir program yaz: derinlik adında bir double değişkene -12.9 değer versin; bunu seviye adında bir int değişkene açık dönüşümle (cast) atasın. Ekrana tek satırda, aralarında bir boşlukla, önce derinlik'i bir ondalık basamakla (%.1f), sonra seviye'yi (%d) yazdırsın.
         suite:
-          - {id: area_perimeter, expected_stdout: "54 30\n"}
+          - {id: negative_cast, expected_stdout: "-12.9 -12\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              int genislik = 6, yukseklik = 9;
-              printf("%d %d\n", genislik * yukseklik, 2 * (genislik + yukseklik));
+              double derinlik = -12.9;
+              int seviye = (int) derinlik;
+              printf("%.1f %d\n", derinlik, seviye);
               return 0;
           }
         wrong:
@@ -120,16 +120,18 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                int genislik = 6, yukseklik = 9;
-                printf("%d %d\n", genislik * yukseklik, 2 * genislik + yukseklik);
+                double derinlik = -12.9;
+                int seviye = (int) derinlik - 1;
+                printf("%.1f %d\n", derinlik, seviye);
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                int genislik = 9, yukseklik = 6;
-                printf("%d %d\n", genislik + yukseklik, genislik * yukseklik);
+                double derinlik = -12.9;
+                double seviye = derinlik;
+                printf("%.1f %.0f\n", derinlik, seviye);
                 return 0;
             }
       - slug: g05
@@ -164,17 +166,18 @@ objectives:
                 return 0;
             }
       - slug: g06
-        difficulty: authentic_application
+        difficulty: transfer_integration
         prompt: |
-          cozum.c adında bir program yaz: oran adında bir int değişkene 45 değer versin ve ekrana Türkçedeki gibi yüzde işareti sayının ÖNÜNDE olacak şekilde %45 yazdırsın. printf'te yüzde işaretini nasıl yazacağını düşün.
+          cozum.c adında bir program yaz: kod adında bir double değişkene 66.9 değer versin; bunu harf adında bir char değişkene açık dönüşümle ((char) kod) atasın. Ekrana tek satırda, aralarında bir boşlukla, önce harf'i karakter olarak (%c), sonra sayısal değerini (%d) yazdırsın.
         suite:
-          - {id: percent_first, expected_stdout: "%45\n"}
+          - {id: double_to_char, expected_stdout: "B 66\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              int oran = 45;
-              printf("%%%d\n", oran);
+              double kod = 66.9;
+              char harf = (char) kod;
+              printf("%c %d\n", harf, harf);
               return 0;
           }
         wrong:
@@ -182,16 +185,18 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                int oran = 45;
-                printf("%d%%\n", oran);
+                double kod = 66.9;
+                char harf = (char) (kod + 0.5);
+                printf("%c %d\n", harf, harf);
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                int oran = 45;
-                printf("% %d\n", oran);
+                double kod = 66.9;
+                char harf = (char) kod;
+                printf("%d %c\n", harf, harf);
                 return 0;
             }
       - slug: g07

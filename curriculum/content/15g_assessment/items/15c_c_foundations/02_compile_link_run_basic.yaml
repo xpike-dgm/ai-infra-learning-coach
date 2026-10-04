@@ -447,7 +447,6 @@ objectives:
           D: "Hatasız çalışır"
         scan_options: false
         answer: C
-        misconception_options: {D: compiled_means_correct}
         verify:
           mode: c_stage
           outcomes: {A: compile, B: link, C: run, D: ok}

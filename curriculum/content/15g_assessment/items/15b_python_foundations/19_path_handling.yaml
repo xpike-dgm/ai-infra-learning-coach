@@ -3,32 +3,38 @@ objectives:
   - id: objective.python.path_handling.read_write_small_text_file
     items:
       - slug: g01
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına pathlib kullanarak iki_ust(yol) adında bir fonksiyon yaz: dosyanın içinde bulunduğu klasörün de bir üstündeki klasörün yalnız adını döndürsün; öyle bir klasör yoksa boş yazı döndürsün. Örnek: iki_ust("proje/src/ana.py") → "proje".
+          cozum.py dosyasına pathlib kullanarak cift_uzanti(yol) adında bir fonksiyon yaz: dosya adının son iki uzantısını (noktalarıyla, sırasıyla, birleşik) döndürsün; adın tek uzantısı varsa yalnız onu, hiç uzantısı yoksa boş yazı döndürsün. Klasör adlarındaki noktalar sayılmasın. Örnek: cift_uzanti("yedek/gunluk.log.gz") → ".log.gz".
         required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic]
         harness: |
           import sys, cozum
-          print("[" + cozum.iki_ust(sys.argv[1]) + "]")
+          print("[" + cozum.cift_uzanti(sys.argv[1]) + "]")
         suite:
-          - {id: example, args: ["proje/src/ana.py"], expected_stdout: "[proje]\n"}
-          - {id: deep, args: ["a/b/c/d.txt"], expected_stdout: "[b]\n"}
-          - {id: one_level, args: ["src/ana.py"], expected_stdout: "[]\n"}
-          - {id: no_folder, args: ["ana.py"], expected_stdout: "[]\n"}
+          - {id: example, args: ["yedek/gunluk.log.gz"], expected_stdout: "[.log.gz]\n"}
+          - {id: single, args: ["notlar.txt"], expected_stdout: "[.txt]\n"}
+          - {id: none, args: ["Makefile"], expected_stdout: "[]\n"}
+          - {id: three_dots, args: ["a.b.c.d"], expected_stdout: "[.c.d]\n"}
+          - {id: dotted_folder, args: ["surum.2/rapor.final.pdf"], expected_stdout: "[.final.pdf]\n"}
+          - {id: dotted_folder_single, args: ["surum.2/rapor"], expected_stdout: "[]\n"}
         reference: |
           from pathlib import Path
 
-          def iki_ust(yol):
-              return Path(yol).parent.parent.name
+          def cift_uzanti(yol):
+              p = Path(yol)
+              return Path(p.stem).suffix + p.suffix
         wrong:
           - |
             from pathlib import Path
 
-            def iki_ust(yol):
-                return Path(yol).parent.name
+            def cift_uzanti(yol):
+                return Path(yol).suffix
           - |
-            def iki_ust(yol):
-                return yol.split("/")[0]
+            def cift_uzanti(yol):
+                parcalar = yol.split(".", 1)
+                if len(parcalar) == 1:
+                    return ""
+                return "." + parcalar[1]
       - slug: g02
         difficulty: basic
         prompt: |

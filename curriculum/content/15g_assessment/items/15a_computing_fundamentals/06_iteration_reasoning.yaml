@@ -248,43 +248,31 @@ objectives:
         difficulty: authentic_application
         required_skills: [skill.programming.expression_boolean_reasoning]
         prompt: |
-          Bu döngü hiç sonlanmıyor. Döngünün 3 tur dönüp sonlanması için hangi değişiklik yapılmalı?
+          Bu döngü n'nin başlangıç değerine göre bazen sonlanır, bazen sonlanmaz. n aşağıdaki değerlerden hangisiyle başlarsa döngü hiç sonlanmaz?
         code: |
-          i = 0
-          j = 0
-          while i < 3:
-              j = j + 1
+          while n != 0:
+              n = n - 2
         options:
-          A: "4. satır i = i + 1 olmalı."
-          B: "4. satır j = j + 2 olmalı."
-          C: "3. satır while i <= 3: olmalı."
-          D: "2. satır j = 3 olmalı."
+          A: "7"
+          B: "8"
+          C: "0"
+          D: "2"
         scan_options: false
         answer: A
         verify:
           mode: script
-          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          outcomes: {A: "7", B: "8", C: "0", D: "2"}
           script: |
-            secenekler = {
-                "A": ["i = 0", "j = 0", "while i < 3:", "    i = i + 1"],
-                "B": ["i = 0", "j = 0", "while i < 3:", "    j = j + 2"],
-                "C": ["i = 0", "j = 0", "while i <= 3:", "    j = j + 1"],
-                "D": ["i = 0", "j = 3", "while i < 3:", "    j = j + 1"],
-            }
-            dogru = []
-            for harf, satirlar in secenekler.items():
-                i, j, tur = 0, 0, 0
-                kod = satirlar
-                ortam = {"tur": 0}
-                govde = kod[3].strip()
-                kosul = kod[2][len("while "):-1]
-                exec(kod[0] + "\n" + kod[1], ortam)
-                while eval(kosul, ortam) and ortam["tur"] < 1000:
-                    exec(govde, ortam)
-                    ortam["tur"] += 1
-                if ortam["tur"] == 3:
-                    dogru.append(harf)
-            print(",".join(dogru))
+            sonlanmayan = []
+            for baslangic in (7, 8, 0, 2):
+                n = baslangic
+                tur = 0
+                while n != 0 and tur < 1000:
+                    n = n - 2
+                    tur = tur + 1
+                if n != 0:
+                    sonlanmayan.append(str(baslangic))
+            print(",".join(sonlanmayan))
       - slug: g08
         difficulty: transfer_integration
         prompt: |

@@ -3,7 +3,7 @@ objectives:
   - id: objective.c.conditionals.write_control_flow
     items:
       - slug: g01
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
           cozum.c adında bir program yaz: girdiden 0–23 arası bir saat okusun ve günün bölümünü yazsın: 6–11 sabah, 12–17 ogle, 18–21 aksam, geri kalan saatler (22, 23 ve 0–5) gece.
         required_skills: [skill.c.standard_io_basic]

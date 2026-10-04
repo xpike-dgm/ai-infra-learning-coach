@@ -195,42 +195,73 @@ objectives:
       - slug: g06
         difficulty: authentic_application
         prompt: |
-          cozum.c adında bir program yaz: a ve b adında iki int değişken (ikisi de 3) ve p adında bir int işaretçisi bildirsin. p önce a'yı göstersin; ekrana p'nin a'yı ve b'yi gösterip göstermediğini (1 ya da 0) yazsın. Sonra p'yi b'yi gösterecek şekilde değiştirsin ve aynı iki karşılaştırmayı yeniden yazsın. Çıktı iki satır: 1 0 ve 0 1.
-        required_skills: [skill.c.expression_evaluation]
-        suite:
-          - {id: repointed, expected_stdout: "1 0\n0 1\n"}
-        reference: |
+          cozum.c dosyasına int *tekrar_eden(int *a, int *b, int *c) fonksiyonunu yaz: üç işaretçiden en az ikisi aynı yeri gösteriyorsa o yeri döndürsün; üçü de farklı yerleri gösteriyorsa NULL döndürsün. Gösterilen değerlere bakma. Dersin testleri bu fonksiyonu kendi main'iyle çağırır ve dönen adresi değişkenlerin adresleriyle karşılaştırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
           #include <stdio.h>
 
+          int *tekrar_eden(int *a, int *b, int *c);
+
+          static const char *ad(int *p, int *x, int *y, int *z) {
+              if (p == NULL) {
+                  return "NULL";
+              }
+              if (p == x) {
+                  return "x";
+              }
+              if (p == y) {
+                  return "y";
+              }
+              if (p == z) {
+                  return "z";
+              }
+              return "?";
+          }
+
           int main(void) {
-              int a = 3, b = 3;
-              int *p = &a;
-              printf("%d %d\n", p == &a, p == &b);
-              p = &b;
-              printf("%d %d\n", p == &a, p == &b);
+              int x = 1, y = 1, z = 1;
+              printf("%s ", ad(tekrar_eden(&x, &y, &x), &x, &y, &z));
+              printf("%s ", ad(tekrar_eden(&x, &y, &y), &x, &y, &z));
+              printf("%s ", ad(tekrar_eden(&z, &z, &y), &x, &y, &z));
+              printf("%s ", ad(tekrar_eden(&y, &y, &y), &x, &y, &z));
+              printf("%s\n", ad(tekrar_eden(&x, &y, &z), &x, &y, &z));
               return 0;
+          }
+        suite:
+          - {id: pairs_and_none, expected_stdout: "x y z y NULL\n"}
+        reference: |
+          #include <stddef.h>
+
+          int *tekrar_eden(int *a, int *b, int *c) {
+              if (a == b || a == c) {
+                  return a;
+              }
+              if (b == c) {
+                  return b;
+              }
+              return NULL;
           }
         wrong:
           - |
-            #include <stdio.h>
+            #include <stddef.h>
 
-            int main(void) {
-                int a = 3, b = 3;
-                int *p = &a;
-                printf("%d %d\n", *p == a, *p == b);
-                p = &b;
-                printf("%d %d\n", *p == a, *p == b);
-                return 0;
+            int *tekrar_eden(int *a, int *b, int *c) {
+                if (*a == *b || *a == *c) {
+                    return a;
+                }
+                if (*b == *c) {
+                    return b;
+                }
+                return NULL;
             }
           - |
-            #include <stdio.h>
+            #include <stddef.h>
 
-            int main(void) {
-                int a = 3, b = 3;
-                int *p = &a;
-                printf("%d %d\n", p == &a, p == &b);
-                printf("%d %d\n", p == &a, p == &b);
-                return 0;
+            int *tekrar_eden(int *a, int *b, int *c) {
+                if (a == b || a == c) {
+                    return a;
+                }
+                return NULL;
             }
       - slug: g07
         difficulty: authentic_application
@@ -280,65 +311,36 @@ objectives:
       - slug: g08
         difficulty: transfer_integration
         prompt: |
-          cozum.c adında bir program yaz: a, b ve c adında üç int değişken ve p adında bir int işaretçisi bildirsin. p sırayla önce a'yı, sonra c'yi, sonra b'yi göstersin; her seferinde p'nin hangi değişkeni gösterdiğini p'yi &a, &b ve &c ile karşılaştırarak bulsun ve o değişkenin adını (a, b ya da c) yazsın. Çıktı tek satırda a c b olmalı (aralarında birer boşluk).
-        required_skills: [skill.c.conditionals, skill.c.for_iteration]
-        suite:
-          - {id: order, expected_stdout: "a c b\n"}
-        reference: |
+          cozum.c dosyasına int ayni_cift(int *a, int *b, int *c, int *d) fonksiyonunu yaz: (a, b) çiftinin gösterdiği iki yer ile (c, d) çiftinin gösterdiği iki yer, sıraları farklı olsa bile aynı iki yerse 1, değilse 0 döndürsün. Gösterilen değerlere bakma. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
           #include <stdio.h>
 
+          int ayni_cift(int *a, int *b, int *c, int *d);
+
           int main(void) {
-              int a = 0, b = 0, c = 0;
-              int *p = &a;
-              for (int adim = 0; adim < 3; adim++) {
-                  if (adim == 1) {
-                      p = &c;
-                  } else if (adim == 2) {
-                      p = &b;
-                  }
-                  if (p == &a) {
-                      printf("a");
-                  } else if (p == &b) {
-                      printf("b");
-                  } else {
-                      printf("c");
-                  }
-                  printf(adim < 2 ? " " : "\n");
-              }
+              int x = 2, y = 2, z = 2;
+              printf("%d %d %d %d\n",
+                     ayni_cift(&x, &y, &x, &y),
+                     ayni_cift(&x, &y, &y, &x),
+                     ayni_cift(&x, &y, &x, &z),
+                     ayni_cift(&x, &x, &x, &y));
               return 0;
+          }
+        suite:
+          - {id: unordered_pairs, expected_stdout: "1 1 0 0\n"}
+        reference: |
+          int ayni_cift(int *a, int *b, int *c, int *d) {
+              return (a == c && b == d) || (a == d && b == c);
           }
         wrong:
           - |
-            #include <stdio.h>
-
-            int main(void) {
-                int a = 0, b = 0, c = 0;
-                int *p = &a;
-                printf("a ");
-                p = &c;
-                printf("b ");
-                p = &b;
-                printf("c\n");
-                return 0;
+            int ayni_cift(int *a, int *b, int *c, int *d) {
+                return a == c && b == d;
             }
           - |
-            #include <stdio.h>
-
-            int main(void) {
-                int a = 0, b = 0, c = 0;
-                int *p = &a;
-                if (*p == a) {
-                    printf("a ");
-                }
-                p = &c;
-                if (*p == a) {
-                    printf("a ");
-                }
-                p = &b;
-                if (*p == a) {
-                    printf("a\n");
-                }
-                return 0;
+            int ayni_cift(int *a, int *b, int *c, int *d) {
+                return (*a == *c && *b == *d) || (*a == *d && *b == *c);
             }
       - slug: g09
         difficulty: transfer_integration

@@ -9,7 +9,7 @@ objectives:
         code: |
           x = 4 * 2.5
           print(x, type(x))
-        required_skills: [skill.programming.state_assignment_model]
+        required_skills: [skill.programming.state_assignment_model, skill.python.expression_evaluation]
         answer: "10.0 <class 'float'>"
         verify: {mode: stdout}
       - slug: g02
@@ -39,11 +39,13 @@ objectives:
         verify: {mode: stdout}
       - slug: g05
         difficulty: authentic_application
+        required_skills: [skill.programming.state_assignment_model, skill.python.expression_evaluation]
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz. (İkinci değerdeki tırnakların arasında tek bir boşluk var.)
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          print(bool(0.0), bool(" "), bool(None))
-        answer: "False True False"
+          sicaklik = -4.6
+          print(int(sicaklik), str(int(sicaklik)) + "C")
+        answer: "-4 -4C"
         verify: {mode: stdout}
       - slug: g06
         difficulty: authentic_application
@@ -90,5 +92,5 @@ objectives:
         code: |
           print(float(7) + int("3"), str(2) + str(5.0))
         answer: "10.0 25.0"
-        required_skills: [skill.programming.state_assignment_model]
+        required_skills: [skill.programming.state_assignment_model, skill.python.expression_evaluation]
         verify: {mode: stdout}

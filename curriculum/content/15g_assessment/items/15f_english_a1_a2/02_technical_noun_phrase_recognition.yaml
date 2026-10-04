@@ -40,57 +40,58 @@ objectives:
       - slug: g03
         difficulty: basic
         prompt: |
-          Bu öbekteki asıl şey (öbeğin başı) nedir?
+          Bu dört öbekten hangisi bir DOSYAYI anlatır?
         code: |
-          error message
+          file name
+          file size
+          log file
+          file list
         options:
-          A: "Bir mesaj: hatayı anlatan mesaj"
-          B: "Bir hata: mesajdaki hata"
-          C: "İki ayrı şey: bir hata ve bir mesaj"
-          D: "Bir eylem: mesajı hatalı yap"
+          A: "log file"
+          B: "file name"
+          C: "file size"
+          D: "file list"
         scan_options: false
         answer: A
-        misconception_options: {B: head_is_first}
+        misconception_options: {B: head_is_first, C: head_is_first, D: head_is_first}
         verify:
           mode: reference
-          reference: "Wikipedia — English noun phrases: in a compound noun the last noun is the head and the earlier noun modifies it"
-          claim: "error message bir mesajdır; error onu niteler."
+          reference: "Wikipedia — English noun phrases: the head noun is the last noun; earlier nouns modify it"
+          claim: "log file bir dosyadır; file name bir ad, file size bir boyut, file list bir listedir."
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          Bu öbek ne anlama gelir?
-        code: |
-          remote server
+          Türkçesi "geçici klasör" olan İngilizce öbek hangisidir?
         options:
-          A: "Uzaktaki sunucu"
-          B: "Sunucunun uzaklığı"
-          C: "Yerel sunucu"
-          D: "Sunucuyu uzaklaştır"
-        scan_options: false
+          A: "temporary folder"
+          B: "folder temporary"
+          C: "local folder"
+          D: "temporary file"
         answer: A
         misconception_options: {B: head_is_first}
         verify:
           mode: reference
-          reference: "Wiktionary — remote (adjective, computing): located elsewhere and accessed over a network; server (noun, computing)"
-          claim: "remote server ağ üzerinden erişilen, başka yerdeki bir sunucudur."
+          reference: "Wiktionary — temporary (adjective); folder (noun); Wikipedia — English noun phrases (modifier before the head)"
+          claim: "geçici klasör = temporary folder: anlatan kelime önce, asıl isim (folder) sonra."
       - slug: g05
         difficulty: authentic_application
         prompt: |
-          Bir hata mesajında bu öbek geçiyor. Eksik olan şey hangisi?
+          Bir programın durum satırında bu cümle var. Boş olan ne?
         code: |
-          missing config file
+          The default target folder is empty.
+        required_skills: [skill.english.be_and_simple_present_comprehension]
         options:
-          A: "Bir yapılandırma dosyası eksik"
-          B: "Bir dosyanın içinde yapılandırma eksik"
-          C: "Dosya var ama yapılandırma kayıp"
-          D: "Hiçbir şey eksik değil; bu bir dosya adı"
+          A: Varsayılan hedef klasör
+          B: Hedefin kendisi
+          C: Varsayılan ayarlar
+          D: Klasördeki hedef dosya
         scan_options: false
         answer: A
-        misconception_options: {B: adjective_describes_last_only, C: adjective_describes_last_only}
+        misconception_options: {B: adjective_describes_last_only}
         verify:
           mode: reference
-          reference: "Wiktionary — missing (adjective): not present; config (noun): configuration; Wikipedia — English noun phrases (an adjective premodifier applies to the rest of the noun phrase)"
-          claim: "missing config file, bulunmayan bir yapılandırma dosyasıdır; missing bütün 'config file' öbeğini niteler."
+          reference: "Wikipedia — English noun phrases: the head (folder) is modified by default and target; Wiktionary — empty (adjective)"
+          claim: "default target folder bir klasördür (varsayılan hedef klasör); boş olan odur."
       - slug: g06
         difficulty: authentic_application
         prompt: |
@@ -111,39 +112,21 @@ objectives:
       - slug: g07
         difficulty: transfer_integration
         prompt: |
-          Bu öbekteki asıl şey (öbeğin başı) nedir?
+          Bu öbek bir şeyi mi, birden çok şeyi mi anlatır; asıl şey nedir?
         code: |
-          current project backup folder
+          project log files
         options:
-          A: "Bir klasör: şu anki projenin yedeklerinin tutulduğu klasör"
-          B: "Bir proje: klasörü olan şu anki proje"
-          C: "Bir yedek: klasörün yedeği"
-          D: "Bir eylem: projeyi klasöre yedekle"
+          A: Birden çok şeyi; projenin kayıt dosyalarını
+          B: Tek bir şeyi; projenin kayıt dosyasını
+          C: Birden çok şeyi; dosyaların projelerini
+          D: Tek bir şeyi; dosyaların kaydını
         scan_options: false
         answer: A
-        misconception_options: {B: head_is_first}
+        misconception_options: {C: head_is_first}
         verify:
           mode: reference
-          reference: "Wikipedia — English noun phrases: modifiers precede the head; in a stack of nouns the final noun is the head"
-          claim: "current project backup folder bir klasördür; current project ve backup onu niteler."
-      - slug: g08
-        difficulty: transfer_integration
-        prompt: |
-          İki öbekten hangisi bir adı (name) anlatır?
-        code: |
-          log file name
-          file name log
-        options:
-          A: "log file name — kayıt dosyasının adı"
-          B: "file name log — dosya adlarının kaydı"
-          C: "İkisi de aynı şeyi anlatır"
-          D: "Hiçbiri; ikisi de bir dosyayı anlatır"
-        scan_options: false
-        answer: A
-        verify:
-          mode: reference
-          reference: "Wikipedia — English noun phrases: the head noun comes last, so the last word decides what the phrase names"
-          claim: "log file name bir addır (son kelime name); file name log bir kayıttır (son kelime log)."
+          reference: "Wikipedia — English noun phrases (head noun last); English plurals (-s marks more than one)"
+          claim: "project log files: asıl şey files (çoğul, birden çok dosya); project ve log onları anlatır."
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

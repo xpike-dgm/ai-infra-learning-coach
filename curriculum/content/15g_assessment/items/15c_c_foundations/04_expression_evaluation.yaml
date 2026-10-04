@@ -53,10 +53,10 @@ objectives:
           #include <stdio.h>
 
           int main(void) {
-              printf("%d %d\n", 17 / -5, 17 % -5);
+              printf("%d %d\n", 29 / -6, 29 % -6);
               return 0;
           }
-        answer: "-3 2"
+        answer: "-4 5"
         verify: {mode: c_stdout}
       - slug: g05
         difficulty: transfer_integration

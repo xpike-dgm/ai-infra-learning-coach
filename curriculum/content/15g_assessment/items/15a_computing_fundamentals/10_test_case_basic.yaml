@@ -35,26 +35,60 @@ objectives:
       - slug: g03
         difficulty: authentic_application
         prompt: |
-          Tarif: bilet(yas) 12 yaşından küçükler için 0, diğer herkes için 50 döndürür. Sınırdaki hataları yakalamak için üç girdilik bir test kümesi seçeceksin. Hangi küme en iyisidir?
+          Tarif: fazla_mesai(saat), 40'ı aşan saat sayısını döndürür; saat 40 ya da daha azsa 0 döndürür. Bu tarif için yalnız iki test yazılmış: fazla_mesai(30) sonucunun 0, fazla_mesai(45) sonucunun 5 olması bekleniyor. Aşağıdaki dört uygulamadan hangisi bu iki testten de geçtiği hâlde tarife göre yanlıştır?
+        code: |
+          def fazla_a(saat):
+              return saat - 40
+
+          def fazla_b(saat):
+              if saat > 41:
+                  return saat - 40
+              return 0
+
+          def fazla_c(saat):
+              if saat > 40:
+                  return 40 - saat
+              return 0
+
+          def fazla_d(saat):
+              if saat < 40:
+                  return 0
+              return saat - 45
+        required_skills: [skill.programming.branching_reasoning]
         options:
-          A: bilet(11), bilet(12), bilet(13)
-          B: bilet(5), bilet(20), bilet(40)
-          C: bilet(0), bilet(50), bilet(100)
-          D: bilet(12), bilet(12), bilet(12)
+          A: fazla_a
+          B: fazla_b
+          C: fazla_c
+          D: fazla_d
         scan_options: false
-        answer: A
-        misconception_options: {B: any_input_detects, C: any_input_detects}
+        answer: B
         verify:
           mode: script
           outcomes: {A: "A", B: "B", C: "C", D: "D"}
           script: |
-            def tarif(yas):
-                return 0 if yas < 12 else 50
-            hatalar = [lambda yas: 0 if yas <= 12 else 50, lambda yas: 0 if yas < 11 else 50]
-            kumeler = {"A": [11, 12, 13], "B": [5, 20, 40], "C": [0, 50, 100], "D": [12, 12, 12]}
-            iyi = [k for k, kume in kumeler.items()
-                   if all(any(h(x) != tarif(x) for x in kume) for h in hatalar)]
-            print(",".join(iyi))
+            def tarif(saat):
+                if saat > 40:
+                    return saat - 40
+                return 0
+            def fazla_a(saat):
+                return saat - 40
+            def fazla_b(saat):
+                if saat > 41:
+                    return saat - 40
+                return 0
+            def fazla_c(saat):
+                if saat > 40:
+                    return 40 - saat
+                return 0
+            def fazla_d(saat):
+                if saat < 40:
+                    return 0
+                return saat - 45
+            testler = {30: 0, 45: 5}
+            uygulamalar = {"A": fazla_a, "B": fazla_b, "C": fazla_c, "D": fazla_d}
+            sonuc = [k for k, f in uygulamalar.items()
+                     if all(f(x) == b for x, b in testler.items()) and any(f(x) != tarif(x) for x in range(0, 100))]
+            print(",".join(sonuc))
       - slug: g04
         difficulty: authentic_application
         prompt: |

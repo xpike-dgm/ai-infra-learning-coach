@@ -62,25 +62,35 @@ objectives:
         difficulty: authentic_application
         hands_on: true
         prompt: |
-          Boş bir klasörde şu komutları sırayla çalıştır:
-
-          mkdir -p a1/b1 a2
-          cd a1/b1
-          cd ../../a2
-          mkdir c2
-          cd c2
-
-          Şimdi hangi klasördesin? Klasörün adını yaz.
-        answer: "c2"
+          Terminalin hangi klasörde olduğunu bilmiyorsun. Aşağıdaki komutlardan hangisi, şu an hangi klasörde olursan ol, seni /usr/share klasörüne götürür? (Ubuntu'da /usr/share her zaman vardır.)
+        options:
+          A: cd /usr/share
+          B: cd usr/share
+          C: cd ../usr/share
+          D: cd share
+        scan_options: false
+        answer: A
         verify:
           mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
           script: |
-            mkdir -p a1/b1 a2
-            cd a1/b1
-            cd ../../a2
-            mkdir c2
-            cd c2
-            basename "$PWD"
+            kok=$(pwd)
+            mkdir -p x1/x2 y1
+            uyan=""
+            for h in A B C D; do
+              case $h in
+                A) k="/usr/share" ;;
+                B) k="usr/share" ;;
+                C) k="../usr/share" ;;
+                D) k="share" ;;
+              esac
+              ok=1
+              for bas in "$kok/x1/x2" "$kok/y1" /tmp /; do
+                ( cd "$bas" && cd "$k" 2>/dev/null && [ "$(pwd)" = "/usr/share" ] ) || ok=0
+              done
+              if [ $ok = 1 ]; then uyan="$uyan$h"; fi
+            done
+            echo "$uyan"
       - slug: g05
         difficulty: authentic_application
         hands_on: true
@@ -126,22 +136,31 @@ objectives:
         difficulty: authentic_application
         hands_on: true
         prompt: |
-          Boş bir klasörde şu komutları sırayla çalıştır:
-
-          mkdir -p k1/k2/k3/k4
-          cd k1/k2/k3/k4
-          cd ../..
-          ls
-
-          ls ne listeler?
-        answer: "k3"
+          pwd komutu /home/ece/proje/src yazıyor ve /home/ece altında belgeler adında bir klasör var. Aşağıdaki komutlardan hangisi seni /home/ece/belgeler klasörüne götürür?
+        options:
+          A: cd ../../belgeler
+          B: cd ../belgeler
+          C: cd belgeler
+          D: cd ../../../belgeler
+        scan_options: false
+        answer: A
         verify:
           mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
           script: |
-            mkdir -p k1/k2/k3/k4
-            cd k1/k2/k3/k4
-            cd ../..
-            ls
+            kok=$(pwd)
+            mkdir -p home/ece/proje/src home/ece/belgeler
+            uyan=""
+            for h in A B C D; do
+              case $h in
+                A) k="../../belgeler" ;;
+                B) k="../belgeler" ;;
+                C) k="belgeler" ;;
+                D) k="../../../belgeler" ;;
+              esac
+              if ( cd "$kok/home/ece/proje/src" && cd "$k" 2>/dev/null && [ "$(pwd)" = "$kok/home/ece/belgeler" ] ); then uyan="$uyan$h"; fi
+            done
+            echo "$uyan"
       - slug: g08
         difficulty: transfer_integration
         hands_on: true

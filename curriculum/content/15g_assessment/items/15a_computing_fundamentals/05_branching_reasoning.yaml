@@ -51,27 +51,42 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
+          Bu kodda aynı iki koşul iki kez yazılmış: birinci parçada elif ile, ikinci parçada iki ayrı if ile. Kod çalışınca hangisi doğrudur?
         code: |
-          kilo = 12
-          if kilo < 5:
-              print("küçük paket")
-          elif kilo < 10:
-              print("orta paket")
-          elif kilo < 20:
-              print("büyük paket")
-          else:
-              print("kargo")
+          x = 7
+          print("1. parça:")
+          if x > 5:
+              print("A")
+          elif x > 3:
+              print("B")
+          print("2. parça:")
+          if x > 5:
+              print("A")
+          if x > 3:
+              print("B")
         options:
-          A: büyük paket
-          B: orta paket
-          C: kargo
-          D: küçük paket
+          A: 1. parça yalnız A yazar; 2. parça A ve B yazar
+          B: İki parça da A ve B yazar
+          C: İki parça da yalnız A yazar
+          D: 1. parça yalnız B yazar; 2. parça A ve B yazar
         scan_options: false
         answer: A
         verify:
-          mode: stdout
-          outcomes: {A: "büyük paket", B: "orta paket", C: "kargo", D: "küçük paket"}
+          mode: script
+          outcomes: {A: "A|A B", B: "A B|A B", C: "A|A", D: "B|A B"}
+          script: |
+            x = 7
+            bir = []
+            if x > 5:
+                bir.append("A")
+            elif x > 3:
+                bir.append("B")
+            iki = []
+            if x > 5:
+                iki.append("A")
+            if x > 3:
+                iki.append("B")
+            print(" ".join(bir) + "|" + " ".join(iki))
       - slug: g05
         difficulty: authentic_application
         prompt: |

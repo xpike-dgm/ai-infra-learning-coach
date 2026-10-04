@@ -36,7 +36,6 @@ objectives:
           D: Toplama işlemi fonksiyonun dışında yapılmalı.
         scan_options: false
         answer: A
-        misconception_options: {C: definition_runs_function}
         verify:
           mode: script
           outcomes: {A: "A", B: "B", C: "C", D: "D"}
@@ -84,22 +83,18 @@ objectives:
         answer: "9 81"
         verify: {mode: stdout}
       - slug: g05
-        difficulty: transfer_integration
+        difficulty: authentic_application
         prompt: |
-          Bu kod çalışınca ne olur?
+          Bu fonksiyon indirim(50) diye çağrılınca, çağıran koda geri verdiği şey nedir?
         code: |
-          def kare(x):
-              print(x * x)
-
-          def toplam_kare(a, b):
-              return kare(a) + kare(b)
-
-          print(toplam_kare(2, 3))
+          def indirim(fiyat):
+              print("Hesaplanıyor")
+              return fiyat - 10
         options:
-          A: Önce 4 ve 9 yazılır, sonra bir TypeError ile durur; kare bir değer döndürmediği için None + None hesaplanamaz.
-          B: Yalnız 13 yazılır.
-          C: Alt alta 4, 9 ve 13 yazılır.
-          D: Hiçbir şey yazılmadan bir TypeError ile durur.
+          A: 40 sayısını geri verir; "Hesaplanıyor" yalnız ekrana yazılır
+          B: '"Hesaplanıyor" yazısını geri verir'
+          C: 'Hem "Hesaplanıyor" yazısını hem 40 sayısını geri verir'
+          D: Hiçbir şey geri vermez; yalnız ekrana yazar
         scan_options: false
         answer: A
         misconception_options: {C: print_is_return}
@@ -108,23 +103,18 @@ objectives:
           outcomes: {A: "A", B: "B", C: "C", D: "D"}
           script: |
             import io, contextlib
-            kod = "def kare(x):\n    print(x * x)\n\ndef toplam_kare(a, b):\n    return kare(a) + kare(b)\n\nprint(toplam_kare(2, 3))"
-            cikti = io.StringIO()
-            hata = None
-            with contextlib.redirect_stdout(cikti):
-                try:
-                    exec(kod, {})
-                except TypeError:
-                    hata = "TypeError"
-            yazilan = cikti.getvalue().split()
-            if hata and yazilan == ["4", "9"]:
+            def indirim(fiyat):
+                print("Hesaplanıyor")
+                return fiyat - 10
+            ekran = io.StringIO()
+            with contextlib.redirect_stdout(ekran):
+                sonuc = indirim(50)
+            if sonuc == 40 and ekran.getvalue() == "Hesaplanıyor\n":
                 print("A")
-            elif not hata and yazilan == ["13"]:
-                print("B")
-            elif not hata and yazilan == ["4", "9", "13"]:
-                print("C")
-            else:
+            elif sonuc is None:
                 print("D")
+            else:
+                print("C")
       - slug: g06
         difficulty: authentic_application
         prompt: |

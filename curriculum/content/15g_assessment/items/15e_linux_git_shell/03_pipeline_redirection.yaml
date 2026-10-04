@@ -3,37 +3,28 @@ objectives:
   - id: objective.shell.pipeline_redirection.demonstrate_capability
     items:
       - slug: g01
-        difficulty: authentic_application
+        difficulty: transfer_integration
         hands_on: true
         prompt: |
-          Boş bir klasörde (yok.txt yokken) bu komutları çalıştır. 2>&1 stderr'i stdout'un o anda gittiği yere, yani boruya bağlar. Son komut ne yazar?
+          Boş bir klasörde (yok1.txt ve yok2.txt yokken) bu komutları çalıştır. Son komut ne yazar?
         code: |
-          echo deniz > a.txt
-          cat a.txt yok.txt 2>&1 | wc -l
+          echo bir > a.txt
+          cat a.txt yok1.txt yok2.txt 2>&1 > /dev/null | wc -l
         answer: "2"
         verify: {mode: shell, last_line: true}
       - slug: g02
-        difficulty: basic
+        difficulty: authentic_application
         hands_on: true
         prompt: |
-          Boş bir klasörde (bos adında bir şey yokken) bu komutu çalıştır. Ekranda kaç satır görünür ve bu satır(lar) nereden gelir?
+          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
         code: |
-          ls bos | sort
-        options:
-          A: Bir satır; ls'in stderr'e yazdığı hata mesajı. sort hiçbir satır almadığı için bir şey yazmaz.
-          B: Hiçbir satır; boru hata mesajını sort'a verdi ve sort onu sildi.
-          C: İki satır; hata mesajı ve sort'un sıraladığı hâli.
-          D: Bir satır; sort'un sıraladığı hata mesajı.
-        scan_options: false
-        answer: A
-        misconception_options: {B: pipe_carries_errors, D: pipe_carries_errors}
-        verify:
-          mode: shell
-          outcomes: {A: "A", B: "B", C: "C", D: "D"}
-          script: |
-            ekran=$(ls bos 2>&1 | sort 2>/dev/null)
-            stdout=$(ls bos 2>/dev/null | sort)
-            if [ -z "$stdout" ] && [ "$(printf '%s\n' "$ekran" | wc -l)" = "1" ]; then echo A; else echo C; fi
+          echo kar > hava.txt
+          echo karpuz >> hava.txt
+          echo dolu >> hava.txt
+          echo kar >> hava.txt
+          grep kar hava.txt | sort | uniq | wc -l
+        answer: "2"
+        verify: {mode: shell, last_line: true}
       - slug: g03
         difficulty: authentic_application
         hands_on: true
@@ -72,27 +63,42 @@ objectives:
         difficulty: authentic_application
         hands_on: true
         prompt: |
-          Boş bir klasörde bu komutları çalıştır. Üçüncü satır ekranda bir şey yazar mı? Son komut ne yazar?
-        code: |
-          echo a > m.txt
-          echo b >> m.txt
-          cat m.txt | wc -l > sayi.txt
-          cat sayi.txt
-        answer: "2"
-        verify: {mode: shell, last_line: true}
-      - slug: g06
-        difficulty: transfer_integration
-        hands_on: true
-        prompt: |
           Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
         code: |
-          echo 3 > s.txt
-          echo 10 >> s.txt
-          echo 2 >> s.txt
-          sort s.txt | head -n 1
-        required_skills: [skill.shell.command_options_redirection_basic]
-        answer: "10"
+          echo deniz > a.txt
+          echo kum >> a.txt
+          cat a.txt > kopya.txt | wc -l
+        answer: "0"
         verify: {mode: shell, last_line: true}
+      - slug: g06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde (yok.txt yokken) bu komutları çalıştır. Son komuttan sonra ekranda ne görünür?
+        code: |
+          echo bir > a.txt
+          cat a.txt yok.txt | wc -l 2>/dev/null
+        options:
+          A: cat'in yok.txt için yazdığı hata mesajı ve 1
+          B: Yalnız 1; hata mesajı /dev/null'a gitti
+          C: Yalnız hata mesajı
+          D: Yalnız 2
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            cd "$(mktemp -d)"
+            echo bir > a.txt
+            ekran=$({ cat a.txt yok.txt | wc -l 2>/dev/null; } 2>&1)
+            ilk=$(printf '%s\n' "$ekran" | head -n 1)
+            son=$(printf '%s\n' "$ekran" | tail -n 1)
+            satir=$(printf '%s\n' "$ekran" | wc -l)
+            case "$ilk" in
+              *yok.txt*) if [ "$satir" = "2" ] && [ "$son" = "1" ]; then echo A; else echo C; fi ;;
+              *) if [ "$son" = "2" ]; then echo D; else echo B; fi ;;
+            esac
       - slug: g07
         difficulty: transfer_integration
         hands_on: true

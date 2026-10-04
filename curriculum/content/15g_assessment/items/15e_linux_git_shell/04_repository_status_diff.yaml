@@ -47,30 +47,32 @@ objectives:
         answer: "?? tablo.txt"
         verify: {mode: shell, last_line: true}
       - slug: g04
-        difficulty: basic
+        difficulty: authentic_application
+        required_skills: [skill.shell.command_options_redirection_basic]
         hands_on: true
         prompt: |
-          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). git diff çıktısında - ile başlayan kaç satır var (--- ile başlayan başlık satırı hariç)?
         code: |
-          mkdir bos_depo
-          cd bos_depo
-          git init -q
-          ls
-        options:
-          A: Hiçbir şey; git init'in oluşturduğu .git klasörü gizlidir ve ls onu göstermez
-          B: ".git"
-          C: README
-          D: Bir hata mesajı; boş bir depoda ls çalışmaz
-        scan_options: false
-        answer: A
+          git init -q defter
+          cd defter
+          echo pazartesi > gunler.txt
+          git add gunler.txt                 # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          echo sali >> gunler.txt
+          echo carsamba >> gunler.txt
+          git diff
+        answer: "0"
         verify:
           mode: shell
-          outcomes: {A: "", B: ".git", C: "README", D: "hata"}
           script: |
-            mkdir bos_depo
-            cd bos_depo
-            git init -q
-            ls
+            git init -q defter
+            cd defter
+            echo pazartesi > gunler.txt
+            git add gunler.txt
+            git commit -q -m "baslangic"
+            echo sali >> gunler.txt
+            echo carsamba >> gunler.txt
+            git diff | grep -v '^---' | grep -c '^-' || true
       - slug: g05
         difficulty: authentic_application
         hands_on: true

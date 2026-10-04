@@ -5,31 +5,41 @@ objectives:
       - slug: g01
         difficulty: authentic_application
         prompt: |
-          İzleme tablosunda bu kodun 5. satırından sonraki durum hangisidir?
+          Bu kodun 3. satırı silinmiş. Kodun izleme tablosu ise elimizde:
+
+          1. satırdan sonra: a=4
+          2. satırdan sonra: a=4, b=1
+          3. satırdan sonra: a=4, b=5
+          4. satırdan sonra: a=-1, b=5
+
+          Silinen 3. satır hangisi olabilir?
         code: |
-          a = 7
-          b = 2
-          c = a - b
-          a = c * b
-          b = b + a
+          a = 4
+          b = 1
+          ...
+          a = a - b
         options:
-          A: a=10, b=12, c=5
-          B: a=10, b=9, c=5
-          C: a=10, b=12, c=0
-          D: a=7, b=12, c=5
+          A: b = a + b
+          B: b = a * b
+          C: a = a + b
+          D: b = b * 4
         scan_options: false
         answer: A
         verify:
           mode: script
           outcomes: {A: "A", B: "B", C: "C", D: "D"}
           script: |
-            a = 7
-            b = 2
-            c = a - b
-            a = c * b
-            b = b + a
-            secenekler = {"A": (10, 12, 5), "B": (10, 9, 5), "C": (10, 12, 0), "D": (7, 12, 5)}
-            print(",".join(k for k, v in secenekler.items() if v == (a, b, c)))
+            secenekler = {"A": "b = a + b", "B": "b = a * b", "C": "a = a + b", "D": "b = b * 4"}
+            beklenen = [{"a": 4, "b": 5}, {"a": -1, "b": 5}]
+            uyan = []
+            for harf, satir in secenekler.items():
+                d = {"a": 4, "b": 1}
+                exec(satir, {}, d)
+                ucuncu = dict(d)
+                exec("a = a - b", {}, d)
+                if [ucuncu, dict(d)] == beklenen:
+                    uyan.append(harf)
+            print(",".join(uyan))
       - slug: g02
         difficulty: basic
         prompt: |
@@ -161,18 +171,35 @@ objectives:
         also_accept: ["7 2 4 3 1 4"]
         verify: {mode: stdout}
       - slug: g09
-        difficulty: authentic_application
+        difficulty: transfer_integration
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+          Bu kodun 3., 4., 5. ve 6. satırlarından kaç tanesi çalıştığında en az bir değişkenin değerini gerçekten değiştirir (değeri önceki değerinden farklı yapar)?
         code: |
-          p = 1
-          q = 10
-          p += q
-          q -= p
-          p *= 2
-          print(p, q)
-        answer: "22 -1"
-        verify: {mode: stdout}
+          a = 5
+          b = 2
+          a = a * 1
+          b = a - 3
+          a = b + 3
+          b = b * b
+        options:
+          A: "1"
+          B: "4"
+          C: "0"
+          D: "2"
+        scan_options: false
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "1", B: "4", C: "0", D: "2"}
+          script: |
+            d = {"a": 5, "b": 2}
+            degisen = 0
+            for satir in ["a = a * 1", "b = a - 3", "a = b + 3", "b = b * b"]:
+                once = dict(d)
+                exec(satir, {}, d)
+                if d != once:
+                    degisen = degisen + 1
+            print(degisen)
       - slug: t01
         difficulty: transfer_integration
         transfer_profile: cross_topic_context

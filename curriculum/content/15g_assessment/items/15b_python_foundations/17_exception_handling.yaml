@@ -208,39 +208,58 @@ objectives:
       - slug: g06
         difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına ortalama(sayilar) adında bir fonksiyon yaz: listedeki sayıların ortalamasını (sum(sayilar) / len(sayilar)) döndürsün; liste boşsa (ZeroDivisionError) None döndürsün. Listede sayı olmayan bir değer varsa oluşan hata yakalanmasın, yukarıya gitsin. Örnek: ortalama([2, 4]) → 3.0.
-        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.expression_evaluation]
+          cozum.py dosyasına yas_oku(deger) adında bir fonksiyon yaz: deger'i int() ile tam sayıya çevirip döndürsün. Çevrilemiyorsa — deger sayı olmayan bir yazıysa (ValueError) ya da None ise (TypeError) — None döndürsün. Çevrilen sayı negatifse "yaş negatif olamaz" mesajıyla bir ValueError üretsin (raise) ve bu hata çağırana ulaşsın. Örnek: yas_oku("12") → 12.
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
         harness: |
           import sys, cozum
-          sayilar = [x if x == "a" else int(x) for x in sys.argv[1:]]
+          x = None if sys.argv[1] == "yok" else sys.argv[1]
           try:
-              print(cozum.ortalama(sayilar))
-          except Exception as e:
-              print("yukarıya geldi")
+              print(cozum.yas_oku(x))
+          except ValueError as e:
+              print("ValueError:", e)
         suite:
-          - {id: two, args: ["2", "4"], expected_stdout: "3.0\n"}
-          - {id: empty, args: [], expected_stdout: "None\n"}
-          - {id: one, args: ["7"], expected_stdout: "7.0\n"}
-          - {id: wrong_type_propagates, args: ["3", "a"], expected_stdout: "yukarıya geldi\n"}
+          - {id: number, args: ["12"], expected_stdout: "12\n"}
+          - {id: zero, args: ["0"], expected_stdout: "0\n"}
+          - {id: text, args: ["on iki"], expected_stdout: "None\n"}
+          - {id: none, args: ["yok"], expected_stdout: "None\n"}
+          - {id: negative_raises, args: ["-3"], expected_stdout: "ValueError: yaş negatif olamaz\n"}
         reference: |
-          def ortalama(sayilar):
+          def yas_oku(deger):
               try:
-                  return sum(sayilar) / len(sayilar)
-              except ZeroDivisionError:
+                  yas = int(deger)
+              except (ValueError, TypeError):
                   return None
+              if yas < 0:
+                  raise ValueError("yaş negatif olamaz")
+              return yas
         wrong:
           - |
-            def ortalama(sayilar):
+            def yas_oku(deger):
                 try:
-                    return sum(sayilar) / len(sayilar)
-                except Exception:
+                    yas = int(deger)
+                except ValueError:
+                    return None
+                if yas < 0:
+                    raise ValueError("yaş negatif olamaz")
+                return yas
+          - |
+            def yas_oku(deger):
+                try:
+                    yas = int(deger)
+                    if yas < 0:
+                        raise ValueError("yaş negatif olamaz")
+                    return yas
+                except (ValueError, TypeError):
                     return None
           - |
-            def ortalama(sayilar):
+            def yas_oku(deger):
                 try:
-                    return sum(sayilar) / len(sayilar)
-                except ZeroDivisionError:
-                    return 0
+                    yas = int(deger)
+                    if yas < 0:
+                        raise ValueError("yaş negatif olamaz")
+                    return yas
+                except Exception:
+                    return None
       - slug: g07
         difficulty: transfer_integration
         prompt: |

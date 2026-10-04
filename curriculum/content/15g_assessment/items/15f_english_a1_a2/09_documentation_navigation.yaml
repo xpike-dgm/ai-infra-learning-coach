@@ -22,24 +22,6 @@ objectives:
           mode: reference
           reference: "man-pages(7), Sections within a manual page — DESCRIPTION: an explanation of what the program does"
           claim: "Komutun ne yaptığını DESCRIPTION anlatır."
-      - slug: g02
-        difficulty: basic
-        prompt: |
-          `liste-al` adlı bir aracın biçim satırı bu. Komutu çalıştırırken hangisini MUTLAKA vermen gerekir?
-        code: |
-          Usage: liste-al [OPTION]... [FILE]...
-        options:
-          A: "Hiçbirini; ikisi de isteğe bağlı"
-          B: "OPTION"
-          C: "FILE"
-          D: "İkisini de"
-        scan_options: false
-        answer: A
-        misconception_options: {D: brackets_required}
-        verify:
-          mode: reference
-          reference: "man(1) — 'any or all arguments within [ ] are optional'"
-          claim: "OPTION da FILE da köşeli parantez içinde; ikisi de isteğe bağlıdır."
       - slug: g03
         difficulty: basic
         prompt: |
@@ -58,41 +40,23 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          `rapor-yap` adlı bir aracın seçenek listesi bu. Aracın sürümünü yazdırmak için hangi seçeneği kullanırsın?
+          `rapor-yap` adlı bir aracın seçenek listesi bu. Aracın ekrana yalnız hata sayısını yazmasını istiyorsun. Hangi seçeneği kullanırsın?
         code: |
           OPTIONS
+            -q, --quiet       print only the number of errors
             -v, --verbose     print more information
             -V, --version     print the version
-            -q, --quiet       print only the number of errors
         options:
-          A: "-V"
+          A: "-q"
           B: "-v"
-          C: "-q"
-          D: "-v ya da -V; ikisi aynı seçenek"
+          C: "-V"
+          D: "Hiçbiri; bunun için bir seçenek yok"
         scan_options: false
         answer: A
         verify:
           mode: reference
-          reference: "man-pages(7) — OPTIONS; GNU Coding Standards, --version and --verbose are distinct long options"
-          claim: "print the version satırının seçeneği -V'dir; -v burada verbose'dur (daha çok bilgi)."
-      - slug: g05
-        difficulty: authentic_application
-        prompt: |
-          `dosya-sirala` adlı bir aracın seçenek satırı bu. --sort seçeneğini vermezsen dosyalar neye göre sıralanır?
-        code: |
-          --sort=name|size|time   sort the files by name, size or time (default: name)
-        options:
-          A: "Ada göre"
-          B: "Boyuta göre"
-          C: "Zamana göre"
-          D: "Hiçbir şeye göre; sıralanmaz"
-        scan_options: false
-        answer: A
-        required_skills: [skill.english.read_simple_terminal_error_fragments]
-        verify:
-          mode: reference
-          reference: "Wiktionary — default (noun, computing): a value used when none is given"
-          claim: "(default: name): seçenek verilmezse ada göre sıralanır."
+          reference: "man-pages(7) — OPTIONS section lists each option with its description; Wiktionary — only (adverb), number (noun), error (noun)"
+          claim: "print only the number of errors satırının seçeneği -q'dur (--quiet)."
       - slug: g06
         difficulty: authentic_application
         prompt: |
@@ -137,29 +101,6 @@ objectives:
           mode: reference
           reference: "man-pages(7) — OPTIONS; each option is found by its description"
           claim: "Gizli dosyalar dahil hepsi -a, ters sıra -r'dir."
-      - slug: g08
-        difficulty: transfer_integration
-        prompt: |
-          Bir aracın yardım sayfası çok uzun ve başlıkları bunlar. Yalnız sürümü gösteren seçeneği arıyorsun. En iyi yol hangisi?
-        code: |
-          NAME
-          SYNOPSIS
-          DESCRIPTION
-          OPTIONS
-          EXAMPLES
-          SEE ALSO
-        options:
-          A: "OPTIONS başlığına git ve sağ sütundaki açıklamalarda version kelimesini ara."
-          B: "Sayfanın her satırını baştan sona çevir; bütün kelimeleri anlamadan seçeneği bulamazsın."
-          C: "SEE ALSO başlığına git; seçenekler orada."
-          D: "Yalnız NAME satırını oku; sürüm seçeneği orada yazar."
-        scan_options: false
-        answer: A
-        misconception_options: {B: read_everything}
-        verify:
-          mode: reference
-          reference: "man-pages(7), Sections within a manual page — OPTIONS: a description of the command-line options"
-          claim: "Bir seçenek OPTIONS başlığında, açıklamasıyla aranır; sayfanın tamamını okumak gerekmez."
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

@@ -2,114 +2,6 @@ skill: skill.english.follow_bilingual_technical_instruction
 objectives:
   - id: objective.english.follow_bilingual_technical_instruction.execute_known_instruction
     items:
-      - slug: g01
-        difficulty: basic
-        prompt: |
-          Bu talimatta önce hangisini yaparsın?
-        code: |
-          First save the file, then close the program.
-        options:
-          A: "Dosyayı kaydederim."
-          B: "Programı kapatırım."
-          C: "İkisini aynı anda yaparım."
-          D: "Sıra önemli değil."
-        scan_options: false
-        answer: A
-        misconception_options: {B: then_means_before}
-        verify:
-          mode: reference
-          reference: "Wiktionary — first (adverb): before anything else; then (adverb): next in order, afterwards"
-          claim: "first önce yapılanı, then sonra yapılanı gösterir: önce kaydet."
-      - slug: g02
-        difficulty: basic
-        prompt: |
-          Bu talimatta it neyi gösterir?
-        code: |
-          Select the file and open it.
-        options:
-          A: "Seçtiğin dosyayı"
-          B: "Yeni bir dosyayı"
-          C: "Programı"
-          D: "Klasörü"
-        scan_options: false
-        answer: A
-        misconception_options: {B: it_is_new_thing}
-        verify:
-          mode: reference
-          reference: "Wiktionary — it (pronoun): the thing previously mentioned"
-          claim: "it daha önce adı geçen şeyi, yani seçilen dosyayı gösterir."
-      - slug: g03
-        difficulty: basic
-        prompt: |
-          Bu adımlarda üçüncü olarak ne yaparsın?
-        code: |
-          Step 1: Open the settings.
-          Step 2: Change the name.
-          Step 3: Save.
-        options:
-          A: "Kaydederim."
-          B: "Ayarları açarım."
-          C: "Adı değiştiririm."
-          D: "Programı kapatırım."
-        scan_options: false
-        answer: A
-        verify:
-          mode: reference
-          reference: "Wiktionary — step (noun): a stage in a process; numbered steps are followed in order"
-          claim: "Step 3 üçüncü adımdır: Save, kaydet."
-      - slug: g04
-        difficulty: authentic_application
-        prompt: |
-          Bu talimata göre en son ne yaparsın?
-        code: |
-          First stop the program. Next copy the folder. Finally start the program.
-        options:
-          A: "Programı başlatırım."
-          B: "Programı durdururum."
-          C: "Klasörü kopyalarım."
-          D: "Klasörü silerim."
-        scan_options: false
-        answer: A
-        verify:
-          mode: reference
-          reference: "Wiktionary — finally (adverb): lastly, as the last in a series; next (adverb): immediately following"
-          claim: "Finally son adımı gösterir: programı başlat."
-      - slug: g05
-        difficulty: authentic_application
-        prompt: |
-          Bu talimatta önce hangisini yaparsın?
-        code: |
-          Run the tests. Then update the version.
-        options:
-          A: "Testleri çalıştırırım."
-          B: "Sürümü güncellerim."
-          C: "İkisini aynı anda yaparım."
-          D: "Yalnız sürümü güncellerim."
-        scan_options: false
-        answer: A
-        misconception_options: {B: then_means_before}
-        verify:
-          mode: reference
-          reference: "Wiktionary — then (adverb): next in order, afterwards"
-          claim: "Then sonraki adımı gösterir: önce testler çalıştırılır, sonra sürüm güncellenir."
-      - slug: g06
-        difficulty: authentic_application
-        prompt: |
-          Bu talimatta it neyi gösterir?
-        code: |
-          Download the new version and install it.
-        options:
-          A: "İndirdiğin yeni sürümü"
-          B: "Eski sürümü"
-          C: "İndirme düğmesini"
-          D: "Başka yeni bir programı"
-        scan_options: false
-        answer: A
-        misconception_options: {D: it_is_new_thing}
-        verify:
-          mode: reference
-          reference: "Wiktionary — it (pronoun): refers to a thing previously mentioned"
-          claim: "it az önce adı geçen şeyi gösterir: indirilen yeni sürüm."
       - slug: g07
         difficulty: transfer_integration
         prompt: |
@@ -128,24 +20,59 @@ objectives:
           mode: reference
           reference: "Wiktionary — it (pronoun): the thing previously mentioned; move (verb): to change the place of; first / then (adverbs of sequence)"
           claim: "Önce yeni klasör oluşturulur, sonra seçilen dosya (it) yeni klasöre taşınır; taşınan dosya eski yerinde kalmaz."
-      - slug: g08
-        difficulty: transfer_integration
+      - slug: g09
+        difficulty: authentic_application
         prompt: |
-          Bir kılavuzun İngilizce talimatı bu. Hangi Türkçe çeviri adımları aynı sırayla verir?
+          Talimat bu. Bir arkadaşın önce klasörü sildi, sonra programı kapattı. Talimata uydu mu?
         code: |
-          First check the version. Then update the program. Finally restart it.
+          First, close the program. Then, delete the folder.
         options:
-          A: "Önce sürümü kontrol et, sonra programı güncelle, en son programı yeniden başlat."
-          B: "Önce programı güncelle, sonra sürümü kontrol et, en son programı yeniden başlat."
-          C: "Önce programı yeniden başlat, sonra sürümü kontrol et, en son programı güncelle."
-          D: "Önce sürümü kontrol et, sonra programı yeniden başlat, en son programı güncelle."
+          A: "Hayır; klasörü programı kapattıktan SONRA silmeliydi"
+          B: "Evet; then 'önce' demektir, klasör önce silinir"
+          C: "Evet; iki adımın sırası önemli değil"
+          D: "Hayır; klasörü hiç silmemeliydi"
         scan_options: false
         answer: A
         misconception_options: {B: then_means_before}
         verify:
           mode: reference
-          reference: "Wiktionary — first / then / finally (adverbs ordering steps); it (pronoun): the thing previously mentioned"
-          claim: "İngilizce sıra: sürümü kontrol et → programı güncelle → onu (programı) yeniden başlat."
+          reference: "Wiktionary — first (adverb): before anything else; then (adverb): next in order, afterward"
+          claim: "First ile önce program kapatılır, Then ile ardından klasör silinir; arkadaşın sırayı ters uyguladı."
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu talimatta hangisini önce yaparsın?
+        code: |
+          Close the program. Check the version first.
+        options:
+          A: "Önce sürümü kontrol ederim, sonra programı kapatırım"
+          B: "Önce programı kapatırım, sonra sürümü kontrol ederim"
+          C: "İkisini aynı anda yaparım"
+          D: "Yalnız programı kapatırım"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — first (adverb): before anything else; placed at the end of an imperative it marks the action to do before the others"
+          claim: "Check the version first: sürüm kontrolü, yazılış sırasından bağımsız olarak önce yapılır; program sonra kapatılır."
+      - slug: g11
+        difficulty: authentic_application
+        prompt: |
+          Bu talimatta adımlar karışık sırayla yazılmış. Hangisini önce yaparsın?
+        code: |
+          Step 2: Run the tests.
+          Step 1: Open the folder.
+        options:
+          A: "Klasörü açarım"
+          B: "Testleri çalıştırırım"
+          C: "İkisini aynı anda yaparım"
+          D: "Sıra yazıldığı gibidir; önce üstteki satırı yaparım ve klasörü hiç açmam"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — step (noun): one of a sequence of actions; numbered steps are done in number order"
+          claim: "Step 1 ilk adımdır: önce klasör açılır, sonra (Step 2) testler çalıştırılır."
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

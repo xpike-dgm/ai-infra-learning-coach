@@ -73,14 +73,20 @@ objectives:
       - slug: g05
         difficulty: authentic_application
         prompt: |
-          Derleyici işini bitirince son satırda bu yazdı. Kaç hata (error) var? Yalnız sayıyı yaz.
+          Bir dosya yöneticisinde bir dosya seçiliyken önce bu düğmeye, sonra aynı klasörde ikinci düğmeye bastın. Sonunda klasörde ne olur?
         code: |
-          3 errors, 1 warning
-        answer: "3"
+          Copy   Paste
+        options:
+          A: Seçili dosyanın bir kopyası oluşur; klasörde iki dosya olur
+          B: Seçili dosya silinir
+          C: Seçili dosya kapanır, başka bir şey olmaz
+          D: Seçili dosya başka bir bilgisayara gönderilir
+        scan_options: false
+        answer: A
         verify:
           mode: reference
-          reference: "Wiktionary — error (noun, computing): a failure of a program; warning (noun): a notice of something that may cause a problem"
-          claim: "3 errors, 3 hata demektir; 1 warning ayrı bir uyarıdır."
+          reference: "Wiktionary — copy (verb, computing): to duplicate data into a temporary store; paste (verb, computing): to insert data previously copied"
+          claim: "Copy dosyayı kopyalar, Paste kopyalananı yapıştırır: sonunda dosyanın bir kopyası oluşur."
       - slug: g06
         difficulty: authentic_application
         prompt: |
@@ -99,23 +105,22 @@ objectives:
           reference: "Wiktionary — settings (noun, plural; computing): the options that can be chosen to configure a program; edit (verb): to change a text or file"
           claim: "Programın seçenekleri Settings'tedir; Edit belgenin içeriğini değiştirmek içindir."
       - slug: g07
-        difficulty: transfer_integration
+        difficulty: authentic_application
         prompt: |
-          Bir web sayfasında bir rapor dosyasının yanında bu düğme var. Basarsan ne olur?
+          Derleyici işini bitirince son satırda bu yazdı. Hangisi doğrudur?
         code: |
-          Download
+          Build done: 0 errors, 2 warnings
         options:
-          A: "Rapor dosyası sayfadan senin bilgisayarına gelir"
-          B: "Senin bilgisayarındaki bir dosya sayfaya gönderilir"
-          C: "Rapor dosyası sayfadan silinir"
-          D: "Rapor dosyası açılmadan kapatılır"
+          A: Derleme bitti ve hata yok; yalnız iki uyarı var
+          B: Derleme iki hata yüzünden durdu
+          C: Derleme başlamadı
+          D: Derleme bitti ama 2 test başarısız oldu
         scan_options: false
         answer: A
-        misconception_options: {B: download_is_upload}
         verify:
           mode: reference
-          reference: "Wiktionary — download (verb): to transfer data from a remote system to a local one; upload (verb): the opposite direction"
-          claim: "Download dosyayı uzaktaki sistemden senin bilgisayarına getirir."
+          reference: "Wiktionary — build (noun, computing): the process of compiling; done (adjective): finished; error (noun); warning (noun): a notice of a possible problem"
+          claim: "Build done derlemenin bittiğini, 0 errors hata olmadığını, 2 warnings iki uyarı olduğunu söyler."
       - slug: g08
         difficulty: transfer_integration
         prompt: |

@@ -193,7 +193,7 @@ objectives:
           adet = 3
           print("Adet: " + adet)
           print("Tutar:", fiyat * adet)
-        required_skills: [skill.programming.state_assignment_model]
+        required_skills: [skill.programming.state_assignment_model, skill.python.value_type_behavior]
         suite:
           - {id: three_lines, stdin: "", expected_stdout: "Fiyat: 25\nAdet: 3\nTutar: 75\n"}
         reference: |
