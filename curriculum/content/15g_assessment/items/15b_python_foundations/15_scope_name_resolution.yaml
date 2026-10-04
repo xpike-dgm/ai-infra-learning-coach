@@ -184,3 +184,31 @@ objectives:
         required_skills: [skill.python.for_iteration]
         answer: "2 4"
         verify: {mode: stdout}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: loop_local_assignment
+        required_skills: [skill.python.for_iteration]
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          toplam = 0
+
+          def ekle(n):
+              toplam = n
+              return toplam
+
+          for i in range(3):
+              ekle(i)
+          print(toplam)
+        options:
+          A: "0"
+          B: "2"
+          C: "3"
+          D: Hata verir; toplam fonksiyonun içinde tanımlı değildir.
+        scan_options: false
+        answer: A
+        misconception_options: {B: assignment_changes_global}
+        verify:
+          mode: stdout
+          outcomes: {A: "0", B: "2", C: "3", D: "<hata>"}

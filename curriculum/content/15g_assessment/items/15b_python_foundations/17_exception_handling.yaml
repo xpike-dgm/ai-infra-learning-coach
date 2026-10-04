@@ -404,3 +404,37 @@ objectives:
                 except ValueError:
                     print("geçersiz")
             print("Sayı:", satir)
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: stock_price_lookup
+        required_skills: [skill.python.mapping_collections_basic, skill.python.list_operations]
+        prompt: |
+          cozum.py dosyasına fiyat_bul(fiyatlar, urun) adında bir fonksiyon yaz: fiyatlar sözlüğünde urun varsa fiyatını, yoksa -1 döndürsün. Yokluğu, sözlüğe erişirken oluşan hatayı yakalayarak anla (try/except).
+        harness: |
+          import sys, cozum
+          fiyatlar = {"elma": 12, "armut": 20}
+          print(cozum.fiyat_bul(fiyatlar, sys.argv[1]))
+        suite:
+          - {id: present, args: ["elma"], expected_stdout: "12\n"}
+          - {id: missing, args: ["kiraz"], expected_stdout: "-1\n"}
+          - {id: other_present, args: ["armut"], expected_stdout: "20\n"}
+        reference: |
+          def fiyat_bul(fiyatlar, urun):
+              try:
+                  return fiyatlar[urun]
+              except KeyError:
+                  return -1
+        wrong:
+          - |
+            def fiyat_bul(fiyatlar, urun):
+                try:
+                    return fiyatlar[urun]
+                except ValueError:
+                    return -1
+          - |
+            def fiyat_bul(fiyatlar, urun):
+                try:
+                    return fiyatlar[urun]
+                except KeyError:
+                    pass

@@ -836,3 +836,36 @@ objectives:
                 if derece >= 30:
                     sicak += 1
             print("Sıcak gün:", sicak)
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: sum_until_sentinel
+        required_skills: [skill.python.input_output_basic]
+        prompt: |
+          cozum.py adında bir program yaz: her satırda bir tam sayı okusun; son yazan satır gelince okumayı bıraksın ve o ana kadar okunan sayıların toplamını yazsın. son satırından sonra gelen satırlar okunmaz.
+        suite:
+          - {id: two_numbers, stdin: "3\n4\nson\n", expected_stdout: "7\n"}
+          - {id: immediately, stdin: "son\n", expected_stdout: "0\n"}
+          - {id: after_sentinel_ignored, stdin: "10\nson\n5\n", expected_stdout: "10\n"}
+          - {id: negative, stdin: "-2\n2\n9\nson\n", expected_stdout: "9\n"}
+        reference: |
+          toplam = 0
+          satir = input()
+          while satir != "son":
+              toplam += int(satir)
+              satir = input()
+          print(toplam)
+        wrong:
+          - |
+            toplam = 0
+            satir = input()
+            if satir != "son":
+                toplam += int(satir)
+            print(toplam)
+          - |
+            toplam = 0
+            satir = input()
+            while satir != "son":
+                satir = input()
+                toplam += int(satir)
+            print(toplam)

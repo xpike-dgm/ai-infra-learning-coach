@@ -334,3 +334,41 @@ objectives:
 
             def cikti_yolu(girdi, klasor):
                 return (Path(klasor) / (Path(girdi).name + ".json")).as_posix()
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: nonempty_lines_list
+        required_skills: [skill.python.list_operations, skill.python.functions_parameters_return, skill.python.conditionals]
+        prompt: |
+          cozum.py dosyasına dolu_satirlar(yol) adında bir fonksiyon yaz (yol bir pathlib.Path nesnesidir): UTF-8 metin dosyasının boş olmayan satırlarını, satır sonları olmadan ve dosyadaki sırasıyla bir liste olarak döndürsün.
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          icerik = sys.argv[1].replace("|", chr(10))
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "veri.txt"
+              yol.write_bytes(icerik.encode("utf-8"))
+              print(cozum.dolu_satirlar(yol))
+        suite:
+          - {id: gaps, args: ["bir||iki|"], expected_stdout: "['bir', 'iki']\n"}
+          - {id: none_empty, args: ["a|b|c"], expected_stdout: "['a', 'b', 'c']\n"}
+          - {id: empty_file, args: [""], expected_stdout: "[]\n"}
+          - {id: only_blank, args: ["||"], expected_stdout: "[]\n"}
+        reference: |
+          def dolu_satirlar(yol):
+              sonuc = []
+              for satir in yol.read_text(encoding="utf-8").splitlines():
+                  if satir != "":
+                      sonuc.append(satir)
+              return sonuc
+        wrong:
+          - |
+            def dolu_satirlar(yol):
+                return yol.read_text(encoding="utf-8").splitlines()
+          - |
+            def dolu_satirlar(yol):
+                sonuc = []
+                for satir in yol.read_text(encoding="utf-8").splitlines():
+                    if satir != " ":
+                        sonuc.append(satir)
+                return sonuc

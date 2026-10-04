@@ -344,3 +344,42 @@ objectives:
                 elif sayi < 0:
                     negatif += 1
             print("Pozitif:", negatif, "Negatif:", pozitif)
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: vowel_counter
+        required_skills: [skill.python.string_text_operations, skill.python.functions_parameters_return, skill.python.conditionals]
+        prompt: |
+          cozum.py dosyasına sesli_say(metin) adında bir fonksiyon yaz: metindeki küçük sesli harflerin (a, e, ı, i, o, ö, u, ü) sayısını döndürsün. Örnek: sesli_say("ışık") → 2.
+        harness: |
+          import sys, cozum
+          print(cozum.sesli_say(sys.argv[1]))
+        suite:
+          - {id: turkish_vowels, args: ["ışık"], expected_stdout: "2\n"}
+          - {id: plain, args: ["merhaba"], expected_stdout: "3\n"}
+          - {id: none, args: ["krk"], expected_stdout: "0\n"}
+          - {id: empty, args: [""], expected_stdout: "0\n"}
+          - {id: all_vowels, args: ["aeıioöuü"], expected_stdout: "8\n"}
+        reference: |
+          def sesli_say(metin):
+              sayac = 0
+              for harf in metin:
+                  if harf in "aeıioöuü":
+                      sayac += 1
+              return sayac
+        wrong:
+          - |
+            def sesli_say(metin):
+                sayac = 0
+                for harf in metin:
+                    if harf in "aeiou":
+                        sayac += 1
+                return sayac
+          - |
+            def sesli_say(metin):
+                sayac = 0
+                for harf in metin:
+                    if harf in "aeıioöuü":
+                        sayac += 1
+                    return sayac
+                return sayac

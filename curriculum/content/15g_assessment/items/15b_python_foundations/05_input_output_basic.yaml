@@ -245,3 +245,24 @@ objectives:
             print("Ürün:", ad)
             print("Adet:", adet)
             print("Toplam:", fiyat * adet)
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: name_surname_swap
+        required_skills: [skill.python.string_text_operations]
+        prompt: |
+          cozum.py adında bir program yaz: bir satırda aralarında tek boşluk olan bir ad ve bir soyad okusun; ekrana Soyad, Ad biçiminde yazsın (virgülden sonra bir boşluk). Örnek: Ada Lovelace → Lovelace, Ada
+        suite:
+          - {id: example, stdin: "Ada Lovelace\n", expected_stdout: "Lovelace, Ada\n"}
+          - {id: turkish, stdin: "Cahit Arf\n", expected_stdout: "Arf, Cahit\n"}
+          - {id: short, stdin: "Al Bo\n", expected_stdout: "Bo, Al\n"}
+        reference: |
+          ad, soyad = input().split()
+          print(soyad + ", " + ad)
+        wrong:
+          - |
+            ad, soyad = input().split()
+            print(ad + ", " + soyad)
+          - |
+            ad, soyad = input().split()
+            print(soyad + "," + ad)

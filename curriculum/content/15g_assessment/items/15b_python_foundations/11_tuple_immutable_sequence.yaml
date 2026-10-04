@@ -319,3 +319,29 @@ objectives:
                 liste = list(t)
                 liste[i] = deger
                 return liste
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: file_name_parts
+        required_skills: [skill.python.string_text_operations, skill.python.functions_parameters_return]
+        prompt: |
+          cozum.py dosyasına ad_ve_uzanti(dosya) adında bir fonksiyon yaz: içinde tek bir nokta olan bir dosya adını alsın ve (ad, uzantı) biçiminde bir demet (tuple) döndürsün. Örnek: ad_ve_uzanti("rapor.txt") → ('rapor', 'txt').
+        harness: |
+          import sys, cozum
+          print(cozum.ad_ve_uzanti(sys.argv[1]))
+        suite:
+          - {id: txt, args: ["rapor.txt"], expected_stdout: "('rapor', 'txt')\n"}
+          - {id: py, args: ["oyun.py"], expected_stdout: "('oyun', 'py')\n"}
+          - {id: short, args: ["a.c"], expected_stdout: "('a', 'c')\n"}
+        reference: |
+          def ad_ve_uzanti(dosya):
+              parcalar = dosya.split(".")
+              return (parcalar[0], parcalar[1])
+        wrong:
+          - |
+            def ad_ve_uzanti(dosya):
+                return dosya.split(".")
+          - |
+            def ad_ve_uzanti(dosya):
+                parcalar = dosya.split(".")
+                return (parcalar[1], parcalar[0])

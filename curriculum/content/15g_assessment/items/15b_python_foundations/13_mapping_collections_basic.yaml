@@ -390,3 +390,36 @@ objectives:
                 for durak in sonraki:
                     yol.append(sonraki[durak])
                 return yol
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: word_frequency
+        required_skills: [skill.python.string_text_operations, skill.python.functions_parameters_return]
+        prompt: |
+          cozum.py dosyasına kelime_say(metin) adında bir fonksiyon yaz: aralarında boşluk olan kelimelerden oluşan metindeki her kelimenin kaç kez geçtiğini bir sözlük olarak döndürsün. Örnek: kelime_say("a b a") → {'a': 2, 'b': 1}.
+        harness: |
+          import sys, cozum
+          print(sorted(cozum.kelime_say(sys.argv[1]).items()))
+        suite:
+          - {id: example, args: ["a b a"], expected_stdout: "[('a', 2), ('b', 1)]\n"}
+          - {id: words, args: ["elma armut elma elma"], expected_stdout: "[('armut', 1), ('elma', 3)]\n"}
+          - {id: single, args: ["tek"], expected_stdout: "[('tek', 1)]\n"}
+        reference: |
+          def kelime_say(metin):
+              sayac = {}
+              for kelime in metin.split():
+                  sayac[kelime] = sayac.get(kelime, 0) + 1
+              return sayac
+        wrong:
+          - |
+            def kelime_say(metin):
+                sayac = {}
+                for kelime in metin:
+                    sayac[kelime] = sayac.get(kelime, 0) + 1
+                return sayac
+          - |
+            def kelime_say(metin):
+                sayac = {}
+                for kelime in metin.split():
+                    sayac[kelime] = 1
+                return sayac

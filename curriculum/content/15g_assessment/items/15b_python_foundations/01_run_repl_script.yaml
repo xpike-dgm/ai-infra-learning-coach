@@ -233,3 +233,28 @@ objectives:
             print("İlk bölüm:", ilk)
             print("İkinci bölüm:", ikinci)
             print("Toplam:", ilk * ikinci)
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: price_list_receipt
+        required_skills: [skill.python.list_operations]
+        prompt: |
+          cozum.py adında bir script yaz: fiyatlar = [12, 30, 8] listesini kullanarak ekrana iki satır yazsın: önce Toplam: 50, sonra En pahalı: 30. Sayıları kendin hesaplayıp yazma; toplamı ve en büyüğü Python listeden bulsun.
+        suite:
+          - {id: two_lines, stdin: "", expected_stdout: "Toplam: 50\nEn pahalı: 30\n"}
+        reference: |
+          fiyatlar = [12, 30, 8]
+          print("Toplam:", sum(fiyatlar))
+          print("En pahalı:", max(fiyatlar))
+        wrong:
+          - |
+            fiyatlar = [12, 30, 8]
+            print("Toplam: sum(fiyatlar)")
+            print("En pahalı: max(fiyatlar)")
+          - |
+            fiyatlar = [12, 30, 8]
+            print("En pahalı:", max(fiyatlar))
+            print("Toplam:", sum(fiyatlar))
+          - |
+            fiyatlar = [12, 30, 8]
+            print("Toplam:", sum(fiyatlar))

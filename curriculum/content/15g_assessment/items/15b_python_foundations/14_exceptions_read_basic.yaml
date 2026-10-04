@@ -224,3 +224,21 @@ objectives:
         scan_options: false
         answer: A
         verify: {mode: traceback, ask: type, shown: false}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: stock_missing_key
+        required_skills: [skill.python.mapping_collections_basic, skill.python.list_operations]
+        prompt: |
+          program.py çalıştırılınca önce 5 yazılıyor, sonra aşağıdaki hata mesajı görünüyor. Hatanın türü nedir? Yalnız türün adını yaz.
+
+          Traceback (most recent call last):
+            File "program.py", line 3, in <module>
+              print(stok["kiraz"])
+          KeyError: 'kiraz'
+        code: |
+          stok = {"elma": 5, "armut": 2}
+          print(stok["elma"])
+          print(stok["kiraz"])
+        answer: "KeyError"
+        verify: {mode: traceback, ask: type}

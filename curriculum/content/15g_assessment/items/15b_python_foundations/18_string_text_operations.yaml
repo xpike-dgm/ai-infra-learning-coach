@@ -308,3 +308,28 @@ objectives:
             def tarih_cevir(tarih):
                 parcalar = tarih.split("-")
                 return ".".join([parcalar[1], parcalar[2], parcalar[0]])
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: product_label_join
+        required_skills: [skill.python.list_operations, skill.python.functions_parameters_return]
+        prompt: |
+          cozum.py dosyasına etiket(urunler) adında bir fonksiyon yaz: ürün adlarından oluşan listeyi, adlar arasına virgül ve bir boşluk koyarak tek bir yazıya çevirip döndürsün. Örnek: etiket(["elma", "armut"]) → "elma, armut".
+        harness: |
+          import sys, cozum
+          print("[" + cozum.etiket(sys.argv[1:]) + "]")
+        suite:
+          - {id: two, args: ["elma", "armut"], expected_stdout: "[elma, armut]\n"}
+          - {id: three, args: ["a", "b", "c"], expected_stdout: "[a, b, c]\n"}
+          - {id: one, args: ["tek"], expected_stdout: "[tek]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+        reference: |
+          def etiket(urunler):
+              return ", ".join(urunler)
+        wrong:
+          - |
+            def etiket(urunler):
+                return str(urunler)
+          - |
+            def etiket(urunler):
+                return ",".join(urunler)

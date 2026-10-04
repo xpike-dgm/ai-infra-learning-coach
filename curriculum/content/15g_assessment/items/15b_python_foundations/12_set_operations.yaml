@@ -282,3 +282,27 @@ objectives:
           - |
             def ayni_kelimeler_mi(a, b):
                 return len(set(a)) == len(set(b))
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: common_letters
+        required_skills: [skill.python.string_text_operations, skill.python.functions_parameters_return]
+        prompt: |
+          cozum.py dosyasına ortak_harfler(a, b) adında bir fonksiyon yaz: iki kelimenin İKİSİNDE DE geçen harflerin kümesini (set) döndürsün. Örnek: ortak_harfler("elma", "armut") → {'a', 'm'}.
+        harness: |
+          import sys, cozum
+          print(sorted(cozum.ortak_harfler(sys.argv[1], sys.argv[2])))
+        suite:
+          - {id: example, args: ["elma", "armut"], expected_stdout: "['a', 'm']\n"}
+          - {id: none, args: ["abc", "xyz"], expected_stdout: "[]\n"}
+          - {id: repeated_letters, args: ["kiraz", "kaz"], expected_stdout: "['a', 'k', 'z']\n"}
+        reference: |
+          def ortak_harfler(a, b):
+              return set(a) & set(b)
+        wrong:
+          - |
+            def ortak_harfler(a, b):
+                return set(a) | set(b)
+          - |
+            def ortak_harfler(a, b):
+                return set(a) - set(b)

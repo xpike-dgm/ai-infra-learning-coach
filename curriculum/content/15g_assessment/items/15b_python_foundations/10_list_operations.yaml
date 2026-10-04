@@ -356,3 +356,27 @@ objectives:
                 liste.remove(ilk)
                 liste.append(ilk)
                 return liste
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: sorted_words
+        required_skills: [skill.python.string_text_operations, skill.python.functions_parameters_return]
+        prompt: |
+          cozum.py dosyasına sirali_kelimeler(metin) adında bir fonksiyon yaz: aralarında boşluk olan kelimelerden oluşan metnin kelimelerini alfabetik sırada bir liste olarak döndürsün. Kelimeler yalnızca İngiliz alfabesinin küçük harflerinden oluşur. Örnek: sirali_kelimeler("elma armut") → ['armut', 'elma'].
+        harness: |
+          import sys, cozum
+          print(cozum.sirali_kelimeler(sys.argv[1]))
+        suite:
+          - {id: three, args: ["kiraz elma armut"], expected_stdout: "['armut', 'elma', 'kiraz']\n"}
+          - {id: one, args: ["tek"], expected_stdout: "['tek']\n"}
+          - {id: sorted_already, args: ["a b c"], expected_stdout: "['a', 'b', 'c']\n"}
+        reference: |
+          def sirali_kelimeler(metin):
+              return sorted(metin.split())
+        wrong:
+          - |
+            def sirali_kelimeler(metin):
+                return sorted(metin)
+          - |
+            def sirali_kelimeler(metin):
+                return metin.split()

@@ -311,3 +311,33 @@ objectives:
 
             def ozet(sayilar):
                 return (mean(sayilar), sayilar[len(sayilar) // 2])
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: hypotenuse_math
+        required_skills: [skill.python.expression_evaluation]
+        prompt: |
+          cozum.py dosyasına hipotenus(a, b) adında bir fonksiyon yaz: dik kenarları a ve b olan dik üçgenin hipotenüsünü döndürsün. Karekökü math modülünün sqrt fonksiyonuyla al. Örnek: hipotenus(3, 4) → 5.0.
+        harness: |
+          import sys, cozum
+          print(cozum.hipotenus(int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: three_four, args: ["3", "4"], expected_stdout: "5.0\n"}
+          - {id: five_twelve, args: ["5", "12"], expected_stdout: "13.0\n"}
+          - {id: zero, args: ["0", "0"], expected_stdout: "0.0\n"}
+        reference: |
+          import math
+
+          def hipotenus(a, b):
+              return math.sqrt(a * a + b * b)
+        wrong:
+          - |
+            import math
+
+            def hipotenus(a, b):
+                return sqrt(a * a + b * b)
+          - |
+            import math
+
+            def hipotenus(a, b):
+                return a * a + b * b

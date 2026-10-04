@@ -136,3 +136,17 @@ objectives:
         answer: "10.0 25.0"
         required_skills: [skill.programming.state_assignment_model]
         verify: {mode: stdout}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: quantity_text_repeat
+        required_skills: [skill.python.string_text_operations]
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi, satır satır yaz.
+        code: |
+          adet = "3"
+          print(adet * 2)
+          print(int(adet) * 2)
+        answer: "33\n6"
+        also_accept: ["33 6"]
+        verify: {mode: stdout}

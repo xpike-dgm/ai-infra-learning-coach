@@ -398,3 +398,40 @@ objectives:
                 print("çift negatif")
             else:
                 print("tek negatif")
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: file_extension_kind
+        required_skills: [skill.python.input_output_basic, skill.python.string_text_operations]
+        prompt: |
+          cozum.py adında bir program yaz: bir dosya adı okusun; ad .py ile bitiyorsa python, .c ile bitiyorsa c, başka bir şeyle bitiyorsa bilinmiyor yazsın. Her durumda yalnızca bir satır yazsın.
+        suite:
+          - {id: python_file, stdin: "oyun.py\n", expected_stdout: "python\n"}
+          - {id: c_file, stdin: "main.c\n", expected_stdout: "c\n"}
+          - {id: other, stdin: "notlar.txt\n", expected_stdout: "bilinmiyor\n"}
+          - {id: py_inside, stdin: "veri.pyc\n", expected_stdout: "bilinmiyor\n"}
+        reference: |
+          ad = input()
+          if ad.endswith(".py"):
+              print("python")
+          elif ad.endswith(".c"):
+              print("c")
+          else:
+              print("bilinmiyor")
+        wrong:
+          - |
+            ad = input()
+            if ".py" in ad:
+                print("python")
+            elif ".c" in ad:
+                print("c")
+            else:
+                print("bilinmiyor")
+          - |
+            ad = input()
+            if ad.endswith(".py"):
+                print("python")
+            if ad.endswith(".c"):
+                print("c")
+            else:
+                print("bilinmiyor")

@@ -463,3 +463,43 @@ objectives:
                 except FileNotFoundError:
                     sayi = 0
                 return sayi + 1
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: counts_to_file
+        required_skills: [skill.python.mapping_collections_basic]
+        prompt: |
+          cozum.py dosyasına sayac_yaz(yol, sayac) adında bir fonksiyon yaz: sayac sözlüğündeki her anahtar için dosyaya ad=adet biçiminde bir satır yazsın; satırlar anahtarların alfabetik sırasında olsun ve her satır bir satır sonuyla bitsin (UTF-8). Dosya önceden varsa içeriği silinip yeniden yazılsın.
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          sayac = {}
+          for parca in sys.argv[1:]:
+              ad, adet = parca.split("=")
+              sayac[ad] = int(adet)
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "sayac.txt"
+              yol.write_text("eski\n", encoding="utf-8")
+              cozum.sayac_yaz(yol, sayac)
+              print(yol.read_text(encoding="utf-8"), end="")
+              print("#")
+        suite:
+          - {id: two_sorted, args: ["elma=3", "armut=1"], expected_stdout: "armut=1\nelma=3\n#\n"}
+          - {id: one, args: ["kiraz=7"], expected_stdout: "kiraz=7\n#\n"}
+          - {id: empty, args: [], expected_stdout: "#\n"}
+        reference: |
+          def sayac_yaz(yol, sayac):
+              with open(yol, "w", encoding="utf-8") as f:
+                  for ad in sorted(sayac):
+                      f.write(ad + "=" + str(sayac[ad]) + "\n")
+        wrong:
+          - |
+            def sayac_yaz(yol, sayac):
+                with open(yol, "a", encoding="utf-8") as f:
+                    for ad in sorted(sayac):
+                        f.write(ad + "=" + str(sayac[ad]) + "\n")
+          - |
+            def sayac_yaz(yol, sayac):
+                with open(yol, "w", encoding="utf-8") as f:
+                    for ad in sayac:
+                        f.write(ad + "=" + str(sayac[ad]) + "\n")

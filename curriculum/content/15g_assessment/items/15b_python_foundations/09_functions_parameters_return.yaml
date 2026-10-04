@@ -327,3 +327,28 @@ objectives:
 
             def karne(p1, p2):
                 return derece(p1) + derece(p2)
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: initials
+        required_skills: [skill.python.string_text_operations]
+        prompt: |
+          cozum.py dosyasına bas_harfler(ad, soyad) adında bir fonksiyon yaz: adın ve soyadın ilk harflerini, her birinin arkasına nokta koyarak tek bir yazı olarak döndürsün (ekrana yazmasın). Örnek: bas_harfler("Ada", "Lovelace") → "A.L."
+        harness: |
+          import sys, cozum
+          sonuc = cozum.bas_harfler(sys.argv[1], sys.argv[2])
+          print("[" + str(sonuc) + "]")
+        suite:
+          - {id: example, args: ["Ada", "Lovelace"], expected_stdout: "[A.L.]\n"}
+          - {id: turkish, args: ["Şule", "Öztürk"], expected_stdout: "[Ş.Ö.]\n"}
+          - {id: one_letter, args: ["X", "Y"], expected_stdout: "[X.Y.]\n"}
+        reference: |
+          def bas_harfler(ad, soyad):
+              return ad[0] + "." + soyad[0] + "."
+        wrong:
+          - |
+            def bas_harfler(ad, soyad):
+                print(ad[0] + "." + soyad[0] + ".")
+          - |
+            def bas_harfler(ad, soyad):
+                return ad[0] + soyad[0]
