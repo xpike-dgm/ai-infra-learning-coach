@@ -5,60 +5,81 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          cozum.py adında bir program yaz: bir tam sayı okusun; 5'e tam bölünüyorsa beşe bölünür, bölünmüyorsa bölünmez yazsın.
+          cozum.py adında bir program yaz: bir vücut sıcaklığı (ondalıklı, örneğin 36.8) okusun; 37.5'ten büyükse ateşli, 36.0'dan küçükse üşümüş, ikisi arasındaysa (36.0 ve 37.5 dahil) olağan yazsın.
         required_skills: [skill.python.input_output_basic]
         suite:
-          - {id: divisible, stdin: "25\n", expected_stdout: "beşe bölünür\n"}
-          - {id: not_divisible, stdin: "7\n", expected_stdout: "bölünmez\n"}
-          - {id: zero, stdin: "0\n", expected_stdout: "beşe bölünür\n"}
-          - {id: negative, stdin: "-10\n", expected_stdout: "beşe bölünür\n"}
+          - {id: fever, stdin: "37.6\n", expected_stdout: "ateşli\n"}
+          - {id: upper_edge, stdin: "37.5\n", expected_stdout: "olağan\n"}
+          - {id: lower_edge, stdin: "36.0\n", expected_stdout: "olağan\n"}
+          - {id: low, stdin: "35.9\n", expected_stdout: "üşümüş\n"}
         reference: |
-          n = int(input())
-          if n % 5 == 0:
-              print("beşe bölünür")
+          derece = float(input())
+          if derece > 37.5:
+              print("ateşli")
+          elif derece < 36.0:
+              print("üşümüş")
           else:
-              print("bölünmez")
+              print("olağan")
         wrong:
           - |
-            n = int(input())
-            if n % 5 == 1:
-                print("beşe bölünür")
+            derece = float(input())
+            if derece >= 37.5:
+                print("ateşli")
+            elif derece < 36.0:
+                print("üşümüş")
             else:
-                print("bölünmez")
+                print("olağan")
           - |
-            n = int(input())
-            if n // 5 == 0:
-                print("beşe bölünür")
+            derece = float(input())
+            if derece > 37.5:
+                print("ateşli")
+            elif derece <= 36.0:
+                print("üşümüş")
             else:
-                print("bölünmez")
+                print("olağan")
       - slug: g02
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          cozum.py adında bir program yaz: bir sıcaklık (tam sayı, °C) okusun; sıcaklık 0 ya da daha düşükse donar, değilse donmaz yazsın.
+          cozum.py adında bir program yaz: bir ay numarası (1–12) okusun ve mevsimini yazsın: 12, 1 ve 2 kış; 3, 4 ve 5 ilkbahar; 6, 7 ve 8 yaz; 9, 10 ve 11 sonbahar.
         required_skills: [skill.python.input_output_basic]
         suite:
-          - {id: exactly_zero, stdin: "0\n", expected_stdout: "donar\n"}
-          - {id: just_above, stdin: "1\n", expected_stdout: "donmaz\n"}
-          - {id: below, stdin: "-5\n", expected_stdout: "donar\n"}
+          - {id: december, stdin: "12\n", expected_stdout: "kış\n"}
+          - {id: january, stdin: "1\n", expected_stdout: "kış\n"}
+          - {id: spring, stdin: "3\n", expected_stdout: "ilkbahar\n"}
+          - {id: summer_edge, stdin: "8\n", expected_stdout: "yaz\n"}
+          - {id: autumn, stdin: "11\n", expected_stdout: "sonbahar\n"}
+          - {id: spring_end, stdin: "5\n", expected_stdout: "ilkbahar\n"}
         reference: |
-          derece = int(input())
-          if derece <= 0:
-              print("donar")
+          ay = int(input())
+          if ay == 12 or ay <= 2:
+              print("kış")
+          elif ay <= 5:
+              print("ilkbahar")
+          elif ay <= 8:
+              print("yaz")
           else:
-              print("donmaz")
+              print("sonbahar")
         wrong:
           - |
-            derece = int(input())
-            if derece < 0:
-                print("donar")
+            ay = int(input())
+            if ay <= 2:
+                print("kış")
+            elif ay <= 5:
+                print("ilkbahar")
+            elif ay <= 8:
+                print("yaz")
             else:
-                print("donmaz")
+                print("sonbahar")
           - |
-            derece = int(input())
-            if derece >= 0:
-                print("donar")
+            ay = int(input())
+            if ay == 12 or ay <= 2:
+                print("kış")
+            elif ay < 5:
+                print("ilkbahar")
+            elif ay < 8:
+                print("yaz")
             else:
-                print("donmaz")
+                print("sonbahar")
       - slug: g03
         difficulty: basic
         prompt: |
@@ -85,48 +106,48 @@ objectives:
             sifre = input()
             print("giriş")
       - slug: g04
-        difficulty: authentic_application
+        difficulty: transfer_integration
         prompt: |
-          cozum.py adında bir program yaz: bir yaş (tam sayı) okusun ve bilet türünü yazsın: 7 yaşından küçükse ücretsiz, 7–17 arası yarım, 18–64 arası tam, 65 ve üstü indirimli.
+          cozum.py adında bir program yaz: üç ayrı satırda üç tam sayı okusun ve büyüklük sırasında ortada kalan sayıyı (ortancayı) yazsın. İki ya da üç sayı eşit olabilir. sorted(), max() ya da min() kullanma; karşılaştırmaları if ile kendin yaz. Örnek: girdi 7, 2 ve 5 ise çıktı 5.
         required_skills: [skill.python.input_output_basic]
         suite:
-          - {id: six, stdin: "6\n", expected_stdout: "ücretsiz\n"}
-          - {id: seven, stdin: "7\n", expected_stdout: "yarım\n"}
-          - {id: seventeen, stdin: "17\n", expected_stdout: "yarım\n"}
-          - {id: eighteen, stdin: "18\n", expected_stdout: "tam\n"}
-          - {id: sixty_four, stdin: "64\n", expected_stdout: "tam\n"}
-          - {id: sixty_five, stdin: "65\n", expected_stdout: "indirimli\n"}
+          - {id: middle_last, stdin: "7\n2\n5\n", expected_stdout: "5\n"}
+          - {id: middle_first, stdin: "4\n9\n1\n", expected_stdout: "4\n"}
+          - {id: middle_second, stdin: "1\n3\n8\n", expected_stdout: "3\n"}
+          - {id: two_equal, stdin: "6\n6\n2\n", expected_stdout: "6\n"}
+          - {id: all_equal, stdin: "3\n3\n3\n", expected_stdout: "3\n"}
+          - {id: descending, stdin: "9\n5\n2\n", expected_stdout: "5\n"}
         reference: |
-          yas = int(input())
-          if yas < 7:
-              print("ücretsiz")
-          elif yas < 18:
-              print("yarım")
-          elif yas < 65:
-              print("tam")
+          a = int(input())
+          b = int(input())
+          c = int(input())
+          if (b <= a <= c) or (c <= a <= b):
+              print(a)
+          elif (a <= b <= c) or (c <= b <= a):
+              print(b)
           else:
-              print("indirimli")
+              print(c)
         wrong:
           - |
-            yas = int(input())
-            if yas < 7:
-                print("ücretsiz")
-            elif yas <= 18:
-                print("yarım")
-            elif yas <= 65:
-                print("tam")
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            if a <= b <= c:
+                print(b)
+            elif b <= a <= c:
+                print(a)
             else:
-                print("indirimli")
+                print(c)
           - |
-            yas = int(input())
-            if yas < 65:
-                print("tam")
-            elif yas < 18:
-                print("yarım")
-            elif yas < 7:
-                print("ücretsiz")
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            if (b < a < c) or (c < a < b):
+                print(a)
+            elif (a < b < c) or (c < b < a):
+                print(b)
             else:
-                print("indirimli")
+                print(c)
       - slug: g05
         difficulty: authentic_application
         prompt: |
@@ -243,15 +264,16 @@ objectives:
             else:
                 print("olmaz")
       - slug: g08
-        difficulty: transfer_integration
+        difficulty: authentic_application
         prompt: |
-          cozum.py adında bir program yaz: ilk satırda sepet tutarını (tam sayı), ikinci satırda üyelik durumunu (evet ya da hayır) okusun. Tutar 300 ve üstüyse ya da müşteri üyeyse kargo ücretsizdir; aksi hâlde 30 liradır. Kargo: <ücret> yazsın.
+          cozum.py adında bir program yaz: ilk satırda sepet tutarını (tam sayı), ikinci satırda üyelik durumunu (evet ya da hayır) okusun. Tutar 300 ve üstüyse ya da müşteri üyeyse kargo ücretsizdir; aksi hâlde 30 liradır. Kargo: <ücret> yazsın. Örnek: girdi 350 ve hayır ise çıktı Kargo: 0; girdi 100 ve hayır ise çıktı Kargo: 30.
         required_skills: [skill.python.input_output_basic]
         suite:
-          - {id: big_basket, stdin: "300\nhayır\n", expected_stdout: "Kargo: 0\n"}
-          - {id: member, stdin: "120\nevet\n", expected_stdout: "Kargo: 0\n"}
-          - {id: neither, stdin: "299\nhayır\n", expected_stdout: "Kargo: 30\n"}
-          - {id: both, stdin: "500\nevet\n", expected_stdout: "Kargo: 0\n"}
+          - {id: big_basket, stdin: "350\nhayır\n", expected_stdout: "Kargo: 0\n"}
+          - {id: member, stdin: "100\nevet\n", expected_stdout: "Kargo: 0\n"}
+          - {id: neither, stdin: "100\nhayır\n", expected_stdout: "Kargo: 30\n"}
+          - {id: boundary, stdin: "300\nhayır\n", expected_stdout: "Kargo: 0\n"}
+          - {id: just_below, stdin: "299\nhayır\n", expected_stdout: "Kargo: 30\n"}
         reference: |
           tutar = int(input())
           uye = input()

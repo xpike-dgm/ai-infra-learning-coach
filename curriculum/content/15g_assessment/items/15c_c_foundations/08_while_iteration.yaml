@@ -315,16 +315,16 @@ objectives:
         prompt: |
           Aşağıdaki program 0'dan başlayıp 4'er artarak 18'den küçük sayıları (0 4 8 12 16) her biri ayrı satırda yazmalı ama hiç bitmiyor. Nedenini bul, düzelt ve cozum.c olarak kaydet.
 
-              #include <stdio.h>
+          #include <stdio.h>
 
-              int main(void) {
-                  int i = 0;
-                  while (i != 18) {
-                      printf("%d\n", i);
-                      i += 4;
-                  }
-                  return 0;
+          int main(void) {
+              int i = 0;
+              while (i != 18) {
+                  printf("%d\n", i);
+                  i += 4;
               }
+              return 0;
+          }
         suite:
           - {id: sequence, expected_stdout: "0\n4\n8\n12\n16\n"}
         reference: |

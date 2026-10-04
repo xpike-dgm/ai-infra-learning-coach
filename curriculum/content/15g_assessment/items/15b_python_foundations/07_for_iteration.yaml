@@ -27,24 +27,31 @@ objectives:
       - slug: g02
         difficulty: basic
         prompt: |
-          cozum.py adında bir program yaz: bir kelime okusun ve her karakterini ayrı bir satıra yazsın. Boş bir satır okunursa hiçbir şey yazmasın.
+          cozum.py adında bir program yaz: bir n tam sayısı (0 ya da pozitif) okusun ve 2'nin 0'ıncı kuvvetinden n'inci kuvvetine kadar (1, 2, 4, 8, …) her birini ayrı bir satıra yazsın. ** kullanma: bir değişkeni 1'den başlat ve her turda ikiyle çarp. Örnek: n = 3 için 1, 2, 4 ve 8.
         required_skills: [skill.python.input_output_basic]
         suite:
-          - {id: ada, stdin: "ada\n", expected_stdout: "a\nd\na\n"}
-          - {id: turkish, stdin: "çiğ\n", expected_stdout: "ç\ni\nğ\n"}
-          - {id: empty, stdin: "\n", expected_stdout: ""}
+          - {id: three, stdin: "3\n", expected_stdout: "1\n2\n4\n8\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "1\n"}
+          - {id: five, stdin: "5\n", expected_stdout: "1\n2\n4\n8\n16\n32\n"}
         reference: |
-          kelime = input()
-          for harf in kelime:
-              print(harf)
+          n = int(input())
+          deger = 1
+          for i in range(n + 1):
+              print(deger)
+              deger *= 2
         wrong:
           - |
-            kelime = input()
-            for harf in kelime:
-                print(kelime)
+            n = int(input())
+            deger = 1
+            for i in range(n):
+                print(deger)
+                deger *= 2
           - |
-            kelime = input()
-            print(kelime)
+            n = int(input())
+            deger = 1
+            for i in range(n + 1):
+                deger *= 2
+                print(deger)
       - slug: g03
         difficulty: basic
         prompt: |
@@ -136,37 +143,34 @@ objectives:
       - slug: g06
         difficulty: authentic_application
         prompt: |
-          cozum.py adında bir program yaz: ilk satırda bir kelime, ikinci satırda tek bir harf okusun ve harfin kelimede kaç kez geçtiğini yazsın. Örnek: kelime elma, harf a → 1.
+          cozum.py adında bir program yaz: bir kelime okusun ve karakterlerini aralarına birer tire (-) koyarak tek satıra yazsın; ilk karakterden önce ve son karakterden sonra tire olmasın. Örnek: kalem → k-a-l-e-m; tek harfli a → a.
         required_skills: [skill.python.input_output_basic, skill.python.conditionals]
         suite:
-          - {id: once, stdin: "elma\na\n", expected_stdout: "1\n"}
-          - {id: many, stdin: "kelebek\ne\n", expected_stdout: "3\n"}
-          - {id: none, stdin: "masa\no\n", expected_stdout: "0\n"}
-          - {id: first_letter, stdin: "anana\na\n", expected_stdout: "3\n"}
+          - {id: word, stdin: "kalem\n", expected_stdout: "k-a-l-e-m\n"}
+          - {id: single, stdin: "a\n", expected_stdout: "a\n"}
+          - {id: two, stdin: "su\n", expected_stdout: "s-u\n"}
         reference: |
           kelime = input()
-          aranan = input()
-          sayac = 0
+          sonuc = ""
           for harf in kelime:
-              if harf == aranan:
-                  sayac += 1
-          print(sayac)
+              if sonuc == "":
+                  sonuc = harf
+              else:
+                  sonuc += "-" + harf
+          print(sonuc)
         wrong:
           - |
             kelime = input()
-            aranan = input()
-            sayac = 0
+            sonuc = ""
             for harf in kelime:
-                sayac += 1
-            print(sayac)
+                sonuc += harf + "-"
+            print(sonuc)
           - |
             kelime = input()
-            aranan = input()
-            sayac = 0
+            sonuc = ""
             for harf in kelime:
-                if harf != aranan:
-                    sayac += 1
-            print(sayac)
+                sonuc += "-" + harf
+            print(sonuc)
       - slug: g07
         difficulty: authentic_application
         prompt: |
@@ -264,42 +268,31 @@ objectives:
       - slug: g10
         difficulty: transfer_integration
         prompt: |
-          cozum.py adında bir program yaz: bir kelime okusun; kelime tersten okunduğunda da aynıysa evet, değilse hayır yazsın. Kelimenin tersini bir döngüyle kur. Örnek: kayak → evet.
-        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+          cozum.py adında bir program yaz: bir pozitif tam sayı okusun ve basamaklarının toplamını yazsın. Sayıyı bir yazı olarak bırak, karakterleri üzerinde bir for döngüsüyle dolaş ve her karakteri int() ile sayıya çevirerek topla. Örnek: 1234 → 10.
+        required_skills: [skill.python.input_output_basic]
         suite:
-          - {id: kayak, stdin: "kayak\n", expected_stdout: "evet\n"}
-          - {id: kitap, stdin: "kitap\n", expected_stdout: "hayır\n"}
-          - {id: single, stdin: "a\n", expected_stdout: "evet\n"}
-          - {id: even_length, stdin: "abba\n", expected_stdout: "evet\n"}
-          - {id: near_miss, stdin: "abca\n", expected_stdout: "hayır\n"}
+          - {id: four_digits, stdin: "1234\n", expected_stdout: "10\n"}
+          - {id: single, stdin: "7\n", expected_stdout: "7\n"}
+          - {id: zeros, stdin: "9005\n", expected_stdout: "14\n"}
         reference: |
-          kelime = input()
-          ters = ""
-          for harf in kelime:
-              ters = harf + ters
-          if ters == kelime:
-              print("evet")
-          else:
-              print("hayır")
+          sayi = input()
+          toplam = 0
+          for karakter in sayi:
+              toplam += int(karakter)
+          print(toplam)
         wrong:
           - |
-            kelime = input()
-            ters = ""
-            for harf in kelime:
-                ters = ters + harf
-            if ters == kelime:
-                print("evet")
-            else:
-                print("hayır")
+            sayi = input()
+            toplam = ""
+            for karakter in sayi:
+                toplam += karakter
+            print(toplam)
           - |
-            kelime = input()
-            ters = ""
-            for harf in kelime:
-                ters = harf + ters
-            if ters[0] == kelime[0]:
-                print("evet")
-            else:
-                print("hayır")
+            sayi = input()
+            toplam = 0
+            for karakter in sayi:
+                toplam = int(karakter)
+            print(toplam)
       - slug: g11
         difficulty: transfer_integration
         prompt: |
@@ -344,42 +337,3 @@ objectives:
                 elif sayi < 0:
                     negatif += 1
             print("Pozitif:", negatif, "Negatif:", pozitif)
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: vowel_counter
-        required_skills: [skill.python.string_text_operations, skill.python.functions_parameters_return, skill.python.conditionals]
-        prompt: |
-          cozum.py dosyasına sesli_say(metin) adında bir fonksiyon yaz: metindeki küçük sesli harflerin (a, e, ı, i, o, ö, u, ü) sayısını döndürsün. Örnek: sesli_say("ışık") → 2.
-        harness: |
-          import sys, cozum
-          print(cozum.sesli_say(sys.argv[1]))
-        suite:
-          - {id: turkish_vowels, args: ["ışık"], expected_stdout: "2\n"}
-          - {id: plain, args: ["merhaba"], expected_stdout: "3\n"}
-          - {id: none, args: ["krk"], expected_stdout: "0\n"}
-          - {id: empty, args: [""], expected_stdout: "0\n"}
-          - {id: all_vowels, args: ["aeıioöuü"], expected_stdout: "8\n"}
-        reference: |
-          def sesli_say(metin):
-              sayac = 0
-              for harf in metin:
-                  if harf in "aeıioöuü":
-                      sayac += 1
-              return sayac
-        wrong:
-          - |
-            def sesli_say(metin):
-                sayac = 0
-                for harf in metin:
-                    if harf in "aeiou":
-                        sayac += 1
-                return sayac
-          - |
-            def sesli_say(metin):
-                sayac = 0
-                for harf in metin:
-                    if harf in "aeıioöuü":
-                        sayac += 1
-                    return sayac
-                return sayac

@@ -360,18 +360,18 @@ objectives:
         prompt: |
           Aşağıdaki program girilen sayı 5 ise bes, değilse bes degil yazmalı; ama hangi sayı girilirse girilsin hep bes yazıyor (gcc de bir uyarı veriyor). Hatayı bul, düzelt ve cozum.c olarak kaydet.
 
-              #include <stdio.h>
+          #include <stdio.h>
 
-              int main(void) {
-                  int x = 0;
-                  scanf("%d", &x);
-                  if (x = 5) {
-                      printf("bes\n");
-                  } else {
-                      printf("bes degil\n");
-                  }
-                  return 0;
+          int main(void) {
+              int x = 0;
+              scanf("%d", &x);
+              if (x = 5) {
+                  printf("bes\n");
+              } else {
+                  printf("bes degil\n");
               }
+              return 0;
+          }
         required_skills: [skill.c.standard_io_basic]
         suite:
           - {id: five, stdin: "5\n", expected_stdout: "bes\n"}
@@ -533,21 +533,21 @@ objectives:
         prompt: |
           Aşağıdaki program 1 için bir, 2 için iki, başka sayılar için diger yazmalı; ama 1 girilince birden fazla satır yazıyor. switch'in nasıl çalıştığını düşün, hatayı düzelt ve cozum.c olarak kaydet.
 
-              #include <stdio.h>
+          #include <stdio.h>
 
-              int main(void) {
-                  int n = 0;
-                  scanf("%d", &n);
-                  switch (n) {
-                      case 1:
-                          printf("bir\n");
-                      case 2:
-                          printf("iki\n");
-                      default:
-                          printf("diger\n");
-                  }
-                  return 0;
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              switch (n) {
+                  case 1:
+                      printf("bir\n");
+                  case 2:
+                      printf("iki\n");
+                  default:
+                      printf("diger\n");
               }
+              return 0;
+          }
         required_skills: [skill.c.standard_io_basic]
         suite:
           - {id: one, stdin: "1\n", expected_stdout: "bir\n"}

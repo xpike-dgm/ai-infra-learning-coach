@@ -66,13 +66,13 @@ objectives:
         prompt: |
           Aşağıdaki program derlenmiyor. gcc'nin hata mesajını oku, hatayı düzelt ve düzeltilmiş programı cozum.c olarak kaydet. Program ekrana iki satırda Bir ve Iki yazmalı.
 
-              #include <stdio.h>
+          #include <stdio.h>
 
-              int main(void) {
-                  printf("Bir\n");
-                  printf("Iki\n")
-                  return 0;
-              }
+          int main(void) {
+              printf("Bir\n");
+              printf("Iki\n")
+              return 0;
+          }
         suite:
           - {id: two_lines, expected_stdout: "Bir\nIki\n"}
         reference: |
@@ -192,11 +192,11 @@ objectives:
         prompt: |
           Aşağıdaki program derlenmiyor. gcc'nin hata mesajını oku (mesaj dosyanın sonunu gösteriyor), eksik olanı bul, düzelt ve cozum.c olarak kaydet. Program ekrana Hazir yazmalı.
 
-              #include <stdio.h>
+          #include <stdio.h>
 
-              int main(void) {
-                  printf("Hazir\n");
-                  return 0;
+          int main(void) {
+              printf("Hazir\n");
+              return 0;
         suite:
           - {id: ready, expected_stdout: "Hazir\n"}
         reference: |
@@ -282,13 +282,13 @@ objectives:
         prompt: |
           Aşağıdaki program derlenmiyor. gcc'nin hata mesajını oku: derleyici bilmediği bir fonksiyon adından söz ediyor. Hatayı düzelt ve cozum.c olarak kaydet. Program ekrana alt alta Basla ve Bitti yazmalı.
 
-              #include <stdio.h>
+          #include <stdio.h>
 
-              int main(void) {
-                  printf("Basla\n");
-                  prinft("Bitti\n");
-                  return 0;
-              }
+          int main(void) {
+              printf("Basla\n");
+              prinft("Bitti\n");
+              return 0;
+          }
         suite:
           - {id: both_lines, expected_stdout: "Basla\nBitti\n"}
         reference: |
@@ -635,13 +635,13 @@ objectives:
           #include <stdio.h>
           int topla(int a, int b);
           int main(void) {
-              printf("%d\n", topla(2, 3));
-              return 0;
+          printf("%d\n", topla(2, 3));
+          return 0;
           }
 
           topla.c:
           int topla(int a, int b) {
-              return a + b;
+          return a + b;
           }
 
           Yalnızca gcc ana.c -o ana komutunu çalıştırırsan ne olur?

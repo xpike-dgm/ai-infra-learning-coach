@@ -234,9 +234,9 @@ objectives:
         prompt: |
           Biri kaç kez çağrıldığını sayması gereken bir fonksiyon yazmış ama fonksiyon her seferinde 1 döndürüyor:
           int cagri_sayisi(void) {
-              int sayac = 0;
-              sayac++;
-              return sayac;
+          int sayac = 0;
+          sayac++;
+          return sayac;
           }
           Kendi cümlelerinle anlat: neden hep 1 döndürüyor? sayac'ın ömrü ne zaman başlıyor ve bitiyor? Fonksiyonu düzeltmenin bir yolunu yaz ve o yolun ömrü nasıl değiştirdiğini açıkla. (3–5 cümle yeterli.)
         required_skills: [skill.c.functions_basic]

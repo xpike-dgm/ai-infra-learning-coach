@@ -380,11 +380,11 @@ objectives:
         prompt: |
           Aşağıdaki fonksiyon her sayı için None döndürüyor. Amaç: sıfır ya da pozitif bir sayının karekökünü iki basamağa yuvarlanmış olarak döndürmek, eksi bir sayı için (math.sqrt ValueError verir) None döndürmek. Neden hep None döndüğünü bul (her hatayı yakalayan except: gerçek sorunu gizliyor), düzelt ve cozum.py olarak kaydet. Düzeltilmiş fonksiyon yalnız ValueError'ı yakalamalı: sayı yerine bir yazı verilirse oluşan hata yakalanmasın, yukarıya gitsin.
 
-              def guvenli_karekok(x):
-                  try:
-                      return round(math.sqrt(x), 2)
-                  except:
-                      return None
+          def guvenli_karekok(x):
+              try:
+                  return round(math.sqrt(x), 2)
+              except:
+                  return None
         required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic, skill.python.expression_evaluation]
         harness: |
           import sys, cozum
