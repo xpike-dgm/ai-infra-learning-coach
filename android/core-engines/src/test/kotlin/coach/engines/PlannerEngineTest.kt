@@ -199,6 +199,21 @@ class PlannerEngineTest {
     }
 
     @Test
+    fun `a transfer opportunity is ranked exactly like an integration opportunity, never above learning`() {
+        // 15G (`D-120`): `MCA-v0` §7 item 5 groups integration and transfer; the planner gives them one row.
+        for (scope in BlockingScope.entries) {
+            for (starvation in StarvationBucket.entries) {
+                for (required in listOf(true, false)) {
+                    val integration = need(NeedTrigger.INTEGRATION_OPPORTUNITY, linux).copy(requiredByCurriculum = required)
+                    val transfer = integration.copy(needKey = "transfer_opportunity:$linux", trigger = NeedTrigger.TRANSFER_OPPORTUNITY)
+                    assertEquals(PlannerEngine.band(integration, scope, starvation), PlannerEngine.band(transfer, scope, starvation),
+                        "$scope $starvation $required")
+                }
+            }
+        }
+    }
+
+    @Test
     fun `priority never rescues a blocked or untrusted candidate`() {
         val verification = need(NeedTrigger.VERIFICATION_DUE, pointer, Criticality.CRITICAL_PREREQUISITE)
         val blocked = candidate("blocked", verification, 10, TaskPurpose.ASSESS)

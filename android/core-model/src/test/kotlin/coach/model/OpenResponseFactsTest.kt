@@ -80,6 +80,41 @@ class OpenResponseFactsTest {
         assertFailsWith<IllegalArgumentException> { OpenResponse.byKey(item(), key.copy(item = VersionedRef(itemRef.logicalId, 2)), "x") }
     }
 
+    private val swapped = VersionedRef("misconception.c.pointers.star_declares_again", 1)
+    private val mapped = key.copy(wrongAnswerMisconceptions = listOf(WrongAnswerMisconception("declaration", swapped)))
+
+    @Test
+    fun `a wrong answer the course mapped names its misconception, matched like an accepted answer`() {
+        assertEquals(swapped, mapped.misconceptionFor(" Declaration \r\n"))
+        // A correct answer, an unmapped wrong answer and a near miss name nothing.
+        assertEquals(null, mapped.misconceptionFor("dereference"))
+        assertEquals(null, mapped.misconceptionFor("pointer"))
+        assertEquals(null, mapped.misconceptionFor("declarations"))
+        // The mapping never changes what the key accepts.
+        assertFalse(mapped.accepts("declaration"))
+        assertTrue(mapped.accepts("indirection"))
+    }
+
+    @Test
+    fun `a mapped wrong answer is a hypothesis for the key's own Objective, never on a met answer`() {
+        val wrong = assertIs<EvaluationResult.Verified>(assertIs<OpenResponseVerdict.Measured>(OpenResponse.byKey(item(), mapped, "declaration")).result)
+        assertEquals(listOf(ComponentResult(defines, OutcomeSignal.NOT_MET)), wrong.componentResults)
+        assertEquals(listOf(MisconceptionHypothesis(defines, swapped.logicalId)), wrong.misconceptionHypotheses)
+        val other = assertIs<EvaluationResult.Verified>(assertIs<OpenResponseVerdict.Measured>(OpenResponse.byKey(item(), mapped, "pointer")).result)
+        assertTrue(other.misconceptionHypotheses.isEmpty())
+        val met = assertIs<EvaluationResult.Verified>(assertIs<OpenResponseVerdict.Measured>(OpenResponse.byKey(item(), mapped, "dereference")).result)
+        assertTrue(met.misconceptionHypotheses.isEmpty())
+    }
+
+    @Test
+    fun `an accepted answer is never a misconception and one wrong answer names one`() {
+        assertFailsWith<IllegalArgumentException> { key.copy(wrongAnswerMisconceptions = listOf(WrongAnswerMisconception("Dereference ", swapped))) }
+        assertFailsWith<IllegalArgumentException> {
+            key.copy(wrongAnswerMisconceptions = listOf(WrongAnswerMisconception("x", swapped), WrongAnswerMisconception("x ", swapped)))
+        }
+        assertFailsWith<IllegalArgumentException> { WrongAnswerMisconception(" ", swapped) }
+    }
+
     @Test
     fun `the key decides wherever it exists, and a task that needs a verified result is never put to an AI`() {
         assertEquals(OpenResponseRoute.ANSWER_KEY, OpenResponse.route(item(), key, rubric))

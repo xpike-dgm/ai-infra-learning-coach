@@ -638,6 +638,103 @@ class PackageFormatTest {
         }
     }
 
+    // ------------------------------------------------------------------------------------ 15G
+
+    private val keyAndCatalog = """
+        [answer_key]
+        logical_id=answerkey.python.loops.count_word
+        version=1
+        item=item.python.loops.q1@v1
+        objective=objective.python.loops.trace@v1
+        case_sensitive=false
+
+        [accepted_answer]
+        key=answerkey.python.loops.count_word@v1
+        text=three
+
+        [misconception]
+        logical_id=misconception.python.loops.off_by_one
+        version=1
+        objective=objective.python.loops.trace@v1
+        name=bir eksik ya da bir fazla tur
+        open_question=Döngünün son turunu sayarken bir tur kaçırmış olabilir misin?
+    """.trimIndent()
+
+    private val first15g = authored + "\n\n" + task + "\n\n" + keyAndCatalog
+
+    private val q2 = VersionedRef("item.python.loops.q2", 1)
+
+    /** A 15G supplement: one more item (a cross-topic transfer item), a new version of the task, one wrong-answer label. */
+    private val supplement: String by lazy {
+        val q2Sections = sectionsOf(authored).filter { s ->
+            "item.python.loops.q1" in s && (s.startsWith("[resource]") || s.startsWith("[validation]") || s.startsWith("[item]"))
+        }.map { s ->
+            val renamed = s.replace("item.python.loops.q1", "item.python.loops.q2").replace("family.python.loops.trace", "family.python.loops.q2")
+            if (!renamed.startsWith("[item]")) renamed
+            else renamed.replace("scope_eligibility=daily_micro", "scope_eligibility=monthly_capability")
+                .replace("forbidden_not_yet_concepts=", "forbidden_not_yet_concepts=\nexpected_active_minutes=8\n" +
+                    "blueprint_roles=cross_topic_transfer\ntransfer_profile=cross_topic_context\ncontext_family_id=context.strings")
+        }
+        "curriculum_package/1\nversion=2\nsource_refs=curriculum/content/15g_assessment\nprovenance=authored_15g\n\n" +
+            (q2Sections + task.replace("version=1\ntitle", "version=2\ntitle") + """
+                [answer_misconception]
+                key=answerkey.python.loops.count_word@v1
+                text=four
+                misconception=misconception.python.loops.off_by_one@v1
+            """.trimIndent()).joinToString("\n\n")
+    }
+
+    @Test
+    fun `a supplement adds items, offers only the newest task version and maps wrong answers of earlier keys`() {
+        val source = FileContentSource(later = { listOf(supplement) }, source = { first15g })
+        assertNull(source.failure)
+        val skill = VersionedRef("skill.python.loops", 1)
+        val need = coach.model.LearningNeed("continue_learning:$skill", coach.model.NeedTrigger.CONTINUE_LEARNING, listOf(skill),
+            coach.model.Criticality.REQUIRED)
+        // A grown item list is a new task version; only the newest is offered, and it may present earlier items.
+        val served = source.taskCandidates(need).single()
+        assertEquals("authored:task.python.loops.practice@v2:continue_learning:$skill", served.id)
+        // The earlier key now names the misconception its mapped wrong answer follows from; what it accepts is unchanged.
+        val key = assertNotNull(source.answerKeyFor(itemRef))
+        assertEquals(VersionedRef("misconception.python.loops.off_by_one", 1), key.misconceptionFor(" Four "))
+        assertNull(key.misconceptionFor("five"))
+        assertTrue(key.accepts("three"))
+        // The transfer item carries its declared profile and named context.
+        val transfer = assertNotNull(source.assessmentItem(q2))
+        assertEquals(coach.model.TransferProfile.CROSS_TOPIC_CONTEXT, transfer.transferProfile)
+        assertEquals("context.strings", transfer.contextFamilyId)
+        assertEquals(setOf<SlotRole>(MonthlyRole.CROSS_TOPIC_TRANSFER), transfer.blueprintRoles)
+    }
+
+    @Test
+    fun `a wrong-answer label that is not the key's own Objective's, or is an accepted answer, refuses the course`() {
+        for ((bad, reason) in listOf(
+            supplement.replace("key=answerkey.python.loops.count_word@v1", "key=answerkey.python.loops.other@v1") to "no such answer key",
+            supplement.replace("text=four", "text=Three") to "an accepted answer is never a misconception",
+            supplement.replace("misconception=misconception.python.loops.off_by_one@v1", "misconception=misconception.python.loops.missing@v1")
+                to "is not catalogued",
+            supplement + "\n\n[answer_misconception]\nkey=answerkey.python.loops.count_word@v1\ntext=four \nmisconception=misconception.python.loops.off_by_one@v1"
+                to "is mapped twice",
+            supplement.replace("transfer_profile=cross_topic_context", "transfer_profile=far_away") to "unknown transfer profile",
+            supplement.replace("items=item.python.loops.q1@v1", "items=item.python.loops.q1@v1,item.python.loops.q9@v1")
+                to "is not in this package or an earlier one",
+        )) {
+            val source = FileContentSource(later = { listOf(bad) }, source = { first15g })
+            assertTrue(source.curriculumPackages().isEmpty(), reason)
+            val failure = assertNotNull(source.failure as? PackageFormat.ParseFailure, "$reason: ${source.failure}")
+            assertTrue(failure.reasons.any { reason in it }, "$reason: ${failure.reasons}")
+        }
+    }
+
+    @Test
+    fun `a transfer profile names its context, or the package is refused`() {
+        val failure = assertFailsWith<Exception> {
+            val source = FileContentSource(later = { listOf(supplement.replace("\ncontext_family_id=context.strings", "")) }, source = { first15g })
+            source.curriculumPackages().ifEmpty { throw assertNotNull(source.failure) }
+        }
+        assertTrue("context" in failure.message.orEmpty() || failure is PackageFormat.ParseFailure, failure.toString())
+    }
+
     @Test
     fun `an authored package is served as pinned documents and items`() {
         val source = FileContentSource { authored }
