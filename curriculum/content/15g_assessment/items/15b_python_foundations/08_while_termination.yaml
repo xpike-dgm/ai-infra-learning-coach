@@ -68,7 +68,7 @@ objectives:
       - slug: g03
         difficulty: basic
         prompt: |
-          Aşağıdaki program bir n okuyup alt alta n tane yıldız (*) yazmalı, ama n pozitif olunca hiç bitmiyor. Hatayı bul (koşula dikkat et), düzelt ve düzeltilmiş programı cozum.py olarak kaydet.
+          Aşağıdaki program bir n okuyup alt alta n tane yıldız (*) yazmalı, ama n pozitif olunca hiç bitmiyor. Hatayı bul, düzelt ve düzeltilmiş programı cozum.py olarak kaydet.
 
           n = int(input())
           i = 0
@@ -191,7 +191,7 @@ objectives:
       - slug: g06
         difficulty: authentic_application
         prompt: |
-          Aşağıdaki program kullanıcıya en çok üç deneme hakkı vermeli: doğru şifre (gizli) girilince ya da üçüncü yanlış denemeden sonra durmalı ve Açıldı ya da Kilitlendi yazmalı. Ama ne doğru şifrede ne de üç yanlış denemeden sonra duruyor. Koşulu düzelt ve cozum.py olarak kaydet.
+          Aşağıdaki program kullanıcıya en çok üç deneme hakkı vermeli: doğru şifre (gizli) girilince ya da üçüncü yanlış denemeden sonra durmalı ve Açıldı ya da Kilitlendi yazmalı. Ama ne doğru şifrede ne de üç yanlış denemeden sonra duruyor. Programı düzelt ve cozum.py olarak kaydet.
 
           sifre = input()
           deneme = 1
@@ -509,30 +509,34 @@ objectives:
                 sayac += 1
             print(sayac)
       - slug: g03
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          cozum.py adında bir program yaz: bir n tam sayısı okusun; n pozitif kaldığı sürece n'yi yazıp 4 azaltsın. Örnek: 10 → 10, 6, 2 (alt alta). n pozitif değilse hiçbir şey yazmasın.
+          cozum.py adında bir program yaz: kullanıcıdan pozitif bir tam sayı istesin. Okunan sayı 0 ya da negatifse tekrar yazsın ve bir sonraki satırı okusun; pozitif bir sayı okununca Tamam: <sayı> yazıp dursun. Örnek: girdi -3, 0 ve 8 ise çıktı alt alta tekrar, tekrar ve Tamam: 8.
         required_skills: [skill.python.input_output_basic]
         suite:
-          - {id: ten, stdin: "10\n", expected_stdout: "10\n6\n2\n"}
-          - {id: four, stdin: "4\n", expected_stdout: "4\n"}
-          - {id: zero, stdin: "0\n", expected_stdout: ""}
+          - {id: two_retries, stdin: "-3\n0\n8\n", expected_stdout: "tekrar\ntekrar\nTamam: 8\n"}
+          - {id: first_good, stdin: "5\n", expected_stdout: "Tamam: 5\n"}
+          - {id: one_retry, stdin: "0\n1\n", expected_stdout: "tekrar\nTamam: 1\n"}
+          - {id: stops_at_first_good, stdin: "-1\n4\n-2\n9\n", expected_stdout: "tekrar\nTamam: 4\n"}
         reference: |
-          n = int(input())
-          while n > 0:
-              print(n)
-              n -= 4
+          sayi = int(input())
+          while sayi <= 0:
+              print("tekrar")
+              sayi = int(input())
+          print("Tamam:", sayi)
         wrong:
           - |
-            n = int(input())
-            while n >= 0:
-                print(n)
-                n -= 4
+            sayi = int(input())
+            while sayi < 0:
+                print("tekrar")
+                sayi = int(input())
+            print("Tamam:", sayi)
           - |
-            n = int(input())
-            while n > 0:
-                n -= 4
-                print(n)
+            sayi = int(input())
+            if sayi <= 0:
+                print("tekrar")
+                sayi = int(input())
+            print("Tamam:", sayi)
       - slug: g04
         difficulty: authentic_application
         prompt: |
@@ -836,36 +840,3 @@ objectives:
                 if derece >= 30:
                     sicak += 1
             print("Sıcak gün:", sicak)
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: sum_until_sentinel
-        required_skills: [skill.python.input_output_basic]
-        prompt: |
-          cozum.py adında bir program yaz: her satırda bir tam sayı okusun; son yazan satır gelince okumayı bıraksın ve o ana kadar okunan sayıların toplamını yazsın. son satırından sonra gelen satırlar okunmaz.
-        suite:
-          - {id: two_numbers, stdin: "3\n4\nson\n", expected_stdout: "7\n"}
-          - {id: immediately, stdin: "son\n", expected_stdout: "0\n"}
-          - {id: after_sentinel_ignored, stdin: "10\nson\n5\n", expected_stdout: "10\n"}
-          - {id: negative, stdin: "-2\n2\n9\nson\n", expected_stdout: "9\n"}
-        reference: |
-          toplam = 0
-          satir = input()
-          while satir != "son":
-              toplam += int(satir)
-              satir = input()
-          print(toplam)
-        wrong:
-          - |
-            toplam = 0
-            satir = input()
-            if satir != "son":
-                toplam += int(satir)
-            print(toplam)
-          - |
-            toplam = 0
-            satir = input()
-            while satir != "son":
-                satir = input()
-                toplam += int(satir)
-            print(toplam)

@@ -5,67 +5,78 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          cozum.py dosyasına kup(x) adında bir fonksiyon yaz: x'in küpünü (x × x × x) döndürsün (return). Dosyada fonksiyonun dışında çalışan hiçbir satır olmasın; testler fonksiyonu kendisi çağırır.
+          cozum.py dosyasına bol(a, b) adında bir fonksiyon yaz: b sıfırsa None, değilse a / b değerini döndürsün (return; ekrana yazmasın). Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals, skill.python.expression_evaluation]
         harness: |
           import sys, cozum
-          print(cozum.kup(int(sys.argv[1])))
+          print(cozum.bol(int(sys.argv[1]), int(sys.argv[2])))
         suite:
-          - {id: two, args: ["2"], expected_stdout: "8\n"}
-          - {id: negative, args: ["-3"], expected_stdout: "-27\n"}
-          - {id: zero, args: ["0"], expected_stdout: "0\n"}
+          - {id: half, args: ["7", "2"], expected_stdout: "3.5\n"}
+          - {id: zero_divisor, args: ["5", "0"], expected_stdout: "None\n"}
+          - {id: zero_numerator, args: ["0", "3"], expected_stdout: "0.0\n"}
         reference: |
-          def kup(x):
-              return x * x * x
+          def bol(a, b):
+              if b == 0:
+                  return None
+              return a / b
         wrong:
           - |
-            def kup(x):
-                print(x * x * x)
+            def bol(a, b):
+                if b == 0:
+                    return 0
+                return a / b
           - |
-            def kup(x):
-                return x * 3
+            def bol(a, b):
+                if b == 0:
+                    print(None)
+                else:
+                    print(a / b)
       - slug: g02
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına tam_ad(ad, soyad) adında bir fonksiyon yaz: ad, bir boşluk ve soyaddan oluşan yazıyı döndürsün. Örnek: tam_ad("Deniz", "Yıldız") → "Deniz Yıldız". Dosyada fonksiyonun dışında çalışan satır olmasın.
-        harness: |
-          import sys, cozum
-          print(cozum.tam_ad(sys.argv[1], sys.argv[2]))
-        suite:
-          - {id: deniz, args: ["Deniz", "Yıldız"], expected_stdout: "Deniz Yıldız\n"}
-          - {id: short, args: ["Ali", "Er"], expected_stdout: "Ali Er\n"}
-        reference: |
-          def tam_ad(ad, soyad):
-              return ad + " " + soyad
-        wrong:
-          - |
-            def tam_ad(ad, soyad):
-                return ad + soyad
-          - |
-            def tam_ad(ad, soyad):
-                return soyad + " " + ad
-      - slug: g03
-        difficulty: basic
-        prompt: |
-          cozum.py dosyasına kdv_dahil(fiyat) adında bir fonksiyon yaz: fiyata yüzde 20 vergi eklenmiş tutarı tam sayı olarak döndürsün; vergi fiyat * 20 // 100 ile hesaplanır. Örnek: kdv_dahil(100) → 120. Dosyada fonksiyonun dışında çalışan satır olmasın.
+          cozum.py dosyasına sure_yazisi(dakika) adında bir fonksiyon yaz: sıfır ya da pozitif bir dakika sayısını <saat> sa <dakika> dk biçiminde bir yazı olarak döndürsün. Örnek: sure_yazisi(135) → "2 sa 15 dk", sure_yazisi(45) → "0 sa 45 dk". Dosyada fonksiyonun dışında çalışan satır olmasın.
         required_skills: [skill.python.expression_evaluation]
         harness: |
           import sys, cozum
-          print(cozum.kdv_dahil(int(sys.argv[1])))
+          print("[" + cozum.sure_yazisi(int(sys.argv[1])) + "]")
         suite:
-          - {id: hundred, args: ["100"], expected_stdout: "120\n"}
-          - {id: odd, args: ["55"], expected_stdout: "66\n"}
-          - {id: zero, args: ["0"], expected_stdout: "0\n"}
-          - {id: rounding_down, args: ["7"], expected_stdout: "8\n"}
+          - {id: example, args: ["135"], expected_stdout: "[2 sa 15 dk]\n"}
+          - {id: under_hour, args: ["45"], expected_stdout: "[0 sa 45 dk]\n"}
+          - {id: exact, args: ["120"], expected_stdout: "[2 sa 0 dk]\n"}
         reference: |
-          def kdv_dahil(fiyat):
-              return fiyat + fiyat * 20 // 100
+          def sure_yazisi(dakika):
+              return str(dakika // 60) + " sa " + str(dakika % 60) + " dk"
         wrong:
           - |
-            def kdv_dahil(fiyat):
-                return fiyat * 20 // 100
+            def sure_yazisi(dakika):
+                return str(dakika % 60) + " sa " + str(dakika // 60) + " dk"
           - |
-            def kdv_dahil(fiyat):
-                return fiyat + 20
+            def sure_yazisi(dakika):
+                return str(dakika / 60) + " sa " + str(dakika % 60) + " dk"
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına gecerli_saat(saat, dakika) adında bir fonksiyon yaz: saat 0 ile 23, dakika 0 ile 59 arasındaysa (sınırlar dahil) True, değilse False döndürsün. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.gecerli_saat(int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: last_minute, args: ["23", "59"], expected_stdout: "True\n"}
+          - {id: midnight, args: ["0", "0"], expected_stdout: "True\n"}
+          - {id: hour_too_big, args: ["24", "0"], expected_stdout: "False\n"}
+          - {id: minute_too_big, args: ["12", "60"], expected_stdout: "False\n"}
+          - {id: negative_hour, args: ["-1", "5"], expected_stdout: "False\n"}
+        reference: |
+          def gecerli_saat(saat, dakika):
+              return 0 <= saat <= 23 and 0 <= dakika <= 59
+        wrong:
+          - |
+            def gecerli_saat(saat, dakika):
+                return 0 <= saat <= 23 or 0 <= dakika <= 59
+          - |
+            def gecerli_saat(saat, dakika):
+                return 0 <= saat < 23 and 0 <= dakika < 59
       - slug: g04
         difficulty: authentic_application
         prompt: |
@@ -250,26 +261,31 @@ objectives:
                     carpim *= i
                 return carpim
       - slug: g10
-        difficulty: transfer_integration
+        difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına fiyat_hesapla(adet, birim, indirim) adında bir fonksiyon yaz: adet × birim tutarından toplam indirim miktarını düşüp döndürsün. indirim verilmezse 0 kullanılsın. Örnek: fiyat_hesapla(3, 10) → 30, fiyat_hesapla(3, 10, 5) → 25. Dosyada fonksiyonun dışında çalışan satır olmasın.
+          cozum.py dosyasına en_yakin_on(n) adında bir fonksiyon yaz: sıfır ya da pozitif bir tam sayıyı en yakın 10'un katına yuvarlayıp döndürsün; birler basamağı 5 ya da daha büyükse yukarı, küçükse aşağı yuvarlansın. round() kullanma. Örnek: en_yakin_on(25) → 30, en_yakin_on(24) → 20. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals, skill.python.expression_evaluation]
         harness: |
           import sys, cozum
-          print(cozum.fiyat_hesapla(*[int(x) for x in sys.argv[1:]]))
+          print(cozum.en_yakin_on(int(sys.argv[1])))
         suite:
-          - {id: no_discount, args: ["3", "10"], expected_stdout: "30\n"}
-          - {id: discount, args: ["3", "10", "5"], expected_stdout: "25\n"}
-          - {id: all_off, args: ["1", "99", "99"], expected_stdout: "0\n"}
+          - {id: half_up, args: ["25"], expected_stdout: "30\n"}
+          - {id: down, args: ["24"], expected_stdout: "20\n"}
+          - {id: already, args: ["30"], expected_stdout: "30\n"}
+          - {id: small_up, args: ["7"], expected_stdout: "10\n"}
+          - {id: small_down, args: ["4"], expected_stdout: "0\n"}
         reference: |
-          def fiyat_hesapla(adet, birim, indirim=0):
-              return adet * birim - indirim
+          def en_yakin_on(n):
+              if n % 10 >= 5:
+                  return n - n % 10 + 10
+              return n - n % 10
         wrong:
           - |
-            def fiyat_hesapla(adet, birim, indirim):
-                return adet * birim - indirim
+            def en_yakin_on(n):
+                return round(n, -1)
           - |
-            def fiyat_hesapla(adet, birim, indirim=0):
-                return adet * (birim - indirim)
+            def en_yakin_on(n):
+                return n // 10 * 10
       - slug: g11
         difficulty: transfer_integration
         prompt: |

@@ -28,38 +28,32 @@ objectives:
       - slug: g02
         difficulty: basic
         prompt: |
-          cozum.py dosyasına buyukler(liste, esik) adında bir fonksiyon yaz: listede esik'ten büyük olan elemanlardan, aynı sırayla, yeni bir liste döndürsün. Örnek: buyukler([4, 9, 2, 7], 5) → [9, 7].
-        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+          cozum.py dosyasına katlari(liste, k) adında bir fonksiyon yaz: her elemanın k ile çarpılmış hâlinden, aynı sırayla, YENİ bir liste döndürsün; verilen listeyi değiştirmesin. Örnek: katlari([1, 4, 2], 3) → [3, 12, 6]. Testler verilen listenin çağrıdan sonraki hâlini de yazdırır.
+        required_skills: [skill.python.functions_parameters_return]
         harness: |
           import sys, cozum
-          print(cozum.buyukler([int(x) for x in sys.argv[2:]], int(sys.argv[1])))
+          liste = [int(x) for x in sys.argv[1:-1]]
+          sonuc = cozum.katlari(liste, int(sys.argv[-1]))
+          print(sonuc, liste)
         suite:
-          - {id: mixed, args: ["5", "4", "9", "2", "7"], expected_stdout: "[9, 7]\n"}
-          - {id: equal_not_included, args: ["3", "3", "4", "3"], expected_stdout: "[4]\n"}
-          - {id: none, args: ["10", "1", "2"], expected_stdout: "[]\n"}
-          - {id: empty, args: ["0"], expected_stdout: "[]\n"}
+          - {id: example, args: ["1", "4", "2", "3"], expected_stdout: "[3, 12, 6] [1, 4, 2]\n"}
+          - {id: empty, args: ["5"], expected_stdout: "[] []\n"}
+          - {id: zero_factor, args: ["7", "-2", "0"], expected_stdout: "[0, 0] [7, -2]\n"}
         reference: |
-          def buyukler(liste, esik):
+          def katlari(liste, k):
               sonuc = []
               for x in liste:
-                  if x > esik:
-                      sonuc.append(x)
+                  sonuc.append(x * k)
               return sonuc
         wrong:
           - |
-            def buyukler(liste, esik):
-                sonuc = []
-                for x in liste:
-                    if x >= esik:
-                        sonuc.append(x)
-                return sonuc
+            def katlari(liste, k):
+                for i in range(len(liste)):
+                    liste[i] = liste[i] * k
+                return liste
           - |
-            def buyukler(liste, esik):
-                sonuc = 0
-                for x in liste:
-                    if x > esik:
-                        sonuc += 1
-                return sonuc
+            def katlari(liste, k):
+                return liste * k
       - slug: g03
         difficulty: basic
         prompt: |
@@ -123,34 +117,39 @@ objectives:
       - slug: g05
         difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına tekrarsiz(liste) adında bir fonksiyon yaz: her elemanın yalnız ilk geçtiği yeri tutan, sırayı koruyan yeni bir liste döndürsün. Örnek: tekrarsiz([1, 2, 1, 3, 2]) → [1, 2, 3].
+          cozum.py dosyasına araya_koy(liste, ayrac) adında bir fonksiyon yaz: listenin yan yana duran her iki elemanının arasına ayrac değerini koyarak YENİ bir liste döndürsün; ilk elemandan önce ve son elemandan sonra ayrac olmasın. Örnek: araya_koy([1, 2, 3], 0) → [1, 0, 2, 0, 3]; boş liste için [].
         required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
         harness: |
           import sys, cozum
-          print(cozum.tekrarsiz([int(x) for x in sys.argv[1:]]))
+          print(cozum.araya_koy([int(x) for x in sys.argv[1:-1]], int(sys.argv[-1])))
         suite:
-          - {id: mixed, args: ["1", "2", "1", "3", "2"], expected_stdout: "[1, 2, 3]\n"}
-          - {id: empty, args: [], expected_stdout: "[]\n"}
-          - {id: all_same, args: ["5", "5", "5"], expected_stdout: "[5]\n"}
-          - {id: order_kept, args: ["9", "4", "9", "1"], expected_stdout: "[9, 4, 1]\n"}
+          - {id: example, args: ["1", "2", "3", "0"], expected_stdout: "[1, 0, 2, 0, 3]\n"}
+          - {id: single, args: ["9", "0"], expected_stdout: "[9]\n"}
+          - {id: empty, args: ["7"], expected_stdout: "[]\n"}
+          - {id: two, args: ["4", "5", "-1"], expected_stdout: "[4, -1, 5]\n"}
         reference: |
-          def tekrarsiz(liste):
+          def araya_koy(liste, ayrac):
               sonuc = []
-              for x in liste:
-                  if x not in sonuc:
-                      sonuc.append(x)
+              for i in range(len(liste)):
+                  if i > 0:
+                      sonuc.append(ayrac)
+                  sonuc.append(liste[i])
               return sonuc
         wrong:
           - |
-            def tekrarsiz(liste):
+            def araya_koy(liste, ayrac):
                 sonuc = []
-                for i in range(len(liste)):
-                    if i == 0 or liste[i] != liste[i - 1]:
-                        sonuc.append(liste[i])
+                for x in liste:
+                    sonuc.append(x)
+                    sonuc.append(ayrac)
                 return sonuc
           - |
-            def tekrarsiz(liste):
-                return sorted(set(liste))
+            def araya_koy(liste, ayrac):
+                sonuc = []
+                for x in liste:
+                    sonuc.append(ayrac)
+                    sonuc.append(x)
+                return sonuc
       - slug: g06
         difficulty: authentic_application
         prompt: |
@@ -288,41 +287,37 @@ objectives:
       - slug: g10
         difficulty: transfer_integration
         prompt: |
-          cozum.py dosyasına ortak(a, b) adında bir fonksiyon yaz: a'da olup b'de de geçen elemanlardan, a'daki sırayla ve tekrarsız, yeni bir liste döndürsün. Testler iki listeyi | ile ayırarak verir. Örnek: ortak([3, 1, 3, 4], [4, 3, 9]) → [3, 4].
-        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+          cozum.py dosyasına takasli(liste, i, j) adında bir fonksiyon yaz: i ve j konumundaki elemanların yer değiştirdiği YENİ bir liste döndürsün; verilen listeyi değiştirmesin. i ve j geçerli indekslerdir (eksi indeksler Python'daki anlamıyla geçerlidir). Örnek: takasli([5, 6, 7], 0, 2) → [7, 6, 5]. Testler verilen listenin çağrıdan sonraki hâlini de yazdırır.
+        required_skills: [skill.python.functions_parameters_return]
         harness: |
           import sys, cozum
-          ayrac = sys.argv.index("|")
-          a = [int(x) for x in sys.argv[1:ayrac]]
-          b = [int(x) for x in sys.argv[ayrac + 1:]]
-          print(cozum.ortak(a, b))
+          liste = [int(x) for x in sys.argv[3:]]
+          sonuc = cozum.takasli(liste, int(sys.argv[1]), int(sys.argv[2]))
+          print(sonuc, liste)
         suite:
-          - {id: mixed, args: ["3", "1", "3", "4", "|", "4", "3", "9"], expected_stdout: "[3, 4]\n"}
-          - {id: none, args: ["1", "2", "|", "3"], expected_stdout: "[]\n"}
-          - {id: empty_first, args: ["|", "1", "2"], expected_stdout: "[]\n"}
-          - {id: order_from_a, args: ["5", "6", "7", "|", "7", "5"], expected_stdout: "[5, 7]\n"}
+          - {id: ends, args: ["0", "2", "5", "6", "7"], expected_stdout: "[7, 6, 5] [5, 6, 7]\n"}
+          - {id: same_place, args: ["1", "1", "5", "6", "7"], expected_stdout: "[5, 6, 7] [5, 6, 7]\n"}
+          - {id: negative, args: ["0", "-1", "1", "2", "3", "4"], expected_stdout: "[4, 2, 3, 1] [1, 2, 3, 4]\n"}
         reference: |
-          def ortak(a, b):
-              sonuc = []
-              for x in a:
-                  if x in b and x not in sonuc:
-                      sonuc.append(x)
-              return sonuc
+          def takasli(liste, i, j):
+              yeni = liste[:]
+              gecici = yeni[i]
+              yeni[i] = yeni[j]
+              yeni[j] = gecici
+              return yeni
         wrong:
           - |
-            def ortak(a, b):
-                sonuc = []
-                for x in a:
-                    if x in b:
-                        sonuc.append(x)
-                return sonuc
+            def takasli(liste, i, j):
+                gecici = liste[i]
+                liste[i] = liste[j]
+                liste[j] = gecici
+                return liste
           - |
-            def ortak(a, b):
-                sonuc = []
-                for x in b:
-                    if x in a and x not in sonuc:
-                        sonuc.append(x)
-                return sonuc
+            def takasli(liste, i, j):
+                yeni = liste[:]
+                yeni[i] = yeni[j]
+                yeni[j] = yeni[i]
+                return yeni
       - slug: g11
         difficulty: transfer_integration
         prompt: |
