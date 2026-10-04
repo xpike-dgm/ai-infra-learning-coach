@@ -1503,7 +1503,7 @@ ACNX-v0:
 - independent review over four rounds: 613/613 items, 144/144 mappings,
 - pools: 54 of 65 Objectives at ≥15; recorded shortfall: scope_name_resolution, c.declaration_type_model, git.repository_status_diff at 14; eight English Objectives at 10–12 (user decision),
 - found: leakage and near-variance, not wrong keys, are what added items fail on; a choice item cannot carry code, hands-on or written evidence; a harder item of the same lesson is not transfer; a transfer item without a named context crashed the build (fixed),
-- Mutation builder 22/22, Kotlin __KOTLIN_MUTATION__; independent QA __QA__,
+- Mutation builder 22/22, Kotlin 32/32; independent QA 108/108 PASS,
 - T6 and on-device ingestion were not run.
 
 ## 90. 15H handoff

@@ -1368,7 +1368,7 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - **Bağımsız inceleme:** paket başına bir ajan, dört tur; son verdict turu 425/158/25/5; 613/613 item ve 144/144 eşleme geçti.
 - **Havuz:** 65 Objective'in 54'ü ≥15; üç teknik Objective 14, sekiz İngilizce Objective 10–12 — kayıtlı.
 - Kotlin: `TransferEngine`, `TransferPlanning`, planner bandı, aylık rol, haftalık dışlama, composer reddi, `misconceptionFor`, `PackageFormat.parse(text, earlier)`, en yüksek görev sürümü. Şema, portlar ve depo değişmedi.
-- Mutation üretici 22/22, Kotlin __KOTLIN_MUTATION__ (üç mutant yeni testlerle kapandı; biri eşdeğer sayılmadı). Validator __QA__, kendi mutation testi __VALIDATOR_MUTATION__, __JVM__ JVM testi.
+- Mutation üretici 22/22, Kotlin 32/32 (üç mutant yeni testlerle kapandı; biri eşdeğer sayılmadı). Validator 108/108 PASS, kendi mutation testi 40/40, 1059 JVM testi.
 - **T6 ve cihazda ingestion çalıştırılmadı**.
 - D-050 POST living-memory accepted state'i `15G tamamlandı; 15H aktif ve henüz yürütülmedi` konumuna taşır.
 

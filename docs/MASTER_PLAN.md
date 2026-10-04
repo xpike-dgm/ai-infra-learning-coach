@@ -1067,7 +1067,7 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - bağımsız inceleme dört turda 613/613 item, 144/144 eşleme,
 - havuz: 65 Objective'in 54'ü ≥15; üç teknik Objective 14, sekiz İngilizce Objective 10–12 (kullanıcı kararı: dürüst küçük havuz) — eksik kayıtlı,
 - yedi paket gerçek SQLite şemasına JVM'de yayımlanıyor (`ShippedCourseTest`, `ShippedAssessmentPackageTest`),
-- Mutation üretici 22/22, Kotlin __KOTLIN_MUTATION__; validator __QA__,
+- Mutation üretici 22/22, Kotlin 32/32; validator 108/108 PASS,
 - **T6 ve cihazda ingestion çalıştırılmadı**.
 
 ### [ ] 15H — Content QA — **AKTİF**

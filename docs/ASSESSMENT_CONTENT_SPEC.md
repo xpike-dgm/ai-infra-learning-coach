@@ -143,9 +143,9 @@ Pool counts are items outside the lesson: published plus added, with transfer it
   - Engine and application tests: `TransferEngineTest`, `TransferPlanningTest`, monthly, weekly and planner tests, `OpenResponseFactsTest` and the `PackageFormatTest` supplement tests.
 - **Mutation:**
   - builder 22/22, with a fixture build through the real supplement path;
-  - Kotlin __KOTLIN_MUTATION__.
+  - Kotlin 32/32.
   - Both control mutants survived.
-- **Validator:** `tools/validate_assessment_content.py` rebuilds all seven packages: __QA__. Its own mutation run detected __VALIDATOR_MUTATION__.
+- **Validator:** `tools/validate_assessment_content.py` rebuilds all seven packages: 108/108 PASS. Its own mutation run detected 40/40.
 - **Gradle and APKs:** T1, T2, T3, `verifyModuleBoundaries`, and `assembleDebug` with and without the AI adapter all passed. The seven packages inside each APK have the same SHA-256 as the source, and the APK without the adapter has no network permission. 1056 JVM tests ran.
 - **Not run: T6.** Nothing ran on the device. SQLite publication ran on the JVM only.
 

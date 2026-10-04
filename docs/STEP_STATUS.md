@@ -81,7 +81,7 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **15D — Memory Foundations** | ✅ | MMFX-v0 / D-116. Bellek erişimi AddressSanitizer'ın bildirdiğine göre doğrulanır: 4 Skill / 6 Objective / 5 kenar `published`; 34 item (15 kod suite'iyle, 12 okuma, 4 sanitizer, 3 rubric), 33 anlatım, 13 misconception, 20 görev; öğrencinin derlemesi sanitizer'lı ve temiz çıkış ister; yeni kullanıcı kararı gerekmedi; 132/132 QA PASS, Mutation 9/9. |
 | **15E — Linux / Git / Shell Foundations** | ✅ | LGSX-v0 / D-118. Komutlar Linux'ta gösterildiği gibi çalıştırılarak doğrulanır: 5 Skill / 5 Objective / 6 kenar `published`; 41 item (40 kabuk, 1 rubric), 35 anlatım, 15 misconception, 25 görev; kabuk prelude'u, "# hazırlık" satırları; onay D-117; 114/114 QA PASS, Mutation 5/5. |
 | **15F — English A0→A1/A2 başlangıç paketi** | ✅ | EAAX-v0 / D-119. Her İngilizce kelime bir dersin öğrettiği kelimedir: 10 Skill / 10 Objective / 9 kenar `published`; 82 item (72 kaynaklı, 8 araç mesajı, 2 rubric), 50 anlatım, 20 misconception, 50 görev; ders başına kelime listesi; onay D-117; 119/119 QA PASS, Mutation 8/8. |
-| **15G — Assessment content** | ✅ | ACNX-v0 / D-120. Yayımlanmış Objective'lere, yayımlanmış hiçbir şeyi değiştirmeden ek paket (v7): 613 item, 240 büyüyen görev v2'si, 21 cross-topic transfer item'ı (ayın slotuna ayrılır), 144 seçenek düzeyinde misconception anahtarı; graph, ders ve etiket eklenmedi, 1–6. paketler bayt bayt aynı. `TRANSFER_OPPORTUNITY` sahibi `TransferEngine` (beyan edilmiş uzantı). Bağımsız inceleme 4 turda 613/613, 144/144. Havuz: 65 Objective'in 54'ü ≥15; 3 teknik Objective 14, 8 İngilizce Objective 10–12 (kullanıcı kararı, eksik kayıtlı). Mutation üretici 22/22, Kotlin __KOTLIN_MUTATION__; QA __QA__. T6 çalıştırılmadı. |
+| **15G — Assessment content** | ✅ | ACNX-v0 / D-120. Yayımlanmış Objective'lere, yayımlanmış hiçbir şeyi değiştirmeden ek paket (v7): 613 item, 240 büyüyen görev v2'si, 21 cross-topic transfer item'ı (ayın slotuna ayrılır), 144 seçenek düzeyinde misconception anahtarı; graph, ders ve etiket eklenmedi, 1–6. paketler bayt bayt aynı. `TRANSFER_OPPORTUNITY` sahibi `TransferEngine` (beyan edilmiş uzantı). Bağımsız inceleme 4 turda 613/613, 144/144. Havuz: 65 Objective'in 54'ü ≥15; 3 teknik Objective 14, 8 İngilizce Objective 10–12 (kullanıcı kararı, eksik kayıtlı). Mutation üretici 22/22, Kotlin 32/32; QA 108/108 PASS. T6 çalıştırılmadı. |
 | **15H — Content QA** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti). |
 | **16–20** | ⬜ Bekliyor | 15H sonrası canonical sırada. |
 
@@ -115,7 +115,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - havuz: 65 Objective'in 54'ü ≥15; 3 teknik 14, 8 İngilizce 10–12 — eksik kayıtlı (D-120),
 - beyan edilmiş uzantılar: `NeedTrigger.TRANSFER_OPPORTUNITY`, `TRANSFER_IS_MONTHLY`, `TRANSFER_CLAIM_UNSUPPORTED`, `[answer_misconception]`, `transfer_profile`/`context_family_id`, sonraki paketin görev sürümü,
 - yedi paket gerçek SQLite şemasına JVM'de yayımlanıyor; geçmişi olmayan öğrenci aynı giriş derslerini görüyor, öğrenilmemiş Skill transfer açmıyor,
-- Mutation üretici 22/22, Kotlin __KOTLIN_MUTATION__; independent validator **__QA__**,
+- Mutation üretici 22/22, Kotlin 32/32; independent validator **108/108 PASS**,
 - **T6 ve cihazda ingestion çalıştırılmadı**.
 
 ## Önceki numaralı adım — 15F

@@ -718,7 +718,7 @@ Bulunanlar: eklenen item'ları düşüren şey yanlış anahtar değil ders sız
 
 613 item, 240 büyüyen görev v2'si, 21 transfer item'ı, 144 seçenek düzeyinde misconception anahtarı; hiçbir Skill, Objective, kenar, Topic, ders ya da etiket eklenmedi, 1–6. paketler bayt bayt aynı. `TRANSFER_OPPORTUNITY` sahibi `TransferEngine`; planner ve aylık composer aynı ihtiyacı okur (beyan edilmiş uzantılar). Bağımsız inceleme dört turda 613/613, 144/144. Havuz 65 Objective'in 54'ünde ≥15; üç teknik Objective 14, sekiz İngilizce Objective 10–12 — eksik kayıtlı.
 
-Onay kullanıcının 2026-10-04 açık onayı. Kullanıcı kararları: 15–20 havuz; transfer içeriği + aylık üretici; seçenek düzeyinde anahtar; asistan yazar, ayrı ajanlar inceler; 15F için dürüst küçük havuz. Mutation üretici 22/22, Kotlin __KOTLIN_MUTATION__; QA __QA__. T6 çalıştırılmadı.
+Onay kullanıcının 2026-10-04 açık onayı. Kullanıcı kararları: 15–20 havuz; transfer içeriği + aylık üretici; seçenek düzeyinde anahtar; asistan yazar, ayrı ajanlar inceler; 15F için dürüst küçük havuz. Mutation üretici 22/22, Kotlin 32/32; QA 108/108 PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/ASSESSMENT_CONTENT_SPEC.md` / D-120.
 

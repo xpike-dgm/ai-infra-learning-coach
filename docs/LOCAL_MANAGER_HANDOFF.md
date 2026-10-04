@@ -2434,7 +2434,7 @@ Ana invariant: bir item'ın gösterdiği her İngilizce kelime, item'ın dayanab
 
 Ana invariant: eklenen bir item Objective'ini öğrencinin görmediği bir yapıda, Objective'in istediği kanıtı üretebilen bir biçimde ölçer ve yalnız bağımsız bir inceleyici geçirdikten sonra sevk edilir; ek paket hiçbir yayımlanmışın üzerine yazmaz; transfer iddiası denetlenir ve transfer item'ı ayın slotuna ayrılır; yanlış seçenek yalnız tam o misconception'dan çıkıyorsa ve anahtarın kendi Objective'inin etiketiyse onu adlandırır.
 
-Onay kullanıcının 2026-10-04 açık onayı. 613 item, 240 büyüyen görev v2'si, 21 transfer item'ı, 144 seçenek düzeyinde anahtar; bağımsız inceleme dört turda 613/613, 144/144. Havuz 65 Objective'in 54'ünde ≥15; eksikler (3 teknik 14, 8 İngilizce 10–12) kayıtlı. Mutation üretici 22/22, Kotlin __KOTLIN_MUTATION__; QA __QA__. T6 çalıştırılmadı.
+Onay kullanıcının 2026-10-04 açık onayı. 613 item, 240 büyüyen görev v2'si, 21 transfer item'ı, 144 seçenek düzeyinde anahtar; bağımsız inceleme dört turda 613/613, 144/144. Havuz 65 Objective'in 54'ünde ≥15; eksikler (3 teknik 14, 8 İngilizce 10–12) kayıtlı. Mutation üretici 22/22, Kotlin 32/32; QA 108/108 PASS. T6 çalıştırılmadı.
 
 **AŞAMA 15G ✅ ACNX-v0 / D-120.**
 

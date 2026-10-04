@@ -345,7 +345,7 @@ for path, names in ((SHIPPED_TEST, ["the package is version 7, reads after the s
                                    "with the supplement, a learner who has done nothing is offered the same entry lessons, and no transfer opens before learning"])):
     text = read(path)
     for name in names:
-        check(f"A15G-11_test_{name[:40]}", f"`{name}`" in text, f"{path.name}: {name}")
+        check(f"A15G-11_test_{re.sub(r'[^a-z0-9]+', '_', name[:40].lower()).strip('_')}", f"`{name}`" in text, f"{path.name}: {name}")
 
 # ---------------------------------------------------------------- verification claims
 for key in ("mutation_results_builder", "mutation_results_kotlin"):
