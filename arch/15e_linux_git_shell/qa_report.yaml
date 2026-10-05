@@ -175,7 +175,7 @@ checks:
   details: ''
 - check: E15E-05_modes
   result: PASS
-  details: '{''rubric'', ''shell''}'
+  details: '{''shell'', ''rubric''}'
 - check: E15E-05_counts
   result: PASS
   details: '41 {''shell'': 40, ''rubric'': 1}'

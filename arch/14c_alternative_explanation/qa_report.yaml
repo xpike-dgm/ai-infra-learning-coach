@@ -325,11 +325,10 @@ checks:
   details: ''
 - check: E14C-09_line_breaks
   result: PASS
-  details: "ine ${section.line}: unknown level '$id'\"; AssistanceLevel.H1 } },\n\
-    \                text = text(section.values, \"text\", section.line).replace(\"\
-    \\\\n\", \"\\n\"),\n                misconception = if (section.values.containsKey(\"\
-    misconception\")) ref(section, \"misconception\") else null,\n            )\n\
-    \        }"
+  details: "lanation] line ${section.line}: unknown level '$id'\"; AssistanceLevel.H1\
+    \ } },\n                text = unescape(text(section.values, \"text\", section.line)),\n\
+    \                misconception = if (section.values.containsKey(\"misconception\"\
+    )) ref(section, \"misconception\") else null,\n            )\n        }"
 - check: E14C-09_unknown_level_refused
   result: PASS
   details: ''

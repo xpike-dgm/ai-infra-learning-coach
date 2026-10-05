@@ -247,7 +247,7 @@ checks:
   result: PASS
   details: '[''remediation_open'', ''not_taught_yet'', ''not_active_since_last_cycle'',
     ''measured_in_another_role'', ''not_a_weekly_measurement'', ''not_a_monthly_measurement'',
-    ''not_required_capability'']'
+    ''not_required_capability'', ''transfer_is_monthly'']'
 - check: E13A-06_holding_back_from_trace
   result: PASS
   details: holding back not read from the planner's trace
@@ -294,7 +294,7 @@ checks:
   result: PASS
   details: '[''role_not_declared'', ''not_usable_for_intent'', ''prerequisite_waits'',
     ''solution_exposed'', ''already_seen'', ''variant_family_in_use'', ''dependency_group_in_use'',
-    ''expected_minutes_missing'']'
+    ''expected_minutes_missing'', ''transfer_claim_unsupported'']'
 - check: E13A-07_not_shortest_first
   result: PASS
   details: the shortest item first

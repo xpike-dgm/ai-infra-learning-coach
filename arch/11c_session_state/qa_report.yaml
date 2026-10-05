@@ -370,7 +370,7 @@ checks:
     saved'
 - check: E11C-12_t2_count_not_inflated
   result: PASS
-  details: claimed=55 sources=128
+  details: claimed=55 sources=130
 - check: E11C-13_no_combining_dot
   result: PASS
   details: U+0307 found in []

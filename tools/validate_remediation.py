@@ -218,7 +218,9 @@ planner_contract = yaml.safe_load(read(PLANNER_CONTRACT)) or {}
 check("E13D-06_owner_supplied_per_12c", "weakness_detected" in planner_contract.get("needs", {}).get("supplied_by_owners", []), "12C lists weakness_detected as planner-generated")
 check("E13D-06_planner_rule_unchanged", "NeedTrigger.WEAKNESS_DETECTED" not in body(planner, "fun needsFromSkillStates("), "the planner opens weakness itself")
 check("E13D-06_build_receives", "PlannerEngine.needsFromSkillStates(states) + WeaknessEngine.needs(states)" in body(build, "fun build("), "the planner is not supplied")
-check("E13D-06_composer_receives", "(ownerNeeds + WeaknessEngine.needs(states)).distinctBy { it.needKey }" in body(blueprint, "fun compose(evaluatorAvailable"),
+# Narrowed at 15G (`ACNX-v0` / `D-120`): the transfer owner's needs reach the composer beside the weakness owner's.
+check("E13D-06_composer_receives", re.search(r"\(ownerNeeds \+ WeaknessEngine\.needs\(states\)(?: \+ TransferPlanning\.needs\(persistence, content, states\)\))?\s*\)?\s*\.distinctBy \{ it\.needKey \}",
+                                          body(blueprint, "fun compose(evaluatorAvailable")) is not None,
       "the composers are not supplied")
 
 # ---------------------------------------------------------------- dispositions

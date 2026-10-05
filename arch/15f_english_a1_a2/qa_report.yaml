@@ -203,7 +203,7 @@ checks:
   details: no untaught word, no untaught construct
 - check: E15F-05_modes
   result: PASS
-  details: '{''rubric'', ''shell'', ''reference''}'
+  details: '{''reference'', ''rubric'', ''shell''}'
 - check: E15F-05_counts
   result: PASS
   details: '82 {''reference'': 72, ''shell'': 8, ''rubric'': 2}'

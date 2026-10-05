@@ -46,6 +46,18 @@ scope:
   kotlin_main_changed: true
   earlier_packages_rebuilt_identical: true
 
+narrowed_gates:
+  rule: each earlier check now accepts exactly the D-120 declared extension in its declared place, and still fails on any other drift; every narrowed line carries a "Narrowed at 15G (`ACNX-v0` / `D-120`)" comment
+  gates:
+    - {file: tools/validate_computing_fundamentals.py, checks: [E15A-08_adapter_only_authored], why: "the highest version of each authored task answers"}
+    - {file: tools/validate_python_foundations.py, checks: [E15B-10_source_reads_all_or_none], why: "each package is read with the ones before it; all read or none is served"}
+    - {file: tools/validate_today_interior.py, checks: [E11A-13_content_port_returns_null], why: "the same sequential read"}
+    - {file: tools/validate_remediation.py, checks: [E13D-06_composer_receives], why: "the transfer owner's needs reach the composer beside the weakness owner's"}
+    - {file: tools/validate_weekly_assessment.py, checks: [E13A-07_refusals_equal_contract], why: "one refusal appended: transfer_claim_unsupported"}
+    - {file: tools/validate_monthly_assessment.py, checks: [E13B-06_no_invented_producer, E13B-06_trigger_set_unchanged, E13B-06_exclusions_equal_contract, E13B-15_weekly_refusals_unchanged, E13B-16_engine_test_name], why: "the transfer producer, its one trigger, one exclusion (transfer_is_monthly), one refusal, and the engine test renamed to cover transfer"}
+    - {file: tools/validate_planner_engine.py, checks: [E12C-03_triggers_equal_3b, E12C-03_need_codes_equal_pdt, E12C-07_every_code_is_pdt, E12C-09_adapter_answers_truthfully], why: "one trigger and its need code beyond 3B §2.1 / PDT-v0 §8.1; the highest task version answers"}
+    - {file: tools/validate_reason_codes.py, checks: [E12E-02_pdt_families_equal, E12E-02_counts_match_contract, E12E-07_every_code_has_a_template], why: "need.transfer_opportunity appended to §8.1, with its template"}
+
 counts:
   items: 613
   task_versions: 240
@@ -187,7 +199,59 @@ mutation_results_kotlin:
     - {id: K32, mutant: later_task_cannot_present_earlier_items, result: detected}
     - {id: K33, mutant: unknown_key_mappable, result: detected}
 
-validator_mutation: __VALIDATOR__
+validator_mutation:
+  total: 40
+  detected: 40
+  scope: one change per mutant to an input the validator reads — the contract, the shipped asset, the recorded report, a suite file, the independent review, the 15G content, package.yaml, the builder, the Kotlin owner and readers, the shipped tests, the spec, the research and DECISIONS
+  detection: a FAIL line not in the baseline; a run that prints no result line is a crash and never a detection
+  crash_is_not_a_detection: true
+  baseline: the only check allowed to fail at baseline is A15G-12_validator_mutation, which reads this very result
+  fast_mode: --skip-earlier-rebuild and --build-cache; the cache is reused only while every build input is byte-identical, so the content and builder mutants (V08, V09, V26–V28, V39, V40) ran a real rebuild
+  negative_control: a YAML comment in the contract naming forbidden fragments (banana, __, verdict fail, human_authored, survived)
+  negative_control_result: no_false_positive
+  earlier_runs: the first run reported V29 and V30 as survivors because the harness read check ids up to the first space (test-name ids contain spaces) and V38 mutated a builder line instead of a Kotlin one; the ids were made space-free, the harness and V38 were fixed, and the whole set was run again
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: V01, mutant: contract_model, result: detected}
+    - {id: V02, mutant: contract_status, result: detected}
+    - {id: V03, mutant: english_pool_decision, result: detected}
+    - {id: V04, mutant: asset_adds_a_skill, result: detected}
+    - {id: V05, mutant: asset_prompt_edited, result: detected}
+    - {id: V06, mutant: report_not_recorded, result: detected}
+    - {id: V07, mutant: suite_file_stale, result: detected}
+    - {id: V08, mutant: item_failed_review, result: detected}
+    - {id: V09, mutant: reviewer_unnamed, result: detected}
+    - {id: V10, mutant: transfer_count, result: detected}
+    - {id: V11, mutant: shortfall_unrecorded, result: detected}
+    - {id: V12, mutant: english_shortfall_not_user_decision, result: detected}
+    - {id: V13, mutant: review_rounds, result: detected}
+    - {id: V14, mutant: owner_ignores_mastery, result: detected}
+    - {id: V15, mutant: facts_trust_item, result: detected}
+    - {id: V16, mutant: planner_does_not_ask, result: detected}
+    - {id: V17, mutant: composer_does_not_ask, result: detected}
+    - {id: V18, mutant: monthly_role, result: detected}
+    - {id: V19, mutant: weekly_not_excluded, result: detected}
+    - {id: V20, mutant: band_raised, result: detected}
+    - {id: V21, mutant: composer_accepts_unsupported, result: detected}
+    - {id: V22, mutant: trigger_reason, result: detected}
+    - {id: V23, mutant: accepted_answer_hypothesis, result: detected}
+    - {id: V24, mutant: format_section_dropped, result: detected}
+    - {id: V25, mutant: every_task_version, result: detected}
+    - {id: V26, mutant: builder_form_rule, result: detected}
+    - {id: V27, mutant: builder_transfer_rule, result: detected}
+    - {id: V28, mutant: builder_overwrites_tasks, result: detected}
+    - {id: V29, mutant: shipped_test_renamed, result: detected}
+    - {id: V30, mutant: course_test_renamed, result: detected}
+    - {id: V31, mutant: builder_mutant_survived, result: detected}
+    - {id: V32, mutant: run_failed, result: detected}
+    - {id: V33, mutant: t6_claimed, result: detected}
+    - {id: V34, mutant: spec_status, result: detected}
+    - {id: V35, mutant: spec_next, result: detected}
+    - {id: V36, mutant: research_source, result: detected}
+    - {id: V37, mutant: decision_heading, result: detected}
+    - {id: V38, mutant: kotlin_mutant_survived, result: detected}
+    - {id: V39, mutant: content_choice_production, result: detected}
+    - {id: V40, mutant: package_version, result: detected}
 
 verified_runs:
   - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}

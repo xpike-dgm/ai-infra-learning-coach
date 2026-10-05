@@ -304,7 +304,10 @@ check("E15B-10_store_refuses_republished", "republishedEntities(curriculum)" in 
       and "is already published and is never overwritten" in store_kt, "")
 check("E15B-10_store_never_overwrites", "if (versionExists(curriculum.version)) return PublishOutcome.AlreadyPublished" in store_kt, "")
 source_kt = strip_comments(read(SOURCE_KT))
-check("E15B-10_source_reads_all_or_none", "(listOf(first) + later()).map(PackageFormat::parse).also(::checkSequence)" in source_kt
+# Narrowed at 15G (`ACNX-v0` / `D-120`): each package is now read with the ones before it (a later package may refer to
+# their tasks' items and keys); all of them still read, or none is served.
+check("E15B-10_source_reads_all_or_none", ("(listOf(first) + later()).map(PackageFormat::parse).also(::checkSequence)" in source_kt
+      or re.search(r"\(listOf\(first\) \+ later\(\)\)\.fold\(emptyList<PackageFormat\.Parsed>\(\)\) \{ read, text -> read \+ PackageFormat\.parse\(text, read\) \}\s*\.also\(::checkSequence\)", source_kt) is not None)
       and "onFailure { failure = it }.getOrNull()" in source_kt, "")
 seq = body(source_kt, "private fun checkSequence(")
 check("E15B-10_versions_rise", "b.curriculum.version <= a.curriculum.version" in seq, "")

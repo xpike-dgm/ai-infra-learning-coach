@@ -223,10 +223,13 @@ kotlin_families = re.findall(r"ReasonCodeFamily\.(\w+) to listOf\((.*?)\n       
 kotlin_codes = [re.findall(r'"([a-z0-9_.]+)"', block) for _, block in kotlin_families]
 check("E12E-02_family_order", [f for f, _ in kotlin_families] == [n for n in re.findall(r"^    (\w+)\(", enum_block(catalogue, "ReasonCodeFamily"), re.M)],
       f"families={[f for f, _ in kotlin_families]}")
-check("E12E-02_pdt_families_equal", kotlin_codes[:10] == pdt_codes,
-      f"differs at {[pdt_sections[i] for i in range(min(10, len(kotlin_codes))) if i < len(pdt_codes) and kotlin_codes[i] != pdt_codes[i]]}")
+# Narrowed at 15G (`ACNX-v0` / `D-120`): §8.1 plus exactly one declared extension, `need.transfer_opportunity`, at its end.
+_pdt_with_15g = [codes + ["need.transfer_opportunity"] if i == 0 else codes for i, codes in enumerate(pdt_codes)]
+check("E12E-02_pdt_families_equal", kotlin_codes[:10] == _pdt_with_15g,
+      f"differs at {[pdt_sections[i] for i in range(min(10, len(kotlin_codes))) if i < len(pdt_codes) and kotlin_codes[i] != _pdt_with_15g[i]]}")
 check("E12E-02_prg_inputs_equal", len(kotlin_codes) == 11 and kotlin_codes[10] == prg_inputs, f"kotlin={kotlin_codes[10:] }")
-check("E12E-02_counts_match_contract", [len(c) for c in kotlin_codes] == contract["catalogue"]["counts"],
+# Narrowed at 15G (`ACNX-v0` / `D-120`): the §8.1 family has one more code (D-120).
+check("E12E-02_counts_match_contract", [len(c) for c in kotlin_codes] == [n + (1 if i == 0 else 0) for i, n in enumerate(contract["catalogue"]["counts"])],
       f"counts={[len(c) for c in kotlin_codes]}")
 check("E12E-02_family_ids_match_contract", enum_ids(catalogue, "ReasonCodeFamily") == contract["catalogue"]["families"],
       f"ids={enum_ids(catalogue, 'ReasonCodeFamily')}")
@@ -427,7 +430,7 @@ check("E12E-06_uxia_questions", all(q in uxia for q in ("Why this task?", "Why n
 # ---------------------------------------------------------------- the words
 template_block = re.search(r"val codeTemplates: Map<String, String> = linkedMapOf\((.*?)\n    \)", copy, re.S)
 template_keys = re.findall(r'^\s+"([a-z0-9_.]+)" to "', template_block.group(1), re.M) if template_block else []
-pdt_all = [c for block in pdt_codes for c in block] + prg_inputs
+pdt_all = [c for block in _pdt_with_15g for c in block] + prg_inputs
 check("E12E-07_every_code_has_a_template", template_keys == pdt_all, f"missing={sorted(set(pdt_all) - set(template_keys))} extra={sorted(set(template_keys) - set(pdt_all))}")
 sentences = [s for s in kotlin_strings(copy) if " " in s]
 check("E12E-07_sentences_read", len(sentences) >= len(pdt_all), f"sentences={len(sentences)}")

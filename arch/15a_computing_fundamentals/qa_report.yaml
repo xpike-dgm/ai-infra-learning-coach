@@ -207,8 +207,9 @@ checks:
   details: ''
 - check: E15A-05_known_modes
   result: PASS
-  details: '{''reference'', ''termination'', ''fault'', ''script'', ''stdout'', ''fix_terminates'',
-    ''behaviour'', ''functions'', ''which_input'', ''probe'', ''rubric'', ''detects''}'
+  details: '{''rubric'', ''probe'', ''fix_terminates'', ''functions'', ''reference'',
+    ''termination'', ''script'', ''stdout'', ''which_input'', ''fault'', ''behaviour'',
+    ''detects''}'
 - check: E15A-05_counts
   result: PASS
   details: 95 83 8 4
@@ -331,7 +332,7 @@ checks:
   result: PASS
   details: '{''teach'': {''new_learning''}, ''practice'': {''parallel_track_due'',
     ''continue_learning''}, ''assess'': {''verification_due''}, ''retain'': {''retention_review_due''},
-    ''remediate'': {''weakness_detected'', ''remediation_required''}, ''reinforce'':
+    ''remediate'': {''remediation_required'', ''weakness_detected''}, ''reinforce'':
     {''reinforcement_opportunity'', ''integration_opportunity''}, ''diagnose'': set()}'
 - check: E15A-08_activity_kinds_are_3b
   result: PASS

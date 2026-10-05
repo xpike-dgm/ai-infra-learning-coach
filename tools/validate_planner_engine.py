@@ -253,9 +253,11 @@ check("E12C-02_capacity_input_has_no_default",
 # ---------------------------------------------------------------- needs, read out of 3B
 triggers = text_block_after(taxonomy, "## 2.1 Canonical trigger kinds")
 check("E12C-03_triggers_read_from_3b", len(triggers) == 10, f"3b={triggers}")
-check("E12C-03_triggers_equal_3b", enum_ids(facts, "NeedTrigger") == triggers, f"kotlin={enum_ids(facts, 'NeedTrigger')}")
+# Narrowed at 15G (`ACNX-v0` / `D-120`): 3B's ten triggers plus exactly one declared extension, `transfer_opportunity`.
+check("E12C-03_triggers_equal_3b", enum_ids(facts, "NeedTrigger") == triggers + ["transfer_opportunity"], f"kotlin={enum_ids(facts, 'NeedTrigger')}")
 need_codes = text_block_after(pdt, "## 8.1 LearningNeed / state")
-check("E12C-03_need_codes_equal_pdt", enum_codes(facts, "NeedTrigger") == need_codes, f"pdt={need_codes}")
+# Narrowed at 15G (`ACNX-v0` / `D-120`): PDT-v0 §8.1 plus exactly one declared extension, `need.transfer_opportunity`.
+check("E12C-03_need_codes_equal_pdt", enum_codes(facts, "NeedTrigger") == need_codes + ["need.transfer_opportunity"], f"pdt={need_codes}")
 purposes = text_block_after(taxonomy, "## 3.1 `primary_purpose`")
 check("E12C-03_purposes_equal_3b", enum_ids(today, "TaskPurpose") == purposes, f"3b={purposes}")
 needs = body(engine, "fun needsFromSkillStates(")
@@ -396,7 +398,8 @@ check("E12C-07_candidate_dispositions_equal_pdt", enum_ids(facts, "CandidateDisp
       f"pdt={candidate_dispositions}")
 pdt_codes = set(re.findall(r"^([a-z]+\.[a-z0-9_]+)$", pdt, re.M))
 used_codes = set(re.findall(r'"((?:need|candidate|eligibility|priority|capacity|selection|replan)\.[a-z0-9_]+)"', engine + facts))
-check("E12C-07_every_code_is_pdt", used_codes and used_codes <= pdt_codes, f"not in PDT-v0: {sorted(used_codes - pdt_codes)}")
+# Narrowed at 15G (`ACNX-v0` / `D-120`): one code outside PDT-v0 is allowed: 15G's declared `need.transfer_opportunity`.
+check("E12C-07_every_code_is_pdt", used_codes and used_codes <= pdt_codes | {"need.transfer_opportunity"}, f"not in PDT-v0: {sorted(used_codes - pdt_codes)}")
 # 12C owns planner_trace/1 and that it still decodes; 12D moved the written format to /2. The check was
 # narrowed from "the format is /1" to what 12C decided: a versioned planner_trace format whose /1 still
 # reads, with the planner and the codec naming the same version.
@@ -471,7 +474,9 @@ check("E12C-09_skills_read_only", not re.search(r"\b(INSERT|UPDATE|DELETE)\b", s
 # with them: every candidate comes from an authored task's own candidateFor(need), never from the adapter's invention.
 check("E12C-09_adapter_answers_truthfully",
       re.search(r"override fun taskCandidates\(need: LearningNeed\): List<TaskCandidate> =\s+"
-                r"parsed\?\.tasks\.orEmpty\(\)\.mapNotNull \{ it\.candidateFor\(need\) \}\.sortedBy \{ it\.id \}", content) is not None,
+                # Narrowed at 15G (`ACNX-v0` / `D-120`): the highest version of each authored task answers.
+                r"parsed\?\.tasks\.orEmpty\(\)(?:\.groupBy \{ it\.ref\.logicalId \}\.values\.map \{ versions -> versions\.maxBy \{ it\.ref\.version \} \})?"
+                r"\s*\.mapNotNull \{ it\.candidateFor\(need\) \}\.sortedBy \{ it\.id \}", content) is not None,
       "the file adapter claims tasks its format cannot carry")
 
 # ---------------------------------------------------------------- tests

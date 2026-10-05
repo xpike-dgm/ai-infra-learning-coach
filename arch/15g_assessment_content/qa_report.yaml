@@ -1,0 +1,430 @@
+model: ACNX-v0
+stage_step: 15G
+decision: D-120
+result: PASS
+checks_total: 108
+checks_passed: 108
+checks_failed: 0
+checks:
+- check: A15G-00_exists_assessment_content.yaml
+  result: PASS
+  details: missing arch\15g_assessment_content\assessment_content.yaml
+- check: A15G-00_exists_content_verification.yaml
+  result: PASS
+  details: missing arch\15g_assessment_content\content_verification.yaml
+- check: A15G-00_exists_ASSESSMENT_CONTENT_SPEC.md
+  result: PASS
+  details: missing docs\ASSESSMENT_CONTENT_SPEC.md
+- check: A15G-00_exists_15g_assessment_content_research.md
+  result: PASS
+  details: missing research\15g_assessment_content_research.md
+- check: A15G-00_exists_curriculum_package_v7.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v7.txt
+- check: A15G-00_exists_curriculum_package.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package.txt
+- check: A15G-00_exists_curriculum_package_v2.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v2.txt
+- check: A15G-00_exists_curriculum_package_v3.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v3.txt
+- check: A15G-00_exists_curriculum_package_v4.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v4.txt
+- check: A15G-00_exists_curriculum_package_v5.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v5.txt
+- check: A15G-00_exists_curriculum_package_v6.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v6.txt
+- check: A15G-00_exists_build_curriculum_package.py
+  result: PASS
+  details: missing tools\build_curriculum_package.py
+- check: A15G-00_exists_package.yaml
+  result: PASS
+  details: missing curriculum\content\15g_assessment\package.yaml
+- check: A15G-00_exists_independent_review.yaml
+  result: PASS
+  details: missing curriculum\content\15g_assessment\independent_review.yaml
+- check: A15G-00_exists_TransferEngine.kt
+  result: PASS
+  details: missing android\core-engines\src\main\kotlin\coach\engines\TransferEngine.kt
+- check: A15G-00_exists_TransferPlanning.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\TransferPlanning.kt
+- check: A15G-00_exists_PackageFormat.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\PackageFormat.kt
+- check: A15G-00_exists_FileContentSource.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\FileContentSource.kt
+- check: A15G-00_exists_ShippedAssessmentPackageTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\ShippedAssessmentPackageTest.kt
+- check: A15G-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: A15G-00_exists_TransferEngineTest.kt
+  result: PASS
+  details: missing android\core-engines\src\test\kotlin\coach\engines\TransferEngineTest.kt
+- check: A15G-00_exists_TransferPlanningTest.kt
+  result: PASS
+  details: missing android\core-application\src\test\kotlin\coach\application\TransferPlanningTest.kt
+- check: A15G-01_model
+  result: PASS
+  details: ACNX-v0
+- check: A15G-01_status
+  result: PASS
+  details: accepted_15g
+- check: A15G-01_decision
+  result: PASS
+  details: D-120
+- check: A15G-01_user_decisions
+  result: PASS
+  details: '{''approval'': ''explicit_user_approval_2026-10-04'', ''pool'': ''15_to_20_outside_the_lesson'',
+    ''transfer'': ''content_and_monthly_producer'', ''misconception_keys'': ''option_level_deterministic'',
+    ''authorship'': ''assistant_writes_independent_agents_review'', ''english_pool'':
+    ''honest_small_pool_shortfall_recorded'', ''professional_evidence_checkpoint_owner'':
+    ''AŞAMA 20''}'
+- check: A15G-01_package
+  result: PASS
+  details: ''
+- check: A15G-02_builds
+  result: PASS
+  details: ''
+- check: A15G-02_shipped_is_rebuilt
+  result: PASS
+  details: the shipped asset differs from a fresh build of its source
+- check: A15G-02_generated_marker
+  result: PASS
+  details: ''
+- check: A15G-02_no_failures
+  result: PASS
+  details: '0: []'
+- check: A15G-02_report_recorded
+  result: PASS
+  details: arch/15g_assessment_content/content_verification.yaml is not the report
+    of this build
+- check: A15G-02_suites_written
+  result: PASS
+  details: 'stale or extra: []'
+- check: A15G-02_earlier_untouched_15a_computing_fundamentals
+  result: PASS
+  details: '15a_computing_fundamentals is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: A15G-02_earlier_untouched_15b_python_foundations
+  result: PASS
+  details: '15b_python_foundations is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: A15G-02_earlier_untouched_15c_c_foundations
+  result: PASS
+  details: '15c_c_foundations is no longer a clean, fresh build of its source: 0 build
+    failures'
+- check: A15G-02_earlier_untouched_15d_memory_foundations
+  result: PASS
+  details: '15d_memory_foundations is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: A15G-02_earlier_untouched_15e_linux_git_shell
+  result: PASS
+  details: '15e_linux_git_shell is no longer a clean, fresh build of its source: 0
+    build failures'
+- check: A15G-02_earlier_untouched_15f_english_a1_a2
+  result: PASS
+  details: '15f_english_a1_a2 is no longer a clean, fresh build of its source: 0 build
+    failures'
+- check: A15G-03_adds_no_domain
+  result: PASS
+  details: a supplement adds no domain
+- check: A15G-03_adds_no_module
+  result: PASS
+  details: a supplement adds no module
+- check: A15G-03_adds_no_topic
+  result: PASS
+  details: a supplement adds no topic
+- check: A15G-03_adds_no_skill
+  result: PASS
+  details: a supplement adds no skill
+- check: A15G-03_adds_no_objective
+  result: PASS
+  details: a supplement adds no objective
+- check: A15G-03_adds_no_topic_skill
+  result: PASS
+  details: a supplement adds no topic_skill
+- check: A15G-03_adds_no_prerequisite_edge
+  result: PASS
+  details: a supplement adds no prerequisite_edge
+- check: A15G-03_adds_no_explanation
+  result: PASS
+  details: a supplement adds no explanation
+- check: A15G-03_adds_no_misconception
+  result: PASS
+  details: a supplement adds no misconception
+- check: A15G-03_nothing_carried_again
+  result: PASS
+  details: ''
+- check: A15G-03_targets_published_objectives
+  result: PASS
+  details: '[]'
+- check: A15G-03_every_item_validated
+  result: PASS
+  details: ''
+- check: A15G-03_counts
+  result: PASS
+  details: '{''items'': 613, ''task_versions'': 240, ''answer_misconceptions'': 144,
+    ''answer_misconceptions_on_added_items'': 66, ''answer_misconceptions_on_published_items'':
+    78, ''transfer_items'': 21, ''by_source'': {''15a_computing_fundamentals'': {''items'':
+    120, ''transfer'': 5, ''task_versions'': 48}, ''15b_python_foundations'': {''items'':
+    235, ''transfer'': 9, ''task_versions'': 80}, ''15c_c_foundations'': {''items'':
+    112, ''transfer'': 4, ''task_versions'': 36}, ''15d_memory_foundations'': {''items'':
+    63, ''transfer'': 1, ''task_versions'': 16}, ''15e_linux_git_shell'': {''items'':
+    40, ''transfer'': 2, ''task_versions'': 20}, ''15f_english_a1_a2'': {''items'':
+    43, ''transfer'': 0, ''task_versions'': 40}}}'
+- check: A15G-04_reviewer
+  result: PASS
+  details: ''
+- check: A15G-04_every_item_reviewed
+  result: PASS
+  details: 613 / 613
+- check: A15G-04_every_item_passed
+  result: PASS
+  details: '[]'
+- check: A15G-04_every_mapping_passed
+  result: PASS
+  details: 144 mappings
+- check: A15G-04_rounds_recorded
+  result: PASS
+  details: ''
+- check: A15G-05_pool_minimum_or_recorded
+  result: PASS
+  details: 'below 15: {''objective.python.scope_name_resolution.demonstrate_capability'':
+    14, ''objective.c.declaration_type_model.write_basic_declarations'': 14, ''objective.git.repository_status_diff.inspect_change_state'':
+    14, ''objective.english.technical_noun_phrase_recognition.demonstrate_capability'':
+    12, ''objective.english.be_and_simple_present_comprehension.demonstrate_capability'':
+    10, ''objective.english.imperative_instruction_comprehension.demonstrate_capability'':
+    10, ''objective.english.preposition_function_word_comprehension.demonstrate_capability'':
+    10, ''objective.english.negation_question_comprehension.demonstrate_capability'':
+    11, ''objective.english.follow_bilingual_technical_instruction.execute_known_instruction'':
+    11, ''objective.english.documentation_navigation.demonstrate_capability'': 11,
+    ''objective.english.write_command_result_note.demonstrate_capability'': 10}; recorded:
+    {''objective.python.scope_name_resolution.demonstrate_capability'': 14, ''objective.c.declaration_type_model.write_basic_declarations'':
+    14, ''objective.git.repository_status_diff.inspect_change_state'': 14, ''objective.english.technical_noun_phrase_recognition.demonstrate_capability'':
+    12, ''objective.english.be_and_simple_present_comprehension.demonstrate_capability'':
+    10, ''objective.english.imperative_instruction_comprehension.demonstrate_capability'':
+    10, ''objective.english.preposition_function_word_comprehension.demonstrate_capability'':
+    10, ''objective.english.negation_question_comprehension.demonstrate_capability'':
+    11, ''objective.english.follow_bilingual_technical_instruction.execute_known_instruction'':
+    11, ''objective.english.documentation_navigation.demonstrate_capability'': 11,
+    ''objective.english.write_command_result_note.demonstrate_capability'': 10}'
+- check: A15G-05_pool_counted
+  result: PASS
+  details: '65'
+- check: A15G-05_shortfall_reason
+  result: PASS
+  details: ''
+- check: A15G-05_english_shortfall_is_the_user_decision
+  result: PASS
+  details: ''
+- check: A15G-06_transfer_profile
+  result: PASS
+  details: ''
+- check: A15G-06_transfer_reserved
+  result: PASS
+  details: ''
+- check: A15G-06_transfer_never_in_a_task
+  result: PASS
+  details: ''
+- check: A15G-06_other_items_claim_no_transfer
+  result: PASS
+  details: AIV-v0 §16
+- check: A15G-06_transfer_requires_another_skill
+  result: PASS
+  details: ''
+- check: A15G-07_tasks_grow_as_version_2
+  result: PASS
+  details: 0 not grown v2
+- check: A15G-07_no_teach_task
+  result: PASS
+  details: a supplement writes no lesson
+- check: A15G-07_tasks_validated
+  result: PASS
+  details: ''
+- check: A15G-08_mappings_own_objective_wrong_option
+  result: PASS
+  details: '[]'
+- check: A15G-08_mapping_once
+  result: PASS
+  details: ''
+- check: A15G-09_form_matches_evidence
+  result: PASS
+  details: '[]'
+- check: A15G-09_builder_form_rule
+  result: PASS
+  details: ''
+- check: A15G-09_builder_transfer_rule
+  result: PASS
+  details: ''
+- check: A15G-09_builder_never_overwrites
+  result: PASS
+  details: ''
+- check: A15G-10_owner_learned
+  result: PASS
+  details: ''
+- check: A15G-10_owner_transfer_item
+  result: PASS
+  details: ''
+- check: A15G-10_owner_clean_measurement
+  result: PASS
+  details: ''
+- check: A15G-10_owner_no_threshold
+  result: PASS
+  details: nothing here is a threshold
+- check: A15G-10_facts_store_gate_exposure
+  result: PASS
+  details: ''
+- check: A15G-10_planner_asks
+  result: PASS
+  details: ''
+- check: A15G-10_composer_asks
+  result: PASS
+  details: ''
+- check: A15G-10_monthly_role
+  result: PASS
+  details: ''
+- check: A15G-10_weekly_excluded
+  result: PASS
+  details: ''
+- check: A15G-10_band_with_integration
+  result: PASS
+  details: ''
+- check: A15G-10_composer_refuses_unsupported
+  result: PASS
+  details: ''
+- check: A15G-10_trigger_declared
+  result: PASS
+  details: ''
+- check: A15G-10_wrong_answer_hypothesis
+  result: PASS
+  details: ''
+- check: A15G-10_format_supplement
+  result: PASS
+  details: ''
+- check: A15G-10_highest_task_version
+  result: PASS
+  details: ''
+- check: A15G-11_test_the_package_is_version_7_reads_after_th
+  result: PASS
+  details: 'ShippedAssessmentPackageTest.kt: the package is version 7, reads after
+    the six it adds to, and adds no Skill, Objective, edge, Topic or label'
+- check: A15G-11_test_a_task_is_published_again_only_as_versio
+  result: PASS
+  details: 'ShippedAssessmentPackageTest.kt: a task is published again only as version
+    2 of a published task whose items grew, and only the newest is offered'
+- check: A15G-11_test_a_transfer_item_names_its_cross_topic_co
+  result: PASS
+  details: 'ShippedAssessmentPackageTest.kt: a transfer item names its cross-topic
+    context and is reserved for the month''s transfer slot, never spent by a task'
+- check: A15G-11_test_every_wrong_option_key_names_a_label_of
+  result: PASS
+  details: 'ShippedAssessmentPackageTest.kt: every wrong-option key names a label
+    of its own key''s Objective, and an accepted answer never names one'
+- check: A15G-11_test_all_seven_shipped_packages_are_published
+  result: PASS
+  details: 'ShippedCourseTest.kt: all seven shipped packages are published into the
+    real store, oldest first, and the supplement adds items, not Skills'
+- check: A15G-11_test_with_the_supplement_a_learner_who_has_d
+  result: PASS
+  details: 'ShippedCourseTest.kt: with the supplement, a learner who has done nothing
+    is offered the same entry lessons, and no transfer opens before learning'
+- check: A15G-12_mutation_results_builder_all_detected
+  result: PASS
+  details: 22/22
+- check: A15G-12_mutation_results_builder_crash_not_detection
+  result: PASS
+  details: ''
+- check: A15G-12_mutation_results_kotlin_all_detected
+  result: PASS
+  details: 32/32
+- check: A15G-12_mutation_results_kotlin_crash_not_detection
+  result: PASS
+  details: ''
+- check: A15G-12_validator_mutation
+  result: PASS
+  details: '{''total'': 40, ''detected'': 40, ''scope'': ''one change per mutant to
+    an input the validator reads — the contract, the shipped asset, the recorded report,
+    a suite file, the independent review, the 15G content, package.yaml, the builder,
+    the Kotlin owner and readers, the shipped tests, the spec, the research and DECISIONS'',
+    ''detection'': ''a FAIL line not in the baseline; a run that prints no result
+    line is a crash and never a detection'', ''crash_is_not_a_detection'': True, ''baseline'':
+    ''the only check allowed to fail at baseline is A15G-12_validator_mutation, which
+    reads this very result'', ''fast_mode'': ''--skip-earlier-rebuild and --build-cache;
+    the cache is reused only while every build input is byte-identical, so the content
+    and builder mutants (V08, V09, V26–V28, V39, V40) ran a real rebuild'', ''negative_control'':
+    ''a YAML comment in the contract naming forbidden fragments (banana, __, verdict
+    fail, human_authored, survived)'', ''negative_control_result'': ''no_false_positive'',
+    ''earlier_runs'': ''the first run reported V29 and V30 as survivors because the
+    harness read check ids up to the first space (test-name ids contain spaces) and
+    V38 mutated a builder line instead of a Kotlin one; the ids were made space-free,
+    the harness and V38 were fixed, and the whole set was run again'', ''final_run_is_a_single_clean_run'':
+    True, ''mutants'': [{''id'': ''V01'', ''mutant'': ''contract_model'', ''result'':
+    ''detected''}, {''id'': ''V02'', ''mutant'': ''contract_status'', ''result'':
+    ''detected''}, {''id'': ''V03'', ''mutant'': ''english_pool_decision'', ''result'':
+    ''detected''}, {''id'': ''V04'', ''mutant'': ''asset_adds_a_skill'', ''result'':
+    ''detected''}, {''id'': ''V05'', ''mutant'': ''asset_prompt_edited'', ''result'':
+    ''detected''}, {''id'': ''V06'', ''mutant'': ''report_not_recorded'', ''result'':
+    ''detected''}, {''id'': ''V07'', ''mutant'': ''suite_file_stale'', ''result'':
+    ''detected''}, {''id'': ''V08'', ''mutant'': ''item_failed_review'', ''result'':
+    ''detected''}, {''id'': ''V09'', ''mutant'': ''reviewer_unnamed'', ''result'':
+    ''detected''}, {''id'': ''V10'', ''mutant'': ''transfer_count'', ''result'': ''detected''},
+    {''id'': ''V11'', ''mutant'': ''shortfall_unrecorded'', ''result'': ''detected''},
+    {''id'': ''V12'', ''mutant'': ''english_shortfall_not_user_decision'', ''result'':
+    ''detected''}, {''id'': ''V13'', ''mutant'': ''review_rounds'', ''result'': ''detected''},
+    {''id'': ''V14'', ''mutant'': ''owner_ignores_mastery'', ''result'': ''detected''},
+    {''id'': ''V15'', ''mutant'': ''facts_trust_item'', ''result'': ''detected''},
+    {''id'': ''V16'', ''mutant'': ''planner_does_not_ask'', ''result'': ''detected''},
+    {''id'': ''V17'', ''mutant'': ''composer_does_not_ask'', ''result'': ''detected''},
+    {''id'': ''V18'', ''mutant'': ''monthly_role'', ''result'': ''detected''}, {''id'':
+    ''V19'', ''mutant'': ''weekly_not_excluded'', ''result'': ''detected''}, {''id'':
+    ''V20'', ''mutant'': ''band_raised'', ''result'': ''detected''}, {''id'': ''V21'',
+    ''mutant'': ''composer_accepts_unsupported'', ''result'': ''detected''}, {''id'':
+    ''V22'', ''mutant'': ''trigger_reason'', ''result'': ''detected''}, {''id'': ''V23'',
+    ''mutant'': ''accepted_answer_hypothesis'', ''result'': ''detected''}, {''id'':
+    ''V24'', ''mutant'': ''format_section_dropped'', ''result'': ''detected''}, {''id'':
+    ''V25'', ''mutant'': ''every_task_version'', ''result'': ''detected''}, {''id'':
+    ''V26'', ''mutant'': ''builder_form_rule'', ''result'': ''detected''}, {''id'':
+    ''V27'', ''mutant'': ''builder_transfer_rule'', ''result'': ''detected''}, {''id'':
+    ''V28'', ''mutant'': ''builder_overwrites_tasks'', ''result'': ''detected''},
+    {''id'': ''V29'', ''mutant'': ''shipped_test_renamed'', ''result'': ''detected''},
+    {''id'': ''V30'', ''mutant'': ''course_test_renamed'', ''result'': ''detected''},
+    {''id'': ''V31'', ''mutant'': ''builder_mutant_survived'', ''result'': ''detected''},
+    {''id'': ''V32'', ''mutant'': ''run_failed'', ''result'': ''detected''}, {''id'':
+    ''V33'', ''mutant'': ''t6_claimed'', ''result'': ''detected''}, {''id'': ''V34'',
+    ''mutant'': ''spec_status'', ''result'': ''detected''}, {''id'': ''V35'', ''mutant'':
+    ''spec_next'', ''result'': ''detected''}, {''id'': ''V36'', ''mutant'': ''research_source'',
+    ''result'': ''detected''}, {''id'': ''V37'', ''mutant'': ''decision_heading'',
+    ''result'': ''detected''}, {''id'': ''V38'', ''mutant'': ''kotlin_mutant_survived'',
+    ''result'': ''detected''}, {''id'': ''V39'', ''mutant'': ''content_choice_production'',
+    ''result'': ''detected''}, {''id'': ''V40'', ''mutant'': ''package_version'',
+    ''result'': ''detected''}]}'
+- check: A15G-12_runs_pass
+  result: PASS
+  details: ''
+- check: A15G-12_t6_not_claimed
+  result: PASS
+  details: ''
+- check: A15G-13_spec_status
+  result: PASS
+  details: ''
+- check: A15G-13_spec_next
+  result: PASS
+  details: ''
+- check: A15G-13_spec_t6
+  result: PASS
+  details: ''
+- check: A15G-13_research
+  result: PASS
+  details: every source is named by its URL
+- check: A15G-13_decision
+  result: PASS
+  details: D-120 heading in DECISIONS

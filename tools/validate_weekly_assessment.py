@@ -289,7 +289,8 @@ check("E13A-07_minutes_not_invented", "item.expectedActiveMinutes == null" in sl
 check("E13A-07_high_stakes_trust", "TRUSTED = setOf(LifecycleStatus.VALIDATED, LifecycleStatus.TRUSTED, LifecycleStatus.DEPRECATED)" in engine,
       "planned slot trust differs from the planner's")
 refusals = re.findall(r'^\s+[A-Z_]+\("([a-z_]+)"\),', body(common, "enum class SlotItemRefusal"), re.M)
-check("E13A-07_refusals_equal_contract", refusals == contract.get("item_selection", {}).get("refusals"), str(refusals))
+# Narrowed at 15G (`ACNX-v0` / `D-120`): 15G appended exactly one refusal, `transfer_claim_unsupported` (AIV-v0 §16).
+check("E13A-07_refusals_equal_contract", refusals == contract.get("item_selection", {}).get("refusals") + ["transfer_claim_unsupported"], str(refusals))
 order = parens(composer, "private val itemOrder: Comparator<AssessmentItem> = compareBy<AssessmentItem>(")
 check("E13A-07_not_shortest_first", "expectedActiveMinutes" not in order and "LifecycleStatus.TRUSTED" in order, "the shortest item first")
 check("E13A-07_closure_p0_p1", "requiredForSessionClosure = entry.band == PriorityBand.P0 || entry.band == PriorityBand.P1" in slot_for,

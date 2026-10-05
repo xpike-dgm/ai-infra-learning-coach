@@ -146,6 +146,7 @@ Pool counts are items outside the lesson: published plus added, with transfer it
   - Kotlin 32/32.
   - Both control mutants survived.
 - **Validator:** `tools/validate_assessment_content.py` rebuilds all seven packages: 108/108 PASS. Its own mutation run detected 40/40.
+- **Narrowed gates:** 17 checks in 8 earlier validators pinned the exact sets 15G extends. Each now accepts exactly the D-120 extension in its declared place and still fails on any other drift. They are listed in the contract (`narrowed_gates`). The `tools/validate_*.py` sweep passed 62/62; the eight narrowed validators were re-run after the change.
 - **Gradle and APKs:** T1, T2, T3, `verifyModuleBoundaries`, and `assembleDebug` with and without the AI adapter all passed. The seven packages inside each APK have the same SHA-256 as the source, and the APK without the adapter has no network permission. 1056 JVM tests ran.
 - **Not run: T6.** Nothing ran on the device. SQLite publication ran on the JVM only.
 
