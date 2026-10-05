@@ -79,5 +79,9 @@ jobs:
           set -e
           for f in tools/validate_*.py; do
             echo "== $f"
-            python "$f" > /dev/null
+            # A failing validator shows its FAIL lines; a passing one stays quiet.
+            if ! python "$f" > /tmp/validator.out; then
+              tail -n 60 /tmp/validator.out
+              exit 1
+            fi
           done
