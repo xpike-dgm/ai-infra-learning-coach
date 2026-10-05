@@ -69,9 +69,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # The keys are checked in the learner's toolchain generation (D-114, D-120): the course's own Python and a gcc
+      # whose defaults are the ones the C lessons teach (GCC 14+: an implicit declaration or an int from a pointer is
+      # a compile error). An older toolchain answers some questions differently, so it would check a different course.
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.14'
+      - name: A current gcc
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q gcc-14
+          sudo ln -sf /usr/bin/gcc-14 /usr/bin/gcc
+          gcc --version | head -1
+          python --version
       - run: pip install pyyaml
       # The sweep is the full glob, never a hand-maintained subset (TVSX-v0 §13 RG-11).
       - name: Standing validator sweep
