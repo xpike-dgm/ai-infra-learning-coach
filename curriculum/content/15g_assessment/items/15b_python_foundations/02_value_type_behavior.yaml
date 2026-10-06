@@ -1,0 +1,95 @@
+skill: skill.python.value_type_behavior
+objectives:
+  - id: objective.python.value_type_behavior.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          x = 4 * 2.5
+          print(x, type(x))
+        required_skills: [skill.programming.state_assignment_model, skill.python.expression_evaluation]
+        answer: "10.0 <class 'float'>"
+        verify: {mode: stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(str(3.0) + "!", str(True) + "!")
+        required_skills: [skill.programming.state_assignment_model, skill.programming.expression_boolean_reasoning]
+        answer: "3.0! True!"
+        verify: {mode: stdout}
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(int(float("6.8")), float(int(6.8)))
+        answer: "6 6.0"
+        verify: {mode: stdout}
+      - slug: g04
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(bool(0), bool(-1))
+        answer: "False True"
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(type(str(7)) == type("7"), type(int("7")) == type(7.0))
+        answer: "True False"
+        verify: {mode: stdout}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(0 == 0.0, "0" == 0)
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        answer: "True False"
+        verify: {mode: stdout}
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          sayi = "15"
+          print(sayi + "0", int(sayi + "0"))
+        required_skills: [skill.programming.state_assignment_model]
+        answer: "150 150"
+        verify: {mode: stdout}
+      - slug: g08
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(type(str(None)), str(None) + "!")
+        required_skills: [skill.programming.state_assignment_model]
+        answer: "<class 'str'> None!"
+        verify: {mode: stdout}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          x = None
+          print(x, type(x), bool(x))
+        answer: "None <class 'NoneType'> False"
+        required_skills: [skill.programming.state_assignment_model]
+        verify: {mode: stdout}
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(float(7) + int("3"), str(2) + str(5.0))
+        answer: "10.0 25.0"
+        required_skills: [skill.programming.state_assignment_model, skill.python.expression_evaluation]
+        verify: {mode: stdout}

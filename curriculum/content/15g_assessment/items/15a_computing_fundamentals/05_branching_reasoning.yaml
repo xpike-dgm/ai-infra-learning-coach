@@ -1,0 +1,207 @@
+skill: skill.programming.branching_reasoning
+objectives:
+  - id: objective.programming.branching_reasoning.predict_branch
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          not_ = 85
+          if not_ >= 90:
+              print("pekiyi")
+          elif not_ >= 70:
+              print("iyi")
+          else:
+              print("orta")
+        answer: "iyi"
+        verify: {mode: stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          saat = 14
+          if saat >= 9 and saat < 12:
+              print("sabah dersi")
+          else:
+              print("öğleden sonra")
+        options:
+          A: öğleden sonra
+          B: sabah dersi
+          C: Önce sabah dersi, sonra öğleden sonra
+          D: Hiçbir şey
+        scan_options: false
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "öğleden sonra", B: "sabah dersi", C: "sabah dersi\nöğleden sonra", D: ""}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi, satır satır yaz.
+        code: |
+          n = 7
+          if n % 2 == 1:
+              print("tek")
+          print("son")
+        answer: "tek\nson"
+        also_accept: ["tek son"]
+        verify: {mode: stdout}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu kodda aynı iki koşul iki kez yazılmış: birinci parçada elif ile, ikinci parçada iki ayrı if ile. Kod çalışınca hangisi doğrudur?
+        code: |
+          x = 7
+          print("1. parça:")
+          if x > 5:
+              print("A")
+          elif x > 3:
+              print("B")
+          print("2. parça:")
+          if x > 5:
+              print("A")
+          if x > 3:
+              print("B")
+        options:
+          A: 1. parça yalnız A yazar; 2. parça A ve B yazar
+          B: İki parça da A ve B yazar
+          C: İki parça da yalnız A yazar
+          D: 1. parça yalnız B yazar; 2. parça A ve B yazar
+        scan_options: false
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A|A B", B: "A B|A B", C: "A|A", D: "B|A B"}
+          script: |
+            x = 7
+            bir = []
+            if x > 5:
+                bir.append("A")
+            elif x > 3:
+                bir.append("B")
+            iki = []
+            if x > 5:
+                iki.append("A")
+            if x > 3:
+                iki.append("B")
+            print(" ".join(bir) + "|" + " ".join(iki))
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 4
+          if x > 3:
+              x = 1
+          elif x > 0:
+              x = 100
+          print(x)
+        options:
+          A: "1"
+          B: "100"
+          C: "4"
+          D: "101"
+        scan_options: false
+        answer: A
+        misconception_options: {B: all_true_branches_run}
+        verify:
+          mode: stdout
+          outcomes: {A: "1", B: "100", C: "4", D: "101"}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki kodun başına hangi satır eklenirse ekrana bedava yazılır?
+        code: |
+          if yas < 7 or yas >= 65:
+              print("bedava")
+          elif yas < 18:
+              print("indirimli")
+          else:
+              print("tam")
+        options:
+          A: yas = 7
+          B: yas = 17
+          C: yas = 40
+          D: yas = 70
+        answer: D
+        verify:
+          mode: which_input
+          target: bedava
+          assignments: {A: "yas = 7", B: "yas = 17", C: "yas = 40", D: "yas = 70"}
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi, satır satır yaz.
+        code: |
+          a = 3
+          b = a * 4
+          if b - a > 10:
+              print("fark büyük")
+          else:
+              print("fark küçük")
+          print(b - a)
+        answer: "fark küçük\n9"
+        also_accept: ["fark küçük 9"]
+        verify: {mode: stdout}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 3
+          y = 0
+          if x > 2:
+              y = y + 1
+              if x > 5:
+                  y = y + 10
+              else:
+                  y = y + 100
+          else:
+              y = y + 1000
+          print(y)
+        answer: "101"
+        verify: {mode: stdout}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          sayac = 0
+          a = 9
+          if a % 3 == 0:
+              sayac += 1
+          if a % 2 == 0:
+              sayac += 1
+          elif a > 5:
+              sayac += 5
+          if a % 9 == 0:
+              sayac += 1
+          print(sayac)
+        answer: "7"
+        verify: {mode: stdout}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: shipping_fee
+        required_skills: [skill.programming.function_decomposition]
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def kargo(kilo):
+              if kilo <= 1:
+                  return 20
+              elif kilo <= 5:
+                  return 35
+              return 50
+
+          print(kargo(1) + kargo(5) + kargo(6))
+        answer: "105"
+        verify: {mode: stdout}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.branching_reasoning.predict_branch.f03: {C: all_true_branches_run}
+  item.programming.branching_reasoning.predict_branch.f04: {A: separate_ifs_exclusive}
+  item.programming.branching_reasoning.predict_branch.f06: {B: condition_uses_initial_values}

@@ -1,0 +1,301 @@
+skill: skill.python.set_operations
+objectives:
+  - id: objective.python.set_operations.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına birlesim(a, b) adında bir fonksiyon yaz: iki listeden en az birinde geçen değerleri, tekrarsız ve küçükten büyüğe sıralı bir liste olarak döndürsün. Testler iki listeyi | ile ayırarak verir. Örnek: birlesim([3, 1], [1, 5]) → [1, 3, 5].
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          ayrac = sys.argv.index("|")
+          print(cozum.birlesim([int(x) for x in sys.argv[1:ayrac]], [int(x) for x in sys.argv[ayrac + 1:]]))
+        suite:
+          - {id: overlap, args: ["3", "1", "|", "1", "5"], expected_stdout: "[1, 3, 5]\n"}
+          - {id: repeats, args: ["2", "2", "|", "2"], expected_stdout: "[2]\n"}
+          - {id: empty, args: ["|"], expected_stdout: "[]\n"}
+        reference: |
+          def birlesim(a, b):
+              return sorted(set(a) | set(b))
+        wrong:
+          - |
+            def birlesim(a, b):
+                return sorted(a + b)
+          - |
+            def birlesim(a, b):
+                return sorted(set(a) & set(b))
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına ortak_yok_mu(a, b) adında bir fonksiyon yaz: iki listenin hiç ortak değeri yoksa True, en az bir ortak değeri varsa False döndürsün. Testler iki listeyi | ile ayırarak verir.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          ayrac = sys.argv.index("|")
+          print(cozum.ortak_yok_mu([int(x) for x in sys.argv[1:ayrac]], [int(x) for x in sys.argv[ayrac + 1:]]))
+        suite:
+          - {id: disjoint, args: ["1", "2", "|", "3", "4"], expected_stdout: "True\n"}
+          - {id: one_common, args: ["1", "2", "|", "2", "9"], expected_stdout: "False\n"}
+          - {id: empty, args: ["|", "1"], expected_stdout: "True\n"}
+        reference: |
+          def ortak_yok_mu(a, b):
+              return len(set(a) & set(b)) == 0
+        wrong:
+          - |
+            def ortak_yok_mu(a, b):
+                return len(set(a) & set(b)) > 0
+          - |
+            def ortak_yok_mu(a, b):
+                return set(a) != set(b)
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına acik_lambalar(basmalar) adında bir fonksiyon yaz: başta bütün lambalar kapalı. basmalar listesindeki her numara, o numaralı lambanın anahtarına bir kez basıldığını gösterir: kapalıysa açılır, açıksa kapanır. Sonunda açık olan lambaların numaralarını küçükten büyüğe sıralı bir liste olarak döndürsün. Bir küme kullan (add ile ekle, remove ile çıkar). Örnek: acik_lambalar([3, 1, 3, 2]) → [1, 2].
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.acik_lambalar([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: example, args: ["3", "1", "3", "2"], expected_stdout: "[1, 2]\n"}
+          - {id: none, args: [], expected_stdout: "[]\n"}
+          - {id: three_presses, args: ["5", "5", "5"], expected_stdout: "[5]\n"}
+          - {id: all_off, args: ["4", "2", "2", "4"], expected_stdout: "[]\n"}
+        reference: |
+          def acik_lambalar(basmalar):
+              acik = set()
+              for n in basmalar:
+                  if n in acik:
+                      acik.remove(n)
+                  else:
+                      acik.add(n)
+              return sorted(acik)
+        wrong:
+          - |
+            def acik_lambalar(basmalar):
+                return sorted(set(basmalar))
+          - |
+            def acik_lambalar(basmalar):
+                acik = set()
+                for n in basmalar:
+                    acik.add(n)
+                return sorted(acik)
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına simetrik_fark(a, b) adında bir fonksiyon yaz: iki listeden yalnız birinde geçen (ikisinde birden geçmeyen) değerleri, tekrarsız ve küçükten büyüğe sıralı bir liste olarak döndürsün. Testler iki listeyi | ile ayırarak verir. Örnek: simetrik_fark([1, 2, 3], [3, 4]) → [1, 2, 4].
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          ayrac = sys.argv.index("|")
+          print(cozum.simetrik_fark([int(x) for x in sys.argv[1:ayrac]], [int(x) for x in sys.argv[ayrac + 1:]]))
+        suite:
+          - {id: mixed, args: ["1", "2", "3", "|", "3", "4"], expected_stdout: "[1, 2, 4]\n"}
+          - {id: same, args: ["5", "6", "|", "6", "5"], expected_stdout: "[]\n"}
+          - {id: disjoint, args: ["2", "|", "1"], expected_stdout: "[1, 2]\n"}
+        reference: |
+          def simetrik_fark(a, b):
+              return sorted((set(a) - set(b)) | (set(b) - set(a)))
+        wrong:
+          - |
+            def simetrik_fark(a, b):
+                return sorted(set(a) - set(b))
+          - |
+            def simetrik_fark(a, b):
+                return sorted(set(a) | set(b))
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına hepsi_var_mi(gereken, eldeki) adında bir fonksiyon yaz: gereken listesindeki her değer eldeki listesinde de geçiyorsa True, değilse False döndürsün. Testler iki listeyi | ile ayırarak verir. Örnek: hepsi_var_mi([1, 2], [2, 3, 1]) → True.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          ayrac = sys.argv.index("|")
+          print(cozum.hepsi_var_mi([int(x) for x in sys.argv[1:ayrac]], [int(x) for x in sys.argv[ayrac + 1:]]))
+        suite:
+          - {id: all_there, args: ["1", "2", "|", "2", "3", "1"], expected_stdout: "True\n"}
+          - {id: one_missing, args: ["1", "4", "|", "1", "2"], expected_stdout: "False\n"}
+          - {id: nothing_needed, args: ["|", "7"], expected_stdout: "True\n"}
+          - {id: repeats, args: ["2", "2", "|", "2"], expected_stdout: "True\n"}
+        reference: |
+          def hepsi_var_mi(gereken, eldeki):
+              return len(set(gereken) - set(eldeki)) == 0
+        wrong:
+          - |
+            def hepsi_var_mi(gereken, eldeki):
+                return len(set(gereken) & set(eldeki)) > 0
+          - |
+            def hepsi_var_mi(gereken, eldeki):
+                return len(set(eldeki) - set(gereken)) == 0
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına eksik_sayilar(liste, n) adında bir fonksiyon yaz: 1'den n'e kadar (n dahil) sayılardan listede olmayanları küçükten büyüğe sıralı bir liste olarak döndürsün. Örnek: eksik_sayilar([2, 5, 1], 5) → [3, 4].
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.eksik_sayilar([int(x) for x in sys.argv[2:]], int(sys.argv[1])))
+        suite:
+          - {id: two_missing, args: ["5", "2", "5", "1"], expected_stdout: "[3, 4]\n"}
+          - {id: none_missing, args: ["3", "3", "1", "2"], expected_stdout: "[]\n"}
+          - {id: all_missing, args: ["2"], expected_stdout: "[1, 2]\n"}
+          - {id: outside_values, args: ["3", "9", "2"], expected_stdout: "[1, 3]\n"}
+        reference: |
+          def eksik_sayilar(liste, n):
+              return sorted(set(range(1, n + 1)) - set(liste))
+        wrong:
+          - |
+            def eksik_sayilar(liste, n):
+                return sorted(set(range(n)) - set(liste))
+          - |
+            def eksik_sayilar(liste, n):
+                return sorted(set(liste) - set(range(1, n + 1)))
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına hepsi_farkli_mi(liste) adında bir fonksiyon yaz: listedeki bütün değerler birbirinden farklıysa True, en az bir değer tekrar ediyorsa False döndürsün.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.hepsi_farkli_mi([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: distinct, args: ["1", "2", "3"], expected_stdout: "True\n"}
+          - {id: repeat, args: ["4", "1", "4"], expected_stdout: "False\n"}
+          - {id: empty, args: [], expected_stdout: "True\n"}
+        reference: |
+          def hepsi_farkli_mi(liste):
+              return len(set(liste)) == len(liste)
+        wrong:
+          - |
+            def hepsi_farkli_mi(liste):
+                return len(set(liste)) < len(liste)
+          - |
+            def hepsi_farkli_mi(liste):
+                return liste[0] != liste[-1]
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına ziyaretci_sayisi(gunler) adında bir fonksiyon yaz: gunler, her günün ziyaretçi adlarından oluşan listelerin listesidir; bütün günler boyunca kaç farklı kişinin geldiğini döndürsün. Testler günleri | ile ayırarak verir.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          gunler = [[]]
+          for x in sys.argv[1:]:
+              if x == "|":
+                  gunler.append([])
+              else:
+                  gunler[-1].append(x)
+          print(cozum.ziyaretci_sayisi(gunler))
+        suite:
+          - {id: three_days, args: ["Ali", "Ece", "|", "Ece", "Can", "|", "Ali"], expected_stdout: "3\n"}
+          - {id: one_day, args: ["Ali", "Ali"], expected_stdout: "1\n"}
+          - {id: empty_day, args: ["|", "Can"], expected_stdout: "1\n"}
+        reference: |
+          def ziyaretci_sayisi(gunler):
+              herkes = set()
+              for gun in gunler:
+                  herkes = herkes | set(gun)
+              return len(herkes)
+        wrong:
+          - |
+            def ziyaretci_sayisi(gunler):
+                toplam = 0
+                for gun in gunler:
+                    toplam += len(set(gun))
+                return toplam
+          - |
+            def ziyaretci_sayisi(gunler):
+                herkes = set()
+                for gun in gunler:
+                    herkes = set(gun)
+                return len(herkes)
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına her_gun_gelen(gunler) adında bir fonksiyon yaz: gunler, her günün ziyaretçi adlarından oluşan listelerin (en az bir gün) listesidir; her gün gelmiş olanların adlarını alfabetik sıralı bir liste olarak döndürsün. Testler günleri | ile ayırarak verir.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          gunler = [[]]
+          for x in sys.argv[1:]:
+              if x == "|":
+                  gunler.append([])
+              else:
+                  gunler[-1].append(x)
+          print(cozum.her_gun_gelen(gunler))
+        suite:
+          - {id: one_always, args: ["Ali", "Ece", "|", "Ece", "Can", "|", "Ece", "Ali"], expected_stdout: "['Ece']\n"}
+          - {id: single_day, args: ["Can", "Ali"], expected_stdout: "['Ali', 'Can']\n"}
+          - {id: nobody, args: ["Ali", "|", "Can"], expected_stdout: "[]\n"}
+        reference: |
+          def her_gun_gelen(gunler):
+              ortak = set(gunler[0])
+              for gun in gunler:
+                  ortak = ortak & set(gun)
+              return sorted(ortak)
+        wrong:
+          - |
+            def her_gun_gelen(gunler):
+                ortak = set()
+                for gun in gunler:
+                    ortak = ortak & set(gun)
+                return sorted(ortak)
+          - |
+            def her_gun_gelen(gunler):
+                ortak = set(gunler[0])
+                for gun in gunler:
+                    ortak = ortak | set(gun)
+                return sorted(ortak)
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına karsilastir(a, b) adında bir fonksiyon yaz: iki listeyi tekrarlarını yok sayarak karşılaştırsın ve ortak=<ikisinde de olan farklı değer sayısı> yalniz_a=<yalnız a'da olan> yalniz_b=<yalnız b'de olan> biçiminde bir yazı döndürsün. Testler iki listeyi | ile ayırarak verir. Örnek: karsilastir([1, 2, 2, 3], [3, 4]) → "ortak=1 yalniz_a=2 yalniz_b=1".
+        required_skills: [skill.python.functions_parameters_return, skill.python.value_type_behavior]
+        harness: |
+          import sys, cozum
+          ayrac = sys.argv.index("|")
+          print("[" + cozum.karsilastir([int(x) for x in sys.argv[1:ayrac]], [int(x) for x in sys.argv[ayrac + 1:]]) + "]")
+        suite:
+          - {id: example, args: ["1", "2", "2", "3", "|", "3", "4"], expected_stdout: "[ortak=1 yalniz_a=2 yalniz_b=1]\n"}
+          - {id: same, args: ["5", "6", "|", "6", "5", "5"], expected_stdout: "[ortak=2 yalniz_a=0 yalniz_b=0]\n"}
+          - {id: empty_b, args: ["7", "7", "|"], expected_stdout: "[ortak=0 yalniz_a=1 yalniz_b=0]\n"}
+        reference: |
+          def karsilastir(a, b):
+              x = set(a)
+              y = set(b)
+              return "ortak=" + str(len(x & y)) + " yalniz_a=" + str(len(x - y)) + " yalniz_b=" + str(len(y - x))
+        wrong:
+          - |
+            def karsilastir(a, b):
+                x = set(a)
+                y = set(b)
+                return "ortak=" + str(len(x | y)) + " yalniz_a=" + str(len(x - y)) + " yalniz_b=" + str(len(y - x))
+          - |
+            def karsilastir(a, b):
+                x = set(a)
+                y = set(b)
+                return "ortak=" + str(len(x & y)) + " yalniz_a=" + str(len(a) - len(x & y)) + " yalniz_b=" + str(len(b) - len(x & y))
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına ayni_kelimeler_mi(a, b) adında bir fonksiyon yaz: iki kelime listesi, sıra ve tekrar sayısı önemsenmeden aynı kelimelerden oluşuyorsa True, değilse False döndürsün. Testler iki listeyi | ile ayırarak verir. Örnek: ayni_kelimeler_mi(["elma", "armut", "elma"], ["armut", "elma"]) → True.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          ayrac = sys.argv.index("|")
+          print(cozum.ayni_kelimeler_mi(sys.argv[1:ayrac], sys.argv[ayrac + 1:]))
+        suite:
+          - {id: same_set, args: ["elma", "armut", "elma", "|", "armut", "elma"], expected_stdout: "True\n"}
+          - {id: extra_word, args: ["elma", "|", "elma", "kiraz"], expected_stdout: "False\n"}
+          - {id: both_empty, args: ["|"], expected_stdout: "True\n"}
+          - {id: same_length_different, args: ["a", "b", "|", "a", "c"], expected_stdout: "False\n"}
+        reference: |
+          def ayni_kelimeler_mi(a, b):
+              return set(a) == set(b)
+        wrong:
+          - |
+            def ayni_kelimeler_mi(a, b):
+                return a == b
+          - |
+            def ayni_kelimeler_mi(a, b):
+                return len(set(a)) == len(set(b))

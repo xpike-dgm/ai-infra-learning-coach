@@ -1,0 +1,56 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.functions_parameters_return.write_small_function.g11@v1",
+  "item": "item.python.functions_parameters_return.write_small_function.g11@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\na = [int(x) for x in sys.argv[1:]]\nasil = cozum.derece\ncagrilar = []\ndef izle(p):\n    cagrilar.append(p)\n    return asil(p)\ncozum.derece = izle\nprint(asil(a[0]), cozum.karne(a[0], a[1]), \"derece kullanıldı\" if cagrilar else \"derece kullanılmadı\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "mixed",
+      "args": [
+        "95",
+        "80"
+      ],
+      "expected_stdout": "pekiyi iyi derece kullanıldı\n"
+    },
+    {
+      "id": "boundary",
+      "args": [
+        "60",
+        "61"
+      ],
+      "expected_stdout": "orta orta derece kullanıldı\n"
+    },
+    {
+      "id": "low",
+      "args": [
+        "40",
+        "70"
+      ],
+      "expected_stdout": "zayıf zayıf derece kullanıldı\n"
+    },
+    {
+      "id": "top",
+      "args": [
+        "90",
+        "90"
+      ],
+      "expected_stdout": "pekiyi pekiyi derece kullanıldı\n"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.while_termination.debug_infinite_loop.g02@v1",
+  "item": "item.python.while_termination.debug_infinite_loop.g02@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "seven",
+      "stdin": "7\n",
+      "expected_stdout": "7\n8\n9\n10\n"
+    },
+    {
+      "id": "ten",
+      "stdin": "10\n",
+      "expected_stdout": "10\n"
+    },
+    {
+      "id": "above",
+      "stdin": "11\n",
+      "expected_stdout": ""
+    }
+  ]
+}

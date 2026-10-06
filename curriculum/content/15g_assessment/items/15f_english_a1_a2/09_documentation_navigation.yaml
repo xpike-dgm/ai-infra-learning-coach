@@ -1,0 +1,87 @@
+skill: skill.english.documentation_navigation
+objectives:
+  - id: objective.english.documentation_navigation.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bir yardım sayfasının başlıkları bunlar. Komutun ne yaptığını hangi başlık anlatır?
+        code: |
+          NAME
+          SYNOPSIS
+          DESCRIPTION
+          EXAMPLES
+          SEE ALSO
+        options:
+          A: "DESCRIPTION"
+          B: "NAME"
+          C: "EXAMPLES"
+          D: "SEE ALSO"
+        answer: A
+        verify:
+          mode: reference
+          reference: "man-pages(7), Sections within a manual page — DESCRIPTION: an explanation of what the program does"
+          claim: "Komutun ne yaptığını DESCRIPTION anlatır."
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          `dosya-gor` adlı bir aracın seçenek listesi bu. Gizli dosyaları da görmek için hangi seçeneği kullanırsın? Kısa biçimini yaz.
+        code: |
+          OPTIONS
+            -a, --all         show hidden files
+            -s, --size        sort by size
+            -t, --time        sort by time
+        answer: "-a"
+        also_accept: ["--all"]
+        verify:
+          mode: reference
+          reference: "man-pages(7) — OPTIONS lists each option with its description; Wiktionary — hidden (adjective)"
+          claim: "show hidden files satırının seçeneği -a'dır."
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          `dosya-say` adlı bir aracın yardım sayfasından bir parça bu. Bir klasördeki dosyaları saymak için hangi örnek komutu kullanırsın?
+        code: |
+          EXAMPLES
+            dosya-say -h
+                show the help
+            dosya-say -c src/
+                count the files of the folder src/
+            dosya-say -V
+                print the version
+        options:
+          A: "dosya-say -c src/"
+          B: "dosya-say -h"
+          C: "dosya-say -V"
+          D: "Hiçbiri; örneklerde dosya sayan bir komut yok"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "man-pages(7), Sections within a manual page — EXAMPLES: one or more examples demonstrating how the command is used"
+          claim: "count the files of the folder src/ açıklaması dosya-say -c src/ örneğinindir."
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          `liste-yap` adlı bir aracın seçenek listesi bu. Gizli dosyalar dahil bütün dosyaları ters sırayla görmek için hangi seçenekleri birlikte verirsin?
+        code: |
+          OPTIONS
+            -a, --all         show all files, also hidden files
+            -r, --reverse     reverse the order
+            -s, --size        show the size of each file
+            -q, --quiet       print only the number of files
+        options:
+          A: "-a -r"
+          B: "-a -s"
+          C: "-q -r"
+          D: "-r"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "man-pages(7) — OPTIONS; each option is found by its description"
+          claim: "Gizli dosyalar dahil hepsi -a, ters sıra -r'dir."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.english.documentation_navigation.demonstrate_capability.f08: {B: brackets_required, C: brackets_required}

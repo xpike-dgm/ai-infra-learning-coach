@@ -1,0 +1,119 @@
+skill: skill.python.expression_evaluation
+objectives:
+  - id: objective.python.expression_evaluation.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(10 - 7 % 4, (10 - 7) % 4)
+        answer: "7 3"
+        verify: {mode: stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(17 % 5, 2 ** 5)
+        answer: "2 32"
+        verify: {mode: stdout}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(3 * 2.0, 3 * 2)
+        answer: "6.0 6"
+        verify: {mode: stdout}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(7.5 // 2 * 2 + 7.5 % 2, type(7.5 // 2))
+        answer: "7.5 <class 'float'>"
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          n = 4728
+          print(n // 100 % 10, n % 100 // 10)
+        answer: "7 2"
+        verify: {mode: stdout}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(100 / 8 // 2)
+        options:
+          A: "6"
+          B: "6.0"
+          C: "6.25"
+          D: "50"
+        scan_options: false
+        answer: B
+        verify: {mode: stdout}
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(abs(-10 // 4), abs(-10) // 4)
+        answer: "3 2"
+        verify: {mode: stdout}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(-17 % 5, 17 % -5)
+        answer: "3 -3"
+        verify: {mode: stdout}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          x = 6
+          y = 4
+          print(x ** 2 - y ** 2 == (x - y) * (x + y), x / y * y)
+        answer: "True 6.0"
+        verify: {mode: stdout}
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(2 * -3 ** 2)
+        options:
+          A: "-18"
+          B: "36"
+          C: "18"
+          D: "-36"
+        scan_options: false
+        answer: A
+        misconception_options: {C: minus_before_power}
+        verify: {mode: stdout}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: boxes_even_share
+        required_skills: [skill.python.list_operations]
+        prompt: |
+          kutular listesinde her kutudaki kalem sayısı var. Kalemler kişilere eşit paylaştırılacak. Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          kutular = [5, 9, 6]
+          kisi = len(kutular)
+          toplam = sum(kutular)
+          print(toplam // kisi, toplam % kisi, toplam / kisi > 6)
+        answer: "6 2 True"
+        verify: {mode: stdout}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.python.expression_evaluation.demonstrate_capability.f03: {B: minus_before_power}
+  item.python.expression_evaluation.demonstrate_capability.f04: {B: slash_gives_int}

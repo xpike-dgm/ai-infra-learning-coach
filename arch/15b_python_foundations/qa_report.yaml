@@ -243,7 +243,7 @@ checks:
   details: ''
 - check: E15B-05_known_modes
   result: PASS
-  details: '{''suite'', ''stdout'', ''traceback''}'
+  details: '{''traceback'', ''stdout'', ''suite''}'
 - check: E15B-05_counts
   result: PASS
   details: 109 85 24

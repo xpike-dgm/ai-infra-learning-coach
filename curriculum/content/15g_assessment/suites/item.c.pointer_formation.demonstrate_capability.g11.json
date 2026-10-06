@@ -1,0 +1,28 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.pointer_formation.demonstrate_capability.g11@v1",
+  "item": "item.c.pointer_formation.demonstrate_capability.g11@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n#include <stddef.h>\n\nint ikisi_de_gecerli(int *a, int *b);\n\nint main(void) {\n    int x = 0, y = 0;\n    printf(\"%d %d %d %d %d\\n\", ikisi_de_gecerli(&x, &y), ikisi_de_gecerli(&x, &x), ikisi_de_gecerli(NULL, &y),\n           ikisi_de_gecerli(&x, NULL), ikisi_de_gecerli(NULL, NULL));\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -c ders_test.c -o ders_test.o && gcc -g -fsanitize=address,undefined cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0",
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "combinations",
+      "expected_stdout": "1 0 0 0 0\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+skill: skill.computing.source_runtime_artifact_distinction
+objectives:
+  - id: objective.computing.source_runtime_artifact_distinction.classify_artifacts
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bir programcı, değiştirmeden önce hesap.c dosyasının bir kopyasını alıp hesap_yedek.c adıyla kaydetti; iki dosyanın içeriği aynı. hesap_yedek.c hangi sınıftandır?
+        options:
+          A: Kaynak dosya; programcının yazdığı metnin bir kopyasıdır, onu da derleyebilirsin.
+          B: Ara dosya; başka bir dosyadan üretildiği için.
+          C: Çalıştırılabilir dosya; içinde program var.
+          D: Çalışma çıktısı; bir program onu oluşturdu.
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "kaynak", B: "ara_dosya", C: "calistirilabilir", D: "calisma_ciktisi"}
+          script: |
+            cd "$(mktemp -d)"
+            cat > hesap.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                printf("%d\n", 6 * 7);
+                return 0;
+            }
+            KAYNAK
+            cp hesap.c hesap_yedek.c
+            if gcc hesap_yedek.c -o yedek && [ "$(./yedek)" = "42" ] && ! [ -x hesap_yedek.c ]; then echo kaynak; else echo baska; fi
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          C'de çalıştırılabilir dosyayı hangi adım üretir?
+        options:
+          A: Programcının kaynak dosyayı yazması
+          B: Derlemenin her kaynak dosyadan bir nesne dosyası üretmesi
+          C: Nesne dosyalarının birleştirilmesi, yani bağlama (linking)
+          D: Programın çalışması
+        scan_options: false
+        answer: C
+        misconception_options: {B: object_file_runnable}
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output — 'Compilation can involve up to four stages: preprocessing, compilation proper, assembly and linking, always in that order. … linking combines all the object files … into an executable file.'"
+          claim: "Çalıştırılabilir dosyayı bağlama (linking) aşaması üretir; derleme yalnız nesne dosyaları üretir."
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          Linux'ta tablo.c dosyasını -o seçeneği vermeden gcc tablo.c komutuyla derledin. Klasörde daha önce olmayan a.out adlı bir dosya belirdi ve ./a.out ile çalıştırınca program ekrana yazı yazdı. a.out hangi sınıftandır?
+        options:
+          A: Kaynak dosya
+          B: Ara dosya (nesne dosyası)
+          C: Çalıştırılabilir dosya
+          D: Çalışma çıktısı
+        scan_options: false
+        answer: C
+        verify:
+          mode: shell
+          outcomes: {A: "kaynak", B: "ara_dosya", C: "calistirilabilir", D: "calisma_ciktisi"}
+          script: |
+            cat > tablo.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                puts("tablo");
+                return 0;
+            }
+            KAYNAK
+            gcc tablo.c
+            if [ -f a.out ] && [ "$(./a.out)" = "tablo" ]; then echo calistirilabilir; else echo baska; fi
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Linux'ta boş bir klasörde yalnız hesap.c var ve içinde bir yazım hatası var (bir satırın sonunda ; unutulmuş). gcc hesap.c -o hesap komutunu çalıştırdın ve derleyici bir hata mesajı yazdı. Bu komuttan sonra klasörde hangi dosyalar vardır?
+        options:
+          A: Yalnız hesap.c; derleme başarısız olunca çalıştırılabilir dosya üretilmez.
+          B: hesap.c ve hesap; hata verse de derleyici çalıştırılabilir dosyayı üretir.
+          C: hesap.c, hesap.o ve hesap
+          D: Hiçbiri; derleme hatası kaynak dosyayı da siler.
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "yalniz_kaynak", B: "kaynak_ve_calistirilabilir", C: "uc_dosya", D: "hicbiri"}
+          script: |
+            cd "$(mktemp -d)"
+            cat > hesap.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                printf("%d\n", 6 * 7)
+                return 0;
+            }
+            KAYNAK
+            gcc hesap.c -o hesap 2> hata.txt
+            durum=$?
+            rm hata.txt
+            if [ "$durum" -ne 0 ] && [ "$(ls)" = "hesap.c" ]; then echo yalniz_kaynak; else echo baska; fi
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bir C programı ekrana Hoş geldin yazıyor. Arkadaşın bu yazıyı İyi günler olarak değiştirmek istiyor ve senden bir dosya istiyor. Klasörde kutu.c, kutu.o, kutu (çalıştırılabilir dosya) ve programın çalışırken yazdığı kutu_kayit.txt var. Ona hangisini göndermelisin, neden?
+        options:
+          A: kutu.c; programın davranışı kaynak dosyada yazılıdır, değişiklik orada yapılıp yeniden derlenir.
+          B: kutu; çalışan dosya odur, yazıyı onun içinde değiştirmek yeterlidir.
+          C: kutu.o; makine komutları onun içindedir.
+          D: kutu_kayit.txt; program yazıyı oradan okur.
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output — çalıştırılabilir dosya kaynak dosyalardan derleme ve bağlamayla üretilir; davranışı değiştirmek için kaynak değiştirilip yeniden derlenir"
+          claim: "Programın davranışını değiştirmek için kaynak dosya değiştirilir ve yeniden derlenir; nesne ve çalıştırılabilir dosya bunun ürünüdür, çalışma çıktısı programın davranışını belirlemez."
+      - slug: g06
+        difficulty: transfer_integration
+        prompt: |
+          Linux'ta derlenmiş rapor programını ./rapor > ozet.txt komutuyla çalıştırdın: program ekrana yazacaklarını bu kez ekrana değil, > sayesinde ozet.txt dosyasına yazdı. ozet.txt hangi sınıftandır?
+        options:
+          A: Çalışma çıktısı; program çalıştığı için oluştu, programın kendisi değildir.
+          B: Kaynak dosya; içinde okunabilir metin var.
+          C: Ara dosya; çeviri sırasında üretildi.
+          D: Çalıştırılabilir dosya; rapor programından üretildi.
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "calisma_ciktisi", B: "kaynak", C: "ara_dosya", D: "calistirilabilir"}
+          script: |
+            cd "$(mktemp -d)"
+            cat > rapor.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                printf("Toplam: %d\n", 12);
+                return 0;
+            }
+            KAYNAK
+            gcc rapor.c -o rapor
+            rm rapor.c
+            ./rapor > ozet.txt
+            if [ "$(cat ozet.txt)" = "Toplam: 12" ] && ! [ -x ozet.txt ]; then echo calisma_ciktisi; else echo baska; fi
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          sayi.c ekrana 5 yazıyordu. Linux'ta gcc sayi.c -o eski ile derledin. Sonra sayi.c'de 5'i 9 yaptın ve bu kez gcc sayi.c -o yeni ile derledin. Şimdi önce ./eski, sonra ./yeni çalıştırırsan ekranda sırayla ne görünür?
+        options:
+          A: 5, sonra 9; her çalıştırılabilir dosya, derlendiği andaki kaynak kodun çevirisidir.
+          B: 9, sonra 9; kaynak dosya değiştiği için iki program da yeni hâli çalıştırır.
+          C: 5, sonra 5; ilk derleme kalıcıdır.
+          D: eski artık çalışmaz, yeni 9 yazar.
+        scan_options: false
+        answer: A
+        misconception_options: {B: executable_needs_source}
+        verify:
+          mode: shell
+          outcomes: {A: "5\n9", B: "9\n9", C: "5\n5", D: "9"}
+          script: |
+            printf '#include <stdio.h>\nint main(void) { printf("%%d\\n", 5); return 0; }\n' > sayi.c
+            gcc sayi.c -o eski
+            printf '#include <stdio.h>\nint main(void) { printf("%%d\\n", 9); return 0; }\n' > sayi.c
+            gcc sayi.c -o yeni
+            ./eski
+            ./yeni
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          ana.py, yardimci.py dosyasındaki kodu kullanıyor. python ana.py ilk kez çalıştırıldığında ekrana eski yazıldı ve klasörde, içinde yardimci ile başlayıp .pyc ile biten bir dosya olan __pycache__ klasörü belirdi. Sonra yardimci.py'yi ekrana yeni sürüm yazacak biçimde değiştirdin; __pycache__ klasörüne dokunmadın. Yeniden python ana.py dersen ekranda ne görünür?
+        options:
+          A: yeni sürüm; .pyc kaynak dosyadan üretilmiş bir ara dosyadır, kaynak değişince yorumlayıcı onu yeniden üretir.
+          B: eski; yorumlayıcı saklanan .pyc dosyasını kaynak değişse de kullanır.
+          C: Hiçbir şey; .pyc ile kaynak uyuşmadığı için program çalışmaz.
+          D: Önce eski, sonra yeni sürüm.
+        scan_options: false
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "yeni sürüm", B: "eski", C: "", D: "eski\nyeni sürüm"}
+          script: |
+            import os, subprocess, sys, time
+            with open("yardimci.py", "w", encoding="utf-8") as f:
+                f.write('print("eski")\n')
+            with open("ana.py", "w", encoding="utf-8") as f:
+                f.write('import yardimci\n')
+            first = subprocess.run([sys.executable, "ana.py"], capture_output=True, text=True).stdout
+            assert first.strip() == "eski" and os.path.isdir("__pycache__"), first
+            time.sleep(1.1)
+            with open("yardimci.py", "w", encoding="utf-8") as f:
+                f.write('print("yeni sürüm")\n')
+            print(subprocess.run([sys.executable, "ana.py"], capture_output=True, text=True).stdout.strip())
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.f02: {D: object_file_runnable}

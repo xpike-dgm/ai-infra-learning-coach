@@ -142,7 +142,7 @@ checks:
     'prerequisite_repaired_replan', 'invalid_due_to_prerequisite_contamination']]
 - check: E12E-02_counts_match_contract
   result: PASS
-  details: counts=[10, 7, 9, 7, 15, 13, 10, 8, 9, 13, 9]
+  details: counts=[11, 7, 9, 7, 15, 13, 10, 8, 9, 13, 9]
 - check: E12E-02_family_ids_match_contract
   result: PASS
   details: ids=['learning_need', 'validation_trust', 'prerequisite', 'retention',
@@ -331,7 +331,8 @@ checks:
     ''retention_review_due'': ''review_due_knowledge'', ''diagnostic_opportunity'':
     ''collect_missing_evidence'', ''continue_learning'': ''continue_current_learning'',
     ''new_learning'': ''continue_current_learning'', ''reinforcement_opportunity'':
-    ''continue_current_learning'', ''integration_opportunity'': ''continue_current_learning''}'
+    ''continue_current_learning'', ''integration_opportunity'': ''continue_current_learning'',
+    ''transfer_opportunity'': ''continue_current_learning''}'
 - check: E12E-05_parallel_track
   result: PASS
   details: the parallel track's cadence is not the only way English becomes the reason
@@ -452,7 +453,7 @@ checks:
   details: missing=[] extra=[]
 - check: E12E-07_sentences_read
   result: PASS
-  details: sentences=132
+  details: sentences=133
 - check: E12E-07_no_forbidden_claim
   result: PASS
   details: '[]'

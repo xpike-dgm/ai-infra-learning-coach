@@ -1,0 +1,52 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.functions_parameters_return.write_small_function.g09@v1",
+  "item": "item.python.functions_parameters_return.write_small_function.g09@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.faktoriyel(int(sys.argv[1])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "zero",
+      "args": [
+        "0"
+      ],
+      "expected_stdout": "1\n"
+    },
+    {
+      "id": "one",
+      "args": [
+        "1"
+      ],
+      "expected_stdout": "1\n"
+    },
+    {
+      "id": "five",
+      "args": [
+        "5"
+      ],
+      "expected_stdout": "120\n"
+    },
+    {
+      "id": "ten",
+      "args": [
+        "10"
+      ],
+      "expected_stdout": "3628800\n"
+    }
+  ]
+}

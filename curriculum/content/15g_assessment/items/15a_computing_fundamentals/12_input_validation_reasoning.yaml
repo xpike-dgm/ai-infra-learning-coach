@@ -1,0 +1,241 @@
+skill: skill.programming.input_validation_reasoning
+objectives:
+  - id: objective.programming.input_validation_reasoning.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod kaç farklı tamsayı değeri için geçerli yazar? Yalnız sayıyı yaz.
+        code: |
+          if kod >= 10 and kod < 15:
+              print("geçerli")
+          else:
+              print("geçersiz")
+        answer: "5"
+        verify:
+          mode: script
+          script: |
+            sayac = 0
+            for kod in range(-100, 100):
+                if kod >= 10 and kod < 15:
+                    sayac += 1
+            print(sayac)
+      - slug: g02
+        difficulty: authentic_application
+        prompt: |
+          Kural: yaş 0 ile 120 arasında olmalı (ikisi dahil). Aşağıdaki doğrulama kodu yas = 200 için ne yazar?
+        code: |
+          if yas >= 0:
+              print("geçerli")
+          elif yas > 120:
+              print("çok büyük")
+          else:
+              print("eksi olamaz")
+        required_skills: [skill.programming.branching_reasoning]
+        options:
+          A: geçerli
+          B: çok büyük
+          C: eksi olamaz
+          D: Hiçbir şey
+        scan_options: false
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            yas = 200
+            if yas >= 0:
+                yazilan = "geçerli"
+            elif yas > 120:
+                yazilan = "çok büyük"
+            else:
+                yazilan = "eksi olamaz"
+            print({"geçerli": "A", "çok büyük": "B", "eksi olamaz": "C"}.get(yazilan, "D"))
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          yuzde = 130
+          if yuzde > 100:
+              yuzde = 100
+          if yuzde < 0:
+              yuzde = 0
+          print(yuzde)
+        options:
+          A: "100"
+          B: "130"
+          C: "0"
+          D: Bir hata mesajı
+        scan_options: false
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "100", B: "130", C: "0", D: "<hata>"}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod, hiz'in hangi tamsayı değerlerini geçerli kabul eder?
+        code: |
+          if hiz <= 0 or hiz > 130:
+              print("geçersiz")
+          else:
+              print("geçerli")
+        options:
+          A: 1 ile 130 arası; 0 kabul edilmez, 130 kabul edilir
+          B: 0 ile 130 arası, iki sınır da dahil
+          C: 0 ile 130 arası, iki sınır da hariç
+          D: Yalnızca 130'dan büyük değerler
+        scan_options: false
+        answer: A
+        misconception_options: {B: boundary_inclusion_ignored, C: boundary_inclusion_ignored}
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            code = 'if hiz <= 0 or hiz > 130:\n    s = "x"\nelse:\n    s = "g"\n'
+            accepted = set()
+            for h in range(-50, 200):
+                env = {"hiz": h}
+                exec(code, env)
+                if env["s"] == "g":
+                    accepted.add(h)
+            options = {"A": set(range(1, 131)), "B": set(range(0, 131)), "C": set(range(1, 130)), "D": set(range(131, 200))}
+            print(",".join(k for k, s in options.items() if s == accepted))
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Kural: PIN, 1000 ile 9999 arasında (ikisi dahil) bir sayı olmalı. Aşağıdaki kod kuralın bir kısmını unutmuş. Hangi girdi, kurala göre geçersiz olduğu halde bu kod tarafından geçerli sayılır?
+        code: |
+          if pin >= 1000:
+              print("geçerli")
+          else:
+              print("geçersiz")
+        options:
+          A: pin = 999
+          B: pin = 1000
+          C: pin = 9999
+          D: pin = 12345
+        answer: D
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            code = 'if pin >= 1000:\n    s = "geçerli"\nelse:\n    s = "geçersiz"\n'
+            options = {"A": 999, "B": 1000, "C": 9999, "D": 12345}
+            slipped = []
+            for k, pin in options.items():
+                env = {"pin": pin}
+                exec(code, env)
+                if env["s"] == "geçerli" and not (1000 <= pin <= 9999):
+                    slipped.append(k)
+            print(",".join(slipped))
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Kural: 3 yaş ve üstü için bilet ücretlidir, daha küçükler için ücretsizdir. Aşağıdaki kod hangi girdide kurala aykırı davranır?
+        code: |
+          if yas > 3:
+              print("ücretli")
+          else:
+              print("ücretsiz")
+        options:
+          A: yas = 2
+          B: yas = 3
+          C: yas = 4
+          D: yas = 10
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            code = 'if yas > 3:\n    s = "ücretli"\nelse:\n    s = "ücretsiz"\n'
+            options = {"A": 2, "B": 3, "C": 4, "D": 10}
+            wrong = []
+            for k, yas in options.items():
+                env = {"yas": yas}
+                exec(code, env)
+                rule = "ücretli" if yas >= 3 else "ücretsiz"
+                if env["s"] != rule:
+                    wrong.append(k)
+            print(",".join(wrong))
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Kural: kapı kodu 1000 ile 9999 arasında (ikisi dahil) olmalı ve 7'ye tam bölünmeli. Kod, kodu reddetmek için bir koşul kullanacak: koşul True ise "geçersiz" yazılacak. Hangi ret koşulu kuralı doğru ifade eder?
+        options:
+          A: kod < 1000 or kod > 9999 or kod % 7 != 0
+          B: kod < 1000 and kod > 9999 and kod % 7 != 0
+          C: kod < 1000 or kod > 9999 and kod % 7 != 0
+          D: kod >= 1000 and kod <= 9999 and kod % 7 == 0
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            options = {"A": lambda k: k < 1000 or k > 9999 or k % 7 != 0,
+                       "B": lambda k: k < 1000 and k > 9999 and k % 7 != 0,
+                       "C": lambda k: k < 1000 or k > 9999 and k % 7 != 0,
+                       "D": lambda k: k >= 1000 and k <= 9999 and k % 7 == 0}
+            reject = lambda k: not (1000 <= k <= 9999 and k % 7 == 0)
+            print(",".join(n for n, f in options.items() if all(f(k) == reject(k) for k in range(900, 10100))))
+      - slug: g08
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          yas = -5
+          if yas < 0:
+              print("hata: eksi olamaz")
+          elif yas > 150:
+              print("hata: çok büyük")
+          elif yas < 18:
+              print("reşit değil")
+          else:
+              print("tamam")
+        options:
+          A: "hata: eksi olamaz"
+          B: "reşit değil"
+          C: 'İki satır: önce "hata: eksi olamaz", sonra "reşit değil"'
+          D: "tamam"
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "hata: eksi olamaz", B: "reşit değil", C: "hata: eksi olamaz\nreşit değil", D: "tamam"}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Kural: x, 10 ile 20 arasında olmalı (10 ve 20 dahil). Aşağıdaki doğrulama kodu hangi girdileri kurala aykırı değerlendirir?
+        code: |
+          if x > 10 and x < 20:
+              print("geçerli")
+          else:
+              print("geçersiz")
+        options:
+          A: Yalnızca 10 ile 20'yi; ikisini de geçersiz sayar
+          B: 10'dan küçük bütün sayıları
+          C: Hiçbirini; kural doğru ifade edilmiş
+          D: Yalnızca 15'i
+        scan_options: false
+        answer: A
+        misconception_options: {C: boundary_inclusion_ignored}
+        verify:
+          mode: script
+          outcomes: {A: "10,20", B: "kucukler", C: "", D: "15"}
+          script: |
+            code = 'if x > 10 and x < 20:\n    s = "geçerli"\nelse:\n    s = "geçersiz"\n'
+            wrong = []
+            for x in range(-5, 40):
+                env = {"x": x}
+                exec(code, env)
+                rule = "geçerli" if 10 <= x <= 20 else "geçersiz"
+                if env["s"] != rule:
+                    wrong.append(str(x))
+            print(",".join(wrong))
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.input_validation_reasoning.demonstrate_capability.f01: {A: boundary_inclusion_ignored, B: boundary_inclusion_ignored}
+  item.programming.input_validation_reasoning.demonstrate_capability.f02: {B: boundary_inclusion_ignored, C: or_for_range, D: boundary_inclusion_ignored}
+  item.programming.input_validation_reasoning.demonstrate_capability.f05: {D: partial_rule_enough}
+  item.programming.input_validation_reasoning.demonstrate_capability.f07: {B: boundary_inclusion_ignored}

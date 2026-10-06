@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.files_paths_basic.demonstrate_capability.g06@v1",
+  "item": "item.python.files_paths_basic.demonstrate_capability.g06@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, tempfile, cozum\nfrom pathlib import Path\nicerik = sys.argv[1].replace(\"|\", chr(10))\nwith tempfile.TemporaryDirectory() as d:\n    kaynak = Path(d) / \"kaynak.txt\"\n    hedef = Path(d) / \"hedef.txt\"\n    kaynak.write_bytes(icerik.encode(\"utf-8\"))\n    hedef.write_bytes(\"eski\".encode(\"utf-8\"))\n    cozum.kopyala(kaynak, hedef)\n    with open(hedef, encoding=\"utf-8\") as f:\n        print(repr(f.read()))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two_lines",
+      "args": [
+        "çay|şeker|"
+      ],
+      "expected_stdout": "'çay\\nşeker\\n'\n"
+    },
+    {
+      "id": "no_newline",
+      "args": [
+        "tek"
+      ],
+      "expected_stdout": "'tek'\n"
+    },
+    {
+      "id": "empty",
+      "args": [
+        ""
+      ],
+      "expected_stdout": "''\n"
+    }
+  ]
+}

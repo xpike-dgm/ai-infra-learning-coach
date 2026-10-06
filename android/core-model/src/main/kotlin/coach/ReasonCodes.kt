@@ -39,6 +39,8 @@ object ReasonCatalog {
             "need.reinforcement_opportunity",
             "need.parallel_track_due",
             "need.integration_opportunity",
+            // 15G (`D-120`): `MCA-v0` §6.5's cross-topic transfer opportunity, a declared extension of §8.1.
+            "need.transfer_opportunity",
         ),
         ReasonCodeFamily.VALIDATION_TRUST to listOf(
             "candidate.validated",

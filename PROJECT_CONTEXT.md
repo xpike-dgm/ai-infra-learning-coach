@@ -244,12 +244,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **15D ✅ Memory Foundations — MMFX-v0 / D-116**
 - **15E ✅ Linux / Git / Shell Foundations — LGSX-v0 / D-118**
 - **15F ✅ English A0→A1/A2 başlangıç paketi — EAAX-v0 / D-119**
-- **15G 🟡 Assessment content — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 15H–20 ⬜
+- **15G ✅ Assessment content — ACNX-v0 / D-120**
+- **15H 🟡 Content QA — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 16–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 15G'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 15H'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -708,4 +709,16 @@ Bulunanlar: kelime için tek dürüst koruma ders başına kelime listesidir; li
 Onay D-117; varsayılan seçimler asistanın. Kullanıcı 2026-10-04'te "mevcut aşamayı bitirince durursun" dedi: D-117'nin sürekli onayı 15F ile sona erdi; 15G kullanıcının yeni açık onayı olmadan başlamaz.
 
 Canonical: `docs/ENGLISH_A1_A2_CONTENT_SPEC.md` / D-119.
+
+## 12.43 15G Assessment content — ACNX-v0 / D-120
+
+Yedinci paket sevk ediliyor: yayımlanmış Objective'lere, yayımlanmış hiçbir şeyi değiştirmeden, öğrencinin görmediği ve aynı yeteneği ölçen item'lar ekleyen bir **ek paket**. Ana invariant: **eklenen bir item Objective'ini görülmemiş bir yapıda, Objective'in istediği kanıtı üretebilen bir biçimde ölçer ve yalnız bağımsız bir inceleyici geçirdikten sonra sevk edilir;** bir transfer iddiası denetlenir ve transfer item'ı ayın slotuna ayrılır; bir yanlış seçenek yalnız tam o misconception'dan çıkıyorsa ve anahtarın kendi Objective'inin etiketiyse onu adlandırır.
+
+Bulunanlar: eklenen item'ları düşüren şey yanlış anahtar değil ders sızıntısı ve yakınlıktır; seçmeli bir item kod, uygulamalı ya da yazılı kanıt taşıyamaz (üretici artık reddeder); aynı dersin daha zor item'ı transfer değildir; 15F lexicon'u daha fazla yapısal farkı taşımıyor; bağlamı adsız transfer item'ı derlemeyi çökertiyordu (düzeltildi).
+
+613 item, 240 büyüyen görev v2'si, 21 transfer item'ı, 144 seçenek düzeyinde misconception anahtarı; hiçbir Skill, Objective, kenar, Topic, ders ya da etiket eklenmedi, 1–6. paketler bayt bayt aynı. `TRANSFER_OPPORTUNITY` sahibi `TransferEngine`; planner ve aylık composer aynı ihtiyacı okur (beyan edilmiş uzantılar). Bağımsız inceleme dört turda 613/613, 144/144. Havuz 65 Objective'in 54'ünde ≥15; üç teknik Objective 14, sekiz İngilizce Objective 10–12 — eksik kayıtlı.
+
+Onay kullanıcının 2026-10-04 açık onayı. Kullanıcı kararları: 15–20 havuz; transfer içeriği + aylık üretici; seçenek düzeyinde anahtar; asistan yazar, ayrı ajanlar inceler; 15F için dürüst küçük havuz. Mutation üretici 22/22, Kotlin 32/32; QA 108/108 PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/ASSESSMENT_CONTENT_SPEC.md` / D-120.
 

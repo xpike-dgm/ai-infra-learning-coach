@@ -1,0 +1,339 @@
+skill: skill.python.for_iteration
+objectives:
+  - id: objective.python.for_iteration.iterate_sequence
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: bir n tam sayısı okusun ve n'den 1'e doğru geri sayarak her sayıyı ayrı bir satıra yazsın. n 0 ise hiçbir şey yazmasın. Örnek: n = 3 için 3, 2, 1.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: three, stdin: "3\n", expected_stdout: "3\n2\n1\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: ""}
+        reference: |
+          n = int(input())
+          for i in range(n):
+              print(n - i)
+        wrong:
+          - |
+            n = int(input())
+            for i in range(n):
+                print(n - i - 1)
+          - |
+            n = int(input())
+            for i in range(1, n + 1):
+                print(i)
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: bir n tam sayısı (0 ya da pozitif) okusun ve 2'nin 0'ıncı kuvvetinden n'inci kuvvetine kadar (1, 2, 4, 8, …) her birini ayrı bir satıra yazsın. ** kullanma: bir değişkeni 1'den başlat ve her turda ikiyle çarp. Örnek: n = 3 için 1, 2, 4 ve 8.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: three, stdin: "3\n", expected_stdout: "1\n2\n4\n8\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "1\n"}
+          - {id: five, stdin: "5\n", expected_stdout: "1\n2\n4\n8\n16\n32\n"}
+        reference: |
+          n = int(input())
+          deger = 1
+          for i in range(n + 1):
+              print(deger)
+              deger *= 2
+        wrong:
+          - |
+            n = int(input())
+            deger = 1
+            for i in range(n):
+                print(deger)
+                deger *= 2
+          - |
+            n = int(input())
+            deger = 1
+            for i in range(n + 1):
+                deger *= 2
+                print(deger)
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: bir n tam sayısı okusun ve tek bir satıra n tane yıldız (*) yazsın. Yıldızları bir döngüyle tek tek ekleyerek bir yazıda biriktir. n 0 ise boş bir satır yazsın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: four, stdin: "4\n", expected_stdout: "****\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "*\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "\n"}
+        reference: |
+          n = int(input())
+          satir = ""
+          for i in range(n):
+              satir += "*"
+          print(satir)
+        wrong:
+          - |
+            n = int(input())
+            for i in range(n):
+                satir = ""
+                satir += "*"
+            print(satir)
+          - |
+            n = int(input())
+            satir = ""
+            for i in range(n + 1):
+                satir += "*"
+            print(satir)
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: bir kelime okusun ve onu tersten yazsın. Ters çeviriyi bir döngüyle, karakterleri tek tek bir yazının başına ekleyerek yap. Örnek: kitap → patik.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: kitap, stdin: "kitap\n", expected_stdout: "patik\n"}
+          - {id: single, stdin: "a\n", expected_stdout: "a\n"}
+          - {id: turkish, stdin: "çiçek\n", expected_stdout: "keçiç\n"}
+        reference: |
+          kelime = input()
+          ters = ""
+          for harf in kelime:
+              ters = harf + ters
+          print(ters)
+        wrong:
+          - |
+            kelime = input()
+            ters = ""
+            for harf in kelime:
+                ters = ters + harf
+            print(ters)
+          - |
+            kelime = input()
+            ters = ""
+            for harf in kelime:
+                ters = harf
+            print(ters)
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: bir n tam sayısı okusun ve 1'den n'e kadar (n dahil) sayılar arasında 3'e tam bölünenlerin kaç tane olduğunu yazsın.
+        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+        suite:
+          - {id: ten, stdin: "10\n", expected_stdout: "3\n"}
+          - {id: two, stdin: "2\n", expected_stdout: "0\n"}
+          - {id: three, stdin: "3\n", expected_stdout: "1\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "0\n"}
+        reference: |
+          n = int(input())
+          sayac = 0
+          for i in range(1, n + 1):
+              if i % 3 == 0:
+                  sayac += 1
+          print(sayac)
+        wrong:
+          - |
+            n = int(input())
+            sayac = 0
+            for i in range(n):
+                if i % 3 == 0:
+                    sayac += 1
+            print(sayac)
+          - |
+            n = int(input())
+            sayac = 0
+            for i in range(1, n):
+                if i % 3 == 0:
+                    sayac += 1
+            print(sayac)
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: bir kelime okusun ve karakterlerini aralarına birer tire (-) koyarak tek satıra yazsın; ilk karakterden önce ve son karakterden sonra tire olmasın. Örnek: kalem → k-a-l-e-m; tek harfli a → a.
+        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+        suite:
+          - {id: word, stdin: "kalem\n", expected_stdout: "k-a-l-e-m\n"}
+          - {id: single, stdin: "a\n", expected_stdout: "a\n"}
+          - {id: two, stdin: "su\n", expected_stdout: "s-u\n"}
+        reference: |
+          kelime = input()
+          sonuc = ""
+          for harf in kelime:
+              if sonuc == "":
+                  sonuc = harf
+              else:
+                  sonuc += "-" + harf
+          print(sonuc)
+        wrong:
+          - |
+            kelime = input()
+            sonuc = ""
+            for harf in kelime:
+                sonuc += harf + "-"
+            print(sonuc)
+          - |
+            kelime = input()
+            sonuc = ""
+            for harf in kelime:
+                sonuc += "-" + harf
+            print(sonuc)
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: önce kaç sayı geleceğini (n, en az 1) okusun, sonra n satırda n tam sayı okusun ve bunların ortalamasını yazsın (/ ile, round(..., 2) ile iki basamağa yuvarlanmış). Örnek: 3 sayı 4, 5, 6 → 5.0.
+        required_skills: [skill.python.input_output_basic, skill.python.expression_evaluation]
+        suite:
+          - {id: three, stdin: "3\n4\n5\n6\n", expected_stdout: "5.0\n"}
+          - {id: half, stdin: "2\n1\n2\n", expected_stdout: "1.5\n"}
+          - {id: single, stdin: "1\n7\n", expected_stdout: "7.0\n"}
+          - {id: thirds, stdin: "3\n1\n1\n2\n", expected_stdout: "1.33\n"}
+        reference: |
+          n = int(input())
+          toplam = 0
+          for i in range(n):
+              toplam += int(input())
+          print(round(toplam / n, 2))
+        wrong:
+          - |
+            n = int(input())
+            toplam = 0
+            for i in range(n):
+                toplam += int(input())
+            print(toplam // n)
+          - |
+            n = int(input())
+            toplam = 0
+            for i in range(n):
+                toplam = int(input())
+            print(round(toplam / n, 2))
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: bir n tam sayısı okusun ve Fibonacci dizisinin ilk n terimini aralarında birer boşlukla tek satıra yazsın. Dizi 0 ve 1 ile başlar; her terim önceki ikisinin toplamıdır. Örnek: n = 5 → 0 1 1 2 3. n 0 ise boş bir satır yazsın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: five, stdin: "5\n", expected_stdout: "0 1 1 2 3\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "0\n"}
+          - {id: eight, stdin: "8\n", expected_stdout: "0 1 1 2 3 5 8 13\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "\n"}
+        reference: |
+          n = int(input())
+          a = 0
+          b = 1
+          cikti = ""
+          for i in range(n):
+              cikti += str(a) + " "
+              gecici = a
+              a = b
+              b = gecici + b
+          print(cikti)
+        wrong:
+          - |
+            n = int(input())
+            a = 0
+            b = 1
+            cikti = ""
+            for i in range(n):
+                cikti += str(a) + " "
+                a = b
+                b = a + b
+            print(cikti)
+          - |
+            n = int(input())
+            a = 1
+            b = 1
+            cikti = ""
+            for i in range(n):
+                cikti += str(a) + " "
+                gecici = a
+                a = b
+                b = gecici + b
+            print(cikti)
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: bir n tam sayısı okusun ve n satırlık bir yıldız üçgeni yazsın: 1. satırda 1, 2. satırda 2, ..., n. satırda n yıldız (*). Örnek: n = 3 için *, **, *** satırları.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: three, stdin: "3\n", expected_stdout: "*\n**\n***\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "*\n"}
+          - {id: five, stdin: "5\n", expected_stdout: "*\n**\n***\n****\n*****\n"}
+        reference: |
+          n = int(input())
+          for i in range(1, n + 1):
+              print("*" * i)
+        wrong:
+          - |
+            n = int(input())
+            for i in range(n):
+                print("*" * i)
+          - |
+            n = int(input())
+            for i in range(1, n + 1):
+                print("*" * n)
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: bir pozitif tam sayı okusun ve basamaklarının toplamını yazsın. Sayıyı bir yazı olarak bırak, karakterleri üzerinde bir for döngüsüyle dolaş ve her karakteri int() ile sayıya çevirerek topla. Örnek: 1234 → 10.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: four_digits, stdin: "1234\n", expected_stdout: "10\n"}
+          - {id: single, stdin: "7\n", expected_stdout: "7\n"}
+          - {id: zeros, stdin: "9005\n", expected_stdout: "14\n"}
+        reference: |
+          sayi = input()
+          toplam = 0
+          for karakter in sayi:
+              toplam += int(karakter)
+          print(toplam)
+        wrong:
+          - |
+            sayi = input()
+            toplam = ""
+            for karakter in sayi:
+                toplam += karakter
+            print(toplam)
+          - |
+            sayi = input()
+            toplam = 0
+            for karakter in sayi:
+                toplam = int(karakter)
+            print(toplam)
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: önce kaç sayı geleceğini (n) okusun, sonra n satırda n tam sayı okusun ve Pozitif: <pozitiflerin sayısı> Negatif: <negatiflerin sayısı> yazsın. Sıfır ikisine de sayılmaz.
+        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+        suite:
+          - {id: mixed, stdin: "4\n3\n-1\n0\n8\n", expected_stdout: "Pozitif: 2 Negatif: 1\n"}
+          - {id: zeros, stdin: "2\n0\n0\n", expected_stdout: "Pozitif: 0 Negatif: 0\n"}
+          - {id: negatives, stdin: "3\n-2\n-5\n-1\n", expected_stdout: "Pozitif: 0 Negatif: 3\n"}
+          - {id: none, stdin: "0\n", expected_stdout: "Pozitif: 0 Negatif: 0\n"}
+        reference: |
+          n = int(input())
+          pozitif = 0
+          negatif = 0
+          for i in range(n):
+              sayi = int(input())
+              if sayi > 0:
+                  pozitif += 1
+              elif sayi < 0:
+                  negatif += 1
+          print("Pozitif:", pozitif, "Negatif:", negatif)
+        wrong:
+          - |
+            n = int(input())
+            pozitif = 0
+            negatif = 0
+            for i in range(n):
+                sayi = int(input())
+                if sayi >= 0:
+                    pozitif += 1
+                else:
+                    negatif += 1
+            print("Pozitif:", pozitif, "Negatif:", negatif)
+          - |
+            n = int(input())
+            pozitif = 0
+            negatif = 0
+            for i in range(n):
+                sayi = int(input())
+                if sayi > 0:
+                    pozitif += 1
+                elif sayi < 0:
+                    negatif += 1
+            print("Pozitif:", negatif, "Negatif:", pozitif)

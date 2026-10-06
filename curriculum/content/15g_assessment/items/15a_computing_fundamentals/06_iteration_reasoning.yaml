@@ -1,0 +1,315 @@
+skill: skill.programming.iteration_reasoning
+objectives:
+  - id: objective.programming.iteration_reasoning.trace_iteration
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını satır satır yaz.
+        code: |
+          for k in range(1, 4):
+              print(k * k)
+        answer: "1\n4\n9"
+        also_accept: ["1 4 9", "1, 4, 9"]
+        verify: {mode: stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          t = 0
+          for i in range(5):
+              t = t + 2
+          print(t)
+        answer: "10"
+        verify: {mode: stdout}
+      - slug: g03
+        difficulty: basic
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          n = 5
+          while n > 0:
+              n = n - 2
+          print(n)
+        options:
+          A: "-1"
+          B: "0"
+          C: "1"
+          D: "3"
+        scan_options: false
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "-1", B: "0", C: "1", D: "3"}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          n = 4096
+          basamak = 0
+          while n > 0:
+              n = n // 10
+              basamak += 1
+          print(basamak)
+        answer: "4"
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 0
+          for i in range(1, 6):
+              if i % 2 == 0:
+                  x = x + i
+          print(x)
+        answer: "6"
+        required_skills: [skill.programming.expression_boolean_reasoning, skill.programming.branching_reasoning]
+        verify: {mode: stdout}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 0
+          while x < 5:
+              x = x + 4
+              print(x)
+        options:
+          A: Yalnızca 4
+          B: 4, sonra 8 (iki satır)
+          C: 4, 8 ve 12 (üç satır)
+          D: Hiçbir şey
+        scan_options: false
+        answer: B
+        misconception_options: {A: condition_checked_midway}
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify:
+          mode: stdout
+          outcomes: {A: "4", B: "4\n8", C: "4\n8\n12", D: ""}
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını satır satır yaz.
+        code: |
+          i = 10
+          while i > 0:
+              print(i)
+              i = i - 3
+        answer: "10\n7\n4\n1"
+        also_accept: ["10 7 4 1", "10, 7, 4, 1"]
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: stdout}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Döngü bittiğinde a ile b'nin değerleri nedir?
+        code: |
+          a = 1
+          b = 1
+          for k in range(5):
+              c = a + b
+              a = b
+              b = c
+        options:
+          A: a=8, b=13
+          B: a=5, b=8
+          C: a=13, b=21
+          D: a=6, b=6
+        answer: A
+        verify:
+          mode: probe
+          probe: print(a, b)
+          outcomes: {A: "8 13", B: "5 8", C: "13 21", D: "6 6"}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          sayi = 0
+          for d in range(1, 4):
+              sayi = sayi * 10 + d
+          print(sayi)
+        answer: "123"
+        verify: {mode: stdout}
+  - id: objective.programming.iteration_reasoning.detect_nontermination
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          a = 0
+          b = 5
+          while a < 10 and b > 0:
+              a = a + 1
+        options:
+          A: Sonlanır; a 10 olunca a < 10 False olur ve and ile kurulan koşulun tamamı False olur.
+          B: Sonlanmaz; b gövdede hiç değişmediği için koşul hep True kalır.
+          C: Sonlanmaz; a ile b'nin ikisi de değişmedikçe koşul bozulmaz.
+          D: Sonlanır; ama yalnızca b 0 olduğunda.
+        scan_options: false
+        answer: A
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: true}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          t = 9
+          while t >= 0:
+              t = t - 3
+        options:
+          A: Sonlanmaz; t 0 olduğunda koşul hâlâ True'dur ve t orada kalır.
+          B: Sonlanır; t 9, 6, 3, 0, -3 diye iner ve -3 olunca koşul False olur.
+          C: Sonlanmaz; t hiçbir zaman negatif olamaz.
+          D: Sonlanır; ama yalnızca bir tur döndükten sonra.
+        scan_options: false
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: true}
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          x = 1
+          while x != 64:
+              x = x * 2
+        options:
+          A: Sonlanmaz; != ile yazılmış bir koşul hiçbir zaman bozulmaz.
+          B: Sonlanır; x 1, 2, 4, 8, 16, 32, 64 diye ilerler ve tam 64 olduğunda koşul False olur.
+          C: Sonlanmaz; x 64'ün üzerinden atlar.
+          D: Sonlanır; ilk turda.
+        scan_options: false
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: true}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          a = 0
+          b = 100
+          while a != b:
+              a = a + 3
+              b = b - 2
+        options:
+          A: Sonlanmaz; a ile b farklı adımlarla değiştiği için hiçbir zaman eşit olmazlar.
+          B: Sonlanır; aradaki fark her turda 5 kapanır ve 20 tur sonra ikisi de 60 olur.
+          C: Sonlanmaz; ikisi zıt yönlere gittiği için uzaklaşırlar.
+          D: Sonlanır; ama yalnızca a 100 olduğunda.
+        scan_options: false
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: true}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          n = 10
+          while n > 0:
+              n = n // 2
+        options:
+          A: Sonlanır; n 10, 5, 2, 1, 0 diye iner ve 0 olunca koşul False olur.
+          B: Sonlanmaz; ikiye bölmek bir sayıyı hiçbir zaman 0 yapmaz.
+          C: Sonlanmaz; n gövdede hiç değişmez.
+          D: Sonlanır; ilk turda n 0 olur.
+        scan_options: false
+        answer: A
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: true}
+      - slug: g06
+        difficulty: transfer_integration
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          n = 10
+          while n > 0:
+              n = n % 7
+        options:
+          A: Sonlanır; n her turda değiştiği için koşul bir gün bozulur.
+          B: Sonlanmaz; n bir kez 3 olur, sonra 3 % 7 hep 3 kalır ve koşul hep True olur.
+          C: Sonlanır; ilk turda n 0 olur.
+          D: Sonlanmaz; n gövdede hiç değişmez.
+        scan_options: false
+        answer: B
+        misconception_options: {A: update_implies_termination}
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: false}
+      - slug: g07
+        difficulty: authentic_application
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        prompt: |
+          Bu döngü n'nin başlangıç değerine göre bazen sonlanır, bazen sonlanmaz. n aşağıdaki değerlerden hangisiyle başlarsa döngü hiç sonlanmaz?
+        code: |
+          while n != 0:
+              n = n - 2
+        options:
+          A: "7"
+          B: "8"
+          C: "0"
+          D: "2"
+        scan_options: false
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "7", B: "8", C: "0", D: "2"}
+          script: |
+            sonlanmayan = []
+            for baslangic in (7, 8, 0, 2):
+                n = baslangic
+                tur = 0
+                while n != 0 and tur < 1000:
+                    n = n - 2
+                    tur = tur + 1
+                if n != 0:
+                    sonlanmayan.append(str(baslangic))
+            print(",".join(sonlanmayan))
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          i = 1
+          while i < 10:
+              if i % 2 == 0:
+                  i = i + 2
+        options:
+          A: Sonlanır; i her turda 2 artar.
+          B: Sonlanmaz; i tek sayı olduğu için güncelleme satırı hiç çalışmaz ve i hep 1 kalır.
+          C: Sonlanır; i 10'u geçtiği anda.
+          D: Sonlanmaz; i hiçbir zaman tam 10 olmaz.
+        scan_options: false
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning, skill.programming.branching_reasoning]
+        verify: {mode: termination, keyed_terminates: false}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu for döngüsü sonlanır mı?
+        code: |
+          for i in range(5):
+              i = i - 1
+        options:
+          A: Sonlanır; for her turda i'ye range'in sıradaki değerini yeniden atar, gövdedeki atama sonraki turu etkilemez. 5 tur döner.
+          B: Sonlanmaz; i her turda 1 azaldığı için range'in sonuna hiç ulaşmaz.
+          C: Sonlanmaz; i bir süre sonra eksi olur ve range eksi sayılarda durmaz.
+          D: Sonlanır; ama yalnızca 1 tur döner, çünkü i değiştirildi.
+        scan_options: false
+        answer: A
+        verify: {mode: termination, keyed_terminates: true, iterations_probe: "print(i + 1)", iterations: 4}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.iteration_reasoning.trace_iteration.f02: {A: range_counts_from_one}
+  item.programming.iteration_reasoning.trace_iteration.f07: {D: range_counts_from_one}
+  item.programming.iteration_reasoning.detect_nontermination.f03: {A: update_implies_termination}
+  item.programming.iteration_reasoning.detect_nontermination.f04: {A: update_implies_termination}

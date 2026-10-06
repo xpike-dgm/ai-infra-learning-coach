@@ -1,0 +1,58 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.list_operations.select_and_use_sequence.g05@v1",
+  "item": "item.python.list_operations.select_and_use_sequence.g05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.araya_koy([int(x) for x in sys.argv[1:-1]], int(sys.argv[-1])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "example",
+      "args": [
+        "1",
+        "2",
+        "3",
+        "0"
+      ],
+      "expected_stdout": "[1, 0, 2, 0, 3]\n"
+    },
+    {
+      "id": "single",
+      "args": [
+        "9",
+        "0"
+      ],
+      "expected_stdout": "[9]\n"
+    },
+    {
+      "id": "empty",
+      "args": [
+        "7"
+      ],
+      "expected_stdout": "[]\n"
+    },
+    {
+      "id": "two",
+      "args": [
+        "4",
+        "5",
+        "-1"
+      ],
+      "expected_stdout": "[4, -1, 5]\n"
+    }
+  ]
+}

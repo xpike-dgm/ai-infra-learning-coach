@@ -119,6 +119,8 @@ object WeeklyBlueprintEngine {
             NeedTrigger.NEW_LEARNING -> Either.Excluded(BlueprintExclusion.NOT_TAUGHT_YET)
             NeedTrigger.DIAGNOSTIC_OPPORTUNITY, NeedTrigger.REINFORCEMENT_OPPORTUNITY ->
                 Either.Excluded(BlueprintExclusion.NOT_A_WEEKLY_MEASUREMENT)
+            // 15G (`D-120`): cross-topic transfer is the month's (`MCA-v0` §9); its items are reserved for that slot.
+            NeedTrigger.TRANSFER_OPPORTUNITY -> Either.Excluded(BlueprintExclusion.TRANSFER_IS_MONTHLY)
         }
     }
 

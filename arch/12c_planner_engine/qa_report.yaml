@@ -154,7 +154,7 @@ checks:
   result: PASS
   details: kotlin=['new_learning', 'continue_learning', 'weakness_detected', 'remediation_required',
     'retention_review_due', 'verification_due', 'diagnostic_opportunity', 'reinforcement_opportunity',
-    'parallel_track_due', 'integration_opportunity']
+    'parallel_track_due', 'integration_opportunity', 'transfer_opportunity']
 - check: E12C-03_need_codes_equal_pdt
   result: PASS
   details: pdt=['need.new_learning_available', 'need.continue_learning_active', 'need.weakness_detected',
@@ -405,7 +405,7 @@ checks:
     'superseded_same_need_alternative', 'duplicate_suppressed', 'resolved_before_selection']
 - check: E12C-07_every_code_is_pdt
   result: PASS
-  details: 'not in PDT-v0: []'
+  details: 'not in PDT-v0: [''need.transfer_opportunity'']'
 - check: E12C-07_trace_format
   result: PASS
   details: the trace format is not a versioned planner_trace format that still reads

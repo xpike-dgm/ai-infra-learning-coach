@@ -1,0 +1,62 @@
+skill: skill.english.be_and_simple_present_comprehension
+objectives:
+  - id: objective.english.be_and_simple_present_comprehension.demonstrate_capability
+    items:
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          It is a test file.
+        options:
+          A: "Bu bir test dosyası."
+          B: "Bu dosyayı test et."
+          C: "Test dosyası nerede?"
+          D: "Bir test dosyası var mı?"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English verbs, 'be' as copula; Wiktionary — it (pronoun), a (article)"
+          claim: "It is a test file, bunun bir test dosyası olduğunu söyler."
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu cümle neyi anlatıyor?
+        code: |
+          The tool saves the output.
+        options:
+          A: "Aracın her seferinde yaptığı bir işi: araç çıktıyı kaydeder."
+          B: "Bir emri: çıktıyı kaydet."
+          C: "Birden çok aracın çıktıyı kaydettiğini."
+          D: "Çıktının aracı kaydettiğini."
+        scan_options: false
+        answer: A
+        misconception_options: {C: s_means_plural_verb}
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present (English): third-person singular -s marks the verb (saves) with a singular subject (the tool)"
+          claim: "The tool saves the output; tekil bir araç her zaman yaptığı işi (kaydetme) anlatır. -s fiilde tekil öznenin işaretidir."
+      - slug: g09
+        difficulty: authentic_application
+        prompt: |
+          Bu iki cümle bir aracın belgesinde geçiyor. Her cümlede kaç test var?
+        code: |
+          The test has two errors.
+          The tests have two errors.
+        options:
+          A: "1. cümlede tek bir test, 2. cümlede birden çok test"
+          B: "1. cümlede birden çok test (has'taki -s), 2. cümlede tek bir test"
+          C: "İki cümlede de tek bir test"
+          D: "İki cümlede de birden çok test"
+        scan_options: false
+        answer: A
+        misconception_options: {B: s_means_plural_verb}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English verbs, simple present: third-person singular -s (the test has) vs plural subject (the tests have); English plurals (tests)"
+          claim: "The test has: tek özne, fiil -s alır (has). The tests have: çoğul özne (tests), fiil -s almaz."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.english.be_and_simple_present_comprehension.demonstrate_capability.f01: {C: is_means_exists}

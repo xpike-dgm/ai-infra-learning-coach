@@ -1,0 +1,40 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.declaration_type_model.write_basic_declarations.t01@v1",
+  "item": "item.c.declaration_type_model.write_basic_declarations.t01@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "half",
+      "stdin": "7 8\n",
+      "expected_stdout": "7.5\n"
+    },
+    {
+      "id": "whole",
+      "stdin": "4 6\n",
+      "expected_stdout": "5.0\n"
+    },
+    {
+      "id": "negative",
+      "stdin": "-3 0\n",
+      "expected_stdout": "-1.5\n"
+    }
+  ]
+}

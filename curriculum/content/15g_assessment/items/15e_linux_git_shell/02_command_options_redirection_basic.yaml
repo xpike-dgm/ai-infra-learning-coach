@@ -1,0 +1,143 @@
+skill: skill.shell.command_options_redirection_basic
+objectives:
+  - id: objective.shell.command_options_redirection_basic.construct_simple_command
+    items:
+      - slug: g01
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar? Satırları aralarında bir boşlukla yaz.
+        code: |
+          echo bir > s.txt
+          echo iki >> s.txt
+          echo uc >> s.txt
+          head -n 2 s.txt
+        answer: "bir iki"
+        verify: {mode: shell, script: "echo bir > s.txt\necho iki >> s.txt\necho uc >> s.txt\necho $(head -n 2 s.txt)\n"}
+      - slug: g02
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          echo kirmizi sari mavi > renkler.txt
+          wc -l renkler.txt
+        answer: "1 renkler.txt"
+        verify: {mode: shell, last_line: true}
+      - slug: g03
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde önce birinci, sonra ikinci komutu çalıştır. Ekranda ne görünür?
+        code: |
+          echo merhaba > m.txt
+          ls
+        options:
+          A: "Yalnız m.txt; merhaba ekrana değil dosyaya yazıldı"
+          B: "Önce merhaba, sonra m.txt"
+          C: "Yalnız merhaba"
+          D: "Hiçbir şey; > dosya oluşturmaz"
+        scan_options: false
+        answer: A
+        misconception_options: {B: redirect_still_shows}
+        verify:
+          mode: shell
+          outcomes: {A: "m.txt", B: "merhaba\nm.txt", C: "merhaba", D: ""}
+      - slug: g04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları sırayla çalıştır. İkinci satırdaki mkdir başarısız olur, çünkü klasör artık vardır. Son komut ne yazar? Satırları aralarında bir boşlukla yaz.
+        code: |
+          mkdir kutu && echo ilk > kutu/n.txt
+          mkdir kutu && echo ikinci >> kutu/n.txt
+          cat kutu/n.txt
+        answer: "ilk"
+        verify: {mode: shell, last_line: true}
+      - slug: g05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          echo'nun -n seçeneği metnin sonuna satır sonu eklemez; wc'nin -c seçeneği bayt (bu metinde karakter) sayar. Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
+        code: |
+          echo -n abc > x.txt
+          wc -c x.txt
+        options:
+          A: "3 x.txt"
+          B: "4 x.txt"
+          C: "1 x.txt"
+          D: "0 x.txt"
+        scan_options: false
+        answer: A
+        verify: {mode: shell, last_line: true}
+      - slug: g06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Dosyada iki satır var ama head'den üç satır isteniyor. Boş bir klasörde bu komutları çalıştır. Son komut ne yazar ve hata verir mi? Ekrana yazılan satırları aralarında bir boşlukla yaz.
+        code: |
+          echo a > k.txt
+          echo b >> k.txt
+          head -n 3 k.txt
+        answer: "a b"
+        verify: {mode: shell, script: "echo a > k.txt\necho b >> k.txt\necho $(head -n 3 k.txt 2>&1)\n"}
+      - slug: g07
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları çalıştır. sort'un çıktısı okuduğu dosyanın kendisine yönlendiriliyor. Son komut ne yazar? Önce tahmin et: > dosyayı ne zaman boşaltır?
+        code: |
+          echo b > f.txt
+          echo a >> f.txt
+          sort f.txt > f.txt
+          wc -l f.txt
+        options:
+          A: "0 f.txt; kabuk > ile f.txt'yi sort çalışmadan önce boşaltır, sort boş bir dosya okur"
+          B: "2 f.txt; sort satırları sıralayıp aynı dosyaya geri yazar"
+          C: "1 f.txt; yalnız ilk satır kalır"
+          D: "Hata verir; bir dosya hem okunup hem yazılamaz"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          outcomes: {A: "0 f.txt", B: "2 f.txt", C: "1 f.txt", D: "hata"}
+      - slug: g08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları sırayla çalıştır. Üçüncü satır, okuduğu dosyanın SONUNA ekliyor. Son komut ne yazar? Satırları aralarında bir boşlukla yaz.
+        code: |
+          echo x > a.txt
+          echo y >> a.txt
+          head -n 1 a.txt >> a.txt
+          cat a.txt
+        answer: "x y x"
+        verify:
+          mode: shell
+          script: |
+            echo x > a.txt
+            echo y >> a.txt
+            head -n 1 a.txt >> a.txt
+            cat a.txt | tr '\n' ' ' | sed 's/ $//'
+      - slug: t01
+        difficulty: transfer_integration
+        hands_on: true
+        transfer_profile: cross_topic_context
+        context_family: git_log_to_file
+        required_skills: [skill.git.stage_commit_history_basic]
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          git init -q depo
+          cd depo
+          echo a > a.txt
+          git add a.txt
+          git commit -q -m ilk
+          echo b > b.txt
+          git add b.txt
+          git commit -q -m ikinci
+          git log --oneline > gecmis.txt
+          wc -l gecmis.txt
+        answer: "2 gecmis.txt"
+        verify: {mode: shell, last_line: true}

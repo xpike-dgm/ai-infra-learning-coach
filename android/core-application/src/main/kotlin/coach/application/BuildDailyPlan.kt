@@ -99,8 +99,11 @@ class BuildDailyPlan(
         // `weakness_detected` is supplied by its owner (12C's list; `WLRM-v0` §8, 13D), from the axis it wrote, and
         // `diagnostic_opportunity` by the learner's open diagnostic (13F, `VDW-v0` §3), from its projection.
         val diagnostic = DiagnosticPlanning.read(persistence, states)
+        // `transfer_opportunity` by its owner (15G, `D-120`): a learned Skill with an unseen cross-topic item and no
+        // clean transfer measurement. Only the month's transfer slot serves it; no daily task does.
         val paused = ReplanEngine.withPausedWork(
-            PlannerEngine.needsFromSkillStates(states) + WeaknessEngine.needs(states) + diagnostic?.needs.orEmpty(), pauses)
+            PlannerEngine.needsFromSkillStates(states) + WeaknessEngine.needs(states) + diagnostic?.needs.orEmpty() +
+                TransferPlanning.needs(persistence, content, states), pauses)
         val kept = if (kind == GenerationKind.REPLAN) {
             previousTrace!!.selected.filter { it.position in replan!!.keptPositions }
         } else {

@@ -1,0 +1,377 @@
+skill: skill.python.list_operations
+objectives:
+  - id: objective.python.list_operations.select_and_use_sequence
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına ilk_iki(liste) adında bir fonksiyon yaz: listenin ilk iki elemanından oluşan yeni bir liste döndürsün; liste ikiden kısaysa bütün elemanlarını döndürsün. Dilimleme kullan. Örnek: ilk_iki([5, 6, 7]) → [5, 6].
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.ilk_iki([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: three, args: ["5", "6", "7"], expected_stdout: "[5, 6]\n"}
+          - {id: one, args: ["9"], expected_stdout: "[9]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+          - {id: two, args: ["1", "2"], expected_stdout: "[1, 2]\n"}
+        reference: |
+          def ilk_iki(liste):
+              return liste[:2]
+        wrong:
+          - |
+            def ilk_iki(liste):
+                return liste[0:1]
+          - |
+            def ilk_iki(liste):
+                return liste[1:3]
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına katlari(liste, k) adında bir fonksiyon yaz: her elemanın k ile çarpılmış hâlinden, aynı sırayla, YENİ bir liste döndürsün; verilen listeyi değiştirmesin. Örnek: katlari([1, 4, 2], 3) → [3, 12, 6]. Testler verilen listenin çağrıdan sonraki hâlini de yazdırır.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          liste = [int(x) for x in sys.argv[1:-1]]
+          sonuc = cozum.katlari(liste, int(sys.argv[-1]))
+          print(sonuc, liste)
+        suite:
+          - {id: example, args: ["1", "4", "2", "3"], expected_stdout: "[3, 12, 6] [1, 4, 2]\n"}
+          - {id: empty, args: ["5"], expected_stdout: "[] []\n"}
+          - {id: zero_factor, args: ["7", "-2", "0"], expected_stdout: "[0, 0] [7, -2]\n"}
+        reference: |
+          def katlari(liste, k):
+              sonuc = []
+              for x in liste:
+                  sonuc.append(x * k)
+              return sonuc
+        wrong:
+          - |
+            def katlari(liste, k):
+                for i in range(len(liste)):
+                    liste[i] = liste[i] * k
+                return liste
+          - |
+            def katlari(liste, k):
+                return liste * k
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına ters_liste(liste) adında bir fonksiyon yaz: elemanları ters sırada olan YENİ bir liste döndürsün; verilen listeyi değiştirmesin. Testler hem döndürdüğün listeyi hem de verilen listenin çağrıdan sonraki hâlini yazdırır.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          liste = [int(x) for x in sys.argv[1:]]
+          yeni = cozum.ters_liste(liste)
+          print(yeni, liste)
+        suite:
+          - {id: three, args: ["1", "2", "3"], expected_stdout: "[3, 2, 1] [1, 2, 3]\n"}
+          - {id: single, args: ["8"], expected_stdout: "[8] [8]\n"}
+          - {id: empty, args: [], expected_stdout: "[] []\n"}
+        reference: |
+          def ters_liste(liste):
+              sonuc = []
+              for x in liste:
+                  sonuc = [x] + sonuc
+              return sonuc
+        wrong:
+          - |
+            def ters_liste(liste):
+                liste.reverse()
+                return liste
+          - |
+            def ters_liste(liste):
+                return liste.reverse()
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına en_kucuk_konum(liste) adında bir fonksiyon yaz: boş olmayan bir listede en küçük elemanın indeksini döndürsün; en küçük değer birden çok kez geçiyorsa ilkinin indeksini. Örnek: en_kucuk_konum([4, 1, 7]) → 1.
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.en_kucuk_konum([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: middle, args: ["4", "1", "7"], expected_stdout: "1\n"}
+          - {id: tie_first, args: ["3", "3"], expected_stdout: "0\n"}
+          - {id: single, args: ["5"], expected_stdout: "0\n"}
+          - {id: tie_later, args: ["6", "2", "9", "2"], expected_stdout: "1\n"}
+          - {id: last, args: ["8", "7", "-1"], expected_stdout: "2\n"}
+        reference: |
+          def en_kucuk_konum(liste):
+              konum = 0
+              for i in range(len(liste)):
+                  if liste[i] < liste[konum]:
+                      konum = i
+              return konum
+        wrong:
+          - |
+            def en_kucuk_konum(liste):
+                konum = 0
+                for i in range(len(liste)):
+                    if liste[i] <= liste[konum]:
+                        konum = i
+                return konum
+          - |
+            def en_kucuk_konum(liste):
+                return min(liste)
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına araya_koy(liste, ayrac) adında bir fonksiyon yaz: listenin yan yana duran her iki elemanının arasına ayrac değerini koyarak YENİ bir liste döndürsün; ilk elemandan önce ve son elemandan sonra ayrac olmasın. Örnek: araya_koy([1, 2, 3], 0) → [1, 0, 2, 0, 3]; boş liste için [].
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.araya_koy([int(x) for x in sys.argv[1:-1]], int(sys.argv[-1])))
+        suite:
+          - {id: example, args: ["1", "2", "3", "0"], expected_stdout: "[1, 0, 2, 0, 3]\n"}
+          - {id: single, args: ["9", "0"], expected_stdout: "[9]\n"}
+          - {id: empty, args: ["7"], expected_stdout: "[]\n"}
+          - {id: two, args: ["4", "5", "-1"], expected_stdout: "[4, -1, 5]\n"}
+        reference: |
+          def araya_koy(liste, ayrac):
+              sonuc = []
+              for i in range(len(liste)):
+                  if i > 0:
+                      sonuc.append(ayrac)
+                  sonuc.append(liste[i])
+              return sonuc
+        wrong:
+          - |
+            def araya_koy(liste, ayrac):
+                sonuc = []
+                for x in liste:
+                    sonuc.append(x)
+                    sonuc.append(ayrac)
+                return sonuc
+          - |
+            def araya_koy(liste, ayrac):
+                sonuc = []
+                for x in liste:
+                    sonuc.append(ayrac)
+                    sonuc.append(x)
+                return sonuc
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına iki_katina(liste) adında bir fonksiyon yaz: verilen listenin HER elemanını yerinde iki katına çıkarsın (listenin kendisini değiştirsin) ve hiçbir şey döndürmesin. Testler fonksiyonun döndürdüğünü ve listenin çağrıdan sonraki hâlini yazdırır.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          liste = [int(x) for x in sys.argv[1:]]
+          donen = cozum.iki_katina(liste)
+          print(donen, liste)
+        suite:
+          - {id: three, args: ["1", "2", "3"], expected_stdout: "None [2, 4, 6]\n"}
+          - {id: negative, args: ["-5", "0"], expected_stdout: "None [-10, 0]\n"}
+          - {id: empty, args: [], expected_stdout: "None []\n"}
+        reference: |
+          def iki_katina(liste):
+              for i in range(len(liste)):
+                  liste[i] = liste[i] * 2
+        wrong:
+          - |
+            def iki_katina(liste):
+                sonuc = []
+                for x in liste:
+                    sonuc.append(x * 2)
+                return sonuc
+          - |
+            def iki_katina(liste):
+                for x in liste:
+                    x = x * 2
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına aralikta(liste, alt, ust) adında bir fonksiyon yaz: listede alt ile ust arasında (ikisi de dahil) kaç eleman olduğunu döndürsün. Örnek: aralikta([1, 5, 8, 10], 5, 10) → 3.
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.aralikta([int(x) for x in sys.argv[3:]], int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: inclusive, args: ["5", "10", "1", "5", "8", "10"], expected_stdout: "3\n"}
+          - {id: none, args: ["0", "2", "5", "7"], expected_stdout: "0\n"}
+          - {id: empty, args: ["1", "9"], expected_stdout: "0\n"}
+          - {id: negatives, args: ["-3", "0", "-4", "-3", "0", "1"], expected_stdout: "2\n"}
+        reference: |
+          def aralikta(liste, alt, ust):
+              sayac = 0
+              for x in liste:
+                  if x >= alt and x <= ust:
+                      sayac += 1
+              return sayac
+        wrong:
+          - |
+            def aralikta(liste, alt, ust):
+                sayac = 0
+                for x in liste:
+                    if x > alt and x < ust:
+                        sayac += 1
+                return sayac
+          - |
+            def aralikta(liste, alt, ust):
+                sayac = 0
+                for x in liste:
+                    if x >= alt or x <= ust:
+                        sayac += 1
+                return sayac
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına ikili_ortalamalar(liste) adında bir fonksiyon yaz: yan yana duran her iki elemanın ortalamasından (/ ile, float) oluşan yeni bir liste döndürsün. Örnek: ikili_ortalamalar([2, 4, 6]) → [3.0, 5.0]; bir ya da sıfır elemanlı liste için [] döndürsün.
+        required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.ikili_ortalamalar([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: three, args: ["2", "4", "6"], expected_stdout: "[3.0, 5.0]\n"}
+          - {id: half, args: ["1", "2"], expected_stdout: "[1.5]\n"}
+          - {id: single, args: ["7"], expected_stdout: "[]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+        reference: |
+          def ikili_ortalamalar(liste):
+              sonuc = []
+              for i in range(len(liste) - 1):
+                  sonuc.append((liste[i] + liste[i + 1]) / 2)
+              return sonuc
+        wrong:
+          - |
+            def ikili_ortalamalar(liste):
+                sonuc = []
+                for i in range(len(liste) - 1):
+                    sonuc.append((liste[i] + liste[i + 1]) // 2)
+                return sonuc
+          - |
+            def ikili_ortalamalar(liste):
+                sonuc = []
+                for i in range(1, len(liste) - 1):
+                    sonuc.append((liste[i] + liste[i + 1]) / 2)
+                return sonuc
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına parcala(liste, n) adında bir fonksiyon yaz: listeyi sırayı koruyarak n'er elemanlık parçalara bölüp parçaların listesini döndürsün; son parça daha kısa olabilir. n pozitiftir. Örnek: parcala([1, 2, 3, 4, 5], 2) → [[1, 2], [3, 4], [5]].
+        required_skills: [skill.python.functions_parameters_return, skill.python.while_termination]
+        harness: |
+          import sys, cozum
+          print(cozum.parcala([int(x) for x in sys.argv[2:]], int(sys.argv[1])))
+        suite:
+          - {id: uneven, args: ["2", "1", "2", "3", "4", "5"], expected_stdout: "[[1, 2], [3, 4], [5]]\n"}
+          - {id: even, args: ["3", "1", "2", "3", "4", "5", "6"], expected_stdout: "[[1, 2, 3], [4, 5, 6]]\n"}
+          - {id: empty, args: ["2"], expected_stdout: "[]\n"}
+          - {id: larger_n, args: ["5", "7", "8"], expected_stdout: "[[7, 8]]\n"}
+        reference: |
+          def parcala(liste, n):
+              parcalar = []
+              i = 0
+              while i < len(liste):
+                  parcalar.append(liste[i:i + n])
+                  i += n
+              return parcalar
+        wrong:
+          - |
+            def parcala(liste, n):
+                parcalar = []
+                i = 0
+                while i + n <= len(liste):
+                    parcalar.append(liste[i:i + n])
+                    i += n
+                return parcalar
+          - |
+            def parcala(liste, n):
+                parcalar = []
+                i = 0
+                while i < len(liste):
+                    parcalar.append(liste[i:n])
+                    i += n
+                return parcalar
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına takasli(liste, i, j) adında bir fonksiyon yaz: i ve j konumundaki elemanların yer değiştirdiği YENİ bir liste döndürsün; verilen listeyi değiştirmesin. i ve j geçerli indekslerdir (eksi indeksler Python'daki anlamıyla geçerlidir). Örnek: takasli([5, 6, 7], 0, 2) → [7, 6, 5]. Testler verilen listenin çağrıdan sonraki hâlini de yazdırır.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          liste = [int(x) for x in sys.argv[3:]]
+          sonuc = cozum.takasli(liste, int(sys.argv[1]), int(sys.argv[2]))
+          print(sonuc, liste)
+        suite:
+          - {id: ends, args: ["0", "2", "5", "6", "7"], expected_stdout: "[7, 6, 5] [5, 6, 7]\n"}
+          - {id: same_place, args: ["1", "1", "5", "6", "7"], expected_stdout: "[5, 6, 7] [5, 6, 7]\n"}
+          - {id: negative, args: ["0", "-1", "1", "2", "3", "4"], expected_stdout: "[4, 2, 3, 1] [1, 2, 3, 4]\n"}
+        reference: |
+          def takasli(liste, i, j):
+              yeni = liste[:]
+              gecici = yeni[i]
+              yeni[i] = yeni[j]
+              yeni[j] = gecici
+              return yeni
+        wrong:
+          - |
+            def takasli(liste, i, j):
+                gecici = liste[i]
+                liste[i] = liste[j]
+                liste[j] = gecici
+                return liste
+          - |
+            def takasli(liste, i, j):
+                yeni = liste[:]
+                yeni[i] = yeni[j]
+                yeni[j] = yeni[i]
+                return yeni
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına sola_kaydir(liste) adında bir fonksiyon yaz: ilk elemanı sona taşınmış YENİ bir liste döndürsün; verilen listeyi değiştirmesin. Boş liste için [] döndürsün. Örnek: sola_kaydir([1, 2, 3]) → [2, 3, 1]. Testler verilen listenin çağrıdan sonraki hâlini de yazdırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          liste = [int(x) for x in sys.argv[1:]]
+          yeni = cozum.sola_kaydir(liste)
+          print(yeni, liste)
+        suite:
+          - {id: three, args: ["1", "2", "3"], expected_stdout: "[2, 3, 1] [1, 2, 3]\n"}
+          - {id: single, args: ["7"], expected_stdout: "[7] [7]\n"}
+          - {id: empty, args: [], expected_stdout: "[] []\n"}
+        reference: |
+          def sola_kaydir(liste):
+              if len(liste) == 0:
+                  return []
+              return liste[1:] + [liste[0]]
+        wrong:
+          - |
+            def sola_kaydir(liste):
+                if len(liste) == 0:
+                    return []
+                return [liste[-1]] + liste[:-1]
+          - |
+            def sola_kaydir(liste):
+                if len(liste) == 0:
+                    return []
+                ilk = liste[0]
+                liste.remove(ilk)
+                liste.append(ilk)
+                return liste
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: sorted_words
+        required_skills: [skill.python.string_text_operations, skill.python.functions_parameters_return]
+        prompt: |
+          cozum.py dosyasına sirali_kelimeler(metin) adında bir fonksiyon yaz: aralarında boşluk olan kelimelerden oluşan metnin kelimelerini alfabetik sırada bir liste olarak döndürsün. Kelimeler yalnızca İngiliz alfabesinin küçük harflerinden oluşur. Örnek: sirali_kelimeler("elma armut") → ['armut', 'elma'].
+        harness: |
+          import sys, cozum
+          print(cozum.sirali_kelimeler(sys.argv[1]))
+        suite:
+          - {id: three, args: ["kiraz elma armut"], expected_stdout: "['armut', 'elma', 'kiraz']\n"}
+          - {id: one, args: ["tek"], expected_stdout: "['tek']\n"}
+          - {id: sorted_already, args: ["a b c"], expected_stdout: "['a', 'b', 'c']\n"}
+        reference: |
+          def sirali_kelimeler(metin):
+              return sorted(metin.split())
+        wrong:
+          - |
+            def sirali_kelimeler(metin):
+                return sorted(metin)
+          - |
+            def sirali_kelimeler(metin):
+                return metin.split()

@@ -1,0 +1,53 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.mapping_collections_basic.select_and_use_mapping.g08@v1",
+  "item": "item.python.mapping_collections_basic.select_and_use_mapping.g08@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\na = sys.argv[1:]\nkayitlar = [(a[i], int(a[i + 1])) for i in range(0, len(a), 2)]\nprint(sorted(cozum.ogrenci_ortalamalari(kayitlar).items()))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two_students",
+      "args": [
+        "Ali",
+        "70",
+        "Ece",
+        "90",
+        "Ali",
+        "81"
+      ],
+      "expected_stdout": "[('Ali', 75.5), ('Ece', 90.0)]\n"
+    },
+    {
+      "id": "thirds",
+      "args": [
+        "Can",
+        "1",
+        "Can",
+        "1",
+        "Can",
+        "2"
+      ],
+      "expected_stdout": "[('Can', 1.3)]\n"
+    },
+    {
+      "id": "empty",
+      "args": [],
+      "expected_stdout": "[]\n"
+    }
+  ]
+}

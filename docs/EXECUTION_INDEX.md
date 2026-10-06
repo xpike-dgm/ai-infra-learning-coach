@@ -205,11 +205,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **15D — Memory Foundations** — `MMFX-v0 / D-116`
 - [x] **15E — Linux / Git / Shell Foundations** — `LGSX-v0 / D-118`
 - [x] **15F — English A0→A1/A2 başlangıç paketi** — `EAAX-v0 / D-119`
-- [ ] **15G — Assessment content** **AKTİF**
-- [ ] **15E — Linux / Git / Shell Foundations**
-- [ ] **15F — English A0→A1/A2 başlangıç paketi**
-- [ ] **15G — Assessment content**
-- [ ] **15H — Content QA**
+- [x] **15G — Assessment content** — `ACNX-v0 / D-120`
+- [ ] **15H — Content QA** **AKTİF**
 
 ---
 
@@ -266,9 +263,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15F`  
-**Son tamamlanan:** **`15F — EAAX-v0 / D-119`**  
-**Aktif:** **`15G — Assessment content`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15G`  
+**Son tamamlanan:** **`15G — ACNX-v0 / D-120`**  
+**Aktif:** **`15H — Content QA`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -328,4 +325,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 15F `EAAX-v0` ile altıncı paket sevk ediliyor: bir item'ın gösterdiği her İngilizce kelime, item'ın dayanabileceği bir dersin öğrettiği bir kelimedir ve hiçbir dersin öğretmediği kelimeyi derleme reddeder; İngilizce hiçbir teknik şey için kapı değildir. 10 Skill / 10 Objective / 9 kenar `published`; 82 item, 50 anlatım. T6 çalıştırılmadı.
 
-15G başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+15G `ACNX-v0` ile yedinci paket sevk ediliyor: yayımlanmış Objective'lere, yayımlanmış hiçbir şeyi değiştirmeden, öğrencinin görmediği ve aynı yeteneği ölçen item'lar ekleyen bir ek paket — 613 item, 240 büyüyen görev v2'si, 21 ayın slotuna ayrılmış cross-topic transfer item'ı ve 144 seçenek düzeyinde misconception anahtarı; `TRANSFER_OPPORTUNITY` sahibi `TransferEngine`. Bağımsız inceleme dört turda 613/613. Havuz 65 Objective'in 54'ünde ≥15; üç teknik Objective 14, sekiz İngilizce Objective 10–12 (kullanıcı kararı) — eksik kayıtlı. Onay kullanıcının 2026-10-04 açık onayı. T6 çalıştırılmadı.
+
+15H başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

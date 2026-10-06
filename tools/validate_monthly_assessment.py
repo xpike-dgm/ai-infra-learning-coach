@@ -292,15 +292,23 @@ check("E13B-06_retention", "if (critical) Either.Role(MonthlyRole.CRITICAL_CAPAB
       "retention mapping")
 check("E13B-06_english_track_only", "need.track == WeeklyBlueprintEngine.ENGLISH_TRACK" in role_of, "parallel role not English-only")
 check("E13B-06_integration", "NeedTrigger.INTEGRATION_OPPORTUNITY -> Either.Role(MonthlyRole.INTEGRATED_APPLICATION)" in role_of, "integration mapping")
-check("E13B-06_no_invented_producer", "CROSS_TOPIC_TRANSFER" not in engine and "PROFESSIONAL_EVIDENCE_CHECKPOINT" not in engine
+# Narrowed at 15G (`ACNX-v0` / `D-120`): the 13B contract left both roles without a producer, owned by 15; 15G built the transfer
+# owner (TransferEngine, D-120) and the monthly engine maps its need to CROSS_TOPIC_TRANSFER — and nothing else. The
+# checkpoint still has no producer anywhere.
+check("E13B-06_no_invented_producer", "PROFESSIONAL_EVIDENCE_CHECKPOINT" not in engine
+      and engine.count("CROSS_TOPIC_TRANSFER") == 1
+      and "NeedTrigger.TRANSFER_OPPORTUNITY -> Either.Role(MonthlyRole.CROSS_TOPIC_TRANSFER)" in engine
       and set(roles.get("without_producer", {})) == {"cross_topic_transfer", "professional_evidence_checkpoint"}
       and all(v.get("owner") == 15 for v in roles.get("without_producer", {}).values()), "a producer invented or unowned")
-check("E13B-06_trigger_set_unchanged", "TRANSFER" not in body(read(ANDROID / "core-model/src/main/kotlin/coach/PlannerFacts.kt"), "enum class NeedTrigger"),
+# Narrowed at 15G (`ACNX-v0` / `D-120`): the one transfer trigger is 15G's declared extension (`transfer_opportunity`); no other.
+_triggers = re.findall(r"^\s+([A-Z_]+)\(", body(read(ANDROID / "core-model/src/main/kotlin/coach/PlannerFacts.kt"), "enum class NeedTrigger"), re.M)
+check("E13B-06_trigger_set_unchanged", [t for t in _triggers if "TRANSFER" in t] == ["TRANSFER_OPPORTUNITY"],
       "a transfer trigger invented")
 check("E13B-06_band_is_planners", "PlannerEngine.band(need, scope, StarvationBucket.NONE)" in composer and "BlueprintComposer.entry(" in pool, "the month has its own band")
 check("E13B-06_no_randomness", not re.search(r"\bRandom\b|shuffle|UUID", engine + composer + app), "randomness in composition")
 exclusions = re.findall(r'^\s+[A-Z_]+\("([a-z_]+)"\),', body(common, "enum class BlueprintExclusion"), re.M)
-check("E13B-06_exclusions_equal_contract", exclusions == contract.get("pool", {}).get("exclusions"), f"{exclusions}")
+# Narrowed at 15G (`ACNX-v0` / `D-120`): 15G appended exactly one exclusion, `transfer_is_monthly`.
+check("E13B-06_exclusions_equal_contract", exclusions == contract.get("pool", {}).get("exclusions") + ["transfer_is_monthly"], f"{exclusions}")
 check("E13B-06_weekly_exclusions_first", exclusions[:5] == weekly_contract.get("pool", {}).get("exclusions"), "a weekly exclusion moved")
 
 # ---------------------------------------------------------------- the shared composer
@@ -458,7 +466,8 @@ weekly_catalog = [weekly_consts.get(t, t.strip('"')) for t in re.findall(r'^\s+(
 check("E13B-15_weekly_codes_unchanged", weekly_catalog == weekly_contract.get("reason_codes", {}).get("codes"), "a weekly code changed")
 check("E13B-15_weekly_roles_unchanged", weekly_role_ids == weekly_contract.get("roles", {}).get("order"), "a weekly role changed")
 refusals = re.findall(r'^\s+[A-Z_]+\("([a-z_]+)"\),', body(common, "enum class SlotItemRefusal"), re.M)
-check("E13B-15_weekly_refusals_unchanged", refusals == weekly_contract.get("item_selection", {}).get("refusals"), str(refusals))
+# Narrowed at 15G (`ACNX-v0` / `D-120`): 15G appended exactly one refusal, `transfer_claim_unsupported` (AIV-v0 §16).
+check("E13B-15_weekly_refusals_unchanged", refusals == weekly_contract.get("item_selection", {}).get("refusals") + ["transfer_claim_unsupported"], str(refusals))
 check("E13B-15_weekly_overrides", "override val evidenceRecorded get() = EVIDENCE_BUNDLE_RECORDED" in weekly_facts
       and "override val noExamDebt get() = NO_EXAM_DEBT" in weekly_facts, "weekly codes rebound")
 weekly_validator = read(WEEKLY_VALIDATOR)
@@ -476,7 +485,8 @@ named_tests = {
               "the monthly reason codes are MCA-v0 section 29, twenty-one and in order",
               "a blueprint holds only its own scope's roles, and only a month names a prior session", "a format never reads the other scope's text"],
     "engine": ["the pool comes from state, one role per Skill, in section 7 order", "a critical Skill is revalidated only for a reason, never because it is critical",
-               "owner needs bring integration and the parallel track, transfer and the checkpoint have no producer",
+               # Narrowed at 15G (`ACNX-v0` / `D-120`): the test now also covers the transfer producer.
+               "owner needs bring integration, transfer and the parallel track, the checkpoint has no producer",
                "slots take only items eligible for the monthly scope and declared for the monthly role",
                "revalidation lists name only clean independent positives of their own role",
                "a clean negative on a critical Skill revalidates nothing and is not a verdict"],

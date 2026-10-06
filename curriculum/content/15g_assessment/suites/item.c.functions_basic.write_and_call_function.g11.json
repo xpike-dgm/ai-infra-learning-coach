@@ -1,0 +1,26 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.functions_basic.write_and_call_function.g11@v1",
+  "item": "item.c.functions_basic.write_and_call_function.g11@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nint bolen_sayisi(int n);\n\nint main(void) {\n    int n = 0;\n    while (scanf(\"%d\", &n) == 1) {\n        printf(\"%d\\n\", bolen_sayisi(n));\n    }\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -c ders_test.c -o ders_test.o && gcc cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "values",
+      "stdin": "12 1 13 36\n",
+      "expected_stdout": "6\n1\n2\n9\n"
+    }
+  ]
+}

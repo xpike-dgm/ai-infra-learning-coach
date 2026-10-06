@@ -1,0 +1,16 @@
+skill: skill.english.write_command_result_note
+objectives:
+  - id: objective.english.write_command_result_note.demonstrate_capability
+    items:
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Bu notta iki hata var. Notu düzeltip tamamını yaz.
+        code: |
+          `gcc` have two warning.
+        answer: "`gcc` has two warnings."
+        also_accept: ["`gcc` has two warnings", "gcc has two warnings.", "gcc has two warnings"]
+        verify:
+          mode: reference
+          reference: "Wikipedia — English verbs, simple present: third-person singular -s (has); English plurals: two + plural noun (warnings)"
+          claim: "Komut tek bir şeydir, fiil -s alır (have → has); iki tane olduğu için isim çoğuldur (warnings)."

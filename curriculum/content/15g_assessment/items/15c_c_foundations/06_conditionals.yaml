@@ -1,0 +1,687 @@
+skill: skill.c.conditionals
+objectives:
+  - id: objective.c.conditionals.write_control_flow
+    items:
+      - slug: g01
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden 0–23 arası bir saat okusun ve günün bölümünü yazsın: 6–11 sabah, 12–17 ogle, 18–21 aksam, geri kalan saatler (22, 23 ve 0–5) gece.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: morning_edges, stdin: "6\n", expected_stdout: "sabah\n"}
+          - {id: noon, stdin: "12\n", expected_stdout: "ogle\n"}
+          - {id: evening_end, stdin: "21\n", expected_stdout: "aksam\n"}
+          - {id: late, stdin: "22\n", expected_stdout: "gece\n"}
+          - {id: early, stdin: "5\n", expected_stdout: "gece\n"}
+          - {id: before_noon, stdin: "11\n", expected_stdout: "sabah\n"}
+          - {id: midnight, stdin: "0\n", expected_stdout: "gece\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int saat = 0;
+              scanf("%d", &saat);
+              if (saat >= 6 && saat <= 11) {
+                  printf("sabah\n");
+              } else if (saat >= 12 && saat <= 17) {
+                  printf("ogle\n");
+              } else if (saat >= 18 && saat <= 21) {
+                  printf("aksam\n");
+              } else {
+                  printf("gece\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int saat = 0;
+                scanf("%d", &saat);
+                if (saat <= 11) {
+                    printf("sabah\n");
+                } else if (saat <= 17) {
+                    printf("ogle\n");
+                } else if (saat <= 21) {
+                    printf("aksam\n");
+                } else {
+                    printf("gece\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int saat = 0;
+                scanf("%d", &saat);
+                if (saat > 6 && saat < 11) {
+                    printf("sabah\n");
+                } else if (saat >= 12 && saat <= 17) {
+                    printf("ogle\n");
+                } else if (saat >= 18 && saat <= 21) {
+                    printf("aksam\n");
+                } else {
+                    printf("gece\n");
+                }
+                return 0;
+            }
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: girdiden iki tam sayı okusun; eşitlerse esit, değillerse farkli yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: equal, stdin: "4 4\n", expected_stdout: "esit\n"}
+          - {id: different, stdin: "4 5\n", expected_stdout: "farkli\n"}
+          - {id: negatives, stdin: "-1 -1\n", expected_stdout: "esit\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0, b = 0;
+              scanf("%d %d", &a, &b);
+              if (a == b) {
+                  printf("esit\n");
+              } else {
+                  printf("farkli\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0;
+                scanf("%d %d", &a, &b);
+                if (a = b) {
+                    printf("esit\n");
+                } else {
+                    printf("farkli\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0;
+                scanf("%d %d", &a, &b);
+                if (a != b) {
+                    printf("esit\n");
+                } else {
+                    printf("farkli\n");
+                }
+                return 0;
+            }
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: girdiden tek bir karakter okusun; karakter e ya da E ise evet, değilse hayir yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: lower, stdin: "e\n", expected_stdout: "evet\n"}
+          - {id: upper, stdin: "E\n", expected_stdout: "evet\n"}
+          - {id: other, stdin: "h\n", expected_stdout: "hayir\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              char c = ' ';
+              scanf(" %c", &c);
+              if (c == 'e' || c == 'E') {
+                  printf("evet\n");
+              } else {
+                  printf("hayir\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char c = ' ';
+                scanf(" %c", &c);
+                if (c == 'e') {
+                    printf("evet\n");
+                } else {
+                    printf("hayir\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char c = ' ';
+                scanf(" %c", &c);
+                if (c == 'e' && c == 'E') {
+                    printf("evet\n");
+                } else {
+                    printf("hayir\n");
+                }
+                return 0;
+            }
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir tam sayı okusun ve mutlak değerini yazsın. Mutlak değeri koşul işleciyle (? :) tek bir ifadede hesapla.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: negative, stdin: "-7\n", expected_stdout: "7\n"}
+          - {id: positive, stdin: "12\n", expected_stdout: "12\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "0\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              int mutlak = n < 0 ? -n : n;
+              printf("%d\n", mutlak);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int mutlak = n < 0 ? n : -n;
+                printf("%d\n", mutlak);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int mutlak = -n;
+                printf("%d\n", mutlak);
+                return 0;
+            }
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir ay numarası okusun ve switch ile mevsimini yazsın: 12, 1, 2 kis; 3, 4, 5 ilkbahar; 6, 7, 8 yaz; 9, 10, 11 sonbahar; başka bir sayı gecersiz. Aynı mevsimdeki ayları ardışık case etiketleriyle grupla.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: december, stdin: "12\n", expected_stdout: "kis\n"}
+          - {id: april, stdin: "4\n", expected_stdout: "ilkbahar\n"}
+          - {id: august, stdin: "8\n", expected_stdout: "yaz\n"}
+          - {id: september, stdin: "9\n", expected_stdout: "sonbahar\n"}
+          - {id: invalid, stdin: "13\n", expected_stdout: "gecersiz\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int ay = 0;
+              scanf("%d", &ay);
+              switch (ay) {
+                  case 12:
+                  case 1:
+                  case 2:
+                      printf("kis\n");
+                      break;
+                  case 3:
+                  case 4:
+                  case 5:
+                      printf("ilkbahar\n");
+                      break;
+                  case 6:
+                  case 7:
+                  case 8:
+                      printf("yaz\n");
+                      break;
+                  case 9:
+                  case 10:
+                  case 11:
+                      printf("sonbahar\n");
+                      break;
+                  default:
+                      printf("gecersiz\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int ay = 0;
+                scanf("%d", &ay);
+                switch (ay) {
+                    case 12:
+                    case 1:
+                    case 2:
+                        printf("kis\n");
+                    case 3:
+                    case 4:
+                    case 5:
+                        printf("ilkbahar\n");
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                        printf("yaz\n");
+                        break;
+                    case 9:
+                    case 10:
+                    case 11:
+                        printf("sonbahar\n");
+                        break;
+                    default:
+                        printf("gecersiz\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int ay = 0;
+                scanf("%d", &ay);
+                switch (ay) {
+                    case 1:
+                    case 2:
+                    case 3:
+                        printf("kis\n");
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                        printf("ilkbahar\n");
+                        break;
+                    case 7:
+                    case 8:
+                    case 9:
+                        printf("yaz\n");
+                        break;
+                    case 10:
+                    case 11:
+                    case 12:
+                        printf("sonbahar\n");
+                        break;
+                    default:
+                        printf("gecersiz\n");
+                }
+                return 0;
+            }
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden pozitif bir tam sayı okusun; sayı hem 3'e hem 5'e bölünüyorsa FizzBuzz, yalnız 3'e bölünüyorsa Fizz, yalnız 5'e bölünüyorsa Buzz, hiçbirine bölünmüyorsa sayının kendisini yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: fifteen, stdin: "15\n", expected_stdout: "FizzBuzz\n"}
+          - {id: nine, stdin: "9\n", expected_stdout: "Fizz\n"}
+          - {id: ten, stdin: "10\n", expected_stdout: "Buzz\n"}
+          - {id: seven, stdin: "7\n", expected_stdout: "7\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              if (n % 15 == 0) {
+                  printf("FizzBuzz\n");
+              } else if (n % 3 == 0) {
+                  printf("Fizz\n");
+              } else if (n % 5 == 0) {
+                  printf("Buzz\n");
+              } else {
+                  printf("%d\n", n);
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                if (n % 3 == 0) {
+                    printf("Fizz\n");
+                } else if (n % 5 == 0) {
+                    printf("Buzz\n");
+                } else if (n % 15 == 0) {
+                    printf("FizzBuzz\n");
+                } else {
+                    printf("%d\n", n);
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                if (n % 3 == 0) {
+                    printf("Fizz");
+                }
+                if (n % 5 == 0) {
+                    printf("Buzz");
+                }
+                printf("\n");
+                return 0;
+            }
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki program girilen sayı 10'dan büyükse alt alta buyuk ve dikkat yazmalı, değilse hiçbir şey yazmamalı. Ama 3 girilince de dikkat yazıyor. Hatayı bul, düzelt ve cozum.c olarak kaydet.
+
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              if (n > 10)
+                  printf("buyuk\n");
+                  printf("dikkat\n");
+              return 0;
+          }
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: big, stdin: "15\n", expected_stdout: "buyuk\ndikkat\n"}
+          - {id: small, stdin: "3\n", expected_stdout: ""}
+          - {id: boundary, stdin: "10\n", expected_stdout: ""}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              if (n > 10) {
+                  printf("buyuk\n");
+                  printf("dikkat\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                if (n > 10)
+                    printf("buyuk\n");
+                    printf("dikkat\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                if (n >= 10) {
+                    printf("buyuk\n");
+                    printf("dikkat\n");
+                }
+                return 0;
+            }
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir üçgenin üç kenar uzunluğunu (pozitif tam sayılar, geçerli bir üçgen) okusun; üç kenar eşitse eskenar, yalnız ikisi eşitse ikizkenar, hepsi farklıysa cesitkenar yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: equilateral, stdin: "5 5 5\n", expected_stdout: "eskenar\n"}
+          - {id: first_two, stdin: "5 5 3\n", expected_stdout: "ikizkenar\n"}
+          - {id: outer_two, stdin: "4 6 4\n", expected_stdout: "ikizkenar\n"}
+          - {id: last_two, stdin: "3 7 7\n", expected_stdout: "ikizkenar\n"}
+          - {id: scalene, stdin: "3 4 5\n", expected_stdout: "cesitkenar\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0, b = 0, c = 0;
+              scanf("%d %d %d", &a, &b, &c);
+              if (a == b && b == c) {
+                  printf("eskenar\n");
+              } else if (a == b || b == c || a == c) {
+                  printf("ikizkenar\n");
+              } else {
+                  printf("cesitkenar\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0, c = 0;
+                scanf("%d %d %d", &a, &b, &c);
+                if (a == b && b == c) {
+                    printf("eskenar\n");
+                } else if (a == b || b == c) {
+                    printf("ikizkenar\n");
+                } else {
+                    printf("cesitkenar\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0, c = 0;
+                scanf("%d %d %d", &a, &b, &c);
+                if (a == b || b == c || a == c) {
+                    printf("ikizkenar\n");
+                } else if (a == b && b == c) {
+                    printf("eskenar\n");
+                } else {
+                    printf("cesitkenar\n");
+                }
+                return 0;
+            }
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir paketin kilosunu (tam sayı) ve ekspres olup olmadığını (1 ya da 0) okusun ve kargo ücretini yazsın: 5 kilo ve altı 30, 5'ten ağır paketler 50 lira; ekspres gönderide bu ücretin üstüne 20 lira eklenir.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: light_normal, stdin: "5 0\n", expected_stdout: "30\n"}
+          - {id: light_express, stdin: "2 1\n", expected_stdout: "50\n"}
+          - {id: heavy_normal, stdin: "6 0\n", expected_stdout: "50\n"}
+          - {id: heavy_express, stdin: "10 1\n", expected_stdout: "70\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int kilo = 0, ekspres = 0;
+              scanf("%d %d", &kilo, &ekspres);
+              int ucret = kilo <= 5 ? 30 : 50;
+              if (ekspres) {
+                  ucret += 20;
+              }
+              printf("%d\n", ucret);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int kilo = 0, ekspres = 0;
+                scanf("%d %d", &kilo, &ekspres);
+                int ucret = kilo < 5 ? 30 : 50;
+                if (ekspres) {
+                    ucret += 20;
+                }
+                printf("%d\n", ucret);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int kilo = 0, ekspres = 0;
+                scanf("%d %d", &kilo, &ekspres);
+                int ucret = 0;
+                if (ekspres) {
+                    ucret = 50;
+                } else if (kilo <= 5) {
+                    ucret = 30;
+                } else {
+                    ucret = 50;
+                }
+                printf("%d\n", ucret);
+                return 0;
+            }
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki program girilen harfe göre trafik ışığının anlamını yazmalı: k için dur, s için hazirlan, y için gec, başka bir harf için bilinmiyor. Ama s girilince iki satır yazıyor. switch'in nasıl çalıştığını düşün, hatayı düzelt ve cozum.c olarak kaydet.
+
+          #include <stdio.h>
+
+          int main(void) {
+              char isik = ' ';
+              scanf(" %c", &isik);
+              switch (isik) {
+                  case 'k':
+                      printf("dur\n");
+                      break;
+                  case 's':
+                      printf("hazirlan\n");
+                  case 'y':
+                      printf("gec\n");
+                      break;
+                  default:
+                      printf("bilinmiyor\n");
+              }
+              return 0;
+          }
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: red, stdin: "k\n", expected_stdout: "dur\n"}
+          - {id: yellow, stdin: "s\n", expected_stdout: "hazirlan\n"}
+          - {id: green, stdin: "y\n", expected_stdout: "gec\n"}
+          - {id: other, stdin: "m\n", expected_stdout: "bilinmiyor\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              char isik = ' ';
+              scanf(" %c", &isik);
+              switch (isik) {
+                  case 'k':
+                      printf("dur\n");
+                      break;
+                  case 's':
+                      printf("hazirlan\n");
+                      break;
+                  case 'y':
+                      printf("gec\n");
+                      break;
+                  default:
+                      printf("bilinmiyor\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char isik = ' ';
+                scanf(" %c", &isik);
+                switch (isik) {
+                    case 'k':
+                        printf("dur\n");
+                        break;
+                    case 's':
+                        printf("hazirlan\n");
+                    case 'y':
+                        printf("gec\n");
+                        break;
+                    default:
+                        printf("bilinmiyor\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char isik = ' ';
+                scanf(" %c", &isik);
+                switch (isik) {
+                    case 'k':
+                        printf("dur\n");
+                        break;
+                    case 's':
+                        printf("hazirlan\n");
+                        break;
+                    case 'y':
+                        printf("gec\n");
+                }
+                return 0;
+            }
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden aynı yıla ait iki tarihi gün ay gün ay sırasıyla (dört tam sayı) okusun; birinci tarih ikinciden önceyse once, sonraysa sonra, aynıysa ayni yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: earlier_month, stdin: "30 1 2 2\n", expected_stdout: "once\n"}
+          - {id: later_day, stdin: "15 6 3 6\n", expected_stdout: "sonra\n"}
+          - {id: same, stdin: "9 9 9 9\n", expected_stdout: "ayni\n"}
+          - {id: later_month_smaller_day, stdin: "1 12 31 1\n", expected_stdout: "sonra\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int g1 = 0, a1 = 0, g2 = 0, a2 = 0;
+              scanf("%d %d %d %d", &g1, &a1, &g2, &a2);
+              if (a1 < a2 || (a1 == a2 && g1 < g2)) {
+                  printf("once\n");
+              } else if (a1 == a2 && g1 == g2) {
+                  printf("ayni\n");
+              } else {
+                  printf("sonra\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int g1 = 0, a1 = 0, g2 = 0, a2 = 0;
+                scanf("%d %d %d %d", &g1, &a1, &g2, &a2);
+                if (g1 < g2 || a1 < a2) {
+                    printf("once\n");
+                } else if (a1 == a2 && g1 == g2) {
+                    printf("ayni\n");
+                } else {
+                    printf("sonra\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int g1 = 0, a1 = 0, g2 = 0, a2 = 0;
+                scanf("%d %d %d %d", &g1, &a1, &g2, &a2);
+                if (a1 < a2 && g1 < g2) {
+                    printf("once\n");
+                } else if (a1 == a2 && g1 == g2) {
+                    printf("ayni\n");
+                } else {
+                    printf("sonra\n");
+                }
+                return 0;
+            }

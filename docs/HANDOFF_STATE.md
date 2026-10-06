@@ -306,14 +306,15 @@ PEM-v0:
 - 15D ✅ MMFX-v0 / D-116
 - 15E ✅ LGSX-v0 / D-118
 - 15F ✅ EAAX-v0 / D-119
-- 15G 🟡 active-not-executed
-- 15H–20 ⬜
+- 15G ✅ ACNX-v0 / D-120
+- 15H 🟡 active-not-executed
+- 16–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `15F — EAAX-v0 / D-119`  
-**Aktif:** `15G — Assessment content`  
-**15G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `15G — ACNX-v0 / D-120`  
+**Aktif:** `15H — Content QA`  
+**15H henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1485,3 +1486,26 @@ EAAX-v0:
 ## 88. 15G handoff
 
 15G — Assessment content. **The user's standing approval (D-117) ended with 15F** ("mevcut aşamayı bitirince durursun", 2026-10-04): 15G needs a fresh PRE and the user's new explicit approval. Open loops carried: the 15A–15D item pool size (the user's concern; a pool-expansion step awaits the user's decision and could be part of 15G), documentation_navigation's graph, generous labels, notation coverage (15H); moving answers between phone and computer (16D); minute calibration (18B); T6 and on-device ingestion (19).
+
+## 89. D-120 / 15G final özeti
+
+Canonical: `docs/ASSESSMENT_CONTENT_SPEC.md`.
+Contract/QA: `arch/15g_assessment_content/` (contract, content verification report, QA report, stale audit).
+Synthesis: `research/15g_assessment_content_research.md`.
+Content: `curriculum/content/15g_assessment/` (package, `items/<source>/<skill>.yaml`, independent review, generated suites) → `tools/build_curriculum_package.py` (`build_supplement`) → `android/app-wiring/src/main/assets/curriculum_package_v7.txt`.
+Code: builder (supplement build, `form_problems`, `transfer_problems`, answer-misconception sections, task v2 only when grown, the transfer-context crash fix); Kotlin (`TransferEngine`, `TransferPlanning`, the planner band, monthly role, weekly exclusion, composer refusal, `AcceptedAnswers.misconceptionFor`, `PackageFormat.parse(text, earlier)`, highest task version); validator `tools/validate_assessment_content.py`. Schema, ports and store unchanged.
+
+ACNX-v0:
+- an added item measures its Objective in a structure the learner has not seen, in a form that can produce the evidence the Objective requires, and ships only after an independent reviewer passed it; a supplement never overwrites anything published,
+- approval: the user's explicit approval of 2026-10-04 ("15G ye başla"); user decisions: 15–20 per Objective, transfer content + the monthly producer, option-level misconception keys, the assistant writes and separate agents review, an honest small pool for 15F,
+- 613 items, 240 grown task v2s (no teach task changed), 21 cross-topic transfer items reserved for the month's slot, 144 wrong-option keys (66 on added, 78 on published items); no Skill, Objective, edge, Topic, lesson or label added; packages 1–6 rebuild byte-identically,
+- declared extensions: `NeedTrigger.TRANSFER_OPPORTUNITY`, `TRANSFER_IS_MONTHLY`, `TRANSFER_CLAIM_UNSUPPORTED`, `[answer_misconception]`, `transfer_profile`/`context_family_id`, a later package's task version,
+- independent review over four rounds: 613/613 items, 144/144 mappings,
+- pools: 54 of 65 Objectives at ≥15; recorded shortfall: scope_name_resolution, c.declaration_type_model, git.repository_status_diff at 14; eight English Objectives at 10–12 (user decision),
+- found: leakage and near-variance, not wrong keys, are what added items fail on; a choice item cannot carry code, hands-on or written evidence; a harder item of the same lesson is not transfer; a transfer item without a named context crashed the build (fixed),
+- Mutation builder 22/22, Kotlin 32/32; independent QA 108/108 PASS,
+- T6 and on-device ingestion were not run.
+
+## 90. 15H handoff
+
+15H — Content QA. **The user's standing approval (D-117) ended with 15F**; 15G ran on the user's explicit approval of 2026-10-04, and 15H needs a fresh PRE and the user's new explicit approval. Inputs: 15G's recorded pool shortfall (3 technical Objectives at 14; 8 English Objectives at 10–12 — English first needs a wider taught lexicon), the reviewers' findings on generous difficulty labels and isomorphs (`curriculum/content/15g_assessment/independent_review.yaml`), documentation_navigation's graph and notation coverage. Carried: `professional_evidence_checkpoint` (AŞAMA 20), moving answers between phone and computer (16D), minute calibration (18B), T6 and on-device ingestion (19).

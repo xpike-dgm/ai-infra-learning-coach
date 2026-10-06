@@ -1,0 +1,470 @@
+skill: skill.python.exception_handling
+objectives:
+  - id: objective.python.exception_handling.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına ilk_sayi(metinler) adında bir fonksiyon yaz: listedeki yazılardan tam sayıya (int()) çevrilebilen İLKİNİ sayı olarak döndürsün; çevrilemeyenleri (ValueError) atlasın; hiçbiri çevrilemiyorsa None döndürsün. Listede yazı yerine başka türde bir değer varsa ve oraya gelinirse oluşan hata yakalanmasın, yukarıya gitsin. Örnek: ilk_sayi(["a", "12", "5"]) → 12.
+        required_skills: [skill.python.functions_parameters_return, skill.python.value_type_behavior, skill.python.for_iteration, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          metinler = [[1] if x == "<liste>" else x for x in sys.argv[1:]]
+          try:
+              print(cozum.ilk_sayi(metinler))
+          except Exception as e:
+              print("yukarıya geldi")
+        suite:
+          - {id: second, args: ["a", "12", "5"], expected_stdout: "12\n"}
+          - {id: none, args: ["x", "y"], expected_stdout: "None\n"}
+          - {id: negative_first, args: ["-3", "8"], expected_stdout: "-3\n"}
+          - {id: wrong_type_propagates, args: ["a", "<liste>", "4"], expected_stdout: "yukarıya geldi\n"}
+        reference: |
+          def ilk_sayi(metinler):
+              for metin in metinler:
+                  try:
+                      return int(metin)
+                  except ValueError:
+                      pass
+              return None
+        wrong:
+          - |
+            def ilk_sayi(metinler):
+                for metin in metinler:
+                    try:
+                        return int(metin)
+                    except Exception:
+                        pass
+                return None
+          - |
+            def ilk_sayi(metinler):
+                for metin in metinler:
+                    try:
+                        return int(metin)
+                    except ValueError:
+                        return None
+                return None
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına eleman(liste, i) adında bir fonksiyon yaz: listenin i'nci elemanını döndürsün; böyle bir indeks yoksa (IndexError) "yok" yazısını döndürsün. Eksi indeksler Python'daki anlamıyla geçerlidir (liste[-1] son eleman). İndeks tam sayı değilse oluşan hata yakalanmasın, yukarıya gitsin.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          i = sys.argv[1][1:-1] if sys.argv[1].startswith("<") else int(sys.argv[1])
+          try:
+              print(cozum.eleman([int(x) for x in sys.argv[2:]], i))
+          except Exception as e:
+              print("yukarıya geldi")
+        suite:
+          - {id: inside, args: ["1", "4", "8", "15"], expected_stdout: "8\n"}
+          - {id: too_far, args: ["3", "4", "8", "15"], expected_stdout: "yok\n"}
+          - {id: last, args: ["-1", "4", "8", "15"], expected_stdout: "15\n"}
+          - {id: too_far_back, args: ["-5", "4", "8", "15"], expected_stdout: "yok\n"}
+          - {id: wrong_type_propagates, args: ["<1>", "4", "8", "15"], expected_stdout: "yukarıya geldi\n"}
+        reference: |
+          def eleman(liste, i):
+              try:
+                  return liste[i]
+              except IndexError:
+                  return "yok"
+        wrong:
+          - |
+            def eleman(liste, i):
+                try:
+                    return liste[i]
+                except Exception:
+                    return "yok"
+          - |
+            def eleman(liste, i):
+                if 0 <= i < len(liste):
+                    return liste[i]
+                return "yok"
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına int_mi(metin) adında bir fonksiyon yaz: metin tam sayıya çevrilebiliyorsa True, çevrilemiyorsa False döndürsün. Çevirmeyi int() ile dene ve yalnız ValueError'ı yakala: metin yerine None gibi başka türde bir değer verilirse oluşan hata yakalanmasın, yukarıya gitsin.
+        required_skills: [skill.python.functions_parameters_return, skill.python.value_type_behavior, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          metin = None if sys.argv[1] == "<yok>" else sys.argv[1]
+          try:
+              print(cozum.int_mi(metin))
+          except Exception as e:
+              print("yukarıya geldi")
+        suite:
+          - {id: digits, args: ["123"], expected_stdout: "True\n"}
+          - {id: word, args: ["on"], expected_stdout: "False\n"}
+          - {id: negative, args: ["-4"], expected_stdout: "True\n"}
+          - {id: spaced, args: [" 8 "], expected_stdout: "True\n"}
+          - {id: none_propagates, args: ["<yok>"], expected_stdout: "yukarıya geldi\n"}
+        reference: |
+          def int_mi(metin):
+              try:
+                  int(metin)
+                  return True
+              except ValueError:
+                  return False
+        wrong:
+          - |
+            def int_mi(metin):
+                try:
+                    int(metin)
+                    return True
+                except Exception:
+                    return False
+          - |
+            def int_mi(metin):
+                try:
+                    int(metin)
+                    return False
+                except ValueError:
+                    return True
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına yuzu_bol(metin) adında bir fonksiyon yaz: metni tam sayıya çevirip 100'ü bu sayıya tam bölsün (100 // n) ve sonucu döndürsün. Metin sayıya çevrilemiyorsa "sayı değil", sayı sıfırsa "sıfır olamaz" döndürsün. Her hata türü için ayrı bir except kullan. Metin yerine None gibi başka türde bir değer verilirse oluşan hata yakalanmasın, yukarıya gitsin.
+        required_skills: [skill.python.functions_parameters_return, skill.python.value_type_behavior, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          metin = None if sys.argv[1] == "<yok>" else sys.argv[1]
+          try:
+              print(cozum.yuzu_bol(metin))
+          except Exception as e:
+              print("yukarıya geldi")
+        suite:
+          - {id: four, args: ["4"], expected_stdout: "25\n"}
+          - {id: text, args: ["dört"], expected_stdout: "sayı değil\n"}
+          - {id: zero, args: ["0"], expected_stdout: "sıfır olamaz\n"}
+          - {id: negative, args: ["-3"], expected_stdout: "-34\n"}
+          - {id: none_propagates, args: ["<yok>"], expected_stdout: "yukarıya geldi\n"}
+        reference: |
+          def yuzu_bol(metin):
+              try:
+                  n = int(metin)
+                  return 100 // n
+              except ValueError:
+                  return "sayı değil"
+              except ZeroDivisionError:
+                  return "sıfır olamaz"
+        wrong:
+          - |
+            def yuzu_bol(metin):
+                try:
+                    n = int(metin)
+                    return 100 // n
+                except ValueError:
+                    return "sayı değil"
+                except Exception:
+                    return "sıfır olamaz"
+          - |
+            def yuzu_bol(metin):
+                try:
+                    n = int(metin)
+                    return 100 // n
+                except ValueError:
+                    return "sıfır olamaz"
+                except ZeroDivisionError:
+                    return "sayı değil"
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına hata_mesaji(metin) adında bir fonksiyon yaz: metni int() ile tam sayıya çevirmeyi denesin; başarılıysa "tamam" döndürsün, ValueError olursa hatanın kendi mesajını (except ValueError as e: ve str(e)) döndürsün. Metin yerine None gibi başka türde bir değer verilirse oluşan hata yakalanmasın, yukarıya gitsin.
+        required_skills: [skill.python.functions_parameters_return, skill.python.value_type_behavior]
+        harness: |
+          import sys, cozum
+          metin = None if sys.argv[1] == "<yok>" else sys.argv[1]
+          try:
+              print(cozum.hata_mesaji(metin))
+          except Exception as e:
+              print("yukarıya geldi")
+        suite:
+          - {id: ok, args: ["15"], expected_stdout: "tamam\n"}
+          - {id: word, args: ["x"], expected_stdout: "invalid literal for int() with base 10: 'x'\n"}
+          - {id: decimal, args: ["2.5"], expected_stdout: "invalid literal for int() with base 10: '2.5'\n"}
+          - {id: none_propagates, args: ["<yok>"], expected_stdout: "yukarıya geldi\n"}
+        reference: |
+          def hata_mesaji(metin):
+              try:
+                  int(metin)
+                  return "tamam"
+              except ValueError as e:
+                  return str(e)
+        wrong:
+          - |
+            def hata_mesaji(metin):
+                try:
+                    int(metin)
+                    return "tamam"
+                except Exception as e:
+                    return str(e)
+          - |
+            def hata_mesaji(metin):
+                try:
+                    int(metin)
+                    return "tamam"
+                except ValueError as e:
+                    return metin
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına yas_cevir(metin) adında bir fonksiyon yaz: metni int() ile tam sayıya çevirip döndürsün. Metin sayıya çevrilemiyorsa, int()'in kendi hatası yerine "yaş bir tam sayı olmalı" mesajlı bir ValueError üretsin (raise). metin yerine None verilirse oluşan TypeError yakalanmasın, olduğu gibi yukarıya gitsin. Örnek: yas_cevir("21") → 21.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          x = None if sys.argv[1] == "yok" else sys.argv[1]
+          try:
+              print(cozum.yas_cevir(x))
+          except ValueError as e:
+              print("ValueError:", e)
+          except TypeError:
+              print("TypeError yukarıya geldi")
+        suite:
+          - {id: number, args: ["21"], expected_stdout: "21\n"}
+          - {id: negative_number, args: ["-4"], expected_stdout: "-4\n"}
+          - {id: own_message, args: ["on iki"], expected_stdout: "ValueError: yaş bir tam sayı olmalı\n"}
+          - {id: type_error_propagates, args: ["yok"], expected_stdout: "TypeError yukarıya geldi\n"}
+        reference: |
+          def yas_cevir(metin):
+              try:
+                  return int(metin)
+              except ValueError:
+                  raise ValueError("yaş bir tam sayı olmalı")
+        wrong:
+          - |
+            def yas_cevir(metin):
+                return int(metin)
+          - |
+            def yas_cevir(metin):
+                try:
+                    return int(metin)
+                except Exception:
+                    raise ValueError("yaş bir tam sayı olmalı")
+          - |
+            def yas_cevir(metin):
+                try:
+                    return int(metin)
+                except ValueError:
+                    return None
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına pozitif_sayi(metin) adında bir fonksiyon yaz: metni int() ile çevirip döndürsün. Metin sayı değilse int()'in ValueError'ı olduğu gibi yukarıya gitsin (yakalama); sayı sıfır ya da negatifse kendin "pozitif olmalı" mesajıyla bir ValueError üret (raise). Testler hatayı yakalayıp mesajını yazdırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.value_type_behavior, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          try:
+              print(cozum.pozitif_sayi(sys.argv[1]))
+          except ValueError as e:
+              print("ValueError:", e)
+        suite:
+          - {id: ok, args: ["7"], expected_stdout: "7\n"}
+          - {id: zero, args: ["0"], expected_stdout: "ValueError: pozitif olmalı\n"}
+          - {id: negative, args: ["-2"], expected_stdout: "ValueError: pozitif olmalı\n"}
+          - {id: not_a_number, args: ["yedi"], expected_stdout: "ValueError: invalid literal for int() with base 10: 'yedi'\n"}
+        reference: |
+          def pozitif_sayi(metin):
+              n = int(metin)
+              if n <= 0:
+                  raise ValueError("pozitif olmalı")
+              return n
+        wrong:
+          - |
+            def pozitif_sayi(metin):
+                try:
+                    n = int(metin)
+                except ValueError:
+                    raise ValueError("pozitif olmalı")
+                if n <= 0:
+                    raise ValueError("pozitif olmalı")
+                return n
+          - |
+            def pozitif_sayi(metin):
+                n = int(metin)
+                if n < 0:
+                    raise ValueError("pozitif olmalı")
+                return n
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına iki fonksiyon yaz: birim_fiyat(toplam, adet) toplam / adet döndürsün ve hiçbir hatayı yakalamasın; rapor(toplam, adet) ise birim_fiyat'ı çağırsın, sonucu round(..., 2) ile döndürsün, birim_fiyat'tan gelen ZeroDivisionError'ı yakalayıp None döndürsün. Testler birim_fiyat'ın hatayı kendisinin yakalamadığını da kontrol eder.
+        required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          a = int(sys.argv[1])
+          b = int(sys.argv[2])
+          try:
+              ic = cozum.birim_fiyat(a, b)
+          except ZeroDivisionError:
+              ic = "hata yukarı geçti"
+          print(ic, cozum.rapor(a, b))
+        suite:
+          - {id: normal, args: ["10", "4"], expected_stdout: "2.5 2.5\n"}
+          - {id: zero, args: ["10", "0"], expected_stdout: "hata yukarı geçti None\n"}
+          - {id: thirds, args: ["1", "3"], expected_stdout: "0.3333333333333333 0.33\n"}
+        reference: |
+          def birim_fiyat(toplam, adet):
+              return toplam / adet
+
+          def rapor(toplam, adet):
+              try:
+                  return round(birim_fiyat(toplam, adet), 2)
+              except ZeroDivisionError:
+                  return None
+        wrong:
+          - |
+            def birim_fiyat(toplam, adet):
+                try:
+                    return toplam / adet
+                except ZeroDivisionError:
+                    return None
+
+            def rapor(toplam, adet):
+                sonuc = birim_fiyat(toplam, adet)
+                if sonuc is None:
+                    return None
+                return round(sonuc, 2)
+          - |
+            def birim_fiyat(toplam, adet):
+                return toplam / adet
+
+            def rapor(toplam, adet):
+                try:
+                    return round(birim_fiyat(toplam, adet), 2)
+                except ValueError:
+                    return None
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına bolumler(paylar, paydalar) adında bir fonksiyon yaz: aynı uzunluktaki iki listenin aynı konumdaki elemanlarını bölüp (pay // payda) sonuçların listesini döndürsün; bir payda sıfırsa o konuma None koysun ve devam etsin. Listelerde sayı olmayan bir değer varsa oluşan hata yakalanmasın, yukarıya gitsin. Testler iki listeyi | ile ayırarak verir. Örnek: bolumler([9, 5, 8], [3, 0, 2]) → [3, None, 4].
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.for_iteration, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          ayrac = sys.argv.index("|")
+          def deger(x):
+              return x if x == "a" else int(x)
+          try:
+              print(cozum.bolumler([deger(x) for x in sys.argv[1:ayrac]], [deger(x) for x in sys.argv[ayrac + 1:]]))
+          except Exception as e:
+              print("yukarıya geldi")
+        suite:
+          - {id: one_zero, args: ["9", "5", "8", "|", "3", "0", "2"], expected_stdout: "[3, None, 4]\n"}
+          - {id: no_zero, args: ["7", "|", "2"], expected_stdout: "[3]\n"}
+          - {id: all_zero, args: ["1", "2", "|", "0", "0"], expected_stdout: "[None, None]\n"}
+          - {id: wrong_type_propagates, args: ["6", "a", "|", "2", "3"], expected_stdout: "yukarıya geldi\n"}
+        reference: |
+          def bolumler(paylar, paydalar):
+              sonuc = []
+              for i in range(len(paylar)):
+                  try:
+                      sonuc.append(paylar[i] // paydalar[i])
+                  except ZeroDivisionError:
+                      sonuc.append(None)
+              return sonuc
+        wrong:
+          - |
+            def bolumler(paylar, paydalar):
+                sonuc = []
+                for i in range(len(paylar)):
+                    try:
+                        sonuc.append(paylar[i] // paydalar[i])
+                    except Exception:
+                        sonuc.append(None)
+                return sonuc
+          - |
+            def bolumler(paylar, paydalar):
+                sonuc = []
+                try:
+                    for i in range(len(paylar)):
+                        sonuc.append(paylar[i] // paydalar[i])
+                except ZeroDivisionError:
+                    sonuc.append(None)
+                return sonuc
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki fonksiyon her sayı için None döndürüyor. Amaç: sıfır ya da pozitif bir sayının karekökünü iki basamağa yuvarlanmış olarak döndürmek, eksi bir sayı için (math.sqrt ValueError verir) None döndürmek. Neden hep None döndüğünü bul (her hatayı yakalayan except: gerçek sorunu gizliyor), düzelt ve cozum.py olarak kaydet. Düzeltilmiş fonksiyon yalnız ValueError'ı yakalamalı: sayı yerine bir yazı verilirse oluşan hata yakalanmasın, yukarıya gitsin.
+
+          def guvenli_karekok(x):
+              try:
+                  return round(math.sqrt(x), 2)
+              except:
+                  return None
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          x = sys.argv[1][1:-1] if sys.argv[1].startswith("<") else float(sys.argv[1])
+          try:
+              print(cozum.guvenli_karekok(x))
+          except Exception as e:
+              print("yukarıya geldi")
+        suite:
+          - {id: sixteen, args: ["16"], expected_stdout: "4.0\n"}
+          - {id: two, args: ["2"], expected_stdout: "1.41\n"}
+          - {id: negative, args: ["-9"], expected_stdout: "None\n"}
+          - {id: text_propagates, args: ["<dokuz>"], expected_stdout: "yukarıya geldi\n"}
+        reference: |
+          import math
+
+          def guvenli_karekok(x):
+              try:
+                  return round(math.sqrt(x), 2)
+              except ValueError:
+                  return None
+        wrong:
+          - |
+            import math
+
+            def guvenli_karekok(x):
+                try:
+                    return round(math.sqrt(x), 2)
+                except:
+                    return None
+          - |
+            def guvenli_karekok(x):
+                try:
+                    return round(math.sqrt(x), 2)
+                except NameError:
+                    return None
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: satır satır okusun; okunan satır bir tam sayıya çevrilemiyorsa geçersiz yazıp bir sonraki satırı okusun; ilk geçerli tam sayıda Sayı: <sayı> yazıp dursun. Çevirmeyi try / except ValueError ile yap. Girdi, geçerli bir sayı gelmeden biterse input()'un verdiği hata yakalanmasın: program o hatayla dursun.
+        required_skills: [skill.python.input_output_basic, skill.python.while_termination, skill.python.value_type_behavior, skill.python.expression_evaluation]
+        suite:
+          - {id: two_bad, stdin: "on\n3.5\n7\n", expected_stdout: "geçersiz\ngeçersiz\nSayı: 7\n"}
+          - {id: first_good, stdin: "12\n", expected_stdout: "Sayı: 12\n"}
+          - {id: negative, stdin: "x\n-4\n9\n", expected_stdout: "geçersiz\nSayı: -4\n"}
+          - {id: spaces_around, stdin: "a\n 7 \n", expected_stdout: "geçersiz\nSayı: 7\n"}
+          - {id: end_of_input_propagates, stdin: "a\nb\n", expected_stdout: "geçersiz\ngeçersiz\n", expected_exit_code: 1}
+        reference: |
+          bulundu = False
+          while not bulundu:
+              satir = input()
+              try:
+                  n = int(satir)
+                  bulundu = True
+              except ValueError:
+                  print("geçersiz")
+          print("Sayı:", n)
+        wrong:
+          - |
+            bulundu = False
+            while not bulundu:
+                try:
+                    satir = input()
+                    n = int(satir)
+                    bulundu = True
+                except ValueError:
+                    print("geçersiz")
+                except EOFError:
+                    n = 0
+                    bulundu = True
+            print("Sayı:", n)
+          - |
+            satir = input()
+            try:
+                n = int(satir)
+                print("Sayı:", n)
+            except ValueError:
+                print("geçersiz")

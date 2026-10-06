@@ -1,0 +1,181 @@
+skill: skill.python.scope_name_resolution
+objectives:
+  - id: objective.python.scope_name_resolution.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          x = 5
+          def f(x):
+              x = x + 1
+              return x
+          print(f(10), x)
+        answer: "11 5"
+        verify: {mode: stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          ad = "Ece"
+          def selam():
+              return "Merhaba " + ad
+          print(selam())
+        answer: "Merhaba Ece"
+        verify: {mode: stdout}
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalıştırılınca ne olur?
+        code: |
+          seviye = 1
+
+          def yukselt(puan):
+              if puan > 50:
+                  seviye = 2
+              return seviye
+
+          print(yukselt(80))
+          print(yukselt(20))
+        required_skills: [skill.python.conditionals]
+        options:
+          A: "Önce 2 yazılır, sonra UnboundLocalError ile durur"
+          B: "Önce 2, sonra 1 yazılır"
+          C: "İki kez 2 yazılır"
+          D: "Hiçbir şey yazılmadan SyntaxError verir"
+        scan_options: false
+        answer: A
+        verify:
+          mode: traceback
+          ask: type
+          shown: false
+          outcomes: {A: "UnboundLocalError", B: "1", C: "2", D: "SyntaxError"}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          x = 1
+          def f():
+              global x
+              x = x * 10
+              return x
+          y = f() + f()
+          print(x, y)
+        answer: "100 110"
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          carpan = 1
+          def kat(n):
+              return n * carpan
+          sonuc = []
+          for carpan in range(1, 4):
+              sonuc.append(kat(10))
+          print(sonuc)
+        options:
+          A: "[10, 20, 30]"
+          B: "[10, 10, 10]"
+          C: "[30, 30, 30]"
+          D: Hata verir; carpan iki kez tanımlanamaz.
+        scan_options: false
+        answer: A
+        misconception_options: {B: lookup_at_definition}
+        required_skills: [skill.python.list_operations, skill.python.for_iteration]
+        verify:
+          mode: stdout
+          outcomes: {A: "[10, 20, 30]", B: "[10, 10, 10]", C: "[30, 30, 30]", D: "<hata>"}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalıştırılınca ne olur?
+        code: |
+          def hesapla():
+              yerel = 5
+              return yerel * 2
+          hesapla()
+          print(yerel)
+        options:
+          A: "NameError ile durur"
+          B: "5 yazılır"
+          C: "10 yazılır"
+          D: "None yazılır"
+        scan_options: false
+        answer: A
+        verify:
+          mode: traceback
+          ask: type
+          shown: false
+          outcomes: {A: "NameError", B: "5", C: "10", D: "None"}
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalıştırılınca ne olur?
+        code: |
+          len = 3
+          print(len)
+          print(len([1, 2]))
+        options:
+          A: "Önce 3 yazılır, sonra TypeError ile durur"
+          B: "3 ve 2 yazılır"
+          C: "Hiçbir şey yazılmadan SyntaxError verir"
+          D: "Yalnız 2 yazılır"
+        scan_options: false
+        answer: A
+        required_skills: [skill.python.list_operations]
+        verify:
+          mode: traceback
+          ask: type
+          shown: false
+          outcomes: {A: "TypeError", B: "3", C: "SyntaxError", D: "2"}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def dis():
+              x = "dış"
+              def ic():
+                  x = "iç"
+                  return x
+              ic()
+              return x
+          print(dis())
+        options:
+          A: "dış"
+          B: "iç"
+          C: "None"
+          D: Hata verir.
+        scan_options: false
+        answer: A
+        misconception_options: {B: assignment_changes_global}
+        verify:
+          mode: stdout
+          outcomes: {A: "dış", B: "iç", C: "None", D: "<hata>"}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          liste = []
+          def ekle(x):
+              liste.append(x)
+          ekle(1)
+          ekle(2)
+          print(liste)
+        options:
+          A: "[1, 2]"
+          B: "[]"
+          C: "[2]"
+          D: UnboundLocalError ile durur.
+        scan_options: false
+        answer: A
+        required_skills: [skill.python.list_operations]
+        verify:
+          mode: stdout
+          outcomes: {A: "[1, 2]", B: "[]", C: "[2]", D: "<hata>"}

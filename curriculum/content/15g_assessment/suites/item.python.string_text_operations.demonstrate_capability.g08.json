@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.string_text_operations.demonstrate_capability.g08@v1",
+  "item": "item.python.string_text_operations.demonstrate_capability.g08@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.en_uzun_kelime(sys.argv[1]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "middle",
+      "args": [
+        "bir uzunca cümle"
+      ],
+      "expected_stdout": "uzunca\n"
+    },
+    {
+      "id": "tie_first",
+      "args": [
+        "ev su"
+      ],
+      "expected_stdout": "ev\n"
+    },
+    {
+      "id": "last",
+      "args": [
+        "a bb ccc"
+      ],
+      "expected_stdout": "ccc\n"
+    }
+  ]
+}

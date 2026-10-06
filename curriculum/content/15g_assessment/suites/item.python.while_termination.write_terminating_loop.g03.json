@@ -1,0 +1,43 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.while_termination.write_terminating_loop.g03@v1",
+  "item": "item.python.while_termination.write_terminating_loop.g03@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two_retries",
+      "stdin": "-3\n0\n8\n",
+      "expected_stdout": "tekrar\ntekrar\nTamam: 8\n"
+    },
+    {
+      "id": "first_good",
+      "stdin": "5\n",
+      "expected_stdout": "Tamam: 5\n"
+    },
+    {
+      "id": "one_retry",
+      "stdin": "0\n1\n",
+      "expected_stdout": "tekrar\nTamam: 1\n"
+    },
+    {
+      "id": "stops_at_first_good",
+      "stdin": "-1\n4\n-2\n9\n",
+      "expected_stdout": "tekrar\nTamam: 4\n"
+    }
+  ]
+}

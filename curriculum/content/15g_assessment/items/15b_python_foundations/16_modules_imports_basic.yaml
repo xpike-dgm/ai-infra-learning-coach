@@ -1,0 +1,315 @@
+skill: skill.python.modules_imports_basic
+objectives:
+  - id: objective.python.modules_imports_basic.import_and_use_module_member
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına math modülünü kullanarak hipotenus(a, b) adında bir fonksiyon yaz: dik kenarları a ve b olan dik üçgenin hipotenüsünü (a² + b²'nin karekökü, math.sqrt) iki basamağa yuvarlanmış olarak döndürsün. Örnek: hipotenus(3, 4) → 5.0.
+        required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.hipotenus(int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: three_four, args: ["3", "4"], expected_stdout: "5.0\n"}
+          - {id: unit, args: ["1", "1"], expected_stdout: "1.41\n"}
+          - {id: five_twelve, args: ["5", "12"], expected_stdout: "13.0\n"}
+        reference: |
+          import math
+
+          def hipotenus(a, b):
+              return round(math.sqrt(a * a + b * b), 2)
+        wrong:
+          - |
+            import math
+
+            def hipotenus(a, b):
+                return round(math.sqrt(a + b), 2)
+          - |
+            def hipotenus(a, b):
+                return round(a * a + b * b, 2)
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına math modülünü kullanarak asagi_yuvarla(x) adında bir fonksiyon yaz: x'ten büyük olmayan en büyük tam sayıyı (math.floor) döndürsün. Eksi sayılarda dikkat: asagi_yuvarla(-2.5) → -3.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.asagi_yuvarla(float(sys.argv[1])))
+        suite:
+          - {id: positive, args: ["2.7"], expected_stdout: "2\n"}
+          - {id: negative, args: ["-2.5"], expected_stdout: "-3\n"}
+          - {id: whole, args: ["4.0"], expected_stdout: "4\n"}
+        reference: |
+          import math
+
+          def asagi_yuvarla(x):
+              return math.floor(x)
+        wrong:
+          - |
+            def asagi_yuvarla(x):
+                return int(x)
+          - |
+            import math
+
+            def asagi_yuvarla(x):
+                return math.ceil(x)
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına statistics modülünü kullanarak en_sik(sayilar) adında bir fonksiyon yaz: boş olmayan bir listede en sık geçen değeri (statistics.mode) döndürsün; birden çok değer aynı sıklıktaysa listede önce görüleni. Örnek: en_sik([1, 2, 2, 3, 3]) → 2.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.en_sik([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: tie_first_wins, args: ["1", "2", "2", "3", "3"], expected_stdout: "2\n"}
+          - {id: single, args: ["4"], expected_stdout: "4\n"}
+          - {id: clear, args: ["7", "7", "1"], expected_stdout: "7\n"}
+          - {id: small_most_common, args: ["5", "9", "9", "1", "1", "1", "2"], expected_stdout: "1\n"}
+        reference: |
+          import statistics
+
+          def en_sik(sayilar):
+              return statistics.mode(sayilar)
+        wrong:
+          - |
+            def en_sik(sayilar):
+                return max(sayilar)
+          - |
+            def en_sik(sayilar):
+                return sorted(sayilar)[len(sayilar) // 2]
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına random modülünü kullanarak zar_at(tohum) adında bir fonksiyon yaz: önce random.seed(tohum) ile üreteci başlatsın, sonra random.randint(1, 6) ile bir zar atıp sonucu döndürsün. Aynı tohum hep aynı sonucu verir; testler buna dayanır.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.zar_at(int(sys.argv[1])))
+        suite:
+          - {id: seed_one, args: ["1"], expected_stdout: "2\n"}
+          - {id: seed_forty_two, args: ["42"], expected_stdout: "6\n"}
+          - {id: seed_seven, args: ["7"], expected_stdout: "3\n"}
+        reference: |
+          import random
+
+          def zar_at(tohum):
+              random.seed(tohum)
+              return random.randint(1, 6)
+        wrong:
+          - |
+            import random
+
+            def zar_at(tohum):
+                return random.randint(1, 6) + tohum * 0
+          - |
+            import random
+
+            def zar_at(tohum):
+                random.seed(tohum)
+                return random.randint(0, 5)
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına math modülünü kullanarak kac_kutu(adet, kapasite) adında bir fonksiyon yaz: her kutuya en çok kapasite kadar ürün sığıyorsa, adet ürün için gereken kutu sayısını (yukarı yuvarlama, math.ceil) döndürsün. Örnek: kac_kutu(10, 4) → 3.
+        required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.kac_kutu(int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: partial_box, args: ["10", "4"], expected_stdout: "3\n"}
+          - {id: exact, args: ["8", "4"], expected_stdout: "2\n"}
+          - {id: none, args: ["0", "5"], expected_stdout: "0\n"}
+          - {id: one_extra, args: ["21", "10"], expected_stdout: "3\n"}
+        reference: |
+          import math
+
+          def kac_kutu(adet, kapasite):
+              return math.ceil(adet / kapasite)
+        wrong:
+          - |
+            def kac_kutu(adet, kapasite):
+                return adet // kapasite
+          - |
+            def kac_kutu(adet, kapasite):
+                return round(adet / kapasite)
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına string modülünü kullanarak alfabe_sirasi(harf) adında bir fonksiyon yaz: küçük bir İngilizce harfin alfabedeki sırasını (a için 1, z için 26) döndürsün. İpucu: string.ascii_lowercase bütün küçük harfleri sırayla içeren bir yazıdır; bir yazıda bir karakterin yerini index() verir.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.alfabe_sirasi(sys.argv[1]))
+        suite:
+          - {id: first, args: ["a"], expected_stdout: "1\n"}
+          - {id: last, args: ["z"], expected_stdout: "26\n"}
+          - {id: middle, args: ["m"], expected_stdout: "13\n"}
+        reference: |
+          import string
+
+          def alfabe_sirasi(harf):
+              return string.ascii_lowercase.index(harf) + 1
+        wrong:
+          - |
+            import string
+
+            def alfabe_sirasi(harf):
+                return string.ascii_lowercase.index(harf)
+          - |
+            import string
+
+            def alfabe_sirasi(harf):
+                return len(string.ascii_lowercase)
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına math modülünü kullanarak kombinasyon(n, k) adında bir fonksiyon yaz: n elemandan k eleman seçmenin kaç yolu olduğunu, n! / (k! × (n − k)!), tam sayı olarak döndürsün (math.factorial ve //). Örnek: kombinasyon(5, 2) → 10.
+        required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.kombinasyon(int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: five_two, args: ["5", "2"], expected_stdout: "10\n"}
+          - {id: choose_none, args: ["6", "0"], expected_stdout: "1\n"}
+          - {id: choose_all, args: ["4", "4"], expected_stdout: "1\n"}
+          - {id: ten_three, args: ["10", "3"], expected_stdout: "120\n"}
+        reference: |
+          import math
+
+          def kombinasyon(n, k):
+              return math.factorial(n) // (math.factorial(k) * math.factorial(n - k))
+        wrong:
+          - |
+            import math
+
+            def kombinasyon(n, k):
+                return math.factorial(n) // math.factorial(k)
+          - |
+            import math
+
+            def kombinasyon(n, k):
+                return math.factorial(n) // math.factorial(k) * math.factorial(n - k)
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına datetime modülünü kullanarak haftanin_gunu(tarih) adında bir fonksiyon yaz: "YYYY-AA-GG" biçimindeki bir tarihin haftanın hangi günü olduğunu Türkçe adıyla döndürsün (Pazartesi, Salı, Çarşamba, Perşembe, Cuma, Cumartesi, Pazar). İpucu: date.fromisoformat(...).weekday() Pazartesi için 0, Pazar için 6 verir.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.haftanin_gunu(sys.argv[1]))
+        suite:
+          - {id: sunday, args: ["2026-10-04"], expected_stdout: "Pazar\n"}
+          - {id: saturday, args: ["2000-01-01"], expected_stdout: "Cumartesi\n"}
+          - {id: leap_day, args: ["2024-02-29"], expected_stdout: "Perşembe\n"}
+        reference: |
+          from datetime import date
+
+          GUNLER = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"]
+
+          def haftanin_gunu(tarih):
+              return GUNLER[date.fromisoformat(tarih).weekday()]
+        wrong:
+          - |
+            from datetime import date
+
+            GUNLER = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"]
+
+            def haftanin_gunu(tarih):
+                return GUNLER[date.fromisoformat(tarih).weekday()]
+          - |
+            from datetime import date
+
+            GUNLER = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"]
+
+            def haftanin_gunu(tarih):
+                return GUNLER[date.fromisoformat(tarih).weekday() - 1]
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına inc_cm(inc) adında bir fonksiyon yaz: aynı klasördeki birimler.py modülünde tanımlı ORAN değerini kullanarak inç cinsinden bir uzunluğu santimetreye çevirsin (inc × ORAN) ve iki basamağa yuvarlanmış olarak döndürsün. ORAN'ı kendin yazma; birimler modülünden içe aktar. Testler birimler.py'yi kendileri oluşturur ve içine farklı oranlar koyar.
+        required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
+        harness: |
+          import sys
+          with open("birimler.py", "w", encoding="utf-8") as f:
+              f.write("ORAN = " + sys.argv[2] + "\n")
+          import cozum
+          print(cozum.inc_cm(float(sys.argv[1])))
+        suite:
+          - {id: real_ratio, args: ["10", "2.54"], expected_stdout: "25.4\n"}
+          - {id: other_ratio, args: ["10", "3"], expected_stdout: "30.0\n"}
+          - {id: fraction, args: ["1.5", "2.54"], expected_stdout: "3.81\n"}
+        reference: |
+          from birimler import ORAN
+
+          def inc_cm(inc):
+              return round(inc * ORAN, 2)
+        wrong:
+          - |
+            def inc_cm(inc):
+                return round(inc * 2.54, 2)
+          - |
+            from birimler import ORAN
+
+            def inc_cm(inc):
+                return round(inc / ORAN, 2)
+      - slug: g10
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına math modülünü kullanarak tam_kare_mi(n) adında bir fonksiyon yaz: sıfır ya da pozitif bir tam sayı bir tam sayının karesiyse True, değilse False döndürsün. math modülünün isqrt fonksiyonu bir sayının karekökünün tam sayı kısmını verir (math.isqrt(10) → 3). Örnek: tam_kare_mi(49) → True, tam_kare_mi(50) → False.
+        required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.tam_kare_mi(int(sys.argv[1])))
+        suite:
+          - {id: square, args: ["49"], expected_stdout: "True\n"}
+          - {id: not_square, args: ["50"], expected_stdout: "False\n"}
+          - {id: zero, args: ["0"], expected_stdout: "True\n"}
+          - {id: one_below, args: ["15"], expected_stdout: "False\n"}
+          - {id: large, args: ["1000000"], expected_stdout: "True\n"}
+        reference: |
+          import math
+
+          def tam_kare_mi(n):
+              k = math.isqrt(n)
+              return k * k == n
+        wrong:
+          - |
+            import math
+
+            def tam_kare_mi(n):
+                return isqrt(n) * isqrt(n) == n
+          - |
+            import math
+
+            def tam_kare_mi(n):
+                return math.isqrt(n) > 0
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına statistics modülünden yalnız mean ve median isimlerini içe aktararak (from ... import ...) ozet(sayilar) adında bir fonksiyon yaz: boş olmayan bir listenin ortalamasını ve ortancasını (bu sırayla) bir tuple olarak döndürsün. Örnek: ozet([1, 2, 3, 10]) → (4, 2.5).
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.tuple_immutable_sequence]
+        harness: |
+          import sys, cozum
+          print(cozum.ozet([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: four, args: ["1", "2", "3", "10"], expected_stdout: "(4, 2.5)\n"}
+          - {id: single, args: ["5"], expected_stdout: "(5, 5)\n"}
+          - {id: odd, args: ["3", "1", "2"], expected_stdout: "(2, 2)\n"}
+        reference: |
+          from statistics import mean, median
+
+          def ozet(sayilar):
+              return (mean(sayilar), median(sayilar))
+        wrong:
+          - |
+            from statistics import mean, median
+
+            def ozet(sayilar):
+                return (median(sayilar), mean(sayilar))
+          - |
+            from statistics import mean
+
+            def ozet(sayilar):
+                return (mean(sayilar), sayilar[len(sayilar) // 2])

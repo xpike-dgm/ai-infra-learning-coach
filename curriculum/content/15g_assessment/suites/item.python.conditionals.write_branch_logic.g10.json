@@ -1,0 +1,43 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.conditionals.write_branch_logic.g10@v1",
+  "item": "item.python.conditionals.write_branch_logic.g10@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "both_right",
+      "stdin": "ada\ngizli42\n",
+      "expected_stdout": "hoş geldin\n"
+    },
+    {
+      "id": "wrong_password",
+      "stdin": "ada\n1234\n",
+      "expected_stdout": "şifre yanlış\n"
+    },
+    {
+      "id": "unknown_user",
+      "stdin": "bora\ngizli42\n",
+      "expected_stdout": "kullanıcı yok\n"
+    },
+    {
+      "id": "both_wrong",
+      "stdin": "bora\n1234\n",
+      "expected_stdout": "kullanıcı yok\n"
+    }
+  ]
+}

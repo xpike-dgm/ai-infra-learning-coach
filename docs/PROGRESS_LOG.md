@@ -1357,3 +1357,20 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `15F tamamlandı; 15G aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `15G — Assessment content`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-04 — 15G — Assessment content tamamlandı — ACNX-v0 / D-120
+
+- 15F (#57) main'e merge edildi (2ba31dc). Fresh 15G PRE yapıldı (`git pull --ff-only`) ve kanonik kaynaklar `15F ✅ / 15G active-not-executed` gösterdi. D-117'nin sürekli onayı 15F ile bitmişti; kullanıcı 2026-10-04'te "15G ye başla" diyerek yeni açık onay verdi.
+- **Kullanıcı kararları:** Objective başına dersin dışında 15–20 item; transfer içeriği + aylık üretici (`professional_evidence_checkpoint` AŞAMA 20'de); seçenek düzeyinde deterministik misconception anahtarı; item'ları asistan yazar, ayrı inceleyici ajanlar değerlendirir; 15F için dürüst küçük havuz (eksik kayıtlı, ders ve lexicon değişmez).
+- **Bulgu:** eklenen item'ları düşüren şey yanlış anahtar değil ders sızıntısı ve kardeşine yakınlıktır; seçmeli bir item kod, uygulamalı ya da yazılı kanıt taşıyamaz (üretici artık reddediyor); aynı dersin daha zor item'ı transfer değildir; bağlamı adsız transfer item'ı derlemeyi çökertiyordu (üretici mutation'ı buldu, düzeltildi).
+- İçerik (ek paket v7): 613 item (15A 120, 15B 235, 15C 112, 15D 63, 15E 40, 15F 43), 240 büyüyen görev v2'si, 21 transfer item'ı, 144 seçenek düzeyinde anahtar; hiçbir Skill/Objective/kenar/Topic/ders/etiket eklenmedi; 1–6. paketler bayt bayt aynı.
+- **Araştırma:** Wikipedia (Transfer of learning, Multiple choice, Concept inventory); iç sözleşmeler `QAB-v0`, `MCA-v0`, `AIV-v0`, `WAAX-v0`, `GRE-v0`, `LFPS-v0`.
+- **Bağımsız inceleme:** paket başına bir ajan, dört tur; son verdict turu 425/158/25/5; 613/613 item ve 144/144 eşleme geçti.
+- **Havuz:** 65 Objective'in 54'ü ≥15; üç teknik Objective 14, sekiz İngilizce Objective 10–12 — kayıtlı.
+- Kotlin: `TransferEngine`, `TransferPlanning`, planner bandı, aylık rol, haftalık dışlama, composer reddi, `misconceptionFor`, `PackageFormat.parse(text, earlier)`, en yüksek görev sürümü. Şema, portlar ve depo değişmedi.
+- Mutation üretici 22/22, Kotlin 32/32 (üç mutant yeni testlerle kapandı; biri eşdeğer sayılmadı). Validator 108/108 PASS, kendi mutation testi 40/40, 1059 JVM testi.
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+- D-050 POST living-memory accepted state'i `15G tamamlandı; 15H aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `15H — Content QA`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+

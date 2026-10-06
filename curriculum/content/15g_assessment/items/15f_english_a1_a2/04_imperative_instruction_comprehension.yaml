@@ -1,0 +1,65 @@
+skill: skill.english.imperative_instruction_comprehension
+objectives:
+  - id: objective.english.imperative_instruction_comprehension.demonstrate_capability
+    items:
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu talimatı izlersen dosyada ne değişir?
+        code: |
+          Change the name and save the file.
+        options:
+          A: "Dosyanın adı değişir ve dosya kaydedilir."
+          B: "Dosyanın içeriği silinir."
+          C: "Hiçbir şey değişmez; yalnız dosya açılır."
+          D: "Dosyanın bir kopyası oluşur."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — change (verb); name (noun); save (verb, computing)"
+          claim: "Talimat adı değiştirmeyi ve dosyayı kaydetmeyi ister."
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu talimatı izledikten sonra hangisi kalır?
+        code: |
+          Keep the file and remove the copy.
+        options:
+          A: "Asıl dosya"
+          B: "Kopya"
+          C: "İkisi de"
+          D: "Hiçbiri"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — keep (verb): to continue to have; remove (verb): to take away; copy (noun)"
+          claim: "Dosya tutulur, kopya kaldırılır; geriye asıl dosya kalır."
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu talimatta again kelimesi ne anlatıyor?
+        code: |
+          Set the version and run the tests again.
+        options:
+          A: "Testlerin daha önce çalıştırıldığını ve şimdi bir kez daha çalıştırılacağını"
+          B: "Testlerin ilk kez çalıştırılacağını"
+          C: "Sürümün iki kez ayarlanacağını"
+          D: "Testlerin artık çalıştırılmayacağını"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — again (adverb): another time, once more; set (verb): to adjust"
+          claim: "run the tests again, testleri bir kez daha çalıştır demektir."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f01: {B: imperative_is_description}
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f02: {B: imperative_is_description}
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f03: {C: imperative_is_description}
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f04: {B: and_order_free, C: imperative_is_description}
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f06: {C: imperative_is_description}
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f07: {B: and_order_free, C: and_order_free}
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f08: {C: imperative_is_description}

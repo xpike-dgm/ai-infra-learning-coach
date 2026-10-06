@@ -1,0 +1,29 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.assignment_binding.write_state_change.g02@v1",
+  "item": "item.python.assignment_binding.write_state_change.g02@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import io, contextlib\nwith contextlib.redirect_stdout(io.StringIO()) as cikti:\n    import cozum\nprint(cikti.getvalue().strip(), \"|\", cozum.ad, cozum.soyad)"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "names",
+      "args": [],
+      "expected_stdout": "Ece Kaya | Ece Kaya\n"
+    }
+  ]
+}

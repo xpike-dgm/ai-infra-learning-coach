@@ -1,0 +1,209 @@
+skill: skill.git.stage_commit_history_basic
+objectives:
+  - id: objective.git.stage_commit_history_basic.commit_and_verify_history
+    items:
+      - slug: g01
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          git init -q iki_adim
+          cd iki_adim
+          echo a > x.txt
+          git add x.txt
+          echo b > x.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "AM x.txt"
+        verify: {mode: shell, last_line: true}
+      - slug: g02
+        difficulty: transfer_integration
+        required_skills: [skill.shell.command_options_redirection_basic]
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komutun s.txt için yazdığı satırı iki sütunu ve boşlukları koruyarak yaz.
+        code: |
+          git init -q iki_yon
+          cd iki_yon
+          echo 1 > s.txt
+          git add s.txt
+          git commit -q -m "ilk"
+          echo 2 > s.txt
+          git add s.txt
+          echo 3 > s.txt
+          git status --short
+        answer: "MM s.txt"
+        verify: {mode: shell, last_line: true}
+      - slug: g03
+        difficulty: authentic_application
+        required_skills: [skill.shell.command_options_redirection_basic]
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Dosya hazırlandıktan sonra değiştiriliyor ama sonra YENİDEN hazırlanıyor. Kayıttan sonra son komut ne yazar?
+        code: |
+          git init -q yeniden
+          cd yeniden
+          echo taslak > m.txt
+          git add m.txt
+          echo son > m.txt
+          git add m.txt
+          git commit -q -m "kayit"
+          git status --short
+        options:
+          A: Hiçbir şey; ikinci git add son hâli de hazırladı, kayıt onu aldı
+          B: " M m.txt; son hâl kayda girmedi"
+          C: "?? m.txt"
+          D: "A  m.txt"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "", B: " M m.txt", C: "?? m.txt", D: "A  m.txt"}
+          script: |
+            git init -q yeniden
+            cd yeniden
+            echo taslak > m.txt
+            git add m.txt
+            echo son > m.txt
+            git add m.txt
+            git commit -q -m "kayit"
+            git status --short
+      - slug: g04
+        difficulty: authentic_application
+        required_skills: [skill.shell.command_options_redirection_basic]
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
+        code: |
+          git init -q temizle
+          cd temizle
+          echo a > a.txt
+          git add a.txt
+          git commit -q -m "a"
+          git diff --staged
+          echo bitti
+        options:
+          A: Yalnız bitti; kayıttan sonra hazırlık alanında kayda girmemiş bir değişiklik kalmaz
+          B: +a satırı ve sonra bitti
+          C: "?? a.txt ve sonra bitti"
+          D: Bir hata mesajı ve sonra bitti
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "bitti", B: "+a bitti", C: "?? a.txt bitti", D: "hata bitti"}
+          script: |
+            git init -q temizle
+            cd temizle
+            echo a > a.txt
+            git add a.txt
+            git commit -q -m "a"
+            echo "$(git diff --staged) bitti" | sed 's/^ //'
+      - slug: g05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır (ilk kayıt yapıldıktan sonra yeni.txt oluşturuluyor ama git add yapılmıyor). Son satırda ne görünür?
+        code: |
+          git init -q yeni_dosya
+          cd yeni_dosya
+          echo a > a.txt
+          git add a.txt
+          git commit -q -m "a"
+          echo b > yeni.txt
+          git commit -q -m "yeni"
+          echo $?
+        required_skills: [skill.linux.process_exit_stdout_stderr_basic, skill.shell.command_options_redirection_basic]
+        options:
+          A: 0'dan farklı bir sayı; hazırlanmış bir şey olmadığı için kayıt yapılmadı
+          B: "0; commit yeni.txt'yi de kaydetti"
+          C: "0; commit boş bir kayıt oluşturdu"
+          D: Hiçbir şey
+        scan_options: false
+        answer: A
+        misconception_options: {B: commit_takes_all_changes}
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            git init -q yeni_dosya
+            cd yeni_dosya
+            echo a > a.txt
+            git add a.txt
+            git commit -q -m "a"
+            echo b > yeni.txt
+            git commit -q -m "yeni" > /dev/null 2>&1
+            durum=$?
+            kayit=$(git log --oneline | wc -l)
+            if [ "$durum" -ne 0 ] && [ "$kayit" = "1" ]; then echo A; else echo B; fi
+      - slug: g06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır: dosya hazırlandı ama henüz hiç kayıt yapılmadı. Son satırda ne görünür?
+        code: |
+          git init -q henuz
+          cd henuz
+          echo a > a.txt
+          git add a.txt
+          git log --oneline
+          echo $?
+        required_skills: [skill.linux.process_exit_stdout_stderr_basic, skill.shell.command_options_redirection_basic]
+        options:
+          A: 0'dan farklı bir sayı; geçmişte henüz hiç kayıt yok ve git log bunu bir hata olarak bildirir
+          B: "0; git log hazırlanmış dosyayı bir kayıt olarak gösterir"
+          C: "0; git log hiçbir şey yazmadan başarıyla biter"
+          D: "1 a.txt"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            git init -q henuz
+            cd henuz
+            echo a > a.txt
+            git add a.txt
+            git log --oneline > /dev/null 2>&1
+            if [ "$?" -ne 0 ]; then echo A; else echo C; fi
+      - slug: g07
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Kayıttan sonra git diff çıktısındaki + satırı (+++ başlık satırı hariç) nedir?
+        code: |
+          git init -q katman
+          cd katman
+          echo v1 > k.txt
+          git add k.txt
+          git commit -q -m "ilk"
+          echo v2 > k.txt
+          git add k.txt
+          echo v3 > k.txt
+          git commit -q -m "ikinci"
+          git diff
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "+v3"
+        verify: {mode: shell, last_line: true, probe: 'git diff | grep "^+[^+]"'}
+      - slug: g08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komutun eski.txt için yazdığı satır nedir? Satırı göründüğü gibi yaz (iki sütunu ve boşlukları koruyarak).
+        code: |
+          git init -q karma
+          cd karma
+          echo 1 > eski.txt
+          git add eski.txt
+          git commit -q -m "ilk"
+          echo 2 > eski.txt
+          git add eski.txt
+          echo yeni > yeni.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "M  eski.txt"
+        verify: {mode: shell, last_line: true, probe: 'git status --short | grep eski'}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:

@@ -1,0 +1,52 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.functions_parameters_return.write_small_function.g07@v1",
+  "item": "item.python.functions_parameters_return.write_small_function.g07@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.km_mil(float(sys.argv[1])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "ten",
+      "args": [
+        "10"
+      ],
+      "expected_stdout": "6.22\n"
+    },
+    {
+      "id": "zero",
+      "args": [
+        "0"
+      ],
+      "expected_stdout": "0.0\n"
+    },
+    {
+      "id": "one_mile",
+      "args": [
+        "1.609"
+      ],
+      "expected_stdout": "1.0\n"
+    },
+    {
+      "id": "marathon",
+      "args": [
+        "42.195"
+      ],
+      "expected_stdout": "26.22\n"
+    }
+  ]
+}

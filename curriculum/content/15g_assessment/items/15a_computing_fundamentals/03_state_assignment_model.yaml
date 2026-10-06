@@ -1,0 +1,198 @@
+skill: skill.programming.state_assignment_model
+objectives:
+  - id: objective.programming.state_assignment_model.trace_state
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          p = 10
+          p -= 3
+          p *= 2
+          print(p)
+        answer: "14"
+        verify: {mode: stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          u = 4 * 3 - 2 * 5
+          print(u)
+        answer: "2"
+        verify: {mode: stdout}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu kodun dört satırı da çalıştıktan sonra hangi iki değişken aynı değeri tutar?
+        code: |
+          a = 5
+          b = a
+          a = a + 3
+          c = a - 3
+        options:
+          A: b ve c
+          B: a ve b
+          C: a ve c
+          D: Hiçbiri; üçü de farklı değer tutar
+        scan_options: false
+        answer: A
+        misconception_options: {B: copy_tracks_later_changes}
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            a = 5
+            b = a
+            a = a + 3
+            c = a - 3
+            claims = {"A": b == c, "B": a == b, "C": a == c, "D": a != b and b != c and a != c}
+            print(",".join(k for k, v in claims.items() if v))
+      - slug: g04
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          k = 2  # k = 100 diye de yazılabilirdi
+          print(k * 3)
+        answer: "6"
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          a = 1
+          b = a
+          c = b
+          b = 7
+          print(a, b, c)
+        options:
+          A: "1 7 1"
+          B: "1 7 7"
+          C: "7 7 7"
+          D: "1 1 1"
+        answer: A
+        misconception_options: {B: copy_tracks_later_changes}
+        verify: {mode: stdout}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Kodun yalnızca ilk dört satırı çalıştı; beşinci satır henüz çalışmadı. Bu anda s'nin değeri nedir?
+        code: |
+          s = 0
+          s += 4
+          s += 6
+          s = s * 2
+          s -= 5
+        options:
+          A: "10"
+          B: "15"
+          C: "20"
+          D: "25"
+        answer: C
+        verify:
+          mode: probe
+          upto: 4
+          probe: print(s)
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki kodun başına hangi satır eklenirse ekrana 11 yazılır?
+        code: |
+          y = x * 2 + 1
+          print(y)
+        options:
+          A: x = 4
+          B: x = 5
+          C: x = 6
+          D: x = 11
+        answer: B
+        verify:
+          mode: which_input
+          target: "11"
+          assignments: {A: "x = 4", B: "x = 5", C: "x = 6", D: "x = 11"}
+      - slug: g08
+        difficulty: authentic_application
+        prompt: |
+          Bu kod ekrana 6 yazıyor. Hangi satır silinirse kod ekrana 10 yazar?
+        code: |
+          x = 2
+          x = x + 3
+          x = x * 2
+          x = x - 4
+          print(x)
+        options:
+          A: 2. satır
+          B: 3. satır
+          C: 4. satır
+          D: Hiçbiri; hangi satır silinirse silinsin 10 yazılamaz
+        scan_options: false
+        answer: C
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            satirlar = ["x = 2", "x = x + 3", "x = x * 2", "x = x - 4"]
+            sonuc = []
+            for harf, sil in (("A", 1), ("B", 2), ("C", 3)):
+                ortam = {}
+                exec("\n".join(s for i, s in enumerate(satirlar) if i != sil), ortam)
+                if ortam["x"] == 10:
+                    sonuc.append(harf)
+            print(",".join(sonuc) if sonuc else "D")
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          a = 1
+          b = 2
+          c = a + b
+          a = c * b
+          b = a - c
+          c = b + a
+          print(c)
+        answer: "9"
+        verify: {mode: stdout}
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod üçüncü bir değişken kullanmadan iki sayının yerini değiştirmeye çalışıyor. Ekrana ne yazılır?
+        code: |
+          a = 4
+          b = 9
+          a = a + b
+          b = a - b
+          a = a - b
+          print(a, b)
+        options:
+          A: "9 4"
+          B: "4 9"
+          C: "13 4"
+          D: "13 9"
+        answer: A
+        verify: {mode: stdout}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: wallet_balance
+        required_skills: [skill.programming.branching_reasoning]
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          bakiye = 100
+          harcama = 30
+          if harcama <= bakiye:
+              bakiye = bakiye - harcama
+          harcama = 90
+          if harcama <= bakiye:
+              bakiye = bakiye - harcama
+          print(bakiye)
+        answer: "70"
+        verify: {mode: stdout}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.state_assignment_model.trace_state.f05: {B: copy_tracks_later_changes}

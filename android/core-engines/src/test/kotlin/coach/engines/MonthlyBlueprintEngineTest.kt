@@ -32,6 +32,7 @@ import coach.model.SkillPlanningState
 import coach.model.SlotItemRefusal
 import coach.model.SlotStatus
 import coach.model.TaskPurpose
+import coach.model.TransferProfile
 import coach.model.UseCeiling
 import coach.model.VersionedRef
 import coach.model.WeeklyReasonCodes
@@ -165,20 +166,24 @@ class MonthlyBlueprintEngineTest {
     }
 
     @Test
-    fun `owner needs bring integration and the parallel track, transfer and the checkpoint have no producer`() {
+    fun `owner needs bring integration, transfer and the parallel track, the checkpoint has no producer`() {
         val english = skill("english_errors")
         val integration = skill("integration")
+        val transfer = skill("transfer")
         val pool = MonthlyBlueprintEngine.targetPool(emptyList(), listOf(
             LearningNeed("parallel_track_due:$english", NeedTrigger.PARALLEL_TRACK_DUE, listOf(english), Criticality.REQUIRED,
                 track = WeeklyBlueprintEngine.ENGLISH_TRACK),
             LearningNeed("integration_opportunity:$integration", NeedTrigger.INTEGRATION_OPPORTUNITY, listOf(integration), Criticality.REQUIRED),
             LearningNeed("diagnostic_opportunity:$integration", NeedTrigger.DIAGNOSTIC_OPPORTUNITY, listOf(integration), Criticality.REQUIRED),
             LearningNeed("parallel_track_due:other", NeedTrigger.PARALLEL_TRACK_DUE, listOf(skill("other")), Criticality.REQUIRED, track = "other"),
+            // 15G: the transfer owner's need is the only way into the transfer slot.
+            LearningNeed(TransferEngine.needKey(transfer), NeedTrigger.TRANSFER_OPPORTUNITY, listOf(transfer), Criticality.REQUIRED),
         ), null, emptySet())
-        assertEquals(listOf(MonthlyRole.INTEGRATED_APPLICATION, MonthlyRole.PARALLEL_TECHNICAL_ENGLISH), pool.entries.map { it.role })
+        assertEquals(listOf(MonthlyRole.CROSS_TOPIC_TRANSFER, MonthlyRole.INTEGRATED_APPLICATION, MonthlyRole.PARALLEL_TECHNICAL_ENGLISH),
+            pool.entries.map { it.role })
         assertEquals(listOf(BlueprintExclusion.NOT_A_MONTHLY_MEASUREMENT, BlueprintExclusion.NOT_A_MONTHLY_MEASUREMENT),
             pool.exclusions.map { it.reason })
-        // No state today opens a transfer or a professional checkpoint slot, so none is ever invented.
+        // State alone never opens a transfer or a professional checkpoint slot, so none is ever invented.
         val everything = pool(recent = null, holdingBack = setOf(criticalBlocker)).entries.map { it.role }
         assertFalse(MonthlyRole.CROSS_TOPIC_TRANSFER in everything)
         assertFalse(MonthlyRole.PROFESSIONAL_EVIDENCE_CHECKPOINT in everything)
@@ -201,6 +206,32 @@ class MonthlyBlueprintEngineTest {
         assertTrue(MonthlyReasonCodes.NO_VALID_ITEM in blueprint.reasonCodes)
         assertTrue(blueprint.reasonCodes.none { it.startsWith("assessment.weekly.") })
         assertTrue(blueprint.slots.flatMap { it.reasonCodes }.none { it.startsWith("assessment.weekly.") })
+    }
+
+    @Test
+    fun `a transfer slot takes only an item whose context comes from another Topic`() {
+        val transfer = skill("transfer")
+        val need = LearningNeed(TransferEngine.needKey(transfer), NeedTrigger.TRANSFER_OPPORTUNITY, listOf(transfer), Criticality.REQUIRED)
+        fun composeTransfer(items: List<AssessmentItem>) = MonthlyBlueprintEngine.compose(
+            cycleId = "2026-10", studyDay = "2026-10-01", curriculumVersion = 1, truthWatermark = 50,
+            pool = MonthlyBlueprintEngine.targetPool(emptyList(), listOf(need), null, emptySet()),
+            items = items.groupBy { it.targetSkills.first() }, profiles = profiles,
+            decisions = items.associate { it.ref to decision(it) }, exposures = emptyList(), evaluatorAvailable = false,
+            recentSince = null, previousCycleId = null, priorSessionId = null,
+        )
+        // A harder item of the same lesson declaring the role is an application, not transfer (`AIV-v0` §16).
+        val claimOnly = item("claim_only", transfer, roles = setOf(MonthlyRole.CROSS_TOPIC_TRANSFER))
+        val nearContext = item("near", transfer, roles = setOf(MonthlyRole.CROSS_TOPIC_TRANSFER))
+            .copy(transferProfile = TransferProfile.NEAR_CONTEXT, contextFamilyId = "context.near")
+        val refused = composeTransfer(listOf(claimOnly, nearContext)).slots.single()
+        assertEquals(SlotStatus.NO_VALID_ITEM, refused.status)
+        assertEquals(listOf(listOf(SlotItemRefusal.TRANSFER_CLAIM_UNSUPPORTED.id), listOf(SlotItemRefusal.TRANSFER_CLAIM_UNSUPPORTED.id)),
+            refused.rejections.map { it.reasons })
+        val crossTopic = item("cross_topic", transfer, roles = setOf(MonthlyRole.CROSS_TOPIC_TRANSFER))
+            .copy(transferProfile = TransferProfile.CROSS_TOPIC_CONTEXT, contextFamilyId = "context.other_topic")
+        val slot = composeTransfer(listOf(claimOnly, crossTopic)).slots.single()
+        assertEquals(MonthlyRole.CROSS_TOPIC_TRANSFER, slot.role)
+        assertEquals(crossTopic.ref, slot.item)
     }
 
     @Test

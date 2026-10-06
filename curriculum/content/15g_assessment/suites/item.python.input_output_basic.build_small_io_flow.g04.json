@@ -1,0 +1,38 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.input_output_basic.build_small_io_flow.g04@v1",
+  "item": "item.python.input_output_basic.build_small_io_flow.g04@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "half",
+      "stdin": "7\n2\n",
+      "expected_stdout": "7 / 2 = 3.5\n"
+    },
+    {
+      "id": "exact",
+      "stdin": "8\n4\n",
+      "expected_stdout": "8 / 4 = 2.0\n"
+    },
+    {
+      "id": "negative",
+      "stdin": "-9\n3\n",
+      "expected_stdout": "-9 / 3 = -3.0\n"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.tuple_immutable_sequence.demonstrate_capability.g11@v1",
+  "item": "item.python.tuple_immutable_sequence.demonstrate_capability.g11@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\na = [int(x) for x in sys.argv[1:]]\nt = tuple(a[2:])\nprint(cozum.guncelle(t, a[0], a[1]), t)"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "middle",
+      "args": [
+        "1",
+        "9",
+        "1",
+        "2",
+        "3"
+      ],
+      "expected_stdout": "(1, 9, 3) (1, 2, 3)\n"
+    },
+    {
+      "id": "first",
+      "args": [
+        "0",
+        "5",
+        "4",
+        "6"
+      ],
+      "expected_stdout": "(5, 6) (4, 6)\n"
+    },
+    {
+      "id": "last",
+      "args": [
+        "2",
+        "0",
+        "7",
+        "8",
+        "9"
+      ],
+      "expected_stdout": "(7, 8, 0) (7, 8, 9)\n"
+    }
+  ]
+}

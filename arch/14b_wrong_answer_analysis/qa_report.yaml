@@ -157,7 +157,7 @@ checks:
   details: a label pinned to nothing
 - check: E14B-03_version_refused
   result: PASS
-  details: a label of another version
+  details: a published label can be carried again
 - check: E14B-03_earlier_objective
   result: PASS
   details: an earlier published Objective

@@ -1,0 +1,51 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.functions_parameters_return.write_small_function.g08@v1",
+  "item": "item.python.functions_parameters_return.write_small_function.g08@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\na = [int(x) for x in sys.argv[1:]]\nasil = cozum.buyuk\ncagrilar = []\ndef izle(x, y):\n    cagrilar.append((x, y))\n    return asil(x, y)\ncozum.buyuk = izle\nprint(asil(a[0], a[1]), cozum.buyuk3(a[0], a[1], a[2]), \"buyuk kullanıldı\" if cagrilar else \"buyuk kullanılmadı\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "last_largest",
+      "args": [
+        "3",
+        "8",
+        "11"
+      ],
+      "expected_stdout": "8 11 buyuk kullanıldı\n"
+    },
+    {
+      "id": "first_largest",
+      "args": [
+        "9",
+        "2",
+        "5"
+      ],
+      "expected_stdout": "9 9 buyuk kullanıldı\n"
+    },
+    {
+      "id": "tie",
+      "args": [
+        "4",
+        "4",
+        "1"
+      ],
+      "expected_stdout": "4 4 buyuk kullanıldı\n"
+    }
+  ]
+}

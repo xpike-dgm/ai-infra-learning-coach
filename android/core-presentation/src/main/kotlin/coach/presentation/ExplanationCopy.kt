@@ -32,6 +32,7 @@ object ExplanationCopy {
         "need.reinforcement_opportunity" to "Öğrendiğin bir beceriyi pekiştirme fırsatı.",
         "need.parallel_track_due" to "Paralel yürüyen hattaki çalışmanın sırası geldi.",
         "need.integration_opportunity" to "Öğrendiğin becerileri birlikte kullanma fırsatı.",
+        "need.transfer_opportunity" to "Öğrendiğin bir beceriyi başka bir konunun bağlamında deneme fırsatı.",
         // §8.2 — validation / trust
         "candidate.validated" to "Bu görev doğrulanmış içerik.",
         "candidate.invalid_content" to "Bu ihtiyaç için hazırlanmış görev şu an kullanılabilir durumda değil.",

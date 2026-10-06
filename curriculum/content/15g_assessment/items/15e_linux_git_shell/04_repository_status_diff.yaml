@@ -1,0 +1,167 @@
+skill: skill.git.repository_status_diff
+objectives:
+  - id: objective.git.repository_status_diff.inspect_change_state
+    items:
+      - slug: g01
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz. (Takip edilmeyen dosyalar bir klasörün içindeyse git status --short onları nasıl gösterir?)
+        code: |
+          git init -q kutu
+          cd kutu
+          mkdir alt
+          echo x > alt/a.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "?? alt/"
+        verify: {mode: shell, last_line: true}
+      - slug: g02
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). Son iki komut ne yazar? Ekrana yazılanları aralarında bir boşlukla yaz.
+        code: |
+          git init -q ayni
+          cd ayni
+          echo 5 > n.txt
+          git add n.txt                     # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          git diff
+          echo $?
+        required_skills: [skill.linux.process_exit_stdout_stderr_basic, skill.shell.command_options_redirection_basic]
+        answer: "0"
+        verify: {mode: shell}
+      - slug: g03
+        difficulty: authentic_application
+        required_skills: [skill.shell.command_options_redirection_basic]
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Dosya, klasör henüz bir depo değilken oluşturuluyor; git init sonra çalışıyor. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          mkdir eski
+          cd eski
+          echo veri > tablo.txt
+          git init -q
+          git status --short
+        answer: "?? tablo.txt"
+        verify: {mode: shell, last_line: true}
+      - slug: g05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). git diff çıktısında hangi dosyaların değişikliği görünür?
+        code: |
+          git init -q iki
+          cd iki
+          echo eski > a.txt
+          git add a.txt                     # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          echo yeni > a.txt
+          echo taze > b.txt
+          git diff
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "Yalnız a.txt: b.txt takip edilmediği için git diff onu göstermez"
+          B: "a.txt ve b.txt"
+          C: "Yalnız b.txt: yeni dosyalar önce gösterilir"
+          D: "Hiçbiri: henüz hiçbir şey hazırlanmadı"
+        scan_options: false
+        answer: A
+        misconception_options: {B: diff_shows_everything}
+        verify:
+          mode: shell
+          probe: 'echo $(git diff --name-only)'
+          last_line: true
+          outcomes: {A: "a.txt", B: "a.txt b.txt", C: "b.txt", D: ""}
+      - slug: g06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. n.txt oluşturulduktan sonra bir kez daha değiştiriliyor ama hiç kaydedilmiyor. Son komut n.txt'yi nasıl gösterir?
+        code: |
+          git init -q yeni
+          cd yeni
+          echo 1 > n.txt
+          echo 2 >> n.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "?? n.txt: Git dosyayı hiç kaydetmediği için takip etmiyor"
+          B: " M n.txt: dosya oluşturulduktan sonra değişti"
+          C: "A  n.txt"
+          D: "Hiç göstermez"
+        scan_options: false
+        answer: A
+        misconception_options: {B: new_file_is_tracked}
+        verify:
+          mode: shell
+          last_line: true
+          outcomes: {A: "?? n.txt", B: " M n.txt", C: "A  n.txt", D: ""}
+      - slug: g07
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). Üç satırlık dosyada yalnız ortadaki satır değişiyor. git diff çıktısında başında bir boşluk olan (değişmemiş, komşu) kaç satır var?
+        code: |
+          git init -q uc
+          cd uc
+          echo bir > s.txt
+          echo iki >> s.txt
+          echo uc >> s.txt
+          git add s.txt                     # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          echo bir > s.txt
+          echo IKI >> s.txt
+          echo uc >> s.txt
+          git diff
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "2"
+        verify: {mode: shell, last_line: true, probe: 'git diff | grep -c "^ "'}
+      - slug: g08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Bir depo olmayan boş bir klasörde (içinde hiç git init çalıştırılmamış) şu komutları çalıştır. Ne olur?
+        code: |
+          mkdir duz
+          cd duz
+          git status --short
+          echo $?
+        required_skills: [skill.shell.command_options_redirection_basic, skill.linux.process_exit_stdout_stderr_basic]
+        options:
+          A: "git status bir hata mesajı yazar ve 0'dan farklı bir çıkış durumuyla biter; burası bir depo değil"
+          B: "Hiçbir şey yazmaz ve 0 ile biter; boş bir depo gibi davranır"
+          C: "Klasörü kendiliğinden bir depoya çevirir"
+          D: "?? yazar"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          script: |
+            mkdir duz
+            cd duz
+            o=$(git status --short 2>/dev/null); e=$(git status --short 2>&1 >/dev/null | wc -c); git status --short >/dev/null 2>&1; s=$?
+            echo "$([ -n "$o" ] && echo cikti || echo -) $([ "$e" -gt 0 ] && echo hata || echo -) $([ "$s" -eq 0 ] && echo sifir || echo sifirdan_farkli) $([ -d .git ] && echo depo || echo -)"
+          outcomes: {A: "- hata sifirdan_farkli -", B: "- - sifir -", C: "- - sifir depo", D: "cikti - sifir -"}
+      - slug: t01
+        difficulty: transfer_integration
+        hands_on: true
+        transfer_profile: cross_topic_context
+        context_family: build_output_untracked
+        required_skills: [skill.c.compile_link_run_basic, skill.shell.command_options_redirection_basic]
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır (hesap.c küçük bir C programı). Son komut ne yazar? Çıktıyı göründüğü gibi, satır satır yaz.
+        code: |
+          git init -q proje
+          cd proje
+          echo 'int main(void) { return 0; }' > hesap.c
+          gcc hesap.c -o hesap
+          git status --short
+        answer: "?? hesap\n?? hesap.c"
+        also_accept: ["?? hesap ?? hesap.c"]
+        verify: {mode: shell}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.git.repository_status_diff.inspect_change_state.f05: {B: diff_shows_everything}

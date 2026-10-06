@@ -1,0 +1,47 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.functions_parameters_return.write_small_function.g04@v1",
+  "item": "item.python.functions_parameters_return.write_small_function.g04@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.us_al(*[int(x) for x in sys.argv[1:]]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "default_square",
+      "args": [
+        "5"
+      ],
+      "expected_stdout": "25\n"
+    },
+    {
+      "id": "given",
+      "args": [
+        "2",
+        "10"
+      ],
+      "expected_stdout": "1024\n"
+    },
+    {
+      "id": "zero_power",
+      "args": [
+        "3",
+        "0"
+      ],
+      "expected_stdout": "1\n"
+    }
+  ]
+}

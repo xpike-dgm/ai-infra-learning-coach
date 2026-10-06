@@ -1,0 +1,25 @@
+# 15G — Assessment content (ACNX-v0 / D-120). A supplement: it adds to the Objectives 15A–15F published and changes
+# nothing they published (LFPS-v0: a published version is never overwritten).
+#
+# What it adds, per content directory, from items/<directory>/<skill file>.yaml:
+# - more items for every Objective, so that each has 15–20 items outside its lesson (user decision, 2026-10-04): checked
+#   by that directory's notation, lexicon, runner and prelude exactly as its own items were, and reviewed independently;
+#   15F's lexicon leaves room for fewer structurally distinct items, so its Objectives keep an honest smaller pool and
+#   the shortfall is recorded (user decision, 2026-10-04; D-120);
+# - a new version (v2) of every task whose item list grows — the published v1 stays readable by its pinned reference;
+# - cross-topic transfer items (QAB-v0 §17, MCA-v0 §9), reserved for the month's cross_topic_transfer slot;
+# - wrong-option misconception keys ([answer_misconception], user decision), for new items and for published ones.
+version: 7
+step: 15g
+supplements:
+  - curriculum/content/15a_computing_fundamentals
+  - curriculum/content/15b_python_foundations
+  - curriculum/content/15c_c_foundations
+  - curriculum/content/15d_memory_foundations
+  - curriculum/content/15e_linux_git_shell
+  - curriculum/content/15f_english_a1_a2
+source_refs: curriculum/content/15g_assessment;curriculum/content/15a_computing_fundamentals;curriculum/content/15b_python_foundations;curriculum/content/15c_c_foundations;curriculum/content/15d_memory_foundations;curriculum/content/15e_linux_git_shell;curriculum/content/15f_english_a1_a2
+provenance: authored_15g_acnx_v0
+content_source_ref: source.repo.content_15g_acnx_v0
+# 2026-10-04T12:00:00Z — the day the independent review of 15G content is recorded.
+validated_at_instant: 1791115200000

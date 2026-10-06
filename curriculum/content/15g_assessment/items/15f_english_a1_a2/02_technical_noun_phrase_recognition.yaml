@@ -1,0 +1,96 @@
+skill: skill.english.technical_noun_phrase_recognition
+objectives:
+  - id: objective.english.technical_noun_phrase_recognition.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu öbek ne anlama gelir?
+        code: |
+          temporary file
+        options:
+          A: "Geçici dosya"
+          B: "Dosyanın süresi"
+          C: "Kalıcı dosya"
+          D: "Dosyayı geçici yap"
+        scan_options: false
+        answer: A
+        misconception_options: {B: head_is_first}
+        verify:
+          mode: reference
+          reference: "Wiktionary — temporary (adjective): lasting for a limited time; Wikipedia — English noun phrases (premodifiers precede the head noun)"
+          claim: "temporary file, geçici olan bir dosyadır; öbeğin asıl ismi file'dır."
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu öbek ne anlama gelir?
+        code: |
+          local folder
+        options:
+          A: "Yerel klasör (kendi bilgisayarındaki klasör)"
+          B: "Uzaktaki klasör"
+          C: "Klasörün yeri"
+          D: "Klasörü yerleştir"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — local (adjective, computing): on the user's own computer, as opposed to remote"
+          claim: "local folder kullanıcının kendi bilgisayarındaki klasördür."
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Türkçesi "geçici klasör" olan İngilizce öbek hangisidir?
+        options:
+          A: "temporary folder"
+          B: "folder temporary"
+          C: "local folder"
+          D: "temporary file"
+        answer: A
+        misconception_options: {B: head_is_first}
+        verify:
+          mode: reference
+          reference: "Wiktionary — temporary (adjective); folder (noun); Wikipedia — English noun phrases (modifier before the head)"
+          claim: "geçici klasör = temporary folder: anlatan kelime önce, asıl isim (folder) sonra."
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bir programın durum satırında bu cümle var. Boş olan ne?
+        code: |
+          The default target folder is empty.
+        required_skills: [skill.english.be_and_simple_present_comprehension]
+        options:
+          A: Varsayılan hedef klasör
+          B: Hedefin kendisi
+          C: Varsayılan ayarlar
+          D: Klasördeki hedef dosya
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English noun phrases: the head (folder) is modified by default and target; Wiktionary — empty (adjective)"
+          claim: "default target folder bir klasördür (varsayılan hedef klasör); boş olan odur."
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu öbek bir sayıyı anlatıyor. Neyin sayısı?
+        code: |
+          total memory size
+        options:
+          A: "Belleğin toplam boyutu"
+          B: "Toplam sayısı"
+          C: "Boyutun belleği"
+          D: "Bellekteki dosyaların sayısı"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — total (adjective): entire; memory (noun, computing); size (noun); Wikipedia — English noun phrases (head noun last)"
+          claim: "total memory size bir boyuttur: belleğin toplam boyutu."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.f01: {B: head_is_first}
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.f02: {B: head_is_first}
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.f04: {B: adjective_describes_last_only}
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.f05: {B: adjective_describes_last_only}

@@ -1,0 +1,179 @@
+skill: skill.english.read_simple_terminal_error_fragments
+objectives:
+  - id: objective.english.read_simple_terminal_error_fragments.extract_known_signal
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          s.sh adlı bir betiği çalıştırdın ve bash bu satırı yazdı. Hangi komut bulunamadı? Yalnız komutu yaz.
+        code: |
+          s.sh: line 3: pyhton3: command not found
+        answer: "pyhton3"
+        verify:
+          mode: shell
+          script: |
+            printf 'echo start\nls\npyhton3 a.py\n' > s.sh
+            bash s.sh 2>&1 | grep -qxF "s.sh: line 3: pyhton3: command not found" && echo pyhton3
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Terminal bu satırı yazdı. Sorun nedir?
+        code: |
+          ls: cannot open directory 'locked': Permission denied
+        options:
+          A: "locked klasörünü açma (içini listeleme) iznin yok."
+          B: "locked adında bir klasör yok."
+          C: "locked klasörü boş."
+          D: "ls diye bir komut yok."
+        scan_options: false
+        answer: A
+        misconception_options: {B: permission_means_missing}
+        verify:
+          mode: shell
+          script: |
+            t=$(mktemp -d)
+            cd "$t"
+            mkdir locked
+            chmod 000 locked
+            ls locked 2>&1 | grep -qxF "ls: cannot open directory 'locked': Permission denied" && [ -d locked ] && echo izin_yok
+            chmod 755 locked
+            cd /
+            chmod -R u+rwx "$t"
+            rm -rf "$t"
+          outcomes: {A: "izin_yok", B: "yok", C: "bos", D: "komut_yok"}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bir Python programı çalışırken durdu ve son satır bu oldu. Bu satır ne söylüyor?
+        code: |
+          PermissionError: [Errno 13] Permission denied: 'secret.txt'
+        options:
+          A: "Program secret.txt'yi açmaya çalıştı ama bunun için iznin yok."
+          B: "secret.txt adında bir dosya yok."
+          C: "secret 'gizli' demek; dosya gizli olduğu için görünmüyor."
+          D: "Programda 13 hata var."
+        scan_options: false
+        answer: A
+        misconception_options: {B: permission_means_missing, C: quoted_name_is_english}
+        verify:
+          mode: shell
+          script: |
+            t=$(mktemp -d)
+            cd "$t"
+            echo x > secret.txt
+            chmod 000 secret.txt
+            python3 -c 'open("secret.txt")' 2>&1 | tail -n 1 | grep -qxF "PermissionError: [Errno 13] Permission denied: 'secret.txt'" && [ -f secret.txt ] && echo izin_yok
+            chmod 644 secret.txt
+            cd /
+            chmod -R u+rwx "$t"
+            rm -rf "$t"
+          outcomes: {A: "izin_yok", B: "yok", C: "gizli", D: "on_uc_hata"}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bir Python programı bir dosyayı açmaya çalıştı ve son satır bu oldu. Sorun nedir?
+        code: |
+          NotADirectoryError: [Errno 20] Not a directory: 'notes.txt/a.txt'
+        options:
+          A: "notes.txt bir klasör değil; bu yüzden onun içinde a.txt olamaz."
+          B: "a.txt'yi açma iznin yok."
+          C: "notes.txt boş bir klasör."
+          D: "Python'da 20 tane klasör yok."
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          script: |
+            echo x > notes.txt
+            python3 -c 'open("notes.txt/a.txt")' 2>&1 | tail -n 1 | grep -qxF "NotADirectoryError: [Errno 20] Not a directory: 'notes.txt/a.txt'" && [ -f notes.txt ] && echo klasor_degil
+          outcomes: {A: "klasor_degil", B: "izin_yok", C: "bos_klasor", D: "yirmi"}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          gcc bu iki satırı yazdı. Hata hangi fonksiyonun içinde? Yalnız fonksiyonun adını yaz.
+        code: |
+          c.c: In function ‘main’:
+          c.c:3:16: error: ‘totl’ undeclared (first use in this function)
+        answer: "main"
+        verify:
+          mode: shell
+          script: |
+            printf 'int main(void) {\n    int a = 2;\n    return a + totl;\n}\n' > c.c
+            gcc -c c.c > out.txt 2>&1
+            grep -qxF "c.c: In function ‘main’:" out.txt && grep -qxF "c.c:3:16: error: ‘totl’ undeclared (first use in this function)" out.txt && echo main
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          `cat a.txt b.txt` komutu bu iki satırı yazdı. Hangi dosya var ama okunamıyor?
+        code: |
+          cat: a.txt: No such file or directory
+          cat: b.txt: Permission denied
+        options:
+          A: "b.txt"
+          B: "a.txt"
+          C: "İkisi de"
+          D: "Hiçbiri; ikisi de yok"
+        scan_options: false
+        answer: A
+        misconception_options: {D: permission_means_missing}
+        verify:
+          mode: shell
+          script: |
+            t=$(mktemp -d)
+            cd "$t"
+            echo y > b.txt
+            chmod 000 b.txt
+            cat a.txt b.txt > out.txt 2>&1
+            grep -qxF "cat: a.txt: No such file or directory" out.txt && grep -qxF "cat: b.txt: Permission denied" out.txt && [ -f b.txt ] && [ ! -e a.txt ] && echo b
+            chmod 644 b.txt
+            cd /
+            chmod -R u+rwx "$t"
+            rm -rf "$t"
+          outcomes: {A: "b", B: "a", C: "ikisi", D: "hicbiri"}
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bulunduğun klasörde notes adında bir klasör var. `ls Notes` yazdın ve terminal bu satırı yazdı. Neden?
+        code: |
+          ls: cannot access 'Notes': No such file or directory
+        options:
+          A: "Komuttaki ad Notes; klasörün adı notes. Büyük harfle başlayan ad başka bir addır ve öyle bir şey yok."
+          B: "notes klasörünü açma iznin yok."
+          C: "Notes 'notlar' demek; mesaj klasörde not olmadığını söylüyor."
+          D: "notes klasörü boş."
+        scan_options: false
+        answer: A
+        misconception_options: {C: quoted_name_is_english}
+        verify:
+          mode: shell
+          script: |
+            t=$(mktemp -d)
+            cd "$t"
+            mkdir notes
+            ls Notes 2>&1 | grep -qxF "ls: cannot access 'Notes': No such file or directory" && [ -d notes ] && echo buyuk_harf
+            cd /
+            chmod -R u+rwx "$t"
+            rm -rf "$t"
+          outcomes: {A: "buyuk_harf", B: "izin_yok", C: "not_yok", D: "bos"}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bir betik çalıştı ve terminalde bu üç satır göründü. Hangisi bir hata mesajı?
+        code: |
+          start
+          cat: veri.txt: No such file or directory
+          done
+        options:
+          A: "İkinci satır"
+          B: "Birinci satır"
+          C: "Üçüncü satır"
+          D: "Hiçbiri; üçü de programın normal çıktısı"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          script: |
+            printf 'echo start\ncat veri.txt\necho done\n' > s.sh
+            bash s.sh > out.txt 2> err.txt
+            grep -qxF "cat: veri.txt: No such file or directory" err.txt && [ "$(cat out.txt)" = "$(printf 'start\ndone')" ] && echo ikinci
+          outcomes: {A: "ikinci", B: "birinci", C: "ucuncu", D: "hicbiri"}

@@ -1,0 +1,65 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.list_operations.select_and_use_sequence.g09@v1",
+  "item": "item.python.list_operations.select_and_use_sequence.g09@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.parcala([int(x) for x in sys.argv[2:]], int(sys.argv[1])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "uneven",
+      "args": [
+        "2",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "expected_stdout": "[[1, 2], [3, 4], [5]]\n"
+    },
+    {
+      "id": "even",
+      "args": [
+        "3",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "expected_stdout": "[[1, 2, 3], [4, 5, 6]]\n"
+    },
+    {
+      "id": "empty",
+      "args": [
+        "2"
+      ],
+      "expected_stdout": "[]\n"
+    },
+    {
+      "id": "larger_n",
+      "args": [
+        "5",
+        "7",
+        "8"
+      ],
+      "expected_stdout": "[[7, 8]]\n"
+    }
+  ]
+}

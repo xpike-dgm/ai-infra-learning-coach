@@ -153,14 +153,35 @@ data class AssessmentItem(
      * Weekly (13A) and monthly (13B) role ids never collide, so one declaration list serves both scopes.
      */
     val blueprintRoles: Set<SlotRole> = emptySet(),
+    /**
+     * `QAB-v0` §17 (15G, `D-120`): the context the item asks for its target capability in. `null` is "not declared", and
+     * an undeclared context is no transfer claim at all — however hard the item is (`AIV-v0` §16).
+     */
+    val transferProfile: TransferProfile? = null,
+    /** `QAB-v0` §17: which context the item's problem is built in, so two items of one context are not two transfers. */
+    val contextFamilyId: String? = null,
 ) {
     init {
+        require(transferProfile == null || !contextFamilyId.isNullOrBlank()) { "a transfer claim names its context family (QAB-v0 §17)" }
         require(expectedActiveMinutes == null || expectedActiveMinutes > 0) { "an item takes some time, if it says" }
         require(targetObjectives.isNotEmpty()) { "an item with no target Objective attributes to nothing" }
         require(evidenceType.isNotBlank()) { "an item declares the evidence type it produces" }
         require(expectedAnswerOrRubricRef.isNotBlank()) { "an item carries its answer key or rubric reference" }
         require(variantFamilyId.isNotBlank()) { "an item belongs to a variant family (QAB-v0 §15)" }
     }
+}
+
+/**
+ * `QAB-v0` §17's transfer profiles (15G, `D-120`). They are not numeric mastery multipliers. Only a context built from
+ * another Topic can carry the month's cross-topic transfer slot (`MCA-v0` §5, §9); `same_context` and `near_context` are
+ * not transfer at all, and a `novel_application` of the lesson's own Topic is not cross-topic.
+ */
+enum class TransferProfile(val id: String, val crossTopic: Boolean) {
+    SAME_CONTEXT("same_context", false),
+    NEAR_CONTEXT("near_context", false),
+    CROSS_TOPIC_CONTEXT("cross_topic_context", true),
+    NOVEL_APPLICATION("novel_application", false),
+    INTEGRATED_SYSTEM_CONTEXT("integrated_system_context", true),
 }
 
 /**

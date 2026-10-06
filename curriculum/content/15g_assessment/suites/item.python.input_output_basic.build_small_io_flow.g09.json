@@ -1,0 +1,38 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.input_output_basic.build_small_io_flow.g09@v1",
+  "item": "item.python.input_output_basic.build_small_io_flow.g09@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "whole",
+      "stdin": "150\n2\n",
+      "expected_stdout": "Hız: 75.0 km/sa\n"
+    },
+    {
+      "id": "thirds",
+      "stdin": "100\n3\n",
+      "expected_stdout": "Hız: 33.3 km/sa\n"
+    },
+    {
+      "id": "decimals",
+      "stdin": "7.5\n0.5\n",
+      "expected_stdout": "Hız: 15.0 km/sa\n"
+    }
+  ]
+}

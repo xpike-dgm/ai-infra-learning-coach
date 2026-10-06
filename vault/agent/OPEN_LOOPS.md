@@ -69,10 +69,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 15D Memory Foundations: MMFX-v0 / D-116 ile tamamlandı; 4 Skill published (6C'nin üç bellek tohumu ayrıştırması), 34 item, 33 anlatım, 13 misconception, 20 görev; AddressSanitizer + UBSan.
 - [x] 15E Linux / Git / Shell Foundations: LGSX-v0 / D-118 ile tamamlandı; 5 Skill published (FBB-v0 §6.4; terminal 15C'de), 41 item, 35 anlatım, 15 misconception, 25 görev; Objective başına 8 item.
 - [x] 15F English A0→A1/A2 başlangıç paketi: EAAX-v0 / D-119 ile tamamlandı; 10 Skill published (7B A1/A2), 82 item, 50 anlatım, 20 misconception, 50 görev; ders başına kelime listesi.
-- [ ] 15G Assessment content **AKTİF** — kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
+- [x] 15G Assessment content: ACNX-v0 / D-120 ile tamamlandı; yedinci paket ek paket — 613 item, 240 büyüyen görev v2'si, 21 transfer item'ı (ayın slotuna ayrılır), 144 seçenek düzeyinde misconception anahtarı; bağımsız inceleme dört turda 613/613.
+- [ ] 15H Content QA **AKTİF** — kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
+- [ ] **15G havuz eksikleri (kayıtlı, D-120):** `scope_name_resolution`, `c.declaration_type_model`, `git.repository_status_diff` 14 (daha fazla aday kardeş item'ın ya da dersin tekrarıydı); 15F'te `technical_noun_phrase_recognition` 12, `negation_question`, `follow_bilingual_instruction`, `documentation_navigation` 11, `be_and_simple_present`, `imperative`, `preposition`, `write_command_result_note` 10 (kullanıcı kararı: dürüst küçük havuz; önce daha geniş öğretilmiş lexicon) → 15H / sonraki içerik adımı.
+- [ ] 15G inceleyicilerinin cömert zorluk etiketi ve izomorf notları (`curriculum/content/15g_assessment/independent_review.yaml` findings) → 15H.
 - [ ] documentation_navigation'ın graph'ı: yardım metni emir, ilişki kelimesi ve isim öbeği içerir ama Skill yalnız etiket dersine bağlı → 15H.
 - [ ] Git item'ları ve görevleri command_options_redirection_basic'i item düzeyinde beyan ediyor (dosya oluşturur); 6C repository_status_diff'i yalnız terminale bağlar → 15H.
-- [ ] **Soru havuzu küçük (kullanıcı endişesi, 2026-10-03):** 15A–15D'de Objective başına ~5 doğrulanmış item var; gösterilen item taze ölçüm sayılmadığı ve remediation yalnız taze, temiz kanıtla kapandığı için zorlanan bir öğrenci birkaç denemede taze item'ı tüketir ve planner `no_valid_candidate`'te takılır. Öneri: Objective başına 15–25 item (elle doğrulanmış ya da çalıştırılarak doğrulanan üretim) — ayrı bir havuz-genişletme adımı ya da 15G; karar kullanıcının (D-117 sürerken 15E kanonik sırayla yürür).
+- [x] **Soru havuzu küçük (kullanıcı endişesi, 2026-10-03)** → 15G'de kapandı (D-120): 65 Objective'in 54'ü ≥15 dersin dışında item; eksikler yukarıda kayıtlı.
 - [ ] storage_lifetime_intuition işaretçiden okur ama 6C onu yalnız functions_basic'e bağlar; işi pointer_dereference'ı item düzeyinde beyan ediyor → 15H.
 - [ ] C kontrol akışı item'ları standard_io_basic'i, bir derle-bağla item'ı functions_basic'i item düzeyinde beyan ediyor; graph söylemiyor → 15H.
 - [ ] Graph'ın söylemediği gereksinimler item başına beyan ediliyor (fonksiyon yazmak, set/tuple/sözlük item'larında köşeli parantez, `for_iteration`'da koşul, `path_handling`'de import) → 15H.
@@ -105,7 +108,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → 15 (15A'nın 13, 15B'nin 21, 15C'nin 10, 15D'nin 6, 15E'nin 5 ve 15F'nin 10 Objective'i için yazıldı, D-112/D-113/D-114/D-116/D-118/D-119; 15G'de devam).
 - [ ] Alternatif anlatım menüsünü çizmek ve `ExplainDifferently`'yi uygulamadan çağırmak → 16D.
 - [ ] Hangi biçimin öğrenciye daha çok yardım ettiğinin kalibrasyonu → 18.
-- [ ] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15 (15A'da 34, 15B'de 44, 15C'de 21, 15D'de 13, 15E'de 15, 15F'de 20 katalog etiketi yazıldı, D-112/D-113/D-114/D-116/D-118/D-119; cevap→etiket anahtarı formatı yok, 15G'de karar).
+- [x] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15G'de kapandı (D-120): seçenek düzeyinde `[answer_misconception]`, 144 anahtar (66 eklenen, 78 yayımlanmış item'da), yalnız bağımsız incelemenin geçirdiği eşleme.
 - [ ] Misconception hafızasının item seçiminde kullanımı ve `misconception_contrast` içeriğinin yazılması → 15 (menüde hafızaya göre sunulması 14C'de, D-107).
 - [ ] Destekli/doğrulanmış misconception'ların Progress görünümü → 16C.
 - [ ] Yanlış analizini gerçek bir oturumdan sonra uygulamadan çağırmak → 16D.
@@ -132,7 +135,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Geciken tekrar aciliyet kovaları ve başarı bandı → 18C; uzun yokluk sonrası temsili kontrol → 18B.
 - [x] Önceki exposure kayıtlarının kanıt satırına katılması: 14A'da kapandı — `evidenceFor` gösterilmiş çözümü denemenin sırasına göre okuyor (D-105).
 - [ ] Retention replay çalışma süresi (Skill satırlarında karesel, yalnız yeniden kurmada) → 18E.
-- [ ] Aylık `cross_topic_transfer` ve `professional_evidence_checkpoint` rollerinin üreticisi (transfer fırsatı ve profesyonel kanıt metadata'sı) → 15; o zamana kadar bu rollerle slot kurulmaz.
+- [x] Aylık `cross_topic_transfer` üreticisi → 15G'de kapandı (D-120): `TransferEngine` / `TRANSFER_OPPORTUNITY`, cross-topic profilli ve adlandırılmış bağlamlı 21 transfer item'ı.
+- [ ] Aylık `professional_evidence_checkpoint` rolünün üreticisi (profesyonel kanıt metadata'sı) → AŞAMA 20; o zamana kadar bu rolle slot kurulmaz.
 - [ ] Aylık döngü ayarı → 16D; varsayılan takvim ayı.
 - [ ] Boylamsal kanıtta farklı gün sayımı → 18D kalibrasyonu, gerekirse; uydurulmadı.
 - [ ] Aylık özet mikro metni (`MCA-v0` §30 bölümleri) → 14.

@@ -98,8 +98,10 @@ class ComposeAssessmentBlueprint(
         // inside the window.
         val recentSince = previousBlueprint?.studyDay
         val recent = recentSince?.let { persistence.skillsEvidencedSince(it).toSet() }
-        // The weakness owner's `weakness_detected` needs reach the pool like any other owner's (13D).
-        val owners = (ownerNeeds + WeaknessEngine.needs(states)).distinctBy { it.needKey }
+        // The weakness owner's `weakness_detected` needs reach the pool like any other owner's (13D), and the transfer
+        // owner's `transfer_opportunity` needs too (15G, `D-120`) — the same ones the planner opens.
+        val owners = (ownerNeeds + WeaknessEngine.needs(states) + TransferPlanning.needs(persistence, content, states))
+            .distinctBy { it.needKey }
         val pool = when (scope) {
             AssessmentScope.MONTHLY_CAPABILITY -> MonthlyBlueprintEngine.targetPool(states, owners, recent, holdingBack())
             else -> WeeklyBlueprintEngine.targetPool(states, owners, recent, holdingBack())

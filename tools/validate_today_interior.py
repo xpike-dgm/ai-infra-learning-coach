@@ -360,7 +360,9 @@ _sequence = content[content.find("private fun checkSequence("):content.find("pri
 check("E11A-13_content_port_returns_null",
       "override fun resource(ref: VersionedRef): ContentDocument?" in content
       and "TODO(" not in content and "throw" not in content.replace(_sequence, "")
-      and "runCatching { (listOf(first) + later()).map(PackageFormat::parse).also(::checkSequence) }" in content,
+      # Narrowed at 15G (`ACNX-v0` / `D-120`): packages are read one after another, each with those before it.
+      and ("runCatching { (listOf(first) + later()).map(PackageFormat::parse).also(::checkSequence) }" in content
+           or "(listOf(first) + later()).fold(emptyList<PackageFormat.Parsed>()) { read, text -> read + PackageFormat.parse(text, read) }" in content),
       "asking for unpublished content is a missing resource, not a crash")
 
 # ---------------------------------------------------------------- the screen says things in words

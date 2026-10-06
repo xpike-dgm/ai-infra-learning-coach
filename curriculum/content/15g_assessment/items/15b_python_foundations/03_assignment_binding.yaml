@@ -1,0 +1,335 @@
+skill: skill.python.assignment_binding
+objectives:
+  - id: objective.python.assignment_binding.write_state_change
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: kod adında bir değişken boş bir yazıyla ("") başlasın; sonra += kullanarak sırasıyla "A", "7" ve "X" yazılarını eklesin; son olarak kodu yazdırsın. Ekranda yalnız A7X görünmeli; testler kod değişkeninin son değerine de bakar.
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.kod)
+        suite:
+          - {id: built_code, args: [], expected_stdout: "A7X | A7X\n"}
+        reference: |
+          kod = ""
+          kod += "A"
+          kod += "7"
+          kod += "X"
+          print(kod)
+        wrong:
+          - |
+            kod = ""
+            kod += "A"
+            kod += "X"
+            kod += "7"
+            print(kod)
+          - |
+            kod = "A"
+            print("A", "7", "X")
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: ad değişkenine "Ece", soyad değişkenine "Kaya" yazısını ata ve ikisini tek bir print ile yazdır. Ekranda Ece Kaya görünmeli; testler iki değişkene de bakar.
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.ad, cozum.soyad)
+        suite:
+          - {id: names, args: [], expected_stdout: "Ece Kaya | Ece Kaya\n"}
+        reference: |
+          ad = "Ece"
+          soyad = "Kaya"
+          print(ad, soyad)
+        wrong:
+          - |
+            ad = "Ece"
+            soyad = "Kaya"
+            print(soyad, ad)
+          - |
+            ad = "Ece Kaya"
+            print(ad)
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: x 10, y 3 ile başlasın. Önce x, y kadar azalsın; ARDINDAN y, x'in bu yeni değeri kadar artsın. Sonra print(x, y) ile ikisini yazdır. Testler iki değişkenin son değerine de bakar.
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.x, cozum.y)
+        suite:
+          - {id: ordered_updates, args: [], expected_stdout: "7 10 | 7 10\n"}
+        reference: |
+          x = 10
+          y = 3
+          x -= y
+          y += x
+          print(x, y)
+        wrong:
+          - |
+            x = 10
+            y = 3
+            y += x
+            x -= 3
+            print(x, y)
+          - |
+            x = 10
+            y = 3
+            x -= y
+            y += x
+            print(y, x)
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: toplam_saniye değişkeni 200 olsun. dakika değişkeninde bunun kaç tam dakika ettiğini (// 60), kalan değişkeninde artan saniyeyi (% 60) hesapla ve print(dakika, "dk", kalan, "sn") ile yazdır. Ekranda 3 dk 20 sn görünmeli; testler dakika ve kalan değişkenlerine de bakar.
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.dakika, cozum.kalan)
+        suite:
+          - {id: minutes_seconds, args: [], expected_stdout: "3 dk 20 sn | 3 20\n"}
+        reference: |
+          toplam_saniye = 200
+          dakika = toplam_saniye // 60
+          kalan = toplam_saniye % 60
+          print(dakika, "dk", kalan, "sn")
+        wrong:
+          - |
+            toplam_saniye = 200
+            dakika = toplam_saniye % 60
+            kalan = toplam_saniye // 60
+            print(dakika, "dk", kalan, "sn")
+          - |
+            toplam_saniye = 200
+            dakika = toplam_saniye / 60
+            kalan = toplam_saniye % 60
+            print(dakika, "dk", kalan, "sn")
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: x 1, y 2, z 3 ile başlasın. Değerler sola kaydırılsın: x, y'nin; y, z'nin; z ise x'in eski değerini alsın. Sonra print(x, y, z) yazılsın. Ekranda 2 3 1 görünmeli; testler üç değişkene de bakar.
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.x, cozum.y, cozum.z)
+        suite:
+          - {id: rotated, args: [], expected_stdout: "2 3 1 | 2 3 1\n"}
+        reference: |
+          x = 1
+          y = 2
+          z = 3
+          gecici = x
+          x = y
+          y = z
+          z = gecici
+          print(x, y, z)
+        wrong:
+          - |
+            x = 1
+            y = 2
+            z = 3
+            x = y
+            y = z
+            z = x
+            print(x, y, z)
+          - |
+            x = 1
+            y = 2
+            z = 3
+            print(y, z, x)
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: en 7, boy 4 olsun. alan ve cevre adında iki değişkende dikdörtgenin alanını ve çevresini hesapla, sonra print(alan, cevre) ile yazdır. Ekranda 28 22 görünmeli; testler iki değişkene de bakar.
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.alan, cozum.cevre)
+        suite:
+          - {id: area_perimeter, args: [], expected_stdout: "28 22 | 28 22\n"}
+        reference: |
+          en = 7
+          boy = 4
+          alan = en * boy
+          cevre = 2 * (en + boy)
+          print(alan, cevre)
+        wrong:
+          - |
+            en = 7
+            boy = 4
+            alan = en * boy
+            cevre = 2 * en + boy
+            print(alan, cevre)
+          - |
+            en = 7
+            boy = 4
+            alan = en * boy
+            cevre = en + boy
+            print(alan, cevre)
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: puan 40 ile başlasın ve 25 artsın. Sonra etiket adında bir değişkene "Puan: " yazısı ile puanın o anki değerinin yazı hâli (str) birleştirilerek atansın. Ardından puan 0'a ayarlansın. Son olarak print(etiket, puan) yazılsın. Testler etiket ve puan değişkenlerine de bakar.
+        required_skills: [skill.python.value_type_behavior]
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.etiket, "|", cozum.puan)
+        suite:
+          - {id: snapshot_label, args: [], expected_stdout: "Puan: 65 0 | Puan: 65 | 0\n"}
+        reference: |
+          puan = 40
+          puan += 25
+          etiket = "Puan: " + str(puan)
+          puan = 0
+          print(etiket, puan)
+        wrong:
+          - |
+            puan = 40
+            puan += 25
+            puan = 0
+            etiket = "Puan: " + str(puan)
+            print(etiket, puan)
+          - |
+            puan = 40
+            etiket = "Puan: " + str(puan)
+            puan += 25
+            puan = 0
+            print(etiket, puan)
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: üç sınav notu 70, 85 ve 91. toplam değişkeninde notların toplamını, ortalama değişkeninde toplamın 3'e tam bölümünü (//) tut ve ekrana Toplam: 246 Ortalama: 82 yaz. Testler iki değişkene de bakar.
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.toplam, cozum.ortalama)
+        suite:
+          - {id: total_and_mean, args: [], expected_stdout: "Toplam: 246 Ortalama: 82 | 246 82\n"}
+        reference: |
+          toplam = 70 + 85 + 91
+          ortalama = toplam // 3
+          print("Toplam:", toplam, "Ortalama:", ortalama)
+        wrong:
+          - |
+            toplam = 70 + 85 + 91
+            ortalama = toplam % 3
+            print("Toplam:", toplam, "Ortalama:", ortalama)
+          - |
+            toplam = 70 + 85 + 91
+            ortalama = 70 + 85 + 91 // 3
+            print("Toplam:", toplam, "Ortalama:", ortalama)
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: a 0, b 1 ile başlasın. Aşağıdaki adımı üç kez arka arkaya uygula: yeni a eski b olsun, yeni b ise eski a ile eski b'nin toplamı olsun (eski değerleri kaybetmemek için geçici bir değişken kullan). Sonunda print(a, b) yazılsın. Ekranda 2 3 görünmeli; testler iki değişkene de bakar.
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.a, cozum.b)
+        suite:
+          - {id: three_steps, args: [], expected_stdout: "2 3 | 2 3\n"}
+        reference: |
+          a = 0
+          b = 1
+          gecici = a
+          a = b
+          b = gecici + b
+          gecici = a
+          a = b
+          b = gecici + b
+          gecici = a
+          a = b
+          b = gecici + b
+          print(a, b)
+        wrong:
+          - |
+            a = 0
+            b = 1
+            a = b
+            b = a + b
+            a = b
+            b = a + b
+            a = b
+            b = a + b
+            print(a, b)
+          - |
+            a = 0
+            b = 1
+            gecici = a
+            a = b
+            b = gecici + b
+            gecici = a
+            a = b
+            b = gecici + b
+            print(a, b)
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: bir ipin uzunluğu 3 metre 45 santimetre. metre ve santim değişkenlerinden toplam adında bir değişkende uzunluğun kaç santimetre olduğunu hesapla (1 metre = 100 santimetre) ve ekrana 345 santim yaz. Testler toplam değişkenine de bakar.
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.toplam)
+        suite:
+          - {id: centimetres, args: [], expected_stdout: "345 santim | 345\n"}
+        reference: |
+          metre = 3
+          santim = 45
+          toplam = metre * 100 + santim
+          print(toplam, "santim")
+        wrong:
+          - |
+            metre = 3
+            santim = 45
+            toplam = metre * 10 + santim
+            print(toplam, "santim")
+          - |
+            metre = 3
+            santim = 45
+            toplam = (metre + santim) * 100
+            print(toplam, "santim")
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: bakiye 1000 ile başlasın; önce iki katına çıksın, sonra 250 azalsın, sonra o anki bakiyenin onda biri (// 10) kadar artsın. Her adımda yalnız bakiye değişkenini güncelle ve sonunda bakiyeyi yazdır. Ekranda 1925 görünmeli; testler bakiye değişkenine de bakar.
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.bakiye)
+        suite:
+          - {id: final_balance, args: [], expected_stdout: "1925 | 1925\n"}
+        reference: |
+          bakiye = 1000
+          bakiye *= 2
+          bakiye -= 250
+          bakiye += bakiye // 10
+          print(bakiye)
+        wrong:
+          - |
+            bakiye = 1000
+            bakiye *= 2
+            bakiye -= 250
+            bakiye += 1000 // 10
+            print(bakiye)
+          - |
+            bakiye = 1000
+            bakiye *= 2
+            bakiye += bakiye // 10
+            bakiye -= 250
+            print(bakiye)

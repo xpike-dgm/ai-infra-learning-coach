@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.tuple_immutable_sequence.demonstrate_capability.t01@v1",
+  "item": "item.python.tuple_immutable_sequence.demonstrate_capability.t01@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.ad_ve_uzanti(sys.argv[1]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "txt",
+      "args": [
+        "rapor.txt"
+      ],
+      "expected_stdout": "('rapor', 'txt')\n"
+    },
+    {
+      "id": "py",
+      "args": [
+        "oyun.py"
+      ],
+      "expected_stdout": "('oyun', 'py')\n"
+    },
+    {
+      "id": "short",
+      "args": [
+        "a.c"
+      ],
+      "expected_stdout": "('a', 'c')\n"
+    }
+  ]
+}

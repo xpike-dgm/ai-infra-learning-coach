@@ -16,7 +16,8 @@ class ReasonCodesTest {
                 "diagnostic", "reentry", "selection", "replan", "prerequisite_input"),
             ReasonCatalog.codes.keys.map { it.id },
         )
-        assertEquals(listOf(10, 7, 9, 7, 15, 13, 10, 8, 9, 13, 9), ReasonCatalog.codes.values.map { it.size })
+        // §8.1 has 11: PDT-v0's ten and 15G's declared `need.transfer_opportunity` (`D-120`).
+        assertEquals(listOf(11, 7, 9, 7, 15, 13, 10, 8, 9, 13, 9), ReasonCatalog.codes.values.map { it.size })
         assertEquals(ReasonCatalog.all.size, ReasonCatalog.all.toSet().size, "a code appears twice")
     }
 

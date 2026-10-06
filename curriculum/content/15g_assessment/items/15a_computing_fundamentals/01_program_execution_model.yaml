@@ -1,0 +1,177 @@
+skill: skill.computing.program_execution_model
+objectives:
+  - id: objective.computing.program_execution_model.explain_pipeline
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          İşlemci (CPU) doğrudan hangisini yürütebilir?
+        options:
+          A: Programcının yazdığı kaynak kodu, örneğin merhaba.py içindeki satırları.
+          B: Kendi makine komutlarını.
+          C: Ekranda görünen çıktıyı.
+          D: Dosyanın adını.
+        scan_options: false
+        answer: B
+        misconception_options: {A: source_runs_directly}
+        verify:
+          mode: reference
+          reference: "Python Glossary — 'bytecode' ve 'interpreted'; GCC Manual §3.2 Options Controlling the Kind of Output (derleme, makine kodu içeren nesne ve çalıştırılabilir dosyalar üretir)"
+          claim: "İşlemci yalnız makine komutlarını yürütür; kaynak kod ancak bir çeviriciden geçtikten sonra yürütülebilir."
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bir program çalışmaya başladığında işletim sistemi onun için bir yapı oluşturur: bellekte yer ayrılır ve programın komutları bu yapı içinde sırayla yürütülür. Bu yapının adı nedir?
+        options:
+          A: Kaynak kod (source code)
+          B: Derleyici (compiler)
+          C: Süreç (process)
+          D: Çıktı (output)
+        scan_options: false
+        answer: C
+        verify:
+          mode: reference
+          reference: "POSIX.1-2017 Base Definitions, Chapter 3 Definitions — 'Process': an address space with one or more threads executing within that address space, and the required system resources for those threads"
+          claim: "Çalışan bir programın işletim sistemindeki karşılığı süreçtir (process): ona ayrılmış bellek ve kaynaklarla komutları yürütülür."
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Hangisi kaynak kodun tamamını önceden okuyup makine komutlarından oluşan ayrı bir çalıştırılabilir dosya üretir?
+        options:
+          A: python (yorumlayıcı)
+          B: gcc (derleyici)
+          C: İşlemci
+          D: Ekran
+        scan_options: false
+        answer: B
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output — derleme ön işleme, derleme, birleştirme ve bağlama aşamalarından geçer; bağlama çalıştırılabilir dosyayı üretir. Python Tutorial §2 Using the Python Interpreter — python dosyayı okuyup yürütür, ayrı bir çalıştırılabilir dosya bırakmaz"
+          claim: "gcc kaynak kodu önceden çevirip ayrı bir çalıştırılabilir dosya üretir; python ise dosyayı her çalıştırmada okuyup yürütür."
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          rapor.py dosyası python rapor.py ile çalıştırılıyor. İlk üç satır doğru yazılmış; son satırda kapanış tırnağı ve parantez unutulmuş. Ekranda, hata mesajından önce ne görünür?
+        code: |
+          print("Pazartesi")
+          print("Salı")
+          print("Çarşamba")
+          print("Perşembe
+        options:
+          A: Pazartesi, Salı ve Çarşamba; hatalı satıra kadar her şey yürütülür.
+          B: Hiçbir şey; Python yürütmeden önce dosyanın tamamını çevirir ve çeviri bu yazım hatasında durur.
+          C: Yalnızca Pazartesi; ilk satırdan sonra program hatayı fark eder.
+          D: Dört gün adı da; Python eksik tırnağı kendisi tamamlar.
+        scan_options: false
+        answer: B
+        misconception_options: {A: interpreter_skips_syntax}
+        verify:
+          mode: stdout
+          expect_error: true
+          outcomes: {A: "Pazartesi\nSalı\nÇarşamba", B: "", C: "Pazartesi", D: "Pazartesi\nSalı\nÇarşamba\nPerşembe"}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Linux'ta selam.c adlı bir C programını gcc selam.c -o selam komutuyla derledin; program çalışınca ekrana Selam yazıyor. Derlemeden sonra selam.c dosyasını sildin. Şimdi ./selam ile programı çalıştırırsan ne olur?
+        options:
+          A: Ekrana Selam yazılır; çalışan, derleyicinin önceden ürettiği selam dosyasıdır ve kaynak dosyaya ihtiyacı yoktur.
+          B: Kaynak dosya bulunamadığı için bir hata mesajı görünür ve hiçbir şey yazılmaz.
+          C: Program önce kaynak dosyayı arar, bulamayınca boş bir satır yazar.
+          D: Derleyici yeniden çalışır ve selam.c dosyasını geri oluşturur.
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "Selam", B: "kaynak bulunamadi", C: "", D: "selam.c yeniden olustu"}
+          script: |
+            cat > selam.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                puts("Selam");
+                return 0;
+            }
+            KAYNAK
+            gcc selam.c -o selam
+            rm selam.c
+            ./selam
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Klasörde oyun.py adlı, doğru yazılmış bir Python dosyası var. Komutu yazarken bir harf fazla yazıp python oyunn.py dedin. Ne olur?
+        options:
+          A: Python, adı en çok benzeyen oyun.py dosyasını bulup onu çalıştırır.
+          B: Python, oyunn.py dosyasını açamadığını söyleyen bir hata verir; oyun.py dosyasındaki hiçbir satır yürütülmez.
+          C: Python önce dosyayı derler, sonra ilk satırlarını yürütür ve ardından durur.
+          D: Hiçbir şey olmaz, hata mesajı da görünmez.
+        scan_options: false
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "benzeri_calisti", B: "acilamadi", C: "yarim", D: "sessiz"}
+          script: |
+            import subprocess, sys
+            with open("oyun.py", "w", encoding="utf-8") as f:
+                f.write('print("Oyun başladı")\n')
+            r = subprocess.run([sys.executable, "oyunn.py"], capture_output=True, text=True)
+            if r.returncode != 0 and r.stdout == "" and "oyunn.py" in r.stderr:
+                print("acilamadi")
+            elif "Oyun başladı" in r.stdout:
+                print("benzeri_calisti")
+            elif r.returncode == 0 and r.stdout == "" and r.stderr == "":
+                print("sessiz")
+            else:
+                print("yarim")
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Linux'ta iki_kat.c programını gcc iki_kat.c -o iki_kat ile derledin. Program çalışınca kullanıcıdan bir sayı okuyup iki katını yazıyor. ./iki_kat ile çalıştırıp önce 4 girdin ve 8 gördün. Şimdi 10 girip 20 görmek istiyorsun. Ne yapman gerekir?
+        options:
+          A: Hiçbir şey; ./iki_kat'ı yeniden çalıştırıp 10 girmen yeter. Girdi program çalışırken okunur, çalıştırılabilir dosya değişmez.
+          B: Önce iki_kat.c'de sayıyı 10 yapıp yeniden derlemen gerekir.
+          C: Yalnız yeniden derlemen gerekir; kaynak dosyayı değiştirmen gerekmez.
+          D: Bir çalıştırılabilir dosya yalnız derlendiği andaki girdiyle çalışır; 10 için yeni bir program yazman gerekir.
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "aynen_calisir", B: "kaynak_degismeli", C: "yeniden_derle", D: "yeni_program"}
+          script: |
+            cd "$(mktemp -d)"
+            cat > iki_kat.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                printf("%d\n", 2 * n);
+                return 0;
+            }
+            KAYNAK
+            gcc iki_kat.c -o iki_kat
+            once=$(md5sum iki_kat)
+            a=$(echo 4 | ./iki_kat)
+            b=$(echo 10 | ./iki_kat)
+            sonra=$(md5sum iki_kat)
+            if [ "$a" = "8" ] && [ "$b" = "20" ] && [ "$once" = "$sonra" ]; then echo aynen_calisir; else echo baska; fi
+      - slug: g08
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Kendi cümlelerinle anlat: hesap.c adlı bir C programını gcc ile derleyip ./hesap ile çalıştırdığında, kaynak dosyadan ekrandaki çıktıya kadar neler olur? Python'daki zincirden hangi adımda ayrılır? (3–5 cümle yeterli.)
+        answer: "-"
+        rubric:
+          - id: compiler_translates_whole_source
+            statement: Derleyicinin (gcc) kaynak kodu önceden çevirip ayrı bir çalıştırılabilir dosya ürettiğini söyler.
+          - id: executable_is_what_runs
+            statement: Çalıştırılan şeyin kaynak dosya değil, üretilen çalıştırılabilir dosya olduğunu belirtir.
+          - id: running_process
+            statement: Programın çalışan bir süreç olarak komutları yürüttüğünü ve çıktının bu yürütmeden geldiğini söyler.
+          - id: difference_from_interpreter
+            statement: Farkı doğru söyler — Python'da ayrı bir dosya üretilmez, yorumlayıcı kaynak dosyayı her çalıştırmada okuyup çevirir.
+        verify:
+          mode: rubric
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.computing.program_execution_model.explain_pipeline.f02: {A: source_runs_directly}
+  item.computing.program_execution_model.explain_pipeline.f05: {A: interpreter_skips_syntax}
+  item.computing.program_execution_model.explain_pipeline.f07: {B: source_runs_directly}

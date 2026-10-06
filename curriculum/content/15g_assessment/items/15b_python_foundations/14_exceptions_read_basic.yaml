@@ -1,0 +1,223 @@
+skill: skill.python.exceptions_read_basic
+objectives:
+  - id: objective.python.exceptions_read_basic.extract_error_type_location
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          program.py çalıştırılınca aşağıdaki hata mesajı görünüyor. Hatanın türü nedir? Yalnız türün adını yaz.
+
+          Traceback (most recent call last):
+            File "program.py", line 2, in <module>
+              print(toplm)
+          NameError: name 'toplm' is not defined. Did you mean: 'toplam'?
+        code: |
+          toplam = 10
+          print(toplm)
+        required_skills: [skill.python.assignment_binding]
+        answer: "NameError"
+        verify: {mode: traceback, ask: type}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          program.py çalıştırılınca aşağıdaki hata mesajı görünüyor. Hatanın türü nedir?
+
+          Traceback (most recent call last):
+            File "program.py", line 2, in <module>
+              print(adet + " adet")
+          TypeError: unsupported operand type(s) for +: 'int' and 'str'
+        code: |
+          adet = 3
+          print(adet + " adet")
+        required_skills: [skill.python.assignment_binding, skill.python.value_type_behavior]
+        options:
+          A: "TypeError"
+          B: "ValueError"
+          C: "NameError"
+          D: "SyntaxError"
+        scan_options: false
+        answer: A
+        verify: {mode: traceback, ask: type}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          program.py çalıştırılınca önce 12 yazılıyor, sonra aşağıdaki hata mesajı görünüyor. Hata programın kaçıncı satırında çıktı? Yalnız sayıyı yaz.
+
+          Traceback (most recent call last):
+            File "program.py", line 3, in <module>
+              b = int("12a")
+          ValueError: invalid literal for int() with base 10: '12a'
+        code: |
+          a = int("12")
+          print(a)
+          b = int("12a")
+          print(a + b)
+        required_skills: [skill.python.assignment_binding, skill.python.value_type_behavior]
+        answer: "3"
+        verify: {mode: traceback, ask: line}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          program.py çalıştırılınca aşağıdaki hata mesajı görünüyor. Hata gerçekte nerede çıktı?
+
+          Traceback (most recent call last):
+            File "program.py", line 5, in <module>
+              print(son(sayilar))
+            File "program.py", line 2, in son
+              return liste[len(liste)]
+          IndexError: list index out of range
+        code: |
+          def son(liste):
+              return liste[len(liste)]
+
+          sayilar = [4, 8, 15]
+          print(son(sayilar))
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        options:
+          A: "2. satırda, son fonksiyonunun içinde"
+          B: "5. satırda, programın ana kodunda"
+          C: "4. satırda, programın ana kodunda"
+          D: "1. satırda, fonksiyonun tanımında"
+        scan_options: false
+        answer: A
+        misconception_options: {B: read_traceback_top_down}
+        verify:
+          mode: traceback
+          ask: function_line
+          outcomes: {A: "son 2", B: "<module> 5", C: "<module> 4", D: "son 1"}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu program (program.py) çalıştırılınca hangi türde bir hatayla durur? Çalıştırmadan, kodu okuyarak karar ver.
+        code: |
+          sayi = 42
+          print(len(sayi))
+        required_skills: [skill.python.list_operations, skill.python.assignment_binding]
+        options:
+          A: "TypeError"
+          B: "ValueError"
+          C: "IndexError"
+          D: "NameError"
+        scan_options: false
+        answer: A
+        verify: {mode: traceback, ask: type, shown: false}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu program (program.py) çalıştırılınca hangi türde bir hatayla durur? Çalıştırmadan, kodu okuyarak karar ver.
+        code: |
+          deger = "3.7"
+          print(int(deger))
+        required_skills: [skill.python.assignment_binding, skill.python.value_type_behavior]
+        options:
+          A: "ValueError"
+          B: "TypeError"
+          C: "ZeroDivisionError"
+          D: Hata vermez, ekrana 3 yazar.
+        scan_options: false
+        answer: A
+        verify: {mode: traceback, ask: type, shown: false}
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          program.py çalıştırılınca aşağıdaki hata mesajı görünüyor. Programın ana kodunda bu hata zincirini başlatan satır kaçıncı satırdır? Yalnız sayıyı yaz.
+
+          Traceback (most recent call last):
+            File "program.py", line 7, in <module>
+              print(bol(x, y))
+            File "program.py", line 2, in bol
+              return a // b
+          ZeroDivisionError: division by zero
+        code: |
+          def bol(a, b):
+              return a // b
+
+          x = 10
+          y = 0
+          if x > 5:
+              print(bol(x, y))
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        answer: "7"
+        verify: {mode: traceback, ask: module_line}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          program.py çalıştırılınca önce 3 ve 4 yazılıyor, sonra aşağıdaki hata mesajı görünüyor. Hangi değer sayıya çevrilemediği için program durdu?
+
+          Traceback (most recent call last):
+            File "program.py", line 3, in <module>
+              print(int(g))
+          ValueError: invalid literal for int() with base 10: 'beş'
+        code: |
+          girdiler = ["3", "4", "beş", "6"]
+          for g in girdiler:
+              print(int(g))
+        required_skills: [skill.python.list_operations, skill.python.for_iteration, skill.python.value_type_behavior]
+        options:
+          A: "beş"
+          B: "6"
+          C: "4"
+          D: "g"
+        scan_options: false
+        answer: A
+        verify:
+          mode: traceback
+          ask: message
+          outcomes: {A: "invalid literal for int() with base 10: 'beş'", B: "invalid literal for int() with base 10: '6'", C: "invalid literal for int() with base 10: '4'", D: "invalid literal for int() with base 10: 'g'"}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          program.py çalıştırılınca aşağıdaki hata mesajı görünüyor. Hata gerçekte hangi fonksiyonda ve hangi satırda çıktı?
+
+          Traceback (most recent call last):
+            File "program.py", line 10, in <module>
+              print(topla(["4", "x"]))
+            File "program.py", line 7, in topla
+              t += sayi_al(m)
+            File "program.py", line 2, in sayi_al
+              return int(metin)
+          ValueError: invalid literal for int() with base 10: 'x'
+        code: |
+          def sayi_al(metin):
+              return int(metin)
+
+          def topla(metinler):
+              t = 0
+              for m in metinler:
+                  t += sayi_al(m)
+              return t
+
+          print(topla(["4", "x"]))
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.for_iteration]
+        options:
+          A: "sayi_al fonksiyonunda, 2. satırda"
+          B: "topla fonksiyonunda, 7. satırda"
+          C: "Programın ana kodunda, 10. satırda"
+          D: "topla fonksiyonunda, 6. satırda"
+        scan_options: false
+        answer: A
+        misconception_options: {C: read_traceback_top_down}
+        verify:
+          mode: traceback
+          ask: function_line
+          outcomes: {A: "sayi_al 2", B: "topla 7", C: "<module> 10", D: "topla 6"}
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu program (program.py) çalıştırılınca hangi türde bir hatayla durur? Çalıştırmadan, kodu okuyarak karar ver.
+        code: |
+          kodlar = {"a": 1, "b": 2}
+          print(kodlar[1])
+        required_skills: [skill.python.mapping_collections_basic, skill.python.list_operations]
+        options:
+          A: "KeyError"
+          B: "IndexError"
+          C: "TypeError"
+          D: Hata vermez, ekrana 2 yazar.
+        scan_options: false
+        answer: A
+        verify: {mode: traceback, ask: type, shown: false}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.python.exceptions_read_basic.extract_error_type_location.f03: {B: read_traceback_top_down}

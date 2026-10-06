@@ -276,7 +276,9 @@ activities = re.findall(r'^\s+"([a-z_]+)",$', paren_body(task_kt, "val ACTIVITY_
 tax_block = tax[tax.find("## 3.2 `activity_kind`"):tax.find("### Önemli örnek")]
 check("E15A-08_activity_kinds_are_3b", activities == re.findall(r"^([a-z_]+)$", tax_block, re.M) and len(activities) == 12, str(activities))
 check("E15A-08_never_widens", "need.trigger !in serves || primarySkill !in need.targetSkills" in task_kt, "")
-check("E15A-08_adapter_only_authored", re.search(r"parsed\?\.tasks\.orEmpty\(\)\.mapNotNull \{ it\.candidateFor\(need\) \}", source_kt) is not None, "")
+# Narrowed at 15G (`ACNX-v0` / `D-120`): a later package may publish a task's next version; the adapter still offers only
+# authored tasks, now the highest version of each, and still never widens what a task serves.
+check("E15A-08_adapter_only_authored", re.search(r"parsed\?\.tasks\.orEmpty\(\)(?:\.groupBy \{ it\.ref\.logicalId \}\.values\.map \{ versions -> versions\.maxBy \{ it\.ref\.version \} \})?\s*\.mapNotNull \{ it\.candidateFor\(need\) \}", source_kt) is not None, "")
 check("E15A-08_task_trust_bounded", "declares ${task.validationStatus.id} over item" in format_kt and "TRUSTING" in format_kt, "")
 tasks = re.findall(r"\[task\]\nlogical_id=task\.(\S+)\.(teach|practice|check|review|repair)\n(?:[^\n]+\n)+", asset + "\n")
 check("E15A-08_five_per_skill", len(tasks) == 60 and all(sum(1 for t in tasks if t[0] == s.split(".", 1)[1]) == 5 for s in ids), f"{len(tasks)}")

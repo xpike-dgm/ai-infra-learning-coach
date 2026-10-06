@@ -1,0 +1,48 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.modules_imports_basic.import_and_use_module_member.g09@v1",
+  "item": "item.python.modules_imports_basic.import_and_use_module_member.g09@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys\nwith open(\"birimler.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"ORAN = \" + sys.argv[2] + \"\\n\")\nimport cozum\nprint(cozum.inc_cm(float(sys.argv[1])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "real_ratio",
+      "args": [
+        "10",
+        "2.54"
+      ],
+      "expected_stdout": "25.4\n"
+    },
+    {
+      "id": "other_ratio",
+      "args": [
+        "10",
+        "3"
+      ],
+      "expected_stdout": "30.0\n"
+    },
+    {
+      "id": "fraction",
+      "args": [
+        "1.5",
+        "2.54"
+      ],
+      "expected_stdout": "3.81\n"
+    }
+  ]
+}

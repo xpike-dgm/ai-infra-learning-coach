@@ -1,0 +1,213 @@
+skill: skill.programming.function_decomposition
+objectives:
+  - id: objective.programming.function_decomposition.define_io_responsibility
+    items:
+      - slug: g01
+        difficulty: basic
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def selamla():
+              print("Merhaba")
+          print("son")
+        options:
+          A: Yalnızca son
+          B: Önce Merhaba, sonra son (iki satır)
+          C: Yalnızca Merhaba
+          D: Hiçbir şey
+        scan_options: false
+        answer: A
+        misconception_options: {B: definition_runs_function}
+        verify:
+          mode: stdout
+          outcomes: {A: "son", B: "Merhaba\nson", C: "Merhaba", D: ""}
+      - slug: g02
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki fonksiyon iki sayının toplamını döndürmek için yazılmış. Program yalnız bu iki satırdan ve toplam(4) çağrısından oluşuyor. Fonksiyonun tanımında ne yanlış?
+        code: |
+          def toplam(a):
+              return a + b
+        options:
+          A: İhtiyaç duyduğu ikinci sayı (b) bir parametre değil; fonksiyon onu çağırandan almıyor. Tanım def toplam(a, b) olmalı ve çağrı iki değer vermeli.
+          B: return yerine print kullanılmalı.
+          C: Fonksiyon tanımlandığı anda çalışır ve b'yi kendisi bulur; tanımda yanlış yok.
+          D: Toplama işlemi fonksiyonun dışında yapılmalı.
+        scan_options: false
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            ortam = {}
+            exec("def toplam(a):\n    return a + b", ortam)
+            try:
+                ortam["toplam"](4)
+                eksik = False
+            except NameError:
+                eksik = True
+            ortam2 = {}
+            exec("def toplam(a, b):\n    return a + b", ortam2)
+            duzelir = ortam2["toplam"](4, 6) == 10
+            print("A" if eksik and duzelir else "C")
+      - slug: g03
+        difficulty: basic
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def iki_kat(x):
+              x * 2
+          print(iki_kat(4))
+        options:
+          A: "8"
+          B: "None"
+          C: "4"
+          D: Hata verir; fonksiyon bir şey döndürmek zorundadır.
+        answer: B
+        verify:
+          mode: stdout
+          outcomes: {A: "8", B: "None", C: "4", D: "<hata>"}
+      - slug: g04
+        difficulty: authentic_application
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          def kare(x):
+              return x * x
+          a = kare(3)
+          b = kare(a)
+          print(a, b)
+        answer: "9 81"
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu fonksiyon indirim(50) diye çağrılınca, çağıran koda geri verdiği şey nedir?
+        code: |
+          def indirim(fiyat):
+              print("Hesaplanıyor")
+              return fiyat - 10
+        options:
+          A: 40 sayısını geri verir; "Hesaplanıyor" yalnız ekrana yazılır
+          B: '"Hesaplanıyor" yazısını geri verir'
+          C: 'Hem "Hesaplanıyor" yazısını hem 40 sayısını geri verir'
+          D: Hiçbir şey geri vermez; yalnız ekrana yazar
+        scan_options: false
+        answer: A
+        misconception_options: {C: print_is_return}
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            import io, contextlib
+            def indirim(fiyat):
+                print("Hesaplanıyor")
+                return fiyat - 10
+            ekran = io.StringIO()
+            with contextlib.redirect_stdout(ekran):
+                sonuc = indirim(50)
+            if sonuc == 40 and ekran.getvalue() == "Hesaplanıyor\n":
+                print("A")
+            elif sonuc is None:
+                print("D")
+            else:
+                print("C")
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bir programda kargo ücreti hesaplanıp başka hesaplarda da kullanılacak. Ücret, kilo başına 4 lira ile 10 liralık sabit ücretin toplamıdır; ekrana yazma işi çağırana bırakılacak. Hangi fonksiyon bu sorumluluğu doğru taşır?
+        options:
+          A: "def kargo(kilo):\n    print(kilo * 4 + 10)\n    return kilo * 4 + 10"
+          B: "def kargo(kilo):\n    return kilo * 4 + 10"
+          C: "def kargo(kilo):\n    print(kilo * 4 + 10)"
+          D: "def kargo(kilo):\n    return kilo * 4"
+        answer: B
+        misconception_options: {C: print_is_return}
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            import contextlib, io
+            sources = {
+                "A": "def kargo(kilo):\n    print(kilo * 4 + 10)\n    return kilo * 4 + 10",
+                "B": "def kargo(kilo):\n    return kilo * 4 + 10",
+                "C": "def kargo(kilo):\n    print(kilo * 4 + 10)",
+                "D": "def kargo(kilo):\n    return kilo * 4",
+            }
+            good = []
+            for k, src in sources.items():
+                env = {}
+                exec(src, env)
+                ok = True
+                for kilo in (0, 1, 3, 10):
+                    buf = io.StringIO()
+                    with contextlib.redirect_stdout(buf):
+                        value = env["kargo"](kilo)
+                    # Returns the fee for further use, and leaves the screen to the caller.
+                    if value != kilo * 4 + 10 or buf.getvalue() != "":
+                        ok = False
+                if ok:
+                    good.append(k)
+            print(",".join(good))
+      - slug: g07
+        difficulty: transfer_integration
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def ekle(x, y):
+              return x + y
+          def kat(x):
+              return x * 3
+          print(kat(ekle(2, kat(1))))
+        answer: "15"
+        verify: {mode: stdout}
+      - slug: g08
+        difficulty: transfer_integration
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def sonraki(x):
+              return x + 1
+              print("bitti")
+          print(sonraki(2))
+        options:
+          A: Yalnızca 3
+          B: Önce 3, sonra bitti
+          C: Önce bitti, sonra 3
+          D: Hata verir; return'den sonra satır olamaz.
+        scan_options: false
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "3", B: "3\nbitti", C: "bitti\n3", D: "<hata>"}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: even_counter_function
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.branching_reasoning]
+        prompt: |
+          İstenen sorumluluk: "bas'tan son'a kadar (ikisi de dahil) kaç çift sayı olduğunu say ve bu sayıyı geri döndür (ekrana yazma)." Hangi fonksiyon bunu doğru yapar?
+        options:
+          A: "def cift_say(bas, son):\n    sayac = 0\n    for n in range(bas, son + 1):\n        if n % 2 == 0:\n            sayac += 1\n    print(sayac)"
+          B: "def cift_say(bas, son):\n    sayac = 0\n    for n in range(bas, son):\n        if n % 2 == 0:\n            sayac += 1\n    return sayac"
+          C: "def cift_say(bas, son):\n    sayac = 0\n    for n in range(bas, son + 1):\n        if n % 2 == 0:\n            sayac += 1\n    return sayac"
+          D: "def cift_say(bas, son):\n    sayac = 0\n    for n in range(bas, son + 1):\n        if n % 2 == 0:\n            sayac += 1\n            return sayac"
+        answer: C
+        misconception_options: {A: print_is_return}
+        verify:
+          mode: functions
+          name: cift_say
+          spec: "def spec(bas, son):\n    return len([n for n in range(bas, son + 1) if n % 2 == 0])"
+          cases: [[1, 10], [2, 2], [3, 3], [0, 7], [4, 9]]
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.function_decomposition.define_io_responsibility.f01: {C: print_is_return}
+  item.programming.function_decomposition.define_io_responsibility.f02: {A: print_is_return}
+  item.programming.function_decomposition.define_io_responsibility.f03: {B: print_is_return}
+  item.programming.function_decomposition.define_io_responsibility.f04: {A: print_is_return}

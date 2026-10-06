@@ -185,7 +185,7 @@ checks:
   details: ''
 - check: E15C-05_linux_modes_only
   result: PASS
-  details: '{''shell'', ''suite'', ''c_stdout'', ''c_stage''}'
+  details: '{''c_stdout'', ''c_stage'', ''suite'', ''shell''}'
 - check: E15C-05_counts
   result: PASS
   details: '51 {''suite'': 35, ''c_stdout'': 6, ''c_stage'': 5, ''shell'': 5}'

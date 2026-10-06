@@ -1,0 +1,48 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.conditionals.write_branch_logic.g11@v1",
+  "item": "item.python.conditionals.write_branch_logic.g11@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "zero",
+      "stdin": "0\n",
+      "expected_stdout": "sıfır\n"
+    },
+    {
+      "id": "even_positive",
+      "stdin": "8\n",
+      "expected_stdout": "çift pozitif\n"
+    },
+    {
+      "id": "odd_positive",
+      "stdin": "3\n",
+      "expected_stdout": "tek pozitif\n"
+    },
+    {
+      "id": "even_negative",
+      "stdin": "-4\n",
+      "expected_stdout": "çift negatif\n"
+    },
+    {
+      "id": "odd_negative",
+      "stdin": "-7\n",
+      "expected_stdout": "tek negatif\n"
+    }
+  ]
+}

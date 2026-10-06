@@ -1,0 +1,222 @@
+skill: skill.programming.test_case_basic
+objectives:
+  - id: objective.programming.test_case_basic.design_expected_case
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Tarif: ucret(saat) bir otoparkın ücretini döndürür: ilk saat 10 lira, sonraki her saat 5 lira (saat en az 1). Bir arkadaşın aşağıdaki dört test durumunu yazmış. Hangisinin beklenen sonucu tarife göre YANLIŞ yazılmış?
+        options:
+          A: ucret(1) çağrılır; 10 beklenir.
+          B: ucret(2) çağrılır; 15 beklenir.
+          C: ucret(3) çağrılır; 20 beklenir.
+          D: ucret(4) çağrılır; 30 beklenir.
+        scan_options: false
+        answer: D
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            def tarif(saat):
+                return 10 + (saat - 1) * 5
+            testler = {"A": (1, 10), "B": (2, 15), "C": (3, 20), "D": (4, 30)}
+            print(",".join(k for k, (girdi, beklenen) in testler.items() if tarif(girdi) != beklenen))
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Tarif: saniye(dakika, sn) verilen süreyi toplam saniye olarak döndürür (1 dakika = 60 saniye). saniye(2, 15) için beklenen sonuç ne olmalı?
+        answer: "135"
+        verify:
+          mode: script
+          script: |
+            def saniye(dakika, sn):
+                return dakika * 60 + sn
+            print(saniye(2, 15))
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          Tarif: fazla_mesai(saat), 40'ı aşan saat sayısını döndürür; saat 40 ya da daha azsa 0 döndürür. Bu tarif için yalnız iki test yazılmış: fazla_mesai(30) sonucunun 0, fazla_mesai(45) sonucunun 5 olması bekleniyor. Aşağıdaki dört uygulamadan hangisi bu iki testten de geçtiği hâlde tarife göre yanlıştır?
+        code: |
+          def fazla_a(saat):
+              return saat - 40
+
+          def fazla_b(saat):
+              if saat > 41:
+                  return saat - 40
+              return 0
+
+          def fazla_c(saat):
+              if saat > 40:
+                  return 40 - saat
+              return 0
+
+          def fazla_d(saat):
+              if saat < 40:
+                  return 0
+              return saat - 45
+        required_skills: [skill.programming.branching_reasoning]
+        options:
+          A: fazla_a
+          B: fazla_b
+          C: fazla_c
+          D: fazla_d
+        scan_options: false
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            def tarif(saat):
+                if saat > 40:
+                    return saat - 40
+                return 0
+            def fazla_a(saat):
+                return saat - 40
+            def fazla_b(saat):
+                if saat > 41:
+                    return saat - 40
+                return 0
+            def fazla_c(saat):
+                if saat > 40:
+                    return 40 - saat
+                return 0
+            def fazla_d(saat):
+                if saat < 40:
+                    return 0
+                return saat - 45
+            testler = {30: 0, 45: 5}
+            uygulamalar = {"A": fazla_a, "B": fazla_b, "C": fazla_c, "D": fazla_d}
+            sonuc = [k for k, f in uygulamalar.items()
+                     if all(f(x) == b for x, b in testler.items()) and any(f(x) != tarif(x) for x in range(0, 100))]
+            print(",".join(sonuc))
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Tarif: mutlak_fark(a, b), a ile b'nin farkının büyüklüğünü döndürür; sonuç hiçbir zaman eksi değildir. Aşağıdaki kod hatalı. Hangi test girdisi bu hatayı yakalar?
+        code: |
+          def mutlak_fark(a, b):
+              return a - b
+        options:
+          A: mutlak_fark(5, 2)
+          B: mutlak_fark(7, 7)
+          C: mutlak_fark(2, 5)
+          D: mutlak_fark(9, 0)
+        answer: C
+        misconception_options: {A: any_input_detects, D: any_input_detects}
+        verify:
+          mode: detects
+          name: mutlak_fark
+          correct: "def mutlak_fark(a, b):\n    if a >= b:\n        return a - b\n    return b - a"
+          faulty: "def mutlak_fark(a, b):\n    return a - b"
+          inputs: {A: [5, 2], B: [7, 7], C: [2, 5], D: [9, 0]}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Tarif: son_rakam(n), sıfır ya da pozitif bir n sayısının birler basamağını döndürür. Aşağıdaki kod hatalı. Hangi test girdisi bu hatayı yakalar?
+        code: |
+          def son_rakam(n):
+              return n % 100
+        options:
+          A: son_rakam(7)
+          B: son_rakam(205)
+          C: son_rakam(3)
+          D: son_rakam(58)
+        answer: D
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify:
+          mode: detects
+          name: son_rakam
+          correct: "def son_rakam(n):\n    return n % 10"
+          faulty: "def son_rakam(n):\n    return n % 100"
+          inputs: {A: [7], B: [205], C: [3], D: [58]}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Tarif: kalan_gun(gun), 365 günlük bir yılın gun'üncü gününden sonra yılın bitmesine kaç gün kaldığını döndürür (365 − gun). Aşağıdaki kod için kalan_gun(365) çağrılıp 0 beklenen bir test yazıldı. Test ne gösterir?
+        code: |
+          def kalan_gun(gun):
+              return 365 - gun - 1
+        required_skills: [skill.programming.function_decomposition]
+        options:
+          A: Başarısız olur; kod -1 döndürür ve test bu hatayı yakalar.
+          B: Geçer; kod 0 döndürür.
+          C: Başarısız olur; ama hata testte, çünkü beklenen -1 olmalıydı.
+          D: Geçer; çünkü 365 sınır değeridir ve sınırda testler hep geçer.
+        scan_options: false
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            def kalan_gun(gun):
+                return 365 - gun - 1
+            gercek = kalan_gun(365)
+            print("A" if gercek != 0 and 365 - 365 == 0 else "B")
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Tarif: en_kucuk(a, b), iki sayıdan küçük olanı döndürür. Aşağıdaki kod hatalı. Hangi test girdisi bu hatayı yakalar?
+        code: |
+          def en_kucuk(a, b):
+              if a < b:
+                  return a
+              return a
+        options:
+          A: en_kucuk(2, 9)
+          B: en_kucuk(5, 5)
+          C: en_kucuk(8, 3)
+          D: en_kucuk(1, 4)
+        answer: C
+        misconception_options: {A: any_input_detects, D: any_input_detects}
+        required_skills: [skill.programming.expression_boolean_reasoning, skill.programming.branching_reasoning]
+        verify:
+          mode: detects
+          name: en_kucuk
+          correct: "def en_kucuk(a, b):\n    if a < b:\n        return a\n    return b"
+          faulty: "def en_kucuk(a, b):\n    if a < b:\n        return a\n    return a"
+          inputs: {A: [2, 9], B: [5, 5], C: [8, 3], D: [1, 4]}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Tarif: kare(x), x'in karesini (x × x) döndürür. Bir test şöyle yazılmış: kare(3) çağrılır ve sonucun 6 olması beklenir. Fonksiyon tarife tam uygun yazılmış olsun. Test çalıştırılınca ne olur ve sorun nerededir?
+        options:
+          A: Test geçer; fonksiyon doğru olduğu için.
+          B: Test başarısız olur, ama hata fonksiyonda değil testte; beklenen değer tariften yanlış hesaplanmış, 9 olmalıydı.
+          C: Test başarısız olur; demek ki fonksiyon hatalıdır.
+          D: Test hata verir ve hiç çalışmaz.
+        scan_options: false
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            def kare(x):
+                return x * x
+            fails = kare(3) != 6
+            spec_value = 3 * 3
+            claims = {"A": not fails, "B": fails and spec_value == kare(3) and spec_value == 9,
+                      "C": fails and spec_value != kare(3), "D": False}
+            print(",".join(k for k, v in claims.items() if v))
+      - slug: g09
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Tarif: tek_mi(n), n tek bir sayıysa True, değilse False döndürür. Bu fonksiyon için üç test durumu yaz: biri 0, biri eksi bir sayı olsun. Her birinde girdiyi ve beklenen sonucu belirt ve beklenen sonuçları nereden hesapladığını söyle.
+        answer: "-"
+        rubric:
+          - id: input_and_expected
+            statement: Her test durumu için hem girdiyi hem beklenen sonucu yazar.
+          - id: expected_from_specification
+            statement: Beklenen sonuçlar tarife göre doğrudur (0 için False, örneğin -3 için True).
+          - id: required_cases
+            statement: İstenen iki durumu, 0'ı ve bir eksi sayıyı, testlerine katar.
+          - id: specification_is_source
+            statement: Beklenen sonuçları kodu çalıştırarak değil tariften hesapladığını söyler.
+        verify:
+          mode: rubric
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.programming.test_case_basic.design_expected_case.f03: {A: any_input_detects, D: any_input_detects}
+  item.programming.test_case_basic.design_expected_case.f05: {A: any_input_detects, C: any_input_detects}
+  item.programming.test_case_basic.design_expected_case.f06: {A: passing_test_proves_correct, C: passing_test_proves_correct}

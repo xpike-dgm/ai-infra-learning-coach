@@ -1,0 +1,347 @@
+skill: skill.python.tuple_immutable_sequence
+objectives:
+  - id: objective.python.tuple_immutable_sequence.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına kare_kup(n) adında bir fonksiyon yaz: n'nin karesini ve küpünü (bu sırayla) bir tuple olarak döndürsün. Örnek: kare_kup(2) → (4, 8).
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.kare_kup(int(sys.argv[1])))
+        suite:
+          - {id: two, args: ["2"], expected_stdout: "(4, 8)\n"}
+          - {id: negative, args: ["-3"], expected_stdout: "(9, -27)\n"}
+          - {id: zero, args: ["0"], expected_stdout: "(0, 0)\n"}
+        reference: |
+          def kare_kup(n):
+              return (n * n, n * n * n)
+        wrong:
+          - |
+            def kare_kup(n):
+                return [n * n, n * n * n]
+          - |
+            def kare_kup(n):
+                return (n * n * n, n * n)
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına uzunluk_ve_ilk(t) adında bir fonksiyon yaz: boş olmayan bir tuple'ın eleman sayısını ve ilk elemanını (bu sırayla) bir tuple olarak döndürsün. Örnek: uzunluk_ve_ilk((7, 8, 9)) → (3, 7).
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.uzunluk_ve_ilk(tuple(int(x) for x in sys.argv[1:])))
+        suite:
+          - {id: three, args: ["7", "8", "9"], expected_stdout: "(3, 7)\n"}
+          - {id: single, args: ["4"], expected_stdout: "(1, 4)\n"}
+        reference: |
+          def uzunluk_ve_ilk(t):
+              return (len(t), t[0])
+        wrong:
+          - |
+            def uzunluk_ve_ilk(t):
+                return (len(t), t[1])
+          - |
+            def uzunluk_ve_ilk(t):
+                return (t[0], len(t))
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına tek_elemanli(x) adında bir fonksiyon yaz: yalnız x'ten oluşan, tek elemanlı bir tuple döndürsün (liste değil). Testler fonksiyonun döndürdüğünü ve türünün adını yazdırır.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          sonuc = cozum.tek_elemanli(int(sys.argv[1]))
+          print(sonuc, type(sonuc).__name__)
+        suite:
+          - {id: eight, args: ["8"], expected_stdout: "(8,) tuple\n"}
+          - {id: negative, args: ["-1"], expected_stdout: "(-1,) tuple\n"}
+        reference: |
+          def tek_elemanli(x):
+              return (x,)
+        wrong:
+          - |
+            def tek_elemanli(x):
+                return (x)
+          - |
+            def tek_elemanli(x):
+                return [x]
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına mesafe_kare(p, q) adında bir fonksiyon yaz: p ve q iki noktanın (x, y) tuple'larıdır; iki nokta arasındaki uzaklığın karesini, (x1 − x2)² + (y1 − y2)², döndürsün. Tuple'ları açma (unpacking) ile oku. Örnek: mesafe_kare((0, 0), (3, 4)) → 25.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          a = [int(x) for x in sys.argv[1:]]
+          print(cozum.mesafe_kare((a[0], a[1]), (a[2], a[3])))
+        suite:
+          - {id: three_four, args: ["0", "0", "3", "4"], expected_stdout: "25\n"}
+          - {id: same, args: ["2", "5", "2", "5"], expected_stdout: "0\n"}
+          - {id: negative, args: ["-1", "2", "2", "-2"], expected_stdout: "25\n"}
+        reference: |
+          def mesafe_kare(p, q):
+              x1, y1 = p
+              x2, y2 = q
+              return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
+        wrong:
+          - |
+            def mesafe_kare(p, q):
+                x1, y1 = p
+                x2, y2 = q
+                return (x1 - x2) + (y1 - y2)
+          - |
+            def mesafe_kare(p, q):
+                x1, x2 = p
+                y1, y2 = q
+                return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına toplam_puan(kayitlar) adında bir fonksiyon yaz: kayitlar (ad, puan) tuple'larından oluşan bir listedir; bütün puanların toplamını döndürsün. Boş liste için 0. Örnek: toplam_puan([("Ayşe", 80), ("Can", 75)]) → 155.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          a = sys.argv[1:]
+          kayitlar = [(a[i], int(a[i + 1])) for i in range(0, len(a), 2)]
+          print(cozum.toplam_puan(kayitlar))
+        suite:
+          - {id: two, args: ["Ayşe", "80", "Can", "75"], expected_stdout: "155\n"}
+          - {id: empty, args: [], expected_stdout: "0\n"}
+          - {id: three, args: ["A", "10", "B", "0", "C", "5"], expected_stdout: "15\n"}
+        reference: |
+          def toplam_puan(kayitlar):
+              toplam = 0
+              for ad, puan in kayitlar:
+                  toplam += puan
+              return toplam
+        wrong:
+          - |
+            def toplam_puan(kayitlar):
+                toplam = 0
+                for ad, puan in kayitlar:
+                    toplam = puan
+                return toplam
+          - |
+            def toplam_puan(kayitlar):
+                return len(kayitlar)
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına ters_cevir(t) adında bir fonksiyon yaz: elemanları ters sırada olan yeni bir tuple döndürsün. Tuple'ı bir döngüyle, tek elemanlı tuple'ları başa ekleyerek kur. Örnek: ters_cevir((1, 2, 3)) → (3, 2, 1); ters_cevir(()) → ().
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration]
+        harness: |
+          import sys, cozum
+          print(cozum.ters_cevir(tuple(int(x) for x in sys.argv[1:])))
+        suite:
+          - {id: three, args: ["1", "2", "3"], expected_stdout: "(3, 2, 1)\n"}
+          - {id: single, args: ["9"], expected_stdout: "(9,)\n"}
+          - {id: empty, args: [], expected_stdout: "()\n"}
+        reference: |
+          def ters_cevir(t):
+              sonuc = ()
+              for x in t:
+                  sonuc = (x,) + sonuc
+              return sonuc
+        wrong:
+          - |
+            def ters_cevir(t):
+                sonuc = ()
+                for x in t:
+                    sonuc = sonuc + (x,)
+                return sonuc
+          - |
+            def ters_cevir(t):
+                sonuc = []
+                for x in t:
+                    sonuc = [x] + sonuc
+                return sonuc
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına koordinat_metni(p) adında bir fonksiyon yaz: p bir (x, y) tuple'ıdır; "x=<x>, y=<y>" biçiminde bir yazı döndürsün. Örnek: koordinat_metni((3, -4)) → "x=3, y=-4".
+        required_skills: [skill.python.functions_parameters_return, skill.python.value_type_behavior]
+        harness: |
+          import sys, cozum
+          print(cozum.koordinat_metni((int(sys.argv[1]), int(sys.argv[2]))))
+        suite:
+          - {id: mixed, args: ["3", "-4"], expected_stdout: "x=3, y=-4\n"}
+          - {id: origin, args: ["0", "0"], expected_stdout: "x=0, y=0\n"}
+        reference: |
+          def koordinat_metni(p):
+              x, y = p
+              return "x=" + str(x) + ", y=" + str(y)
+        wrong:
+          - |
+            def koordinat_metni(p):
+                y, x = p
+                return "x=" + str(x) + ", y=" + str(y)
+          - |
+            def koordinat_metni(p):
+                x, y = p
+                return "x=" + str(x) + " y=" + str(y)
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına telefon_bul(rehber, ad) adında bir fonksiyon yaz: rehber (ad, telefon) tuple'larından oluşan bir listedir; ad'ın telefonunu döndürsün, rehberde yoksa None döndürsün. Örnek: telefon_bul([("Ali", "555"), ("Ece", "444")], "Ece") → "444".
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.conditionals, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          aranan = sys.argv[1]
+          a = sys.argv[2:]
+          rehber = [(a[i], a[i + 1]) for i in range(0, len(a), 2)]
+          print(cozum.telefon_bul(rehber, aranan))
+        suite:
+          - {id: found_second, args: ["Ece", "Ali", "555", "Ece", "444"], expected_stdout: "444\n"}
+          - {id: found_first, args: ["Ali", "Ali", "555", "Ece", "444"], expected_stdout: "555\n"}
+          - {id: missing, args: ["Can", "Ali", "555"], expected_stdout: "None\n"}
+          - {id: empty, args: ["Can"], expected_stdout: "None\n"}
+        reference: |
+          def telefon_bul(rehber, ad):
+              for kisi, telefon in rehber:
+                  if kisi == ad:
+                      return telefon
+              return None
+        wrong:
+          - |
+            def telefon_bul(rehber, ad):
+                for kisi, telefon in rehber:
+                    if kisi == ad:
+                        return telefon
+                    return None
+          - |
+            def telefon_bul(rehber, ad):
+                for kisi, telefon in rehber:
+                    if kisi == ad:
+                        return kisi
+                return None
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına ciftle(a, b) adında bir fonksiyon yaz: aynı uzunluktaki iki listeden, aynı konumdaki elemanları (a[i], b[i]) tuple'ları olarak eşleştiren bir liste döndürsün. zip kullanma. Testler iki listeyi | ile ayırarak verir. Örnek: ciftle([1, 2], [5, 6]) → [(1, 5), (2, 6)].
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          ayrac = sys.argv.index("|")
+          a = [int(x) for x in sys.argv[1:ayrac]]
+          b = [int(x) for x in sys.argv[ayrac + 1:]]
+          print(cozum.ciftle(a, b))
+        suite:
+          - {id: two, args: ["1", "2", "|", "5", "6"], expected_stdout: "[(1, 5), (2, 6)]\n"}
+          - {id: empty, args: ["|"], expected_stdout: "[]\n"}
+          - {id: three, args: ["7", "8", "9", "|", "0", "0", "1"], expected_stdout: "[(7, 0), (8, 0), (9, 1)]\n"}
+        reference: |
+          def ciftle(a, b):
+              sonuc = []
+              for i in range(len(a)):
+                  sonuc.append((a[i], b[i]))
+              return sonuc
+        wrong:
+          - |
+            def ciftle(a, b):
+                sonuc = []
+                for i in range(len(a)):
+                    sonuc.append([a[i], b[i]])
+                return sonuc
+          - |
+            def ciftle(a, b):
+                sonuc = []
+                for i in range(len(a)):
+                    sonuc.append((b[i], a[i]))
+                return sonuc
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına sinifla(puanlar) adında bir fonksiyon yaz: bir puan listesinde 50 ve üstü olanların sayısını ve 50'nin altında olanların sayısını (bu sırayla) bir tuple olarak döndürsün. Örnek: sinifla([70, 40, 50]) → (2, 1).
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.sinifla([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: mixed, args: ["70", "40", "50"], expected_stdout: "(2, 1)\n"}
+          - {id: empty, args: [], expected_stdout: "(0, 0)\n"}
+          - {id: boundary, args: ["49", "50"], expected_stdout: "(1, 1)\n"}
+        reference: |
+          def sinifla(puanlar):
+              gecen = 0
+              kalan = 0
+              for p in puanlar:
+                  if p >= 50:
+                      gecen += 1
+                  else:
+                      kalan += 1
+              return (gecen, kalan)
+        wrong:
+          - |
+            def sinifla(puanlar):
+                gecen = 0
+                kalan = 0
+                for p in puanlar:
+                    if p > 50:
+                        gecen += 1
+                    else:
+                        kalan += 1
+                return (gecen, kalan)
+          - |
+            def sinifla(puanlar):
+                gecen = 0
+                kalan = 0
+                for p in puanlar:
+                    if p >= 50:
+                        gecen += 1
+                    else:
+                        kalan += 1
+                return (kalan, gecen)
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına guncelle(t, i, deger) adında bir fonksiyon yaz: t'nin i'nci (0'dan sayarak) elemanı deger ile değiştirilmiş YENİ bir tuple döndürsün; t değişmesin. Dilimleme ve birleştirme kullan. Örnek: guncelle((1, 2, 3), 1, 9) → (1, 9, 3).
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          a = [int(x) for x in sys.argv[1:]]
+          t = tuple(a[2:])
+          print(cozum.guncelle(t, a[0], a[1]), t)
+        suite:
+          - {id: middle, args: ["1", "9", "1", "2", "3"], expected_stdout: "(1, 9, 3) (1, 2, 3)\n"}
+          - {id: first, args: ["0", "5", "4", "6"], expected_stdout: "(5, 6) (4, 6)\n"}
+          - {id: last, args: ["2", "0", "7", "8", "9"], expected_stdout: "(7, 8, 0) (7, 8, 9)\n"}
+        reference: |
+          def guncelle(t, i, deger):
+              return t[:i] + (deger,) + t[i + 1:]
+        wrong:
+          - |
+            def guncelle(t, i, deger):
+                return t[:i] + (deger,) + t[i:]
+          - |
+            def guncelle(t, i, deger):
+                liste = list(t)
+                liste[i] = deger
+                return liste
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: file_name_parts
+        required_skills: [skill.python.string_text_operations, skill.python.functions_parameters_return]
+        prompt: |
+          cozum.py dosyasına ad_ve_uzanti(dosya) adında bir fonksiyon yaz: içinde tek bir nokta olan bir dosya adını alsın ve (ad, uzantı) biçiminde bir demet (tuple) döndürsün. Örnek: ad_ve_uzanti("rapor.txt") → ('rapor', 'txt').
+        harness: |
+          import sys, cozum
+          print(cozum.ad_ve_uzanti(sys.argv[1]))
+        suite:
+          - {id: txt, args: ["rapor.txt"], expected_stdout: "('rapor', 'txt')\n"}
+          - {id: py, args: ["oyun.py"], expected_stdout: "('oyun', 'py')\n"}
+          - {id: short, args: ["a.c"], expected_stdout: "('a', 'c')\n"}
+        reference: |
+          def ad_ve_uzanti(dosya):
+              parcalar = dosya.split(".")
+              return (parcalar[0], parcalar[1])
+        wrong:
+          - |
+            def ad_ve_uzanti(dosya):
+                return dosya.split(".")
+          - |
+            def ad_ve_uzanti(dosya):
+                parcalar = dosya.split(".")
+                return (parcalar[1], parcalar[0])

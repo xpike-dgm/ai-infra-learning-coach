@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.while_iteration.demonstrate_capability.g11@v1",
+  "item": "item.c.while_iteration.demonstrate_capability.g11@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "palindrome",
+      "stdin": "12321\n",
+      "expected_stdout": "evet\n"
+    },
+    {
+      "id": "not",
+      "stdin": "123\n",
+      "expected_stdout": "hayir\n"
+    },
+    {
+      "id": "single",
+      "stdin": "7\n",
+      "expected_stdout": "evet\n"
+    },
+    {
+      "id": "trailing_zero",
+      "stdin": "120\n",
+      "expected_stdout": "hayir\n"
+    }
+  ]
+}

@@ -169,7 +169,7 @@ checks:
   details: ''
 - check: E15D-05_modes
   result: PASS
-  details: '{''suite'', ''c_stdout'', ''rubric'', ''c_sanitize''}'
+  details: '{''suite'', ''c_sanitize'', ''c_stdout'', ''rubric''}'
 - check: E15D-05_counts
   result: PASS
   details: '34 {''suite'': 15, ''c_stdout'': 12, ''c_sanitize'': 4, ''rubric'': 3}'
@@ -271,8 +271,8 @@ checks:
   details: '[]'
 - check: E15D-05_both_lifetime_errors
   result: PASS
-  details: '{''stack-use-after-return'', ''heap-use-after-free'', ''ok-zero'', ''ok-different'',
-    ''compile'', ''ok''}'
+  details: '{''ok-zero'', ''compile'', ''heap-use-after-free'', ''ok'', ''ok-different'',
+    ''stack-use-after-return''}'
 - check: E15D-05_valid_reads_print_what_they_say
   result: PASS
   details: ''

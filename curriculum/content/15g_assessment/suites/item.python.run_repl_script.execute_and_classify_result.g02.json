@@ -1,0 +1,28 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.run_repl_script.execute_and_classify_result.g02@v1",
+  "item": "item.python.run_repl_script.execute_and_classify_result.g02@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two_lines",
+      "stdin": "",
+      "expected_stdout": "Selam\nNasılsın\n"
+    }
+  ]
+}

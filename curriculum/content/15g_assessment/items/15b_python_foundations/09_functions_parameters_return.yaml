@@ -1,0 +1,370 @@
+skill: skill.python.functions_parameters_return
+objectives:
+  - id: objective.python.functions_parameters_return.write_small_function
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına bol(a, b) adında bir fonksiyon yaz: b sıfırsa None, değilse a / b değerini döndürsün (return; ekrana yazmasın). Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.bol(int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: half, args: ["7", "2"], expected_stdout: "3.5\n"}
+          - {id: zero_divisor, args: ["5", "0"], expected_stdout: "None\n"}
+          - {id: zero_numerator, args: ["0", "3"], expected_stdout: "0.0\n"}
+        reference: |
+          def bol(a, b):
+              if b == 0:
+                  return None
+              return a / b
+        wrong:
+          - |
+            def bol(a, b):
+                if b == 0:
+                    return 0
+                return a / b
+          - |
+            def bol(a, b):
+                if b == 0:
+                    print(None)
+                else:
+                    print(a / b)
+      - slug: g02
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına sure_yazisi(dakika) adında bir fonksiyon yaz: sıfır ya da pozitif bir dakika sayısını <saat> sa <dakika> dk biçiminde bir yazı olarak döndürsün. Örnek: sure_yazisi(135) → "2 sa 15 dk", sure_yazisi(45) → "0 sa 45 dk". Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print("[" + cozum.sure_yazisi(int(sys.argv[1])) + "]")
+        suite:
+          - {id: example, args: ["135"], expected_stdout: "[2 sa 15 dk]\n"}
+          - {id: under_hour, args: ["45"], expected_stdout: "[0 sa 45 dk]\n"}
+          - {id: exact, args: ["120"], expected_stdout: "[2 sa 0 dk]\n"}
+        reference: |
+          def sure_yazisi(dakika):
+              return str(dakika // 60) + " sa " + str(dakika % 60) + " dk"
+        wrong:
+          - |
+            def sure_yazisi(dakika):
+                return str(dakika % 60) + " sa " + str(dakika // 60) + " dk"
+          - |
+            def sure_yazisi(dakika):
+                return str(dakika / 60) + " sa " + str(dakika % 60) + " dk"
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına gecerli_saat(saat, dakika) adında bir fonksiyon yaz: saat 0 ile 23, dakika 0 ile 59 arasındaysa (sınırlar dahil) True, değilse False döndürsün. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.gecerli_saat(int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: last_minute, args: ["23", "59"], expected_stdout: "True\n"}
+          - {id: midnight, args: ["0", "0"], expected_stdout: "True\n"}
+          - {id: hour_too_big, args: ["24", "0"], expected_stdout: "False\n"}
+          - {id: minute_too_big, args: ["12", "60"], expected_stdout: "False\n"}
+          - {id: negative_hour, args: ["-1", "5"], expected_stdout: "False\n"}
+        reference: |
+          def gecerli_saat(saat, dakika):
+              return 0 <= saat <= 23 and 0 <= dakika <= 59
+        wrong:
+          - |
+            def gecerli_saat(saat, dakika):
+                return 0 <= saat <= 23 or 0 <= dakika <= 59
+          - |
+            def gecerli_saat(saat, dakika):
+                return 0 <= saat < 23 and 0 <= dakika < 59
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına us_al(taban, us) adında bir fonksiyon yaz: taban'ın us'üncü kuvvetini (**) döndürsün. us verilmezse 2 kullanılsın. Örnek: us_al(5) → 25, us_al(2, 10) → 1024. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.us_al(*[int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: default_square, args: ["5"], expected_stdout: "25\n"}
+          - {id: given, args: ["2", "10"], expected_stdout: "1024\n"}
+          - {id: zero_power, args: ["3", "0"], expected_stdout: "1\n"}
+        reference: |
+          def us_al(taban, us=2):
+              return taban ** us
+        wrong:
+          - |
+            def us_al(taban, us):
+                return taban ** us
+          - |
+            def us_al(taban, us=1):
+                return taban ** us
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına cift_mi(n) adında bir fonksiyon yaz: n çift bir sayıysa True, değilse False döndürsün (bool). Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          sonuc = cozum.cift_mi(int(sys.argv[1]))
+          print(sonuc, type(sonuc).__name__)
+        suite:
+          - {id: even, args: ["4"], expected_stdout: "True bool\n"}
+          - {id: odd, args: ["7"], expected_stdout: "False bool\n"}
+          - {id: zero, args: ["0"], expected_stdout: "True bool\n"}
+          - {id: negative, args: ["-3"], expected_stdout: "False bool\n"}
+        reference: |
+          def cift_mi(n):
+              return n % 2 == 0
+        wrong:
+          - |
+            def cift_mi(n):
+                return n % 2 == 1
+          - |
+            def cift_mi(n):
+                if n % 2 == 0:
+                    return "True"
+                return "False"
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına isaret(n) adında bir fonksiyon yaz: n pozitifse "+", negatifse "-", sıfırsa "0" yazısını döndürsün. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.isaret(int(sys.argv[1])))
+        suite:
+          - {id: positive, args: ["12"], expected_stdout: "+\n"}
+          - {id: negative, args: ["-5"], expected_stdout: "-\n"}
+          - {id: zero, args: ["0"], expected_stdout: "0\n"}
+        reference: |
+          def isaret(n):
+              if n > 0:
+                  return "+"
+              elif n < 0:
+                  return "-"
+              return "0"
+        wrong:
+          - |
+            def isaret(n):
+                if n > 0:
+                    return "+"
+                return "-"
+          - |
+            def isaret(n):
+                if n >= 0:
+                    return "+"
+                elif n < 0:
+                    return "-"
+                return "0"
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına km_mil(km) adında bir fonksiyon yaz: kilometreyi mile çevirip (km / 1.609) round(..., 2) ile iki basamağa yuvarlanmış olarak döndürsün. Örnek: km_mil(10) → 6.22. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.km_mil(float(sys.argv[1])))
+        suite:
+          - {id: ten, args: ["10"], expected_stdout: "6.22\n"}
+          - {id: zero, args: ["0"], expected_stdout: "0.0\n"}
+          - {id: one_mile, args: ["1.609"], expected_stdout: "1.0\n"}
+          - {id: marathon, args: ["42.195"], expected_stdout: "26.22\n"}
+        reference: |
+          def km_mil(km):
+              return round(km / 1.609, 2)
+        wrong:
+          - |
+            def km_mil(km):
+                return round(km * 1.609, 2)
+          - |
+            def km_mil(km):
+                return km // 1.609
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına iki fonksiyon yaz: buyuk(a, b) iki sayıdan büyük olanı döndürsün; buyuk3(a, b, c) ise üç sayıdan en büyüğünü buyuk fonksiyonunu kullanarak döndürsün. max() kullanma. Testler buyuk3'ün buyuk'u gerçekten kullandığını da kontrol eder. Dosyada fonksiyonların dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          a = [int(x) for x in sys.argv[1:]]
+          asil = cozum.buyuk
+          cagrilar = []
+          def izle(x, y):
+              cagrilar.append((x, y))
+              return asil(x, y)
+          cozum.buyuk = izle
+          print(asil(a[0], a[1]), cozum.buyuk3(a[0], a[1], a[2]), "buyuk kullanıldı" if cagrilar else "buyuk kullanılmadı")
+        suite:
+          - {id: last_largest, args: ["3", "8", "11"], expected_stdout: "8 11 buyuk kullanıldı\n"}
+          - {id: first_largest, args: ["9", "2", "5"], expected_stdout: "9 9 buyuk kullanıldı\n"}
+          - {id: tie, args: ["4", "4", "1"], expected_stdout: "4 4 buyuk kullanıldı\n"}
+        reference: |
+          def buyuk(a, b):
+              if a > b:
+                  return a
+              return b
+
+          def buyuk3(a, b, c):
+              return buyuk(buyuk(a, b), c)
+        wrong:
+          - |
+            def buyuk(a, b):
+                if a > b:
+                    return a
+                return b
+
+            def buyuk3(a, b, c):
+                if a > b and a > c:
+                    return a
+                if b > c:
+                    return b
+                return c
+          - |
+            def buyuk(a, b):
+                if a > b:
+                    return a
+                return b
+
+            def buyuk3(a, b, c):
+                return buyuk(a, b)
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına faktoriyel(n) adında bir fonksiyon yaz: sıfır ya da pozitif bir n için 1 × 2 × ... × n çarpımını döndürsün; faktoriyel(0) 1'dir. Bir döngüyle hesapla. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.for_iteration]
+        harness: |
+          import sys, cozum
+          print(cozum.faktoriyel(int(sys.argv[1])))
+        suite:
+          - {id: zero, args: ["0"], expected_stdout: "1\n"}
+          - {id: one, args: ["1"], expected_stdout: "1\n"}
+          - {id: five, args: ["5"], expected_stdout: "120\n"}
+          - {id: ten, args: ["10"], expected_stdout: "3628800\n"}
+        reference: |
+          def faktoriyel(n):
+              carpim = 1
+              for i in range(1, n + 1):
+                  carpim *= i
+              return carpim
+        wrong:
+          - |
+            def faktoriyel(n):
+                carpim = 0
+                for i in range(1, n + 1):
+                    carpim *= i
+                return carpim
+          - |
+            def faktoriyel(n):
+                carpim = 1
+                for i in range(1, n):
+                    carpim *= i
+                return carpim
+      - slug: g10
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına en_yakin_on(n) adında bir fonksiyon yaz: sıfır ya da pozitif bir tam sayıyı en yakın 10'un katına yuvarlayıp döndürsün; birler basamağı 5 ya da daha büyükse yukarı, küçükse aşağı yuvarlansın. round() kullanma. Örnek: en_yakin_on(25) → 30, en_yakin_on(24) → 20. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.en_yakin_on(int(sys.argv[1])))
+        suite:
+          - {id: half_up, args: ["25"], expected_stdout: "30\n"}
+          - {id: down, args: ["24"], expected_stdout: "20\n"}
+          - {id: already, args: ["30"], expected_stdout: "30\n"}
+          - {id: small_up, args: ["7"], expected_stdout: "10\n"}
+          - {id: small_down, args: ["4"], expected_stdout: "0\n"}
+        reference: |
+          def en_yakin_on(n):
+              if n % 10 >= 5:
+                  return n - n % 10 + 10
+              return n - n % 10
+        wrong:
+          - |
+            def en_yakin_on(n):
+                return round(n, -1)
+          - |
+            def en_yakin_on(n):
+                return n // 10 * 10
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına iki fonksiyon yaz: derece(puan) puan 90 ve üstüyse "pekiyi", 75 ve üstüyse "iyi", 60 ve üstüyse "orta", değilse "zayıf" döndürsün; karne(p1, p2) ise iki puanın tam sayı ortalamasını ((p1 + p2) // 2) derece fonksiyonuyla değerlendirip döndürsün. Testler karne'nin derece'yi gerçekten kullandığını da kontrol eder. Dosyada fonksiyonların dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          a = [int(x) for x in sys.argv[1:]]
+          asil = cozum.derece
+          cagrilar = []
+          def izle(p):
+              cagrilar.append(p)
+              return asil(p)
+          cozum.derece = izle
+          print(asil(a[0]), cozum.karne(a[0], a[1]), "derece kullanıldı" if cagrilar else "derece kullanılmadı")
+        suite:
+          - {id: mixed, args: ["95", "80"], expected_stdout: "pekiyi iyi derece kullanıldı\n"}
+          - {id: boundary, args: ["60", "61"], expected_stdout: "orta orta derece kullanıldı\n"}
+          - {id: low, args: ["40", "70"], expected_stdout: "zayıf zayıf derece kullanıldı\n"}
+          - {id: top, args: ["90", "90"], expected_stdout: "pekiyi pekiyi derece kullanıldı\n"}
+        reference: |
+          def derece(puan):
+              if puan >= 90:
+                  return "pekiyi"
+              elif puan >= 75:
+                  return "iyi"
+              elif puan >= 60:
+                  return "orta"
+              return "zayıf"
+
+          def karne(p1, p2):
+              return derece((p1 + p2) // 2)
+        wrong:
+          - |
+            def derece(puan):
+                if puan > 90:
+                    return "pekiyi"
+                elif puan > 75:
+                    return "iyi"
+                elif puan > 60:
+                    return "orta"
+                return "zayıf"
+
+            def karne(p1, p2):
+                return derece((p1 + p2) // 2)
+          - |
+            def derece(puan):
+                if puan >= 90:
+                    return "pekiyi"
+                elif puan >= 75:
+                    return "iyi"
+                elif puan >= 60:
+                    return "orta"
+                return "zayıf"
+
+            def karne(p1, p2):
+                return derece(p1) + derece(p2)
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: initials
+        required_skills: [skill.python.string_text_operations]
+        prompt: |
+          cozum.py dosyasına bas_harfler(ad, soyad) adında bir fonksiyon yaz: adın ve soyadın ilk harflerini, her birinin arkasına nokta koyarak tek bir yazı olarak döndürsün (ekrana yazmasın). Örnek: bas_harfler("Ada", "Lovelace") → "A.L."
+        harness: |
+          import sys, cozum
+          sonuc = cozum.bas_harfler(sys.argv[1], sys.argv[2])
+          print("[" + str(sonuc) + "]")
+        suite:
+          - {id: example, args: ["Ada", "Lovelace"], expected_stdout: "[A.L.]\n"}
+          - {id: turkish, args: ["Şule", "Öztürk"], expected_stdout: "[Ş.Ö.]\n"}
+          - {id: one_letter, args: ["X", "Y"], expected_stdout: "[X.Y.]\n"}
+        reference: |
+          def bas_harfler(ad, soyad):
+              return ad[0] + "." + soyad[0] + "."
+        wrong:
+          - |
+            def bas_harfler(ad, soyad):
+                print(ad[0] + "." + soyad[0] + ".")
+          - |
+            def bas_harfler(ad, soyad):
+                return ad[0] + soyad[0]

@@ -21,11 +21,13 @@ class PlannerFactsTest {
         ContinuationValue.FRESH_NEW_CONTEXT, DecisionValue.NONE, TrackBalance.NONE, fit, tie)
 
     @Test
-    fun `the need triggers are exactly the ten 3B names`() {
+    fun `the need triggers are the ten 3B names and 15G's declared transfer opportunity`() {
         assertEquals(
             listOf("new_learning", "continue_learning", "weakness_detected", "remediation_required",
                 "retention_review_due", "verification_due", "diagnostic_opportunity", "reinforcement_opportunity",
-                "parallel_track_due", "integration_opportunity"),
+                "parallel_track_due", "integration_opportunity",
+                // 15G (`D-120`): `MCA-v0` §6.5's cross-topic transfer opportunity, a declared extension.
+                "transfer_opportunity"),
             NeedTrigger.entries.map { it.id },
         )
         assertTrue(NeedTrigger.entries.all { it.reasonCode.startsWith("need.") })

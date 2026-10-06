@@ -1,0 +1,48 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.functions_parameters_return.write_small_function.t01@v1",
+  "item": "item.python.functions_parameters_return.write_small_function.t01@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nsonuc = cozum.bas_harfler(sys.argv[1], sys.argv[2])\nprint(\"[\" + str(sonuc) + \"]\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "example",
+      "args": [
+        "Ada",
+        "Lovelace"
+      ],
+      "expected_stdout": "[A.L.]\n"
+    },
+    {
+      "id": "turkish",
+      "args": [
+        "Şule",
+        "Öztürk"
+      ],
+      "expected_stdout": "[Ş.Ö.]\n"
+    },
+    {
+      "id": "one_letter",
+      "args": [
+        "X",
+        "Y"
+      ],
+      "expected_stdout": "[X.Y.]\n"
+    }
+  ]
+}

@@ -1,0 +1,459 @@
+skill: skill.python.conditionals
+objectives:
+  - id: objective.python.conditionals.write_branch_logic
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: bir vücut sıcaklığı (ondalıklı, örneğin 36.8) okusun; 37.5'ten büyükse ateşli, 36.0'dan küçükse üşümüş, ikisi arasındaysa (36.0 ve 37.5 dahil) olağan yazsın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: fever, stdin: "37.6\n", expected_stdout: "ateşli\n"}
+          - {id: upper_edge, stdin: "37.5\n", expected_stdout: "olağan\n"}
+          - {id: lower_edge, stdin: "36.0\n", expected_stdout: "olağan\n"}
+          - {id: low, stdin: "35.9\n", expected_stdout: "üşümüş\n"}
+        reference: |
+          derece = float(input())
+          if derece > 37.5:
+              print("ateşli")
+          elif derece < 36.0:
+              print("üşümüş")
+          else:
+              print("olağan")
+        wrong:
+          - |
+            derece = float(input())
+            if derece >= 37.5:
+                print("ateşli")
+            elif derece < 36.0:
+                print("üşümüş")
+            else:
+                print("olağan")
+          - |
+            derece = float(input())
+            if derece > 37.5:
+                print("ateşli")
+            elif derece <= 36.0:
+                print("üşümüş")
+            else:
+                print("olağan")
+      - slug: g02
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: bir ay numarası (1–12) okusun ve mevsimini yazsın: 12, 1 ve 2 kış; 3, 4 ve 5 ilkbahar; 6, 7 ve 8 yaz; 9, 10 ve 11 sonbahar.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: december, stdin: "12\n", expected_stdout: "kış\n"}
+          - {id: january, stdin: "1\n", expected_stdout: "kış\n"}
+          - {id: spring, stdin: "3\n", expected_stdout: "ilkbahar\n"}
+          - {id: summer_edge, stdin: "8\n", expected_stdout: "yaz\n"}
+          - {id: autumn, stdin: "11\n", expected_stdout: "sonbahar\n"}
+          - {id: spring_end, stdin: "5\n", expected_stdout: "ilkbahar\n"}
+        reference: |
+          ay = int(input())
+          if ay == 12 or ay <= 2:
+              print("kış")
+          elif ay <= 5:
+              print("ilkbahar")
+          elif ay <= 8:
+              print("yaz")
+          else:
+              print("sonbahar")
+        wrong:
+          - |
+            ay = int(input())
+            if ay <= 2:
+                print("kış")
+            elif ay <= 5:
+                print("ilkbahar")
+            elif ay <= 8:
+                print("yaz")
+            else:
+                print("sonbahar")
+          - |
+            ay = int(input())
+            if ay == 12 or ay <= 2:
+                print("kış")
+            elif ay < 5:
+                print("ilkbahar")
+            elif ay < 8:
+                print("yaz")
+            else:
+                print("sonbahar")
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: bir satırda bir şifre okusun; şifre tam olarak acik123 ise giriş, değilse red yazsın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: correct, stdin: "acik123\n", expected_stdout: "giriş\n"}
+          - {id: wrong, stdin: "acik12\n", expected_stdout: "red\n"}
+          - {id: case_differs, stdin: "Acik123\n", expected_stdout: "red\n"}
+        reference: |
+          sifre = input()
+          if sifre == "acik123":
+              print("giriş")
+          else:
+              print("red")
+        wrong:
+          - |
+            sifre = input()
+            if sifre != "acik123":
+                print("giriş")
+            else:
+                print("red")
+          - |
+            sifre = input()
+            print("giriş")
+      - slug: g04
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: üç ayrı satırda üç tam sayı okusun ve büyüklük sırasında ortada kalan sayıyı (ortancayı) yazsın. İki ya da üç sayı eşit olabilir. sorted(), max() ya da min() kullanma; karşılaştırmaları if ile kendin yaz. Örnek: girdi 7, 2 ve 5 ise çıktı 5.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: middle_last, stdin: "7\n2\n5\n", expected_stdout: "5\n"}
+          - {id: middle_first, stdin: "4\n9\n1\n", expected_stdout: "4\n"}
+          - {id: middle_second, stdin: "1\n3\n8\n", expected_stdout: "3\n"}
+          - {id: two_equal, stdin: "6\n6\n2\n", expected_stdout: "6\n"}
+          - {id: all_equal, stdin: "3\n3\n3\n", expected_stdout: "3\n"}
+          - {id: descending, stdin: "9\n5\n2\n", expected_stdout: "5\n"}
+        reference: |
+          a = int(input())
+          b = int(input())
+          c = int(input())
+          if (b <= a <= c) or (c <= a <= b):
+              print(a)
+          elif (a <= b <= c) or (c <= b <= a):
+              print(b)
+          else:
+              print(c)
+        wrong:
+          - |
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            if a <= b <= c:
+                print(b)
+            elif b <= a <= c:
+                print(a)
+            else:
+                print(c)
+          - |
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            if (b < a < c) or (c < a < b):
+                print(a)
+            elif (a < b < c) or (c < b < a):
+                print(b)
+            else:
+                print(c)
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: iki ayrı satırda bir noktanın x ve y koordinatlarını (tam sayı) okusun. Nokta eksenlerden birinin üzerindeyse eksen, değilse bulunduğu bölgeyi yazsın: x > 0 ve y > 0 ise 1. bölge, x < 0 ve y > 0 ise 2. bölge, x < 0 ve y < 0 ise 3. bölge, x > 0 ve y < 0 ise 4. bölge.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: first, stdin: "3\n4\n", expected_stdout: "1. bölge\n"}
+          - {id: second, stdin: "-2\n5\n", expected_stdout: "2. bölge\n"}
+          - {id: third, stdin: "-1\n-1\n", expected_stdout: "3. bölge\n"}
+          - {id: fourth, stdin: "6\n-3\n", expected_stdout: "4. bölge\n"}
+          - {id: on_y_axis, stdin: "0\n7\n", expected_stdout: "eksen\n"}
+          - {id: origin, stdin: "0\n0\n", expected_stdout: "eksen\n"}
+        reference: |
+          x = int(input())
+          y = int(input())
+          if x == 0 or y == 0:
+              print("eksen")
+          elif x > 0 and y > 0:
+              print("1. bölge")
+          elif x < 0 and y > 0:
+              print("2. bölge")
+          elif x < 0 and y < 0:
+              print("3. bölge")
+          else:
+              print("4. bölge")
+        wrong:
+          - |
+            x = int(input())
+            y = int(input())
+            if x > 0 and y > 0:
+                print("1. bölge")
+            elif x < 0 and y > 0:
+                print("2. bölge")
+            elif x < 0 and y < 0:
+                print("3. bölge")
+            else:
+                print("4. bölge")
+          - |
+            x = int(input())
+            y = int(input())
+            if x == 0 and y == 0:
+                print("eksen")
+            elif x > 0 and y > 0:
+                print("1. bölge")
+            elif x < 0 and y > 0:
+                print("2. bölge")
+            elif x < 0 and y < 0:
+                print("3. bölge")
+            else:
+                print("4. bölge")
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: bir gün adı okusun; Cumartesi ya da Pazar ise hafta sonu, değilse hafta içi yazsın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: saturday, stdin: "Cumartesi\n", expected_stdout: "hafta sonu\n"}
+          - {id: sunday, stdin: "Pazar\n", expected_stdout: "hafta sonu\n"}
+          - {id: monday, stdin: "Pazartesi\n", expected_stdout: "hafta içi\n"}
+          - {id: friday, stdin: "Cuma\n", expected_stdout: "hafta içi\n"}
+        reference: |
+          gun = input()
+          if gun == "Cumartesi" or gun == "Pazar":
+              print("hafta sonu")
+          else:
+              print("hafta içi")
+        wrong:
+          - |
+            gun = input()
+            if gun == "Cumartesi" and gun == "Pazar":
+                print("hafta sonu")
+            else:
+                print("hafta içi")
+          - |
+            gun = input()
+            if gun == "Cumartesi":
+                print("hafta sonu")
+            else:
+                print("hafta içi")
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: üç ayrı satırda üç kenar uzunluğu (pozitif tam sayı) okusun. Her kenar diğer ikisinin toplamından küçükse üçgen olur, değilse olmaz yazsın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: right_triangle, stdin: "3\n4\n5\n", expected_stdout: "olur\n"}
+          - {id: flat, stdin: "1\n2\n3\n", expected_stdout: "olmaz\n"}
+          - {id: long_first, stdin: "10\n2\n3\n", expected_stdout: "olmaz\n"}
+          - {id: long_last, stdin: "2\n3\n10\n", expected_stdout: "olmaz\n"}
+          - {id: equilateral, stdin: "5\n5\n5\n", expected_stdout: "olur\n"}
+        reference: |
+          a = int(input())
+          b = int(input())
+          c = int(input())
+          if a < b + c and b < a + c and c < a + b:
+              print("olur")
+          else:
+              print("olmaz")
+        wrong:
+          - |
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            if a <= b + c and b <= a + c and c <= a + b:
+                print("olur")
+            else:
+                print("olmaz")
+          - |
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            if a < b + c:
+                print("olur")
+            else:
+                print("olmaz")
+      - slug: g08
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: ilk satırda sepet tutarını (tam sayı), ikinci satırda üyelik durumunu (evet ya da hayır) okusun. Tutar 300 ve üstüyse ya da müşteri üyeyse kargo ücretsizdir; aksi hâlde 30 liradır. Kargo: <ücret> yazsın. Örnek: girdi 350 ve hayır ise çıktı Kargo: 0; girdi 100 ve hayır ise çıktı Kargo: 30.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: big_basket, stdin: "350\nhayır\n", expected_stdout: "Kargo: 0\n"}
+          - {id: member, stdin: "100\nevet\n", expected_stdout: "Kargo: 0\n"}
+          - {id: neither, stdin: "100\nhayır\n", expected_stdout: "Kargo: 30\n"}
+          - {id: boundary, stdin: "300\nhayır\n", expected_stdout: "Kargo: 0\n"}
+          - {id: just_below, stdin: "299\nhayır\n", expected_stdout: "Kargo: 30\n"}
+        reference: |
+          tutar = int(input())
+          uye = input()
+          if tutar >= 300 or uye == "evet":
+              print("Kargo:", 0)
+          else:
+              print("Kargo:", 30)
+        wrong:
+          - |
+            tutar = int(input())
+            uye = input()
+            if tutar >= 300 and uye == "evet":
+                print("Kargo:", 0)
+            else:
+                print("Kargo:", 30)
+          - |
+            tutar = int(input())
+            uye = input()
+            if tutar > 300 or uye == "evet":
+                print("Kargo:", 0)
+            else:
+                print("Kargo:", 30)
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: üç ayrı satırda üç tam sayı okusun ve en büyüğünü yazsın. max() kullanma; karşılaştırmaları if ile kendin yaz.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: last_largest, stdin: "5\n1\n9\n", expected_stdout: "9\n"}
+          - {id: first_largest, stdin: "8\n3\n2\n", expected_stdout: "8\n"}
+          - {id: middle_largest, stdin: "1\n6\n4\n", expected_stdout: "6\n"}
+          - {id: tie, stdin: "7\n7\n2\n", expected_stdout: "7\n"}
+          - {id: negatives, stdin: "-3\n-8\n-5\n", expected_stdout: "-3\n"}
+        reference: |
+          a = int(input())
+          b = int(input())
+          c = int(input())
+          en_buyuk = a
+          if b > en_buyuk:
+              en_buyuk = b
+          if c > en_buyuk:
+              en_buyuk = c
+          print(en_buyuk)
+        wrong:
+          - |
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            if a > b:
+                print(a)
+            elif b > c:
+                print(b)
+            else:
+                print(c)
+          - |
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            if a > b and a > c:
+                print(a)
+            elif b > a and b > c:
+                print(b)
+            else:
+                print(c)
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: iki ayrı satırda bir kullanıcı adı ve bir şifre okusun. Kullanıcı adı ada değilse kullanıcı yok; kullanıcı adı doğru ama şifre gizli42 değilse şifre yanlış; ikisi de doğruysa hoş geldin yazsın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: both_right, stdin: "ada\ngizli42\n", expected_stdout: "hoş geldin\n"}
+          - {id: wrong_password, stdin: "ada\n1234\n", expected_stdout: "şifre yanlış\n"}
+          - {id: unknown_user, stdin: "bora\ngizli42\n", expected_stdout: "kullanıcı yok\n"}
+          - {id: both_wrong, stdin: "bora\n1234\n", expected_stdout: "kullanıcı yok\n"}
+        reference: |
+          kullanici = input()
+          sifre = input()
+          if kullanici != "ada":
+              print("kullanıcı yok")
+          elif sifre != "gizli42":
+              print("şifre yanlış")
+          else:
+              print("hoş geldin")
+        wrong:
+          - |
+            kullanici = input()
+            sifre = input()
+            if sifre != "gizli42":
+                print("şifre yanlış")
+            elif kullanici != "ada":
+                print("kullanıcı yok")
+            else:
+                print("hoş geldin")
+          - |
+            kullanici = input()
+            sifre = input()
+            if kullanici == "ada" and sifre == "gizli42":
+                print("hoş geldin")
+            else:
+                print("kullanıcı yok")
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: bir tam sayı okusun. Sayı sıfırsa sıfır, değilse işaretiyle birlikte tek/çift olduğunu yazsın: çift pozitif, tek pozitif, çift negatif ya da tek negatif.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: zero, stdin: "0\n", expected_stdout: "sıfır\n"}
+          - {id: even_positive, stdin: "8\n", expected_stdout: "çift pozitif\n"}
+          - {id: odd_positive, stdin: "3\n", expected_stdout: "tek pozitif\n"}
+          - {id: even_negative, stdin: "-4\n", expected_stdout: "çift negatif\n"}
+          - {id: odd_negative, stdin: "-7\n", expected_stdout: "tek negatif\n"}
+        reference: |
+          n = int(input())
+          if n == 0:
+              print("sıfır")
+          elif n % 2 == 0 and n > 0:
+              print("çift pozitif")
+          elif n > 0:
+              print("tek pozitif")
+          elif n % 2 == 0:
+              print("çift negatif")
+          else:
+              print("tek negatif")
+        wrong:
+          - |
+            n = int(input())
+            if n % 2 == 0 and n > 0:
+                print("çift pozitif")
+            elif n > 0:
+                print("tek pozitif")
+            elif n % 2 == 0:
+                print("çift negatif")
+            else:
+                print("tek negatif")
+          - |
+            n = int(input())
+            if n == 0:
+                print("sıfır")
+            elif n % 2 == 1 and n > 0:
+                print("çift pozitif")
+            elif n > 0:
+                print("tek pozitif")
+            elif n % 2 == 1:
+                print("çift negatif")
+            else:
+                print("tek negatif")
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: file_extension_kind
+        required_skills: [skill.python.input_output_basic, skill.python.string_text_operations]
+        prompt: |
+          cozum.py adında bir program yaz: bir dosya adı okusun; ad .py ile bitiyorsa python, .c ile bitiyorsa c, başka bir şeyle bitiyorsa bilinmiyor yazsın. Her durumda yalnızca bir satır yazsın.
+        suite:
+          - {id: python_file, stdin: "oyun.py\n", expected_stdout: "python\n"}
+          - {id: c_file, stdin: "main.c\n", expected_stdout: "c\n"}
+          - {id: other, stdin: "notlar.txt\n", expected_stdout: "bilinmiyor\n"}
+          - {id: py_inside, stdin: "veri.pyc\n", expected_stdout: "bilinmiyor\n"}
+        reference: |
+          ad = input()
+          if ad.endswith(".py"):
+              print("python")
+          elif ad.endswith(".c"):
+              print("c")
+          else:
+              print("bilinmiyor")
+        wrong:
+          - |
+            ad = input()
+            if ".py" in ad:
+                print("python")
+            elif ".c" in ad:
+                print("c")
+            else:
+                print("bilinmiyor")
+          - |
+            ad = input()
+            if ad.endswith(".py"):
+                print("python")
+            if ad.endswith(".c"):
+                print("c")
+            else:
+                print("bilinmiyor")

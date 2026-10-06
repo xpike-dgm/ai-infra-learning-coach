@@ -1,0 +1,78 @@
+skill: skill.english.follow_bilingual_technical_instruction
+objectives:
+  - id: objective.english.follow_bilingual_technical_instruction.execute_known_instruction
+    items:
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu talimatı izledikten sonra seçtiğin dosya nerede olur?
+        code: |
+          First create a new folder. Then select the file and move it to the new folder.
+        options:
+          A: "Yeni klasörde"
+          B: "Eski yerinde; dosya taşınmaz"
+          C: "Hem eski yerinde hem yeni klasörde"
+          D: "Hiçbir yerde; dosya silinir"
+        scan_options: false
+        answer: A
+        required_skills: [skill.english.preposition_function_word_comprehension]
+        verify:
+          mode: reference
+          reference: "Wiktionary — it (pronoun): the thing previously mentioned; move (verb): to change the place of; first / then (adverbs of sequence)"
+          claim: "Önce yeni klasör oluşturulur, sonra seçilen dosya (it) yeni klasöre taşınır; taşınan dosya eski yerinde kalmaz."
+      - slug: g09
+        difficulty: authentic_application
+        prompt: |
+          Talimat bu. Bir arkadaşın önce klasörü sildi, sonra programı kapattı. Talimata uydu mu?
+        code: |
+          First, close the program. Then, delete the folder.
+        options:
+          A: "Hayır; klasörü programı kapattıktan SONRA silmeliydi"
+          B: "Evet; then 'önce' demektir, klasör önce silinir"
+          C: "Evet; iki adımın sırası önemli değil"
+          D: "Hayır; klasörü hiç silmemeliydi"
+        scan_options: false
+        answer: A
+        misconception_options: {B: then_means_before}
+        verify:
+          mode: reference
+          reference: "Wiktionary — first (adverb): before anything else; then (adverb): next in order, afterward"
+          claim: "First ile önce program kapatılır, Then ile ardından klasör silinir; arkadaşın sırayı ters uyguladı."
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu talimatta hangisini önce yaparsın?
+        code: |
+          Close the program. Check the version first.
+        options:
+          A: "Önce sürümü kontrol ederim, sonra programı kapatırım"
+          B: "Önce programı kapatırım, sonra sürümü kontrol ederim"
+          C: "İkisini aynı anda yaparım"
+          D: "Yalnız programı kapatırım"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — first (adverb): before anything else; placed at the end of an imperative it marks the action to do before the others"
+          claim: "Check the version first: sürüm kontrolü, yazılış sırasından bağımsız olarak önce yapılır; program sonra kapatılır."
+      - slug: g11
+        difficulty: authentic_application
+        prompt: |
+          Bu talimatta hangisini önce yaparsın?
+        code: |
+          Step 2: Run the tests.
+          Step 1: Open the folder.
+        options:
+          A: "Klasörü açarım"
+          B: "Testleri çalıştırırım"
+          C: "İkisini aynı anda yaparım"
+          D: "Yalnız testleri çalıştırırım; klasörü hiç açmam"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — step (noun): one of a sequence of actions; numbered steps are done in number order"
+          claim: "Step 1 ilk adımdır: önce klasör açılır, sonra (Step 2) testler çalıştırılır."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:

@@ -1,0 +1,286 @@
+skill: skill.linux.terminal_filesystem_navigation
+objectives:
+  - id: objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+    items:
+      - slug: g01
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır:
+
+          mkdir -p x/y/z
+          cd x/y/z
+          cd ../..
+
+          Şimdi hangi klasördesin? Klasörün adını yaz.
+        answer: "x"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p x/y/z
+            cd x/y/z
+            cd ../..
+            basename "$PWD"
+      - slug: g02
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Terminal hangi klasörde olursa olsun şu komutları çalıştır (Ubuntu'da /usr/share klasörü her zaman vardır):
+
+          cd /usr/share
+          cd ..
+          pwd
+
+          pwd ne yazar?
+        answer: "/usr"
+        verify:
+          mode: shell
+          script: |
+            cd /usr/share
+            cd ..
+            pwd
+      - slug: g03
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p foto/2026
+          cd foto
+          cd .
+
+          Şimdi hangi klasördesin? Klasörün adını yaz.
+        answer: "foto"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p foto/2026
+            cd foto
+            cd .
+            basename "$PWD"
+      - slug: g04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Şu an /usr klasöründesin (pwd /usr yazıyor). Aşağıdaki dört komutun dördü de buradan çalıştırılınca seni /usr/bin klasörüne götürür. Bu komutu bir betiğe yazacaksın ve betik her seferinde başka bir klasörden çalıştırılacak. Hangisi, betik hangi klasörden çalıştırılırsa çalıştırılsın, hep /usr/bin'e gider? (Ubuntu'da /usr/bin her zaman vardır.)
+        options:
+          A: cd /usr/bin
+          B: cd bin
+          C: cd ./bin
+          D: cd ../usr/bin
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            kok=$(pwd)
+            mkdir -p x1/x2
+            uyan=""
+            for h in A B C D; do
+              case $h in
+                A) k="/usr/bin" ;;
+                B) k="bin" ;;
+                C) k="./bin" ;;
+                D) k="../usr/bin" ;;
+              esac
+              ( cd /usr && cd "$k" && [ "$(pwd)" = "/usr/bin" ] ) || { echo "buradan gitmiyor: $h"; exit 1; }
+              ok=1
+              for bas in "$kok/x1/x2" /tmp /usr/share /; do
+                ( cd "$bas" && cd "$k" 2>/dev/null && [ "$(pwd)" = "/usr/bin" ] ) || ok=0
+              done
+              if [ $ok = 1 ]; then uyan="$uyan$h"; fi
+            done
+            echo "$uyan"
+      - slug: g05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p m/a m/b/c
+          ls m
+
+          ls ne listeler? Çıktıyı göründüğü gibi, aralarında bir boşlukla yaz.
+        answer: "a b"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p m/a m/b/c
+            echo $(ls m)
+      - slug: g06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p proje/src proje/docs
+          cd proje/src
+          cd docs
+
+          Son komut ne olur?
+        options:
+          A: "Hata verir: göreli yol çalışma dizininden (src) başlar ve src içinde docs yok; çalışma dizini src olarak kalır"
+          B: "proje/docs klasörüne girilir; göreli yollar ev dizininden ya da projenin kökünden aranır"
+          C: "src içinde yeni bir docs klasörü oluşturulup içine girilir"
+          D: "Bir üst klasöre, proje'ye dönülür"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "error src", B: "ok docs", C: "ok docs new", D: "ok proje"}
+          script: |
+            mkdir -p proje/src proje/docs
+            cd proje/src
+            if cd docs 2>/dev/null; then echo "ok $(basename "$PWD")"; else echo "error $(basename "$PWD")"; fi
+      - slug: g07
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          pwd komutu /home/ece/proje/src yazıyor ve /home/ece altında belgeler adında bir klasör var. Aşağıdaki komutlardan hangisi seni /home/ece/belgeler klasörüne götürür?
+        options:
+          A: cd ../../belgeler
+          B: cd ../belgeler
+          C: cd belgeler
+          D: cd ../../../belgeler
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            kok=$(pwd)
+            mkdir -p home/ece/proje/src home/ece/belgeler
+            uyan=""
+            for h in A B C D; do
+              case $h in
+                A) k="../../belgeler" ;;
+                B) k="../belgeler" ;;
+                C) k="belgeler" ;;
+                D) k="../../../belgeler" ;;
+              esac
+              if ( cd "$kok/home/ece/proje/src" && cd "$k" 2>/dev/null && [ "$(pwd)" = "$kok/home/ece/belgeler" ] ); then uyan="$uyan$h"; fi
+            done
+            echo "$uyan"
+      - slug: g08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p p/q
+          cd p/q
+          mkdir ../../r
+          cd ../../r
+          ls ..
+
+          Son ls ne listeler? Çıktıyı göründüğü gibi, aralarında birer boşlukla yaz.
+        answer: "p r"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p p/q
+            cd p/q
+            mkdir ../../r
+            cd ../../r
+            echo $(ls ..)
+      - slug: g09
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Terminal hangi klasörde olursa olsun şu komutları çalıştır (Ubuntu'da / altında usr ve tmp klasörleri her zaman vardır):
+
+          cd /
+          cd usr
+          cd ../tmp
+          pwd
+
+          pwd ne yazar?
+        answer: "/tmp"
+        verify:
+          mode: shell
+          script: |
+            cd /
+            cd usr
+            cd ../tmp
+            pwd
+      - slug: g10
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir proje
+          cd proje
+          mkdir -p src/../test
+          ls
+
+          ls ne listeler? Çıktıyı göründüğü gibi, aralarında birer boşlukla yaz.
+        answer: "src test"
+        verify:
+          mode: shell
+          script: |
+            mkdir proje
+            cd proje
+            mkdir -p src/../test
+            echo $(ls)
+      - slug: g11
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p k/l
+          cd k/l
+          cd ../../k/l/..
+
+          Şimdi hangi klasördesin? Klasörün adını yaz.
+        answer: "k"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p k/l
+            cd k/l
+            cd ../../k/l/..
+            basename "$PWD"
+      - slug: t01
+        difficulty: transfer_integration
+        hands_on: true
+        transfer_profile: cross_topic_context
+        context_family: build_output_path
+        required_skills: [skill.c.compile_link_run_basic]
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştırdın (main.c ekrana calisti yazan küçük bir C programı):
+
+          mkdir -p proje/src proje/bin
+          cd proje/src
+          (main.c dosyasını buraya yazdın)
+          gcc main.c -o ../bin/uygulama
+          cd ..
+
+          Şimdi programı çalıştırmak için hangisini yazarsın?
+        options:
+          A: "./bin/uygulama"
+          B: "./uygulama"
+          C: "../bin/uygulama"
+          D: "uygulama"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "./bin/uygulama", B: "./uygulama", C: "../bin/uygulama", D: "uygulama"}
+          script: |
+            mkdir -p proje/src proje/bin
+            cd proje/src
+            cat > main.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                printf("calisti\n");
+                return 0;
+            }
+            KAYNAK
+            gcc main.c -o ../bin/uygulama
+            cd ..
+            for yol in ./bin/uygulama ./uygulama ../bin/uygulama uygulama; do
+                if out=$($yol 2>/dev/null) && [ "$out" = "calisti" ]; then echo "$yol"; fi
+            done

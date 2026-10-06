@@ -1,0 +1,52 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.exception_handling.demonstrate_capability.g06@v1",
+  "item": "item.python.exception_handling.demonstrate_capability.g06@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nx = None if sys.argv[1] == \"yok\" else sys.argv[1]\ntry:\n    print(cozum.yas_cevir(x))\nexcept ValueError as e:\n    print(\"ValueError:\", e)\nexcept TypeError:\n    print(\"TypeError yukarıya geldi\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "number",
+      "args": [
+        "21"
+      ],
+      "expected_stdout": "21\n"
+    },
+    {
+      "id": "negative_number",
+      "args": [
+        "-4"
+      ],
+      "expected_stdout": "-4\n"
+    },
+    {
+      "id": "own_message",
+      "args": [
+        "on iki"
+      ],
+      "expected_stdout": "ValueError: yaş bir tam sayı olmalı\n"
+    },
+    {
+      "id": "type_error_propagates",
+      "args": [
+        "yok"
+      ],
+      "expected_stdout": "TypeError yukarıya geldi\n"
+    }
+  ]
+}

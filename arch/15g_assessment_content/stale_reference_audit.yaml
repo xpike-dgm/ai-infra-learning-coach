@@ -1,0 +1,72 @@
+stage_step: 15G
+model: ACNX-v0
+decision: D-120
+audit: repo_wide_stale_reference_post_step
+result: PASS
+stage_9_closed: true
+stage_10_closed: true
+stage_11_closed: true
+stage_12_closed: true
+stage_13_closed: true
+stage_14_closed: true
+repo_files_scanned: 1592
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+historical_non_blocking_hits:
+- file: docs\PROGRESS_LOG.md
+  sample: 15G aktif ve henüz yürütülmedi
+  classification: historical_non_blocking
+- file: tools\audit_15f_post_step_stale.py
+  sample: 15G 🟡
+  classification: historical_non_blocking
+- file: tools\audit_15g_post_step_stale.py
+  sample: 15G ✅ Assessment content — ACNX-v0 / D-120", "15H 🟡
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-10-04-15f-english-a1-a2.md
+  sample: 15G — Assessment content is active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-10-04-15g-assessment-content.md
+  sample: 15G PRE showed `15F ✅ / 15G active-not-executed
+  classification: historical_non_blocking
+- file: arch\15f_english_a1_a2\stale_reference_audit.yaml
+  sample: 15G 🟡
+  classification: historical_non_blocking
+- file: arch\15g_assessment_content\stale_reference_audit.yaml
+  sample: 15G aktif ve henüz yürütülmedi
+  classification: historical_non_blocking
+blocking_findings: []
+historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
+  future/candidate language; current/living sources must agree on 15G complete and
+  15H active-not-executed; no open loop may still point at 15G.
+closure_gate_note: This is a one-time closure gate per PROJECT_MEMORY_PROTOCOL 4.4.
+  It is expected to fail once 15G completes and must not be re-run afterwards; its
+  stored report is the durable evidence.

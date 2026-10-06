@@ -163,6 +163,13 @@ class WeeklyBlueprintEngineTest {
         ), null, emptySet())
         assertEquals(listOf(BlueprintRole.INTEGRATION_OR_TRANSFER, BlueprintRole.PARALLEL_ENGLISH), pool.entries.map { it.role })
         assertEquals(BlueprintExclusion.NOT_A_WEEKLY_MEASUREMENT, pool.exclusions.single().reason)
+        // 15G: a cross-topic transfer measurement is the month's (`MCA-v0` §6.5), never the week's.
+        val transfer = skill("transfer")
+        val monthly = WeeklyBlueprintEngine.targetPool(emptyList(), listOf(
+            LearningNeed(TransferEngine.needKey(transfer), NeedTrigger.TRANSFER_OPPORTUNITY, listOf(transfer), Criticality.REQUIRED),
+        ), null, emptySet())
+        assertTrue(monthly.entries.isEmpty())
+        assertEquals(BlueprintExclusion.TRANSFER_IS_MONTHLY, monthly.exclusions.single().reason)
         // A week with nothing due holds nothing: no role is forced in.
         assertTrue(WeeklyBlueprintEngine.targetPool(emptyList(), emptyList(), null, emptySet()).entries.isEmpty())
     }

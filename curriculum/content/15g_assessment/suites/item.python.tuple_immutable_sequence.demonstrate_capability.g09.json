@@ -1,0 +1,55 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.tuple_immutable_sequence.demonstrate_capability.g09@v1",
+  "item": "item.python.tuple_immutable_sequence.demonstrate_capability.g09@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nayrac = sys.argv.index(\"|\")\na = [int(x) for x in sys.argv[1:ayrac]]\nb = [int(x) for x in sys.argv[ayrac + 1:]]\nprint(cozum.ciftle(a, b))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two",
+      "args": [
+        "1",
+        "2",
+        "|",
+        "5",
+        "6"
+      ],
+      "expected_stdout": "[(1, 5), (2, 6)]\n"
+    },
+    {
+      "id": "empty",
+      "args": [
+        "|"
+      ],
+      "expected_stdout": "[]\n"
+    },
+    {
+      "id": "three",
+      "args": [
+        "7",
+        "8",
+        "9",
+        "|",
+        "0",
+        "0",
+        "1"
+      ],
+      "expected_stdout": "[(7, 0), (8, 0), (9, 1)]\n"
+    }
+  ]
+}

@@ -1,0 +1,425 @@
+skill: skill.python.mapping_collections_basic
+objectives:
+  - id: objective.python.mapping_collections_basic.select_and_use_mapping
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına anahtarlar_sirali(d) adında bir fonksiyon yaz: sözlüğün anahtarlarından oluşan, alfabetik sıralı bir liste döndürsün. Örnek: anahtarlar_sirali({"muz": 3, "elma": 5}) → ["elma", "muz"].
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          d = {}
+          for x in sys.argv[1:]:
+              k, v = x.split("=")
+              d[k] = int(v)
+          print(cozum.anahtarlar_sirali(d))
+        suite:
+          - {id: two, args: ["muz=3", "elma=5"], expected_stdout: "['elma', 'muz']\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+          - {id: three, args: ["c=1", "a=2", "b=3"], expected_stdout: "['a', 'b', 'c']\n"}
+        reference: |
+          def anahtarlar_sirali(d):
+              return sorted(d.keys())
+        wrong:
+          - |
+            def anahtarlar_sirali(d):
+                return sorted(d.values())
+          - |
+            def anahtarlar_sirali(d):
+                return list(d.keys())
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına toplam_deger(d) adında bir fonksiyon yaz: sözlükteki bütün değerlerin (sayı) toplamını döndürsün. Boş sözlük için 0. Örnek: toplam_deger({"a": 2, "b": 5}) → 7.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          d = {}
+          for x in sys.argv[1:]:
+              k, v = x.split("=")
+              d[k] = int(v)
+          print(cozum.toplam_deger(d))
+        suite:
+          - {id: two, args: ["a=2", "b=5"], expected_stdout: "7\n"}
+          - {id: empty, args: [], expected_stdout: "0\n"}
+          - {id: negative, args: ["x=-3", "y=3", "z=10"], expected_stdout: "10\n"}
+        reference: |
+          def toplam_deger(d):
+              return sum(d.values())
+        wrong:
+          - |
+            def toplam_deger(d):
+                return len(d)
+          - |
+            def toplam_deger(d):
+                toplam = 0
+                for k in d:
+                    toplam = d[k]
+                return toplam
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına iki_kat(d) adında bir fonksiyon yaz: aynı anahtarlara sahip, değerleri iki katına çıkmış YENİ bir sözlük döndürsün; verilen sözlük değişmesin. Testler hem yeni sözlüğü hem verilen sözlüğü sıralı olarak yazdırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          d = {}
+          for x in sys.argv[1:]:
+              k, v = x.split("=")
+              d[k] = int(v)
+          yeni = cozum.iki_kat(d)
+          print(sorted(yeni.items()), sorted(d.items()))
+        suite:
+          - {id: two, args: ["a=2", "b=5"], expected_stdout: "[('a', 4), ('b', 10)] [('a', 2), ('b', 5)]\n"}
+          - {id: empty, args: [], expected_stdout: "[] []\n"}
+        reference: |
+          def iki_kat(d):
+              yeni = {}
+              for k, v in d.items():
+                  yeni[k] = v * 2
+              return yeni
+        wrong:
+          - |
+            def iki_kat(d):
+                for k in d:
+                    d[k] = d[k] * 2
+                return d
+          - |
+            def iki_kat(d):
+                yeni = {}
+                for k, v in d.items():
+                    yeni[v] = k * 2
+                return yeni
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına ilk_harfe_gore(kelimeler) adında bir fonksiyon yaz: kelimeleri ilk harflerine göre gruplayan bir sözlük döndürsün: anahtar ilk harf, değer o harfle başlayan kelimelerin listedeki sırayla listesi. Testler sonucu sıralı yazdırır. Örnek: ["elma", "armut", "erik"] → {"e": ["elma", "erik"], "a": ["armut"]}.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(sorted(cozum.ilk_harfe_gore(sys.argv[1:]).items()))
+        suite:
+          - {id: three, args: ["elma", "armut", "erik"], expected_stdout: "[('a', ['armut']), ('e', ['elma', 'erik'])]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+          - {id: same_letter, args: ["kiraz", "kavun", "kivi"], expected_stdout: "[('k', ['kiraz', 'kavun', 'kivi'])]\n"}
+        reference: |
+          def ilk_harfe_gore(kelimeler):
+              gruplar = {}
+              for k in kelimeler:
+                  harf = k[0]
+                  if harf not in gruplar:
+                      gruplar[harf] = []
+                  gruplar[harf].append(k)
+              return gruplar
+        wrong:
+          - |
+            def ilk_harfe_gore(kelimeler):
+                gruplar = {}
+                for k in kelimeler:
+                    gruplar[k[0]] = [k]
+                return gruplar
+          - |
+            def ilk_harfe_gore(kelimeler):
+                gruplar = {}
+                for k in kelimeler:
+                    harf = k[0]
+                    if harf not in gruplar:
+                        gruplar[harf] = []
+                    gruplar[harf].append(harf)
+                return gruplar
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına birlestir(d1, d2) adında bir fonksiyon yaz: iki sözlüğü birleştiren yeni bir sözlük döndürsün; bir anahtar ikisinde de varsa değerleri toplansın. Verilen sözlükler değişmesin. Testler iki sözlüğü | ile ayırarak verir ve sonucu sıralı yazdırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          d1, d2 = {}, {}
+          hedef = d1
+          for x in sys.argv[1:]:
+              if x == "|":
+                  hedef = d2
+                  continue
+              k, v = x.split("=")
+              hedef[k] = int(v)
+          sonuc = cozum.birlestir(d1, d2)
+          print(sorted(sonuc.items()), sorted(d1.items()))
+        suite:
+          - {id: overlap, args: ["a=1", "b=2", "|", "b=5", "c=7"], expected_stdout: "[('a', 1), ('b', 7), ('c', 7)] [('a', 1), ('b', 2)]\n"}
+          - {id: disjoint, args: ["x=3", "|", "y=4"], expected_stdout: "[('x', 3), ('y', 4)] [('x', 3)]\n"}
+          - {id: empty_first, args: ["|", "z=9"], expected_stdout: "[('z', 9)] []\n"}
+        reference: |
+          def birlestir(d1, d2):
+              sonuc = {}
+              for k, v in d1.items():
+                  sonuc[k] = v
+              for k, v in d2.items():
+                  sonuc[k] = sonuc.get(k, 0) + v
+              return sonuc
+        wrong:
+          - |
+            def birlestir(d1, d2):
+                sonuc = {}
+                for k, v in d1.items():
+                    sonuc[k] = v
+                for k, v in d2.items():
+                    sonuc[k] = v
+                return sonuc
+          - |
+            def birlestir(d1, d2):
+                for k, v in d2.items():
+                    d1[k] = d1.get(k, 0) + v
+                return d1
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına esik_ustu(d, esik) adında bir fonksiyon yaz: değeri esik'e eşit ya da ondan büyük olan anahtarları alfabetik sıralı bir liste olarak döndürsün. Örnek: esik_ustu({"ali": 70, "can": 45, "ece": 50}, 50) → ["ali", "ece"].
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          d = {}
+          for x in sys.argv[2:]:
+              k, v = x.split("=")
+              d[k] = int(v)
+          print(cozum.esik_ustu(d, int(sys.argv[1])))
+        suite:
+          - {id: mixed, args: ["50", "ali=70", "can=45", "ece=50"], expected_stdout: "['ali', 'ece']\n"}
+          - {id: none, args: ["100", "a=1"], expected_stdout: "[]\n"}
+          - {id: unsorted_input, args: ["0", "zeki=5", "ayla=0"], expected_stdout: "['ayla', 'zeki']\n"}
+        reference: |
+          def esik_ustu(d, esik):
+              sonuc = []
+              for k, v in d.items():
+                  if v >= esik:
+                      sonuc.append(k)
+              return sorted(sonuc)
+        wrong:
+          - |
+            def esik_ustu(d, esik):
+                sonuc = []
+                for k, v in d.items():
+                    if v > esik:
+                        sonuc.append(k)
+                return sorted(sonuc)
+          - |
+            def esik_ustu(d, esik):
+                sonuc = []
+                for k, v in d.items():
+                    if v >= esik:
+                        sonuc.append(v)
+                return sorted(sonuc)
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına uzunluklar(kelimeler) adında bir fonksiyon yaz: her kelimeyi kendi harf sayısına bağlayan bir sözlük döndürsün. Testler sonucu sıralı yazdırır. Örnek: uzunluklar(["su", "çay"]) → {"su": 2, "çay": 3}.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(sorted(cozum.uzunluklar(sys.argv[1:]).items()))
+        suite:
+          - {id: two, args: ["su", "çay"], expected_stdout: "[('su', 2), ('çay', 3)]\n"}
+          - {id: repeat, args: ["ev", "ev", "okul"], expected_stdout: "[('ev', 2), ('okul', 4)]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+        reference: |
+          def uzunluklar(kelimeler):
+              sonuc = {}
+              for k in kelimeler:
+                  sonuc[k] = len(k)
+              return sonuc
+        wrong:
+          - |
+            def uzunluklar(kelimeler):
+                sonuc = {}
+                for k in kelimeler:
+                    sonuc[len(k)] = k
+                return sonuc
+          - |
+            def uzunluklar(kelimeler):
+                sonuc = {}
+                for k in kelimeler:
+                    sonuc[k] = sonuc.get(k, 0) + 1
+                return sonuc
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına ogrenci_ortalamalari(kayitlar) adında bir fonksiyon yaz: kayitlar (ad, puan) tuple'larından oluşan bir listedir ve bir öğrencinin birden çok puanı olabilir. Her öğrenciyi puanlarının ortalamasına (/ ile, round(..., 1)) bağlayan bir sözlük döndürsün. Testler sonucu sıralı yazdırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations, skill.python.tuple_immutable_sequence, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          a = sys.argv[1:]
+          kayitlar = [(a[i], int(a[i + 1])) for i in range(0, len(a), 2)]
+          print(sorted(cozum.ogrenci_ortalamalari(kayitlar).items()))
+        suite:
+          - {id: two_students, args: ["Ali", "70", "Ece", "90", "Ali", "81"], expected_stdout: "[('Ali', 75.5), ('Ece', 90.0)]\n"}
+          - {id: thirds, args: ["Can", "1", "Can", "1", "Can", "2"], expected_stdout: "[('Can', 1.3)]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+        reference: |
+          def ogrenci_ortalamalari(kayitlar):
+              toplam = {}
+              adet = {}
+              for ad, puan in kayitlar:
+                  toplam[ad] = toplam.get(ad, 0) + puan
+                  adet[ad] = adet.get(ad, 0) + 1
+              sonuc = {}
+              for ad in toplam:
+                  sonuc[ad] = round(toplam[ad] / adet[ad], 1)
+              return sonuc
+        wrong:
+          - |
+            def ogrenci_ortalamalari(kayitlar):
+                sonuc = {}
+                for ad, puan in kayitlar:
+                    sonuc[ad] = float(puan)
+                return sonuc
+          - |
+            def ogrenci_ortalamalari(kayitlar):
+                toplam = {}
+                for ad, puan in kayitlar:
+                    toplam[ad] = toplam.get(ad, 0) + puan
+                sonuc = {}
+                for ad in toplam:
+                    sonuc[ad] = round(toplam[ad] / len(kayitlar), 1)
+                return sonuc
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına degere_gore(d) adında bir fonksiyon yaz: her değeri, o değere sahip anahtarların alfabetik sıralı listesine bağlayan yeni bir sözlük döndürsün; değerler tekrar edebilir. Testler sonucu sıralı yazdırır. Örnek: {"ali": 2, "can": 1, "ece": 2} → {2: ["ali", "ece"], 1: ["can"]}.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          d = {}
+          for x in sys.argv[1:]:
+              k, v = x.split("=")
+              d[k] = int(v)
+          print(sorted(cozum.degere_gore(d).items()))
+        suite:
+          - {id: shared, args: ["ece=2", "can=1", "ali=2"], expected_stdout: "[(1, ['can']), (2, ['ali', 'ece'])]\n"}
+          - {id: unique, args: ["a=5"], expected_stdout: "[(5, ['a'])]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+        reference: |
+          def degere_gore(d):
+              sonuc = {}
+              for k, v in d.items():
+                  if v not in sonuc:
+                      sonuc[v] = []
+                  sonuc[v].append(k)
+              for v in sonuc:
+                  sonuc[v] = sorted(sonuc[v])
+              return sonuc
+        wrong:
+          - |
+            def degere_gore(d):
+                sonuc = {}
+                for k, v in d.items():
+                    sonuc[v] = [k]
+                return sonuc
+          - |
+            def degere_gore(d):
+                sonuc = {}
+                for k, v in d.items():
+                    if v not in sonuc:
+                        sonuc[v] = []
+                    sonuc[v].append(k)
+                return sonuc
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına harfleri_ayni_mi(a, b) adında bir fonksiyon yaz: iki kelime aynı harflerden aynı sayıda oluşuyorsa (biri ötekinin harflerinin yer değiştirmiş hâliyse) True, değilse False döndürsün. Her kelimenin harflerini bir sözlükte sayarak karşılaştır. Örnek: harfleri_ayni_mi("kalem", "melak") → True.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.expression_evaluation, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.harfleri_ayni_mi(sys.argv[1], sys.argv[2]))
+        suite:
+          - {id: anagram, args: ["kalem", "melak"], expected_stdout: "True\n"}
+          - {id: same_letters_different_counts, args: ["aab", "abb"], expected_stdout: "False\n"}
+          - {id: different_length, args: ["ev", "eve"], expected_stdout: "False\n"}
+          - {id: identical, args: ["su", "su"], expected_stdout: "True\n"}
+        reference: |
+          def say(kelime):
+              sayim = {}
+              for h in kelime:
+                  sayim[h] = sayim.get(h, 0) + 1
+              return sayim
+
+          def harfleri_ayni_mi(a, b):
+              return say(a) == say(b)
+        wrong:
+          - |
+            def harfleri_ayni_mi(a, b):
+                return set(a) == set(b)
+          - |
+            def harfleri_ayni_mi(a, b):
+                return len(a) == len(b)
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına guzergah(sonraki, baslangic) adında bir fonksiyon yaz: sonraki sözlüğü her durağı bir sonraki durağa bağlar. baslangic'tan başlayıp, sözlükte sonraki durağı olmayan bir durağa varana kadar ilerlesin ve geçilen durakları (başlangıç ve son dahil) sırayla bir liste olarak döndürsün. Testlerde döngü yoktur. Örnek: guzergah({"A": "B", "B": "C"}, "A") → ["A", "B", "C"].
+        required_skills: [skill.python.functions_parameters_return, skill.python.while_termination, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          d = {}
+          for x in sys.argv[2:]:
+              k, v = x.split("=")
+              d[k] = v
+          print(cozum.guzergah(d, sys.argv[1]))
+        suite:
+          - {id: chain, args: ["A", "A=B", "B=C"], expected_stdout: "['A', 'B', 'C']\n"}
+          - {id: no_next, args: ["X", "A=B"], expected_stdout: "['X']\n"}
+          - {id: middle_start, args: ["B", "A=B", "B=C", "C=D"], expected_stdout: "['B', 'C', 'D']\n"}
+        reference: |
+          def guzergah(sonraki, baslangic):
+              yol = [baslangic]
+              durak = baslangic
+              while durak in sonraki:
+                  durak = sonraki[durak]
+                  yol.append(durak)
+              return yol
+        wrong:
+          - |
+            def guzergah(sonraki, baslangic):
+                yol = []
+                durak = baslangic
+                while durak in sonraki:
+                    yol.append(durak)
+                    durak = sonraki[durak]
+                return yol
+          - |
+            def guzergah(sonraki, baslangic):
+                yol = [baslangic]
+                for durak in sonraki:
+                    yol.append(sonraki[durak])
+                return yol
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: word_frequency
+        required_skills: [skill.python.string_text_operations, skill.python.functions_parameters_return]
+        prompt: |
+          cozum.py dosyasına kelime_say(metin) adında bir fonksiyon yaz: aralarında boşluk olan kelimelerden oluşan metindeki her kelimenin kaç kez geçtiğini bir sözlük olarak döndürsün. Örnek: kelime_say("a b a") → {'a': 2, 'b': 1}.
+        harness: |
+          import sys, cozum
+          print(sorted(cozum.kelime_say(sys.argv[1]).items()))
+        suite:
+          - {id: example, args: ["a b a"], expected_stdout: "[('a', 2), ('b', 1)]\n"}
+          - {id: words, args: ["elma armut elma elma"], expected_stdout: "[('armut', 1), ('elma', 3)]\n"}
+          - {id: single, args: ["tek"], expected_stdout: "[('tek', 1)]\n"}
+        reference: |
+          def kelime_say(metin):
+              sayac = {}
+              for kelime in metin.split():
+                  sayac[kelime] = sayac.get(kelime, 0) + 1
+              return sayac
+        wrong:
+          - |
+            def kelime_say(metin):
+                sayac = {}
+                for kelime in metin:
+                    sayac[kelime] = sayac.get(kelime, 0) + 1
+                return sayac
+          - |
+            def kelime_say(metin):
+                sayac = {}
+                for kelime in metin.split():
+                    sayac[kelime] = 1
+                return sayac

@@ -1,0 +1,149 @@
+skill: skill.linux.process_exit_stdout_stderr_basic
+objectives:
+  - id: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+    items:
+      - slug: g01
+        difficulty: authentic_application
+        prompt: |
+          Bu komutlar çalıştırıldı. && ikinci komutu yalnız birincisi başarıyla biterse çalıştırır. Son satırda ne görünür?
+        code: |
+          false && echo tamam
+          echo $?
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "1"
+          B: "0"
+          C: "tamam"
+          D: "Hiçbir şey"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          outcomes: {A: "1", B: "0", C: "tamam", D: ""}
+      - slug: g02
+        difficulty: authentic_application
+        prompt: |
+          Boş bir klasörde bu komut çalıştırıldı. Komut çalışırken ekranda ne görünür?
+        code: |
+          bash -c 'echo veri; echo sorun >&2' > cikti.txt
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: Yalnız sorun; veri dosyaya gitti, stderr'e yazılan sorun ekranda kaldı
+          B: Hiçbir şey; ikisi de cikti.txt'ye gitti
+          C: Yalnız veri
+          D: veri ve sorun, alt alta
+        scan_options: false
+        answer: A
+        misconception_options: {B: error_text_is_stdout}
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            ekran=$(bash -c 'echo veri; echo sorun >&2' 2>&1 > cikti.txt)
+            dosya=$(cat cikti.txt)
+            if [ "$ekran" = "sorun" ] && [ "$dosya" = "veri" ]; then echo A; else echo D; fi
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          Boş bir klasörde (yok.txt yokken) bu komutlar çalıştırıldı. cat önce a.txt'nin içeriğini, sonra yok.txt için bir hata mesajı yazdı. Son satırda ne görünür?
+        code: |
+          echo merhaba > a.txt
+          cat a.txt yok.txt
+          echo $?
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: 0'dan farklı bir sayı; dosyalardan biri okunamadığı için cat başarısız bitti
+          B: "0; cat a.txt'yi yazdı, yani başarılı oldu"
+          C: Hiçbir şey; hata mesajı $?'i siler
+          D: "merhaba"
+        scan_options: false
+        answer: A
+        misconception_options: {B: output_means_success}
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            echo merhaba > a.txt
+            cat a.txt yok.txt > /dev/null 2>&1
+            durum=$?
+            if [ "$durum" -ne 0 ]; then echo A; else echo B; fi
+      - slug: g04
+        difficulty: basic
+        prompt: |
+          Bu komutlar çalıştırıldı. echo ekrana bir hata cümlesi yazıyor. Son satırda ne görünür?
+        code: |
+          echo "Hata: dosya bulunamadi"
+          echo $?
+        options:
+          A: "0; echo yazacağını yazıp başarıyla bitti, yazdığı metnin ne söylediği önemli değil"
+          B: "1; ekrana bir hata mesajı yazıldı"
+          C: "2; dosya bulunamadı"
+          D: Hiçbir şey
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          outcomes: {A: "0", B: "1", C: "2", D: ""}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu komut çalıştırıldı. Ekranda ne görünür ve programın çıkış durumu kaçtır?
+        code: |
+          bash -c 'echo bir; exit 3; echo iki'
+        options:
+          A: Yalnız bir yazılır; exit 3 programı orada bitirir, çıkış durumu 3
+          B: bir ve iki yazılır; çıkış durumu 3
+          C: bir ve iki yazılır; çıkış durumu 0, çünkü son komut echo
+          D: Hiçbir şey yazılmaz; çıkış durumu 3
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            cikti=$(bash -c 'echo bir; exit 3; echo iki')
+            durum=$?
+            if [ "$cikti" = "bir" ] && [ "$durum" = "3" ]; then echo A; else echo B; fi
+      - slug: g06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Bu komut iki satır yazıyor. Satırlar hangi kanala gider?
+        code: |
+          bash -c 'echo "Uyari: disk dolu"; echo tamam >&2'
+        options:
+          A: "\"tamam\" stderr'e, \"Uyari: disk dolu\" stdout'a gider"
+          B: "\"Uyari: disk dolu\" stderr'e, \"tamam\" stdout'a gider"
+          C: İkisi de stdout'a gider
+          D: İkisi de stderr'e gider
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            err=$(bash -c 'echo "Uyari: disk dolu"; echo tamam >&2' 2>&1 >/dev/null)
+            out=$(bash -c 'echo "Uyari: disk dolu"; echo tamam >&2' 2>/dev/null)
+            if [ "$err" = "tamam" ] && [ "$out" = "Uyari: disk dolu" ]; then echo A
+            elif [ "$out" = "tamam" ]; then echo B
+            elif [ -z "$err" ]; then echo C
+            else echo D; fi
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu komutlar sırayla çalıştırıldı. İkinci satırdaki $? çift tırnak içinde, yani ikinci program çalışmadan önce kabuk tarafından yerine konur. Son satırda ne görünür?
+        code: |
+          bash -c 'exit 6'
+          bash -c "exit $?"
+          echo $?
+        answer: "6"
+        verify: {mode: shell, last_line: true}
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f03: {D: error_text_is_stdout}
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f05: {B: output_means_success}
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f07: {C: status_stays}
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f08: {C: error_text_is_stdout}

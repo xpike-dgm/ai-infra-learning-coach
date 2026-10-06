@@ -1,0 +1,62 @@
+skill: skill.english.preposition_function_word_comprehension
+objectives:
+  - id: objective.english.preposition_function_word_comprehension.demonstrate_capability
+    items:
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          This is a copy of the file.
+        options:
+          A: "Bu, dosyanın bir kopyası."
+          B: "Bu, kopyanın dosyası."
+          C: "Bu dosya bir kopyadan geliyor."
+          D: "Bu dosyayı kopyala."
+        scan_options: false
+        answer: A
+        misconception_options: {B: preposition_after_noun}
+        verify:
+          mode: reference
+          reference: "Wiktionary — of (preposition): expressing the relationship between a part or copy and its source; Wikipedia — English prepositions"
+          claim: "a copy of the file, dosyanın bir kopyasıdır; of'tan sonraki isim (file) kopyanın neyin kopyası olduğunu söyler."
+      - slug: g06
+        difficulty: basic
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          The tool is for tests.
+        options:
+          A: "Araç testlerde kullanılmak içindir"
+          B: "Araç testlerden gelir"
+          C: "Araç testlerle birlikte gelir"
+          D: "Araç testlerden sonra çalışır"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — for (preposition): intended to belong to or be used by; Wikipedia — English prepositions"
+          claim: "The tool is for tests: araç testler içindir, testlerde kullanılmak için vardır."
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu cümleye göre çıktı nereye kaydedilir?
+        code: |
+          The program saves the output in the folder with the input.
+        options:
+          A: "Girdinin bulunduğu klasöre"
+          B: "Girdi dosyasının içine"
+          C: "Girdi olmayan bir klasöre"
+          D: "Ekrana"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — in (preposition): location; with (preposition): accompanied by, together with; Wikipedia — English prepositions"
+          claim: "in the folder with the input, girdinin de bulunduğu klasörde demektir."
+
+# Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
+misconception_options:
+  item.english.preposition_function_word_comprehension.demonstrate_capability.f03: {B: to_from_swapped}
+  item.english.preposition_function_word_comprehension.demonstrate_capability.f04: {B: to_from_swapped}
+  item.english.preposition_function_word_comprehension.demonstrate_capability.f07: {B: to_from_swapped}

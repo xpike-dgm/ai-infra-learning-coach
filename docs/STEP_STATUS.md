@@ -81,8 +81,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **15D — Memory Foundations** | ✅ | MMFX-v0 / D-116. Bellek erişimi AddressSanitizer'ın bildirdiğine göre doğrulanır: 4 Skill / 6 Objective / 5 kenar `published`; 34 item (15 kod suite'iyle, 12 okuma, 4 sanitizer, 3 rubric), 33 anlatım, 13 misconception, 20 görev; öğrencinin derlemesi sanitizer'lı ve temiz çıkış ister; yeni kullanıcı kararı gerekmedi; 132/132 QA PASS, Mutation 9/9. |
 | **15E — Linux / Git / Shell Foundations** | ✅ | LGSX-v0 / D-118. Komutlar Linux'ta gösterildiği gibi çalıştırılarak doğrulanır: 5 Skill / 5 Objective / 6 kenar `published`; 41 item (40 kabuk, 1 rubric), 35 anlatım, 15 misconception, 25 görev; kabuk prelude'u, "# hazırlık" satırları; onay D-117; 114/114 QA PASS, Mutation 5/5. |
 | **15F — English A0→A1/A2 başlangıç paketi** | ✅ | EAAX-v0 / D-119. Her İngilizce kelime bir dersin öğrettiği kelimedir: 10 Skill / 10 Objective / 9 kenar `published`; 82 item (72 kaynaklı, 8 araç mesajı, 2 rubric), 50 anlatım, 20 misconception, 50 görev; ders başına kelime listesi; onay D-117; 119/119 QA PASS, Mutation 8/8. |
-| **15G — Assessment content** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti). |
-| **15H–20** | ⬜ Bekliyor | 15G sonrası canonical sırada. |
+| **15G — Assessment content** | ✅ | ACNX-v0 / D-120. Yayımlanmış Objective'lere, yayımlanmış hiçbir şeyi değiştirmeden ek paket (v7): 613 item, 240 büyüyen görev v2'si, 21 cross-topic transfer item'ı (ayın slotuna ayrılır), 144 seçenek düzeyinde misconception anahtarı; graph, ders ve etiket eklenmedi, 1–6. paketler bayt bayt aynı. `TRANSFER_OPPORTUNITY` sahibi `TransferEngine` (beyan edilmiş uzantı). Bağımsız inceleme 4 turda 613/613, 144/144. Havuz: 65 Objective'in 54'ü ≥15; 3 teknik Objective 14, 8 İngilizce Objective 10–12 (kullanıcı kararı, eksik kayıtlı). Mutation üretici 22/22, Kotlin 32/32; QA 108/108 PASS. T6 çalıştırılmadı. |
+| **15H — Content QA** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti). |
+| **16–20** | ⬜ Bekliyor | 15H sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -101,7 +102,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 15F
+## Son tamamlanan numaralı adım — 15G
+
+**Final:** `ACNX-v0 — Assessment content supplement` / D-120.
+**Ana çıktı:** `docs/ASSESSMENT_CONTENT_SPEC.md` + `arch/15g_assessment_content/` + `curriculum/content/15g_assessment/` + `android/app-wiring/src/main/assets/curriculum_package_v7.txt` + `tools/validate_assessment_content.py`.
+
+15G sonucu:
+- eklenen bir item Objective'ini görülmemiş bir yapıda, Objective'in istediği kanıtı üretebilen bir biçimde ölçer ve yalnız bağımsız inceleyici geçirdikten sonra sevk edilir; ek paket hiçbir yayımlanmışın üzerine yazmaz,
+- onay kullanıcının 2026-10-04 açık onayı ("15G ye başla"); kullanıcı kararları: 15–20 havuz; transfer içeriği + aylık üretici; seçenek düzeyinde misconception anahtarı; item'ları asistan yazar, ayrı ajanlar inceler; 15F için dürüst küçük havuz,
+- **bulgu:** eklenen item'ları düşüren şey yanlış anahtar değil, ders sızıntısı ve yakınlıktır; seçmeli bir item kod/uygulamalı/yazılı kanıt taşıyamaz (üretici artık reddediyor); aynı dersin daha zor item'ı transfer değildir; bağlamı adsız transfer item'ı derlemeyi çökertiyordu (üretici mutation'ı buldu, düzeltildi),
+- v7: 613 item, 240 görev v2'si, 21 transfer item'ı, 144 eşleme; hiçbir Skill/Objective/kenar/Topic/ders/etiket eklenmedi,
+- havuz: 65 Objective'in 54'ü ≥15; 3 teknik 14, 8 İngilizce 10–12 — eksik kayıtlı (D-120),
+- beyan edilmiş uzantılar: `NeedTrigger.TRANSFER_OPPORTUNITY`, `TRANSFER_IS_MONTHLY`, `TRANSFER_CLAIM_UNSUPPORTED`, `[answer_misconception]`, `transfer_profile`/`context_family_id`, sonraki paketin görev sürümü,
+- yedi paket gerçek SQLite şemasına JVM'de yayımlanıyor; geçmişi olmayan öğrenci aynı giriş derslerini görüyor, öğrenilmemiş Skill transfer açmıyor,
+- Mutation üretici 22/22, Kotlin 32/32; independent validator **108/108 PASS**,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+## Önceki numaralı adım — 15F
 
 **Final:** `EAAX-v0 — English A0→A1/A2 starter content` / D-119.
 **Ana çıktı:** `docs/ENGLISH_A1_A2_CONTENT_SPEC.md` + `arch/15f_english_a1_a2/` + `curriculum/content/15f_english_a1_a2/` + `android/app-wiring/src/main/assets/curriculum_package_v6.txt`.
@@ -438,6 +455,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 15G Assessment content
+## Aktif adım — 15H Content QA
 
-**15G henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti). Kullanıcının açık endişesi (15A–15D'de Objective başına ~5 item) bu adımda ele alınabilir.
+**15H henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti). 15G'nin kayıtlı havuz eksikleri ve inceleyici bulguları 15H'nin girdisidir.

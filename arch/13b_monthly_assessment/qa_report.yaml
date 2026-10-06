@@ -374,7 +374,7 @@ checks:
   result: PASS
   details: '[''remediation_open'', ''not_taught_yet'', ''not_active_since_last_cycle'',
     ''measured_in_another_role'', ''not_a_weekly_measurement'', ''not_a_monthly_measurement'',
-    ''not_required_capability'']'
+    ''not_required_capability'', ''transfer_is_monthly'']'
 - check: E13B-06_weekly_exclusions_first
   result: PASS
   details: a weekly exclusion moved
@@ -625,7 +625,7 @@ checks:
   result: PASS
   details: '[''role_not_declared'', ''not_usable_for_intent'', ''prerequisite_waits'',
     ''solution_exposed'', ''already_seen'', ''variant_family_in_use'', ''dependency_group_in_use'',
-    ''expected_minutes_missing'']'
+    ''expected_minutes_missing'', ''transfer_claim_unsupported'']'
 - check: E13B-15_weekly_overrides
   result: PASS
   details: weekly codes rebound
@@ -683,10 +683,10 @@ checks:
   result: PASS
   details: 'missing test: a critical Skill is revalidated only for a reason, never
     because it is critical'
-- check: E13B-16_engine_owner needs bring integration and the pa
+- check: 'E13B-16_engine_owner needs bring integration, transfer '
   result: PASS
-  details: 'missing test: owner needs bring integration and the parallel track, transfer
-    and the checkpoint have no producer'
+  details: 'missing test: owner needs bring integration, transfer and the parallel
+    track, the checkpoint has no producer'
 - check: E13B-16_engine_slots take only items eligible for the m
   result: PASS
   details: 'missing test: slots take only items eligible for the monthly scope and
