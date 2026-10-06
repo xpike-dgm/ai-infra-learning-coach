@@ -147,6 +147,7 @@ Pool counts are items outside the lesson: published plus added, with transfer it
   - Both control mutants survived.
 - **Validator:** `tools/validate_assessment_content.py` rebuilds all seven packages: 108/108 PASS. Its own mutation run detected 40/40.
 - **Narrowed gates:** 17 checks in 8 earlier validators pinned the exact sets 15G extends. Each now accepts exactly the D-120 extension in its declared place and still fails on any other drift. They are listed in the contract (`narrowed_gates`). The `tools/validate_*.py` sweep passed 62/62; the eight narrowed validators were re-run after the change.
+- **Toolchain of the checks:** the keys hold in the learner's toolchain generation: Python 3.14, and gcc 14 or later, whose defaults the C lessons teach (an implicit declaration or an int taken from a pointer is a compile error). Five added items answer differently under Python 3.12 (`//` reports a different message) and under a gcc older than 14 (those cases are only warnings). The first CI run used Python 3.12 and the runner's default gcc, and failed on exactly these five. CI now installs Python 3.14 and gcc 14, and the content was not bent to the older tools.
 - **Gradle and APKs:** T1, T2, T3, `verifyModuleBoundaries`, and `assembleDebug` with and without the AI adapter all passed. The seven packages inside each APK have the same SHA-256 as the source, and the APK without the adapter has no network permission. 1056 JVM tests ran.
 - **Not run: T6.** Nothing ran on the device. SQLite publication ran on the JVM only.
 

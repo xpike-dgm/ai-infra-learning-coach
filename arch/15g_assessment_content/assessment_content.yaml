@@ -264,6 +264,13 @@ verified_runs:
   - {id: RUN-08, command: "python -X utf8 tools/validate_assessment_content.py (all seven packages rebuilt; every added key run again by its own content directory)", tier: T2, result: PASS}
 jvm_tests: 1059
 
+verification_environment:
+  python: "3.14 (the learner's)"
+  gcc: "14 or later; the learner's WSL Ubuntu has 15.2"
+  why: the C lessons teach GCC 14+ defaults (an implicit declaration or an int from a pointer is a compile error) and one Python message changed in 3.14; five added items answer differently under Python 3.12 and a gcc older than 14
+  ci: .github/workflows/android.yml installs Python 3.14 and gcc 14 for the validator sweep; the first CI run, on Python 3.12 and the runner's default gcc, failed on exactly these five items
+  content_bent_to_older_tools: false
+
 device_verification:
   t6_run: false
   claimed: false
