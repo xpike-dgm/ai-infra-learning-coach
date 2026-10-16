@@ -1070,12 +1070,25 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Mutation üretici 22/22, Kotlin 32/32; validator 108/108 PASS,
 - **T6 ve cihazda ingestion çalıştırılmadı**.
 
-### [ ] 15H — Content QA — **AKTİF**
+### [x] 15H — Content QA — CQAX-v0 / D-121
+
+**15H final coverage:**
+- içerik yalnız graph'ının, kontrollerinin ve etiketlerinin taşıdığını söyler; bir düzeltme sonraki sürümdür, değiştirdiği sürüm eklenen bir `retired` kaydıyla emekliye ayrılır, hiçbir şeyin üzerine yazılmaz; sekizinci paket (ek paket, v8), 1–7. paketler bayt bayt aynı,
+- 81 item'ın sonraki sürümü (30 sabit çıktı, 3 sabit çıktı + etiket, 42 etiket, 4 etiket + inceleme düzeltmesi, 2 gösterim), 6 yeni item (teknik havuz 15'e), 138 görev sürümü; hiçbir Skill, Objective, Topic, ders ya da etiket eklenmedi,
+- graph: 49 kenar (12 hard `lesson_and_every_item`, 33 soft `lesson`, 4 soft `reads_glossed`) ve 18 `teach_requires`; 50 ders ihtiyacının hepsi bir kenar ya da 15H'nin hard kenarlarıyla örtük; hard graph tek başına ve derslerin gereksinimleriyle döngüsüz,
+- `requires_transfer` kapandı: standard Objective'de transfer kapısı yok (`GRE-v0` §8); üretici `GRE-v0`'ın kapı alanları saklanana kadar critical Objective'i reddeder; 65 Objective'in hepsi standard,
+- denetim `tools/content_qa.py`: sabit çıktı, gösterim, ders kontrolleri, ders metni, graph, etiket, havuz, criticality — her bulgu bir çözüme bağlı; bağımsız inceleme 4 inceleyici, 87/87 item, 49/49 kenar,
+- havuz: 65 Objective'in 57'si ≥15; 8 İngilizce 10–12 kayıtlı (kullanıcı kararı),
+- sekiz paket gerçek SQLite şemasına JVM'de yayımlanıyor (`ShippedCourseTest`, `ShippedContentQaPackageTest`); depo bir kenar sürümünü ya da doğrulama kaydını ikinci kez taşımayı reddeder,
+- Mutation üretici 29/29, denetim 10/10, Kotlin 2/2; validator 142/142 PASS,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+**AŞAMA 15 TAMAMLANDI** — CPFX-v0 → PYFX-v0 → CFNX-v0 → MMFX-v0 → LGSX-v0 → EAAX-v0 → ACNX-v0 → CQAX-v0.
 
 ---
 
 # AŞAMA 16 — İlerleme / Analitik / Ayarlar
-### [ ] 16A — Skill analytics
+### [ ] 16A — Skill analytics — **AKTİF**
 ### [ ] 16B — Öğrenme geçmişi
 ### [ ] 16C — Progress / weakness kuralları
 ### [ ] 16D — Ayarlar
@@ -1147,8 +1160,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15G`  
-**Son tamamlanan:** **`15G — ACNX-v0 / D-120`**  
-**Aktif:** **`15H — Content QA`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`  
+**Son tamamlanan:** **`15H — CQAX-v0 / D-121`**  
+**Aktif:** **`16A — Skill analytics`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **15H fresh PRE-STEP + kullanıcının yeni açık onayı → Content QA → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **16A fresh PRE-STEP + kullanıcının yeni açık onayı → Skill analytics → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

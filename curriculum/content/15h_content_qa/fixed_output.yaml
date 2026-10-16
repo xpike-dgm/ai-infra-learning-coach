@@ -1,0 +1,48 @@
+# 15H (CQAX-v0 / D-121) — where printing one fixed output is itself what is asked (open loop `fixed_output_items`).
+#
+# A code item's suite must fail the program that only prints the expected output; otherwise it cannot tell a program that
+# does the work from one that prints the answer. tools/content_qa.py runs that program against every published suite, and
+# the builder against every suite a supplement adds. A finding is resolved by revising the item (a new version whose
+# suite reads how the output was produced) or, only where producing that output is the construct, by an exemption here —
+# item by item: an Objective-wide exemption hid two items that ask for a computation (independent review, 15H).
+
+items:
+  item.python.run_repl_script.execute_and_classify_result.f01: '"Write a script that prints Merhaba, then Python": printing
+    those two lines is the whole task.'
+  item.python.run_repl_script.execute_and_classify_result.f04: The SyntaxError is a missing parenthesis in print("İki"; the
+    corrected print statements are the fix.
+  item.python.run_repl_script.execute_and_classify_result.g02: The NameError is Print written for print; the corrected print
+    statement is the fix.
+  item.python.run_repl_script.execute_and_classify_result.g03: The SyntaxError is an unclosed quote in print("Günaydın); the
+    corrected print statements are the fix.
+  item.python.run_repl_script.execute_and_classify_result.g06: The IndentationError is an indented print line; the realigned
+    print statements are the fix.
+  item.python.run_repl_script.execute_and_classify_result.g08: The difference is the text "ortalama:" printed for "Ortalama:";
+    correcting that text is the fix.
+  item.c.compile_link_run_basic.compile_and_run_small_program.f01: 'Printing "Selam, dunya!" with printf, building and running
+    it is the whole task. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.f02: 'Printing 3, 2 and 1 on separate lines with printf line
+    ends is the whole task. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.f03: 'Printing the double quotes with the backslash-quote escape
+    inside printf is the whole task. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.f04: 'Printing a tab with the backslash-t escape inside printf
+    is the whole task. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.f05: 'Printing a backslash and a literal %d with the doubled-backslash
+    and %% escapes is the whole task. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.g01: 'Printing three lines with printf line ends is the whole
+    task. The prompt asks for one printf; the suite does not check that, and a program printing the three lines is the correct
+    answer either way (independent review, 15H). (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.g02: 'Printing an empty line between two lines with printf line
+    ends is the whole task. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.g03: 'The fix is a compile error in the printf lines themselves;
+    the corrected printf is the fix. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.g04: 'The fix is the missing #include <stdio.h>; the program
+    then prints its fixed text. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.g05: 'The difference is in the printed text and its line ends;
+    correcting the printf is the fix. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.g07: 'The fix is the missing closing brace gcc points at; the
+    program then prints its fixed text. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.g10: 'The fix is the Python-style print written in C; the corrected
+    printf is the fix. (compile_and_run_small_program: the fixed output is the construct.)'
+  item.c.compile_link_run_basic.compile_and_run_small_program.g11: 'Printing quotes and a tab with the backslash-quote and
+    backslash-t escapes is the whole task. (compile_and_run_small_program: the fixed output is the construct.)'

@@ -1,0 +1,70 @@
+skill: skill.python.exception_handling
+objectives:
+- id: objective.python.exception_handling.demonstrate_capability
+  revisions:
+  - revises: g01
+    reason: notation
+    prompt: 'cozum.py dosyasına ilk_sayi(metinler) adında bir fonksiyon yaz: listedeki yazılardan tam sayıya (int()) çevrilebilen
+      İLKİNİ sayı olarak döndürsün; çevrilemeyen her yazı için (ValueError) ekrana atlandı: ve yazının kendisini yazsın ve
+      sonrakine geçsin; hiçbiri çevrilemiyorsa None döndürsün. Listede yazı yerine başka türde bir değer varsa ve oraya gelinirse
+      oluşan hata yakalanmasın, yukarıya gitsin. Örnek: ilk_sayi(["a", "12", "5"]) önce atlandı: a yazar, sonra 12 döndürür.
+
+      '
+    suite:
+    - id: second
+      args:
+      - a
+      - '12'
+      - '5'
+      expected_stdout: |
+        atlandı: a
+        12
+    - id: none
+      args:
+      - x
+      - y
+      expected_stdout: |
+        atlandı: x
+        atlandı: y
+        None
+    - id: negative_first
+      args:
+      - '-3'
+      - '8'
+      expected_stdout: '-3
+
+        '
+    - id: wrong_type_propagates
+      args:
+      - a
+      - <liste>
+      - '4'
+      expected_stdout: |
+        atlandı: a
+        yukarıya geldi
+    reference: |
+      def ilk_sayi(metinler):
+          for metin in metinler:
+              try:
+                  return int(metin)
+              except ValueError:
+                  print("atlandı:", metin)
+          return None
+    wrong:
+    - |
+      def ilk_sayi(metinler):
+          for metin in metinler:
+              try:
+                  return int(metin)
+              except Exception:
+                  print("atlandı:", metin)
+          return None
+    - |
+      def ilk_sayi(metinler):
+          for metin in metinler:
+              try:
+                  return int(metin)
+              except ValueError:
+                  print("atlandı:", metin)
+                  return None
+          return None

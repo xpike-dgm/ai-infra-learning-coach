@@ -1,0 +1,958 @@
+# 15H (CQAX-v0 / D-121) — independent review of what the supplement publishes and of 15H's QA decisions.
+# Four reviewer agents, separate from the author (user decision for 15G, kept for 15H): Python, C and memory,
+# Linux/Git/English and 15A labels, and the graph with the audit's decisions. Each ran the items with the course's
+# runner where they are code. Rounds: Python 3, C 3, Linux/English 3, graph 2; every entry below is the final verdict.
+items:
+  item.c.compile_link_run_basic.compile_and_run_small_program.g06@v2:
+    verdict: pass
+    note: 'Ran. These pass: the reference printf("Toplam: %d\n", 19 * 23); ''23*19''; helper ''int toplam = 19 * 23;''; split
+      printf. These fail: 437 as a numeric argument; 437 with ''19 * 23'' in a comment; ''19 * 23'' only inside a string;
+      the literal ''Toplam: 437''. ''int a = 19, b = 23; a * b'' fails, which is acceptable: the prompt and its test sentence
+      name 19 * 23, and variables belong to a later Skill. The prompt is clear, correct Turkish. Removing the exemption was
+      right: the item asks for a computation.'
+    reviewer: c
+  item.c.compile_link_run_basic.compile_and_run_small_program.g09@v2:
+    verdict: pass
+    note: 'Ran. These pass: the reference, whose format string also contains ''2 * (3 + 4)'' (only the argument counts in
+      string-blanked code); ''2*(3+4)''; helper ''int sonuc = 2 * (3 + 4);''; split printf; and ''%d * (%d + %d) = %d'' with
+      2, 3, 4, 2 * (3 + 4). These fail: printf("2 * (3 + 4) = %d\n", 14) and the literal ''= 14'' string; the wrong 2 * 3
+      + 4 fails on output. The prompt is clear, correct Turkish. Removing the exemption was right.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.f01@v2:
+    verdict: pass
+    note: Ran with the real runner (WSL gcc 15, final harness). The compact one-line program and printf split into two calls
+      pass. Printing 1.82 as a numeric argument fails (boy unused). The declaration regexes accept comma declarations; the
+      two types differ here anyway.
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.f02@v2:
+    verdict: pass
+    note: 'Ran: ''(int)puan'' without spaces and declare-then-assign both pass. The cast is named in the task text (''açık
+      dönüşümle (cast)''), so requiring it is fair.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.f03@v2:
+    verdict: pass
+    note: 'R1 fail fixed (the next letter was not measured). Ran: reference, helper ''char sonraki = harf + 1'', three printf
+      calls, compact ''char sonraki=harf+1'', ''(char) (harf + 1)'' and ''1 + harf'' all pass. These fail: hard-coded n in
+      the format, a ''n'' char argument, and harf + 1 computed into an unread variable while n is printed. Style only: the
+      prompt ends with two consecutive ''Testler ... bakar.'' sentences.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.f04@v2:
+    verdict: pass
+    note: 'Ran: helper brut; kdv helper with split printf; ''double const KDV_ORANI'' (an R1 false negative) passes. Literal-180
+      programs fail via the unused net/KDV_ORANI check.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.f05@v2:
+    verdict: pass
+    note: 'R1 fail fixed (an unasked (double) cast was required). Ran: the reference cast, ''toplam_dakika / 60.0'', and the
+      lesson''s state_trace method ''double dakika = toplam_dakika; dakika / 60'' all pass. Int division fails on output (2.00);
+      literal-2.25 programs fail via the unused toplam_dakika check.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.g01@v2:
+    verdict: pass
+    note: 'Ran: the compact program passes; printf("B-%d\n", no) fails (blok unused).'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.g02@v2:
+    verdict: pass
+    note: 'Ran: the reference passes. ''_Bool hazir'' fails; acceptable because the prompt names bool and stdbool.h.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.g03@v2:
+    verdict: pass
+    note: 'R1 fail fixed (printf %c of the digit char passed). Ran: reference, helper ''int deger = rakam - ''0'''', compact
+      ''rakam-''0'''' and ''rakam - 48'' pass. printf("%c\n", rakam) (the misconception answer) fails. Required patterns are
+      searched in string-blanked code, and char literals are not blanked, so ''rakam - ''0'''' still works. Same style note
+      as f03.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.g05@v2:
+    verdict: pass
+    note: 'R1 fail fixed. Ran: ''long long int nufus = 3000000000;'' and ''long long nufus = 3000000000LL;'' both pass.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.g06@v2:
+    verdict: pass
+    note: 'Ran: the reference passes; printf("B %d\n", harf) fails because B is forbidden in strings, and no correct string
+      contains a standalone B.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.g07@v2:
+    verdict: pass
+    note: 'R1 fail fixed (''int kalan = 6;'' passed). Ran: reference, ''kalan -= 3.5;'' and compact ''kalan=kalan-3.5;'' pass.
+      These fail: ''int kalan = 6;'', and the required line written only inside a string (''%.0s'' trick). Remaining contrived
+      gap: keeping the line and printing 6 as a numeric argument passes, because kalan is read in its own update and neither
+      unused warning fires. That is the accepted numeric-argument class. Same style note as f03.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.g08@v2:
+    verdict: pass
+    note: 'R1 fail fixed (''K'' literal passed; comma declaration rejected). Ran: reference, ''char kucuk = ''k'', buyuk;''
+      then the assignment, and the one-declaration ''char kucuk=''k'',buyuk=kucuk-''a''+''A'';'' all pass. These fail: ''char
+      buyuk = ''K'';'', the expression computed but a ''K'' argument printed (buyuk unused), and the expression written only
+      inside a string. Same style note as f03.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.g09@v2:
+    verdict: pass
+    note: 'Ran: reference, ''(5 > 3)'' with helper ''bool degil = !buyuk'' and split printf, and compact ''(5>3)'' all pass.
+      These fail: ''bool buyuk = true;'', printing 0 as an argument instead of !buyuk, and ''5 > 3'' written only inside a
+      string. The prompt names both ''5 > 3'' and ''!buyuk''.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.g10@v2:
+    verdict: pass
+    note: 'Ran: reference, three separate printf calls, and a concatenated format ("%f" "|" "%.0f|%.3f\n") pass. A hard-coded
+      middle 3 fails; the 3 inside %.3f is correctly not flagged because it is preceded by ''.''.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.g11@v2:
+    verdict: pass
+    note: 'Ran: helper toplam, the compact one-line program and ''int const SAYFA'' pass. Literal-750 programs fail via the
+      unused SAYFA/okunan check.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.h01:
+    verdict: pass
+    note: 'R1 fail fixed (comma declarations rejected). Key verified by running (7.6+0.5 -> 8, 7.4+0.5 -> 7: ''8 7''). Ran:
+      compact spacing; ''double a = 7.6, b = 7.4;'' with ''int ya = (int) (a + 0.5), yb = (int) (b + 0.5);''; ''int ya, yb;''
+      then the assignments; declare-then-assign with split printf; and helper doubles all pass. ''int ya = 8; int yb = 7;''
+      fails, and so does the natural symmetric wrong (int) a + 1. Contrived remaining gap: an asymmetric fudge (+1 on a only)
+      passes; the learner has to know which value to bump. No leakage: the lesson says to write rounding yourself but never
+      shows +0.5, and 15G g06 uses (char)(kod + 0.5) only as a wrong solution. Not near-variant to f02 or lesson check 2 (truncation
+      only). No hidden prerequisite (+ and the cast only). authentic_application fits.'
+    reviewer: c
+  item.c.declaration_type_model.write_basic_declarations.h02:
+    verdict: pass
+    note: 'R1 fail fixed (comma declarations rejected). Key verified (''h'' - ''c'' + 1 = 6). Ran: ''char ilk = ''c'', son
+      = ''h'';'' (with sayi on the same line or assigned later), helper fark, and compact spacing pass. These fail: ''int
+      sayi = 6;'', ''sayi = ''h'' - ''c'' + 1'' (ilk/son unused), and ilk/son assigned but never read (-Werror=unused-but-set-variable).
+      The inclusive +1 separates it from g03/g08. Char subtraction is covered by 15A arithmetic and the lesson''s ''char is
+      a number''. authentic_application fits; the prompt Turkish is correct.'
+    reviewer: c
+  item.c.standard_io_basic.demonstrate_capability.f05@v2:
+    verdict: pass
+    note: 'Read f05, the lesson (canonical '' %c'' rule; no %c example in the checks or the worked example) and the 15C review
+      note. It is the named rule in a new realistic structure (grade letter + score, leading blanks and a blank line): authentic_application
+      fits.'
+    reviewer: c
+  item.c.while_iteration.demonstrate_capability.g07@v2:
+    verdict: pass
+    note: 'Ran: ''while (i < 18)'', compact ''while(i<=16)'', while(1) + if/break, a do-while, and the awkward-but-correct
+      loop to <16 then printf of i all pass. These fail: the literal list in a string and a dead while plus a literal block
+      (4, 8, 12, 16 forbidden). A for rewrite fails, and the prompt now says ''while döngüsünün''. Contrived remaining gap:
+      a loop to 12 then 16 as a numeric printf argument passes.'
+    reviewer: c
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.g06@v2:
+    verdict: pass
+    note: 'authentic_application fits. The prompt explains the redirection itself, so the item is f03''s case plus the canonical''s
+      ''Bir tuzak'' paragraph: below f05/f07, which are transfer. The key verifies.'
+    reviewer: linux_english_15a
+  item.english.documentation_navigation.demonstrate_capability.f05@v2:
+    verdict: pass
+    note: basic fits; it is recall. Option A is the canonical's SEE ALSO gloss word for word.
+    reviewer: linux_english_15a
+  item.english.documentation_navigation.demonstrate_capability.f06@v2:
+    verdict: pass
+    note: 'basic fits. It is ''(default: 5) → 5'' renamed.'
+    reviewer: linux_english_15a
+  item.english.documentation_navigation.demonstrate_capability.f08@v2:
+    verdict: pass
+    note: basic fits; this was a round-1 fail, now resolved. It is the canonical's Usage line renamed, with one more bracketed
+      element.
+    reviewer: linux_english_15a
+  item.english.follow_bilingual_technical_instruction.execute_known_instruction.f05@v2:
+    verdict: pass
+    note: basic fits. The review fix drops the Türkçe destek line as the 15F reviewer asked, which removes the conflict with
+      TEIP-v0 §10.1. The learner must now recognise Install as the kurulum step and read Restart. Every word is taught and
+      the builder's scan is clean. Key and options are unchanged, and C is a fair restart/install confusion.
+    reviewer: linux_english_15a
+  item.english.follow_bilingual_technical_instruction.execute_known_instruction.f07@v2:
+    verdict: pass
+    note: basic fits; this was a round-1 fail, now resolved. It is a plain First/Next/Then sequence in written order.
+    reviewer: linux_english_15a
+  item.english.follow_bilingual_technical_instruction.execute_known_instruction.f08@v2:
+    verdict: pass
+    note: basic fits; this was a round-1 fail, now resolved. It is the canonical's 'Save the file first' pattern, and the
+      sentence-final 'first' does not reorder anything.
+    reviewer: linux_english_15a
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f04@v2:
+    verdict: pass
+    note: basic fits. It is the worked example 'Create a folder and move the file' renamed.
+    reviewer: linux_english_15a
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f07@v2:
+    verdict: pass
+    note: basic fits; this was a round-1 fail, now resolved. 'Check the version and update the program.' has the structure
+      of the canonical's 'Save the file and close the program.' and asks only for the first action.
+    reviewer: linux_english_15a
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f08@v2:
+    verdict: pass
+    note: authentic_application fits. In 'Wait and try again.' both imperatives have no object, a shape no lesson sentence
+      has, and 'again' must be read with 'try'. That is the reviewer's 'small new combination', on g08's level.
+    reviewer: linux_english_15a
+  item.english.imperative_instruction_comprehension.demonstrate_capability.g07@v2:
+    verdict: pass
+    note: 'authentic_application fits (15G note: ''Transfer label modest''). ''Keep the file and remove the copy.'' uses g06''s
+      outcome frame. Still open from 15G, but not about the label: the noun ''copy'' (kopya) is not glossed in the label lesson.'
+    reviewer: linux_english_15a
+  item.english.imperative_instruction_comprehension.demonstrate_capability.g08@v2:
+    verdict: pass
+    note: authentic_application fits. The learner must decide which action 'again' attaches to in a two-action instruction.
+    reviewer: linux_english_15a
+  item.english.negation_question_comprehension.demonstrate_capability.f04@v2:
+    verdict: pass
+    note: basic fits. It is 'The folder has no files' renamed.
+    reviewer: linux_english_15a
+  item.english.negation_question_comprehension.demonstrate_capability.f05@v2:
+    verdict: pass
+    note: basic fits. It is the canonical's 'Where is the log?' with a two-word subject.
+    reviewer: linux_english_15a
+  item.english.negation_question_comprehension.demonstrate_capability.f06@v2:
+    verdict: pass
+    note: basic fits. It uses the same 'what does the question ask' template as f05, g04 and g05, and 'which' is glossed in
+      the canonical.
+    reviewer: linux_english_15a
+  item.english.negation_question_comprehension.demonstrate_capability.g04@v2:
+    verdict: pass
+    note: 'basic fits. The review fix is applied: the claim now reads ''derlemenin neden durduğunu sorar'', matching ''stop''
+      and option A. The key is unchanged.'
+    reviewer: linux_english_15a
+  item.english.negation_question_comprehension.demonstrate_capability.g05@v2:
+    verdict: pass
+    note: basic fits. It is a How + does question in the same template.
+    reviewer: linux_english_15a
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.f04@v2:
+    verdict: pass
+    note: basic fits. It is the a.c:5:3 line reading, renamed.
+    reviewer: linux_english_15a
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.f05@v2:
+    verdict: pass
+    note: basic fits. Extracting the quoted file name is the same task as f03 and f06, both basic. The key verifies.
+    reviewer: linux_english_15a
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.f06@v2:
+    verdict: pass
+    note: basic fits. It applies the named 'No module named' pattern and extracts the quoted name.
+    reviewer: linux_english_15a
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.f07@v2:
+    verdict: pass
+    note: authentic_application fits, and now honestly. The review fix uses the reviewer's neutral prompt word for word, so
+      there is no cue toward option A. The learner composes 'Is a directory' from glossed words. The builder re-ran the verify
+      ('klasor' is option A and no other). Option A's second half is an inference that IsADirectoryError supports, so A is
+      the only true option.
+    reviewer: linux_english_15a
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.f08@v2:
+    verdict: pass
+    note: 'authentic_application fits. Two named patterns are read together: file:line:column and ''expected X before Y''.'
+    reviewer: linux_english_15a
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.g08@v2:
+    verdict: pass
+    note: basic fits; this was a round-1 fail, now resolved. The learner picks the canonical's 'No such file or directory'
+      line from among start and done.
+    reviewer: linux_english_15a
+  item.english.recognize_core_technical_labels.match_term_meaning.f08@v2:
+    verdict: pass
+    note: authentic_application fits. The learner maps a described goal to a label on a web page, as in f04.
+    reviewer: linux_english_15a
+  item.english.recognize_core_technical_labels.match_term_meaning.g08@v2:
+    verdict: pass
+    note: authentic_application is acceptable, at the low edge. The learner goes from label to consequence in an editor tab,
+      with the close_deletes trap.
+    reviewer: linux_english_15a
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.f06@v2:
+    verdict: pass
+    note: basic fits. It has the shape of the worked example 'current project name'.
+    reviewer: linux_english_15a
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.g04@v2:
+    verdict: pass
+    note: basic fits. It asks the two-word order rule from Turkish to English, with no context.
+    reviewer: linux_english_15a
+  item.git.repository_status_diff.inspect_change_state.f04@v2:
+    verdict: pass
+    note: 'basic fits: the canonical''s -eski/+yeni diff, renamed. The review fix is applied: also_accept [armut] next to
+      the key ''+armut'', as the 15E reviewer suggested, and the builder emits the accepted list.'
+    reviewer: linux_english_15a
+  item.git.repository_status_diff.inspect_change_state.h01:
+    verdict: pass
+    note: basic fits; it was authentic in round 1 and is now resolved. It is f03's state with the file inside a folder, it
+      is hands-on, and its mirror g01 is basic. The prompt carries f03's Git identity reminder. The key ' M yazilar/giris.txt'
+      verifies in WSL with the package prelude and in a learner shell with an identity set. Without an identity the learner
+      would see 'AM ...', which the reminder addresses. The app's trim accepts 'M yazilar/giris.txt'. No leakage.
+    reviewer: linux_english_15a
+  item.git.repository_status_diff.inspect_change_state.h02:
+    verdict: pass
+    note: 'authentic_application fits: the learner reads -, + and context lines in reverse to rebuild the file. The round-1
+      hidden-prerequisite fail is resolved: the prompt now says ''üç satırlık gunler.txt'', so the learner needs no untaught
+      hunk-header knowledge. The shown hunk is git''s real output (checked byte for byte), the key ''pazartesi carsamba persembe''
+      verifies, and observed_result is accepted as direct evidence. It has g07''s diff shape but asks a different question,
+      so do not serve them together.'
+    reviewer: linux_english_15a
+  item.git.stage_commit_history_basic.commit_and_verify_history.f08@v2:
+    verdict: pass
+    note: authentic_application fits. git diff vs git diff --staged is defined in the canonical; here it is applied to an
+      add -> change -> add sequence the lesson does not show.
+    reviewer: linux_english_15a
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f05@v2:
+    verdict: pass
+    note: basic fits. It is the canonical's selam/exit 4 example and the worked example's 'yarisi bitti; exit 9' with new
+      values, and it asks back the output_means_success contrast.
+    reviewer: linux_english_15a
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f06@v2:
+    verdict: pass
+    note: basic fits. It is the canonical's own 'mkdir yeni_klasor sessizce 0 ile biter' with the folder renamed.
+    reviewer: linux_english_15a
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f08@v2:
+    verdict: pass
+    note: authentic_application fits. It takes lesson check 5's split between stdout and stderr and adds a status question.
+      Its distractor D (writing to stderr makes the status 1) is something no lesson text answers.
+    reviewer: linux_english_15a
+  item.memory.address_value_distinction.explain_address_vs_value.f05@v2:
+    verdict: pass
+    note: 'Read f05 (void ekle modifies its parameter and prints inside; the caller prints puan: ''108 8''), the lesson and
+      the review note. The rule is named in the canonical, but the Objective''s examples contain no function; the void function
+      printing at two points is a new structure. authentic_application fits.'
+    reviewer: c
+  item.memory.address_value_distinction.trace_simple_memory_example.f05@v2:
+    verdict: pass
+    note: 'R1 fail fixed: now basic. It is a renamed isomorph of the worked_example (karesi) and of functions_basic''s degistir
+      case, plus one trivial line. f03/f04 keep authentic coverage.'
+    reviewer: c
+  item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f05@v2:
+    verdict: pass
+    note: 'R1 fail fixed: now basic. It is the worked_example (a static counter returning its own address) with new values,
+      and option A states the reason. f03/f04 keep authentic coverage.'
+    reviewer: c
+  item.programming.branching_reasoning.predict_branch.g07@v2:
+    verdict: pass
+    note: authentic_application fits. It is lesson check 2's if/else shape plus a dedented line, with an arithmetic condition,
+      easier than the Objective's transfer items. The key 'fark küçük\n9' verifies.
+    reviewer: linux_english_15a
+  item.python.assignment_binding.write_state_change.f01@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, fiyat = fiyat + 15, __main__-guarded, BOM+CRLF, and a trailing sys.exit()
+      (the round-2 false negative, now fixed by exec into a kept dict). These fail: the declared wrongs, the constant program,
+      fiyat = 55, fiyat = 40 + 15, print(55) then fiyat = 55, fiyat = 0 then fiyat += 55 (not_in_source 55), fiyat = 55 then
+      fiyat = fiyat. The prompt states all three checks and is grammatical.'
+    reviewer: python
+  item.python.assignment_binding.write_state_change.f03@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, the long form, named harcama/yatirim amounts, __main__-guarded. These fail:
+      the declared wrongs, the constant program, hand-computed 70/120, -= followed by a hand-written 120, a hand-written 70
+      followed by += 50, and printing bakiye - 30 without updating. not_in_source 70/120 closes the round-2 gap, and the prompt
+      now names what it checks.'
+    reviewer: python
+  item.python.assignment_binding.write_state_change.f04@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, a commented version, __main__-guarded. These fail: the declared wrongs, the
+      constant program, kopya = 7, ilk = 2 with kopya = 7, ilk, kopya = 7, 7. Only a contrived program passes (copy, then
+      overwrite kopya with 7). basic is right.'
+    reviewer: python
+  item.python.assignment_binding.write_state_change.f05@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, grouped updates, a for loop over [12, 30, 8], a reused fiyat variable. These
+      fail: the declared wrongs, the constant program, toplam = 50 with adet = 3, 12 + 30 + 8 with adet = 3, toplam += 50
+      with adet += 3, and toplam updated with adet = 3. One residual passes: toplam = toplam + 12 + 30 + 8 with adet = adet
+      + 3. It ignores "her ürün için" but still updates each name from its own value, so it is acceptable. authentic_application
+      is right.'
+    reviewer: python
+  item.python.exception_handling.demonstrate_capability.g01@v2:
+    verdict: pass
+    note: 'Ran the reference and the declared wrongs: except Exception fails wrong_type_propagates, and an early return None
+      fails "second". The constant program fails. 5 correct variants pass: "atlandı: " + metin, an f-string with an implicit
+      None, except ValueError as e, a sonuc variable, and a guarded self-test call. These fail: except (ValueError, TypeError),
+      skipping silently (the v1 behaviour), isdigit() instead of try, printing the error message instead of the text. The
+      keys are consistent: int("-3") gives -3; the TypeError from [1] propagates after "atlandı: a" is printed. pass/continue
+      are no longer needed: the except body is now the print, and the reference uses neither. Everything else is in the lesson:
+      try/return/except inside a function (worked example ilk_eleman), plus the for/list Skills it declares. The prompt''s
+      example shows the exact format "atlandı: a". basic is unchanged and acceptable: the worked example''s pattern inside
+      a loop.'
+    reviewer: python
+  item.python.exceptions_read_basic.extract_error_type_location.f05@v2:
+    verdict: pass
+    note: Label only (basic). The answer, KeyError 'mor', is read straight off the last line.
+    reviewer: python
+  item.python.exceptions_read_basic.extract_error_type_location.g08@v2:
+    verdict: pass
+    note: Label only (basic). It is the canonical's int("on") ValueError example with 'beş'; the value is read off the last
+      line.
+    reviewer: python
+  item.python.expression_evaluation.demonstrate_capability.f05@v2:
+    verdict: pass
+    note: Label only (basic). The item is lesson check 2 with -7 in place of -9.
+    reviewer: python
+  item.python.files_paths_basic.demonstrate_capability.g10@v2:
+    verdict: pass
+    note: 'Ran the reference and the declared wrongs: a try around the whole loop fails missing_middle, and a missing return
+      fails all tests. The constant program fails. 2 more correct variants pass: rstrip(''\n'') per line with atlanan = atlanan
+      + 1, and reading in the try then writing after it. These fail: opening the target with ''w'' per file, f.read() without
+      line ends, counting files written instead of skipped. Expected outputs check out: 0 for two files; 1 skipped with ''x\ny\n'';
+      1 skipped with an empty target. continue is gone, since the except body is atlanan += 1, and with open/''w''/splitlines
+      are in the files lesson. The prompt adds only "sonunda kaç dosyayı atladığını döndürsün", which is clear. transfer_integration
+      is unchanged and fits: it combines files, exceptions and loops.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.f02@v2:
+    verdict: pass
+    note: 'The reference and 7 other correct programs pass: a/b/fark, a comment that contains 87, BOM+CRLF, f-string, __main__-guarded,
+      def main()+main(), trailing sys.exit(0). These fail: the declared wrongs, the constant program, print(87), print(''87''),
+      a leading blank line, a leading space. Contrived recomputations (80 + 7, 0x57) pass, which is acceptable. The prompt
+      names 87, and the sentence is clear and grammatical.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.f03@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, bes defined after the first print, sayi + 5, __main__-guarded. The declared
+      wrongs, the constant program and print(15) fail. The prompt names 15.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.f05@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, int(toplam / adet), a comment containing 3. Ortalama printed as the literal
+      3, the declared wrongs and the constant program fail. Because the prompt now names 3, it is clear that 12 may stay.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.g01@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, a toplam variable, __main__-guarded. print(7), print(''7''), the declared
+      wrongs and the constant program fail.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.g04@v2:
+    verdict: pass
+    note: 'New in round 3. The key checks out: the reference prints Mesafe: and 42, and the suite expects "istenen yapilar:
+      tamam". Correct programs pass: the reference, print( mesafe ), print(str(mesafe)), print(f"{mesafe}"), a comment naming
+      mesfe, __main__-guarded. These fail: the declared wrongs (mesfe left as is; the string "mesafe"), the constant program,
+      print(42), print(42) with "print(mesafe)" written in a comment, and print(42) with "print(mesafe)" written in a string
+      (comments and texts are blanked before the regex search). Renaming the assignment to mesfe also fails; that is acceptable
+      because the prompt says the tests check that 42 is printed from mesafe. Nothing in it needs more than the lesson teaches.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.g05@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, str() concatenation, an f-string. "Sonuç: 42", f"Sonuç: {42}", the declared
+      wrongs and the constant program fail.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.g07@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference and a kalan variable. ("Kalan:", 32), the declared wrongs and the constant
+      program fail.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.g09@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, repeated addition with kenar ** 2, literal 4 * 9 and 9 * 9. Writing either
+      36 or 81 as a literal fails, as do the declared wrongs and the constant program. The plural prompt is correct. authentic_application
+      fits.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.g10@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, str(adet) concatenation, f-strings. "Tutar: 75", the declared wrongs and
+      the constant program fail. The prompt names 75.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.g11@v2:
+    verdict: pass
+    note: 'Correct programs pass: the reference, an inline version, hiz/sure/yol variables. These fail: a literal 360, 240
+      + 120, the declared wrongs, the constant program.'
+    reviewer: python
+  item.python.run_repl_script.execute_and_classify_result.t01@v2:
+    verdict: pass
+    note: 'Re-run after the fix. The required pattern is now \bsayilar\[(?!\s*0\s*\])(?!\s*3\s*\])[^\]]+\], meaning a subscript
+      of sayilar other than the given [0] and the broken [3] (t01_only.py, output in t01_only.out). 9 correct programs pass:
+      the reference [2], [-1], [len(sayilar) - 1], [ 2 ], son = sayilar[-1], __main__-guarded, sayilar[son_sira], sayilar[n
+      - 1] (the earlier false negatives), and f"Son: {sayilar[-1]}". 10 programs fail as they should: the declared wrongs,
+      the constant program, ("Son:", 8), 8 with "sayilar[2]" in a comment, in a string, or in an f-string text, extending
+      the list and keeping [3], the unfixed [ 3 ], and max(sayilar). Only a contrived cheat passes (an unused x = sayilar[1]
+      plus a literal 8), which is acceptable. The key checks out, and the prompt sentence ("son elemanın sayilar listesinden
+      okunduğuna") is now exactly what is checked.'
+    reviewer: python
+  item.python.scope_name_resolution.demonstrate_capability.h01:
+    verdict: pass
+    note: 'Ran the code again: it prints False and the key matches. Unchanged since round 1: no leakage, no near variant,
+      comparison declared through expression_evaluation, authentic_application.'
+    reviewer: python
+  item.python.scope_name_resolution.demonstrate_capability.h02:
+    verdict: pass
+    note: 'Ran the code again: it prints "2 3" and the key matches. Unchanged since round 1: global skipping an enclosing
+      binding is a new configuration (a sibling of g08 but a different rule). transfer_integration is defensible.'
+    reviewer: python
+  item.python.value_type_behavior.demonstrate_capability.f05@v2:
+    verdict: pass
+    note: 'Label only (authentic_application), unchanged since round 1. Its two expressions are the canonical''s examples,
+      and the item adds program-level behaviour: the first print runs, then the TypeError stops the program.'
+    reviewer: python
+  item.python.value_type_behavior.demonstrate_capability.f06@v2:
+    verdict: pass
+    note: 'Label only (basic). The item is lesson check 3 with new values: the same four conversions, and bool("False") follows
+      the canonical''s bool("0") rule.'
+    reviewer: python
+  item.python.while_termination.debug_infinite_loop.f05@v2:
+    verdict: pass
+    note: Label only (authentic_application), unchanged since round 1. It has the worked example's bug, plus an if that changes
+      where the new read must go.
+    reviewer: python
+  item.shell.command_options_redirection_basic.construct_simple_command.f08@v2:
+    verdict: pass
+    note: authentic_application fits, at the low edge. It applies a named rule ('> klasörü kendisi oluşturmaz') that the lesson
+      never shows with a command, and the learner must tell A (fails, nothing created) from D (succeeds, nothing created).
+    reviewer: linux_english_15a
+  item.shell.pipeline_redirection.demonstrate_capability.f07@v2:
+    verdict: pass
+    note: authentic_application fits. It applies the order rule from the contrast; the learner must also know that > still
+      creates the file, empty, and that wc -l prints '0 tum.txt'. Lesson check 5 uses the opposite order.
+    reviewer: linux_english_15a
+  item.shell.pipeline_redirection.demonstrate_capability.f08@v2:
+    verdict: pass
+    note: authentic_application is acceptable, at the low edge. It is lesson check 6's rule on a realistic grep | wc -l pipeline
+      whose first command fails.
+    reviewer: linux_english_15a
+edges:
+  skill.python.input_output_basic->skill.python.conditionals:
+    verdict: pass
+    note: canonical and worked example int(input()); every non-lesson item is a stdin program.
+  skill.python.input_output_basic->skill.python.for_iteration:
+    verdict: pass
+    note: worked example n = int(input()); every non-lesson item is a stdin program.
+  skill.python.functions_parameters_return->skill.python.list_operations:
+    verdict: pass
+    note: worked example def buyukleri; all items are harness-called functions.
+  skill.python.functions_parameters_return->skill.python.tuple_immutable_sequence:
+    verdict: pass
+    note: canonical def bol returns a tuple; all items are functions.
+  skill.python.functions_parameters_return->skill.python.set_operations:
+    verdict: pass
+    note: worked example def ilk_kez; all items are functions.
+  skill.python.functions_parameters_return->skill.python.string_text_operations:
+    verdict: pass
+    note: worked example def kisalt; all items are functions.
+  skill.python.modules_imports_basic->skill.python.path_handling:
+    verdict: pass
+    note: canonical and worked example from pathlib import Path; every item uses pathlib.
+  skill.c.standard_io_basic->skill.c.conditionals:
+    verdict: pass
+    note: worked example and checks 1-2 scanf; all items stdin.
+  skill.c.standard_io_basic->skill.c.for_iteration:
+    verdict: pass
+    note: worked example and check1 scanf; all items stdin.
+  skill.c.functions_basic->skill.c.pointer_formation:
+    verdict: pass
+    note: canonical int *birinci(...) and worked example double *uzun_olan(...); items are harness-called functions.
+  skill.shell.command_options_redirection_basic->skill.git.stage_commit_history_basic:
+    verdict: pass
+    note: why cites the state trace, worked example and checks, which is where echo > appears. Correct.
+  skill.python.list_operations->skill.python.mapping_collections_basic:
+    verdict: pass
+    note: 'canonical teaches sorted(stok.items()) (''Bu Skill''in testleri sıralı bir sonuç ister''); worked example takes
+      a list of (kategori, tutar) pairs and mentions sorted(sonuc.items()); check2 iterates a list literal. Every non-transfer
+      item declares list_operations (15/16; only the cross-topic transfer t01 does not, and the builder''s pool excludes it,
+      consistent with the why''s ''15''). Hard is right: the Skill''s evidence is read through sorted lists. It also makes
+      the removed functions->mapping edge implied.'
+  skill.python.list_operations->skill.python.exception_handling:
+    verdict: pass
+    note: worked example return liste[0] / 'Boş liste IndexError verir'; 6 of 15 items use a list.
+  skill.programming.function_decomposition->skill.python.exceptions_read_basic:
+    verdict: pass
+    note: canonical program defines def kare_kok and teaches the call chain ('her kayıt bir öncekini çağıran yerdir'); worked
+      example traces through goster/ilk. 15A's reading-level function_decomposition keeps the wait minimal; the 6 items that
+      show functions declare functions_parameters_return, which implies it.
+  skill.python.list_operations->skill.python.exceptions_read_basic:
+    verdict: pass
+    note: worked example reads return liste[0] / IndexError and reasons 'liste[0] bile olmadığına göre liste boştur'; contrast_error_line_is_cause
+      reasons from 'boş bir liste'. Real reliance, though glossed; the wait is noted under teach_requires.
+  skill.python.list_operations->skill.python.string_text_operations:
+    verdict: pass
+    note: canonical 'İndeks ve dilimleme (listelerdeki gibi)', split -> ["a", "b", "c"], join([...]); contrast reasons from
+      list append; 6 of 15 items use a list.
+  skill.python.expression_evaluation->skill.python.tuple_immutable_sequence:
+    verdict: pass
+    note: canonical (a // b, a % b), worked example ((x1 + x2) / 2, ...); no item declares it (0/16), consistent with soft.
+  skill.python.list_operations->skill.python.tuple_immutable_sequence:
+    verdict: pass
+    note: canonical defines a tuple against a list ('tıpkı bir liste gibi ... ama değiştirilemez'), shows a list of tuples
+      and slicing nokta[1:]; 5 of 16 items use a list.
+  skill.shell.command_options_redirection_basic->skill.git.repository_status_diff:
+    verdict: pass
+    note: worked example echo ... > / >>; soft right (h02 reads a hunk only).
+  skill.programming.expression_boolean_reasoning->skill.programming.iteration_reasoning:
+    verdict: pass
+    note: lesson_requires; in-lesson while i <= 3 / i < 5 exist; for/range items need no comparison.
+  skill.programming.state_assignment_model->skill.python.value_type_behavior:
+    verdict: pass
+    note: lesson_requires; state_trace and worked example assign.
+  skill.python.list_operations->skill.python.set_operations:
+    verdict: pass
+    note: in-lesson f01 takes a list; set([...]) and sorted() in canonical; g03/g10 use no list.
+  skill.python.expression_evaluation->skill.python.exceptions_read_basic:
+    verdict: pass
+    note: in-lesson fiyat / kisi, canonical int(n) ** 0.5, check2 5 // 0.
+  skill.python.expression_evaluation->skill.python.modules_imports_basic:
+    verdict: pass
+    note: in-lesson pi * r * r with round; worked example 2 * math.pi * r.
+  skill.python.expression_evaluation->skill.python.exception_handling:
+    verdict: pass
+    note: in-lesson a / b; check3 a // b.
+  skill.python.for_iteration->skill.python.string_text_operations:
+    verdict: pass
+    note: in-lesson bas_harfler loops; 4 items loop.
+  skill.python.list_operations->skill.python.files_paths_basic:
+    verdict: pass
+    note: in-lesson satir_sayisi; canonical splitlines() -> list.
+  skill.c.expression_evaluation->skill.memory.address_value_distinction:
+    verdict: pass
+    note: m == n, &m == &n; canonical a == b.
+  skill.c.expression_evaluation->skill.memory.storage_lifetime_intuition:
+    verdict: pass
+    note: toplam += 5; n++.
+  skill.c.pointer_dereference->skill.memory.storage_lifetime_intuition:
+    verdict: pass
+    note: return &x, *q, malloc / *p; static-only items need no pointer.
+  skill.python.expression_evaluation->skill.python.functions_parameters_return:
+    verdict: pass
+    note: taban * yukseklik / 2 and fiyat * oran // 100.
+  skill.programming.branching_reasoning->skill.programming.code_reading_basic:
+    verdict: pass
+    note: worked example if x < y / else; state_trace % and //.
+  skill.python.conditionals->skill.python.list_operations:
+    verdict: pass
+    note: worked example if n > sinir.
+  skill.python.conditionals->skill.python.set_operations:
+    verdict: pass
+    note: if x in gorulen / if n not in gorulen.
+  skill.python.conditionals->skill.python.modules_imports_basic:
+    verdict: pass
+    note: if __name__ == "__main__":.
+  skill.python.list_operations->skill.python.modules_imports_basic:
+    verdict: pass
+    note: mean([1, 2, 3, 4]) in canonical and check2; thin but small wait (modules already waits on scope -> functions).
+  skill.python.conditionals->skill.python.exception_handling:
+    verdict: pass
+    note: 'if adet < 0: raise.'
+  skill.python.conditionals->skill.python.string_text_operations:
+    verdict: pass
+    note: if len(metin) > n.
+  skill.python.conditionals->skill.python.files_paths_basic:
+    verdict: pass
+    note: if len(satir) > len(en_uzun).
+  skill.c.expression_evaluation->skill.c.standard_io_basic:
+    verdict: pass
+    note: c * 9 / 5 + 32, != 1, a * b.
+  skill.c.conditionals->skill.c.for_iteration:
+    verdict: pass
+    note: if (i % 3 == 0).
+  skill.c.conditionals->skill.c.functions_basic:
+    verdict: pass
+    note: if (a > b); also brings c.expression_evaluation for the canonical's (double) pay / payda.
+  skill.c.functions_basic->skill.memory.address_value_distinction:
+    verdict: pass
+    note: int karesi(int s); value-copy-to-parameter rule in both canonicals.
+  skill.c.conditionals->skill.c.pointer_formation:
+    verdict: pass
+    note: if (a_uzun_mu); == comparisons via conditionals' expression_evaluation.
+  skill.c.conditionals->skill.c.pointer_dereference:
+    verdict: pass
+    note: if (p != NULL), if (*p > ust).
+  skill.english.imperative_instruction_comprehension->skill.english.documentation_navigation:
+    verdict: pass
+    note: descriptions are imperative clauses (show ..., print only ..., sort by ...); glossed in the lesson word list.
+  skill.english.preposition_function_word_comprehension->skill.english.documentation_navigation:
+    verdict: pass
+    note: of/for/by glossed; 'in' (f07) is not in the word list but f07 declares the prerequisite.
+  skill.english.technical_noun_phrase_recognition->skill.english.documentation_navigation:
+    verdict: pass
+    note: why cites 'the size of each file' and 'the number of files', which exist (f07, g07); glossed via the word list.
+  skill.linux.process_exit_stdout_stderr_basic->skill.shell.command_options_redirection_basic:
+    verdict: pass
+    note: '''(çıkış durumu 0)'' and ''(stdout)'' glossed where used.'
+teach_requires:
+  skill.memory.storage_lifetime_intuition:
+    verdict: pass
+    note: int *, return &x, *p, malloc shown; no cycle.
+  skill.python.functions_parameters_return:
+    verdict: pass
+    note: / and // shown.
+  skill.programming.code_reading_basic:
+    verdict: pass
+    note: if/else and % // shown.
+  skill.python.list_operations:
+    verdict: pass
+    note: if n > sinir.
+  skill.python.set_operations:
+    verdict: pass
+    note: if x in gorulen.
+  skill.python.modules_imports_basic:
+    verdict: pass
+    note: __main__ guard and mean([...]) shown.
+  skill.python.exception_handling:
+    verdict: pass
+    note: 'complete: if adet < 0 and liste[0].'
+  skill.python.string_text_operations:
+    verdict: pass
+    note: 'complete: if len(metin) > n, list-like indexing/slicing, split/join lists; no cycle (the list lesson uses no string
+      method).'
+  skill.python.files_paths_basic:
+    verdict: pass
+    note: if len(satir) > len(en_uzun).
+  skill.c.standard_io_basic:
+    verdict: pass
+    note: c * 9 / 5 + 32 and != 1.
+  skill.c.for_iteration:
+    verdict: pass
+    note: if (i % 3 == 0).
+  skill.c.functions_basic:
+    verdict: pass
+    note: if (a > b).
+  skill.memory.address_value_distinction:
+    verdict: pass
+    note: int karesi(int s).
+  skill.c.pointer_formation:
+    verdict: pass
+    note: if (a_uzun_mu) and pointer comparisons.
+  skill.c.pointer_dereference:
+    verdict: pass
+    note: if (p != NULL), if (*p > ust).
+  skill.python.tuple_immutable_sequence:
+    verdict: pass
+    note: //, %, / and list comparison/slicing all shown; added wait is only list_operations itself (both hang off for_iteration
+      + functions).
+  skill.python.mapping_collections_basic:
+    verdict: pass
+    note: sorted(...items()) taught in canonical and worked example; list of pairs in worked example and check2. Pair unpacking
+      (for k, v in d.items(), for kategori, tutar in kalemler) is glossed in the lesson itself, so tuple_immutable_sequence
+      is not needed.
+  skill.python.exceptions_read_basic:
+    verdict: pass
+    note: function_decomposition is cheap (15A) and clearly needed. list_operations is a real but glossed reliance that moves
+      this reading-only Skill from 'after run_repl_script' to 'after list_operations'; acceptable because the authored order
+      already places it after lists and its only dependent (exception_handling) requires lists itself.
+answer_misconceptions: {}
+qa_decisions:
+  lesson_findings:
+    skill.programming.test_case_basic|design_expected_case|check2|comparison:
+      verdict: pass
+      note: == only in the check.
+    skill.programming.code_reading_basic|demonstrate_capability|check2|for_range:
+      verdict: pass
+      note: loop only in the check.
+    skill.programming.code_reading_basic|demonstrate_capability|check4|function_def:
+      verdict: pass
+      note: def only in the check.
+    skill.programming.input_validation_reasoning|demonstrate_capability|check1|for_range:
+      verdict: pass
+      note: loop only in the check.
+    skill.python.conditionals|write_branch_logic|check1|for_loop:
+      verdict: pass
+      note: no for in the lesson.
+    skill.python.for_iteration|iterate_sequence|check3|boolean_logic:
+      verdict: pass
+      note: lesson shows no if/or (the 'Sayaç' paragraph is prose).
+    skill.python.for_iteration|iterate_sequence|check3|comparison:
+      verdict: pass
+      note: as above.
+    skill.python.for_iteration|iterate_sequence|check3|if_branch:
+      verdict: pass
+      note: as above.
+    skill.python.tuple_immutable_sequence|demonstrate_capability|check2|exceptions:
+      verdict: pass
+      note: lesson states the TypeError; no try.
+    skill.python.exceptions_read_basic|extract_error_type_location|check1|as_binding:
+      verdict: pass
+      note: try/except only in the check.
+    skill.python.exceptions_read_basic|extract_error_type_location|check1|exceptions:
+      verdict: pass
+      note: as above.
+    skill.python.exceptions_read_basic|extract_error_type_location|check1|main_guard:
+      verdict: pass
+      note: pattern false positive (type(e).__name__).
+    skill.python.exceptions_read_basic|extract_error_type_location|check2|as_binding:
+      verdict: pass
+      note: as check1.
+    skill.python.exceptions_read_basic|extract_error_type_location|check2|exceptions:
+      verdict: pass
+      note: as check1.
+    skill.python.exceptions_read_basic|extract_error_type_location|check2|main_guard:
+      verdict: pass
+      note: as check1.
+    skill.python.scope_name_resolution|demonstrate_capability|check3|as_binding:
+      verdict: pass
+      note: lesson states the UnboundLocalError; no try.
+    skill.python.scope_name_resolution|demonstrate_capability|check3|exceptions:
+      verdict: pass
+      note: as above.
+    skill.python.scope_name_resolution|demonstrate_capability|check3|main_guard:
+      verdict: pass
+      note: as above.
+    skill.python.files_paths_basic|demonstrate_capability|check2|pass_statement:
+      verdict: pass
+      note: 'no pass in the lesson. (The two ''imports'' entries are correctly gone: with hard_after_15h, modules -> path_handling
+        -> files makes imports reachable.)'
+    skill.git.repository_status_diff|inspect_change_state|check3|pipe:
+      verdict: pass
+      note: lesson shows the whole git diff.
+    skill.python.value_type_behavior|demonstrate_capability|check1|boolean_logic:
+      verdict: pass
+      note: canonical teaches True/False as bool values.
+    skill.git.repository_status_diff|inspect_change_state|check2|git_record:
+      verdict: pass
+      note: '''# hazırlık'' explained in canonical.'
+    skill.git.repository_status_diff|inspect_change_state|check3|git_record:
+      verdict: pass
+      note: as check2.
+    skill.git.repository_status_diff|inspect_change_state|worked_example|git_record:
+      verdict: pass
+      note: lines marked.
+    skill.c.compile_link_run_basic|classify_compile_vs_runtime_failure|check3|function_definition:
+      verdict: pass
+      note: cycle real; gloss 'kare bildirilmiş ama gövdesi yazılmamış' present.
+    skill.c.compile_link_run_basic|classify_compile_vs_runtime_failure|worked_example|function_definition:
+      verdict: pass
+      note: as check3.
+    skill.c.declaration_type_model|write_basic_declarations|state_trace|division_remainder:
+      verdict: pass
+      note: cycle real; result 2.5 shown.
+    skill.c.standard_io_basic|demonstrate_capability|canonical|if_else:
+      verdict: pass
+      note: 'cycle real; purpose stated. Optional: programming.branching_reasoning (15A) as a teach requirement would give
+        the if concept without a cycle.'
+    skill.c.standard_io_basic|demonstrate_capability|worked_example|if_else:
+      verdict: pass
+      note: as canonical.
+  alt_references:
+    item.python.for_iteration.iterate_sequence.f03:
+      verdict: pass
+      note: suite passes; if/==/or reachable via declared conditionals.
+    item.python.mapping_collections_basic.select_and_use_mapping.f04:
+      verdict: pass
+      note: suite passes; ilk flag replaces is None naturally.
+    item.python.files_paths_basic.demonstrate_capability.g08:
+      verdict: pass
+      note: if satir.strip() != "" is idiomatic; suite passes.
+  fixed_output_exemptions:
+    item.python.run_repl_script.execute_and_classify_result.f01:
+      verdict: pass
+      note: printing two lines is the task.
+    item.python.run_repl_script.execute_and_classify_result.f04:
+      verdict: pass
+      note: the fix is the print statement.
+    item.python.run_repl_script.execute_and_classify_result.g02:
+      verdict: pass
+      note: Print -> print.
+    item.python.run_repl_script.execute_and_classify_result.g03:
+      verdict: pass
+      note: unclosed quote in print.
+    item.python.run_repl_script.execute_and_classify_result.g06:
+      verdict: pass
+      note: indentation of a print.
+    item.python.run_repl_script.execute_and_classify_result.g08:
+      verdict: pass
+      note: text case is the construct.
+    item.c.compile_link_run_basic.compile_and_run_small_program.f01:
+      verdict: pass
+      note: fixed text is the task.
+    item.c.compile_link_run_basic.compile_and_run_small_program.f02:
+      verdict: pass
+      note: line ends are the task.
+    item.c.compile_link_run_basic.compile_and_run_small_program.f03:
+      verdict: pass
+      note: quote escape is the task.
+    item.c.compile_link_run_basic.compile_and_run_small_program.f04:
+      verdict: pass
+      note: tab escape is the task.
+    item.c.compile_link_run_basic.compile_and_run_small_program.f05:
+      verdict: pass
+      note: backslash and %% escapes are the task.
+    item.c.compile_link_run_basic.compile_and_run_small_program.g01:
+      verdict: pass
+      note: reason now states honestly that the one-printf instruction is not checked and that any program printing the three
+        lines is a correct answer. Acceptable; the prompt still asks for one printf, so a learner using three is not told
+        otherwise (see findings).
+    item.c.compile_link_run_basic.compile_and_run_small_program.g02:
+      verdict: pass
+      note: empty line via line ends is the task.
+    item.c.compile_link_run_basic.compile_and_run_small_program.g03:
+      verdict: pass
+      note: compile error inside a printf string.
+    item.c.compile_link_run_basic.compile_and_run_small_program.g04:
+      verdict: pass
+      note: 'missing #include; a fresh correct program is the fix.'
+    item.c.compile_link_run_basic.compile_and_run_small_program.g05:
+      verdict: pass
+      note: text/line-end difference is the task.
+    item.c.compile_link_run_basic.compile_and_run_small_program.g07:
+      verdict: pass
+      note: missing brace; fixed text otherwise.
+    item.c.compile_link_run_basic.compile_and_run_small_program.g10:
+      verdict: pass
+      note: print -> printf.
+    item.c.compile_link_run_basic.compile_and_run_small_program.g11:
+      verdict: pass
+      note: quote and tab escapes are the task.
+  notation_overlay:
+    verdict: pass
+    note: 'Re-verified: ''in'' outside for only in set/mapping/string lessons; ''as'' only in exception_handling and files_paths_basic;
+      no is/pass/break/continue in any lesson. Brackets granularity recorded as a known limit is acceptable now that the needs
+      it hid (tuple, string, mapping -> list_operations) are declared. Comment text is still scanned by the in/is/as patterns
+      (false-positive risk for future supplements).'
+  label_keeps:
+    item.english.follow_bilingual_technical_instruction.execute_known_instruction.g11:
+      verdict: pass
+      note: The steps are listed in reverse, so the learner must order by number. authentic_application is earned.
+    item.memory.address_value_distinction.trace_simple_memory_example.t01:
+      verdict: pass
+      note: This is a reserved transfer item (transfer_profile cross_topic_context). transfer_integration is structural, and
+        its cross-topic context (for_iteration) is declared and needed.
+    item.c.declaration_type_model.write_basic_declarations.g02:
+      verdict: pass
+      note: It is already basic. 'Borderline-easy' describes the item within basic, not its label.
+    item.c.expression_evaluation.demonstrate_capability.g10:
+      verdict: pass
+      note: The 15G 'borderline' note is about near-variance to f06, which the reviewer accepted, not about the label.
+    item.linux.terminal_filesystem_navigation.navigate_relative_absolute.g08:
+      verdict: pass
+      note: The 15G 'borderline' note is about near-variance to f05, which the reviewer accepted as its own variant, not about
+        the label.
+findings:
+  python:
+  - 'Resolved (t01): the required regex used to list three spellings of the last index and rejected correct programs such
+    as sayilar[son_sira] and sayilar[n - 1]. The proposed pattern \bsayilar\[(?!\s*0\s*\])(?!\s*3\s*\])[^\]]+\] is applied,
+    and t01_only.out shows both programs pass while the cheats still fail.'
+  - 'All earlier findings are resolved. Round 1: import instead of run; .strip(); the constant program with named variables;
+    prompt ambiguity; labels. Round 2: sys.exit losing the names; half-hand-computed assignment programs. I re-ran their probes
+    against the current builder and every one now behaves as declared.'
+  - 'Minor limits, not blocking: required blanks only one-line texts and comments, so a triple-quoted text that contains print(mesafe)
+    would satisfy g04 (contrived). Before Python 3.12 an f-string is one STRING token and gets blanked, so print(f"{mesafe}")
+    would fail g04 on an old Python. That is unnatural here, since the fix shown is print(mesafe), but it is worth knowing
+    if a learner''s Python is older.'
+  - 'Optional label note: run_repl_script g04 (fix a misspelled variable from a NameError) stays authentic_application. It
+    is close to the canonical NameError example and the worked example, so basic would also be defensible. It is not part
+    of any review decision.'
+  - 'Residual cheats that pass are all contrived, and I accept them as the declared limit: recomputing the literal (80 + 7,
+    0x57); f04 copy-then-overwrite; f05 doing one update per name.'
+  c:
+  - 'Method across three rounds: each item''s source_checks went through source_check_harness(''c'', ...) from tools/build_curriculum_package.py
+    and were run with b.run_suite on the real runner in WSL gcc 15 (gcc -std=c11 -Wall -Wextra build). Final round: 102 programs,
+    correct variants and cheats for every revision and new item. 97 behaved as a correct check should. The remaining 5 are
+    accepted: ''_Bool'' (the prompt names bool) and four contrived cheats that pass the answer as a numeric printf argument
+    or adjust one value asymmetrically (h01 x2, declaration g07, while g07).'
+  - 'Fixed since round 1: comma-tolerant declaration regexes (\b<type>\s+(?:[^;{}]*,\s*)?<name>\b); required expressions for
+    f03, g03, g07, g08 and g09; no unasked cast in f05; ''long long int'', ''double const'' and ''int const'' accepted; B
+    and 3 forbidden in g06/g10; 4, 8, 12, 16 forbidden in while g07; -Werror=unused-but-set-variable; required patterns searched
+    in string-blanked code (char literals untouched); two memory labels lowered to basic.'
+  - 'Remaining gap class: a value given as a numeric printf argument while every declared variable is still read. A ban list
+    that only scans strings cannot see it. Contrived; accepted.'
+  - 'Compile exemptions (fixed_output.yaml), each read against its item: f01-f05, g01-g05, g07, g10 and g11 are escapes, line
+    ends or compile fixes where printing the fixed text is the construct, so they are justified. g08 needs none (its exit-code
+    test fails the constant program). g06 and g09 were the only computations and are now revised. Confirmed: the g01 reason
+    now says the one-printf instruction is not checked and that a program printing the three lines is correct either way.
+    That accurately describes the suite (three printf calls pass) and resolves my round-3 note.'
+  - 'Style only (unchanged): the f03, g03, g07 and g08 prompts end with two consecutive ''Testler ... bakar.'' sentences;
+    merging them would read better.'
+  linux_english_15a:
+  - 'Final result: 38/38 pass (36 revisions plus h01/h02); all 5 keeps agreed. Round 1 had 7 fails: five labels left one level
+    too high by the ''one level down'' rule, h01''s label, and h02''s hidden prerequisite. All were resolved in round 2 by
+    setting labels to the level the reviews describe and by fixing the prompts. The four review_fix items do what the earlier
+    reviewers asked: follow_bilingual f05 without the scaffold, error_fragments f07 with the neutral prompt, the negation
+    g04 claim, git f04 also_accept armut.'
+  - label_decisions.yaml is complete and current for every Linux/English/15A entry. All 36 revisions have a matching revise
+    entry with a reason and my round-2 note as review_15h. The two notes found cut off in round 3 (follow_bilingual f05, error_fragments
+    f07) are now quoted whole. The five keeps carry their reasons.
+  - 'Open loops (not 15H content work): imperative_instruction_comprehension has no transfer_integration item outside the
+    lesson, and negation_question_comprehension has no authentic_application item. Neither blocks mastery: both are standard
+    Objectives, with no requires_transfer, and their check tasks still have items. Also, git f07 (''-ikinci'') does not accept
+    the bare ''ikinci'' the way f04 now accepts ''armut'', and the label lesson does not gloss the noun ''copy'' (kopya),
+    which imperative g07 relies on. In round 3 I could not yet find the first three in vault/agent/OPEN_LOOPS.md; make sure
+    they land there at POST-STEP.'
+  graph:
+  - 'All round-1 and round-2 points are resolved as applied: no redundant edges remain; the missing lesson needs are declared;
+    the mapping and exception_handling scaffold misclassifications are removed; g01/g10 are revised so no placeholder is needed;
+    the Objective-wide exemption is replaced by per-item reasons; g04/t01/g06/g09 are revised with source checks that ignore
+    strings and comments; lesson_checks and lesson_text now use hard_after_15h(), and the two stale files_paths_basic ''imports''
+    entries are gone (29 entries; lesson_checks 24 findings, 0 unresolved).'
+  - 'Residual, low risk: C not_in_source is searched only inside string literals, so g06 can be satisfied by printf("Toplam:
+    %d\n", 437) plus a bare ''19 * 23;'' statement (only -Wunused-value). Only deliberate gaming; optionally also search numeric
+    literals outside texts, as the Python harness does.'
+  - 'compile_and_run g01: the exemption reason is now honest, but the prompt still says ''YALNIZ BİR printf çağrısıyla'' and
+    nothing checks it. Either add a one-printf source check or soften the prompt; neither blocks.'
+  - exceptions_read_basic -> list_operations (teach) is the most expensive new wait, resting on one glossed IndexError example;
+    accepted given the authored order and exception_handling's own list requirement.
+  - 'No further missed lesson needs: re-scanned every 15A/15B lesson (canonical, alternatives, contrasts, numbered listings,
+    return/import/pass lines) and every 15C/15D lesson with relaxed C line rules against the post-15H teach requirements.'

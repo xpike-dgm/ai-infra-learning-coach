@@ -1,0 +1,8 @@
+skill: skill.shell.command_options_redirection_basic
+objectives:
+- id: objective.shell.command_options_redirection_basic.construct_simple_command
+  revisions:
+  - revises: f08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application

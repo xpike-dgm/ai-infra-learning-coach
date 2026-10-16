@@ -185,6 +185,40 @@ class CurriculumPublishingTest {
     }
 
     @Test
+    fun `a later package retires an earlier item version by an appended record and adds an edge, and neither is carried twice`() {
+        withStore { db ->
+            db.publishCurriculum(package1(), 1_789_000_000_000)
+            val other = VersionedRef("skill.python.functions", 1)
+            db.publishCurriculum(CurriculumPackage(version = 2, sourceRefs = "curriculum", provenance = "authored",
+                skills = listOf(skill(other).copy(canonicalName = "Functions"))), 1_789_000_050_000)
+            // 15H (`D-121`): the item's next version, its own record, the retirement of the version it replaces, and an
+            // edge between two Skills an earlier version published.
+            val itemV2 = VersionedRef(itemRef.logicalId, 2)
+            val retire = ValidationRecord(itemRef, 1_789_000_100_000, LifecycleStatus.RETIRED, "15h/superseded_by_v2", ContentOrigin.HUMAN_AUTHORED)
+            val edge = PrerequisiteEdge(skillRef, other, 1, "soft", "evidence_interpretability", "default_prg_v0", "published", "authored")
+            val third = CurriculumPackage(version = 3, sourceRefs = "curriculum", provenance = "authored",
+                resources = listOf(package1().resources.single().copy(ref = itemV2, contentRef = "item://q1@v2")),
+                validationRecords = listOf(retire, ValidationRecord(itemV2, 1_789_000_100_000, LifecycleStatus.VALIDATED, "15h", ContentOrigin.HUMAN_AUTHORED)),
+                prerequisiteEdges = listOf(edge))
+            assertIs<PublishOutcome.Published>(db.publishCurriculum(third, 1_789_000_100_000))
+            assertEquals(LifecycleStatus.RETIRED, db.latestValidation(itemRef)?.status, "the newest record decides; the older one is kept")
+            assertEquals(2, db.count("resource_validation_record WHERE logical_id = '${itemRef.logicalId}' AND version = 1"))
+            assertEquals(LifecycleStatus.VALIDATED, db.latestValidation(itemV2)?.status)
+            assertEquals(listOf(edge), db.prerequisiteEdgesInto(other))
+
+            val before = Schema.curriculumTables.associateWith { db.count(it) }
+            val again = CurriculumPackage(version = 4, sourceRefs = "curriculum", provenance = "authored",
+                validationRecords = listOf(retire), prerequisiteEdges = listOf(edge))
+            val refused = assertIs<PublishOutcome.Refused>(db.publishCurriculum(again, 1_789_000_200_000))
+            assertEquals(listOf(
+                "skill_prerequisite_edge $skillRef -> $other v1 is already published and is never overwritten",
+                "resource_validation_record $itemRef at 1789000100000 is already recorded and is never overwritten",
+            ), refused.reasons)
+            assertEquals(before, Schema.curriculumTables.associateWith { db.count(it) }, "a refused publish wrote something")
+        }
+    }
+
+    @Test
     fun `published curriculum cannot be updated or deleted at the storage layer`() {
         withStore { db ->
             db.publishCurriculum(package1(), 1_789_000_000_000)

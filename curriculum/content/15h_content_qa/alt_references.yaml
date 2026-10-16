@@ -1,0 +1,39 @@
+# 15H (CQAX-v0 / D-121) — published items whose reference solution used a construct no lesson shows (notation_overlay).
+#
+# The item is what the learner sees; its reference solution is the author's evidence that the item can be solved with
+# what the lessons teach, and is never shipped. Here the evidence was wrong, not the item: each item below can be solved
+# with taught constructs, and the solution given here shows it. tools/content_qa.py scans each one with the overlaid
+# notation (no untaught construct) and runs it with the course's runner against the item's published suite (every test
+# passes). Nothing shipped changes, so no new version is published.
+
+item.python.for_iteration.iterate_sequence.f03:
+  found: "membership: the reference wrote harf in \"aeıioöuü\"; for_iteration reaches no lesson that shows in"
+  reference: |
+    kelime = input()
+    sayac = 0
+    for harf in kelime:
+        if harf == "a" or harf == "e" or harf == "ı" or harf == "i" or harf == "o" or harf == "ö" or harf == "u" or harf == "ü":
+            sayac += 1
+    print(sayac)
+item.python.mapping_collections_basic.select_and_use_mapping.f04:
+  found: "identity: the reference wrote en_iyi is None; no lesson shows is"
+  reference: |
+    def en_cok(sayim):
+        en_iyi = ""
+        ilk = True
+        for anahtar in sorted(sayim):
+            if ilk or sayim[anahtar] > sayim[en_iyi]:
+                en_iyi = anahtar
+                ilk = False
+        return en_iyi
+item.python.files_paths_basic.demonstrate_capability.g08:
+  found: "break_continue: the reference skipped blank lines with continue; no lesson shows continue"
+  reference: |
+    def puanlari_oku(yol):
+        sonuc = {}
+        with open(yol, encoding="utf-8") as f:
+            for satir in f.read().splitlines():
+                if satir.strip() != "":
+                    ad, puan = satir.split(",")
+                    sonuc[ad] = int(puan)
+        return sonuc

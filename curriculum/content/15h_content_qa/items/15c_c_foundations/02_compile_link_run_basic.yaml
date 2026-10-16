@@ -1,0 +1,42 @@
+skill: skill.c.compile_link_run_basic
+objectives:
+- id: objective.c.compile_link_run_basic.compile_and_run_small_program
+  revisions:
+  - revises: g06
+    reason: fixed_output
+    prompt: 'cozum.c adında bir C programı yaz: ekrana Toplam: 437 yazsın; 437''yi program 19 ile 23''ü çarparak hesaplasın
+      ve printf''e %d ile versin. Derleyip çalıştırarak dene. Testler, 437''nin 19 * 23 ile hesaplandığına ve printf yazısının
+      içine hazır yazılmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \b19\s*\*\s*23\b|\b23\s*\*\s*19\b
+      not_in_source:
+      - '437'
+    suite:
+    - id: product
+      expected_stdout: |
+        Toplam: 437
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g09
+    reason: fixed_output
+    prompt: 'cozum.c adında bir C programı yaz: ekrana tek satırda 2 * (3 + 4) = 14 yazsın. Eşittirin solundaki ifade yazı
+      olarak, sağdaki 14 ise programın aynı ifadeyi hesaplamasıyla %d ile yazılsın. Derleyip çalıştırarak dene. Testler, 14''ün
+      2 * (3 + 4) ile hesaplandığına ve printf yazısının içine hazır yazılmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \b2\s*\*\s*\(\s*3\s*\+\s*4\s*\)
+      not_in_source:
+      - '14'
+    suite:
+    - id: expression
+      expected_stdout: |
+        2 * (3 + 4) = 14
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok

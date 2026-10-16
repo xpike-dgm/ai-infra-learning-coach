@@ -1,0 +1,29 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.run_repl_script.execute_and_classify_result.f05@v2",
+  "item": "item.python.run_repl_script.execute_and_classify_result.f05@v2",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import ast, contextlib, io, re, tokenize\nwith open(\"cozum.py\", \"rb\") as f:\n    kaynak = f.read()\nadlar = {\"__name__\": \"__main__\", \"__file__\": \"cozum.py\", \"__builtins__\": __builtins__}\nwith contextlib.redirect_stdout(io.StringIO()) as cikti:\n    try:\n        exec(compile(kaynak, \"cozum.py\", \"exec\"), adlar)\n    except SystemExit:\n        pass\nprint(cikti.getvalue().rstrip())\nyasak = ['3']\njetonlar = list(tokenize.tokenize(io.BytesIO(kaynak).readline))\nmetin = {tokenize.STRING, getattr(tokenize, \"FSTRING_MIDDLE\", -1), getattr(tokenize, \"TSTRING_MIDDLE\", -1)}\ndef yazili(deger):\n    for j in jetonlar:\n        if j.type == tokenize.NUMBER and j.string == deger:\n            return True\n        if j.type in metin and re.search(r\"(?<![0-9.])\" + re.escape(deger) + r\"(?![0-9])\", j.string):\n            return True\n    return False\nprint(\"sonuc kaynakta yazili:\", \"evet\" if any(yazili(d) for d in yasak) else \"hayir\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "three_lines_after_fix",
+      "stdin": "",
+      "expected_stdout": "Toplam: 12\nOrtalama: 3\nBitti\nsonuc kaynakta yazili: hayir\n"
+    }
+  ]
+}

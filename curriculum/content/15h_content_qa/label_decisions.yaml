@@ -1,0 +1,480 @@
+# 15H (CQAX-v0 / D-121) — every difficulty label a review called generous, not earned, without context, modest or borderline
+# (open loops `generous_labels`, `transfer_labels`, `review_findings`; 15D–15G), and the labels 15H's own independent review
+# found too high. tools/content_qa.py finds every such note in the review files; each is decided here. A `revise` has a label
+# revision in items/ to the level the reviews say the item is (`to`; user decision 2026-10-10: a flawed published item is
+# replaced by its next version and the old one retired); a `keep` quotes why it stands. Notes are quoted whole.
+revise:
+  item.c.standard_io_basic.demonstrate_capability.f05:
+    from: transfer_integration
+    to: authentic_application
+    review: 15c_c_foundations
+    note: Leading spaces and a leading blank line tested; the '%c %d' wrong fails, two separate scanf calls pass. It applies
+      the canonical's space-before-%c rule directly, so transfer_integration is generous (authentic_application fits better).
+    review_15h: 'Unchanged from R1: the '' %c'' rule in a new structure; authentic_application fits.'
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.g06:
+    from: transfer_integration
+    to: authentic_application
+    review: 15g_assessment
+    note: 'Rewrite: the prompt explains stdout redirected with >, so no hidden shell knowledge is needed. Key A verified.
+      The file is created by the shell on the program''s behalf, which is a new instance (f03 and the worked_example have
+      the program write the file itself). Transfer_integration is generous but defensible, because it joins the screen-output
+      trap with file output.'
+    review_15h: 'New revision (round-1 keep disagreement). authentic_application fits. The prompt explains the redirection
+      itself, so the item is f03''s case (a file that exists because the program ran) plus the canonical''s ''Bir tuzak''
+      paragraph (readable text is still output, distractor B). That is named rules in a realistic new case, below f05 and
+      f07 (transfer). The key still verifies (shell: ''calisma_ciktisi'' is option A and no other).'
+  item.english.documentation_navigation.demonstrate_capability.f05:
+    from: authentic_application
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key A correct (man-pages(7): SEE ALSO lists related pages). Option A is the canonical''s gloss ''ilgili başka komutlar''
+      verbatim: recall; authentic label generous.'
+    review_15h: Unchanged. basic (recall) fits.
+  item.english.documentation_navigation.demonstrate_capability.f06:
+    from: authentic_application
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key 10 correct (default rule). Renamed isomorph of the canonical''s ''(default: 5) → 5'': authentic label generous.
+      Second pass: ''Yalnız sayıyı yaz.'' added (note resolved).'
+    review_15h: 'Unchanged. basic fits: ''(default: 5) → 5'' renamed.'
+  item.english.documentation_navigation.demonstrate_capability.f08:
+    from: transfer_integration
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key A correct (man(1): arguments within [ ] are optional). It is the canonical''s own line ''Usage: rapor-yaz [OPTION]...
+      FILE'' renamed (rapor-al) with one more bracketed element [NAME], and the brackets_required contrast says ''burada FILE
+      zorunludur'': renamed isomorph; the transfer label is not earned (f07 carries transfer). Make it structurally new (e.g.
+      two required parts, or the required part first).'
+    review_15h: 'Round-1 fail resolved: now basic, which fits. It is the canonical''s Usage line renamed, plus one more bracketed
+      element.'
+  item.english.follow_bilingual_technical_instruction.execute_known_instruction.f05:
+    from: authentic_application
+    to: basic
+    review_15h: 'basic fits. The review fix does what the 15F reviewer asked (drop the scaffold): the v2 prompt is ''Bu talimatta
+      kurulumdan hemen sonra ne yapılır?'' with no Türkçe destek line, while code, options and key are unchanged. The learner
+      must now recognise Install (label lesson: install = kur) as the kurulum step and read Step 2''s Restart (imperative
+      lesson: restart = yeniden başlat). The English is measured again, and the TEIP-v0 §10.1 conflict is gone. Lexicon: every
+      word (step, install, restart, check, version, tool, program, the) is in this Skill''s lexicon or its prerequisite closure;
+      the builder''s scan finds no hidden prerequisite. The key is still right, and C (Araç yeniden kurulur) is a fair restart/install
+      confusion. The prompt''s ''kurulum'' names Step 1''s meaning, which is the task''s anchor, not a leak. Still basic,
+      at f02''s level plus one word to recognise.'
+  item.english.follow_bilingual_technical_instruction.execute_known_instruction.f07:
+    from: transfer_integration
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key A correct. A plain first/next/then sequence: transfer label generous.'
+    review_15h: 'Round-1 fail resolved: now basic, which fits. It is a plain First/Next/Then sequence in written order.'
+  item.english.follow_bilingual_technical_instruction.execute_known_instruction.f08:
+    from: transfer_integration
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key A correct. Isomorph of the canonical''s ''Save the file first. → Önce dosyayı kaydet.'': transfer label generous.'
+    review_15h: 'Round-1 fail resolved: now basic, which fits. It is the canonical''s ''Save the file first'' pattern, and
+      the sentence-final ''first'' does not change the written order.'
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f04:
+    from: authentic_application
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key A correct. Same structure as the worked example (''Create a folder and move the file''): renamed isomorph,
+      authentic label generous. Second pass: the sentence is no longer in the Objective statement.'
+    review_15h: 'Unchanged. basic fits: the worked example ''Create a folder and move the file'' renamed.'
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f07:
+    from: transfer_integration
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key A correct. The and-order rule is the canonical''s and the and_order_free contrast''s: named-rule isomorph,
+      transfer label generous. Second pass: the reference no longer credits Wikipedia with the ordering claim; it cites Imperative
+      mood for the form and the lesson for the order (first-pass citation note resolved).'
+    review_15h: 'Round-1 fail resolved: now basic, which fits. ''Check the version and update the program.'' has the canonical''s
+      ''Save the file and close the program.'' structure and asks only for the first action. It no longer outranks f04 (basic).'
+  item.english.imperative_instruction_comprehension.demonstrate_capability.f08:
+    from: transfer_integration
+    to: authentic_application
+    review: 15f_english_a1_a2
+    note: 'Key A correct (''Biraz bekle'' adds ''biraz'', harmless). Objectless imperatives + again: a small new combination.'
+    review_15h: 'New revision. authentic_application fits. In ''Wait and try again.'' both imperatives have no object, which
+      no lesson sentence shows (they are all V + the N), and ''again'' must be read with ''try''. That is the reviewer''s
+      ''small new combination'' and the level of g08 (now authentic). It is not transfer: one Skill, one sentence, and the
+      and-order is not even needed for the key.'
+  item.english.imperative_instruction_comprehension.demonstrate_capability.g07:
+    from: transfer_integration
+    to: authentic_application
+    review: 15g_assessment
+    note: Key A correct (keep the file, remove the copy -> the original stays). 'the copy' as a noun is untaught (copy = kopyala
+      only), recoverable from the cognate and the options, as the 15F review accepted for 'the build'; add 'copy (kopya)'
+      to the label lesson. Transfer label modest (keep vs remove reasoning).
+    review_15h: 'New revision (15G note ''Transfer label modest''). authentic_application fits. ''Keep the file and remove
+      the copy.'' asks what remains, the same outcome frame as g06 (''Change the name and save the file'', authentic): it
+      reasons over two actions, but in one Skill and with no new context. The 15G reviewer''s content note still stands outside
+      the label: ''the copy'' is a noun the label lesson glosses only as kopyala (copy = kopya appears only in follow_bilingual
+      f04''s scaffold). It is recoverable, as the 15F review accepted for ''the build'', but adding ''copy (kopya)'' to the
+      label lesson remains open.'
+  item.english.imperative_instruction_comprehension.demonstrate_capability.g08:
+    from: transfer_integration
+    to: authentic_application
+    review: 15g_assessment
+    note: Key A correct (again attaches to 'run the tests'). Measures the lesson word again inside a two-action instruction;
+      transfer label generous. 'Set the version' is an unusual instruction but understandable.
+    review_15h: 'Unchanged. authentic_application fits: deciding what ''again'' attaches to in a two-action instruction.'
+  item.english.negation_question_comprehension.demonstrate_capability.f04:
+    from: authentic_application
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key A correct. Isomorph of the canonical''s ''The folder has no files'' (→ hiç dosya yok): authentic label generous.'
+    review_15h: 'Unchanged. basic fits: ''The folder has no files'' renamed.'
+  item.english.negation_question_comprehension.demonstrate_capability.f05:
+    from: authentic_application
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key A correct. Isomorph of the canonical''s ''Where is the log?'' and, since the second pass, of the worked example''s
+      ''Where is the size?'': authentic label generous; the item still requires reading the where-question, which no option
+      list in the lesson answers.'
+    review_15h: 'Unchanged. basic fits: the canonical''s ''Where is the log?'' with a two-word subject.'
+  item.english.negation_question_comprehension.demonstrate_capability.f06:
+    from: authentic_application
+    to: basic
+    review: 15f_english_a1_a2
+    note: Key A correct; B (yes/no reading) is a good distractor.
+    review_15h: New revision. basic fits. 'Which option shows all files?' has the same 'what does the question ask' template
+      as f05, g04 and g05 (all basic). The canonical glosses which = hangisi, and the do-support-free form 'Which option shows'
+      is the plain is/simple-present reading. B (a yes/no reading) is a good distractor but does not raise the level. Consistent
+      with its siblings.
+  item.english.negation_question_comprehension.demonstrate_capability.g04:
+    from: authentic_application
+    to: basic
+    review: 15g_assessment
+    note: 'Key A correct (why = neden). Different wh-word from published f05/f06. Notes: the claim says ''neden basarisiz
+      oldugunu'' but the item says stop (durmak), fix the claim; authentic label has no context.'
+    review_15h: 'basic fits. The review fix is applied as the 15G reviewer asked: the v2 verify claim reads ''Why does the
+      build stop? derlemenin neden durduğunu sorar.'', which matches the stimulus (stop = durmak) and option A (''Derlemenin
+      neden durduğunu''). The reference line is unchanged and correct, and the key is unchanged. Nothing else in the item
+      changed.'
+  item.english.negation_question_comprehension.demonstrate_capability.g05:
+    from: authentic_application
+    to: basic
+    review: 15g_assessment
+    note: 'Key A correct, and the claim now describes this sentence. The how-question differs from published f05 (where) and
+      f06 (which) and from g04 (why) in the wh-word measured. Note: g04/g05 and f05 share the ''what does this question ask''
+      template; the authentic_application label has no context.'
+    review_15h: 'Unchanged. basic fits: a How + does question in the same template.'
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.f04:
+    from: authentic_application
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key 2 verified (gcc 15.2: ''a.c:2:12: error: ‘count’ undeclared (first use in this function)'', column 12 = after
+      4 spaces + ''return ''; same with -std=c99..c23). The curly quotes appear only in a UTF-8 locale: with LANG=C (or an
+      uninstalled locale) gcc prints ''count'' in ASCII quotes and the verify grep fails; the prelude and WSL''s default LANG=C.UTF-8
+      make it stable. This message form is long-standing (gcc 13 in CI expected identical; not runnable here). Isomorph of
+      the canonical''s ''a.c:5:3'' reading: authentic label generous.'
+    review_15h: 'Unchanged. basic fits: the a.c:5:3 line reading renamed.'
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.f05:
+    from: authentic_application
+    to: basic
+    review: 15f_english_a1_a2
+    note: Key data.txt verified (Python 3.14; stable).
+    review_15h: 'New revision. basic fits. The learner extracts the quoted file name from ''FileNotFoundError: [Errno 2] No
+      such file or directory: ''data.txt'''', the same task as f03 (basic) and f06 (now basic). The canonical names the No
+      such file or directory pattern and says quoted names are read as they are. The key still verifies (shell, Python 3.14).
+      label_decisions.yaml quotes only the 15F note ''Key data.txt verified (Python 3.14; stable)'', which does not give the
+      reason for the relabel; see findings.'
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.f06:
+    from: authentic_application
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'First pass failed: ''pyhton3: command not found'' was a substring of bash''s ''bash: line 1: ...'' (checked with
+      -qF), and the learner''s WSL Ubuntu terminal prints command-not-found''s ''Command ''pyhton3'' not found, did you mean:''
+      instead. Second pass: replaced by ''ModuleNotFoundError: No module named ''numpyy'''' (prompt: the program stopped,
+      which module was not found, write only its name), key numpyy, verified by python3 -c ''import numpyy'' | tail -n 1 |
+      grep -qxF. Re-run in WSL (Python 3.14.4) under LC_ALL=C.UTF-8, LANG=C.UTF-8 and LANG=C: status 1, the last stderr line
+      is exactly the shown line, the script prints numpyy; unchanged when a module named numpy is importable (no ''Did you
+      mean'' for modules in 3.14) and the same form for a stdlib typo; the line has had this form since Python 3.6, so 3.12
+      in CI prints the same. Words: no (taught), module and named added to the lexicon with meanings in the canonical; ModuleNotFoundError
+      is an identifier. The canonical names the pattern (''No module named ... → bu adda bir modül yok''); the task is to
+      extract the quoted name, as in f03/f05: authentic label generous.'
+    review_15h: 'Unchanged. basic fits: the named ''No module named'' pattern, extracting the quoted name.'
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.f07:
+    from: transfer_integration
+    to: authentic_application
+    review: 15f_english_a1_a2
+    note: 'Key A verified (''IsADirectoryError: [Errno 21] Is a directory: ''logs'''', logs is a directory). Exactly one option
+      true. Second pass: the canonical now gives is (-dir) and a (bir), so ''Is a directory'' uses only glossed words (first-pass
+      vocabulary note resolved). Remaining notes: the prompt (''logs adlı şeyi bir dosya gibi açmaya çalıştı'') restates the
+      second half of option A, a strong cue; on Windows Python raises PermissionError for this case (the course runs Python
+      in Linux). Transfer label generous; a neutral prompt (''Bir Python programı bu son satırla durdu'') would measure more.'
+    review_15h: 'authentic_application fits, and now honestly. The review fix applies the 15F reviewer''s suggested wording
+      word for word: the prompt is ''Bir Python programı bu son satırla durdu. Sorun nedir?'' and no longer restates half
+      of option A. The code (the real IsADirectoryError line), options and key are unchanged, and the builder re-ran the verify
+      (''klasor'' is option A and no other). Lexicon: Is a directory uses only glossed words (is, a, directory). The learner
+      now has to compose ''Is a directory'' (not a listed pattern) into ''logs bir klasör'' and rule out B and C without a
+      cue. Note: the Turkish prompt does not say the program opened logs; option A''s second half (''onu bir dosya gibi açmaya
+      çalıştı'') is an inference IsADirectoryError supports, so A is still the only true option.'
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.f08:
+    from: transfer_integration
+    to: authentic_application
+    review: 15f_english_a1_a2
+    note: 'Key A verified: gcc 15.2 reports ''b.c:3:5: error: expected ‘,’ or ‘;’ before ‘return’'' at the return token in
+      every -std (c99-c23, gnu89); the C front end has long reported this at the next token (gcc 13 expected identical; not
+      runnable here); ASCII quotes under LANG=C as in f04. Exactly one option true. The real omission is at the end of line
+      2; the canonical''s ''(çoğu zaman eksik ;)'' could add ''bir önceki satırın sonunda''. Named-pattern application: transfer
+      label generous.'
+    review_15h: 'Unchanged. authentic_application fits: two named patterns (file:line:column and ''expected X before Y'')
+      read together.'
+  item.english.read_simple_terminal_error_fragments.extract_known_signal.g08:
+    from: transfer_integration
+    to: basic
+    review: 15g_assessment
+    note: 'Key A verified (the script checks stderr has the cat line and stdout is exactly start/done). Note: recognising
+      the one error line among start/done is basic; the transfer_integration label is generous.'
+    review_15h: 'Round-1 fail resolved: now basic, which fits. The task is to pick the canonical''s ''No such file or directory''
+      line out from the taught words start and done. label_decisions now quotes the 15G note whole, including ''is basic''.'
+  item.english.recognize_core_technical_labels.match_term_meaning.f08:
+    from: transfer_integration
+    to: authentic_application
+    review: 15f_english_a1_a2
+    note: 'Key A correct. Applies the canonical''s own gloss ''upload (yükle: senin bilgisayarından başka bir yere)'' and
+      the download_is_upload contrast to a page: named-rule application, transfer label generous.'
+    review_15h: 'Unchanged. authentic_application fits: the learner maps a described goal to a label on a web page, as in
+      f04.'
+  item.english.recognize_core_technical_labels.match_term_meaning.g08:
+    from: transfer_integration
+    to: authentic_application
+    review: 15g_assessment
+    note: Key A correct (Close closes, the saved file stays); 'Kaydettigin bir dosyada' removes the unsaved-changes case.
+      Option A paraphrases the close_deletes contrast, acceptable under the vocabulary interpretation; transfer label generous
+      (direct gloss in a new editor-tab context).
+    review_15h: 'Unchanged. authentic_application is acceptable, at the low edge: label to consequence in an editor tab with
+      the close_deletes trap.'
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.f06:
+    from: authentic_application
+    to: basic
+    review: 15f_english_a1_a2
+    note: 'Key A correct under either bracketing (default [output file name] or [default output file] name): the field holds
+      a name. Same shape as the worked example ''current project name'' (modifier + noun + noun + name): authentic label generous.
+      Second pass: the Objective statement no longer shows this stimulus (it now shows the worked example''s phrase).'
+    review_15h: 'Unchanged. basic fits: the shape of the worked example ''current project name''.'
+  item.english.technical_noun_phrase_recognition.demonstrate_capability.g04:
+    from: authentic_application
+    to: basic
+    review: 15g_assessment
+    note: 'Key A correct (''gecici klasor'' = temporary folder). B tests the order rule directly; C and D test the words.
+      Structurally distinct, as it chooses the English order from the Turkish. Notes: it shares ''temporary'' with g01 and
+      its D is g01''s stimulus, so the sampler should not serve them together. The authentic_application label is generous
+      (no context).'
+    review_15h: 'Unchanged. basic fits: the two-word order rule asked from Turkish to English, with no context.'
+  item.git.repository_status_diff.inspect_change_state.f04:
+    from: authentic_application
+    to: basic
+    review: 15e_linux_git_shell
+    note: 'Key ''+armut'' verified (full diff ''@@ -1 +1 @@ / -elma / +armut''). It is the canonical''s own diff example (one
+      line replaced: -eski / +yeni) renamed: isomorph, so the authentic_application label is generous. The accepted answer
+      is only ''+armut''; the prompt asks for the line, but consider accepting ''armut'' too.'
+    review_15h: 'basic fits (the canonical''s -eski/+yeni diff renamed). The review fix is applied as the 15E reviewer asked:
+      also_accept [armut] beside the key ''+armut''. ''armut'' is the content of the + line, which is what ''satır nedir?''
+      can fairly mean, and the builder emits the accepted list (answer plus also_accept). The key still verifies (the last
+      + line is +armut). Minor: published f07 of the same Objective (''-ikinci'') still accepts only the prefixed form; see
+      findings.'
+  item.git.stage_commit_history_basic.commit_and_verify_history.f08:
+    from: transfer_integration
+    to: authentic_application
+    review: 15e_linux_git_shell
+    note: 'Key A verified (git diff empty, git diff --staged shows +sonuc). Exactly one option true. The canonical defines
+      both commands directly (''git diff → hazırlanmamış'', ''--staged → hazırlanmış''): named-rule application, transfer
+      label generous.'
+    review_15h: 'Unchanged. authentic_application fits: diff vs diff --staged defined in the canonical, applied to an add
+      -> change -> add sequence the lesson does not show.'
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f05:
+    from: authentic_application
+    to: basic
+    review: 15e_linux_git_shell
+    note: 'Key A verified (stdout yazdim, status 7). Exactly one option true (B and C share the outcome ''basarili 7'', which
+      cannot occur; harmless). Isomorph of the worked_example (echo yarisi bitti; exit 9) and the canonical''s selam/exit
+      4 example with new values: the authentic_application label is generous.'
+    review_15h: 'Unchanged since round 1. basic fits: it is the canonical''s selam/exit 4 example and the worked example''s
+      ''yarisi bitti; exit 9'' with new values.'
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f06:
+    from: authentic_application
+    to: basic
+    review: 15e_linux_git_shell
+    note: 'Key 0 verified (mkdir is silent and ends with 0 in uutils and GNU). It is the canonical''s own example (''mkdir
+      yeni_klasor sessizce 0 ile biter'') with the folder renamed, and the prompt adds ''mkdir ekrana hiçbir şey yazmadı'':
+      a renamed isomorph that passes at basic, but the authentic_application label is not earned (f04 already covers this
+      level). Relabel basic or replace with a structurally new case.'
+    review_15h: 'Unchanged. basic fits: the canonical''s own ''mkdir yeni_klasor sessizce 0 ile biter'' renamed.'
+  item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f08:
+    from: transfer_integration
+    to: authentic_application
+    review: 15e_linux_git_shell
+    note: 'Key A verified (stdout bitti, stderr uyari, status 0). Exactly one option true; D (writing to stderr makes the
+      status 1) is a good distractor. Near isomorph of lesson check 5 (echo duz; echo hata >&2) plus exit 0: the transfer
+      label is generous. The >&2 inside the single-quoted program is removed by the notation''s quote strip (redirect_stderr
+      is pipeline_redirection''s), but the process canonical teaches reading ''>&2'' inside quotes, so nothing is hidden.'
+    review_15h: 'Unchanged. authentic_application fits: lesson check 5''s channel split plus a status question whose distractor
+      D (stderr written -> status 1) no lesson text answers.'
+  item.memory.address_value_distinction.explain_address_vs_value.f05:
+    from: transfer_integration
+    to: authentic_application
+    review: 15d_memory_foundations
+    note: 'Key 108 8 verified (the trailing space of the first printf is part of ''108 8''). The canonical names the rule
+      (''Bir fonksiyona argüman verdiğinde de değer kopyalanır'') and 15C''s functions_basic lesson has the same degistir
+      case: transfer label is generous.'
+    review_15h: 'Unchanged from R1: the named rule in a new structure (void function printing inside, two output points);
+      authentic_application fits.'
+  item.memory.address_value_distinction.trace_simple_memory_example.f05:
+    from: transfer_integration
+    to: basic
+    review: 15d_memory_foundations
+    note: 'Key 16 12 verified. The worked_example (karesi: s = s * s; return s) with n * 3 and one more line in main: near
+      isomorph; transfer label is generous.'
+    review_15h: 'R1 fail fixed: now basic (file confirms difficulty: basic). It is a renamed isomorph of the worked_example
+      karesi and of functions_basic''s degistir case, plus one trivial line; f03/f04 keep authentic coverage.'
+  item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f05:
+    from: transfer_integration
+    to: basic
+    review: 15d_memory_foundations
+    note: 'Key A verified (ok, prints 102 102 1). Exactly one option true. It is the worked_example (static counter returning
+      its own address, two calls, *a and a == b) with new start value 100 and *b added: isomorph with new values, so the transfer_integration
+      label is not earned.'
+    review_15h: 'R1 fail fixed: now basic (file confirms). It is the worked_example (static counter returning its own address)
+      with new values; option A states the reason. f03/f04 keep authentic coverage.'
+  item.programming.branching_reasoning.predict_branch.g07:
+    from: transfer_integration
+    to: authentic_application
+    review: 15g_assessment
+    note: 'Rewrite: key ''fark küçük\n9'' verified. An arithmetic condition plus a dedented line; also_accept is reasonable.
+      Transfer_integration is a little generous but it integrates state, an expression and a branch.'
+    review_15h: 'New revision (round-1 keep disagreement). authentic_application fits. It has lesson check 2''s if/else shape
+      plus a dedented line, with an arithmetic condition (b - a > 10 with b = a*4). It is easier than the Objective''s transfer
+      items (f05: a + b > 10 with a nested if) and on a par with f03/f04. The key ''fark küçük\n9'' still verifies (stdout).'
+  item.python.assignment_binding.write_state_change.f04:
+    from: transfer_integration
+    to: basic
+    review_15h: 'Correct: reference, commented, __main__-guarded pass. kopya = 7 (the misconception-compatible cheat), ilk
+      = 2; kopya = 7, and ilk, kopya = 7, 7 fail. Only the contrived kopya = ilk followed by kopya = 7 passes. Label basic
+      is right (canonical x = 5; y = x; x = 9 and lesson check 2 with new names). Prompt grammatical ("kopya''nın ilk''ten
+      kopyalandığına").'
+  item.python.assignment_binding.write_state_change.f05:
+    from: transfer_integration
+    to: authentic_application
+    review: 15b_python_foundations
+    note: Totals verified (Toplam 50 Adet 3). The prompt dictates the steps and print('Toplam', 50, 'Adet', 3) passes (recorded
+      limit). transfer_integration is generous.
+    review_15h: 'Correct: reference, grouped updates, for-loop over [12, 30, 8], reused fiyat variable, all pass. toplam =
+      50; adet = 3, toplam = 12 + 30 + 8; adet = 3, and toplam updated but adet = 3 fail. Residual passes: toplam += 50; adet
+      += 3 (contrived) and toplam = toplam + 12 + 30 + 8; adet = adet + 3 (ignores "her ürün için" but still updates each
+      from its own value). Optional: not_in_source [''50''] catches the first. Label authentic_application right.'
+  item.python.exceptions_read_basic.extract_error_type_location.f05:
+    from: transfer_integration
+    to: basic
+    review: 15b_python_foundations
+    note: 'Traceback verified; key A; 2 printed first. The answer is read straight off the last line (KeyError: ''mor''),
+      so transfer_integration is generous.'
+    review_15h: 'basic - the value is read off the last line (KeyError: ''mor''), the canonical''s own "mesaj sorunlu değeri
+      söyler" rule.'
+  item.python.exceptions_read_basic.extract_error_type_location.g08:
+    from: transfer_integration
+    to: basic
+    review: 15g_assessment
+    note: Key correct; reading the offending value from a ValueError message (different error and message form than f05).
+    review_15h: 'New label revision. basic is right: "Hangi değer sayıya çevrilemediği için program durdu?" with a one-frame
+      traceback ending ValueError: invalid literal for int() with base 10: ''beş'' is the canonical example (int("on") ->
+      ValueError ... ''on'') with new values; read off the last line, same construct as f05.'
+  item.python.expression_evaluation.demonstrate_capability.f05:
+    from: transfer_integration
+    to: basic
+    review: 15b_python_foundations
+    note: 'Key -4 1 verified. Same rule as lesson check 2 and the worked_example with new values: near transfer, so transfer_integration
+      is generous.'
+    review_15h: basic - lesson check 2 with -7 for -9; matches R1's requested fix.
+  item.python.run_repl_script.execute_and_classify_result.g09:
+    from: transfer_integration
+    to: authentic_application
+    review_15h: '4 correct solutions pass (4 * kenar / kenar * kenar; repeated addition / kenar ** 2; literal 4 * 9 / 9 *
+      9; cevre/alan variables); either value written as a literal fails. Plural prompt ("36 ve 81 sonuçlarının ... onları")
+      correct. New label authentic_application fits: a two-quantity script with a named side is the lesson''s print(7 * 6)
+      rule in a small applied structure; not a new context.'
+  item.python.value_type_behavior.demonstrate_capability.f05:
+    from: transfer_integration
+    to: authentic_application
+    review: 15b_python_foundations
+    note: Key A verified (25TL, then TypeError). Same rule as the canonical's 10 + 'kg' / str(10) + 'kg' with new values,
+      plus partial output before a runtime error. transfer_integration is generous.
+    review_15h: authentic_application (unchanged since R1, where it passed); reasoning as in R1.
+  item.python.value_type_behavior.demonstrate_capability.f06:
+    from: transfer_integration
+    to: basic
+    review: 15b_python_foundations
+    note: Key 5 4.0 False True verified. Same shape as lesson check 3 (int/float/bool/bool); bool('False') is a genuine new
+      twist. transfer_integration is generous. The build's string masking keeps the literal 'False' from counting as boolean_logic
+      (confirmed in constructs_used).
+    review_15h: basic - isomorph of lesson check 3 (same four conversions); matches R1's requested fix.
+  item.python.while_termination.debug_infinite_loop.f05:
+    from: transfer_integration
+    to: authentic_application
+    review: 15b_python_foundations
+    note: Same bug and fix as the worked_example (re-read inside the loop) on a new task (count positives); near transfer,
+      label generous.
+    review_15h: authentic_application (unchanged since R1, where it passed).
+  item.shell.command_options_redirection_basic.construct_simple_command.f08:
+    from: transfer_integration
+    to: authentic_application
+    review: 15e_linux_git_shell
+    note: 'Key A verified (bash: ''yok_klasor/dosya.txt: No such file or directory'', status 1, neither yok_klasor nor dosya.txt
+      exists afterwards). Exactly one option true. It asks back the canonical''s sentence ''> ... klasörü kendisi oluşturmaz''
+      (a named rule without a command example): passes as named-rule application, transfer label generous.'
+    review_15h: 'Unchanged. authentic_application fits, at the low edge: a named-rule application (''> klasörü kendisi oluşturmaz'')
+      with no command example in the lesson, and the learner must tell A from D.'
+  item.shell.pipeline_redirection.demonstrate_capability.f07:
+    from: transfer_integration
+    to: authentic_application
+    review: 15e_linux_git_shell
+    note: 'Key ''0 tum.txt'' verified: ls''s error stays on the screen, tum.txt is empty (same with GNU ls). The canonical''s
+      order paragraph and the order_does_not_matter contrast state the rule (''önce 2>&1 gelirse stderr ekrana bağlanmış olur
+      ve orada kalır''); the item applies it to ls plus wc -l and lesson check 5 is the opposite order: named-rule application,
+      transfer label generous.'
+    review_15h: 'Unchanged. authentic_application fits: the order rule from the contrast, applied with an empty file still
+      being created and wc -l''s ''0 tum.txt''.'
+  item.shell.pipeline_redirection.demonstrate_capability.f08:
+    from: transfer_integration
+    to: authentic_application
+    review: 15e_linux_git_shell
+    note: 'Key 0 verified (grep with no match exits 1, the pipeline''s status is wc''s 0; bash default, no pipefail). The
+      canonical''s ''false | true'' rule and lesson check 6 with new commands: named-rule isomorph, transfer label generous.
+      The wc line above is also 0, so ''son satır'' must be read carefully; harmless.'
+    review_15h: 'Unchanged. authentic_application is acceptable, at the low edge: lesson check 6''s rule on a realistic grep
+      | wc -l pipeline whose first command fails.'
+keep:
+  item.english.follow_bilingual_technical_instruction.execute_known_instruction.g11:
+    review: 15g_assessment
+    note: 'Round-2 defect fixed: the prompt is now neutral (''Bu talimatta hangisini once yaparsin?''), so B (top line first)
+      is a live distractor again, and D (''Yalniz testleri calistiririm; klasoru hic acmam'') is a plain wrong option that
+      no longer restates a belief. Key A is correct (Step 1 = Open the folder, done first). Exactly one option is defensible.
+      Structurally distinct: published f02/f05 and the worked example list steps in number order, and g09/g10 use First/Then
+      and sentence-final first. No lesson sentence or published stimulus is reused. All English words are taught (step from
+      this lesson; run, tests, open, folder from labels; the from imperative). Note: the reversed listing is a little artificial;
+      the authentic_application label is generous but acceptable.'
+    review_15h: 'Unchanged keep. Steps listed in reverse order require ordering by number: authentic_application is earned.
+      The decision now records the 15G note whole and the 15H review.'
+  item.memory.address_value_distinction.trace_simple_memory_example.t01:
+    review: 15g_assessment
+    note: Key '1 8' correct. for_iteration (topic.c.io_control) differs from the item's topic (topic.c.pointers_arrays) and
+      is needed to compute b; the memory point (a unchanged by changes to its copy) is still measured. Modest but supported
+      transfer.
+    why: 'the reviewer: "modest but supported transfer"; a reserved transfer item whose cross-topic context was checked'
+    review_15h: This is a reserved transfer item (transfer_profile cross_topic_context, monthly transfer slot only). The builder
+      requires such an item to be transfer_integration outside the lesson, and its cross-topic context (for_iteration, topic.c.io_control)
+      is declared and needed to compute b. 'Modest but supported transfer' accepts it; the label is structural here and lowering
+      it would make the item unpublishable as a transfer item.
+  item.c.declaration_type_model.write_basic_declarations.g02:
+    review: 15g_assessment
+    note: bool false printed with %d -> 0; basic declaration with stdbool; key correct. Borderline-easy but measures writing
+      the declaration.
+    why: already basic; "borderline-easy but measures writing" is about the item, not the label
+    review_15h: It is already basic, the lowest label. 'Borderline-easy but measures writing the declaration' is about how
+      easy the item is within basic, not about its label. Nothing to revise.
+  item.c.expression_evaluation.demonstrate_capability.g10:
+    review: 15g_assessment
+    why: the reviewer's "borderline" is about near-variance to f06, which it accepted; it says nothing about the label
+  item.linux.terminal_filesystem_navigation.navigate_relative_absolute.g08:
+    review: 15g_assessment
+    why: the reviewer's "borderline" is about near-variance to f05, which it accepted as its own variant; it says nothing
+      about the label

@@ -1,0 +1,16 @@
+skill: skill.linux.process_exit_stdout_stderr_basic
+objectives:
+- id: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+  revisions:
+  - revises: f05
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: f06
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: f08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application

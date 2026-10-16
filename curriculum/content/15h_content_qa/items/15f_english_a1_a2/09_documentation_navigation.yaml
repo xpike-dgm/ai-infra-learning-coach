@@ -1,0 +1,16 @@
+skill: skill.english.documentation_navigation
+objectives:
+- id: objective.english.documentation_navigation.demonstrate_capability
+  revisions:
+  - revises: f05
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: f06
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: f08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic

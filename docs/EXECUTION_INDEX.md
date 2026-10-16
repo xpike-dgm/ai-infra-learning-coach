@@ -206,12 +206,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **15E — Linux / Git / Shell Foundations** — `LGSX-v0 / D-118`
 - [x] **15F — English A0→A1/A2 başlangıç paketi** — `EAAX-v0 / D-119`
 - [x] **15G — Assessment content** — `ACNX-v0 / D-120`
-- [ ] **15H — Content QA** **AKTİF**
+- [x] **15H — Content QA** — `CQAX-v0 / D-121`
 
 ---
 
 # AŞAMA 16 — İlerleme, Analitik, Ayarlar ve Günlük Kullanım Araçları
-- [ ] **16A — Skill analytics**
+- [ ] **16A — Skill analytics** **AKTİF**
 - [ ] **16B — Öğrenme geçmişi**
 - [ ] **16C — Progress / weakness gösterim kuralları**
 - [ ] **16D — Ayarlar**
@@ -263,9 +263,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15G`  
-**Son tamamlanan:** **`15G — ACNX-v0 / D-120`**  
-**Aktif:** **`15H — Content QA`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`  
+**Son tamamlanan:** **`15H — CQAX-v0 / D-121`**  
+**Aktif:** **`16A — Skill analytics`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -327,4 +327,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 15G `ACNX-v0` ile yedinci paket sevk ediliyor: yayımlanmış Objective'lere, yayımlanmış hiçbir şeyi değiştirmeden, öğrencinin görmediği ve aynı yeteneği ölçen item'lar ekleyen bir ek paket — 613 item, 240 büyüyen görev v2'si, 21 ayın slotuna ayrılmış cross-topic transfer item'ı ve 144 seçenek düzeyinde misconception anahtarı; `TRANSFER_OPPORTUNITY` sahibi `TransferEngine`. Bağımsız inceleme dört turda 613/613. Havuz 65 Objective'in 54'ünde ≥15; üç teknik Objective 14, sekiz İngilizce Objective 10–12 (kullanıcı kararı) — eksik kayıtlı. Onay kullanıcının 2026-10-04 açık onayı. T6 çalıştırılmadı.
 
-15H başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+15H `CQAX-v0` ile sekizinci paket sevk ediliyor ve **AŞAMA 15 kapandı**: içerik yalnız graph'ının, kontrollerinin ve etiketlerinin taşıdığını söyler. Bir ek paket (v8) 81 yayımlanmış item'ın sonraki sürümünü yayımlar ve eskisini eklenen bir `retired` kaydıyla emekliye ayırır — hiçbir şeyin üzerine yazılmaz —, 6 item ekler, 49 kenar (12 hard) ve 18 ders gereksinimiyle graph'a derslerin gerçekten neye dayandığını söyletir; sabit çıktı, gösterim, ders kodu, graph, etiket, havuz ve criticality denetimi her bulguyu bir çözüme bağlar; `requires_transfer` kapandı. Bağımsız inceleme 87/87 item ve 49/49 kenar. T6 çalıştırılmadı.
+
+16A başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

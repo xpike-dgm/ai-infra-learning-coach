@@ -320,7 +320,27 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
         curriculum.objectives.forEach { check("objective", it.ref) }
         curriculum.misconceptions.forEach { check("misconception", it.ref) }
         curriculum.resources.forEach { check("assessment_resource_version", it.ref) }
+        // 15H (`D-121`): a later package may add an edge between Skills already published and append a record to a
+        // resource already published (a retirement). Carrying the same edge version or the same record again would
+        // overwrite it; it is refused by name here instead of failing on the primary key mid-transaction.
+        curriculum.prerequisiteEdges.filter(::edgeExists).forEach {
+            add("skill_prerequisite_edge ${it.prerequisite} -> ${it.target} v${it.edgeVersion} is already published and is never overwritten")
+        }
+        curriculum.validationRecords.filter(::recordExists).forEach {
+            add("resource_validation_record ${it.resource} at ${it.validatedAtInstant} is already recorded and is never overwritten")
+        }
     }
+
+    private fun edgeExists(edge: PrerequisiteEdge): Boolean = queryOne(
+        "SELECT 1 FROM skill_prerequisite_edge WHERE prerequisite_skill_logical_id = ? AND prerequisite_skill_version = ? " +
+            "AND target_skill_logical_id = ? AND target_skill_version = ? AND edge_version = ?",
+        edge.prerequisite.logicalId, edge.prerequisite.version, edge.target.logicalId, edge.target.version, edge.edgeVersion,
+    ) { true } ?: false
+
+    private fun recordExists(record: ValidationRecord): Boolean = queryOne(
+        "SELECT 1 FROM resource_validation_record WHERE logical_id = ? AND version = ? AND validated_at_instant = ?",
+        record.resource.logicalId, record.resource.version, record.validatedAtInstant,
+    ) { true } ?: false
 
     /** The stored list columns are comma-separated, so a token containing a comma is refused. */
     private fun listSeparatorViolations(curriculum: CurriculumPackage): List<String> =

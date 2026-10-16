@@ -1,0 +1,437 @@
+skill: skill.c.declaration_type_model
+objectives:
+- id: objective.c.declaration_type_model.write_basic_declarations
+  items:
+  - slug: h01
+    difficulty: authentic_application
+    prompt: 'C''de (int) dönüşümü ondalık kısmı atar; yuvarlamaz. Bunu kullanarak pozitif ondalıklı sayıları en yakın tam
+      sayıya yuvarlayan bir program yaz: cozum.c adında; a adında bir double 7.6, b adında bir double 7.4 tutsun; yuvarlanmış
+      değerleri ya ve yb adında iki int''e atasın ve printf ile tek satırda yazdırsın. Ekranda 8 7 görünmeli. Testler, istenen
+      bildirimlerin ve (int) dönüşümünün kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına
+      ve kullanılmayan bir değişken olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bdouble\s+(?:[^;{}]*,\s*)?a\b
+      - \bdouble\s+(?:[^;{}]*,\s*)?b\b
+      - \bint\s+(?:[^;{}]*,\s*)?ya\b
+      - \bint\s+(?:[^;{}]*,\s*)?yb\b
+      - \(\s*int\s*\)
+      not_in_source:
+      - '8'
+      - '7'
+    suite:
+    - id: rounds_both_ways
+      expected_stdout: |
+        8 7
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+    reference: |
+      #include <stdio.h>
+
+      int main(void) {
+          double a = 7.6;
+          double b = 7.4;
+          int ya = (int) (a + 0.5);
+          int yb = (int) (b + 0.5);
+          printf("%d %d\n", ya, yb);
+          return 0;
+      }
+    wrong:
+    - |
+      #include <stdio.h>
+
+      int main(void) {
+          double a = 7.6;
+          double b = 7.4;
+          int ya = (int) a;
+          int yb = (int) b;
+          printf("%d %d\n", ya, yb);
+          return 0;
+      }
+    - |
+      #include <stdio.h>
+
+      int main(void) {
+          double a = 7.6;
+          double b = 7.4;
+          int ya = (int) a + 1;
+          int yb = (int) b + 1;
+          printf("%d %d\n", ya, yb);
+          return 0;
+      }
+  - slug: h02
+    difficulty: authentic_application
+    prompt: 'cozum.c adında bir program yaz: ilk adında bir char ''c'', son adında bir char ''h'' tutsun. c''den h''ye kadar
+      (ikisi de dahil) kaç harf olduğunu bu iki değişkenden hesaplayıp sayi adında bir int''e atasın ve yazdırsın. Ekranda
+      6 görünmeli. Testler, istenen bildirimlerin kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır
+      yazılmadığına ve kullanılmayan bir değişken olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bchar\s+(?:[^;{}]*,\s*)?ilk\b
+      - \bchar\s+(?:[^;{}]*,\s*)?son\b
+      - \bint\s+(?:[^;{}]*,\s*)?sayi\b
+      not_in_source:
+      - '6'
+    suite:
+    - id: letters_in_range
+      expected_stdout: |
+        6
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+    reference: |
+      #include <stdio.h>
+
+      int main(void) {
+          char ilk = 'c';
+          char son = 'h';
+          int sayi = son - ilk + 1;
+          printf("%d\n", sayi);
+          return 0;
+      }
+    wrong:
+    - |
+      #include <stdio.h>
+
+      int main(void) {
+          char ilk = 'c';
+          char son = 'h';
+          int sayi = son - ilk;
+          printf("%d\n", sayi);
+          return 0;
+      }
+    - |
+      #include <stdio.h>
+
+      int main(void) {
+          char ilk = 'c';
+          char son = 'h';
+          char sayi = son - ilk + 1;
+          printf("%c\n", sayi);
+          return 0;
+      }
+  revisions:
+  - revises: f01
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: yas adında bir int değişkene 19, boy adında bir double değişkene 1.82 değer versin
+      ve printf ile tek satırda 19 1.82 yazdırsın (boy iki ondalık basamakla). Testler, istenen bildirimlerin kaynakta olduğuna,
+      ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına ve kullanılmayan bir değişken olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bint\s+(?:[^;{}]*,\s*)?yas\b
+      - \bdouble\s+(?:[^;{}]*,\s*)?boy\b
+      not_in_source:
+      - '19'
+      - '1.82'
+    suite:
+    - id: prints_values
+      expected_stdout: |
+        19 1.82
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: f02
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: puan adında bir double değişkene 87.6 değer versin, bunu tam_puan adında bir
+      int değişkene açık dönüşümle (cast) atasın ve tam_puan''ı yazdırsın. Ekranda 87 görünmeli. Testler, istenen bildirimlerin
+      kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına ve kullanılmayan bir değişken
+      olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bdouble\s+(?:[^;{}]*,\s*)?puan\b
+      - \bint\s+(?:[^;{}]*,\s*)?tam_puan\b
+      - \(\s*int\s*\)
+      not_in_source:
+      - '87'
+    suite:
+    - id: truncates
+      expected_stdout: |
+        87
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: f03
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: harf adında bir char değişkene ''m'' değer versin; ekrana tek satırda önce harfin
+      kendisini, sonra sayısal (ASCII) kodunu, sonra da alfabede kendisinden sonra gelen harfi yazdırsın: m 109 n. Testler,
+      istenen bildirimlerin kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına ve kullanılmayan
+      bir değişken olmadığına da bakar. Testler, sonraki harfin harf''ten hesaplandığına (harf + 1) da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bchar\s+(?:[^;{}]*,\s*)?harf\b
+      - harf\s*\+\s*1\b|\b1\s*\+\s*harf\b|\+\+\s*harf\b|\bharf\s*\+\+
+      not_in_source:
+      - '109'
+    suite:
+    - id: char_as_number
+      expected_stdout: |
+        m 109 n
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: f04
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: KDV_ORANI adında değiştirilemeyen (const) bir double sabit 0.20 olsun; net adında
+      bir double 150.0 olsun. Brüt tutarı (net + net * KDV_ORANI) iki ondalık basamakla, "Brut: 180.00" biçiminde yazdırsın.
+      Testler, istenen bildirimlerin kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına
+      ve kullanılmayan bir değişken olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - (?:\bconst\s+double|\bdouble\s+const)\s+(?:[^;{}]*,\s*)?KDV_ORANI\b
+      - \bdouble\s+(?:[^;{}]*,\s*)?net\b
+      not_in_source:
+      - '180'
+    suite:
+    - id: gross
+      expected_stdout: |
+        Brut: 180.00
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: f05
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: toplam_dakika adında bir int 135 olsun. Bunu saate çevirip saat adında bir double''a
+      atasın (toplam_dakika bir int; bölmeden önce double''a dönüştürmezsen ondalık kısım kaybolur) ve "2.25 saat" yazdırsın
+      (iki ondalık basamak). Testler, istenen bildirimlerin kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının
+      içine hazır yazılmadığına ve kullanılmayan bir değişken olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bint\s+(?:[^;{}]*,\s*)?toplam_dakika\b
+      - \bdouble\s+(?:[^;{}]*,\s*)?saat\b
+      not_in_source:
+      - '2.25'
+    suite:
+    - id: hours
+      expected_stdout: |
+        2.25 saat
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g01
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: blok adında bir char değişkene ''B'', no adında bir int değişkene 12 değer versin
+      ve tek bir printf ile ekrana B-12 yazdırsın (önce blok, sonra tire, sonra no; arada boşluk yok). Testler, istenen bildirimlerin
+      kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına ve kullanılmayan bir değişken
+      olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bchar\s+(?:[^;{}]*,\s*)?blok\b
+      - \bint\s+(?:[^;{}]*,\s*)?no\b
+      not_in_source:
+      - '12'
+    suite:
+    - id: label
+      expected_stdout: |
+        B-12
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g02
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: stdbool.h''yi ekleyip hazir adında bir bool değişkene false değer versin ve değerini
+      %d ile yazdırsın. Ekranda 0 görünmeli. Testler, istenen bildirimlerin kaynakta olduğuna, ekrana yazılacak değerlerin
+      printf yazısının içine hazır yazılmadığına ve kullanılmayan bir değişken olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bbool\s+(?:[^;{}]*,\s*)?hazir\b
+      not_in_source:
+      - '0'
+    suite:
+    - id: false_is_zero
+      expected_stdout: |
+        0
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g03
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: rakam adında bir char değişkene ''7'' karakterini versin; bu karakterin temsil
+      ettiği sayıyı (rakam - ''0'') %d ile yazdırsın. Ekranda 7 görünmeli. Testler, istenen bildirimlerin kaynakta olduğuna,
+      ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına ve kullanılmayan bir değişken olmadığına da bakar.
+      Testler, değerin rakam - ''0'' ile hesaplandığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bchar\s+(?:[^;{}]*,\s*)?rakam\b
+      - rakam\s*-\s*(?:'0'|48\b)
+      not_in_source:
+      - '7'
+    suite:
+    - id: digit_value
+      expected_stdout: |
+        7
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g05
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: nufus adında, 3000000000 (üç milyar) değerini tutabilecek bir tam sayı değişkeni
+      bildirsin (int bunun için yetmez; long long kullan) ve değerini yazdırsın. Ekranda 3000000000 görünmeli. Testler, istenen
+      bildirimlerin kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına ve kullanılmayan
+      bir değişken olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \blong\s+long(?:\s+int)?\s+(?:[^;{}]*,\s*)?nufus\b
+      not_in_source:
+      - '3000000000'
+    suite:
+    - id: big_value
+      expected_stdout: |
+        3000000000
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g06
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: kod adında bir double değişkene 66.9 değer versin; bunu harf adında bir char
+      değişkene açık dönüşümle ((char) kod) atasın. Ekrana tek satırda, aralarında bir boşlukla, önce harf''i karakter olarak
+      (%c), sonra sayısal değerini (%d) yazdırsın. Testler, istenen bildirimlerin kaynakta olduğuna, ekrana yazılacak değerlerin
+      printf yazısının içine hazır yazılmadığına ve kullanılmayan bir değişken olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bdouble\s+(?:[^;{}]*,\s*)?kod\b
+      - \bchar\s+(?:[^;{}]*,\s*)?harf\b
+      - \(\s*char\s*\)
+      not_in_source:
+      - '66'
+      - B
+    suite:
+    - id: double_to_char
+      expected_stdout: |
+        B 66
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g07
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: kalan adında bir int değişkene 10 versin; sonra kalan = kalan - 3.5; satırını
+      çalıştırıp kalan''ı yazdırsın. Sonuç bir int''e atandığında ondalık kısmın ne olduğunu düşün. Testler, istenen bildirimlerin
+      kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına ve kullanılmayan bir değişken
+      olmadığına da bakar. Testler, kalan = kalan - 3.5; satırının kaynakta olduğuna da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bint\s+(?:[^;{}]*,\s*)?kalan\b
+      - \bkalan\s*(?:-=|=\s*kalan\s*-)\s*3\.5
+      not_in_source:
+      - '6'
+    suite:
+    - id: truncated
+      expected_stdout: |
+        6
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g08
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: kucuk adında bir char değişkene ''k'' versin; büyük harf karşılığını kucuk -
+      ''a'' + ''A'' ile hesaplayıp buyuk adında bir char değişkene atasın ve tek satırda k K yazdırsın (%c ile). Testler,
+      istenen bildirimlerin kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına ve kullanılmayan
+      bir değişken olmadığına da bakar. Testler, büyük harfin kucuk - ''a'' + ''A'' ile hesaplandığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bchar\s+(?:[^;{}]*,\s*)?kucuk\b
+      - \bchar\s+(?:[^;{}]*,\s*)?buyuk\b
+      - \bkucuk\s*-\s*'a'\s*\+\s*'A'
+      not_in_source:
+      - K
+    suite:
+    - id: uppercase
+      expected_stdout: |
+        k K
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g09
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: stdbool.h''yi ekleyip buyuk adında bir bool değişkene 5 > 3 karşılaştırmasının
+      sonucunu versin; tek satırda buyuk''u ve !buyuk''u %d ile yazdırsın. Ekranda 1 0 görünmeli. Testler, istenen bildirimlerin
+      kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına ve kullanılmayan bir değişken
+      olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bbool\s+(?:[^;{}]*,\s*)?buyuk\b
+      - \b5\s*>\s*3\b
+      - '!\s*buyuk\b'
+      not_in_source:
+      - '1'
+      - '0'
+    suite:
+    - id: bool_values
+      expected_stdout: |
+        1 0
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g10
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: pi adında bir double değişkene 3.14159 versin ve tek satırda, aralarında | karakteriyle,
+      önce varsayılan %f ile, sonra %.0f ile, sonra %.3f ile yazdırsın. Her biçimin kaç basamak gösterdiğini ve yuvarlayıp
+      yuvarlamadığını önce tahmin et. Testler, istenen bildirimlerin kaynakta olduğuna, ekrana yazılacak değerlerin printf
+      yazısının içine hazır yazılmadığına ve kullanılmayan bir değişken olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - \bdouble\s+(?:[^;{}]*,\s*)?pi\b
+      not_in_source:
+      - '3.141590'
+      - '3.142'
+      - '3'
+    suite:
+    - id: three_formats
+      expected_stdout: |
+        3.141590|3|3.142
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok
+  - revises: g11
+    reason: fixed_output
+    prompt: 'cozum.c adında bir program yaz: SAYFA adında değiştirilemeyen (const) bir int sabit 250 olsun; okunan adında
+      bir int 3 olsun. Toplam sayfa sayısını SAYFA * okunan ile hesaplayıp tek satırda Toplam: 750 yazdırsın. Testler, istenen
+      bildirimlerin kaynakta olduğuna, ekrana yazılacak değerlerin printf yazısının içine hazır yazılmadığına ve kullanılmayan
+      bir değişken olmadığına da bakar.
+
+      '
+    source_checks:
+      required:
+      - (?:\bconst\s+int|\bint\s+const)\s+(?:[^;{}]*,\s*)?SAYFA\b
+      - \bint\s+(?:[^;{}]*,\s*)?okunan\b
+      not_in_source:
+      - '750'
+    suite:
+    - id: total
+      expected_stdout: |
+        Toplam: 750
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok

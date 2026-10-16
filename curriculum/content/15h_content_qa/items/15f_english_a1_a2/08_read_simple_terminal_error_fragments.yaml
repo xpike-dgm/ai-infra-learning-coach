@@ -1,0 +1,31 @@
+skill: skill.english.read_simple_terminal_error_fragments
+objectives:
+- id: objective.english.read_simple_terminal_error_fragments.extract_known_signal
+  revisions:
+  - revises: f04
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: f05
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: f06
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: f07
+    reason: label+review_fix
+    relabel_from: transfer_integration
+    difficulty: authentic_application
+    prompt: 'Bir Python programı bu son satırla durdu. Sorun nedir?
+
+      '
+  - revises: f08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application
+  - revises: g08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic

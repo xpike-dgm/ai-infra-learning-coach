@@ -1,0 +1,8 @@
+skill: skill.memory.storage_lifetime_intuition
+objectives:
+- id: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+  revisions:
+  - revises: f05
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic

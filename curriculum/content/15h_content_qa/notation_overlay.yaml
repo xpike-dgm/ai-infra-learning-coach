@@ -1,0 +1,32 @@
+# 15H (CQAX-v0 / D-121) — reading constructs 15B's notation did not name (open loop `notation_coverage`, 15B–15E).
+#
+# 15B's notation.yaml has no construct for in / not in, is, pass, break / continue or as, so an item could use one with no
+# lesson behind it and the build would not see it. The published notation cannot change (it is part of what rebuilt the
+# shipped packages byte for byte), so these apply to what a later supplement adds to 15B's Objectives, and
+# tools/content_qa.py scans every published Python item with them. `introduced_by` names the lessons that show the
+# construct in their code (read in each lesson's canonical, worked example and contrasts); a construct no lesson shows is
+# forbidden in every item, as comprehensions are.
+#
+# True / False stay with boolean_logic (15A's expression_boolean_reasoning and 15B's expression_evaluation): every
+# published value_type_behavior item that shows them reaches one of those.
+15b_python_foundations:
+  membership:
+    # `x in y` outside a for header ("for x in y" is the loop, taught by for_iteration).
+    pattern: '^(?!\s*for\b).*(?<![\w.])(?:not\s+)?in\b'
+    introduced_by: [skill.python.set_operations, skill.python.mapping_collections_basic, skill.python.string_text_operations]
+  identity:
+    pattern: '\bis\b'
+    introduced_by: []
+  pass_statement:
+    pattern: '^\s*pass\b'
+    introduced_by: []
+  break_continue:
+    pattern: '^\s*(?:break|continue)\b'
+    introduced_by: []
+  as_binding:
+    # except ValueError as e (exception_handling), with open(...) as f (files_paths_basic); import ... as is not taught.
+    pattern: '\bas\b'
+    introduced_by: [skill.python.exception_handling, skill.python.files_paths_basic]
+  brackets:
+    # A dictionary is read with d[key]: mapping_collections_basic teaches that subscription too.
+    introduced_by: [skill.python.mapping_collections_basic]

@@ -1,0 +1,8 @@
+skill: skill.python.expression_evaluation
+objectives:
+- id: objective.python.expression_evaluation.demonstrate_capability
+  revisions:
+  - revises: f05
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic

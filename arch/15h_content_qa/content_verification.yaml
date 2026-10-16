@@ -1,0 +1,1997 @@
+package_version: 8
+items:
+- item: item.computing.source_runtime_artifact_distinction.classify_artifacts.g06@v2
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'calisma_ciktisi\n' is option A and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.programming.branching_reasoning.predict_branch.g07@v2
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.python.run_repl_script.execute_and_classify_result.f02@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.run_repl_script.execute_and_classify_result.f03@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.run_repl_script.execute_and_classify_result.f05@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - floor_division_remainder
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.run_repl_script.execute_and_classify_result.g01@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.run_repl_script.execute_and_classify_result.g04@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.run_repl_script.execute_and_classify_result.g05@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 3 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.run_repl_script.execute_and_classify_result.g07@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.run_repl_script.execute_and_classify_result.g09@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output+label
+- item: item.python.run_repl_script.execute_and_classify_result.g10@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.run_repl_script.execute_and_classify_result.g11@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.run_repl_script.execute_and_classify_result.t01@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - brackets
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.value_type_behavior.demonstrate_capability.f05@v2
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '25TL\n' is option A and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.python.value_type_behavior.demonstrate_capability.f06@v2
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.python.assignment_binding.write_state_change.f01@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.assignment_binding.write_state_change.f03@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.python.assignment_binding.write_state_change.f04@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output+label
+- item: item.python.assignment_binding.write_state_change.f05@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output+label
+- item: item.python.expression_evaluation.demonstrate_capability.f05@v2
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - floor_division_remainder
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.python.while_termination.debug_infinite_loop.f05@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - if_branch
+  - input_call
+  - print_call
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.python.exceptions_read_basic.extract_error_type_location.f05@v2
+  status: validated
+  verify_mode: traceback
+  verification: executed; true value "'mor'" is option A and no other
+  constructs:
+  - assignment
+  - braces
+  - brackets
+  - for_loop
+  - function_def
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.python.exceptions_read_basic.extract_error_type_location.g08@v2
+  status: validated
+  verify_mode: traceback
+  verification: 'executed; true value "invalid literal for int() with base 10: ''beş''" is option A and no other'
+  constructs:
+  - assignment
+  - brackets
+  - for_loop
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.python.scope_name_resolution.demonstrate_capability.h01
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - comparison
+  - function_def
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.scope_name_resolution.demonstrate_capability.h02
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - function_def
+  - global_scope
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exception_handling.demonstrate_capability.g01@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - exceptions
+  - for_loop
+  - function_def
+  - none_literal
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+  revision: notation
+- item: item.python.files_paths_basic.demonstrate_capability.g10@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - as_binding
+  - assignment
+  - augmented_assignment
+  - exceptions
+  - file_io
+  - for_loop
+  - function_def
+  - methods
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+  revision: notation
+- item: item.c.compile_link_run_basic.compile_and_run_small_program.g06@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.compile_link_run_basic.compile_and_run_small_program.g09@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.h01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - main_function
+  - printf_call
+  - type_cast
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.declaration_type_model.write_basic_declarations.h02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.declaration_type_model.write_basic_declarations.f01@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.f02@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  - type_cast
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.f03@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.f04@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - const_qualifier
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.f05@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - division_remainder
+  - main_function
+  - printf_call
+  - type_cast
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.g01@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.g02@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - bool_type
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.g03@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.g05@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.g06@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  - type_cast
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.g07@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.g08@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.g09@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - bool_type
+  - comparison
+  - logical
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.g10@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.declaration_type_model.write_basic_declarations.g11@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - const_qualifier
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.c.standard_io_basic.demonstrate_capability.f05@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.c.while_iteration.demonstrate_capability.g07@v2
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - comparison
+  - compound_assignment
+  - main_function
+  - printf_call
+  - variable_declaration
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+  revision: fixed_output
+- item: item.memory.address_value_distinction.explain_address_vs_value.f05@v2
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - arithmetic
+  - assignment
+  - function_definition
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.memory.address_value_distinction.trace_simple_memory_example.f05@v2
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - arithmetic
+  - assignment
+  - function_definition
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f05@v2
+  status: validated
+  verify_mode: c_sanitize
+  verification: executed; true value 'ok' is option A and no other
+  constructs:
+  - address_for_scanf
+  - arithmetic
+  - comparison
+  - dereference
+  - function_definition
+  - increment
+  - main_function
+  - pointer_type
+  - printf_call
+  - static_storage
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f05@v2
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'basarisiz 7' is option A and no other
+  constructs:
+  - option_flag
+  - program_exit
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f06@v2
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - exit_status
+  - navigation
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f08@v2
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'bitti|uyari|0' is option A and no other
+  constructs:
+  - option_flag
+  - program_exit
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.shell.command_options_redirection_basic.construct_simple_command.f08@v2
+  status: validated
+  verify_mode: shell
+  verification: executed; true value '1 yok yok' is option A and no other
+  constructs:
+  - echo_command
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.shell.pipeline_redirection.demonstrate_capability.f07@v2
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - file_tools
+  - navigation
+  - option_flag
+  - redirect_stderr
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.shell.pipeline_redirection.demonstrate_capability.f08@v2
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - exit_status
+  - file_tools
+  - filters
+  - option_flag
+  - pipe
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.git.repository_status_diff.inspect_change_state.h01
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.repository_status_diff.inspect_change_state.h02
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.repository_status_diff.inspect_change_state.f04@v2
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label+review_fix
+- item: item.git.stage_commit_history_basic.commit_and_verify_history.f08@v2
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'bos dolu' is option A and no other
+  constructs:
+  - echo_command
+  - git_inspect
+  - git_record
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.recognize_core_technical_labels.match_term_meaning.f08@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — upload (verb): to transfer data to a remote system; download (verb): to
+    transfer data from a remote system'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.recognize_core_technical_labels.match_term_meaning.g08@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — close (verb, computing): to terminate access to a file or window; delete
+    (verb, computing): to remove'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.technical_noun_phrase_recognition.demonstrate_capability.f06@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Noun adjunct (stacked noun adjuncts modify the final head noun); Wiktionary
+    — default (adjective, computing)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.technical_noun_phrase_recognition.demonstrate_capability.g04@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — temporary (adjective); folder (noun); Wikipedia — English noun phrases (modifier
+    before the head)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f04@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Imperative mood; Wiktionary — select (verb), click (verb, computing)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f07@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Imperative mood (form). The order of instructions joined by and is the reading
+    order, as this lesson teaches; Wikipedia does not state it'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f08@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Imperative mood; Wiktionary — wait (verb), try (verb), again (adverb)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.g07@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — keep (verb): to continue to have; remove (verb): to take away; copy (noun)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.g08@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — again (adverb): another time, once more; set (verb): to adjust'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.negation_question_comprehension.demonstrate_capability.f04@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — no (determiner): not any'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.negation_question_comprehension.demonstrate_capability.f05@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — where (adverb, interrogative): at what place'
+  constructs:
+  - question
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.negation_question_comprehension.demonstrate_capability.f06@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — which (determiner, interrogative): what one or ones of a group'
+  constructs:
+  - question
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.negation_question_comprehension.demonstrate_capability.g04@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — why (adverb): for what reason; Wikipedia — English grammar, wh-questions
+    with do-support'
+  constructs:
+  - question
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label+review_fix
+- item: item.english.negation_question_comprehension.demonstrate_capability.g05@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — how (adverb): in what manner; Wikipedia — English grammar, wh-questions'
+  constructs:
+  - question
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f05@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — step (noun); restart (verb); install (verb)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label+review_fix
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f07@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — first, next, then (adverbs of sequence)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f08@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — first (adverb): before anything else'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f04@v2
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f05@v2
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f06@v2
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f07@v2
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'klasor\n' is option A and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label+review_fix
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f08@v2
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'once_noktali_virgul\n' is option A and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.g08@v2
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'ikinci\n' is option A and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.documentation_navigation.demonstrate_capability.f05@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: man-pages(7), Sections within a manual page — SEE ALSO: related man pages'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.documentation_navigation.demonstrate_capability.f06@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — default (noun, computing): a value used when none is given'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+- item: item.english.documentation_navigation.demonstrate_capability.f08@v2
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: man(1) — ''any or all arguments within [ ] are optional'''
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+  revision: label
+tasks:
+- task: task.computing.source_runtime_artifact_distinction.practice
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.computing.source_runtime_artifact_distinction.check
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.computing.source_runtime_artifact_distinction.review
+  status: validated
+  items: 14
+  explanations: 0
+  version: 3
+- task: task.computing.source_runtime_artifact_distinction.repair
+  status: validated
+  items: 14
+  explanations: 4
+  version: 3
+- task: task.programming.branching_reasoning.practice
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.programming.branching_reasoning.check
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.programming.branching_reasoning.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.programming.branching_reasoning.repair
+  status: validated
+  items: 15
+  explanations: 5
+  version: 3
+- task: task.programming.code_reading_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.run_repl_script.practice
+  status: validated
+  items: 12
+  explanations: 0
+  version: 3
+- task: task.python.run_repl_script.check
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.python.run_repl_script.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.python.run_repl_script.repair
+  status: validated
+  items: 15
+  explanations: 3
+  version: 3
+- task: task.python.value_type_behavior.practice
+  status: validated
+  items: 12
+  explanations: 0
+  version: 3
+- task: task.python.value_type_behavior.check
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.python.value_type_behavior.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.python.value_type_behavior.repair
+  status: validated
+  items: 15
+  explanations: 5
+  version: 3
+- task: task.python.assignment_binding.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.assignment_binding.practice
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.python.assignment_binding.check
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.python.assignment_binding.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.python.assignment_binding.repair
+  status: validated
+  items: 15
+  explanations: 4
+  version: 3
+- task: task.python.expression_evaluation.practice
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.python.expression_evaluation.check
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.python.expression_evaluation.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.python.expression_evaluation.repair
+  status: validated
+  items: 15
+  explanations: 5
+  version: 3
+- task: task.python.while_termination.practice
+  status: validated
+  items: 20
+  explanations: 0
+  version: 3
+- task: task.python.while_termination.check
+  status: validated
+  items: 23
+  explanations: 0
+  version: 3
+- task: task.python.while_termination.review
+  status: validated
+  items: 30
+  explanations: 0
+  version: 3
+- task: task.python.while_termination.repair
+  status: validated
+  items: 30
+  explanations: 7
+  version: 3
+- task: task.python.functions_parameters_return.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.list_operations.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.tuple_immutable_sequence.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.tuple_immutable_sequence.practice
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.python.tuple_immutable_sequence.check
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.python.tuple_immutable_sequence.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.python.tuple_immutable_sequence.repair
+  status: validated
+  items: 15
+  explanations: 3
+  version: 3
+- task: task.python.set_operations.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.mapping_collections_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.exceptions_read_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.exceptions_read_basic.practice
+  status: validated
+  items: 12
+  explanations: 0
+  version: 3
+- task: task.python.exceptions_read_basic.check
+  status: validated
+  items: 9
+  explanations: 0
+  version: 3
+- task: task.python.exceptions_read_basic.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.python.exceptions_read_basic.repair
+  status: validated
+  items: 15
+  explanations: 3
+  version: 3
+- task: task.python.scope_name_resolution.practice
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.python.scope_name_resolution.check
+  status: validated
+  items: 13
+  explanations: 0
+  version: 3
+- task: task.python.scope_name_resolution.review
+  status: validated
+  items: 16
+  explanations: 0
+  version: 3
+- task: task.python.scope_name_resolution.repair
+  status: validated
+  items: 16
+  explanations: 4
+  version: 3
+- task: task.python.modules_imports_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.exception_handling.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.exception_handling.practice
+  status: validated
+  items: 9
+  explanations: 0
+  version: 3
+- task: task.python.exception_handling.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.python.exception_handling.repair
+  status: validated
+  items: 15
+  explanations: 3
+  version: 3
+- task: task.python.string_text_operations.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.files_paths_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.python.files_paths_basic.check
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.python.files_paths_basic.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.python.files_paths_basic.repair
+  status: validated
+  items: 15
+  explanations: 3
+  version: 3
+- task: task.c.compile_link_run_basic.practice
+  status: validated
+  items: 21
+  explanations: 0
+  version: 3
+- task: task.c.compile_link_run_basic.check
+  status: validated
+  items: 23
+  explanations: 0
+  version: 3
+- task: task.c.compile_link_run_basic.review
+  status: validated
+  items: 30
+  explanations: 0
+  version: 3
+- task: task.c.compile_link_run_basic.repair
+  status: validated
+  items: 30
+  explanations: 6
+  version: 3
+- task: task.c.declaration_type_model.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.c.declaration_type_model.practice
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.c.declaration_type_model.check
+  status: validated
+  items: 12
+  explanations: 0
+  version: 3
+- task: task.c.declaration_type_model.review
+  status: validated
+  items: 16
+  explanations: 0
+  version: 3
+- task: task.c.declaration_type_model.repair
+  status: validated
+  items: 16
+  explanations: 4
+  version: 3
+- task: task.c.standard_io_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.c.standard_io_basic.practice
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.c.standard_io_basic.check
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.c.standard_io_basic.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.c.standard_io_basic.repair
+  status: validated
+  items: 15
+  explanations: 3
+  version: 3
+- task: task.c.for_iteration.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.c.while_iteration.practice
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.c.while_iteration.check
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.c.while_iteration.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.c.while_iteration.repair
+  status: validated
+  items: 15
+  explanations: 4
+  version: 3
+- task: task.c.functions_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.memory.address_value_distinction.teach
+  status: validated
+  items: 2
+  explanations: 4
+  version: 2
+- task: task.memory.address_value_distinction.practice
+  status: validated
+  items: 26
+  explanations: 0
+  version: 3
+- task: task.memory.address_value_distinction.check
+  status: validated
+  items: 19
+  explanations: 0
+  version: 3
+- task: task.memory.address_value_distinction.review
+  status: validated
+  items: 27
+  explanations: 0
+  version: 3
+- task: task.memory.address_value_distinction.repair
+  status: validated
+  items: 27
+  explanations: 7
+  version: 3
+- task: task.c.pointer_formation.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.c.pointer_dereference.teach
+  status: validated
+  items: 2
+  explanations: 4
+  version: 2
+- task: task.memory.storage_lifetime_intuition.teach
+  status: validated
+  items: 1
+  explanations: 2
+  version: 2
+- task: task.memory.storage_lifetime_intuition.practice
+  status: validated
+  items: 12
+  explanations: 0
+  version: 3
+- task: task.memory.storage_lifetime_intuition.check
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.memory.storage_lifetime_intuition.review
+  status: validated
+  items: 13
+  explanations: 0
+  version: 3
+- task: task.memory.storage_lifetime_intuition.repair
+  status: validated
+  items: 13
+  explanations: 4
+  version: 3
+- task: task.linux.process_exit_stdout_stderr_basic.practice
+  status: validated
+  items: 13
+  explanations: 0
+  version: 3
+- task: task.linux.process_exit_stdout_stderr_basic.check
+  status: validated
+  items: 9
+  explanations: 0
+  version: 3
+- task: task.linux.process_exit_stdout_stderr_basic.review
+  status: validated
+  items: 14
+  explanations: 0
+  version: 3
+- task: task.linux.process_exit_stdout_stderr_basic.repair
+  status: validated
+  items: 14
+  explanations: 5
+  version: 3
+- task: task.shell.command_options_redirection_basic.practice
+  status: validated
+  items: 12
+  explanations: 0
+  version: 3
+- task: task.shell.command_options_redirection_basic.check
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.shell.command_options_redirection_basic.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.shell.command_options_redirection_basic.repair
+  status: validated
+  items: 15
+  explanations: 5
+  version: 3
+- task: task.shell.pipeline_redirection.practice
+  status: validated
+  items: 12
+  explanations: 0
+  version: 3
+- task: task.shell.pipeline_redirection.check
+  status: validated
+  items: 13
+  explanations: 0
+  version: 3
+- task: task.shell.pipeline_redirection.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.shell.pipeline_redirection.repair
+  status: validated
+  items: 15
+  explanations: 5
+  version: 3
+- task: task.git.repository_status_diff.practice
+  status: validated
+  items: 12
+  explanations: 0
+  version: 3
+- task: task.git.repository_status_diff.check
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.git.repository_status_diff.review
+  status: validated
+  items: 16
+  explanations: 0
+  version: 3
+- task: task.git.repository_status_diff.repair
+  status: validated
+  items: 16
+  explanations: 5
+  version: 3
+- task: task.git.stage_commit_history_basic.practice
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.git.stage_commit_history_basic.check
+  status: validated
+  items: 12
+  explanations: 0
+  version: 3
+- task: task.git.stage_commit_history_basic.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.git.stage_commit_history_basic.repair
+  status: validated
+  items: 15
+  explanations: 5
+  version: 3
+- task: task.english.recognize_core_technical_labels.practice
+  status: validated
+  items: 14
+  explanations: 0
+  version: 3
+- task: task.english.recognize_core_technical_labels.check
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.english.recognize_core_technical_labels.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.english.recognize_core_technical_labels.repair
+  status: validated
+  items: 15
+  explanations: 3
+  version: 3
+- task: task.english.technical_noun_phrase_recognition.practice
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.english.technical_noun_phrase_recognition.check
+  status: validated
+  items: 6
+  explanations: 0
+  version: 3
+- task: task.english.technical_noun_phrase_recognition.review
+  status: validated
+  items: 12
+  explanations: 0
+  version: 3
+- task: task.english.technical_noun_phrase_recognition.repair
+  status: validated
+  items: 12
+  explanations: 3
+  version: 3
+- task: task.english.imperative_instruction_comprehension.practice
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.english.imperative_instruction_comprehension.check
+  status: validated
+  items: 6
+  explanations: 0
+  version: 3
+- task: task.english.imperative_instruction_comprehension.review
+  status: validated
+  items: 10
+  explanations: 0
+  version: 3
+- task: task.english.imperative_instruction_comprehension.repair
+  status: validated
+  items: 10
+  explanations: 3
+  version: 3
+- task: task.english.negation_question_comprehension.practice
+  status: validated
+  items: 7
+  explanations: 0
+  version: 3
+- task: task.english.negation_question_comprehension.check
+  status: validated
+  items: 4
+  explanations: 0
+  version: 3
+- task: task.english.negation_question_comprehension.review
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.english.negation_question_comprehension.repair
+  status: validated
+  items: 11
+  explanations: 3
+  version: 3
+- task: task.english.follow_bilingual_technical_instruction.practice
+  status: validated
+  items: 9
+  explanations: 0
+  version: 3
+- task: task.english.follow_bilingual_technical_instruction.check
+  status: validated
+  items: 6
+  explanations: 0
+  version: 3
+- task: task.english.follow_bilingual_technical_instruction.review
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.english.follow_bilingual_technical_instruction.repair
+  status: validated
+  items: 11
+  explanations: 3
+  version: 3
+- task: task.english.read_simple_terminal_error_fragments.practice
+  status: validated
+  items: 14
+  explanations: 0
+  version: 3
+- task: task.english.read_simple_terminal_error_fragments.check
+  status: validated
+  items: 6
+  explanations: 0
+  version: 3
+- task: task.english.read_simple_terminal_error_fragments.review
+  status: validated
+  items: 15
+  explanations: 0
+  version: 3
+- task: task.english.read_simple_terminal_error_fragments.repair
+  status: validated
+  items: 15
+  explanations: 3
+  version: 3
+- task: task.english.documentation_navigation.practice
+  status: validated
+  items: 9
+  explanations: 0
+  version: 3
+- task: task.english.documentation_navigation.check
+  status: validated
+  items: 4
+  explanations: 0
+  version: 3
+- task: task.english.documentation_navigation.review
+  status: validated
+  items: 11
+  explanations: 0
+  version: 3
+- task: task.english.documentation_navigation.repair
+  status: validated
+  items: 11
+  explanations: 3
+  version: 3
+answer_misconceptions:
+- mapping: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f05@v2:B
+  misconception: output_means_success
+- mapping: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f08@v2:C
+  misconception: error_text_is_stdout
+- mapping: item.english.recognize_core_technical_labels.match_term_meaning.f08@v2:B
+  misconception: download_is_upload
+- mapping: item.english.recognize_core_technical_labels.match_term_meaning.g08@v2:B
+  misconception: close_deletes
+- mapping: item.english.technical_noun_phrase_recognition.demonstrate_capability.g04@v2:B
+  misconception: head_is_first
+- mapping: item.english.imperative_instruction_comprehension.demonstrate_capability.f04@v2:B
+  misconception: and_order_free
+- mapping: item.english.imperative_instruction_comprehension.demonstrate_capability.f04@v2:C
+  misconception: imperative_is_description
+- mapping: item.english.imperative_instruction_comprehension.demonstrate_capability.f07@v2:B
+  misconception: and_order_free
+- mapping: item.english.imperative_instruction_comprehension.demonstrate_capability.f07@v2:C
+  misconception: and_order_free
+- mapping: item.english.imperative_instruction_comprehension.demonstrate_capability.f08@v2:C
+  misconception: imperative_is_description
+- mapping: item.english.documentation_navigation.demonstrate_capability.f08@v2:B
+  misconception: brackets_required
+- mapping: item.english.documentation_navigation.demonstrate_capability.f08@v2:C
+  misconception: brackets_required
+failures: []
+by_source:
+  15a_computing_fundamentals:
+    added_items: 0
+    tasks: 9
+    revised_items: 2
+  15b_python_foundations:
+    added_items: 2
+    tasks: 49
+    revised_items: 23
+  15c_c_foundations:
+    added_items: 2
+    tasks: 20
+    revised_items: 19
+  15d_memory_foundations:
+    added_items: 0
+    tasks: 12
+    revised_items: 3
+  15e_linux_git_shell:
+    added_items: 2
+    tasks: 20
+    revised_items: 8
+  15f_english_a1_a2:
+    added_items: 0
+    tasks: 28
+    revised_items: 26
+edges:
+- edge: skill.python.input_output_basic->skill.python.conditionals
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.input_output_basic->skill.python.for_iteration
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.functions_parameters_return->skill.python.list_operations
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.functions_parameters_return->skill.python.tuple_immutable_sequence
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.functions_parameters_return->skill.python.set_operations
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.functions_parameters_return->skill.python.string_text_operations
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.modules_imports_basic->skill.python.path_handling
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.standard_io_basic->skill.c.conditionals
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.standard_io_basic->skill.c.for_iteration
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.functions_basic->skill.c.pointer_formation
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.shell.command_options_redirection_basic->skill.git.stage_commit_history_basic
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.list_operations->skill.python.mapping_collections_basic
+  kind: hard
+  rule: lesson_and_every_item
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.list_operations->skill.python.exception_handling
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.programming.function_decomposition->skill.python.exceptions_read_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.list_operations->skill.python.exceptions_read_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.list_operations->skill.python.string_text_operations
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.expression_evaluation->skill.python.tuple_immutable_sequence
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.list_operations->skill.python.tuple_immutable_sequence
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.shell.command_options_redirection_basic->skill.git.repository_status_diff
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.programming.expression_boolean_reasoning->skill.programming.iteration_reasoning
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.programming.state_assignment_model->skill.python.value_type_behavior
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.list_operations->skill.python.set_operations
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.expression_evaluation->skill.python.exceptions_read_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.expression_evaluation->skill.python.modules_imports_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.expression_evaluation->skill.python.exception_handling
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.for_iteration->skill.python.string_text_operations
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.list_operations->skill.python.files_paths_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.expression_evaluation->skill.memory.address_value_distinction
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.expression_evaluation->skill.memory.storage_lifetime_intuition
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.pointer_dereference->skill.memory.storage_lifetime_intuition
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.expression_evaluation->skill.python.functions_parameters_return
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.programming.branching_reasoning->skill.programming.code_reading_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.conditionals->skill.python.list_operations
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.conditionals->skill.python.set_operations
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.conditionals->skill.python.modules_imports_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.list_operations->skill.python.modules_imports_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.conditionals->skill.python.exception_handling
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.conditionals->skill.python.string_text_operations
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.python.conditionals->skill.python.files_paths_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.expression_evaluation->skill.c.standard_io_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.conditionals->skill.c.for_iteration
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.conditionals->skill.c.functions_basic
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.functions_basic->skill.memory.address_value_distinction
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.conditionals->skill.c.pointer_formation
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.c.conditionals->skill.c.pointer_dereference
+  kind: soft
+  rule: lesson
+  reason_kind: evidence_interpretability
+  result: PASS
+- edge: skill.english.imperative_instruction_comprehension->skill.english.documentation_navigation
+  kind: soft
+  rule: reads_glossed
+  reason_kind: language_dependency
+  result: PASS
+- edge: skill.english.preposition_function_word_comprehension->skill.english.documentation_navigation
+  kind: soft
+  rule: reads_glossed
+  reason_kind: language_dependency
+  result: PASS
+- edge: skill.english.technical_noun_phrase_recognition->skill.english.documentation_navigation
+  kind: soft
+  rule: reads_glossed
+  reason_kind: language_dependency
+  result: PASS
+- edge: skill.linux.process_exit_stdout_stderr_basic->skill.shell.command_options_redirection_basic
+  kind: soft
+  rule: reads_glossed
+  reason_kind: conceptual_dependency
+  result: PASS
+summary:
+  items: 87
+  validated_items: 87
+  transfer_items: 1
+  task_versions: 138
+  answer_misconceptions: 12
+  failures: 0
+  revised_items: 81
+  retired_versions: 81
+  edges: 49

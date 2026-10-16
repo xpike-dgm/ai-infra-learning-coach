@@ -1,0 +1,40 @@
+skill: skill.python.scope_name_resolution
+objectives:
+- id: objective.python.scope_name_resolution.demonstrate_capability
+  items:
+  - slug: h01
+    difficulty: authentic_application
+    required_skills:
+    - skill.python.expression_evaluation
+    prompt: 'Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+
+      '
+    code: |
+      sinir = 5
+      def ayarla():
+          sinir = 10
+      def kontrol(n):
+          return n < sinir
+      ayarla()
+      print(kontrol(7))
+    answer: 'False'
+    verify:
+      mode: stdout
+  - slug: h02
+    difficulty: transfer_integration
+    prompt: 'Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+
+      '
+    code: |
+      x = 1
+      def dis():
+          x = 2
+          def ic():
+              global x
+              x = 3
+          ic()
+          return x
+      print(dis(), x)
+    answer: 2 3
+    verify:
+      mode: stdout

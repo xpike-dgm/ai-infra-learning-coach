@@ -307,14 +307,16 @@ PEM-v0:
 - 15E ✅ LGSX-v0 / D-118
 - 15F ✅ EAAX-v0 / D-119
 - 15G ✅ ACNX-v0 / D-120
-- 15H 🟡 active-not-executed
+- 15H ✅ CQAX-v0 / D-121
+- **AŞAMA 15 TAMAMLANDI**
+- 16A 🟡 active-not-executed
 - 16–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `15G — ACNX-v0 / D-120`  
-**Aktif:** `15H — Content QA`  
-**15H henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `15H — CQAX-v0 / D-121`  
+**Aktif:** `16A — Skill analytics`  
+**16A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1509,3 +1511,27 @@ ACNX-v0:
 ## 90. 15H handoff
 
 15H — Content QA. **The user's standing approval (D-117) ended with 15F**; 15G ran on the user's explicit approval of 2026-10-04, and 15H needs a fresh PRE and the user's new explicit approval. Inputs: 15G's recorded pool shortfall (3 technical Objectives at 14; 8 English Objectives at 10–12 — English first needs a wider taught lexicon), the reviewers' findings on generous difficulty labels and isomorphs (`curriculum/content/15g_assessment/independent_review.yaml`), documentation_navigation's graph and notation coverage. Carried: `professional_evidence_checkpoint` (AŞAMA 20), moving answers between phone and computer (16D), minute calibration (18B), T6 and on-device ingestion (19).
+
+## 91. D-121 / 15H final özeti
+
+Canonical: `docs/CONTENT_QA_SPEC.md`.
+Contract/QA: `arch/15h_content_qa/` (contract, content verification report, audit report, QA report, stale audit).
+Synthesis: `research/15h_content_qa_research.md`.
+Content: `curriculum/content/15h_content_qa/` (package, `graph.yaml`, `notation_overlay.yaml`, `fixed_output.yaml`, `alt_references.yaml`, `lesson_findings.yaml`, `label_decisions.yaml`, `items/<source>/<skill>.yaml`, independent review, generated suites) → `tools/build_curriculum_package.py` (`build_supplement` on an earlier supplement) → `android/app-wiring/src/main/assets/curriculum_package_v8.txt`.
+Code: builder (revisions as next versions with retirement records, `earlier_supplements`, task versions from three stages, `teach_requires`, `supplement_edges`, `source_check_harness`, the constant-output check, the critical-Objective refusal); audit `tools/content_qa.py`; Kotlin `CurriculumStore` refuses an edge version or a validation record carried twice; validator `tools/validate_content_qa.py`. Schema and ports unchanged.
+
+CQAX-v0:
+- content says only what its graph, its checks and its labels can stand behind; a correction is the next version, the version it replaces is retired by an appended record and never edited, and it ships only after an independent reviewer passed it,
+- approval: the user's explicit approval of 2026-10-10 ("15G tamamlandı merge edildi diğer adıma geçebilirsin"); user decisions: add the content's edges (hard only where the lesson and every item outside it need them), close `requires_transfer` (no gate on a standard Objective; the builder refuses a critical one), the next version for a flawed item, technical pools to 15 and English keeps its small pool,
+- 81 next versions (81 retired versions), 6 new items, 138 task versions, 49 edges (12 hard, 37 soft), 18 teach requirements; no Skill, Objective, Topic, lesson or label added; packages 1–7 rebuild byte-identically,
+- the audit (fixed output, notation, lesson checks, lesson text, graph, labels, pools, criticality) resolves every finding; pools: 57 of 65 Objectives at ≥15, eight English Objectives at 10–12 recorded,
+- independent review: four reviewers, 87/87 items, 49/49 edges, 18/18 teach requirements,
+- found: the gate was right and the graph silent; lessons show code their teach task does not reach; most lesson-check findings are scaffolds; a fixed output is the construct only in some items; an Objective-wide exemption hides items; the reference, not the item, used untaught constructs; one level down is not always the right level; a harness must run the program as a program; text similarity is not a near-variance test,
+- Mutation builder 29/29, audit 10/10, Kotlin 2/2; independent QA 142/142 PASS,
+- T6 and on-device ingestion were not run.
+
+**AŞAMA 15 TAMAMLANDI** — CPFX-v0 → PYFX-v0 → CFNX-v0 → MMFX-v0 → LGSX-v0 → EAAX-v0 → ACNX-v0 → CQAX-v0.
+
+## 92. 16A handoff
+
+16A — Skill analytics. **The user's standing approval (D-117) ended with 15F**; 15G and 15H each ran on the user's explicit approval, and 16A needs a fresh PRE and the user's new explicit approval. AŞAMA 15 is closed: eight packages ship and nothing in them has been ingested on the device. Carried: the English small pools and the post-relabel level gaps (a later English content step), label calibration (18C), minute calibration (18B), contrived cheats and notation granularity (recorded limits), `professional_evidence_checkpoint` (AŞAMA 20), moving answers between phone and computer (16D), T6 and on-device ingestion (19).

@@ -1,0 +1,184 @@
+# 15H (CQAX-v0 / D-121) — what the lessons and items need, said by the graph.
+#
+# PRG-v0 §6: the graph carries the general learning dependency; a task's own required Skills carry what that exact task
+# needs, and are hard even where the graph is silent. 15A–15G declared every need at task and item level; the graph left
+# many of them unsaid (all 6C edges were draft, and each package published only its internal ones). 15H adds an edge
+# wherever a lesson needs a Skill the published graph does not already imply (user decision 2026-10-10):
+#
+#   lesson_and_every_item -> hard: the teach task requires it and every item outside the lesson declares it — the Skill
+#                                  as taught and measured here cannot be learned or fairly measured without it;
+#   lesson                -> soft: the teach task requires it (already hard for that task), but some items do not;
+#   reads_glossed         -> soft: the lesson reads structures the prerequisite teaches and glosses them where it shows
+#                                  them — the prerequisite helps, nothing is unfair without it.
+#
+# The builder recomputes every rule from the content (tools/build_curriculum_package.py, supplement_edges): an edge whose
+# rule does not hold is refused, every lesson need the graph does not imply must be listed here, and the hard graph —
+# alone and with every lesson's requirement — stays acyclic. Item-level needs a lesson does not share stay item-level.
+
+edges:
+  # ---- hard: the lesson and every item outside it
+  - {prerequisite: skill.python.input_output_basic, target: skill.python.conditionals, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the canonical and worked example read with input(); all 15 items outside the lesson declare it"}
+  - {prerequisite: skill.python.input_output_basic, target: skill.python.for_iteration, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the worked example reads with input(); all 15 items outside the lesson declare it"}
+  - {prerequisite: skill.python.functions_parameters_return, target: skill.python.list_operations, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the worked example defines a function; all 15 items outside the lesson are functions the harness calls"}
+  - {prerequisite: skill.python.functions_parameters_return, target: skill.python.tuple_immutable_sequence, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the canonical returns a tuple from a function; all 15 items outside the lesson are functions"}
+  - {prerequisite: skill.python.functions_parameters_return, target: skill.python.set_operations, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the worked example defines a function; all 15 items outside the lesson are functions"}
+  - {prerequisite: skill.python.functions_parameters_return, target: skill.python.string_text_operations, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the worked example defines a function; all 15 items outside the lesson are functions"}
+  - {prerequisite: skill.python.modules_imports_basic, target: skill.python.path_handling, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the canonical imports pathlib; all 15 items outside the lesson declare it (independent review, 15B)"}
+  - {prerequisite: skill.c.standard_io_basic, target: skill.c.conditionals, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the worked example and lesson checks read with scanf; all 15 items outside the lesson declare it (independent review, 15C)"}
+  - {prerequisite: skill.c.standard_io_basic, target: skill.c.for_iteration, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the worked example reads with scanf; all 15 items outside the lesson declare it"}
+  - {prerequisite: skill.c.functions_basic, target: skill.c.pointer_formation, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the canonical and worked example define functions; all 15 items outside the lesson declare it (independent review, 15D)"}
+  - {prerequisite: skill.shell.command_options_redirection_basic, target: skill.git.stage_commit_history_basic, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the state trace, worked example and lesson checks write files with echo >; all 15 items outside the lesson declare it"}
+
+  - {prerequisite: skill.python.list_operations, target: skill.python.mapping_collections_basic, kind: hard, rule: lesson_and_every_item,
+     reason_kind: evidence_interpretability, why: "the canonical and worked example print sorted(...items()) (teach requirement declared below); all 15 items outside the lesson declare it"}
+
+  # ---- soft: the lesson needs it, some items do not
+  - {prerequisite: skill.python.list_operations, target: skill.python.exception_handling, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the worked example returns liste[0] (teach requirement declared below); 6 of 15 items use a list"}
+  - {prerequisite: skill.programming.function_decomposition, target: skill.python.exceptions_read_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the canonical reads a traceback through def kare_kok(n) (teach requirement declared below); 6 of 15 items show a function (they declare functions_parameters_return)"}
+  - {prerequisite: skill.python.list_operations, target: skill.python.exceptions_read_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the worked example reads a traceback through return liste[0] (teach requirement declared below); 8 of 15 items use a list"}
+  - {prerequisite: skill.python.list_operations, target: skill.python.string_text_operations, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the canonical indexes and slices like lists and split returns a list (teach requirement declared below); 6 of 15 items use a list"}
+  - {prerequisite: skill.python.expression_evaluation, target: skill.python.tuple_immutable_sequence, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the canonical returns (a // b, a % b) and the worked example divides with / (teach requirement declared below)"}
+  - {prerequisite: skill.python.list_operations, target: skill.python.tuple_immutable_sequence, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the canonical compares a tuple with a list (teach requirement declared below); 5 of 15 items use a list"}
+  - {prerequisite: skill.shell.command_options_redirection_basic, target: skill.git.repository_status_diff, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the worked example writes files with echo > (independent review, 15E); 15 of 16 items run commands that do — 15H's diff-reading item runs none"}
+  - {prerequisite: skill.programming.expression_boolean_reasoning, target: skill.programming.iteration_reasoning, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the lesson declares it (lesson_requires) and its in-lesson items loop while i <= 3 and i < 5; 22 of 30 items need a comparison (independent review, 15A)"}
+  - {prerequisite: skill.programming.state_assignment_model, target: skill.python.value_type_behavior, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the lesson declares it (lesson_requires); 9 of 15 items assign"}
+  - {prerequisite: skill.python.list_operations, target: skill.python.set_operations, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the in-lesson item counts the distinct values of a list; 13 of 15 items take or return a list"}
+  - {prerequisite: skill.python.expression_evaluation, target: skill.python.exceptions_read_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the in-lesson traceback comes from fiyat / kisi; 3 of 15 items compute"}
+  - {prerequisite: skill.python.expression_evaluation, target: skill.python.modules_imports_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the in-lesson item computes a circle's area with math; 6 of 15 items compute"}
+  - {prerequisite: skill.python.expression_evaluation, target: skill.python.exception_handling, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the in-lesson item handles the error of a / b; 7 of 15 items compute"}
+  - {prerequisite: skill.python.for_iteration, target: skill.python.string_text_operations, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the in-lesson item visits every name of a text in a loop; 4 of 15 items loop"}
+  - {prerequisite: skill.python.list_operations, target: skill.python.files_paths_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the in-lesson item counts a file's lines; 7 of 15 items use a list"}
+  - {prerequisite: skill.c.expression_evaluation, target: skill.memory.address_value_distinction, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the in-lesson item compares m == n and &m == &n (independent review, 15D); 6 of 30 items compare"}
+  - {prerequisite: skill.c.expression_evaluation, target: skill.memory.storage_lifetime_intuition, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the in-lesson item adds to a static counter with +=; 4 of 15 items need an operator"}
+  - {prerequisite: skill.c.pointer_dereference, target: skill.memory.storage_lifetime_intuition, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the lesson returns &x from a function and reads *p (teach requirement declared below); 11 of 15 items read through a pointer"}
+  - {prerequisite: skill.python.expression_evaluation, target: skill.python.functions_parameters_return, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the lesson's functions return taban * yukseklik / 2 and use // (teach requirement declared below); 9 of 15 items compute"}
+  - {prerequisite: skill.programming.branching_reasoning, target: skill.programming.code_reading_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the lesson reads an if/else and % and // (teach requirement declared below); 6 of 15 items branch"}
+
+  - {prerequisite: skill.python.conditionals, target: skill.python.list_operations, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the worked example filters with if (teach requirement declared below); 5 of 15 items branch"}
+  - {prerequisite: skill.python.conditionals, target: skill.python.set_operations, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the canonical and worked example test with if (teach requirement declared below); 3 of 15 items branch"}
+  - {prerequisite: skill.python.conditionals, target: skill.python.modules_imports_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the lesson guards with if __name__ == \"__main__\" (teach requirement declared below); 1 of 15 items branches"}
+  - {prerequisite: skill.python.list_operations, target: skill.python.modules_imports_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the canonical calls mean([1, 2, 3, 4]) (teach requirement declared below); 4 of 15 items use a list"}
+  - {prerequisite: skill.python.conditionals, target: skill.python.exception_handling, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the canonical raises after an if (teach requirement declared below); 2 of 15 items branch"}
+  - {prerequisite: skill.python.conditionals, target: skill.python.string_text_operations, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the worked example branches on a length (teach requirement declared below); 6 of 15 items branch"}
+  - {prerequisite: skill.python.conditionals, target: skill.python.files_paths_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the worked example compares line lengths in an if (teach requirement declared below); 5 of 15 items branch"}
+  - {prerequisite: skill.c.expression_evaluation, target: skill.c.standard_io_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the worked example prints c * 9 / 5 + 32 (teach requirement declared below); 4 of 15 items compute"}
+  - {prerequisite: skill.c.conditionals, target: skill.c.for_iteration, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the worked example tests if (i % 3 == 0) (teach requirement declared below); 5 of 15 items branch"}
+  - {prerequisite: skill.c.conditionals, target: skill.c.functions_basic, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the worked example returns after if (a > b) (teach requirement declared below); 6 of 15 items branch"}
+  - {prerequisite: skill.c.functions_basic, target: skill.memory.address_value_distinction, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the worked example traces int karesi(int s) (teach requirement declared below); 11 of 30 items call a function"}
+  - {prerequisite: skill.c.conditionals, target: skill.c.pointer_formation, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the lesson compares pointers and branches with if (teach requirement declared below); 10 of 15 items branch"}
+  - {prerequisite: skill.c.conditionals, target: skill.c.pointer_dereference, kind: soft, rule: lesson,
+     reason_kind: evidence_interpretability, why: "the canonicals check if (p != NULL) (teach requirement declared below); 14 of 30 items branch"}
+
+  # ---- soft: the lesson reads what the prerequisite teaches, glossed where it is shown
+  - {prerequisite: skill.english.imperative_instruction_comprehension, target: skill.english.documentation_navigation, kind: soft, rule: reads_glossed,
+     reason_kind: language_dependency, why: "help text is made of imperative clauses (Show, Print); the lesson glosses each one it shows (independent review, 15F)"}
+  - {prerequisite: skill.english.preposition_function_word_comprehension, target: skill.english.documentation_navigation, kind: soft, rule: reads_glossed,
+     reason_kind: language_dependency, why: "option descriptions use for, with, in, of; glossed where shown"}
+  - {prerequisite: skill.english.technical_noun_phrase_recognition, target: skill.english.documentation_navigation, kind: soft, rule: reads_glossed,
+     reason_kind: language_dependency, why: "option descriptions are noun phrases (\"the size of each file\", \"the number of files\"); glossed where shown (independent review, 15H)"}
+  - {prerequisite: skill.linux.process_exit_stdout_stderr_basic, target: skill.shell.command_options_redirection_basic, kind: soft, rule: reads_glossed,
+     reason_kind: conceptual_dependency, why: "the lesson's && example says 'çıkış durumu 0' and > sends stdout; it says what each means where it uses them (independent review, 15E)"}
+
+# Needs a lesson shows that its teach task did not declare — found by reading each lesson's code (its checks, and the code
+# lines of its canonical, worked example and contrasts) against what the teach task reaches (tools/content_qa.py,
+# lesson_checks and lesson_text). Each is added to the Skill's tasks as `lesson_requires` is — a hard requirement at task
+# level, PRG-v0 §6 — and each publishes those tasks' next version. A need that would make two lessons wait for each other
+# is not declared: it is recorded in lesson_findings.yaml with what the lesson does instead.
+teach_requires:
+  skill.memory.storage_lifetime_intuition:
+    requires: [skill.c.pointer_dereference]
+    why: "the canonical and worked example declare int *, return &x from a function and read *p; the lesson could be planned before any pointer Skill (independent review, 15D)"
+  skill.python.functions_parameters_return:
+    requires: [skill.python.expression_evaluation]
+    why: "the lesson's ucgen_alan and kdv_dahil return taban * yukseklik / 2 and fiyat + fiyat * oran // 100"
+  skill.programming.code_reading_basic:
+    requires: [skill.programming.branching_reasoning]
+    why: "the lesson reads if x < y / else and sayi % 4, sayi // 4 (branching_reasoning brings expression_boolean_reasoning with it)"
+  skill.python.list_operations:
+    requires: [skill.python.conditionals]
+    why: "the worked example filters with if n > sinir"
+  skill.python.set_operations:
+    requires: [skill.python.conditionals]
+    why: "the canonical and worked example test if x in gorulen / if n not in gorulen"
+  skill.python.modules_imports_basic:
+    requires: [skill.python.conditionals, skill.python.list_operations]
+    why: "the canonical and worked example guard with if __name__ == \"__main__\": and call mean([1, 2, 3, 4])"
+  skill.python.exception_handling:
+    requires: [skill.python.conditionals, skill.python.list_operations]
+    why: "the canonical raises after if adet < 0; the worked example returns liste[0] (independent review, 15H)"
+  skill.python.string_text_operations:
+    requires: [skill.python.conditionals, skill.python.list_operations]
+    why: "the worked example shortens a text after if len(metin) > n; the canonical indexes and slices 'listelerdeki gibi' and split returns a list (independent review, 15H)"
+  skill.python.files_paths_basic:
+    requires: [skill.python.conditionals]
+    why: "the worked example keeps the longest line with if len(satir) > len(en_uzun)"
+  skill.c.standard_io_basic:
+    requires: [skill.c.expression_evaluation]
+    why: "the worked example prints c * 9 / 5 + 32"
+  skill.c.for_iteration:
+    requires: [skill.c.conditionals]
+    why: "the worked example tests if (i % 3 == 0) inside the loop"
+  skill.c.functions_basic:
+    requires: [skill.c.conditionals]
+    why: "the worked example returns the larger value after if (a > b)"
+  skill.memory.address_value_distinction:
+    requires: [skill.c.functions_basic]
+    why: "the worked example traces int karesi(int s), a value copied into a parameter"
+  skill.c.pointer_formation:
+    requires: [skill.c.conditionals]
+    why: "the canonical compares q == p, p == &x and bos == NULL, and the worked example branches with if (a_uzun_mu)"
+  skill.c.pointer_dereference:
+    requires: [skill.c.conditionals]
+    why: "the canonicals check if (p != NULL) before reading or writing, and the worked example tests if (*p > ust)"
+  skill.python.tuple_immutable_sequence:
+    requires: [skill.python.list_operations, skill.python.expression_evaluation]
+    why: "the canonical returns (a // b, a % b) and compares a tuple with a list, the worked example returns ((x1 + x2) / 2, (y1 + y2) / 2) (independent review, 15H)"
+  skill.python.mapping_collections_basic:
+    requires: [skill.python.list_operations]
+    why: "the canonical and worked example print sorted(...items()), a sorted list of pairs (independent review, 15H)"
+  skill.python.exceptions_read_basic:
+    requires: [skill.programming.function_decomposition, skill.python.list_operations]
+    why: "the canonical reads a traceback through def kare_kok(n) and the worked example through return liste[0] (independent review, 15H)"

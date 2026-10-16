@@ -1,0 +1,29 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.run_repl_script.execute_and_classify_result.g04@v2",
+  "item": "item.python.run_repl_script.execute_and_classify_result.g04@v2",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import ast, contextlib, io, re, tokenize\nwith open(\"cozum.py\", \"rb\") as f:\n    kaynak = f.read()\nadlar = {\"__name__\": \"__main__\", \"__file__\": \"cozum.py\", \"__builtins__\": __builtins__}\nwith contextlib.redirect_stdout(io.StringIO()) as cikti:\n    try:\n        exec(compile(kaynak, \"cozum.py\", \"exec\"), adlar)\n    except SystemExit:\n        pass\nprint(cikti.getvalue().rstrip())\nistenen = ['\\\\bprint\\\\([^)]*\\\\bmesafe\\\\b']\nkod_satirlari = kaynak.decode('utf-8-sig').splitlines()\nfor j in sorted(tokenize.tokenize(io.BytesIO(kaynak).readline), key=lambda j: j.start, reverse=True):\n    if j.type in (tokenize.COMMENT, tokenize.STRING, getattr(tokenize, \"FSTRING_MIDDLE\", -1)) and j.start[0] == j.end[0]:\n        s = kod_satirlari[j.start[0] - 1]\n        kod_satirlari[j.start[0] - 1] = s[:j.start[1]] + ' ' * (j.end[1] - j.start[1]) + s[j.end[1]:]\nkod = chr(10).join(kod_satirlari)\nprint(\"istenen yapilar:\", \"tamam\" if all(re.search(r, kod) for r in istenen) else \"eksik\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "fixed_output",
+      "stdin": "",
+      "expected_stdout": "Mesafe:\n42\nistenen yapilar: tamam\n"
+    }
+  ]
+}

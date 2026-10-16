@@ -1,0 +1,12 @@
+skill: skill.english.recognize_core_technical_labels
+objectives:
+- id: objective.english.recognize_core_technical_labels.match_term_meaning
+  revisions:
+  - revises: f08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application
+  - revises: g08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application
