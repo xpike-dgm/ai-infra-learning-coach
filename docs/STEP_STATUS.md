@@ -83,8 +83,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **15F — English A0→A1/A2 başlangıç paketi** | ✅ | EAAX-v0 / D-119. Her İngilizce kelime bir dersin öğrettiği kelimedir: 10 Skill / 10 Objective / 9 kenar `published`; 82 item (72 kaynaklı, 8 araç mesajı, 2 rubric), 50 anlatım, 20 misconception, 50 görev; ders başına kelime listesi; onay D-117; 119/119 QA PASS, Mutation 8/8. |
 | **15G — Assessment content** | ✅ | ACNX-v0 / D-120. Yayımlanmış Objective'lere, yayımlanmış hiçbir şeyi değiştirmeden ek paket (v7): 613 item, 240 büyüyen görev v2'si, 21 cross-topic transfer item'ı (ayın slotuna ayrılır), 144 seçenek düzeyinde misconception anahtarı; graph, ders ve etiket eklenmedi, 1–6. paketler bayt bayt aynı. `TRANSFER_OPPORTUNITY` sahibi `TransferEngine` (beyan edilmiş uzantı). Bağımsız inceleme 4 turda 613/613, 144/144. Havuz: 65 Objective'in 54'ü ≥15; 3 teknik Objective 14, 8 İngilizce Objective 10–12 (kullanıcı kararı, eksik kayıtlı). Mutation üretici 22/22, Kotlin 32/32; QA 108/108 PASS. T6 çalıştırılmadı. |
 | **15H — Content QA** | ✅ | CQAX-v0 / D-121. Aşama 15'in içeriği yalnız graph'ının, kontrollerinin ve etiketlerinin taşıdığını söyler; ek paket (v8): 81 item'ın sonraki sürümü (eskisi eklenen bir `retired` kaydıyla emekli, üzerine yazılmadı), 6 yeni item, 138 görev sürümü, 49 kenar (12 hard), 18 ders gereksinimi; sabit çıktı, gösterim, ders kodu, graph, etiket, havuz ve criticality denetimi (`tools/content_qa.py`) her bulguyu çözüyor; `requires_transfer` kapandı (standard Objective'de kapı yok, critical reddedilir). Bağımsız inceleme 4 inceleyici, 87/87 item, 49/49 kenar. Kullanıcı kararları: graph'a ekle, kapat, sonraki sürüm, teknik 15. 142/142 QA PASS. |
-| **16A — Skill analytics** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
-| **16–20** | ⬜ Bekliyor | 16A sonrası canonical sırada. |
+| **16A — Skill analytics** | ✅ | SKAX-v0 / D-122. Bir Skill'in öğrenciye görünen durumu, kendi motorlarının yazdığı dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir ve saklanan satırla ekran aynı tek fonksiyonu kullanır; bir eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill 'yeniden hesaplanıyor'dur, tahmin edilmiş bir durum yoktur; Progress envanter sayar, hiçbir sayımı bölmez. Sekiz durum ve türetmesi `core-model`de tek fonksiyon; her `skill_state` yazıcısı sunumu eksenlerden türetiyor, `AssembleSkillState` ön koşul eksenini yazıyor; Progress sekmesi ve Skill detayı depodan okuyor. Hiçbir şey yapmamış öğrenci: 4 'Henüz Kanıt Yok', 56 'Ön Koşul Bekliyor' — planner'ın beklettikleri. Kullanıcı kararları: Skill projeksiyonu + detay + özet; core + gerçek ekran; eksik eksen 'yeniden hesaplanıyor'. Kotlin mutation 30/30, validator mutation 38/38; 90/90 QA PASS. |
+| **16B — Öğrenme geçmişi** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
+| **16–20** | ⬜ Bekliyor | 16B sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -103,7 +104,22 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 15H
+## Son tamamlanan numaralı adım — 16A
+
+**Final:** `SKAX-v0 — Skill state projection, skill_detail and progress_overview` / D-122.
+**Ana çıktı:** `docs/SKILL_ANALYTICS_SPEC.md` + `arch/16a_skill_analytics/` + `tools/validate_skill_analytics.py` + `android/`.
+
+16A sonucu:
+- bir Skill'in öğrenciye görünen durumu, kendi motorlarının yazdığı dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir ve saklanan satırla ekran aynı tek fonksiyonu kullanır; bir eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill 'yeniden hesaplanıyor'dur, tahmin edilmiş bir durum yoktur; Progress envanter sayar, hiçbir sayımı bölmez,
+- onay kullanıcının 2026-10-17 açık onayı ("merge et ve devam et 16a ya başla"); kullanıcı kararları: Skill projeksiyonu + `skill_detail` + `progress_overview` (Topic/zayıflık/İngilizce 16C, geçmiş 16B); core + gerçek Compose ekranı; değerlendirilmemiş eksen 'yeniden hesaplanıyor',
+- **bulgu:** sunum sütunu mastery değerini tutuyordu; tek türetme iki katmana lazımdı (türetme `core-model`de); bağımlı bir Skill'in saklanan ön koşul ekseni bayatlıyor (okuma kapıyı yeniden soruyor); hiçbir şey yapmamış öğrencide 56 bekleyen Skill planner'ın tam kümesi; `TEPM-v0` kural 4 `at_risk`'i adlandırmıyor,
+- kanıt türleri ayrı: sayılmayan → kesinleşmemiş → destekli → bağımsız; niteleyiciler `VDSX-v0`'ın dördü,
+- beyan edilmiş uzantılar: türetme `core-model`de; `AssembleSkillState` `prerequisite_axis_state` ve sunumu satırın watermark'ı altında yazar; her yazıcı sunumu eksenlerden türetir,
+- şema, portlar ve modül sınırları değişmedi,
+- Mutation Kotlin 30/30, validator 38/38; independent validator **90/90 PASS**,
+- **T6 çalıştırılmadı; ekran cihazda görülmedi**.
+
+## Önceki numaralı adım — 15H
 
 **Final:** `CQAX-v0 — Stage 15 content QA supplement` / D-121.
 **Ana çıktı:** `docs/CONTENT_QA_SPEC.md` + `arch/15h_content_qa/` + `curriculum/content/15h_content_qa/` + `android/app-wiring/src/main/assets/curriculum_package_v8.txt` + `tools/content_qa.py` + `tools/validate_content_qa.py`.
@@ -474,6 +490,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 16A Skill analytics
+## Aktif adım — 16B Öğrenme geçmişi
 
-**16A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G ve 15H her biri ayrı açık onayla yürütüldü). AŞAMA 15 kapandı; 15H'nin açık loop'ları (İngilizce havuz, etiket kalibrasyonu 18C, kaydedilmiş sınırlar) `vault/agent/OPEN_LOOPS.md`de.
+**16B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H ve 16A her biri ayrı açık onayla yürütüldü). 16A'nın açık loop'ları (düzeltme bayatlığı ve `assessment_opportunity` 16D, ters invalidation 18E, Topic/zayıflık/İngilizce 16C, geçmiş ve `assessment_report` 16B) `vault/agent/OPEN_LOOPS.md`de.

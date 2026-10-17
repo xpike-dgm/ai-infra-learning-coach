@@ -71,7 +71,12 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 15F English A0→A1/A2 başlangıç paketi: EAAX-v0 / D-119 ile tamamlandı; 10 Skill published (7B A1/A2), 82 item, 50 anlatım, 20 misconception, 50 görev; ders başına kelime listesi.
 - [x] 15G Assessment content: ACNX-v0 / D-120 ile tamamlandı; yedinci paket ek paket — 613 item, 240 büyüyen görev v2'si, 21 transfer item'ı (ayın slotuna ayrılır), 144 seçenek düzeyinde misconception anahtarı; bağımsız inceleme dört turda 613/613.
 - [x] 15H Content QA: CQAX-v0 / D-121 ile tamamlandı; sekizinci paket ek paket — 81 item'ın sonraki sürümü (eskisi `retired` kaydıyla emekli), 6 yeni item, 138 görev sürümü, 49 kenar (12 hard), 18 ders gereksinimi; denetim `tools/content_qa.py`; bağımsız inceleme 87/87, 49/49. **AŞAMA 15 kapandı.**
-- [ ] 16A Skill analytics **AKTİF** — kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
+- [x] 16A Skill analytics: SKAX-v0 / D-122 ile tamamlandı; sekiz durumun tek türetmesi `core-model`de, `AssembleSkillState`, `ProgressQuery`, Progress sekmesi ve Skill detayı; eksik eksen 'yeniden hesaplanıyor'.
+- [ ] 16B Öğrenme geçmişi **AKTİF** — kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
+- [ ] Satırdan sonra eklenen bir düzeltme (`evidence_disposition`) yeni kanıt gibi görünmüyor, yani Progress bunu bayatlık saymıyor; düzeltmeyi uygulamadan kaydeden yol yeniden hesaplamalı → 16D.
+- [ ] Dikkat setinin `assessment_opportunity` grubunun üreticisi yok (uygulama bir Skill için oturum kurmuyor) → 16D.
+- [ ] `skill_detail → planner_explanation` kabul edilmiş bir IA kenarı değil; Objective'lerin depoda açıklama metni yok (etiket id'nin eylemi) → 17.
+- [ ] Progress ekranı cihazda görülmedi → 19 (T6).
 - [x] **15G havuz eksikleri** → 15H'de kapandı (D-121): üç teknik Objective 16'ya çıktı (6 yeni item); sekiz İngilizce Objective 10–12 kullanıcı kararıyla kayıtlı — aşağıda.
 - [ ] **İngilizce küçük havuz (kayıtlı, D-120/D-121):** sekiz İngilizce Objective 10–12; önce daha geniş öğretilmiş lexicon → sonraki İngilizce içerik adımı.
 - [ ] Yeniden etiketlemeden sonra `imperative_instruction_comprehension`'da transfer_integration, `negation_question_comprehension`'da authentic_application seviyesinde item yok → sonraki İngilizce içerik adımı.
@@ -131,14 +136,14 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Waiver'ı curriculum sürümleri arasında taşımak (`KGC-v0` §26 göç kayıtları) → 19B. Objective'lerini beyan eden authored dersler ve tanı item'ları AŞAMA 15'te yazıldı.
 - [ ] Waiver replay maliyeti (bir Objective'in satırlarında karesel, yalnız yeniden kurmada) → 18E.
 - [ ] Raporu ve yeniden hesaplamayı gerçek oturumdan sonra uygulamadan çağırmak, `stateChangeRefs`'i doldurmak → 16D.
-- [ ] Kalıcı `assessment_report` ve boylamsal geçmiş → 16C.
+- [ ] Kalıcı `assessment_report` ve boylamsal geçmiş → 16B (16A sözleşmesi; `SPWX-v0` §§12–13 birlikte, önceki satırın 16C'si 16B ile çelişiyordu).
 - [x] Curriculum paketinde transfer/artifact kapı alanları → 15H'de kapandı (D-121): standard Objective'de kapı yok; critical bir Objective yayımlanmadan önce alanlar saklanmalı (üretici reddeder).
 - [ ] Topic durum makinesi (`TSM-v0` altı durum, `RVR-v0` §15 `weakening` dahil) → **16C** (kullanıcı kararı, D-102).
 - [ ] 11C yüksek riskli duraklatma boşluk politikası → **18D** (kullanıcı kararı, D-102); o zamana kadar devam ettirilmez.
 - [ ] Remediation strateji rotalarından içerik: AŞAMA 15 alternatif anlatım ve misconception karşılaştırması yazdı; rota başına içerik → 20I. Misconception hafızası 14B'de kapandı (D-106). Rehberliğin azalması 14A'da kapandı: tutor esirgeyerek azaltmaz, scaffold planner seçimi ve görev instruction mode'uyla kanıtla azalır (`TEIP-v0` §5.4).
 - [ ] Geriye dönük contamination'ı oturum kapanınca uygulamadan çağırmak → 16D; izlerde dispozisyon nedeni → 16C.
 - [ ] Motorları kanıttan sonra uygulamadan yeniden kurmak — çekirdekte `RecomputeSkillState` (13E) sırayı tutuyor, uygulamadan çağırmak — ve `RebuildMastery`'nin `skill_state`'e kendi watermark'ını yazması → 16D.
-- [ ] `skill_state.prerequisite_axis_state` (yalnız sunum; kapı canlı hesaplıyor) → 16C.
+- [x] `skill_state.prerequisite_axis_state` → 16A'da kapandı (D-122): `AssembleSkillState` kapının Skill'deki yeni iş için verdiği eligibility'yi yazıyor; Progress okuması kapıyı yeniden soruyor (bağımlılar yeniden birleştirilmiyor, 18E).
 - [ ] Geciken tekrar aciliyet kovaları ve başarı bandı → 18C; uzun yokluk sonrası temsili kontrol → 18B.
 - [x] Önceki exposure kayıtlarının kanıt satırına katılması: 14A'da kapandı — `evidenceFor` gösterilmiş çözümü denemenin sırasına göre okuyor (D-105).
 - [ ] Retention replay çalışma süresi (Skill satırlarında karesel, yalnız yeniden kurmada) → 18E.
@@ -165,7 +170,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Retention due kovaları, `at_risk` ve weakness'ten doğan ihtiyaçlar → 13.
 - [x] Authored görevler ve paket biçimindeki görev bölümü → 15A'da kapandı (`[task]`, D-112).
 - [ ] Kapasite ayarının saklanması (normal/short/intensive, planlı varsayılan, bugünkü değişiklik) → 16D.
-- [ ] `skill_state`in dört ekseni ve primary presentation state tek watermark altında birleştirilecek; bugün 12A kendi eksenini yazıp diğerlerini taşıyor, 12B yalnız `prerequisite_readiness` yazıyor → 13 (ikinci yazan 13 olduğunda gerekir).
+- [ ] `skill_state`in tek watermark'ı: 16A'da sunum artık satırın eksenlerinden türetiliyor ve satır `RecomputeSkillState`'in sonunda birleştiriliyor (D-122); `RebuildMastery` hâlâ kendi watermark'ını yazıyor, diğerleri `minOf` alıyor → 16D (uygulamadan yeniden hesaplamayla).
 - [x] Prerequisite replan tetikleri (`PRG-v0` §19) 12D'de `ReplanTrigger` sözlüğünde.
 - [ ] Bağımlıların ters invalidation'ı → 18E; replan zaten sınırlı güncel durumdan yeniden üretiyor, bu bir optimizasyon.
 - [ ] Authored 950 prerequisite kenarının çoğu `draft`: AŞAMA 15 kendi alt-grafını yayımladı (77 kenar 15A–15F, 49 kenar 15H); kalanı her içerik paketi kendi alt-grafıyla yayımlar → 20.

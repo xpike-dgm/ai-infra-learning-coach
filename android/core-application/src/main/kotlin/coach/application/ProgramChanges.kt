@@ -63,7 +63,8 @@ class CaptureProgramSnapshot(
 /**
  * Recomputing one Skill's state after new evidence (13E): mastery, then retention and weakness (which read
  * the mastery timeline), then the diagnostic coverage (13F, which asks the mastery engine's gates itself), then
- * readiness (which reads the axes they wrote). Each engine writes only its own family; this only puts them in
+ * readiness (which reads the axes they wrote), then the row's prerequisite axis and presentation (16A). Each engine
+ * writes only its own family; this only puts them in
  * order, with the Objectives' gate profiles taken from the published curriculum. A Skill with no published
  * Objective has nothing to recompute and nothing is written.
  */
@@ -79,6 +80,8 @@ class RecomputeSkillState(
         RebuildWeakness(persistence, clock).rebuild(skill, profiles)
         RebuildDiagnosticCoverage(persistence, clock).rebuild(skill, profiles)
         RebuildReadiness(persistence, clock).rebuild(skill)
+        // 16A: the Skill's own prerequisite axis and its presentation, once every engine has written its axis.
+        AssembleSkillState(persistence, clock).assemble(skill)
         return true
     }
 }

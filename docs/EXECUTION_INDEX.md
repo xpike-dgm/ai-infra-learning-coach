@@ -211,8 +211,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 ---
 
 # AŞAMA 16 — İlerleme, Analitik, Ayarlar ve Günlük Kullanım Araçları
-- [ ] **16A — Skill analytics** **AKTİF**
-- [ ] **16B — Öğrenme geçmişi**
+- [x] **16A — Skill analytics** — `SKAX-v0 / D-122`
+- [ ] **16B — Öğrenme geçmişi** **AKTİF**
 - [ ] **16C — Progress / weakness gösterim kuralları**
 - [ ] **16D — Ayarlar**
 - [ ] **16E — Bildirimler**
@@ -263,9 +263,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`  
-**Son tamamlanan:** **`15H — CQAX-v0 / D-121`**  
-**Aktif:** **`16A — Skill analytics`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A`  
+**Son tamamlanan:** **`16A — SKAX-v0 / D-122`**  
+**Aktif:** **`16B — Öğrenme geçmişi`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -329,4 +329,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 15H `CQAX-v0` ile sekizinci paket sevk ediliyor ve **AŞAMA 15 kapandı**: içerik yalnız graph'ının, kontrollerinin ve etiketlerinin taşıdığını söyler. Bir ek paket (v8) 81 yayımlanmış item'ın sonraki sürümünü yayımlar ve eskisini eklenen bir `retired` kaydıyla emekliye ayırır — hiçbir şeyin üzerine yazılmaz —, 6 item ekler, 49 kenar (12 hard) ve 18 ders gereksinimiyle graph'a derslerin gerçekten neye dayandığını söyletir; sabit çıktı, gösterim, ders kodu, graph, etiket, havuz ve criticality denetimi her bulguyu bir çözüme bağlar; `requires_transfer` kapandı. Bağımsız inceleme 87/87 item ve 49/49 kenar. T6 çalıştırılmadı.
 
-16A başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+16A `SKAX-v0` ile Progress sekmesi depodan okuyor ve **AŞAMA 16 başladı**: bir Skill'in öğrenciye görünen durumu, kendi motorlarının yazdığı dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir ve saklanan satırla ekran aynı tek fonksiyonu kullanır; bir eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill 'yeniden hesaplanıyor'dur, tahmin edilmiş bir durum yoktur; Progress envanter sayar, hiçbir sayımı bölmez. Sekiz durumun türetmesi `core-model`de tek fonksiyon; her `skill_state` yazıcısı sunumu eksenlerden türetiyor ve satır `RecomputeSkillState`'in sonunda ön koşul ekseniyle birleştiriliyor; okuma kapıyı yeniden soruyor. Hiçbir şey yapmamış öğrencide 56 bekleyen Skill planner'ın beklettikleriyle aynı. T6 çalıştırılmadı.
+
+16B başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

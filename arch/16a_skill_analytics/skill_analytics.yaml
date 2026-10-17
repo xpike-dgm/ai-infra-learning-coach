@@ -1,0 +1,251 @@
+model: SKAX-v0
+stage_step: 16A
+status: accepted_16a
+decision: D-122
+implements: [SPWX-v0, TEPM-v0, VDSX-v0, WFPX-v0]
+engines_read: [MSTX-v0, RVRX-v0, WLRX-v0, PRQX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: what_the_learner_has_demonstrated_and_what_needs_attention_per_skill_from_canonical_state
+
+question: Gerçekte neyi kanıtladım ve neye dikkat etmem gerekiyor — her Skill için, motorların yazdığından fazlasını iddia etmeden?
+
+primary_invariant: >-
+  A Skill's learner-facing state is SPWX-v0's one precedence over the four axes their own engines wrote, decided by
+  one function that both the stored row and the screen use. Where an axis a rule needs is unwritten, or evidence is
+  newer than the row, the Skill is recomputing — never a guessed state and never a ninth one. Progress counts current
+  state as an inventory and never divides it, and only the engines decide what happens next.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-17
+  scope: skill_projection_detail_and_overview_topic_weakness_english_in_16c_history_in_16b
+  delivery: core_and_real_compose_screen_reading_the_store
+  unevaluated_axis: recomputing_never_guessed
+
+assistant_defaults:
+  - at_risk on a confirmed Skill keeps confirmed_current and rides as a qualifier (RVR-v0 §2; TEPM-v0 §4.1 rule 4 lists fresh|stable)
+  - prerequisite_axis_state is the gate's eligibility for new work on the Skill from the graph alone (PRG-v0 §7); invalid prerequisite metadata also waits and is named as a metadata problem, not as a blocker Skill
+  - the Progress read asks the gate again rather than trusting the stored prerequisite axis (dependents are not re-assembled, 18E)
+  - Skills are grouped by their id namespace for orientation, with no per-group count
+  - a blocker opened from skill_detail replaces the shown Skill on the same surface (no new navigation edge)
+  - working Turkish microcopy for axis values, evidence kinds and attention groups (17 owns the polish); the eight state labels are SPWX-v0 §4.3's
+
+declared_extensions:
+  - {what: "SkillPresentationState and its derivation (SkillPresentationProjection) live in core-model", why: "core-application writes the stored column and core-presentation projects the screen; MSBX-v0 lets neither depend on the other, and two copies would be two answers", precedent: "WeaknessAxis.of in core-model (13D)"}
+  - {what: "AssembleSkillState writes prerequisite_axis_state and primary_presentation_state at the end of RecomputeSkillState", extends: "12B's 'assembling that row belongs where recomputation is orchestrated'; closes 16C's prerequisite_axis_state loop"}
+  - {what: "every skill_state writer derives primary_presentation_state from the axes the row now has", replaces: "12A's mastery value in the presentation column and 13C/13D's carried presentation"}
+
+scope:
+  schema_changed: false
+  migration_added: false
+  ports_changed: false
+  boundaries_changed: false
+  mastery_rule_changed: false
+  retention_rule_changed: false
+  weakness_rule_changed: false
+  gate_rule_changed: false
+  planner_rule_changed: false
+  topic_state: false
+  weakness_presentation_beyond_axis: false
+  english_profile: false
+  learning_history: false
+  assessment_report: false
+  app_calls_recompute: false
+  screen_drawn: true
+
+derivation:
+  owner: core-model/src/main/kotlin/coach/SkillPresentationFacts.kt
+  function: SkillPresentationProjection.derive
+  states: [remediation_required, confirmation_verification_due, confirmed_review_due, confirmed_current, prerequisite_unresolved, developing_independent, developing_with_support, not_yet_evidenced]
+  precedence_is_enum_order: true
+  rules:
+    - {rule: 1, when: "weakness_axis_state == remediation_required", state: remediation_required}
+    - {rule: 2, when: "mastery == confirmation_verification_due, or mastery == confirmed_current and retention == verification_due", state: confirmation_verification_due}
+    - {rule: 3, when: "mastery == confirmed_current and retention == review_due", state: confirmed_review_due}
+    - {rule: 4, when: "mastery == confirmed_current and retention in fresh|stable|at_risk", state: confirmed_current}
+    - {rule: 5, when: "mastery in not_yet_evidenced|developing_with_support and the gate says new work waits", state: prerequisite_unresolved}
+    - {rule: 6, when: "mastery == developing_independent", state: developing_independent}
+    - {rule: 7, when: "mastery == developing_with_support", state: developing_with_support}
+    - {rule: 8, when: otherwise, state: not_yet_evidenced}
+  recomputing_when:
+    - evidence was recorded after the stored row was built (projection stale)
+    - evidence exists and the mastery axis is unwritten
+    - evidence exists and the weakness axis is unwritten
+    - mastery is confirmed_current and retention is untracked or not_yet_evaluated
+    - a rule-5 Skill and no gate answer
+  no_evidence_reads_as: {mastery: not_yet_evidenced, weakness: none}
+  stored_value_when_recomputing: not_yet_evaluated
+  ninth_state: false
+  qualifiers: [retention_at_risk, requires_independent_recheck, contested_evidence_present, provisional_evaluation_present]
+  at_risk_is_a_state: false
+
+evidence_kinds:
+  order: [not_counted, provisional, assisted, independent]
+  not_counted: "outcome invalid, evaluator invalid, contested, or prerequisite contaminated"
+  provisional: "evaluator provisional"
+  assisted: "independence assisted, practice_only or requires_independent_recheck, or a solution shown before the attempt"
+  independent: otherwise
+  merged_into_one_count: false
+
+progress_states: [loading_projection, recomputing_projection, ready_with_evidence, empty_no_evidence_yet, empty_no_attention_needed, partial_projection_available, offline_local_capable, ai_unavailable_full_state_available, error_recoverable, data_recovery_required]
+attention_groups: [remediation_open, verification_due, review_due, retention_at_risk, prerequisite_blocked, assessment_opportunity]
+attention_group_without_producer: assessment_opportunity
+
+skill_detail:
+  present: [skill_ref, display_name, primary_presentation_state, attention_qualifiers, mastery_axis_state, retention_axis_state, prerequisite_axis_state, weakness_axis_state, objective_level_breakdown, evidence_summary, prerequisite_context, related_topic_placements]
+  deferred:
+    evidence_history_entry: 16B
+    remediation_context: 16C
+    integration_or_english_context: 16C
+    planner_explanation_entry: "the IA has no skill_detail -> planner_explanation edge (17)"
+
+counting:
+  inventory_counts_skills_per_state: true
+  ratio: false
+  percentage: false
+  bar_or_gauge: false
+  per_group_count: false
+  recomputing_counted_apart: true
+
+found:
+  - the_presentation_column_held_the_mastery_value
+  - one_derivation_two_layers
+  - a_dependents_prerequisite_axis_goes_stale
+  - a_new_learner_sees_most_of_the_course_waiting_and_it_is_the_planners_set
+  - tepm_rule_4_names_fresh_and_stable_only
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/SkillPresentationProjectionTest.kt}
+  query: {file: android/core-application/src/test/kotlin/coach/application/ProgressQueryTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/ProgressPresentationTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+open_loops:
+  disposition_staleness: {owner: 16D, note: "a correction appended after the row was built is not seen as newer evidence; the app path that records a disposition recomputes"}
+  reverse_invalidation: {owner: 18E, note: "a prerequisite Skill that changes does not re-assemble its dependents' stored rows; the read asks the gate again"}
+  assessment_opportunity_producer: {owner: 16D, note: "nothing composes a session for a Skill in the app yet"}
+  topic_weakness_english_views: {owner: 16C}
+  history_and_assessment_report: {owner: 16B}
+  skill_detail_to_planner_explanation: {owner: 17, note: "not an accepted IA edge"}
+  offline_state: {owner: recorded, note: "Progress needs no network, so offline_local_capable is never produced"}
+  objective_labels: {owner: 17, note: "Objectives carry no statement in the store; the label is the id's action"}
+  t6_and_device: {owner: 19}
+
+mutation_results_kotlin:
+  scope: one change per mutant to the derivation, the evidence kinds and qualifiers, the row assembly, the axis writers, the read and the projection; then the JVM tests of core-model, core-application and core-presentation (and ShippedCourseTest on the real store where the gate is mutated)
+  total: 30
+  detected: 30
+  detection: the build reached the tests and a test failed
+  crash_is_detection: false
+  negative_control: N00 changes a KDoc comment in ProgressPresentation.kt
+  negative_control_result: survived_as_expected
+  earlier_runs: the first full run left K22 and K23 (the retention and the weakness writer not deriving the presentation) and K25 (the order of the two empty states) alive — the end-of-chain assembly re-derived the column, and the no-evidence test always had something waiting; a test of each writer alone (as the planner's due-review refresh runs retention alone) and a no-evidence, nothing-waiting test were added, and the whole set was run again
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: K01, mutant: stale_row_trusted, result: detected}
+    - {id: K02, mutant: unread_evidence_is_nothing_yet, result: detected}
+    - {id: K03, mutant: unwritten_weakness_is_none, result: detected}
+    - {id: K04, mutant: remediation_not_first, result: detected}
+    - {id: K05, mutant: verification_ignored, result: detected}
+    - {id: K06, mutant: review_due_hidden, result: detected}
+    - {id: K07, mutant: at_risk_demotes, result: detected}
+    - {id: K08, mutant: unscheduled_confirmation_guessed, result: detected}
+    - {id: K09, mutant: prerequisite_never_waits, result: detected}
+    - {id: K10, mutant: independent_evidence_held_by_prerequisite, result: detected}
+    - {id: K11, mutant: at_risk_qualifier_dropped, result: detected}
+    - {id: K12, mutant: evidence_qualifiers_dropped, result: detected}
+    - {id: K13, mutant: contested_counted, result: detected}
+    - {id: K14, mutant: contaminated_counted, result: detected}
+    - {id: K15, mutant: shown_solution_is_independent, result: detected}
+    - {id: K16, mutant: recheck_never_cleared, result: detected}
+    - {id: K17, mutant: query_trusts_stored_staleness, result: detected}
+    - {id: K18, mutant: query_trusts_stored_prerequisite, result: detected}
+    - {id: K19, mutant: query_counts_no_evidence, result: detected}
+    - {id: K20, mutant: assembly_moves_watermark, result: detected}
+    - {id: K21, mutant: assembly_skipped, result: detected}
+    - {id: K22, mutant: retention_carries_old_presentation, result: detected}
+    - {id: K23, mutant: weakness_carries_old_presentation, result: detected}
+    - {id: K24, mutant: attention_at_risk_ignored, result: detected}
+    - {id: K25, mutant: attention_empty_before_no_evidence, result: detected}
+    - {id: K26, mutant: recomputing_counted_as_a_state, result: detected}
+    - {id: K27, mutant: health_ignored, result: detected}
+    - {id: K28, mutant: detail_drops_an_axis, result: detected}
+    - {id: K29, mutant: a_percentage_in_copy, result: detected}
+    - {id: K30, mutant: a_locked_label_changed, result: detected}
+
+validator_mutation:
+  tool: tools/validate_skill_analytics.py
+  total: 38
+  detected: 38
+  scope: one change per mutant to an input the validator reads — the contract, the derivation and its vocabulary, the evidence kinds, an axis writer, the assembly, the read, the projection and its copy, the screen, the wiring, a build file, a test name, the spec, the research and DECISIONS
+  detection: a FAIL line not in the baseline; a run that prints no result line is a crash and never a detection
+  crash_is_not_a_detection: true
+  baseline: the only check allowed to fail at baseline is A16A-18_validator_mutation, which reads this very result
+  negative_control: a YAML comment in the contract naming forbidden fragments (banana, survived, 100%)
+  negative_control_result: survived_as_expected
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: V01, mutant: contract_model, result: detected}
+    - {id: V02, mutant: contract_approval, result: detected}
+    - {id: V03, mutant: contract_schema_changed, result: detected}
+    - {id: V04, mutant: contract_states_reordered, result: detected}
+    - {id: V05, mutant: contract_device_claimed, result: detected}
+    - {id: V06, mutant: contract_kotlin_mutant_survived, result: detected}
+    - {id: V07, mutant: contract_run_failed, result: detected}
+    - {id: V08, mutant: contract_evidence_order, result: detected}
+    - {id: V09, mutant: states_reordered, result: detected}
+    - {id: V10, mutant: second_state_enum, result: detected}
+    - {id: V11, mutant: second_derivation, result: detected}
+    - {id: V12, mutant: rules_reordered, result: detected}
+    - {id: V13, mutant: retention_guessed, result: detected}
+    - {id: V14, mutant: qualifier_renamed, result: detected}
+    - {id: V15, mutant: retention_carries_presentation, result: detected}
+    - {id: V16, mutant: assembly_not_called, result: detected}
+    - {id: V17, mutant: assembly_moves_watermark, result: detected}
+    - {id: V18, mutant: query_ignores_staleness, result: detected}
+    - {id: V19, mutant: query_trusts_stored_prerequisite, result: detected}
+    - {id: V20, mutant: contested_counted, result: detected}
+    - {id: V21, mutant: partial_tone_raised, result: detected}
+    - {id: V22, mutant: attention_reason_dropped, result: detected}
+    - {id: V23, mutant: locked_label_changed, result: detected}
+    - {id: V24, mutant: percentage_in_copy, result: detected}
+    - {id: V25, mutant: division_in_code, result: detected}
+    - {id: V26, mutant: group_count, result: detected}
+    - {id: V27, mutant: progress_bar_drawn, result: detected}
+    - {id: V28, mutant: screen_reads_the_store, result: detected}
+    - {id: V29, mutant: navigation_unchecked, result: detected}
+    - {id: V30, mutant: detail_drops_axis, result: detected}
+    - {id: V31, mutant: detail_field_unaccounted, result: detected}
+    - {id: V32, mutant: boundary_crossed, result: detected}
+    - {id: V33, mutant: model_test_renamed, result: detected}
+    - {id: V34, mutant: spec_not_accepted, result: detected}
+    - {id: V35, mutant: spec_claims_t6, result: detected}
+    - {id: V36, mutant: research_source_dropped, result: detected}
+    - {id: V37, mutant: decision_missing, result: detected}
+    - {id: V38, mutant: hypothesis_as_deficiency, result: detected}
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew test (every module's JVM tests, the AI adapter's included)", tier: T1-T3, result: PASS}
+  - {id: RUN-02, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-03, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-04, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-05, command: "read the eight curriculum packages from both built APKs and compare their SHA-256 with the source assets; the APK without the AI adapter has no INTERNET permission", tier: T5, result: PASS}
+  - {id: RUN-06, command: "ShippedCourseTest's 16A section: the real SQLite store with all eight packages, read by ProgressQuery and projected by ProgressPresentation", tier: T2, result: PASS}
+jvm_tests: 1114
+validator_sweep: {glob: "tools/validate_*.py", total: 64, passed: 64, note: "frozen reports the earlier validators rewrite were restored from git; in the first heavy pass validate_content_qa.py failed one check (A15H-02_earlier_untouched_15g_assessment) — the 15G supplement rebuilt alone was byte-identical with no failures, and the full validator run again passed 142/142, so it is recorded as a transient C run in WSL, not a regression"}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  screen_seen_on_device: false
+  sqlite_read_on_jvm_run: true
+
+forbidden_patterns:
+  - a percentage, ratio, bar, gauge, level, rank or score of competence
+  - a ninth Skill state, or at_risk as one
+  - a state guessed for a Skill whose axes do not determine one
+  - a stale row shown as current
+  - a second derivation of the eight states
+  - assisted, provisional or contaminated evidence shown as independent
+  - a domain score or a per-group count
+  - Progress deciding what to do next

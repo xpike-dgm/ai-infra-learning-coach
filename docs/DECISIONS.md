@@ -1871,3 +1871,64 @@ Ayrıntı: `docs/ASSESSMENT_CONTENT_SPEC.md`.
 - Sonraki numbered step `16A — Skill analytics`. Fresh PRE ve kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
 
 Ayrıntı: `docs/CONTENT_QA_SPEC.md`.
+
+## D-122 — Skill analytics = SKAX-v0
+**Durum:** Kabul edildi — 2026-10-17
+
+- 16A final modeli `SKAX-v0 — Skill state projection, skill_detail and progress_overview` oldu.
+  - Uygulamanın Progress sekmesi artık depodan okuyor.
+  - Her yayımlanmış Skill'in öğrenciye görünen durumu, dört eksenden tek bir türetmeyle hesaplanıyor.
+  - Skill detayı bu durumu, dört ekseni, Objective kırılımını, türüne göre ayrılmış kanıtı ve ön koşul bağlamını gösteriyor.
+  - Progress özeti bir envanter ve nedene göre gruplanmış bir dikkat seti gösteriyor.
+- **Kaynaklar:**
+  - canonical spec: `docs/SKILL_ANALYTICS_SPEC.md`;
+  - machine-readable contract: `arch/16a_skill_analytics/skill_analytics.yaml`;
+  - research: `research/16a_skill_analytics_research.md`;
+  - validator: `tools/validate_skill_analytics.py`;
+  - kod: `core-model` (`SkillPresentationFacts.kt`, `ProgressFacts.kt`), `core-application` (`SkillStateAssembly.kt`, `ProgressQuery.kt`), `core-presentation` (`ProgressPresentation.kt`), `app-ui` (`ProgressScreen.kt`).
+- Ana invariant: **bir Skill'in öğrenciye görünen durumu, dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir.** Eksenleri kendi motorları yazar.
+  - Durumu, saklanan satırın da ekranın da kullandığı tek bir fonksiyon belirler.
+  - Bir kuralın ihtiyaç duyduğu eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill *yeniden hesaplanıyor* olarak görünür. Tahmin edilmiş bir durum ya da dokuzuncu bir durum yoktur.
+  - Progress güncel durumu envanter olarak sayar, hiçbir sayımı bölmez.
+  - Ne yapılacağına yalnız motorlar karar verir.
+- **Kullanıcı kararları (2026-10-17, yeni açık onayla):**
+  - Kapsam: Skill projeksiyonu (sekiz durumun dört eksenden türetilmesi ve `skill_state`'e doğru yazılması, `at_risk` niteleyici), `skill_detail` ve `progress_overview`. Topic durumu, zayıflık/misconception görünümü ve Technical English profili 16C'de; öğrenme geçmişi ve `assessment_report` 16B'de.
+  - Teslim: core ve gerçek Compose ekranı.
+  - Değerlendirilmemiş eksen: "yeniden hesaplanıyor", tahmin değil.
+- **Beyan edilmiş uzantılar (kabul edilmiş spec'lerin sessiz düzenlemesi değil):**
+  - `SkillPresentationState` ve türetmesi `core-model`de. Satırı yazan `core-application` ile ekranı çizen `core-presentation` birbirine bağımlı olamaz (`MSBX-v0`); iki kopya iki cevap olurdu. Emsal `WeaknessAxis.of`.
+  - `AssembleSkillState`, `RecomputeSkillState`'in sonunda satırın kendi watermark'ı altında `prerequisite_axis_state` (kapının Skill'deki yeni iş için verdiği eligibility) ve `primary_presentation_state` yazar. 16C'nin `prerequisite_axis_state` loop'u kapandı.
+  - Her `skill_state` yazıcısı sunumu, satırın o an taşıdığı eksenlerden türetir. Bu, 12A'nın sütuna yazdığı mastery değerinin ve 13C/13D'nin taşıdığı eski sunumun yerini alır.
+- **Asistanın gözden geçirilmiş varsayılanları:**
+  - Doğrulanmış ve `at_risk` bir Skill `confirmed_current` kalır, niteleyici yanında durur (`RVR-v0` §2; `TEPM-v0` §4.1 kural 4 yalnız fresh|stable der).
+  - Geçersiz ön koşul bilgisi de bekletir; bir blocker Skill olarak değil, bir metadata sorunu olarak adlandırılır.
+  - Progress okuması saklanan ön koşul eksenine güvenmez, kapıyı yeniden sorar.
+  - Skill'ler orientation için id ad alanına göre gruplanır; grup sayımı yoktur.
+  - Ekrandan açılan bir blocker aynı yüzeyde (`skill_detail`) gösterilir.
+- **Bulunanlar:**
+  - Sunum sütunu mastery değerini tutuyordu.
+  - Tek türetme iki katmana lazımdı.
+  - Bağımlı bir Skill'in saklanan ön koşul ekseni bayatlıyor.
+  - Hiçbir şey yapmamış bir öğrenci için 60 Skill'in 4'ü "Henüz Kanıt Yok" (dört giriş dersi), 56'sı "Ön Koşul Bekliyor"; bu 56, planner'ın beklettiklerinin tam kümesi.
+  - `TEPM-v0` kural 4 `at_risk`'i adlandırmıyor.
+- **Kotlin:**
+  - Yeni dosyalar: `SkillPresentationFacts.kt`, `ProgressFacts.kt`, `SkillStateAssembly.kt`, `ProgressQuery.kt`, `ProgressPresentation.kt`, `ProgressScreen.kt`.
+  - `RebuildMastery`, `RebuildRetention` ve `RebuildWeakness` sunumu türetiyor; `RecomputeSkillState` satırı birleştiriyor.
+  - Şema, portlar ve modül sınırları değişmedi.
+- **Doğrulama:**
+  - Kotlin mutation 30/30, validator mutation 38/38; kontrol mutantları hayatta kaldı.
+  - Validator 90/90 PASS.
+  - 1114 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Sweep 64/64.
+- Çalıştırılmayan: **T6**. Ekran cihazda görülmedi; SQLite okuması yalnız JVM'de koştu.
+- **Açık loop'lar:**
+  - Satırdan sonra eklenen düzeltme bayatlık sayılmıyor (16D).
+  - Ters invalidation (18E).
+  - `assessment_opportunity` üreticisi (16D).
+  - Topic/zayıflık/İngilizce görünümleri (16C).
+  - Geçmiş ve `assessment_report` (16B).
+  - `skill_detail → planner_explanation` kenarı ve mikro metin (17).
+  - T6 (19).
+- Sonraki numbered step `16B — Öğrenme geçmişi`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/SKILL_ANALYTICS_SPEC.md`.

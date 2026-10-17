@@ -8,10 +8,14 @@ import android.util.Log
 import coach.application.DayCloseFacts
 import coach.application.IngestCurriculum
 import coach.application.PlannerExplanationQuery
+import coach.application.ProgressQuery
 import coach.application.StoreOpenOutcome
 import coach.application.StoreStartup
 import coach.application.TodayFactsQuery
 import coach.model.PlannerExplanationFacts
+import coach.model.ProgressFacts
+import coach.model.SkillDetailFacts
+import coach.model.VersionedRef
 import coach.model.TodayFacts
 import coach.curriculum.FileContentSource
 import coach.persistence.StoreOpener
@@ -104,6 +108,27 @@ class CoachApplication : Application() {
         val opened = startup.store ?: return
         storeThread.execute {
             val facts = PlannerExplanationQuery(opened.graph.persistence, opened.graph.clock).load()
+            main.post { onLoaded(facts) }
+        }
+    }
+
+    /**
+     * Reads what Progress may say, off the main thread (16A). It asks the prerequisite gate and reads each Skill's
+     * evidence, which is disk work like Today's facts.
+     */
+    fun loadProgress(onLoaded: (ProgressFacts) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val facts = ProgressQuery(opened.graph.persistence, opened.graph.content).load()
+            main.post { onLoaded(facts) }
+        }
+    }
+
+    /** One Skill's `skill_detail` facts, off the main thread (16A); `null` for a Skill that is not published. */
+    fun loadSkillDetail(skill: VersionedRef, onLoaded: (SkillDetailFacts?) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val facts = ProgressQuery(opened.graph.persistence, opened.graph.content).detail(skill)
             main.post { onLoaded(facts) }
         }
     }

@@ -26,6 +26,9 @@ import coach.presentation.HealthAction
 import coach.presentation.NavigationGraph
 import coach.presentation.PlannerExplanationPresentation
 import coach.presentation.PlannerExplanationView
+import coach.presentation.ProgressOverview
+import coach.presentation.ProgressPresentation
+import coach.presentation.SkillDetailView
 import coach.presentation.Revalidation
 import coach.presentation.RunnerFlow
 import coach.presentation.RunnerRevalidation
@@ -45,6 +48,8 @@ import coach.ui.CoachTheme
 import coach.ui.HealthBlockingSurface
 import coach.ui.HealthContextLine
 import coach.ui.PlannerExplanationScreen
+import coach.ui.ProgressScreen
+import coach.ui.SkillDetailScreen
 import coach.ui.TaskRunnerScreen
 import coach.ui.TodayScreen
 import coach.ui.AiSettingsScreen
@@ -137,6 +142,10 @@ private fun Shell(
     // main thread, and the key itself is never held here beyond the moment it is handed over to be stored.
     var aiKey by remember { mutableStateOf(app.aiSettings.state()) }
     var aiCheck by remember { mutableStateOf(AiCheckState.IDLE) }
+    // Progress (16A): the overview read when the destination is chosen, and the one shared skill_detail opened from it.
+    // Both are read on the store thread and projected in core; nothing here decides a Skill's state.
+    var progress by remember { mutableStateOf<ProgressOverview?>(null) }
+    var skillDetail by remember { mutableStateOf<SkillDetailView?>(null) }
 
     // The window class is computed by core-presentation from the accepted WFPX-v0
     // breakpoints, not by the UI toolkit's own bucketing, so the mapping stays canonical.
@@ -149,16 +158,31 @@ private fun Shell(
         surface = when {
             runnerEntry != null -> RunnerFlow.surface
             explanation != null -> Surface.PlannerExplanation
+            skillDetail != null -> Surface.SkillDetail
             else -> Surface.rootOf(selected)
         },
         windowClass = windowClass,
     )
 
-    AppShell(state = state, onSelect = { selected = it; explanation = null }) {
+    AppShell(state = state, onSelect = { destination ->
+        selected = destination
+        explanation = null
+        skillDetail = null
+        if (destination == Destination.PROGRESS) {
+            progress = null
+            app.loadProgress { facts -> progress = ProgressPresentation.overview(facts, health) }
+        }
+    }) {
         val entry = runnerEntry
         val shown = explanation
         when {
             shown != null -> PlannerExplanationScreen(view = shown, onBack = { explanation = null })
+            skillDetail != null -> SkillDetailScreen(
+                view = skillDetail!!,
+                // A blocker opens its own skill_detail: the same surface, never a second Skill truth.
+                onOpenSkill = { ref -> app.loadSkillDetail(ref) { facts -> facts?.let { skillDetail = ProgressPresentation.detail(it) } } },
+                onBack = { skillDetail = null },
+            )
             entry != null -> TaskRunnerScreen(
                 state = RunnerRevalidation.stateAtEntry(entry),
                 entry = entry,
@@ -204,6 +228,15 @@ private fun Shell(
                         NavigationGraph.canOpen(Destination.TODAY.id, surface.id)
                     ) {
                         explain { facts -> explanation = PlannerExplanationPresentation.of(facts) }
+                    }
+                },
+            )
+            selected == Destination.PROGRESS -> ProgressScreen(
+                // Until the store has been read the overview is the projection's own loading state, never zero.
+                view = progress ?: ProgressPresentation.overview(null, health),
+                onOpenSkill = { ref ->
+                    if (NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.SkillDetail.id)) {
+                        app.loadSkillDetail(ref) { facts -> facts?.let { skillDetail = ProgressPresentation.detail(it) } }
                     }
                 },
             )

@@ -74,18 +74,15 @@ class RebuildMastery(
                 truthWatermark = watermark,
                 builtAtInstant = builtAt,
                 inputCurriculumVersion = version,
-                payload = buildMap {
+                payload = SkillStateRows.presented(buildMap {
                     put("mastery_axis_state", decision.axisState.id)
                     // The other three axes are other engines' and are carried, never decided here.
                     put("retention_axis_state", existing?.payload?.get("retention_axis_state") ?: UNKNOWN)
                     put("prerequisite_axis_state", existing?.payload?.get("prerequisite_axis_state") ?: UNKNOWN)
                     put("weakness_axis_state", existing?.payload?.get("weakness_axis_state") ?: UNKNOWN)
-                    // The presentation state is derived by SPWX-v0's precedence from all four axes,
-                    // which needs axes this engine does not own; until those engines exist (12B, 13),
-                    // the mastery axis is reported as-is rather than a presentation state being
-                    // invented from one axis and presented as the whole truth.
-                    put("primary_presentation_state", decision.axisState.id)
-                },
+                    // 16A: the presentation is derived by SPWX-v0's one precedence from the four axes as the row now
+                    // has them — which, until every axis a rule needs is written, is "not derived", never a guess.
+                }),
             )
         )
         decisions.forEach { objectiveDecision ->

@@ -247,12 +247,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **15G ✅ Assessment content — ACNX-v0 / D-120**
 - **15H ✅ Content QA — CQAX-v0 / D-121**
 - **AŞAMA 15 ✅ TAMAMLANDI**
-- **16A 🟡 Skill analytics — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- **16A ✅ Skill analytics — SKAX-v0 / D-122**
+- **16B 🟡 Öğrenme geçmişi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
 - 16–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 16A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 16B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -735,4 +736,16 @@ v8: 81 item'ın sonraki sürümü (81 emekli kayıt), 6 yeni item, 138 görev s�
 Onay kullanıcının 2026-10-10 açık onayı. Kullanıcı kararları: graph'a ekle (hard yalnız ders ve her item istiyorsa); `requires_transfer`'ı kapat, critical'da reddet; kusurlu item'ın sonraki sürümü, eskisi emekli; teknik havuz 15, İngilizce küçük kalır. Mutation üretici 29/29, denetim 10/10, Kotlin 2/2; QA 142/142 PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/CONTENT_QA_SPEC.md` / D-121.
+
+## 12.45 16A Skill analytics — SKAX-v0 / D-122
+
+Progress sekmesi depodan okuyor ve **AŞAMA 16 başladı**. Ana invariant: **bir Skill'in öğrenciye görünen durumu, kendi motorlarının yazdığı dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir ve saklanan satırla ekran aynı tek fonksiyonu kullanır; bir eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill 'yeniden hesaplanıyor'dur, tahmin edilmiş bir durum yoktur; Progress envanter sayar, hiçbir sayımı bölmez.**
+
+Bulunanlar: sunum sütunu mastery değerini tutuyordu (12A'nın geçici değeri, 13C/13D taşıyordu); tek türetme iki katmana lazımdı ve `MSBX-v0` ikisini birbirine bağlamıyor, bu yüzden sekiz durum ve türetmesi `core-model`de; bağımlı bir Skill'in saklanan ön koşul ekseni bayatlıyor, bu yüzden okuma kapıyı yeniden soruyor; hiçbir şey yapmamış öğrencide 60 Skill'in 4'ü 'Henüz Kanıt Yok', 56'sı 'Ön Koşul Bekliyor' ve bu 56 planner'ın tam kümesi; `TEPM-v0` kural 4 `at_risk`'i adlandırmıyor (doğrulanmış kalır, niteleyici yanında).
+
+Kanıt türleri ayrı (sayılmayan, kesinleşmemiş, destekli, bağımsız); niteleyiciler `VDSX-v0`'ın dördü; on Progress durumu; dikkat seti nedene göre ve planner'a öncelik vermez. Şema, portlar ve modül sınırları değişmedi.
+
+Onay kullanıcının 2026-10-17 açık onayı. Kullanıcı kararları: Skill projeksiyonu + detay + özet (Topic/zayıflık/İngilizce 16C, geçmiş 16B); core + gerçek ekran; değerlendirilmemiş eksen 'yeniden hesaplanıyor'. Kotlin mutation 30/30, validator mutation 38/38; 90/90 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/SKILL_ANALYTICS_SPEC.md` / D-122.
 

@@ -182,13 +182,13 @@ internal object RetentionRows {
                 truthWatermark = minOf(existing?.truthWatermark ?: truthWatermark, truthWatermark),
                 builtAtInstant = builtAt,
                 inputCurriculumVersion = curriculumVersion,
-                payload = mapOf(
+                // 16A: the presentation follows the axes the row now has, never the one carried from before this axis.
+                payload = SkillStateRows.presented(mapOf(
                     "mastery_axis_state" to carried("mastery_axis_state"),
                     "retention_axis_state" to axis.id,
                     "prerequisite_axis_state" to carried("prerequisite_axis_state"),
                     "weakness_axis_state" to carried("weakness_axis_state"),
-                    "primary_presentation_state" to carried("primary_presentation_state"),
-                ),
+                )),
             )
         )
     }

@@ -2,6 +2,7 @@ package coach.wiring
 
 import coach.application.BuildDailyPlan
 import coach.application.IngestCurriculum
+import coach.application.ProgressQuery
 import coach.curriculum.FileContentSource
 import coach.model.Criticality
 import coach.model.DailyCapacityInput
@@ -10,11 +11,18 @@ import coach.model.LifecycleStatus
 import coach.model.NeedDisposition
 import coach.model.NeedTrigger
 import coach.model.PublishOutcome
+import coach.model.SkillPresentationState
+import coach.model.SkillStateProjection
 import coach.model.StudyTimestamp
 import coach.model.TaskPurpose
 import coach.model.VersionedRef
 import coach.persistence.SqlitePersistence
 import coach.ports.ClockPort
+import coach.presentation.AppHealth
+import coach.presentation.ProgressPresentation
+import coach.presentation.ProgressState
+import coach.model.EvaluatorAvailability
+import coach.model.StoreStatus
 import java.io.File
 import java.nio.file.Files
 import kotlin.test.AfterTest
@@ -332,5 +340,45 @@ class ShippedCourseTest {
         // The lifetime lesson reads through pointers: it now waits for the pointer Skill as well as for functions.
         val lifetime = trace.candidates.single { "task.memory.storage_lifetime_intuition.teach@v2:" in it.candidateId }
         assertTrue(skill("skill.c.pointer_dereference") in lifetime.relatedSkills, lifetime.relatedSkills.toString())
+    }
+
+    // ---------------------------------------------------------------- 16A — Skill analytics (SKAX-v0)
+
+    @Test
+    fun `with all eight packages, Progress for a learner who has done nothing is an honest start, in the eight states only`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        val facts = ProgressQuery(store, withContentQa).load()
+        assertEquals(60, facts.skills.size)
+        val states = facts.skills.associate { it.skill to assertIs<SkillStateProjection.Derived>(it.projection, it.skill.toString()).state }
+        // Nothing recorded: every Skill is either not yet evidenced or waiting on its own prerequisite.
+        assertEquals(setOf(SkillPresentationState.NOT_YET_EVIDENCED, SkillPresentationState.PREREQUISITE_UNRESOLVED), states.values.toSet())
+        val entry = setOf(skill("skill.computing.program_execution_model"), skill("skill.programming.state_assignment_model"), terminal, labels)
+        assertEquals(entry, states.filterValues { it == SkillPresentationState.NOT_YET_EVIDENCED }.keys)
+        assertEquals(56, states.count { it.value == SkillPresentationState.PREREQUISITE_UNRESOLVED })
+
+        val view = ProgressPresentation.overview(facts, AppHealth.of(StoreStatus.Ready, EvaluatorAvailability.AVAILABLE))
+        assertEquals(ProgressState.EMPTY_NO_EVIDENCE_YET, view.state)
+        assertEquals(0, view.recomputing)
+        assertEquals(60, view.inventory.sumOf { it.count }, "an inventory of current state, every Skill once")
+        // Reading Progress writes nothing.
+        assertTrue(store.publishedSkills().none { store.readProjection("skill_state:${it.ref.logicalId}@v1") != null })
+    }
+
+    @Test
+    fun `the Skills Progress shows as waiting are the ones the planner holds back`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        val trace = assertIs<BuildDailyPlan.Built.Planned>(BuildDailyPlan(store, withContentQa, clock)
+            .build(DailyCapacityInput(normalProfileMinutes = 60, shortProfileMinutes = 30, intensiveProfileMinutes = 90))).trace
+        val plannerWaiting = trace.needs.filter { it.disposition == NeedDisposition.BLOCKED }.flatMap { it.targetSkills }.toSet()
+        val progressWaiting = ProgressQuery(store, withContentQa).load().skills
+            .filter { (it.projection as? SkillStateProjection.Derived)?.state == SkillPresentationState.PREREQUISITE_UNRESOLVED }
+            .map { it.skill }.toSet()
+        assertEquals(plannerWaiting, progressWaiting, "one gate, one answer")
+        // A waiting Skill names what it waits for, and only published Skills.
+        val detail = ProgressQuery(store, withContentQa).detail(skill("skill.c.pointer_formation"))!!
+        assertTrue(detail.row.prerequisite.hardBlockers.isNotEmpty())
+        assertTrue(detail.row.prerequisite.hardBlockers.all { store.skill(it) != null })
+        assertTrue(detail.objectives.isNotEmpty() && detail.objectives.all { it.gatesPassed == null })
+        assertTrue(detail.topics.isNotEmpty(), "where the curriculum places it, for orientation")
     }
 }
