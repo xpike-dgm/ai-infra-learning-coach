@@ -1,0 +1,111 @@
+# 15H (CQAX-v0 / D-121) — lesson code that uses a construct its teach task cannot reach, and why each may stand.
+#
+# tools/content_qa.py reads every lesson's checks (the code the build runs to verify what a lesson claims) and the code
+# lines of its texts (canonical, alternatives, contrasts) against what the teach task reaches after 15H — its teach_requires and hard
+# edges (graph.yaml). A need the lesson really has is declared there. What remains is listed here, keyed
+# "<skill>|<objective action>|<check N or text form>|<construct>", with one of four kinds:
+#
+#   verification_scaffold  code a check uses only to print what the lesson claims (a loop over test values, try/except
+#                          around an error the lesson shows as a traceback, a temporary file); the audit verifies that
+#                          the construct is on no code line of the lesson's texts (canonical, alternatives, contrasts) —
+#                          the code-line reading is heuristic, so this rests on the review as well;
+#   notation_gap           the lesson does teach it, the notation attributes it elsewhere;
+#   accepted_device        the course's "# hazırlık" lines (15E, D-118): a commit the next lesson teaches, made before it,
+#                          marked on every line and explained in the lesson;
+#   recorded               declaring the need would make two lessons wait for each other; the lesson says what the code
+#                          does where it shows it.
+
+# ---------------------------------------------------------------- lesson checks: verification scaffolds
+skill.programming.test_case_basic|design_expected_case|check2|comparison:
+  kind: verification_scaffold
+  note: "the check compares the right and the faulty function's results to verify the lesson's claim; the lesson shows only the faulty return line"
+skill.programming.code_reading_basic|demonstrate_capability|check2|for_range:
+  kind: verification_scaffold
+  note: "a loop runs the shown % and // lines on three values"
+skill.programming.code_reading_basic|demonstrate_capability|check4|function_def:
+  kind: verification_scaffold
+  note: "the shown if/else is wrapped in a function to try three inputs"
+skill.programming.input_validation_reasoning|demonstrate_capability|check1|for_range:
+  kind: verification_scaffold
+  note: "a loop runs the shown range check on three months"
+skill.python.conditionals|write_branch_logic|check1|for_loop:
+  kind: verification_scaffold
+  note: "a loop runs the shown branch on two numbers"
+skill.python.for_iteration|iterate_sequence|check3|boolean_logic:
+  kind: verification_scaffold
+  note: "the check counts chosen letters to verify the loop's claim; the lesson shows only the for header"
+skill.python.for_iteration|iterate_sequence|check3|comparison:
+  kind: verification_scaffold
+  note: "as above"
+skill.python.for_iteration|iterate_sequence|check3|if_branch:
+  kind: verification_scaffold
+  note: "as above"
+skill.python.tuple_immutable_sequence|demonstrate_capability|check2|exceptions:
+  kind: verification_scaffold
+  note: "try/except prints the type of the error the lesson shows as a TypeError message"
+skill.python.exceptions_read_basic|extract_error_type_location|check1|as_binding:
+  kind: verification_scaffold
+  note: "try/except ... as e prints the error type the lesson reads from a traceback; the next Skill (exception_handling) teaches try"
+skill.python.exceptions_read_basic|extract_error_type_location|check1|exceptions:
+  kind: verification_scaffold
+  note: "as above"
+skill.python.exceptions_read_basic|extract_error_type_location|check1|main_guard:
+  kind: verification_scaffold
+  note: "type(e).__name__ prints the type's name; the lesson shows the traceback's last line instead"
+skill.python.exceptions_read_basic|extract_error_type_location|check2|as_binding:
+  kind: verification_scaffold
+  note: "as check1"
+skill.python.exceptions_read_basic|extract_error_type_location|check2|exceptions:
+  kind: verification_scaffold
+  note: "as check1"
+skill.python.exceptions_read_basic|extract_error_type_location|check2|main_guard:
+  kind: verification_scaffold
+  note: "as check1"
+skill.python.scope_name_resolution|demonstrate_capability|check3|as_binding:
+  kind: verification_scaffold
+  note: "try/except prints the type of the UnboundLocalError the lesson names (rule 3)"
+skill.python.scope_name_resolution|demonstrate_capability|check3|exceptions:
+  kind: verification_scaffold
+  note: "as above"
+skill.python.scope_name_resolution|demonstrate_capability|check3|main_guard:
+  kind: verification_scaffold
+  note: "as above"
+skill.python.files_paths_basic|demonstrate_capability|check2|pass_statement:
+  kind: verification_scaffold
+  note: "an empty with block, to print f.closed after it; the lesson states that with closes the file"
+skill.git.repository_status_diff|inspect_change_state|check3|pipe:
+  kind: verification_scaffold
+  note: "tail -n 1 picks the line the lesson claims; the lesson shows the whole git diff"
+
+# ---------------------------------------------------------------- notation
+skill.python.value_type_behavior|demonstrate_capability|check1|boolean_logic:
+  kind: notation_gap
+  note: "type(True): True is a bool value value_type_behavior teaches; the notation files True / False with and / or / not under boolean_logic (15A's expression_boolean_reasoning, 15B's expression_evaluation)"
+
+# ---------------------------------------------------------------- the "# hazırlık" device (15E, D-118)
+skill.git.repository_status_diff|inspect_change_state|check2|git_record:
+  kind: accepted_device
+  note: "the starting commit is made with the marked preparation lines; git add and git commit are the next lesson's"
+skill.git.repository_status_diff|inspect_change_state|check3|git_record:
+  kind: accepted_device
+  note: "as check2"
+skill.git.repository_status_diff|inspect_change_state|worked_example|git_record:
+  kind: accepted_device
+  note: "git add program.txt   # hazırlık / git commit ...   # hazırlık — marked, and the canonical explains the lines"
+
+# ---------------------------------------------------------------- recorded: declaring the need would make lessons wait for each other
+skill.c.compile_link_run_basic|classify_compile_vs_runtime_failure|check3|function_definition:
+  kind: recorded
+  note: "a link error needs a function declared without a body; functions_basic itself requires compile_link_run_basic. The worked example says it: 'kare bildirilmiş ama gövdesi yazılmamış'"
+skill.c.compile_link_run_basic|classify_compile_vs_runtime_failure|worked_example|function_definition:
+  kind: recorded
+  note: "as check3: int kare(int x); is glossed as declared without a body"
+skill.c.declaration_type_model|write_basic_declarations|state_trace|division_remainder:
+  kind: recorded
+  note: "the trace divides a double by 2 and shows the result (b: 2.5); expression_evaluation, which teaches division, requires declaration_type_model"
+skill.c.standard_io_basic|demonstrate_capability|canonical|if_else:
+  kind: recorded
+  note: "the one if checks scanf's return value and the lesson says what it is for ('okumanın başarılı olduğundan emin olmak için'); every conditionals item reads with scanf, so conditionals requires standard_io_basic"
+skill.c.standard_io_basic|demonstrate_capability|worked_example|if_else:
+  kind: recorded
+  note: "as the canonical: the worked example prints Hata when scanf does not read a number"

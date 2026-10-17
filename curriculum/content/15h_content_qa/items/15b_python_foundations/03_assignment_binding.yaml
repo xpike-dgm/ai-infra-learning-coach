@@ -1,0 +1,100 @@
+skill: skill.python.assignment_binding
+objectives:
+- id: objective.python.assignment_binding.write_state_change
+  revisions:
+  - revises: f01
+    reason: fixed_output
+    prompt: 'cozum.py adında bir program yaz: fiyat adında bir değişkene 40 ata, sonra += kullanarak 15 artır ve fiyatın son
+      değerini yazdır. Ekranda yalnız 55 görünmeli. Testler fiyat değişkeninin son değerine, kendi değerinden (+= ile) güncellendiğine
+      ve 55 sonucunun kaynakta hazır yazılmadığına da bakar.
+
+      '
+    source_checks:
+      not_in_source:
+      - '55'
+      variables:
+      - fiyat
+      updated:
+      - fiyat
+    suite:
+    - id: increased_value
+      args: []
+      expected_stdout: |
+        55
+        sonuc kaynakta yazili: hayir
+        degerler: 55
+        kendi degerinden guncellenir: evet
+  - revises: f03
+    reason: fixed_output
+    prompt: 'cozum.py adında bir program yaz: bakiye 100 ile başlasın. Önce 30 harcansın (-=) ve bakiye yazdırılsın; sonra
+      50 yatırılsın (+=) ve bakiye yeniden yazdırılsın. Ekranda alt alta 70 ve 120 görünmeli. Testler bakiye değişkeninin
+      son değerine, kendi değerinden güncellendiğine ve 70 ve 120 sonuçlarının kaynakta hazır yazılmadığına da bakar.
+
+      '
+    source_checks:
+      not_in_source:
+      - '70'
+      - '120'
+      variables:
+      - bakiye
+      updated:
+      - bakiye
+    suite:
+    - id: balance_after_each_step
+      args: []
+      expected_stdout: |
+        70
+        120
+        sonuc kaynakta yazili: hayir
+        degerler: 120
+        kendi degerinden guncellenir: evet
+  - revises: f04
+    reason: fixed_output+label
+    relabel_from: transfer_integration
+    difficulty: basic
+    prompt: 'cozum.py adında bir program yaz: ilk adında bir değişken 7 ile başlasın, kopya adında bir değişkene ilk''in değeri
+      kopyalansın, sonra ilk''e 2 atansın. Son olarak print(ilk, kopya) ile ikisini yazdır: kopyanın, kopyalandığı andaki
+      değeri koruduğu görünmeli (ekranda 2 7). Testler iki değişkenin son değerine ve kopya''nın ilk''ten kopyalandığına da
+      bakar.
+
+      '
+    source_checks:
+      variables:
+      - ilk
+      - kopya
+      bound_from:
+        kopya: ilk
+    suite:
+    - id: copy_keeps_value
+      args: []
+      expected_stdout: |
+        2 7
+        degerler: 2 7
+        degerden kopyalanir: evet
+  - revises: f05
+    reason: fixed_output+label
+    relabel_from: transfer_integration
+    difficulty: authentic_application
+    prompt: 'cozum.py adında bir program yaz: üç ürünün fiyatları 12, 30 ve 8. toplam adında bir değişken 0''dan, adet adında
+      bir değişken 0''dan başlasın; her ürün için toplama fiyatı += ile ekle ve adedi 1 artır. Sonunda print("Toplam", toplam,
+      "Adet", adet) ile yazdır. Ekranda Toplam 50 Adet 3 görünmeli. Testler toplam ve adet değişkenlerinin son değerine, her
+      birinin kendi değerinden güncellendiğine ve 50 sonucunun kaynakta hazır yazılmadığına da bakar.
+
+      '
+    source_checks:
+      not_in_source:
+      - '50'
+      variables:
+      - toplam
+      - adet
+      updated:
+      - toplam
+      - adet
+    suite:
+    - id: running_totals
+      args: []
+      expected_stdout: |
+        Toplam 50 Adet 3
+        sonuc kaynakta yazili: hayir
+        degerler: 50 3
+        kendi degerinden guncellenir: evet

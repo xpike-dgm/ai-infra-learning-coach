@@ -1,0 +1,12 @@
+skill: skill.python.value_type_behavior
+objectives:
+- id: objective.python.value_type_behavior.demonstrate_capability
+  revisions:
+  - revises: f05
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application
+  - revises: f06
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic

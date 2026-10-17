@@ -1,0 +1,12 @@
+skill: skill.shell.pipeline_redirection
+objectives:
+- id: objective.shell.pipeline_redirection.demonstrate_capability
+  revisions:
+  - revises: f07
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application
+  - revises: f08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application

@@ -1,0 +1,14 @@
+skill: skill.memory.address_value_distinction
+objectives:
+- id: objective.memory.address_value_distinction.explain_address_vs_value
+  revisions:
+  - revises: f05
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application
+- id: objective.memory.address_value_distinction.trace_simple_memory_example
+  revisions:
+  - revises: f05
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic

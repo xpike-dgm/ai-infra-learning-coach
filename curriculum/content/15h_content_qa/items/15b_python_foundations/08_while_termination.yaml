@@ -1,0 +1,8 @@
+skill: skill.python.while_termination
+objectives:
+- id: objective.python.while_termination.debug_infinite_loop
+  revisions:
+  - revises: f05
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application

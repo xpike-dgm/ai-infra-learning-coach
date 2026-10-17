@@ -1,0 +1,8 @@
+skill: skill.git.stage_commit_history_basic
+objectives:
+- id: objective.git.stage_commit_history_basic.commit_and_verify_history
+  revisions:
+  - revises: f08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application

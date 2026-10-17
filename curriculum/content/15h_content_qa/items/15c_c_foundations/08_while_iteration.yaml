@@ -1,0 +1,38 @@
+skill: skill.c.while_iteration
+objectives:
+- id: objective.c.while_iteration.demonstrate_capability
+  revisions:
+  - revises: g07
+    reason: fixed_output
+    prompt: |
+      Aşağıdaki program 0'dan başlayıp 4'er artarak 18'den küçük sayıları (0 4 8 12 16) her biri ayrı satırda yazmalı ama hiç bitmiyor. Nedenini bul, düzelt ve cozum.c olarak kaydet. Testler, while döngüsünün kaynakta kaldığına ve sayıların printf yazısının içine hazır yazılmadığına da bakar.
+
+      #include <stdio.h>
+
+      int main(void) {
+          int i = 0;
+          while (i != 18) {
+              printf("%d\n", i);
+              i += 4;
+          }
+          return 0;
+      }
+    source_checks:
+      required:
+      - \bwhile\s*\(
+      not_in_source:
+      - '4'
+      - '8'
+      - '12'
+      - '16'
+    suite:
+    - id: sequence
+      expected_stdout: |
+        0
+        4
+        8
+        12
+        16
+        istenen yapilar: tamam
+        sonuc yazida: hayir
+        kullanilmayan degisken: yok

@@ -1,0 +1,63 @@
+skill: skill.git.repository_status_diff
+objectives:
+- id: objective.git.repository_status_diff.inspect_change_state
+  items:
+  - slug: h01
+    difficulty: basic
+    hands_on: true
+    required_skills:
+    - skill.shell.command_options_redirection_basic
+    prompt: 'Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala; kayıt için dersteki
+      git config kimlik ayarını bir kez yapmış olmalısın). Değişen dosya bir klasörün içinde. Son komut ne yazar? Çıktıyı
+      göründüğü gibi yaz.
+
+      '
+    code: |
+      git init -q dergi
+      cd dergi
+      mkdir yazilar
+      echo taslak > yazilar/giris.txt
+      git add yazilar/giris.txt          # hazırlık
+      git commit -q -m "baslangic"       # hazırlık
+      echo son > yazilar/giris.txt
+      git status --short
+    answer: ' M yazilar/giris.txt'
+    verify:
+      mode: shell
+  - slug: h02
+    difficulty: authentic_application
+    evidence_type: observed_result
+    prompt: |
+      Bir depoda üç satırlık gunler.txt dosyası son kayıttan sonra değiştirildi. git diff çıktısının son satırları şöyle:
+
+      @@ -1,3 +1,3 @@
+       pazartesi
+      -sali
+      +carsamba
+       persembe
+
+      Dosyanın şimdiki içeriği nedir? Satırları sırayla, aralarında bir boşlukla yaz.
+    answer: pazartesi carsamba persembe
+    verify:
+      mode: shell
+      script: |
+        git init -q d
+        cd d
+        echo pazartesi > gunler.txt
+        echo sali >> gunler.txt
+        echo persembe >> gunler.txt
+        git add gunler.txt
+        git commit -q -m ilk
+        echo pazartesi > gunler.txt
+        echo carsamba >> gunler.txt
+        echo persembe >> gunler.txt
+        git diff | tail -n 5 > goster.txt
+        printf '%s\n' '@@ -1,3 +1,3 @@' ' pazartesi' '-sali' '+carsamba' ' persembe' > beklenen.txt
+        cmp -s goster.txt beklenen.txt && echo $(cat gunler.txt)
+  revisions:
+  - revises: f04
+    reason: label+review_fix
+    relabel_from: authentic_application
+    difficulty: basic
+    also_accept:
+    - armut

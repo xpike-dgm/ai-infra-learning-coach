@@ -245,12 +245,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **15E ✅ Linux / Git / Shell Foundations — LGSX-v0 / D-118**
 - **15F ✅ English A0→A1/A2 başlangıç paketi — EAAX-v0 / D-119**
 - **15G ✅ Assessment content — ACNX-v0 / D-120**
-- **15H 🟡 Content QA — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- **15H ✅ Content QA — CQAX-v0 / D-121**
+- **AŞAMA 15 ✅ TAMAMLANDI**
+- **16A 🟡 Skill analytics — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
 - 16–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 15H'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 16A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -721,4 +723,16 @@ Bulunanlar: eklenen item'ları düşüren şey yanlış anahtar değil ders sız
 Onay kullanıcının 2026-10-04 açık onayı. Kullanıcı kararları: 15–20 havuz; transfer içeriği + aylık üretici; seçenek düzeyinde anahtar; asistan yazar, ayrı ajanlar inceler; 15F için dürüst küçük havuz. Mutation üretici 22/22, Kotlin 32/32; QA 108/108 PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/ASSESSMENT_CONTENT_SPEC.md` / D-120.
+
+## 12.44 15H Content QA — CQAX-v0 / D-121
+
+Sekizinci paket sevk ediliyor ve **AŞAMA 15 kapandı**. Ana invariant: **içerik yalnız graph'ının, kontrollerinin ve etiketlerinin taşıdığını söyler** — graph her dersin neye ihtiyaç duyduğunu adlandırır; bir kod item'ının suite'i, cevabı yazdırmak işin kendisi değilse, işi yalnız cevabı yazdıran bir programdan ayırabilir; bir item'ın kullandığı her yapı dayanabileceği bir dersin öğrettiği yapıdır; bir zorluk etiketi incelemesinin söylediği seviyedir. Bir düzeltme sonraki sürümdür: değiştirdiği sürüm eklenen bir `retired` kaydıyla emekliye ayrılır, asla düzenlenmez, ve yalnız bağımsız bir inceleyici geçirdikten sonra sevk edilir.
+
+Bulunanlar: kapı doğruydu, graph sessizdi (50 ders ihtiyacı graph'ta yoktu); dersler teach görevlerinin ulaşmadığı kodu gösteriyor; ders kontrolü bulgularının çoğu doğrulama iskelesi; sabit çıktı bazı item'larda işin kendisi, bazılarında bir geçerlilik açığı; Objective çapında muafiyet item gizler; öğretilmemiş yapıyı item değil referans çözüm kullanıyordu; bir basamak aşağı her zaman doğru seviye değil; bir harness programı program olarak koşmalı (`__main__`); metin benzerliği yakınlık testi değil.
+
+v8: 81 item'ın sonraki sürümü (81 emekli kayıt), 6 yeni item, 138 görev sürümü, 49 kenar (12 hard), 18 `teach_requires`; hiçbir Skill, Objective, Topic, ders ya da etiket eklenmedi, 1–7. paketler bayt bayt aynı. `requires_transfer` kapandı (standard Objective'de kapı yok; üretici critical Objective'i kapı alanları saklanana kadar reddeder). Denetim `tools/content_qa.py` sekiz denetimin her bulgusunu bir çözüme bağlar. Bağımsız inceleme dört inceleyici, 87/87 item, 49/49 kenar. Havuz 65 Objective'in 57'sinde ≥15; sekiz İngilizce Objective 10–12 — kayıtlı.
+
+Onay kullanıcının 2026-10-10 açık onayı. Kullanıcı kararları: graph'a ekle (hard yalnız ders ve her item istiyorsa); `requires_transfer`'ı kapat, critical'da reddet; kusurlu item'ın sonraki sürümü, eskisi emekli; teknik havuz 15, İngilizce küçük kalır. Mutation üretici 29/29, denetim 10/10, Kotlin 2/2; QA 142/142 PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/CONTENT_QA_SPEC.md` / D-121.
 

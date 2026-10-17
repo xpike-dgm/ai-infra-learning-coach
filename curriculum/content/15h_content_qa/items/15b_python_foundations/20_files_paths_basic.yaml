@@ -1,0 +1,83 @@
+skill: skill.python.files_paths_basic
+objectives:
+- id: objective.python.files_paths_basic.demonstrate_capability
+  revisions:
+  - revises: g10
+    reason: notation
+    prompt: 'cozum.py dosyasına birlestir(yollar, hedef) adında bir fonksiyon yaz: yollar listesindeki dosyaların satırlarını
+      sırayla hedef dosyaya yazsın (her satır bir satır sonuyla bitsin); listede var olmayan bir dosya varsa onu atlasın (FileNotFoundError''ı
+      yalnız o dosya için yakala) ve devam etsin; sonunda kaç dosyayı atladığını döndürsün. UTF-8 kullan.
+
+      '
+    harness: |
+      import sys, tempfile, cozum
+      from pathlib import Path
+      with tempfile.TemporaryDirectory() as d:
+          yollar = []
+          for i, parca in enumerate(sys.argv[1:]):
+              yol = Path(d) / ("p" + str(i) + ".txt")
+              if parca != "YOK":
+                  yol.write_bytes(parca.replace("|", chr(10)).encode("utf-8"))
+              yollar.append(yol)
+          hedef = Path(d) / "hepsi.txt"
+          atlanan = cozum.birlestir(yollar, hedef)
+          with open(hedef, encoding="utf-8") as f:
+              print(atlanan, repr(f.read()))
+    suite:
+    - id: two_files
+      args:
+      - a|b|
+      - c
+      expected_stdout: '0 ''a\nb\nc\n''
+
+        '
+    - id: missing_middle
+      args:
+      - x
+      - YOK
+      - y|
+      expected_stdout: '1 ''x\ny\n''
+
+        '
+    - id: all_missing
+      args:
+      - YOK
+      expected_stdout: '1 ''''
+
+        '
+    reference: |
+      def birlestir(yollar, hedef):
+          atlanan = 0
+          with open(hedef, "w", encoding="utf-8") as h:
+              for yol in yollar:
+                  try:
+                      with open(yol, encoding="utf-8") as f:
+                          for satir in f.read().splitlines():
+                              h.write(satir + "\n")
+                  except FileNotFoundError:
+                      atlanan += 1
+          return atlanan
+    wrong:
+    - |
+      def birlestir(yollar, hedef):
+          atlanan = 0
+          with open(hedef, "w", encoding="utf-8") as h:
+              try:
+                  for yol in yollar:
+                      with open(yol, encoding="utf-8") as f:
+                          for satir in f.read().splitlines():
+                              h.write(satir + "\n")
+              except FileNotFoundError:
+                  atlanan += 1
+          return atlanan
+    - |
+      def birlestir(yollar, hedef):
+          atlanan = 0
+          with open(hedef, "w", encoding="utf-8") as h:
+              for yol in yollar:
+                  try:
+                      with open(yol, encoding="utf-8") as f:
+                          for satir in f.read().splitlines():
+                              h.write(satir + "\n")
+                  except FileNotFoundError:
+                      atlanan += 1

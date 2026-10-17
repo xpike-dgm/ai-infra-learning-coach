@@ -1,0 +1,28 @@
+skill: skill.english.negation_question_comprehension
+objectives:
+- id: objective.english.negation_question_comprehension.demonstrate_capability
+  revisions:
+  - revises: f04
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: f05
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: f06
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: g04
+    reason: label+review_fix
+    relabel_from: authentic_application
+    difficulty: basic
+    verify:
+      mode: reference
+      reference: 'Wiktionary — why (adverb): for what reason; Wikipedia — English grammar, wh-questions with do-support'
+      claim: Why does the build stop? derlemenin neden durduğunu sorar.
+  - revises: g05
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic

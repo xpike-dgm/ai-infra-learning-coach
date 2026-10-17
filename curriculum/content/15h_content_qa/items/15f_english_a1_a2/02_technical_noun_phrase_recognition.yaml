@@ -1,0 +1,12 @@
+skill: skill.english.technical_noun_phrase_recognition
+objectives:
+- id: objective.english.technical_noun_phrase_recognition.demonstrate_capability
+  revisions:
+  - revises: f06
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: g04
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic

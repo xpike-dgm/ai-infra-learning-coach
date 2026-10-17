@@ -1,0 +1,8 @@
+skill: skill.c.standard_io_basic
+objectives:
+- id: objective.c.standard_io_basic.demonstrate_capability
+  revisions:
+  - revises: f05
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application

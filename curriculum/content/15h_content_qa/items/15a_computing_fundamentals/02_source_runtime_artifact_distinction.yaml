@@ -1,0 +1,8 @@
+skill: skill.computing.source_runtime_artifact_distinction
+objectives:
+- id: objective.computing.source_runtime_artifact_distinction.classify_artifacts
+  revisions:
+  - revises: g06
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application

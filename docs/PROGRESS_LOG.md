@@ -1374,3 +1374,31 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 
 **Sonraki kesin adım:** `15H — Content QA`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
 
+
+## 2026-10-16 — 15H — Content QA tamamlandı — CQAX-v0 / D-121
+
+- 15G (#58) main'e merge edildi (347a36e). Fresh 15H PRE yapıldı ve kanonik kaynaklar `15G ✅ / 15H active-not-executed` gösterdi. Kullanıcı 2026-10-10'da "15G tamamlandı merge edildi diğer adıma geçebilirsin" diyerek yeni açık onay verdi.
+- **Kullanıcı kararları (2026-10-10):** içeriğin dayandığı kenarlar v8 ek paketiyle graph'a eklenir; hard yalnız ders ve dersin dışındaki her item istiyorsa, yoksa soft. `requires_transfer` kapandı: standard Objective'de kapı yok, üretici critical Objective'i reddeder. Kusurlu yayımlanmış item'ın sonraki sürümü yayımlanır, eskisi eklenen bir kayıtla emekliye ayrılır. Teknik havuz 15'e, İngilizce küçük havuz kalır.
+- **Bulgu:**
+  - kapı doğruydu, graph sessizdi (50 ders ihtiyacı);
+  - dersler teach görevinin ulaşmadığı kodu gösteriyor;
+  - ders kontrolü bulgularının çoğu iskele;
+  - sabit çıktı yalnız bazı item'larda işin kendisi;
+  - Objective çapında muafiyet item gizler;
+  - öğretilmemiş yapıyı item değil referans kullanıyordu;
+  - bir basamak aşağı her zaman doğru seviye değil;
+  - ilk harness `import cozum` ile `__main__` korumalı programları susturuyordu;
+  - metin benzerliği yakınlık testi değil.
+- İçerik (ek paket v8, 15G'nin üzerine): 81 sonraki sürüm (81 emekli kayıt), 6 yeni item, 138 görev sürümü, 49 kenar (12 hard), 18 `teach_requires`. Hiçbir Skill, Objective, Topic, ders ya da etiket eklenmedi; 1–7. paketler bayt bayt aynı.
+- Denetim `tools/content_qa.py` gerçek koşuyla (C Linux'ta) sekiz denetimin her bulgusunu bir çözüme bağlıyor.
+- **Araştırma:** Wikipedia (Test oracle, Mutation testing); iç sözleşmeler `PRG-v0`, `KGC-v0`, `GRE-v0`, `AIV-v0`, `QAB-v0`, `CDEX-v0`, `LFPS-v0`.
+- **Bağımsız inceleme:** dört inceleyici ajan (Python; C ve bellek; Linux, Git, İngilizce ve 15A etiketleri; graph ve denetim kararları). İlk turda 16/10/7/11 kayıt düştü; tur sayıları 3/3/3/2. Final 87/87 item, 49/49 kenar, 18/18 ders gereksinimi.
+- **Ortam:** çalışma sırasında scratchpad silindi; inceleme raporları yeniden üretildi ve depoya alındı. WSL bir yeniden başlatmadan sonra kullanılamaz oldu; kullanıcı `wsl.exe --install --no-distribution` ile düzeltti.
+- **Kotlin:** `CurriculumStore` bir kenar sürümünü ya da doğrulama kaydını ikinci kez taşımayı reddediyor. Yeni testler: `ShippedContentQaPackageTest`, `ShippedCourseTest` 15H bölümü, `CurriculumPublishingTest`. Şema ve portlar değişmedi.
+- **Mutation:** üretici 29/29, denetim 10/10, Kotlin 2/2.
+- **Validator:** 142/142 PASS. Kendi mutation testi 33/33, sweep 63/63, 1068 JVM testi.
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+- **AŞAMA 15 TAMAMLANDI** — CPFX-v0 → PYFX-v0 → CFNX-v0 → MMFX-v0 → LGSX-v0 → EAAX-v0 → ACNX-v0 → CQAX-v0.
+- D-050 POST living-memory accepted state'i `15H tamamlandı; AŞAMA 15 kapandı; 16A aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `16A — Skill analytics`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

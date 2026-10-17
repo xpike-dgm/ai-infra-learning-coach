@@ -1,0 +1,8 @@
+skill: skill.programming.branching_reasoning
+objectives:
+- id: objective.programming.branching_reasoning.predict_branch
+  revisions:
+  - revises: g07
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application

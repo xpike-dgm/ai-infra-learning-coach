@@ -1,0 +1,19 @@
+skill: skill.english.follow_bilingual_technical_instruction
+objectives:
+- id: objective.english.follow_bilingual_technical_instruction.execute_known_instruction
+  revisions:
+  - revises: f05
+    reason: label+review_fix
+    relabel_from: authentic_application
+    difficulty: basic
+    prompt: 'Bu talimatta kurulumdan hemen sonra ne yapılır?
+
+      '
+  - revises: f07
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic
+  - revises: f08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic

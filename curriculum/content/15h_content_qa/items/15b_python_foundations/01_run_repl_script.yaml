@@ -1,0 +1,206 @@
+skill: skill.python.run_repl_script
+objectives:
+- id: objective.python.run_repl_script.execute_and_classify_result
+  revisions:
+  - revises: f02
+    reason: fixed_output
+    prompt: 'cozum.py adında bir script yaz: Python''un 125''ten 38''i çıkarmasını sağlasın ve ekrana yalnızca sonucu (tek
+      bir sayı) yazsın. Sonucu kendin hesaplayıp yazma; çıkarmayı Python yapsın. Testler, 87 sonucunun kaynak kodda hazır
+      yazılmadığına da bakar; onu Python hesaplamalı.
+
+      '
+    source_checks:
+      not_in_source:
+      - '87'
+    suite:
+    - id: prints_difference
+      stdin: ''
+      expected_stdout: |
+        87
+        sonuc kaynakta yazili: hayir
+  - revises: f03
+    reason: fixed_output
+    prompt: |
+      Aşağıdaki script çalıştırılınca bir NameError ile duruyor. Hatanın türünü ve satırını traceback'ten bulup düzelt. Düzeltilmiş script ekrana önce Toplam hesaplanıyor, sonra 15 yazmalı. Düzeltilmiş hâlini cozum.py olarak kaydet. Testler, 15 sonucunun kaynak kodda hazır yazılmadığına da bakar; onu Python hesaplamalı.
+
+      sayi = 10
+      print("Toplam hesaplanıyor")
+      print(sayi + bes)
+    source_checks:
+      not_in_source:
+      - '15'
+    suite:
+    - id: fixed_output
+      stdin: ''
+      expected_stdout: |
+        Toplam hesaplanıyor
+        15
+        sonuc kaynakta yazili: hayir
+  - revises: f05
+    reason: fixed_output
+    prompt: |
+      Aşağıdaki script üç satır yazmalı ama ikinci satırı yazarken bir hata ile duruyor. Traceback'i oku: hatanın türü ne, hangi satırda ve neden? Sorunun kaynağı olan satırı düzelt (adet 4 olmalıydı) ve düzeltilmiş hâlini cozum.py olarak kaydet. Script ekrana Toplam: 12, Ortalama: 3 ve Bitti yazmalı. Testler, 3 sonucunun kaynak kodda hazır yazılmadığına da bakar; onu Python hesaplamalı.
+
+      toplam = 12
+      adet = 0
+      print("Toplam:", toplam)
+      print("Ortalama:", toplam // adet)
+      print("Bitti")
+    source_checks:
+      not_in_source:
+      - '3'
+    suite:
+    - id: three_lines_after_fix
+      stdin: ''
+      expected_stdout: |
+        Toplam: 12
+        Ortalama: 3
+        Bitti
+        sonuc kaynakta yazili: hayir
+  - revises: g01
+    reason: fixed_output
+    prompt: |
+      REPL'de >>> işaretinden sonra 3 + 4 yazınca ekranda 7 görünüyor. Aynı satırı tek başına bir dosyaya yazıp python cozum.py ile çalıştırınca ise ekranda hiçbir şey görünmüyor:
+
+      3 + 4
+
+      Script'i öyle düzelt ki çalıştırılınca ekrana yalnızca 7 yazsın; toplamayı Python yapsın. cozum.py olarak kaydet. Testler, 7 sonucunun kaynak kodda hazır yazılmadığına da bakar; onu Python hesaplamalı.
+    source_checks:
+      not_in_source:
+      - '7'
+    suite:
+    - id: prints_sum
+      stdin: ''
+      expected_stdout: |
+        7
+        sonuc kaynakta yazili: hayir
+  - revises: g04
+    reason: fixed_output
+    prompt: |
+      Aşağıdaki script önce Mesafe: yazıyor, sonra bir NameError ile duruyor. Traceback'te hatanın türünü ve satırını bul, düzelt. Düzeltilmiş script ekrana alt alta Mesafe: ve 42 yazmalı. cozum.py olarak kaydet. Testler, 42'nin mesafe değişkeninden yazdırıldığına da bakar.
+
+      mesafe = 42
+      print("Mesafe:")
+      print(mesfe)
+    source_checks:
+      required:
+      - \bprint\([^)]*\bmesafe\b
+    suite:
+    - id: fixed_output
+      stdin: ''
+      expected_stdout: |
+        Mesafe:
+        42
+        istenen yapilar: tamam
+  - revises: g05
+    reason: fixed_output
+    prompt: 'cozum.py adında bir script yaz: ekrana tek satır olarak Sonuç: 42 yazsın. 42''yi Python 6 ile 7''yi çarparak
+      hesaplasın; Sonuç: yazısı ile sayı arasında tek bir boşluk olsun. Testler, 42 sonucunun kaynak kodda hazır yazılmadığına
+      da bakar; onu Python hesaplamalı.
+
+      '
+    source_checks:
+      not_in_source:
+      - '42'
+    suite:
+    - id: labelled_product
+      stdin: ''
+      expected_stdout: |
+        Sonuç: 42
+        sonuc kaynakta yazili: hayir
+  - revises: g07
+    reason: fixed_output
+    prompt: |
+      Aşağıdaki script çalıştırılınca ekrana hiçbir şey yazmadan bir hata ile duruyor. Script'i çalıştır, traceback'i oku ve düzelt; düzeltilmiş script ekrana yalnızca Kalan: 32 yazmalı. cozum.py olarak kaydet. Testler, 32 sonucunun kaynak kodda hazır yazılmadığına da bakar; onu Python hesaplamalı.
+
+      print("Kalan:", toplam - harcanan)
+      toplam = 50
+      harcanan = 18
+    source_checks:
+      not_in_source:
+      - '32'
+    suite:
+    - id: ordered_output
+      stdin: ''
+      expected_stdout: |
+        Kalan: 32
+        sonuc kaynakta yazili: hayir
+  - revises: g09
+    reason: fixed_output+label
+    relabel_from: transfer_integration
+    difficulty: authentic_application
+    prompt: 'cozum.py adında bir script yaz: kenarı 9 olan bir karenin önce çevresini, sonra alanını yazsın. Ekranda alt alta
+      Çevre: 36 ve Alan: 81 görünmeli; sayıları Python hesaplasın. Testler, 36 ve 81 sonuçlarının kaynak kodda hazır yazılmadığına
+      da bakar; onları Python hesaplamalı.
+
+      '
+    source_checks:
+      not_in_source:
+      - '36'
+      - '81'
+    suite:
+    - id: perimeter_then_area
+      stdin: ''
+      expected_stdout: |
+        Çevre: 36
+        Alan: 81
+        sonuc kaynakta yazili: hayir
+  - revises: g10
+    reason: fixed_output
+    prompt: |
+      Aşağıdaki script bir hata ile duruyor. Düzeltilmiş script ekrana alt alta Fiyat: 25, Adet: 3 ve Tutar: 75 yazmalı. Script'i çalıştır, traceback'i oku, düzelt ve yeniden çalıştır; düzelttikten sonra başka bir hata çıkarsa onu da aynı yolla düzelt. cozum.py olarak kaydet. Testler, 75 sonucunun kaynak kodda hazır yazılmadığına da bakar; onu Python hesaplamalı.
+
+      fiyat = 25
+      print("Fiyat:", fiyt)
+      adet = 3
+      print("Adet: " + adet)
+      print("Tutar:", fiyat * adet)
+    source_checks:
+      not_in_source:
+      - '75'
+    suite:
+    - id: three_lines
+      stdin: ''
+      expected_stdout: |
+        Fiyat: 25
+        Adet: 3
+        Tutar: 75
+        sonuc kaynakta yazili: hayir
+  - revises: g11
+    reason: fixed_output
+    prompt: 'cozum.py adında bir script yaz: bir yolculukta önce saatte 80 km hızla 3 saat, sonra saatte 60 km hızla 2 saat
+      gidiliyor. Ekrana alt alta İlk bölüm: 240, İkinci bölüm: 120 ve Toplam: 360 yazsın; sayıları Python hesaplasın. Testler,
+      240, 120 ve 360 sonuçlarının kaynak kodda hazır yazılmadığına da bakar; onları Python hesaplamalı.
+
+      '
+    source_checks:
+      not_in_source:
+      - '240'
+      - '120'
+      - '360'
+    suite:
+    - id: three_parts
+      stdin: ''
+      expected_stdout: |
+        İlk bölüm: 240
+        İkinci bölüm: 120
+        Toplam: 360
+        sonuc kaynakta yazili: hayir
+  - revises: t01
+    reason: fixed_output
+    prompt: |
+      Aşağıdaki script önce bir satır yazıyor, sonra bir hata ile duruyor. Traceback'i oku: hatanın türü ne ve hangi satırda? Sorunu düzelt; düzeltilmiş script ekrana alt alta İlk: 3 ve Son: 8 yazmalı (listenin ilk ve son elemanı). cozum.py olarak kaydet. Testler, son elemanın sayilar listesinden okunduğuna da bakar.
+
+      sayilar = [3, 5, 8]
+      print("İlk:", sayilar[0])
+      print("Son:", sayilar[3])
+    source_checks:
+      required:
+      - \bsayilar\[(?!\s*0\s*\])(?!\s*3\s*\])[^\]]+\]
+    suite:
+    - id: first_and_last
+      stdin: ''
+      expected_stdout: |
+        İlk: 3
+        Son: 8
+        istenen yapilar: tamam

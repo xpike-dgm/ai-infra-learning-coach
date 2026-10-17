@@ -1,0 +1,24 @@
+skill: skill.english.imperative_instruction_comprehension
+objectives:
+- id: objective.english.imperative_instruction_comprehension.demonstrate_capability
+  revisions:
+  - revises: f04
+    reason: label
+    relabel_from: authentic_application
+    difficulty: basic
+  - revises: f07
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic
+  - revises: f08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application
+  - revises: g07
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application
+  - revises: g08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: authentic_application

@@ -291,4 +291,46 @@ class ShippedCourseTest {
             listOf(labels), Criticality.REQUIRED)).single()
         assertTrue("@v2:" in check.id, check.id)
     }
+
+    // ------------------------------------------- 15H (`CQAX-v0`, `D-121`): content QA corrects by appending, never by editing
+
+    private val contentQa = File("src/main/assets/curriculum_package_v8.txt").readText()
+    private val withContentQa = FileContentSource(later = { listOf(python, c, memory, shellGit, english, assessment, contentQa) }, source = { first })
+    private val revised = Regex("""\[item]\nref=(\S+)@v2\n""").findAll(contentQa).map { it.groupValues[1] }.toList()
+
+    @Test
+    fun `all eight shipped packages are published into the real store, and a revised item's old version is retired, not overwritten`() {
+        assertEquals((1..8).toList(), IngestCurriculum(store, withContentQa, clock).ingestAll().map { assertIs<PublishOutcome.Published>(it, "$it").version })
+        assertEquals(8, store.latestCurriculumVersion())
+        assertEquals(60, store.publishedSkills().size, "content QA adds no Skill")
+        assertEquals(81, revised.size)
+        // The store keeps both versions and every record; the newest record decides, so nothing selects the old version again.
+        revised.forEach { id ->
+            assertEquals(LifecycleStatus.RETIRED, store.latestValidation(VersionedRef(id, 1))?.status, id)
+            assertTrue(store.resourceVersion(VersionedRef(id, 1)) != null, "$id@v1 stays readable by its pinned reference")
+            assertEquals(LifecycleStatus.VALIDATED, store.latestValidation(VersionedRef(id, 2))?.status, id)
+        }
+        val edges = store.publishedSkills().flatMap { store.prerequisiteEdgesInto(it.ref) }
+        assertEquals(77 + 49, edges.size, "the graph now says what the lessons need")
+        assertEquals((1..8).map { PublishOutcome.AlreadyPublished(it) }, IngestCurriculum(store, withContentQa, clock).ingestAll())
+    }
+
+    @Test
+    fun `with content QA, a learner who has done nothing starts the same entry lessons, and a lesson waits for what it shows`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        val trace = assertIs<BuildDailyPlan.Built.Planned>(BuildDailyPlan(store, withContentQa, clock)
+            .build(DailyCapacityInput(normalProfileMinutes = 60, shortProfileMinutes = 30, intensiveProfileMinutes = 90))).trace
+
+        val entry = setOf(skill("skill.computing.program_execution_model"), skill("skill.programming.state_assignment_model"), terminal, labels)
+        assertTrue(entry.containsAll(trace.selected.map { it.primarySkill }), "only entry Skills start: ${trace.selected.map { it.primarySkill }}")
+        assertTrue(trace.selected.all { it.purpose == TaskPurpose.TEACH })
+        assertTrue(trace.selected.sumOf { it.plannedMinutes } <= 60, "the day is never extended")
+        val waiting = trace.needs.filter { it.disposition == NeedDisposition.BLOCKED }.flatMap { it.targetSkills }.toSet()
+        assertEquals(56, waiting.size, "everything downstream still waits: $waiting")
+        assertTrue(trace.needs.none { it.disposition == NeedDisposition.NO_VALID_CANDIDATE }, "every Skill keeps its lesson")
+
+        // The lifetime lesson reads through pointers: it now waits for the pointer Skill as well as for functions.
+        val lifetime = trace.candidates.single { "task.memory.storage_lifetime_intuition.teach@v2:" in it.candidateId }
+        assertTrue(skill("skill.c.pointer_dereference") in lifetime.relatedSkills, lifetime.relatedSkills.toString())
+    }
 }

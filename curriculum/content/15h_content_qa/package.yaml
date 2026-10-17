@@ -1,0 +1,35 @@
+# 15H — Content QA (CQAX-v0 / D-121). A supplement, like 15G's: it changes nothing published and adds what Stage 15's
+# content QA found missing or wrong (LFPS-v0: a published version is never overwritten).
+#
+# What it adds, from the files beside this one:
+# - graph.yaml: edges that make the graph say what the lessons and items already need (user decision 2026-10-10: hard
+#   only where the lesson and every item outside it need the prerequisite, soft otherwise), and the lessons' needs their
+#   teach tasks did not declare;
+# - items/<directory>/<skill file>.yaml: new items for the three technical Objectives below 15 (user decision: technical
+#   to 15, English keeps 15G's honest small pool), and revisions — the next version of a published item whose suite a
+#   program that only prints the answer passes, or whose difficulty label the review found generous; the version it
+#   replaces is retired by an appended validation record (user decision);
+# - notation_overlay.yaml: reading constructs the notations did not name (in, is, pass, break / continue, as), applied to
+#   what this supplement adds;
+# - fixed_output.yaml: the Objectives and items where printing one fixed output is itself what is asked, so the
+#   constant-output check does not apply.
+# The audits that found all this, and that every finding is resolved, are tools/content_qa.py's.
+version: 8
+step: 15h
+supplements:
+  - curriculum/content/15a_computing_fundamentals
+  - curriculum/content/15b_python_foundations
+  - curriculum/content/15c_c_foundations
+  - curriculum/content/15d_memory_foundations
+  - curriculum/content/15e_linux_git_shell
+  - curriculum/content/15f_english_a1_a2
+# 15G's items, review and mappings are published: they are read as such, and revised like the directories' own.
+earlier_supplements:
+  - curriculum/content/15g_assessment
+source_refs: curriculum/content/15h_content_qa;curriculum/content/15g_assessment;curriculum/content/15a_computing_fundamentals;curriculum/content/15b_python_foundations;curriculum/content/15c_c_foundations;curriculum/content/15d_memory_foundations;curriculum/content/15e_linux_git_shell;curriculum/content/15f_english_a1_a2
+provenance: authored_15h_cqax_v0
+content_source_ref: source.repo.content_15h_cqax_v0
+# 2026-10-10T12:00:00Z — the day the independent review of 15H content is recorded.
+validated_at_instant: 1791633600000
+# Every code item this supplement publishes must fail the program that only prints its expected output (D-121).
+constant_check: true

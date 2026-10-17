@@ -302,8 +302,12 @@ tp = builder_src[builder_src.find("def transfer_problems("):builder_src.find("# 
 check("A15G-09_builder_transfer_rule", all(s in tp for s in ("not in CROSS_TOPIC_PROFILES", 'not it.get("context_family")', "if skill in declared:",
                                                              "topic_of.get(r) != topic_of.get(skill)", '!= "transfer_integration"'))
       and 'CROSS_TOPIC_PROFILES = {"cross_topic_context", "integrated_system_context"}' in builder_src, "")
-check("A15G-09_builder_never_overwrites", 'if supplement is not None and plan["items"] == published_plans[kind]["items"]:' in builder_src
-      and "task_version = 1 if supplement is None else 2" in builder_src, "")
+# Narrowed at 15H (`CQAX-v0` / `D-121`): a supplement may build on an earlier one, so the task version is the next one
+# after what is published (2 for 15G, which built on nothing), and a task is republished only when its items or its
+# requirement changed. Any other change to these lines still fails.
+check("A15G-09_builder_never_overwrites", 'if plan["items"] == published_plans[kind]["items"] and required == required_of(published_plans[kind], 1):' in builder_src
+      and 'task_version = (1 if published_plans[kind]["items"] == own_plans[kind]["items"] else 2) + 1' in builder_src
+      and "task_version = 1\n" in builder_src, "")
 
 # ---------------------------------------------------------------- Kotlin: the owner, and everyone who must ask it
 te = strip_comments(read(TRANSFER_ENGINE))

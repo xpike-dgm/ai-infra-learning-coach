@@ -1,0 +1,31 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.while_iteration.demonstrate_capability.g07@v2",
+  "item": "item.c.while_iteration.demonstrate_capability.g07@v2",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import re, subprocess, sys\nistenen = ['\\\\bwhile\\\\s*\\\\(']\nyasak = ['4', '8', '12', '16']\nwith open(\"cozum.c\", encoding=\"utf-8\") as f:\n    kod = re.sub(r\"//[^\\n]*|/\\*.*?\\*/\", \"\", f.read(), flags=re.S)\nyazilar = re.findall(r'\"(?:\\\\.|[^\"\\\\\\n])*\"', kod)\ncikti = subprocess.run([\"./cozum\"], input=sys.stdin.read(), capture_output=True, text=True).stdout\nkullanilmayan = subprocess.run([\"gcc\", \"-std=c11\", \"-fsyntax-only\", \"-Werror=unused-variable\",\n                                \"-Werror=unused-but-set-variable\", \"cozum.c\"], capture_output=True).returncode != 0\nkod_yazisiz = re.sub(r'\"(?:\\\\.|[^\"\\\\\\n])*\"', '\"\"', kod)\neksik = [b for b in istenen if not re.search(b, kod_yazisiz)]\ngomulu = [d for d in yasak if any(re.search(r\"(?<![0-9.])\" + re.escape(d) + r\"(?![0-9])\", y) for y in yazilar)]\nprint(cikti.rstrip())\nprint(\"istenen yapilar:\", \"tamam\" if not eksik else \"eksik\")\nprint(\"sonuc yazida:\", \"evet\" if gomulu else \"hayir\")\nprint(\"kullanilmayan degisken:\", \"var\" if kullanilmayan else \"yok\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "sequence",
+      "expected_stdout": "0\n4\n8\n12\n16\nistenen yapilar: tamam\nsonuc yazida: hayir\nkullanilmayan degisken: yok\n"
+    }
+  ]
+}

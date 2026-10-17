@@ -1,0 +1,272 @@
+model: CQAX-v0
+stage_step: 15H
+status: accepted_15h
+decision: D-121
+implements: [PRG-v0, KGC-v0, GRE-v0, AIV-v0, QAB-v0, CDEX-v0, LFPS-v0]
+builds_on: [CPFX-v0, PYFX-v0, CFNX-v0, MMFX-v0, LGSX-v0, EAAX-v0, ACNX-v0, PRQX-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: stage_15_content_says_only_what_its_graph_checks_and_labels_stand_behind
+
+question: Aşama 15'in yayımladığı içerik, her adımın tek başına göremediği yerlerde de söylediğini taşıyor mu — ve taşımıyorsa, yayımlanmış hiçbir şeyin üzerine yazmadan nasıl düzeltilir?
+
+primary_invariant: >-
+  Content says only what its graph, its checks and its labels can stand behind. The graph names what every lesson needs;
+  a code item's suite can tell the work from a program that only prints the answer unless printing it is the work; every
+  construct an item uses is taught by a lesson it may rely on; a difficulty label is the level its review says. A
+  correction is the next version — the version it replaces is retired by an appended record, never edited — and ships
+  only after an independent reviewer passed it.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-10
+  graph: add_content_edges_hard_only_where_lesson_and_every_item_else_soft
+  requires_transfer: close_no_gate_on_standard_refuse_critical_until_stored
+  flawed_items: publish_next_version_retire_old_by_appended_record
+  pool: technical_to_15_english_keeps_small_pool
+  authorship: assistant_writes_independent_agents_review
+
+assistant_defaults:
+  - edge rules lesson_and_every_item -> hard, lesson -> soft, reads_glossed -> soft
+  - lessons read code line by line (checks and texts) against what the teach task reaches after 15H
+  - fixed-output exemptions per item, never per Objective
+  - a label goes to the level its review says, not one step down
+
+declared_extensions:
+  - {what: "earlier_supplements; revision of a published item as its next version, same logical id and variant family; an appended retired validation record", extends: "D-120 supplements, LFPS-v0"}
+  - {what: "[prerequisite_edge] between published Skills in a supplement; teach_requires on a task's next version", extends: "D-113 incremental packages, PRG-v0 §6"}
+  - {what: "source_checks on code items (Python not_in_source, required, variables, updated, bound_from; C required, not_in_source, unused variables)", extends: "CDEX-v0 suites"}
+  - {what: "CurriculumStore refuses an edge version or a validation record carried a second time", extends: "LDBX-v0 never overwrite"}
+
+scope:
+  package_version: 8
+  supplement: true
+  skills_added: 0
+  objectives_added: 0
+  topics_added: 0
+  lessons_added: 0
+  labels_added: 0
+  schema_changed: false
+  ports_changed: false
+  store_changed: true
+  kotlin_main_changed: true
+  earlier_packages_rebuilt_identical: true
+
+counts:
+  items: 87
+  revised_items: 81
+  new_items: 6
+  retired_versions: 81
+  task_versions: 138
+  edges: 49
+  hard_edges: 12
+  soft_edges: 37
+  teach_requires: 18
+  answer_misconceptions: 12
+
+revisions_by_reason: {fixed_output: 30, fixed_output+label: 3, label: 42, label+review_fix: 4, notation: 2}
+
+audit:
+  tool: tools/content_qa.py
+  report: arch/15h_content_qa/content_qa_audit.yaml
+  findings: {fixed_output: 52, notation: 5, lesson_checks: 24, lesson_text: 6, graph: 50, labels: 54, pools: 65, criticality: 65}
+  resolutions:
+    fixed_output: {revised: 33, exempt_item: 19}
+    notation: {revised: 2, alternative_reference: 3}
+    lesson_checks: {verification_scaffold: 20, notation_gap: 1, recorded: 1, accepted_device: 2}
+    lesson_text: {recorded: 4, accepted_device: 2}
+    graph: {hard_edge: 12, soft_edge: 33, implied_by_15h_hard_edges: 5}
+    labels: {revised: 49, kept: 5}
+    pools: {at_least_15: 57, recorded_small_pool: 8}
+    criticality: {standard: 65}
+
+recorded_small_pools:
+  - objective.english.be_and_simple_present_comprehension.demonstrate_capability
+  - objective.english.documentation_navigation.demonstrate_capability
+  - objective.english.follow_bilingual_technical_instruction.execute_known_instruction
+  - objective.english.imperative_instruction_comprehension.demonstrate_capability
+  - objective.english.negation_question_comprehension.demonstrate_capability
+  - objective.english.preposition_function_word_comprehension.demonstrate_capability
+  - objective.english.technical_noun_phrase_recognition.demonstrate_capability
+  - objective.english.write_command_result_note.demonstrate_capability
+
+independent_review:
+  file: curriculum/content/15h_content_qa/independent_review.yaml
+  reviewers: [python, c_memory, linux_git_english_15a, graph_and_audit_decisions]
+  rounds: {python: 3, c_memory: 3, linux_git_english_15a: 3, graph_and_audit_decisions: 2}
+  first_round_fails: {python: 16, c_memory: 10, linux_git_english_15a: 7, graph_and_audit_decisions: 11}
+  final: all_pass
+
+found:
+  - the_gate_was_right_the_graph_was_silent
+  - lessons_show_code_their_teach_task_does_not_reach
+  - most_lesson_check_findings_are_scaffolds
+  - a_fixed_output_is_the_construct_only_in_some_items
+  - an_objective_wide_exemption_hides_items
+  - the_reference_not_the_item_used_untaught_constructs
+  - one_level_down_is_not_always_the_right_level
+  - a_harness_must_run_the_program_as_a_program
+  - text_similarity_is_not_a_near_variance_test
+
+suites:
+  shipped: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/ShippedContentQaPackageTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+  store: {file: android/data-persistence/src/test/kotlin/coach/persistence/CurriculumPublishingTest.kt}
+
+narrowed_gates:
+  rule: an earlier check now accepts exactly the D-121 generalisation in its declared place, and still fails on any other drift; the narrowed line carries a "Narrowed at 15H (`CQAX-v0` / `D-121`)" comment
+  gates:
+    - {file: tools/validate_assessment_content.py, checks: [A15G-09_builder_never_overwrites], why: "a task's next version follows what is published (an earlier supplement may have published v2), and a task is republished when its items or its requirement changed"}
+
+open_loops:
+  english_small_pools: {owner: later English content step, note: "8 Objectives at 10–12; a wider taught lexicon first"}
+  english_levels_after_relabel: {owner: later English content step, note: "imperative_instruction_comprehension has no transfer_integration item, negation_question_comprehension no authentic_application item"}
+  accept_lists_and_gloss: {owner: later content revision, note: "git f07 does not accept the bare ikinci; the label lesson does not gloss the noun copy (imperative g07)"}
+  label_calibration: {owner: 18C, note: "siblings of relabelled items; labels without a review note"}
+  contrived_cheats: {owner: recorded limit, note: "a value passed as a numeric printf argument while every variable is read; source checks see code, not intent"}
+  notation_granularity: {owner: recorded limit, note: "brackets credited to several Skills; code-line reading of lessons is heuristic; four teach requirements (tuple, string and mapping <- list_operations, exceptions_read <- function_decomposition) rest on a reviewer's reading, not on an audit finding"}
+  professional_evidence_checkpoint: {owner: AŞAMA 20, note: "the month's other role still has no producer"}
+  estimate_calibration: {owner: 18B, note: "item minutes are authoring estimates"}
+  t6_and_device_ingestion: {owner: 19, note: "T6 and the first on-device ingestion"}
+
+mutation_results_builder:
+  tool: tools/build_curriculum_package.py
+  total: 29
+  detected: 29
+  scope: one change per mutant to the builder's text, loaded in memory (the repository's builder file is never written); a fixture supplement of real 15H content (15B, 15C and 15F subsets, planted review, planted wrong solutions) is built, then a copy of 15D with one Objective declared critical, then one variant per planted fault (constant-passing suite, untaught pass, changed options, hard edge some item does not need, soft edge every item needs, missing edge, cycle, an edge already published, an edge the hard graph implies, an unreviewed edge)
+  detection: the clean fixture fails a check, the critical copy builds, or a variant does not report its planted fault
+  crash_is_detection: false
+  negative_control: N00 adds a comment beside REVISION_META
+  negative_control_result: survived_as_expected
+  earlier_runs: the first full run left B25 (the self-update check off) and B29 (the redundancy check off) alive; every planted wrong solution of the self-update item was also stopped by another check, and the fixture had an edge already published but none the hard graph implies. A wrong solution only the self-update check stops (fiyat = 40 + 15) and a redundant-edge variant were added, and the whole set was run again; an earlier baseline failed once with an empty C suite result while Gradle was running (likely WSL contention, not confirmed; the same suite passed when run directly)
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: B01, mutant: constant_check_disabled, result: detected}
+    - {id: B02, mutant: every_item_exempt, result: detected}
+    - {id: B03, mutant: no_retirement_record, result: detected}
+    - {id: B04, mutant: retired_written_validated, result: detected}
+    - {id: B05, mutant: revision_published_at_v1, result: detected}
+    - {id: B06, mutant: tasks_keep_old_version, result: detected}
+    - {id: B07, mutant: task_version_not_bumped, result: detected}
+    - {id: B08, mutant: requirement_change_not_republished, result: detected}
+    - {id: B09, mutant: teach_requires_ignored, result: detected}
+    - {id: B10, mutant: hard_rule_not_checked, result: detected}
+    - {id: B11, mutant: soft_rule_not_checked, result: detected}
+    - {id: B12, mutant: completeness_not_checked, result: detected}
+    - {id: B13, mutant: cycle_not_checked, result: detected}
+    - {id: B14, mutant: published_edge_again, result: detected}
+    - {id: B15, mutant: edge_review_not_required, result: detected}
+    - {id: B16, mutant: revision_reviewed_by_published_key, result: detected}
+    - {id: B17, mutant: mapping_carried_over_changed_options, result: detected}
+    - {id: B18, mutant: critical_objective_accepted, result: detected}
+    - {id: B19, mutant: notation_overlay_ignored, result: detected}
+    - {id: B20, mutant: c_required_constructs_not_checked, result: detected}
+    - {id: B21, mutant: c_unused_variable_not_checked, result: detected}
+    - {id: B22, mutant: python_forbidden_value_not_checked, result: detected}
+    - {id: B23, mutant: earlier_transfer_items_presented, result: detected}
+    - {id: B24, mutant: earlier_items_judged_by_own_review, result: detected}
+    - {id: B25, mutant: python_update_not_checked, result: detected}
+    - {id: B26, mutant: python_copy_not_checked, result: detected}
+    - {id: B27, mutant: python_file_imported_not_run, result: detected}
+    - {id: B28, mutant: python_output_stripped_both_ends, result: detected}
+    - {id: B29, mutant: redundant_edge_accepted, result: detected}
+
+mutation_results_audit:
+  tool: tools/content_qa.py
+  total: 10
+  detected: 10
+  scope: one change per mutant to the audit's text, loaded in memory; each variant plants one fault in a temporary copy of the 15H content and the assets, and the audit that owns it must then report an unresolved finding (a clean copy must report none)
+  c_runs: a fake runner reproduces the recorded real run for C constant programs (the real run is arch/15h_content_qa/content_qa_audit.yaml); Python suites run with the course runner
+  crash_is_detection: false
+  negative_control: N00 changes only the module docstring
+  negative_control_result: survived_as_expected
+  earlier_runs: the first two runs stopped at baseline because the drop_teach_requirement variant planted nothing — the audit reads a lesson's requirement from the shipped task, so dropping it from graph.yaml alone changed nothing, and tuple <- list_operations is a reviewer's need the audit cannot see (brackets are credited to several Skills); the variant now drops tuple <- expression_evaluation from graph.yaml and from the v8 copy
+  mutants:
+    - {id: A01, mutant: constant_finding_always_exempt, result: detected}
+    - {id: A02, mutant: alternative_never_checked, result: detected}
+    - {id: A03, mutant: scaffold_may_hide_shown_construct, result: detected}
+    - {id: A04, mutant: text_finding_may_be_scaffold, result: detected}
+    - {id: A05, mutant: missing_edge_accepted, result: detected}
+    - {id: A06, mutant: undecided_label_kept, result: detected}
+    - {id: A07, mutant: pool_threshold_lowered, result: detected}
+    - {id: A08, mutant: criticality_not_read, result: detected}
+    - {id: A09, mutant: return_lines_not_read_as_code, result: detected}
+    - {id: A10, mutant: lessons_read_against_published_graph, result: detected}
+
+mutation_results_kotlin:
+  scope: one change per mutant to CurriculumStore.kt's new refusal, then the data-persistence JVM tests
+  total: 2
+  detected: 2
+  crash_is_detection: false
+  negative_control: N00 adds a comment only
+  negative_control_result: survived_as_expected
+  mutants:
+    - {id: K01, mutant: edge_carried_twice_not_refused, result: detected}
+    - {id: K02, mutant: record_carried_twice_not_refused, result: detected}
+
+validator_mutation:
+  tool: tools/validate_content_qa.py
+  total: 33
+  detected: 33
+  scope: one change per mutant to an input the validator reads — the contract, the content verification report, the recorded audit, the shipped asset, the independent review, a suite file, the Kotlin store and the three shipped tests, the spec, the research, DECISIONS, the audit tool, graph.yaml, fixed_output.yaml and the builder
+  detection: a FAIL check id not failing at baseline; a run that prints no result line is a crash and never a detection
+  crash_is_not_a_detection: true
+  baseline: the only check allowed to fail at baseline is A15H-11_validator_mutation, which reads this very result
+  fast_mode: --skip-earlier-rebuild, --skip-audit-runs and --build-cache; the cache is reused only while every build input is byte-identical, so the content and builder mutants (V30–V32) ran a real rebuild
+  negative_control: a YAML comment in the contract naming forbidden fragments (banana, __, verdict fail, survived)
+  negative_control_result: survived_as_expected
+  earlier_runs: in fast mode V28 (the audit ignores a per-item exemption) survived, because without its real runs the audit resolves no fixed-output row past not_run; it was run again without --skip-audit-runs (as CI runs the validator) with a fresh baseline and the negative control, and was detected. Two checks were also fixed before the run — the critical refusal message is split over two source lines, and the spec legitimately says __main__ — and the edge-refusal check now reads the edge's own message (a message another table also uses could not tell it was gone)
+  mutants:
+    - {id: V01, mutant: contract_model, result: detected}
+    - {id: V02, mutant: contract_approval_standing, result: detected}
+    - {id: V03, mutant: contract_flawed_items_overwrite, result: detected}
+    - {id: V04, mutant: contract_revised_count, result: detected}
+    - {id: V05, mutant: contract_small_pool_dropped, result: detected}
+    - {id: V06, mutant: contract_t6_claimed, result: detected}
+    - {id: V07, mutant: contract_review_not_final, result: detected}
+    - {id: V08, mutant: contract_builder_mutant_survived, result: detected}
+    - {id: V09, mutant: contract_run_failed, result: detected}
+    - {id: V10, mutant: verification_report_stale, result: detected}
+    - {id: V11, mutant: audit_report_failed, result: detected}
+    - {id: V12, mutant: asset_retired_called_validated, result: detected}
+    - {id: V13, mutant: asset_hard_edge_softened, result: detected}
+    - {id: V14, mutant: asset_skill_added, result: detected}
+    - {id: V15, mutant: asset_task_version, result: detected}
+    - {id: V16, mutant: review_item_fail, result: detected}
+    - {id: V17, mutant: suite_file_stale, result: detected}
+    - {id: V18, mutant: store_edge_refusal_removed, result: detected}
+    - {id: V19, mutant: store_record_refusal_removed, result: detected}
+    - {id: V20, mutant: store_test_renamed, result: detected}
+    - {id: V21, mutant: shipped_test_renamed, result: detected}
+    - {id: V22, mutant: course_test_renamed, result: detected}
+    - {id: V23, mutant: spec_not_accepted, result: detected}
+    - {id: V24, mutant: spec_claims_t6, result: detected}
+    - {id: V25, mutant: spec_wrong_next, result: detected}
+    - {id: V26, mutant: research_source_dropped, result: detected}
+    - {id: V27, mutant: decision_missing, result: detected}
+    - {id: V28, mutant: auditor_exemption_ignored, result: detected, mode: full_audit}
+    - {id: V29, mutant: auditor_implied_need_unresolved, result: detected}
+    - {id: V30, mutant: graph_hard_edge_declared_soft, result: detected}
+    - {id: V31, mutant: objective_wide_exemption, result: detected}
+    - {id: V32, mutant: builder_critical_not_refused, result: detected}
+    - {id: V33, mutant: store_edge_message_dropped, result: detected}
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew test (every module's JVM tests: core-*, data-*, ai-adapter, app-wiring)", tier: T1-T3, result: PASS}
+  - {id: RUN-02, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-03, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-04, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-05, command: "read the eight curriculum packages from both built APKs and compare their SHA-256 with the source assets; the APK without the AI adapter has no INTERNET permission", tier: T5, result: PASS}
+  - {id: RUN-06, command: "python -X utf8 tools/content_qa.py (real runs: every constant program run, C in Linux; result PASS, nothing unresolved)", tier: T2, result: PASS}
+  - {id: RUN-07, command: "the 53 validators that rebuild no content (python tools/validate_*.py); frozen reports they rewrite restored from git", tier: T2, result: PASS}
+  - {id: RUN-08, command: "the 10 validators that rebuild content, among them python -X utf8 tools/validate_content_qa.py in full (all eight packages rebuilt, every revised and added key run again, the audit run again with its real runs)", tier: T2, result: PASS}
+jvm_tests: 1068
+validator_sweep: {glob: "tools/validate_*.py", total: 63, passed: 63, note: "frozen reports the earlier validators rewrite were restored from git"}
+
+verification_environment:
+  python: "3.14 (the learner's)"
+  gcc: "15.2 in WSL Ubuntu (CI installs gcc 14, the lessons' defaults)"
+
+device_verification:
+  t6_run: false
+  claimed: false
+  sqlite_publish_on_jvm_run: true
+  sqlite_publish_on_device_run: false

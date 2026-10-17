@@ -82,8 +82,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **15E — Linux / Git / Shell Foundations** | ✅ | LGSX-v0 / D-118. Komutlar Linux'ta gösterildiği gibi çalıştırılarak doğrulanır: 5 Skill / 5 Objective / 6 kenar `published`; 41 item (40 kabuk, 1 rubric), 35 anlatım, 15 misconception, 25 görev; kabuk prelude'u, "# hazırlık" satırları; onay D-117; 114/114 QA PASS, Mutation 5/5. |
 | **15F — English A0→A1/A2 başlangıç paketi** | ✅ | EAAX-v0 / D-119. Her İngilizce kelime bir dersin öğrettiği kelimedir: 10 Skill / 10 Objective / 9 kenar `published`; 82 item (72 kaynaklı, 8 araç mesajı, 2 rubric), 50 anlatım, 20 misconception, 50 görev; ders başına kelime listesi; onay D-117; 119/119 QA PASS, Mutation 8/8. |
 | **15G — Assessment content** | ✅ | ACNX-v0 / D-120. Yayımlanmış Objective'lere, yayımlanmış hiçbir şeyi değiştirmeden ek paket (v7): 613 item, 240 büyüyen görev v2'si, 21 cross-topic transfer item'ı (ayın slotuna ayrılır), 144 seçenek düzeyinde misconception anahtarı; graph, ders ve etiket eklenmedi, 1–6. paketler bayt bayt aynı. `TRANSFER_OPPORTUNITY` sahibi `TransferEngine` (beyan edilmiş uzantı). Bağımsız inceleme 4 turda 613/613, 144/144. Havuz: 65 Objective'in 54'ü ≥15; 3 teknik Objective 14, 8 İngilizce Objective 10–12 (kullanıcı kararı, eksik kayıtlı). Mutation üretici 22/22, Kotlin 32/32; QA 108/108 PASS. T6 çalıştırılmadı. |
-| **15H — Content QA** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti). |
-| **16–20** | ⬜ Bekliyor | 15H sonrası canonical sırada. |
+| **15H — Content QA** | ✅ | CQAX-v0 / D-121. Aşama 15'in içeriği yalnız graph'ının, kontrollerinin ve etiketlerinin taşıdığını söyler; ek paket (v8): 81 item'ın sonraki sürümü (eskisi eklenen bir `retired` kaydıyla emekli, üzerine yazılmadı), 6 yeni item, 138 görev sürümü, 49 kenar (12 hard), 18 ders gereksinimi; sabit çıktı, gösterim, ders kodu, graph, etiket, havuz ve criticality denetimi (`tools/content_qa.py`) her bulguyu çözüyor; `requires_transfer` kapandı (standard Objective'de kapı yok, critical reddedilir). Bağımsız inceleme 4 inceleyici, 87/87 item, 49/49 kenar. Kullanıcı kararları: graph'a ekle, kapat, sonraki sürüm, teknik 15. 142/142 QA PASS. |
+| **16A — Skill analytics** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
+| **16–20** | ⬜ Bekliyor | 16A sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -102,7 +103,25 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 15G
+## Son tamamlanan numaralı adım — 15H
+
+**Final:** `CQAX-v0 — Stage 15 content QA supplement` / D-121.
+**Ana çıktı:** `docs/CONTENT_QA_SPEC.md` + `arch/15h_content_qa/` + `curriculum/content/15h_content_qa/` + `android/app-wiring/src/main/assets/curriculum_package_v8.txt` + `tools/content_qa.py` + `tools/validate_content_qa.py`.
+
+15H sonucu:
+- içerik yalnız graph'ının, kontrollerinin ve etiketlerinin taşıdığını söyler; bir düzeltme sonraki sürümdür, değiştirdiği sürüm eklenen bir kayıtla emekliye ayrılır ve yalnız bağımsız inceleyici geçirdikten sonra sevk edilir,
+- onay kullanıcının 2026-10-10 açık onayı ("15G tamamlandı merge edildi diğer adıma geçebilirsin"); kullanıcı kararları: graph'a ekle (hard yalnız ders ve dersin dışındaki her item istiyorsa); `requires_transfer` kapandı, critical reddedilir; kusurlu item'ın sonraki sürümü; teknik havuz 15, İngilizce küçük havuz kalır,
+- **bulgu:** kapı doğruydu, graph sessizdi (50 ders ihtiyacı graph'ta yoktu); dersler teach görevinin ulaşmadığı kodu gösteriyor; ders kontrolü bulgularının çoğu iskele; sabit çıktı bazı item'larda işin kendisi, bazılarında geçerlilik açığı; Objective çapında muafiyet item gizler; kullanılmamış yapıyı item değil referans kullanıyordu; bir basamak aşağı her zaman doğru seviye değil; harness programı program olarak koşmalı (`__main__`); metin benzerliği yakınlık testi değil,
+- v8: 81 sonraki sürüm (81 emekli kayıt), 6 yeni item, 138 görev sürümü, 49 kenar (12 hard, 37 soft), 18 `teach_requires`; hiçbir Skill/Objective/Topic/ders/etiket eklenmedi; 1–7. paketler bayt bayt aynı,
+- havuz: 65 Objective'in 57'si ≥15; 8 İngilizce 10–12 kayıtlı (kullanıcı kararı),
+- beyan edilmiş uzantılar: `earlier_supplements`, item'ın sonraki sürümü + emekli kaydı, ek pakette `[prerequisite_edge]`, `teach_requires`, `source_checks`; depo bir kenar sürümünü ya da doğrulama kaydını ikinci kez taşımayı reddeder,
+- sekiz paket gerçek SQLite şemasına JVM'de yayımlanıyor; her revize item'ın eski sürümü emekli, üzerine yazılmadı; geçmişi olmayan öğrenci aynı giriş derslerini görüyor; ömür dersi artık işaretçi Skill'ini bekliyor,
+- Mutation üretici 29/29, denetim 10/10, Kotlin 2/2; independent validator **142/142 PASS**,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+**AŞAMA 15 TAMAMLANDI** — CPFX-v0 → PYFX-v0 → CFNX-v0 → MMFX-v0 → LGSX-v0 → EAAX-v0 → ACNX-v0 → CQAX-v0.
+
+## Önceki numaralı adım — 15G
 
 **Final:** `ACNX-v0 — Assessment content supplement` / D-120.
 **Ana çıktı:** `docs/ASSESSMENT_CONTENT_SPEC.md` + `arch/15g_assessment_content/` + `curriculum/content/15g_assessment/` + `android/app-wiring/src/main/assets/curriculum_package_v7.txt` + `tools/validate_assessment_content.py`.
@@ -455,6 +474,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 15H Content QA
+## Aktif adım — 16A Skill analytics
 
-**15H henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti). 15G'nin kayıtlı havuz eksikleri ve inceleyici bulguları 15H'nin girdisidir.
+**16A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G ve 15H her biri ayrı açık onayla yürütüldü). AŞAMA 15 kapandı; 15H'nin açık loop'ları (İngilizce havuz, etiket kalibrasyonu 18C, kaydedilmiş sınırlar) `vault/agent/OPEN_LOOPS.md`de.

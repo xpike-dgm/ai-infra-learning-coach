@@ -1,0 +1,12 @@
+skill: skill.python.exceptions_read_basic
+objectives:
+- id: objective.python.exceptions_read_basic.extract_error_type_location
+  revisions:
+  - revises: f05
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic
+  - revises: g08
+    reason: label
+    relabel_from: transfer_integration
+    difficulty: basic

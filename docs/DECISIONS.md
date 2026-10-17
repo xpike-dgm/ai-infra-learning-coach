@@ -1785,3 +1785,89 @@ Ayrıntı: `docs/ENGLISH_A1_A2_CONTENT_SPEC.md`.
 - Sonraki numbered step `15H — Content QA`; fresh PRE ve kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
 
 Ayrıntı: `docs/ASSESSMENT_CONTENT_SPEC.md`.
+
+## D-121 — Content QA = CQAX-v0 (AŞAMA 15 kapandı)
+**Durum:** Kabul edildi — 2026-10-16
+
+- 15H final modeli `CQAX-v0 — Stage 15 content QA supplement` oldu. Uygulama sekizinci paketi sevk ediyor: 15G'nin üzerine kurulan bir **ek paket**. Bu paket yayımlanmış item'ların sonraki sürümlerini yayımlar, graph'a içeriğin dayandığı kenarları ekler ve **AŞAMA 15'i kapatır**.
+- **Kaynaklar:**
+  - canonical spec: `docs/CONTENT_QA_SPEC.md`;
+  - machine-readable contract: `arch/15h_content_qa/content_qa.yaml`;
+  - doğrulama raporu: `arch/15h_content_qa/content_verification.yaml`;
+  - denetim: `tools/content_qa.py` → `arch/15h_content_qa/content_qa_audit.yaml`;
+  - research: `research/15h_content_qa_research.md`;
+  - içerik kaynağı: `curriculum/content/15h_content_qa/` (`graph.yaml`, `notation_overlay.yaml`, `fixed_output.yaml`, `alt_references.yaml`, `lesson_findings.yaml`, `label_decisions.yaml`, `items/<kaynak>/`, `independent_review.yaml`);
+  - sevk edilen paket: `android/app-wiring/src/main/assets/curriculum_package_v8.txt`;
+  - üretici: `tools/build_curriculum_package.py`;
+  - validator: `tools/validate_content_qa.py`.
+- Ana invariant: **içerik yalnız graph'ının, kontrollerinin ve etiketlerinin taşıdığını söyler.**
+  - Graph her dersin neye ihtiyaç duyduğunu adlandırır.
+  - Bir kod item'ının suite'i işi, yalnız cevabı yazdıran bir programdan ayırabilir. İstisna: cevabı yazdırmak işin kendisiyse.
+  - Bir item'ın kullandığı her yapı, dayanabileceği bir dersin öğrettiği yapıdır.
+  - Bir zorluk etiketi, incelemesinin söylediği seviyedir.
+  - Bir düzeltme sonraki sürümdür. Değiştirdiği sürüm eklenen bir `retired` doğrulama kaydıyla emekliye ayrılır ve asla düzenlenmez. Düzeltme yalnız bağımsız bir inceleyici geçirdikten sonra sevk edilir.
+- **Kullanıcı kararları (2026-10-10, yeni açık onayla):**
+  - İçeriğin dayandığı kenarlar v8 ek paketiyle graph'a eklenir. Bir kenar yalnız ders ve dersin dışındaki her item onu istiyorsa hard, aksi hâlde soft olur.
+  - `requires_transfer` kapandı. Standard Objective'de transfer kapısı yoktur (`GRE-v0` §8). Üretici, `GRE-v0`'ın kapı alanları saklanana kadar critical bir Objective'i reddeder.
+  - Kusurlu yayımlanmış item'ın sonraki sürümü yayımlanır, eskisi emekliye ayrılır; görevler yeni bir sürüm alır.
+  - Teknik havuz 15'e çıkar, İngilizce küçük havuz kalır.
+- **Asistanın gözden geçirilmiş varsayılanları:**
+  - kenar kuralları: `lesson_and_every_item` → hard, `lesson` → soft, `reads_glossed` → soft;
+  - dersler kod satırı satırı, teach görevinin 15H'den sonra ulaştığına karşı okunur;
+  - sabit çıktı muafiyeti item başınadır, asla Objective başına değil;
+  - etiket, incelemenin söylediği seviyeye gider.
+- **Beyan edilmiş uzantılar (kabul edilmiş spec'lerin sessiz düzenlemesi değil):**
+  - `earlier_supplements`;
+  - bir item'ın sonraki sürümü: aynı mantıksal kimlik ve varyant ailesi, eklenen `retired` kaydı (D-120 ek paketleri, `LFPS-v0`);
+  - ek pakette yayımlanmış Skill'ler arasında `[prerequisite_edge]`, ve bir görevin sonraki sürümünde `teach_requires` (D-113, `PRG-v0` §6);
+  - kod item'larında `source_checks` (`CDEX-v0` suite'leri);
+  - depo bir kenar sürümünü ya da doğrulama kaydını ikinci kez taşımayı reddeder (`LDBX-v0`).
+- **Kapsam:**
+  - 81 item'ın sonraki sürümü, gerekçeye göre: 30 sabit çıktı, 3 sabit çıktı + etiket, 42 etiket, 4 etiket + inceleme düzeltmesi, 2 gösterim. Her biri için bir emekli kaydı.
+  - 6 yeni item: teknik havuz 14'ten 16'ya.
+  - 138 görev sürümü.
+  - 49 kenar: 12 hard, 33 soft `lesson`, 4 soft `reads_glossed`.
+  - 18 `teach_requires`.
+  - 12 taşınan yanlış seçenek anahtarı.
+  - Hiçbir Skill, Objective, Topic, ders ya da etiket eklenmedi; 1–7. paketler bayt bayt aynı yeniden üretiliyor.
+  - 50 ders ihtiyacı şöyle karşılandı: 12'si hard kenar, 33'ü soft kenar, 5'i 15H'nin kendi hard kenarlarıyla örtük. Hard graph tek başına ve derslerin gereksinimleriyle döngüsüz.
+- **Havuz:** 65 Objective'in 57'sinde 15 ya da daha fazla item var. Sekiz İngilizce Objective 10–12'de; bu kullanıcı kararıyla kayıtlı.
+- **Bulunanlar:**
+  - Kapı doğruydu, graph sessizdi.
+  - Dersler, teach görevlerinin ulaşmadığı kodu gösteriyor.
+  - Ders kontrolü bulgularının çoğu doğrulama iskelesi.
+  - Sabit çıktı yalnız bazı item'larda işin kendisi.
+  - Objective çapında bir muafiyet iki hesaplama item'ını gizliyordu.
+  - Öğretilmemiş yapıyı item değil referans çözüm kullanıyordu.
+  - Bir basamak aşağı her zaman doğru seviye değil.
+  - İlk harness `import cozum` kullanıyordu ve `__main__` korumalı programları susturuyordu.
+  - Metin benzerliği yakınlık testi değil.
+  - Dört ders gereksinimi bir denetim bulgusundan değil, inceleyici kararından geliyor (gösterim ayrıntısı).
+- **Bağımsız inceleme:**
+  - Dört inceleyici ajan: Python; C ve bellek; Linux, Git, İngilizce ve 15A etiketleri; graph ve denetim kararları.
+  - Her kod item'ı kursun koşucusuyla, doğru varyantlar ve hilelerle koşuldu.
+  - Tur sayıları 3/3/3/2; ilk turda 16/10/7/11 kayıt düştü.
+  - Final: 87/87 item, 49/49 kenar, 18/18 ders gereksinimi.
+- **Kotlin:**
+  - `CurriculumStore` bir kenar sürümünü ya da doğrulama kaydını ikinci kez taşımayı, yazmadan önce adıyla reddeder.
+  - Testler: `ShippedContentQaPackageTest`, `ShippedCourseTest`'in 15H bölümü, `CurriculumPublishingTest`.
+  - Şema ve portlar değişmedi.
+- **Doğrulama:**
+  - Mutation: üretici 29/29, denetim 10/10, Kotlin 2/2. Kontrol mutantları hayatta kaldı.
+  - Validator 142/142 PASS; validator'ın kendi mutation testi 33/33.
+  - `verifyModuleBoundaries`, 1068 JVM testi, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Sekiz paketin APK içindeki SHA-256'sı kaynakla aynı.
+  - Önceki bir validator kontrolü (A15G-09) yalnız D-121 uzantısını beyan edilen yerinde kabul edecek şekilde daraltıldı (contract `narrowed_gates`). Sweep 63/63.
+  - Araç kuşağı: Python 3.14, WSL Ubuntu'da gcc 15.2.
+- Çalıştırılmayan: **T6 ve cihazda ilk ingestion**. SQLite yayımı yalnız JVM'de koştu.
+- **Açık loop'lar:**
+  - İngilizce küçük havuz ve yeniden etiketlemeden sonra seviye boşlukları: sonraki İngilizce içerik adımı.
+  - git f07 ve "copy" açıklaması: sonraki içerik revizyonu.
+  - Etiket kalibrasyonu: 18C.
+  - Yapay hileler ve gösterim ayrıntısı: kayıtlı sınır.
+  - `professional_evidence_checkpoint`: AŞAMA 20.
+  - Dakika kalibrasyonu: 18B.
+  - T6: 19.
+- Sonraki numbered step `16A — Skill analytics`. Fresh PRE ve kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
+
+Ayrıntı: `docs/CONTENT_QA_SPEC.md`.
