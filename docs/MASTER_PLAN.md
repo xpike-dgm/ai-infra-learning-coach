@@ -1088,8 +1088,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 ---
 
 # AŞAMA 16 — İlerleme / Analitik / Ayarlar
-### [ ] 16A — Skill analytics — **AKTİF**
-### [ ] 16B — Öğrenme geçmişi
+### [x] 16A — Skill analytics — SKAX-v0 / D-122
+
+**16A final coverage:**
+- bir Skill'in öğrenciye görünen durumu, kendi motorlarının yazdığı dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir ve saklanan satırla ekran aynı tek fonksiyonu kullanır; bir eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill 'yeniden hesaplanıyor'dur, tahmin edilmiş bir durum yoktur; Progress envanter sayar, hiçbir sayımı bölmez,
+- sekiz durum ve `TEPM-v0` §4.1 türetmesi `core-model`de tek fonksiyon (`SkillPresentationProjection`); 'yeniden hesaplanıyor' durum değil projeksiyonun kendi durumu; niteleyiciler `VDSX-v0`'ın dördü, `at_risk` niteleyici,
+- her `skill_state` yazıcısı sunumu eksenlerden türetiyor; `AssembleSkillState` `RecomputeSkillState`'in sonunda `prerequisite_axis_state` ve sunumu satırın watermark'ı altında yazıyor,
+- `ProgressQuery` yalnız okur: eksenler motorların yazdığı gibi, kapı yeniden sorulur, satırdan yeni kanıt bayatlıktır; kanıt türleri ayrı,
+- Progress sekmesi ve Skill detayı (Compose) depodan okuyor: envanter, nedene göre dikkat seti, dört eksen, Objective kırılımı, ön koşul bağlamı; yüzde/oran/çubuk/seviye yok,
+- gerçek SQLite + sekiz paket: hiçbir şey yapmamış öğrencide 4 'Henüz Kanıt Yok', 56 'Ön Koşul Bekliyor' — planner'ın beklettikleri,
+- Kotlin mutation 30/30, validator mutation 38/38; 90/90 QA PASS,
+- **T6 çalıştırılmadı; ekran cihazda görülmedi**.
+
+### [ ] 16B — Öğrenme geçmişi — **AKTİF**
 ### [ ] 16C — Progress / weakness kuralları
 ### [ ] 16D — Ayarlar
 ### [ ] 16E — Bildirimler
@@ -1160,8 +1171,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`  
-**Son tamamlanan:** **`15H — CQAX-v0 / D-121`**  
-**Aktif:** **`16A — Skill analytics`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A`  
+**Son tamamlanan:** **`16A — SKAX-v0 / D-122`**  
+**Aktif:** **`16B — Öğrenme geçmişi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **16A fresh PRE-STEP + kullanıcının yeni açık onayı → Skill analytics → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **16B fresh PRE-STEP + kullanıcının yeni açık onayı → Öğrenme geçmişi → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

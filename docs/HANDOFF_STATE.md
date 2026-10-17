@@ -309,14 +309,15 @@ PEM-v0:
 - 15G ✅ ACNX-v0 / D-120
 - 15H ✅ CQAX-v0 / D-121
 - **AŞAMA 15 TAMAMLANDI**
-- 16A 🟡 active-not-executed
+- 16A ✅ SKAX-v0 / D-122
+- 16B 🟡 active-not-executed
 - 16–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `15H — CQAX-v0 / D-121`  
-**Aktif:** `16A — Skill analytics`  
-**16A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `16A — SKAX-v0 / D-122`  
+**Aktif:** `16B — Öğrenme geçmişi`  
+**16B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1535,3 +1536,22 @@ CQAX-v0:
 ## 92. 16A handoff
 
 16A — Skill analytics. **The user's standing approval (D-117) ended with 15F**; 15G and 15H each ran on the user's explicit approval, and 16A needs a fresh PRE and the user's new explicit approval. AŞAMA 15 is closed: eight packages ship and nothing in them has been ingested on the device. Carried: the English small pools and the post-relabel level gaps (a later English content step), label calibration (18C), minute calibration (18B), contrived cheats and notation granularity (recorded limits), `professional_evidence_checkpoint` (AŞAMA 20), moving answers between phone and computer (16D), T6 and on-device ingestion (19).
+
+## 93. D-122 / 16A final özeti
+
+Canonical: `docs/SKILL_ANALYTICS_SPEC.md`.
+Contract/QA: `arch/16a_skill_analytics/` (contract, QA report, stale audit).
+Synthesis: `research/16a_skill_analytics_research.md`.
+Code: `core-model` (`SkillPresentationFacts.kt` — the eight states and `SkillPresentationProjection`; `ProgressFacts.kt` — evidence kinds, qualifiers, Progress facts), `core-application` (`SkillStateAssembly.kt` — `SkillStateRows`, `AssembleSkillState`; `ProgressQuery.kt`), `core-presentation` (`ProgressPresentation.kt`), `app-ui` (`ProgressScreen.kt`), `app-wiring` (the Progress tab and `skill_detail`). Validator `tools/validate_skill_analytics.py`. Schema, ports and module boundaries unchanged.
+
+SKAX-v0:
+- a Skill's learner-facing state is SPWX-v0's one precedence over the four axes their own engines wrote, decided by one function the stored row and the screen share; an unwritten axis a rule needs, or evidence newer than the row, is "recomputing" — never a guessed or ninth state; Progress counts current state as an inventory and never divides it,
+- approval: the user's explicit approval of 2026-10-17 ("merge et ve devam et 16a ya başla"); user decisions: the Skill projection, skill_detail and progress_overview (Topic, weakness and English views 16C; history and assessment_report 16B); core plus a real Compose screen; an unevaluated axis is recomputing,
+- declared extensions: the derivation in core-model (MSBX-v0; precedent `WeaknessAxis.of`); `AssembleSkillState` writes `prerequisite_axis_state` and the presentation under the row's watermark at the end of `RecomputeSkillState`; every skill_state writer derives the presentation from the axes the row now has,
+- found: the presentation column held 12A's mastery value; one derivation is needed by two layers; a dependent's stored prerequisite axis goes stale (the read asks the gate again); for a learner who has done nothing, 4 of 60 Skills are not yet evidenced and the 56 waiting are exactly the planner's; TEPM-v0 rule 4 does not name at_risk,
+- Mutation Kotlin 30/30, validator 38/38; independent QA 90/90 PASS,
+- T6 was not run and the screen has not been seen on a device.
+
+## 94. 16B handoff
+
+16B — Öğrenme geçmişi. 16A ran on the user's explicit approval of 2026-10-17; 16B needs a fresh PRE and the user's new explicit approval. Inputs: `SPWX-v0` §12 (`learning_history`: a chronology of meaningful learning, assessment, review and remediation events — never a streak calendar), §13 (`assessment_report`, longitudinal, owns no mastery), `skill_detail`'s deferred `evidence_history_entry` (16A contract), the working session that is not stored (11C), tutor conversations as history (14A). Carried: disposition staleness and `assessment_opportunity` (16D), reverse invalidation (18E), Topic/weakness/English views (16C), T6 (19).

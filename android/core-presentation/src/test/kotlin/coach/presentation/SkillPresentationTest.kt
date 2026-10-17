@@ -1,5 +1,7 @@
 package coach.presentation
 
+import coach.model.AttentionQualifier
+import coach.model.SkillPresentationState
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -23,7 +25,8 @@ class SkillPresentationTest {
 
     @Test
     fun `at risk qualifies a state instead of replacing it`() {
-        val presentation = SkillPresentation(SkillPresentationState.CONFIRMED_REVIEW_DUE, atRisk = true)
+        val presentation = SkillPresentation(SkillPresentationState.CONFIRMED_REVIEW_DUE, listOf(AttentionQualifier.RETENTION_AT_RISK))
         assertEquals(SkillPresentationState.CONFIRMED_REVIEW_DUE, presentation.state)
+        kotlin.test.assertTrue(presentation.atRisk)
     }
 }

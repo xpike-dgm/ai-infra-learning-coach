@@ -1402,3 +1402,28 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `15H tamamlandı; AŞAMA 15 kapandı; 16A aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `16A — Skill analytics`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-17 — 16A — Skill analytics tamamlandı — SKAX-v0 / D-122
+
+- 15H (#59) CI yeşil olunca kullanıcının isteğiyle ("merge et ve devam et 16a ya başla") squash-merge edildi (6ba4d67). Fresh 16A PRE yapıldı (`git pull --ff-only`) ve kanonik kaynaklar `15H ✅ / 16A active-not-executed` gösterdi; aynı mesaj 16A'nın açık onayıdır.
+- **Kullanıcı kararları (2026-10-17):**
+  - Kapsam: Skill projeksiyonu (sekiz durumun dört eksenden türetilmesi ve `skill_state`'e doğru yazılması, `at_risk` niteleyici), `skill_detail` ve `progress_overview`. Topic/zayıflık/İngilizce görünümleri 16C'de, geçmiş 16B'de.
+  - Teslim: core ve gerçek Compose ekranı.
+  - Değerlendirilmemiş eksen: 'yeniden hesaplanıyor', tahmin değil.
+- **Bulgu:**
+  - Sunum sütunu 12A'nın mastery değerini tutuyordu ve 13C/13D bunu taşıyordu.
+  - Tek türetme iki katmana lazımdı; türetme `core-model`e taşındı (`MSBX-v0`, emsal `WeaknessAxis.of`).
+  - Bağımlı bir Skill'in saklanan ön koşul ekseni bayatlıyor; okuma kapıyı yeniden soruyor.
+  - Hiçbir şey yapmamış öğrencide 60 Skill'in 4'ü 'Henüz Kanıt Yok', 56'sı 'Ön Koşul Bekliyor'. Bu 56, planner'ın beklettiklerinin tam kümesi.
+  - `TEPM-v0` kural 4 `at_risk`'i adlandırmıyor.
+- **Kod:**
+  - Yeni: `SkillPresentationFacts.kt`, `ProgressFacts.kt`, `SkillStateAssembly.kt`, `ProgressQuery.kt`, `ProgressPresentation.kt`, `ProgressScreen.kt`.
+  - `RebuildMastery`, `RebuildRetention` ve `RebuildWeakness` sunumu türetiyor; `RecomputeSkillState` satırı birleştiriyor; Progress sekmesi ve Skill detayı bağlandı.
+  - Şema, portlar ve modül sınırları değişmedi.
+- **Araştırma:** Wikipedia (Goodhart's law, Learning analytics); iç sözleşmeler `SPWX-v0`, `TEPM-v0`, `RVR-v0`, `VDSX-v0`, `WFPX-v0`, `PRG-v0`, `MSBX-v0`.
+- **Mutation:** Kotlin 30/30. İlk koşuda üç mutant hayatta kaldı (retention ve zayıflık yazıcısının sunumu türetmemesi, iki boş durumun sırası); üçü de hedefli testlerle kapandı ve bütün set yeniden koşuldu. Validator mutation 38/38.
+- **Validator:** 90/90 PASS; sweep 64/64; 1114 JVM testi.
+- **T6 çalıştırılmadı; ekran cihazda görülmedi**.
+- D-050 POST living-memory accepted state'i `16A tamamlandı; 16B aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `16B — Öğrenme geçmişi`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

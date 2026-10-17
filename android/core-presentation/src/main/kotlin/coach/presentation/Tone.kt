@@ -1,5 +1,7 @@
 package coach.presentation
 
+import coach.model.SkillPresentationState
+
 /**
  * `VDSX-v0 / D-073`: the design system is an **expression layer**. It may not add severity the
  * canonical state does not claim, so tone is assigned from meaning, never from feel.

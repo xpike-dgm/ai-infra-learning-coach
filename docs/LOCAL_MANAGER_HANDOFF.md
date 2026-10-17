@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113 / 15C ✅ CFNX-v0 / D-114 / 15D ✅ MMFX-v0 / D-116 / 15E ✅ LGSX-v0 / D-118 / 15F ✅ EAAX-v0 / D-119 / 15G ✅ ACNX-v0 / D-120 / 15H ✅ CQAX-v0 / D-121`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13, AŞAMA 14 ve AŞAMA 15'in kapandığını, aktif adımın `16A active-not-executed` olduğunu ve önceki adımın `CQAX-v0 / D-121` ile tamamlandığını living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113 / 15C ✅ CFNX-v0 / D-114 / 15D ✅ MMFX-v0 / D-116 / 15E ✅ LGSX-v0 / D-118 / 15F ✅ EAAX-v0 / D-119 / 15G ✅ ACNX-v0 / D-120 / 15H ✅ CQAX-v0 / D-121 / 16A ✅ SKAX-v0 / D-122`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13, AŞAMA 14 ve AŞAMA 15'in kapandığını, aktif adımın `16B active-not-executed` olduğunu ve önceki adımın `SKAX-v0 / D-122` ile tamamlandığını living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1162,14 +1162,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 15G ✅ ACNX-v0 / D-120
 - AŞAMA 15H ✅ CQAX-v0 / D-121
 - **AŞAMA 15 TAMAMLANDI**
-- AŞAMA 16A 🟡 active-not-executed
+- AŞAMA 16A ✅ SKAX-v0 / D-122
+- AŞAMA 16B 🟡 active-not-executed
 - 16–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `15H — Content QA`  
-**Final:** `CQAX-v0 — Stage 15 content QA supplement` / D-121  
-**Canonical:** `docs/CONTENT_QA_SPEC.md` + `arch/15h_content_qa/`
+**Son tamamlanan numaralı adım:** `16A — Skill analytics`  
+**Final:** `SKAX-v0 — Skill state projection, skill_detail and progress_overview` / D-122  
+**Canonical:** `docs/SKILL_ANALYTICS_SPEC.md` + `arch/16a_skill_analytics/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1230,17 +1231,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 15G:** ✅ TAMAMLANDI  
 **AŞAMA 15H:** ✅ TAMAMLANDI  
 **AŞAMA 15:** ✅ TAMAMLANDI  
-**Aktif adım:** `16A — Skill analytics`  
+**AŞAMA 16A:** ✅ TAMAMLANDI  
+**Aktif adım:** `16B — Öğrenme geçmişi`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-16A için:
+16B için:
 
 ```text
-fresh 16A PRE-STEP GitHub refresh
+fresh 16B PRE-STEP GitHub refresh
 → user explicit approval verification (D-117 ended with 15F)
-→ 16A execution
+→ 16B execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1831,7 +1833,8 @@ AŞAMA 14 ✅ TAMAMLANDI
 15F ✅ EAAX-v0 / D-119
 15G ✅ ACNX-v0 / D-120
 15H ✅ CQAX-v0 / D-121
-16A 🟡 active-not-executed
+16A ✅ SKAX-v0 / D-122
+16B 🟡 active-not-executed
 16–20 ⬜
 ```
 
@@ -2029,9 +2032,9 @@ AŞAMA 14 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `16A — Skill analytics`.
+**Sıradaki gerçek numbered work:** `16B — Öğrenme geçmişi`.
 
-**16A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**16B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2081,8 +2084,8 @@ AŞAMA 14 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `16A — Skill analytics`.  
-**16A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `16B — Öğrenme geçmişi`.  
+**16B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2456,4 +2459,17 @@ Onay kullanıcının 2026-10-10 açık onayı. 81 item'ın sonraki sürümü, 6 
 
 **AŞAMA 15H ✅ CQAX-v0 / D-121. AŞAMA 15 TAMAMLANDI.**
 
-**Aktif adım:** `16A — Skill analytics` — henüz yürütülmedi; fresh PRE + kullanıcının yeni açık onayı zorunlu (D-117'nin sürekli onayı 15F ile bitti).
+**Sonraki durum için aşağıdaki D-122 ekine bakın.**
+
+---
+## 16A completion addendum — D-122
+
+16A `SKAX-v0 — Skill state projection, skill_detail and progress_overview` ile tamamlandı; Progress sekmesi ve Skill detayı depodan okuyor. Canonical: `docs/SKILL_ANALYTICS_SPEC.md`; contract `arch/16a_skill_analytics/skill_analytics.yaml`; validator `tools/validate_skill_analytics.py`.
+
+Ana invariant: bir Skill'in öğrenciye görünen durumu, kendi motorlarının yazdığı dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir ve saklanan satırla ekran aynı tek fonksiyonu kullanır; bir eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill 'yeniden hesaplanıyor'dur, tahmin edilmiş bir durum yoktur; Progress envanter sayar, hiçbir sayımı bölmez.
+
+Onay kullanıcının 2026-10-17 açık onayı. Sekiz durumun türetmesi `core-model`de; her `skill_state` yazıcısı sunumu türetiyor; `AssembleSkillState` ön koşul eksenini yazıyor; okuma kapıyı yeniden soruyor. Hiçbir şey yapmamış öğrencide 56 bekleyen Skill planner'ın tam kümesi. Kotlin mutation 30/30, validator mutation 38/38; 90/90 QA PASS. T6 çalıştırılmadı.
+
+**AŞAMA 16A ✅ SKAX-v0 / D-122.**
+
+**Aktif adım:** `16B — Öğrenme geçmişi` — henüz yürütülmedi; fresh PRE + kullanıcının yeni açık onayı zorunlu (D-117'nin sürekli onayı 15F ile bitti).

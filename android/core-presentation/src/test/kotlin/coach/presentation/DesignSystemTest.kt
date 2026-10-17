@@ -1,5 +1,7 @@
 package coach.presentation
 
+import coach.model.SkillPresentationState
+
 import kotlin.math.round
 import kotlin.test.Test
 import kotlin.test.assertEquals
