@@ -40,26 +40,11 @@ class RebuildMastery(
     fun rebuild(skill: VersionedRef, profiles: List<ObjectiveGateProfile>): Rebuilt {
         val watermark = persistence.truthWatermark()
         val curriculumVersion = persistence.latestCurriculumVersion()
-        val previous = previousAxis(skill)
-
-        val allRows = profiles.flatMap { persistence.evidenceFor(it.ref) }
-        val decisions = profiles.map { profile ->
-            val rows = persistence.evidenceFor(profile.ref)
-            MasteryEngine.decide(
-                profile = profile,
-                rows = rows,
-                previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT ||
-                    previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE,
-                unresolvedVerification = previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE,
-            )
-        }
-        val decision = MasteryEngine.decideSkill(
-            skill = skill,
-            decisions = decisions,
-            profiles = profiles.associateBy { it.ref },
-            previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT,
-            allRows = allRows,
-        )
+        // 16B (`D-123`): mastery is decided from the evidence itself, in recording order — never continued from the
+        // stored axis — so rebuilding twice gives the same answer and a verification is resolved only by a fresh check.
+        val rows = MasteryTimeline.rowsOf(persistence, profiles)
+        val decision = MasteryEngine.replay(skill, profiles, rows).last()
+        val decisions = decision.objectives
 
         val builtAt = clock.now().instantEpochMillis
         // No curriculum published means nothing to pin the projection to, so it is not written at
@@ -99,11 +84,6 @@ class RebuildMastery(
         }
         return Rebuilt(skill, decision, watermark)
     }
-
-    private fun previousAxis(skill: VersionedRef): MasteryAxisState? =
-        persistence.readProjection(skillKey(skill))
-            ?.payload?.get("mastery_axis_state")
-            ?.let { id -> MasteryAxisState.entries.firstOrNull { it.id == id } }
 
     private fun skillKey(skill: VersionedRef) = "skill_state:${skill.logicalId}@v${skill.version}"
 

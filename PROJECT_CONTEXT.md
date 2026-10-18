@@ -248,12 +248,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **15H ✅ Content QA — CQAX-v0 / D-121**
 - **AŞAMA 15 ✅ TAMAMLANDI**
 - **16A ✅ Skill analytics — SKAX-v0 / D-122**
-- **16B 🟡 Öğrenme geçmişi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- **16B ✅ Öğrenme geçmişi — LHRX-v0 / D-123**
+- **16C 🟡 Progress / weakness gösterim kuralları — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
 - 16–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 16B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 16C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -748,4 +749,16 @@ Kanıt türleri ayrı (sayılmayan, kesinleşmemiş, destekli, bağımsız); nit
 Onay kullanıcının 2026-10-17 açık onayı. Kullanıcı kararları: Skill projeksiyonu + detay + özet (Topic/zayıflık/İngilizce 16C, geçmiş 16B); core + gerçek ekran; değerlendirilmemiş eksen 'yeniden hesaplanıyor'. Kotlin mutation 30/30, validator mutation 38/38; 90/90 QA PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/SKILL_ANALYTICS_SPEC.md` / D-122.
+
+## 12.46 16B Öğrenme geçmişi — LHRX-v0 / D-123
+
+Progress artık öğrenme geçmişini ve oturumlar arası ölçme raporunu gösteriyor. Ana invariant: **öğrenme geçmişi kayıt sırasındaki saklı kanıttır ve her satır, motorların o satıra kadarki kanıt üzerinde yeniden oynatılmasıyla söylediği değişikliği 13E'nin sözleriyle taşır; ölçme raporu her oturumun `ASUX-v0` aileleridir, not ya da eğilim değil; hiçbir şey yazılmaz, girdisi olmayan gün çizilmez ve aynı kanıttan mastery her zaman aynı sonucu verir.**
+
+Bulunanlar: 13E'nin oturum sonu raporu hiç saklanmıyordu (kullanıcı kararı: tablo yerine kanıttan yeniden oynatma); tekrar oynatma mastery motorunun yola bağımlı olduğunu gösterdi — aynı kanıtın iki yeniden hesaplaması farklı sonuç veriyor, geçilen taze bir yeniden kontrol mastery'yi düşürüyordu. Mastery düzeltmesi (`GRE-v0` §16.2, kullanıcı kararı 2026-10-18): 12A'nın yeniden kurması açık bir doğrulamada onu açan çelişkiyi 'başarısız yeniden kontrol' sayıyordu, bu yüzden aynı kanıtın ikinci kurulumu da geçilen taze bir yeniden kontrol de mastery'yi düşürüyordu; artık yalnız açılıştan sonraki temiz kanıt yeniden kontroldür, olumluysa mastery korunur ve mastery kanıttan, kayıt sırasıyla (`MasteryEngine.replay`) belirlenir. Geçilen bir yeniden kontrol kalıcılığı da yeniden doğrular ve açık bir soruyu kapatır.
+
+Tutor ve öğrenci metni saklanmaz; geçmiş yalnız kaydedilmiş yardım seviyelerini gösterir. Gün yalnız girdisi varsa görünür; rapor not, ortalama ya da eğilim taşımaz ve bulunamayan bir plan için "plan değişmedi" demez. Şema değişmedi; iki varsayılanlı port inceltmesi; beş önceki validator daraltıldı.
+
+Onay kullanıcının 2026-10-17 açık onayı; motor düzeltmesi 2026-10-18 kararı. Kotlin mutation 24/24, validator mutation 38/38; 95/95 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/LEARNING_HISTORY_SPEC.md` / D-123.
 

@@ -121,7 +121,33 @@ object MasteryEngine {
         val unresolvedRecheck: Boolean,
         val verificationDue: Boolean,
         val supportBand: SupportBand,
+        /** Where this Objective's hysteresis stands after this decision (16B): what the next decision continues from. */
+        val verification: VerificationState = VerificationState.NONE,
     )
+
+    /**
+     * One Objective's `GRE-v0` §16.2 hysteresis along its evidence (16B, `D-123`).
+     *
+     * [openedBy] are the clean contradictions that opened the verification still open, [openedAt] the newest of them;
+     * only evidence recorded after it is a fresh recheck. [handled] are contradictions already adjudicated — opened by,
+     * or failed as a recheck — so the same row never opens a verification twice or counts as its own recheck.
+     * [forgiven] are the contradictions a positive recheck judged noise: they leave the score window, and mastery is
+     * kept (`GRE-v0` §16.2 "Recheck positive"). Before 16B the engine knew only "a verification is open", so every
+     * rebuild treated the very row that opened it as a failed recheck: a rebuild with no new evidence, or a passed
+     * recheck, took mastery away.
+     */
+    data class VerificationState(
+        val openedBy: Set<Long> = emptySet(),
+        val openedAt: Long? = null,
+        val handled: Set<Long> = emptySet(),
+        val forgiven: Set<Long> = emptySet(),
+    ) {
+        val open: Boolean get() = openedAt != null
+
+        companion object {
+            val NONE = VerificationState()
+        }
+    }
 
     /**
      * Decides one Objective (`GRE-v0` §8, §9).
@@ -135,11 +161,13 @@ object MasteryEngine {
         rows: List<EvidenceRow>,
         previouslyMastered: Boolean = false,
         unresolvedRecheck: Boolean = false,
-        unresolvedVerification: Boolean = false,
+        verification: VerificationState = VerificationState.NONE,
     ): ObjectiveDecision {
         val excluded = rows.associate { it.id to exclusions(it, profile) }
         val eligible = rows.filter { excluded.getValue(it.id).isEmpty() }
-        val window = recentWindow(groupsOf(eligible))
+        // A contradiction a positive recheck judged noise is out of the score (`GRE-v0` §16.2); it stays history.
+        val scored = eligible.filter { it.id !in verification.forgiven }
+        val window = recentWindow(groupsOf(scored))
         val score = if (window.isEmpty()) null else window.map { it.quality }.average()
         val families = window.mapNotNull { it.variantFamilyId }.distinct().size
 
@@ -159,7 +187,6 @@ object MasteryEngine {
         gate("required_direct_type", profile.requiredDirectType == null ||
             window.any { group -> group.rows.any { it.evidenceType == profile.requiredDirectType } })
         gate("no_unresolved_recheck", !unresolvedRecheck)
-        gate("no_unresolved_verification", !unresolvedVerification)
         if (profile.critical || profile.requiresNonBasicEvidence) {
             gate("non_basic_evidence", window.any { !it.isBasicOnly })
         }
@@ -172,23 +199,42 @@ object MasteryEngine {
         }
 
         val objectivePassed = failed.isEmpty()
-        val contradicted = previouslyMastered && !objectivePassed &&
-            eligible.any { it.outcome == EvidenceOutcome.NEGATIVE || it.outcome == EvidenceOutcome.PARTIAL }
+        fun isContradiction(row: EvidenceRow) = row.outcome == EvidenceOutcome.NEGATIVE || row.outcome == EvidenceOutcome.PARTIAL
+        val unhandled = eligible.filter { isContradiction(it) && it.id !in verification.handled }
 
-        // §16.2, in two halves that must not be collapsed.
-        //
-        // The **first** clean, prerequisite-valid, independent contradiction of confirmed work opens
-        // `verification_due` and keeps mastery: one bad day is not evidence that knowledge vanished.
-        //
-        // If verification was already open and the fresh check contradicts it too, that is no longer
-        // noise. Mastery is not held up any longer, the gates decide again, and the verification is
-        // resolved — negatively — rather than left open forever.
-        val firstContradiction = contradicted && !unresolvedVerification
-        val recheckAlsoFailed = contradicted && unresolvedVerification
+        // §16.2, in its three outcomes. Only evidence recorded after the contradiction that opened the verification is
+        // a fresh recheck; with none, nothing changes — the same evidence always decides the same way.
+        val outcome: Pair<Boolean, VerificationState> = when {
+            verification.open -> {
+                val fresh = eligible.filter { it.sequence > verification.openedAt!! }
+                val freshContradictions = fresh.filter { isContradiction(it) && it.id !in verification.handled }
+                when {
+                    // The fresh check contradicts it too: no longer noise. Mastery is not held up, the gates decide on the
+                    // evidence as it is, and the verification is resolved — negatively — rather than left open forever.
+                    freshContradictions.isNotEmpty() -> objectivePassed to
+                        VerificationState(handled = verification.handled + freshContradictions.map { it.id }, forgiven = verification.forgiven)
+                    // A clean positive recheck: the opening contradiction was noise, the verification closes, mastery is kept.
+                    fresh.any { it.outcome == EvidenceOutcome.POSITIVE } -> true to
+                        VerificationState(handled = verification.handled, forgiven = verification.forgiven + verification.openedBy)
+                    // No fresh check yet: mastery is held and the verification stays open.
+                    else -> true to verification
+                }
+            }
+            // The **first** clean, prerequisite-valid, independent contradiction of confirmed work opens
+            // `verification_due` and keeps mastery: one bad day is not evidence that knowledge vanished.
+            previouslyMastered && !objectivePassed && unhandled.isNotEmpty() -> true to VerificationState(
+                openedBy = unhandled.map { it.id }.toSet(),
+                openedAt = unhandled.maxOf { it.sequence },
+                handled = verification.handled + unhandled.map { it.id },
+                forgiven = verification.forgiven,
+            )
+            else -> objectivePassed to verification
+        }
+        val (heldOrPassed, next) = outcome
 
         return ObjectiveDecision(
             objective = profile.ref,
-            passed = objectivePassed || firstContradiction,
+            passed = heldOrPassed,
             recentDirectScore = score,
             independentGroups = window.size,
             windowGroupKeys = window.map { it.key },
@@ -200,9 +246,40 @@ object MasteryEngine {
             unresolvedRecheck = unresolvedRecheck || rows.any {
                 it.independenceClass == IndependenceClass.REQUIRES_INDEPENDENT_RECHECK
             },
-            verificationDue = if (recheckAlsoFailed) false else unresolvedVerification || firstContradiction,
+            verificationDue = next.open,
             supportBand = supportBand(window, families, profile, objectivePassed),
+            verification = next,
         )
+    }
+
+    /**
+     * A Skill's mastery decided from its evidence alone, in recording order (16B, `D-123`): the decision after no
+     * evidence, then after each recorded row (by its sequence; one row may carry several Objectives). [rows] pair every
+     * row with each Objective it was attributed to. Each step continues the previous one — whether the Skill was mastered, and every
+     * Objective's [VerificationState] — exactly as a rebuild after that row continues from the stored state, but from
+     * the evidence itself, so rebuilding twice gives the same answer and history replays the same decisions.
+     */
+    fun replay(skill: VersionedRef, profiles: List<ObjectiveGateProfile>, rows: List<Pair<VersionedRef, EvidenceRow>>): List<SkillDecision> {
+        val byRef = profiles.associateBy { it.ref }
+        val states = profiles.associate { it.ref to VerificationState.NONE }.toMutableMap()
+        val ordered = rows.sortedBy { it.second.sequence }
+        // One step per recorded row: a row attributed to several Objectives is one event, decided once.
+        val cutoffs = listOf(Long.MIN_VALUE) + ordered.map { it.second.sequence }.distinct()
+        var mastered = false
+        return cutoffs.map { cutoff ->
+            val prefix = ordered.filter { it.second.sequence <= cutoff }
+            val decisions = profiles.map { profile ->
+                decide(
+                    profile = profile,
+                    rows = prefix.filter { it.first == profile.ref }.map { it.second },
+                    previouslyMastered = mastered,
+                    verification = states.getValue(profile.ref),
+                )
+            }
+            decisions.forEach { states[it.objective] = it.verification }
+            decideSkill(skill = skill, decisions = decisions, profiles = byRef, previouslyMastered = mastered,
+                allRows = prefix.map { it.second }).also { mastered = it.mastered }
+        }
     }
 
     /** `GRE-v0` §17. Explainable support, explicitly not a statistical confidence. */

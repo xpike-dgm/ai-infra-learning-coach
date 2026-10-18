@@ -267,8 +267,9 @@ check("E13D-09_watermark_first", 0 <= rebuild.find("persistence.truthWatermark()
 check("E13D-09_day_required", "require(rows.all { it.second.studyDay != null })" in (rebuild + events_builder), "a row with no day")
 check("E13D-09_shared_timeline", "MasteryTimeline.of(skill, profiles, rows)" in (rebuild + events_builder) and "MasteryTimeline.of(skill, profiles, rows)" in retention_app,
       "two timelines")
-check("E13D-09_timeline_mirrors", all(n in body(timeline, "fun of(") for n in ("previouslyMastered = previous in MASTERED,",
-      "unresolvedVerification = previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE,", "previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT,")),
+# Narrowed at 16B (`LHRX-v0` / `D-123`): one replay for the timeline and for RebuildMastery, so the two cannot differ.
+check("E13D-09_timeline_mirrors", "MasteryEngine.replay(skill, profiles, rows)" in body(timeline, "fun of(")
+      and "MasteryEngine.replay(skill, profiles, rows).last()" in read(ANDROID / "core-application/src/main/kotlin/coach/application/RebuildMastery.kt"),
       "the timeline differs from RebuildMastery")
 check("E13D-09_no_truth", "appendTruth" not in rebuild and "appendTruth" not in body(app, "fun writeAxis("), "a rebuild writes truth")
 axis_write = body(app, "fun writeAxis(")

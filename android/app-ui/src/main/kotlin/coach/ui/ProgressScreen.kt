@@ -37,6 +37,9 @@ fun ProgressScreen(
     view: ProgressOverview,
     onOpenSkill: (VersionedRef) -> Unit,
     modifier: Modifier = Modifier,
+    // 16B: `progress -> learning_history` and `progress -> assessment_report` are accepted edges (`UXIA-v0`).
+    onOpenHistory: (() -> Unit)? = null,
+    onOpenReport: (() -> Unit)? = null,
 ) {
     Column(
         modifier = modifier
@@ -58,6 +61,8 @@ fun ProgressScreen(
             Text(view.text, style = MaterialTheme.typography.bodyLarge)
         }
         view.contexts.forEach { Text(ProgressCopy.stateTexts.getValue(it), style = MaterialTheme.typography.bodySmall) }
+        onOpenHistory?.let { open -> TextButton(onClick = open, modifier = Modifier.minimumTouchTarget()) { Text("Öğrenme geçmişi") } }
+        onOpenReport?.let { open -> TextButton(onClick = open, modifier = Modifier.minimumTouchTarget()) { Text("Ölçme raporu") } }
 
         // 1. demonstrated_capability_inventory
         if (view.inventory.isNotEmpty() || view.recomputing > 0) {
@@ -114,6 +119,8 @@ fun SkillDetailScreen(
     onOpenSkill: (VersionedRef) -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    // 16B: `skill_detail -> learning_history` (`UXIA-v0`), the evidence history entry 16A deferred.
+    onOpenHistory: (() -> Unit)? = null,
 ) {
     Column(
         modifier = modifier
@@ -127,6 +134,7 @@ fun SkillDetailScreen(
         Text(view.statement, style = MaterialTheme.typography.bodyMedium)
         StateChip(label = view.chip.label, tone = view.chip.tone)
         view.chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
+        onOpenHistory?.let { open -> TextButton(onClick = open, modifier = Modifier.minimumTouchTarget()) { Text("Bu becerinin geçmişi") } }
 
         HorizontalDivider()
         view.axes.forEach { axis -> CountLineText(axis.title, axis.value) }

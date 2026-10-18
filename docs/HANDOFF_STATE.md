@@ -310,14 +310,15 @@ PEM-v0:
 - 15H ✅ CQAX-v0 / D-121
 - **AŞAMA 15 TAMAMLANDI**
 - 16A ✅ SKAX-v0 / D-122
-- 16B 🟡 active-not-executed
+- 16B ✅ LHRX-v0 / D-123
+- 16C 🟡 active-not-executed
 - 16–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `16A — SKAX-v0 / D-122`  
-**Aktif:** `16B — Öğrenme geçmişi`  
-**16B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `16B — LHRX-v0 / D-123`  
+**Aktif:** `16C — Progress / weakness gösterim kuralları`  
+**16C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1555,3 +1556,22 @@ SKAX-v0:
 ## 94. 16B handoff
 
 16B — Öğrenme geçmişi. 16A ran on the user's explicit approval of 2026-10-17; 16B needs a fresh PRE and the user's new explicit approval. Inputs: `SPWX-v0` §12 (`learning_history`: a chronology of meaningful learning, assessment, review and remediation events — never a streak calendar), §13 (`assessment_report`, longitudinal, owns no mastery), `skill_detail`'s deferred `evidence_history_entry` (16A contract), the working session that is not stored (11C), tutor conversations as history (14A). Carried: disposition staleness and `assessment_opportunity` (16D), reverse invalidation (18E), Topic/weakness/English views (16C), T6 (19).
+
+## 95. D-123 / 16B final özeti
+
+Canonical: `docs/LEARNING_HISTORY_SPEC.md`.
+Contract/QA: `arch/16b_learning_history/` (contract, QA report, stale audit).
+Synthesis: `research/16b_learning_history_research.md`.
+Code: `core-engines` (`MasteryEngine.VerificationState`, `MasteryEngine.replay`), `core-model` (`HistoryFacts.kt`; `EvidenceRow.attemptId`, `assistanceLevels`), `core-ports` (`planVersions`, `assessmentSessions`, defaulted), `data-persistence` (the evidence read carries attempt and assistance levels; every plan version and session in order), `core-application` (`LearningHistory.kt` — `PrefixPersistence`, `HistoryReplay`, `LearningHistoryQuery`; `RebuildMastery` and `MasteryTimeline` on the replay), `core-presentation` (`HistoryPresentation.kt`), `app-ui` (`HistoryScreen.kt`), `app-wiring`. Validator `tools/validate_learning_history.py`.
+
+LHRX-v0:
+- the learning history is the stored evidence in recording order, each row with what the engines — replayed over exactly the evidence up to it, on its own day — say it changed, in 13E's words; the assessment report is each session's ASUX-v0 families; nothing is written or scored, a day without an entry is not drawn, and the same evidence always gives the same mastery,
+- approval: the user's explicit approval of 2026-10-17 ("merge et devam et"); user decisions: replay instead of a table, history plus report, no tutor or learner text stored, core plus screens; on 2026-10-18 the user decided to fix the mastery recheck bug inside 16B,
+- the mastery correction (GRE-v0 §16.2): 12A's rebuild continued from the stored axis and treated the contradiction that opened a verification as a failed recheck, so rebuilding the same evidence twice, or passing a fresh recheck, took mastery away; now only evidence after the opening contradiction is a recheck, a positive one keeps mastery and forgives the opening contradiction, and mastery is decided from the evidence in recording order,
+- narrowed: five earlier validators (12A, 13C, 13D, 12D, 12E), each with a "Narrowed at 16B" comment,
+- Mutation Kotlin 24/24, validator 38/38; independent QA 95/95 PASS,
+- T6 was not run and the screens have not been seen on a device.
+
+## 96. 16C handoff
+
+16C — Progress / weakness gösterim kuralları. 16B ran on the user's explicit approval of 2026-10-17 (and the engine decision of 2026-10-18); 16C needs a fresh PRE and the user's new explicit approval. Inputs: `TSM-v0` (six Topic states, `weakening` included; D-102 sent Topic state here), `SPWX-v0` §§6, 9, 10 (Topic labels, `topic_detail`, weakness and remediation presentation), `TEPM-v0` (the Technical English profile), 16A's deferred `remediation_context` and `integration_or_english_context`, the supported/confirmed misconception view (14B). Carried: replay cost (18E), weekly slots passing the session id (16D), disposition staleness and `assessment_opportunity` (16D), T6 (19).

@@ -26,6 +26,9 @@ import coach.presentation.HealthAction
 import coach.presentation.NavigationGraph
 import coach.presentation.PlannerExplanationPresentation
 import coach.presentation.PlannerExplanationView
+import coach.presentation.AssessmentReportView
+import coach.presentation.HistoryPresentation
+import coach.presentation.LearningHistoryView
 import coach.presentation.ProgressOverview
 import coach.presentation.ProgressPresentation
 import coach.presentation.SkillDetailView
@@ -48,6 +51,8 @@ import coach.ui.CoachTheme
 import coach.ui.HealthBlockingSurface
 import coach.ui.HealthContextLine
 import coach.ui.PlannerExplanationScreen
+import coach.ui.AssessmentReportScreen
+import coach.ui.LearningHistoryScreen
 import coach.ui.ProgressScreen
 import coach.ui.SkillDetailScreen
 import coach.ui.TaskRunnerScreen
@@ -146,6 +151,9 @@ private fun Shell(
     // Both are read on the store thread and projected in core; nothing here decides a Skill's state.
     var progress by remember { mutableStateOf<ProgressOverview?>(null) }
     var skillDetail by remember { mutableStateOf<SkillDetailView?>(null) }
+    // 16B: the learning history (whole, or one Skill's) and the longitudinal assessment report, read on the store thread.
+    var history by remember { mutableStateOf<Pair<String, LearningHistoryView>?>(null) }
+    var report by remember { mutableStateOf<AssessmentReportView?>(null) }
 
     // The window class is computed by core-presentation from the accepted WFPX-v0
     // breakpoints, not by the UI toolkit's own bucketing, so the mapping stays canonical.
@@ -158,6 +166,8 @@ private fun Shell(
         surface = when {
             runnerEntry != null -> RunnerFlow.surface
             explanation != null -> Surface.PlannerExplanation
+            history != null -> Surface.LearningHistory
+            report != null -> Surface.AssessmentReport
             skillDetail != null -> Surface.SkillDetail
             else -> Surface.rootOf(selected)
         },
@@ -168,6 +178,8 @@ private fun Shell(
         selected = destination
         explanation = null
         skillDetail = null
+        history = null
+        report = null
         if (destination == Destination.PROGRESS) {
             progress = null
             app.loadProgress { facts -> progress = ProgressPresentation.overview(facts, health) }
@@ -177,8 +189,28 @@ private fun Shell(
         val shown = explanation
         when {
             shown != null -> PlannerExplanationScreen(view = shown, onBack = { explanation = null })
+            history != null -> LearningHistoryScreen(
+                view = history!!.second,
+                title = history!!.first,
+                onBack = { history = null },
+            )
+            report != null -> AssessmentReportScreen(
+                view = report!!,
+                onOpenHistory = {
+                    if (NavigationGraph.canOpen(Surface.AssessmentReport.id, Surface.LearningHistory.id)) {
+                        app.loadHistory(null) { facts -> history = "Öğrenme geçmişi" to HistoryPresentation.history(facts, health) }
+                    }
+                },
+                onBack = { report = null },
+            )
             skillDetail != null -> SkillDetailScreen(
                 view = skillDetail!!,
+                onOpenHistory = {
+                    val shown = skillDetail!!
+                    if (NavigationGraph.canOpen(Surface.SkillDetail.id, Surface.LearningHistory.id)) {
+                        app.loadHistory(shown.skill) { facts -> history = shown.name to HistoryPresentation.history(facts, health) }
+                    }
+                },
                 // A blocker opens its own skill_detail: the same surface, never a second Skill truth.
                 onOpenSkill = { ref -> app.loadSkillDetail(ref) { facts -> facts?.let { skillDetail = ProgressPresentation.detail(it) } } },
                 onBack = { skillDetail = null },
@@ -237,6 +269,16 @@ private fun Shell(
                 onOpenSkill = { ref ->
                     if (NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.SkillDetail.id)) {
                         app.loadSkillDetail(ref) { facts -> facts?.let { skillDetail = ProgressPresentation.detail(it) } }
+                    }
+                },
+                onOpenHistory = {
+                    if (NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.LearningHistory.id)) {
+                        app.loadHistory(null) { facts -> history = "Öğrenme geçmişi" to HistoryPresentation.history(facts, health) }
+                    }
+                },
+                onOpenReport = {
+                    if (NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.AssessmentReport.id)) {
+                        app.loadHistory(null) { facts -> report = HistoryPresentation.report(facts, health) }
                     }
                 },
             )

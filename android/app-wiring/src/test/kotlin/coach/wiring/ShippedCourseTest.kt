@@ -2,6 +2,8 @@ package coach.wiring
 
 import coach.application.BuildDailyPlan
 import coach.application.IngestCurriculum
+import coach.application.LearningHistoryQuery
+import coach.application.RecomputeSkillState
 import coach.application.ProgressQuery
 import coach.curriculum.FileContentSource
 import coach.model.Criticality
@@ -18,6 +20,8 @@ import coach.model.TaskPurpose
 import coach.model.VersionedRef
 import coach.persistence.SqlitePersistence
 import coach.ports.ClockPort
+import coach.ports.TruthRecord
+import coach.model.HistoryFamily
 import coach.presentation.AppHealth
 import coach.presentation.ProgressPresentation
 import coach.presentation.ProgressState
@@ -380,5 +384,40 @@ class ShippedCourseTest {
         assertTrue(detail.row.prerequisite.hardBlockers.all { store.skill(it) != null })
         assertTrue(detail.objectives.isNotEmpty() && detail.objectives.all { it.gatesPassed == null })
         assertTrue(detail.topics.isNotEmpty(), "where the curriculum places it, for orientation")
+    }
+
+    // ---------------------------------------------------------------- 16B — Öğrenme geçmişi (LHRX-v0)
+
+    private fun recordExplanation(n: Int) = store.inTransaction {
+        val id = store.appendTruth(TruthRecord("evidence_event", clock.now(), mapOf(
+            "skill_logical_id" to "skill.computing.program_execution_model", "skill_version" to "1", "evidence_type" to "explanation",
+            "outcome" to "positive", "evaluator_status" to "verified", "independence_class" to "independent", "contested" to "0",
+            "correctness_or_rubric_result" to "1.0", "variant_family_id" to "family.history.$n",
+        )))
+        store.appendTruth(TruthRecord("evidence_event_objective", clock.now(), mapOf("evidence_event_id" to id.toString(),
+            "objective_logical_id" to "objective.computing.program_execution_model.explain_pipeline", "objective_version" to "1")))
+    }
+
+    @Test
+    fun `with all eight packages, a learner who has done nothing has no history, and recorded work is replayed as the engines decided`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        val empty = LearningHistoryQuery(store).load()
+        assertTrue(empty.curriculumLoaded && empty.entries.isEmpty() && empty.sessions.isEmpty())
+
+        val execution = skill("skill.computing.program_execution_model")
+        recordExplanation(1); RecomputeSkillState(store, clock).recompute(execution)
+        recordExplanation(2); RecomputeSkillState(store, clock).recompute(execution)
+        val stored = store.readProjection("skill_state:${execution.logicalId}@v1")!!
+        val before = store.readProjection("skill_state:${execution.logicalId}@v1")
+
+        val history = LearningHistoryQuery(store).load(execution)
+        assertEquals(2, history.entries.size)
+        assertTrue(history.entries.all { it.family == HistoryFamily.LEARNING })
+        // The replay ends where the real store's recompute ended, and reading the history wrote nothing.
+        // One required Objective, two clean independent answers from two variant families: confirmed (`GRE-v0` §8).
+        assertEquals("confirmed_current", stored.payload["mastery_axis_state"])
+        assertEquals(listOf("capability_confirmed"), history.entries.first().changes.map { it.kind.id })
+        assertEquals(emptyList(), history.entries.last().changes)
+        assertEquals(before, store.readProjection("skill_state:${execution.logicalId}@v1"))
     }
 }

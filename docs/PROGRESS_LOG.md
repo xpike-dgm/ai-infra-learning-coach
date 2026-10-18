@@ -1427,3 +1427,39 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `16A tamamlandı; 16B aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `16B — Öğrenme geçmişi`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-18 — 16B — Öğrenme geçmişi tamamlandı — LHRX-v0 / D-123
+
+- 16A (#60) CI yeşil olunca kullanıcının isteğiyle ("merge et devam et") squash-merge edildi (534cb53). Fresh 16B PRE yapıldı ve kanonik kaynaklar `16A ✅ / 16B active-not-executed` gösterdi; aynı mesaj 16B'nin açık onayıdır.
+- **Kullanıcı kararları:**
+  - 2026-10-17:
+    - "ne değişti" saklı kanıt üzerinde motorlar yeniden oynatılarak bulunur, yeni tablo yok;
+    - geçmiş ve `assessment_report`;
+    - tutor/öğrenci metni saklanmaz;
+    - core ve ekran.
+  - 2026-10-18: mastery yeniden kontrol hatası 16B içinde düzeltilir.
+- **Bulgu:**
+  - 13E'nin oturum raporu hiç saklanmıyordu.
+  - Tekrar oynatma, satır satır oynatmayla toplu yeniden hesaplamanın çeliştiğini gösterdi.
+  - Asıl hata 12A'daydı: açık bir doğrulamada onu açan çelişki her yeniden kurmada "başarısız yeniden kontrol" sayılıyordu. Aynı kanıtın ikinci kurulumu da, *geçilen* taze bir yeniden kontrol de mastery'yi düşürüyordu.
+  - 12A'nın bu davranışı sabitleyen testinin girdisinde taze bir yeniden kontrol yoktu.
+- **Düzeltme:**
+  - `MasteryEngine.VerificationState` ve `replay` eklendi.
+  - Yalnız açılıştan sonraki temiz kanıt yeniden kontroldür. Olumlu bir yeniden kontrol mastery'yi korur ve açılıştaki çelişkiyi pencereden çıkarır. Taze kontrol yoksa hiçbir şey değişmez.
+  - `RebuildMastery` ve `MasteryTimeline` aynı oynatmayı kullanır.
+  - Beş önceki validator "Narrowed at 16B" ile daraltıldı.
+- **Kod:**
+  - Yeni: `HistoryFacts.kt`, `LearningHistory.kt` (`PrefixPersistence`, `HistoryReplay`, `LearningHistoryQuery`), `HistoryPresentation.kt`, `HistoryScreen.kt`.
+  - `EvidenceRow` deneme kimliği ve yardım seviyelerini taşıyor; `planVersions`/`assessmentSessions` varsayılanlı port inceltmeleri.
+  - Şema değişmedi.
+- **Araştırma:** iç sözleşmeler `SPWX-v0`, `ASUX-v0`, `PCRX-v0`, `GRE-v0`, `LFPS-v0`; Wikipedia (Goodhart's law, Learning analytics; 16A'da okundu).
+- **Mutation:** Kotlin 24/24.
+  - İlk koşuda dört mutant hayatta kaldı. Üçü hedefli testlerle kapandı: bağışlanan çelişkinin skor penceresinde kalması, yeniden açılması ve oturum satırlarının ailesi.
+  - Biri eşdeğer bulundu, fazlalık koşul koddan kaldırıldı.
+  - Bütün set yeniden koşuldu.
+- **Validator mutation:** 38/38.
+- **Validator:** 95/95 PASS; sweep 65/65 (55 light + 10 heavy); 1141 JVM testi.
+- **T6 çalıştırılmadı; ekranlar cihazda görülmedi**.
+- D-050 POST living-memory accepted state'i `16B tamamlandı; 16C aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `16C — Progress / weakness gösterim kuralları`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

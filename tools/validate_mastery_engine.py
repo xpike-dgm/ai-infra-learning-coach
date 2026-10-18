@@ -223,9 +223,13 @@ check("E12A-04_no_multipliers", not re.search(r"multiplier|weightOf|\*\s*(assist
       "a multiplier appears in the engine")
 
 # ---------------------------------------------------------------- gates and aggregation
+# Narrowed at 16B (`LHRX-v0` / `D-123`): an open verification is no longer a gate that fails every rebuild; it is the hysteresis state the
+# Objective carries (VerificationState), held until a fresh recheck — the check below names that state instead.
 for gate in ("recent_direct_score", "min_independent_groups", "min_variant_families", "required_direct_type",
-             "no_unresolved_recheck", "no_unresolved_verification"):
+             "no_unresolved_recheck"):
     check(f"E12A-05_gate_{gate}", f'gate("{gate}"' in decide, f"missing gate {gate}")
+check("E12A-05_gate_no_unresolved_verification", "verification.open -> {" in decide and "else -> true to verification" in decide,
+      "an open verification is neither held nor carried")
 check("E12A-05_critical_non_basic", 'gate("non_basic_evidence"' in decide, "a critical Objective may pass on basic evidence")
 check("E12A-05_user_authored_gate", 'gate("user_authored_artifact"' in decide, "the user-authored artifact gate is missing")
 check("E12A-05_transfer_gate", 'gate("transfer_evidence"' in decide, "the transfer gate is missing")
@@ -241,15 +245,19 @@ check("E12A-06_critical_recheck_blocks", "unresolvedCriticalRecheck" in skill,
       "an unresolved critical recheck does not block the Skill")
 
 # ---------------------------------------------------------------- hysteresis
-check("E12A-07_first_contradiction_keeps_mastery", "firstContradiction" in decide
-      and "objectivePassed || firstContradiction" in decide,
+# Narrowed at 16B (`LHRX-v0` / `D-123`): the two halves of §16.2 are kept, and only evidence recorded after the opening contradiction is a recheck;
+# a positive recheck keeps mastery (GRE-v0 §16.2 "Recheck positive"), which 12A's code could not do.
+check("E12A-07_first_contradiction_keeps_mastery",
+      "previouslyMastered && !objectivePassed && unhandled.isNotEmpty() -> true to VerificationState(" in decide,
       "the first contradiction unmasters instead of opening verification")
 check("E12A-07_failed_recheck_resolves",
-      "val recheckAlsoFailed = contradicted && unresolvedVerification" in decide
-      and "if (recheckAlsoFailed) false else" in decide,
+      "val fresh = eligible.filter { it.sequence > verification.openedAt!! }" in decide
+      and "freshContradictions.isNotEmpty() -> objectivePassed to" in decide and "verificationDue = next.open," in decide,
       "a failed recheck does not resolve the verification")
+check("E12A-07_positive_recheck_keeps_mastery", "fresh.any { it.outcome == EvidenceOutcome.POSITIVE } -> true to" in decide,
+      "a passed recheck does not keep mastery")
 check("E12A-07_contradiction_needs_eligible_evidence",
-      "eligible.any {" in decide and "EvidenceOutcome.NEGATIVE" in decide,
+      "val unhandled = eligible.filter { isContradiction(it)" in decide and "EvidenceOutcome.NEGATIVE" in decide,
       "a contradiction is counted from evidence that never qualified")
 
 # ---------------------------------------------------------------- support band and trace
@@ -293,8 +301,10 @@ check("E12A-09_writes_no_projection", "writeProjection" not in pipeline, "the pi
 
 # ---------------------------------------------------------------- the projection
 rebuild_body = body(rebuild, "fun rebuild(")
+# Narrowed at 16B (`LHRX-v0` / `D-123`): the evidence is read through MasteryTimeline.rowsOf (one replay for every reader); still after the watermark.
 check("E12A-10_watermark_before_evidence",
-      rebuild_body.index("truthWatermark()") < rebuild_body.index("evidenceFor("),
+      0 <= rebuild_body.find("truthWatermark()") < rebuild_body.find("MasteryTimeline.rowsOf(")
+      and "MasteryEngine.replay(skill, profiles, rows).last()" in rebuild_body,
       "the watermark is read after the evidence")
 check("E12A-10_no_truth_written", "appendTruth" not in rebuild, "the rebuild writes truth")
 check("E12A-10_provenance_complete",

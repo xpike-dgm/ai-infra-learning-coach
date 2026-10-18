@@ -1,0 +1,224 @@
+model: LHRX-v0
+stage_step: 16B
+status: accepted_16b
+decision: D-123
+implements: [SPWX-v0, ASUX-v0, GRE-v0, LFPS-v0]
+engines_read: [MSTX-v0, RVRX-v0, WLRX-v0, PCRX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: what_happened_and_what_it_changed_across_time_read_from_evidence_never_a_streak_or_a_grade
+
+question: Zaman içinde ne oldu ve neyi değiştirdi — saklanan kanıttan, motorların kendi kararlarıyla, hiçbir günü kaçırılmış ya da hiçbir oturumu not almış saymadan?
+
+primary_invariant: >-
+  The learning history is the stored evidence in recording order, each row with what the canonical engines — replayed
+  over exactly the evidence up to it, on its own study day — say it changed, in the program change report's own words.
+  The assessment report is each session's ASUX-v0 families: the changes its own rows caused, what it could not measure,
+  and the plan version its recompute wrote. Nothing is written, nothing is scored, a day without an entry is not drawn,
+  and a change no engine made cannot be said. Rebuilding mastery from the same evidence gives the same answer.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-17
+  what_changed_source: replay_engines_over_stored_evidence_no_new_table
+  scope: learning_history_and_longitudinal_assessment_report
+  stored_text: no_tutor_or_learner_text_assistance_levels_only_working_session_unstored
+  delivery: core_and_real_compose_screen
+  engine_fix: fix_mastery_recheck_inside_16b_declared_2026-10-18
+
+assistant_defaults:
+  - a history entry is one evidence row; families are assessment (inside a session), remediation (while open or the row that closed it), review (the Skill was mastered before the row), learning (otherwise), the first that applies
+  - a session's state changes are the changes its own rows caused, each named once — a net diff would credit a session whose slots spread over days with the other work in between
+  - the plan version a session wrote is the first replan whose trace watermark covers the session's last row, before the next evidence, on the same study day; without one no plan change is claimed
+  - a ready blueprint slot counts as answered only by evidence carrying that session's id
+  - outcomes are worded as what happened (beklenen sonuç / beklenen sonuç değil / kısmen / ölçülemedi), never as a verdict
+
+declared_extensions:
+  - {what: "MasteryEngine.VerificationState and MasteryEngine.replay; RebuildMastery and MasteryTimeline decide mastery from the evidence in recording order", corrects: "12A's MSTX-v0 hysteresis", why: "a rebuild continued from the stored axis treated the contradiction that opened a verification as a failed recheck: a second rebuild of the same evidence, or a passed fresh recheck, took mastery away (GRE-v0 §16.2 says a positive recheck keeps it)"}
+  - {what: "EvidenceRow.attemptId and EvidenceRow.assistanceLevels, read by the adapter", extends: "12A EvidenceRow (precedent: 13F assessmentSessionId, 14A solutionExposed)"}
+  - {what: "PersistencePort.planVersions() and PersistencePort.assessmentSessions(), defaulted", extends: "12D latestPlan, 13A latestAssessmentSession (port refinements, port count unchanged)"}
+
+mastery_fix:
+  rule:
+    - only evidence recorded after the contradiction that opened a verification is a fresh recheck
+    - no fresh check — mastery is held and the verification stays open, however often it is rebuilt
+    - a fresh clean contradiction — the verification resolves negatively and the gates decide on the evidence as it is
+    - a fresh clean positive — the verification closes, the opening contradiction leaves the score window as noise, mastery is kept
+    - assisted, provisional, contested, contaminated or solution-exposed work is never a recheck
+  idempotent: true
+  previous_axis_read: false
+  found_by: the 16B replay — a session's per-row replay disagreed with the batch recompute, and two recomputes of the same evidence disagreed
+  tests_corrected: ["MasteryEngineTest: a failed recheck resolves the verification and lets the gates decide again (it had no fresh recheck in its input)"]
+
+scope:
+  schema_changed: false
+  migration_added: false
+  new_truth_table: false
+  ports_changed: refinements_only
+  boundaries_changed: false
+  mastery_rule_changed: corrected_to_gre_v0_16_2
+  retention_rule_changed: false
+  weakness_rule_changed: false
+  planner_rule_changed: false
+  conversation_text_stored: false
+  working_session_stored: false
+  screen_drawn: true
+
+history:
+  families: [assessment, remediation, review, learning]
+  entry_fields: [sequence, study_day, skill, objective, family, evidence_kind, outcome, assistance_levels, attempt, assessment_session, changes]
+  changes_vocabulary: StateChangeKind (PCRX-v0)
+  change_sentences: ProgramChangeCopy.stateTemplates (13E)
+  replay: {writes_truth: false, writes_projections_to_store: false, empty_prefix_is_a_known_start: true, day_is_the_row_s_own: true}
+  days_without_entries_drawn: false
+  streak_or_attendance: false
+
+assessment_report:
+  families: [confirmed_capabilities, verification_needed, persistent_targeted_gaps, retention_revalidated, not_reliably_measured, plan_changes]
+  not_reliably_measured_reasons: [invalid_item, provisional_evaluation, assisted_attempt, solution_exposed_attempt, contested_item, unsubmitted_slot]
+  grade_or_score: false
+  trend_line: false
+  nothing_changed_said_plainly: true
+  unfound_plan_claimed_unchanged: false
+
+found:
+  - the_session_report_was_never_stored
+  - two_recomputes_of_the_same_evidence_disagreed
+  - a_passed_recheck_took_mastery_away
+  - the_test_that_codified_it_had_no_fresh_recheck
+
+suites:
+  engine: {file: android/core-engines/src/test/kotlin/coach/engines/MasteryEngineTest.kt}
+  history: {file: android/core-application/src/test/kotlin/coach/application/LearningHistoryTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/HistoryPresentationTest.kt}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/HistoryStorageTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+narrowed_gates:
+  rule: an earlier check now accepts exactly the D-123 change in its declared place, and still fails on any other drift; the narrowed line carries a "Narrowed at 16B (`LHRX-v0` / `D-123`)" comment
+  gates:
+    - {file: tools/validate_mastery_engine.py, checks: [E12A-05_gate_no_unresolved_verification, E12A-07_first_contradiction_keeps_mastery, E12A-07_failed_recheck_resolves, E12A-07_contradiction_needs_eligible_evidence, E12A-10_watermark_before_evidence], added: [E12A-07_positive_recheck_keeps_mastery]}
+    - {file: tools/validate_retention.py, checks: [E13C-08_replay_mirrors, E13C-08_mastery_rebuild_same_rule]}
+    - {file: tools/validate_remediation.py, checks: [E13D-09_timeline_mirrors]}
+    - {file: tools/validate_replan.py, checks: [E12D-09_latest_body_read, E12D-09_newest_by_sequence, E12D-09_count_is_the_plans_own], why: "the plan reading moved into planOf so planVersions reads every version the same way"}
+    - {file: tools/validate_reason_codes.py, checks: [E12E-04_latest_body_read, E12E-04_rows_in_position_order]}
+
+open_loops:
+  replay_cost: {owner: 18E, note: "the history replays three engines per evidence row (quadratic in a Skill's rows, the mastery replay inside is quadratic too); fine for one learner's months, to be measured on the device"}
+  recheck_spread_before_mastery: {owner: 18C, note: "a contradiction recorded before mastery but still in the window can be named among the ones a later verification opened by"}
+  weekly_slot_session_id: {owner: 16D, note: "a slot counts as answered only by evidence carrying the session's id; the app path that serves weekly slots must pass it"}
+  rules_change_retroactively: {owner: recorded, note: "the history is read under today's engine rules and today's dispositions (user decision); an older wording is not kept"}
+  topic_weakness_english_views: {owner: 16C}
+  t6_and_device: {owner: 19}
+
+mutation_results_kotlin:
+  scope: one change per mutant to the corrected hysteresis, the replay, RebuildMastery, the history replay and query, the report, the projection and the SQLite reads; then the JVM tests of core-engines, core-application and core-presentation (and data-persistence for the adapter)
+  total: 24
+  detected: 24
+  detection: the build reached the tests and a test failed
+  crash_is_detection: false
+  negative_control: N00 changes a KDoc comment in HistoryPresentation.kt
+  negative_control_result: survived_as_expected
+  earlier_runs: the first full run (25 mutants) left H05 (the forgiven contradiction kept in the window), H06 (the opening contradiction not marked handled) and H10 (a session's rows not in the assessment family) alive — each now has a test; H12 (the remediation family's REMEDIATION_CLOSED disjunct) was equivalent, because 13E's REMEDIATION_CLOSED needs remediation_required before the row, so the redundant condition was removed from the code and the mutant with it; the whole set was run again
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: H01, mutant: opening_row_counts_as_recheck, result: detected}
+    - {id: H02, mutant: positive_recheck_drops_mastery, result: detected}
+    - {id: H03, mutant: failed_recheck_held, result: detected}
+    - {id: H04, mutant: no_fresh_check_drops_mastery, result: detected}
+    - {id: H05, mutant: forgiven_kept_in_window, result: detected}
+    - {id: H06, mutant: opening_row_not_handled, result: detected}
+    - {id: H07, mutant: replay_forgets_state, result: detected}
+    - {id: H08, mutant: replay_never_mastered_before, result: detected}
+    - {id: H09, mutant: rebuild_takes_first_decision, result: detected}
+    - {id: H10, mutant: assessment_family_ignored, result: detected}
+    - {id: H11, mutant: review_family_ignored, result: detected}
+    - {id: H13, mutant: replay_writes_the_store, result: detected}
+    - {id: H14, mutant: replay_ignores_cutoff, result: detected}
+    - {id: H15, mutant: independent_counted_not_measured, result: detected}
+    - {id: H16, mutant: assistance_dropped, result: detected}
+    - {id: H17, mutant: replan_never_found, result: detected}
+    - {id: H18, mutant: session_changes_dropped, result: detected}
+    - {id: H19, mutant: no_change_unsaid, result: detected}
+    - {id: H20, mutant: unfound_plan_claimed_unchanged, result: detected}
+    - {id: H21, mutant: contested_called_invalid, result: detected}
+    - {id: H22, mutant: exposed_called_assisted, result: detected}
+    - {id: H23, mutant: days_oldest_first, result: detected}
+    - {id: H24, mutant: assistance_duplicated, result: detected}
+    - {id: H25, mutant: plans_newest_first, result: detected}
+
+validator_mutation:
+  tool: tools/validate_learning_history.py
+  total: 38
+  detected: 38
+  scope: one change per mutant to an input the validator reads — the contract, the corrected hysteresis and the replay, RebuildMastery, the history replay and query, the SQLite read, a port, the schema, the projection and its copy, the screen, the wiring, a test name, a narrowed earlier validator, the spec, the research and DECISIONS
+  detection: a FAIL line not in the baseline; a run that prints no result line is a crash and never a detection
+  crash_is_not_a_detection: true
+  baseline: the only check allowed to fail at baseline is A16B-12_validator_mutation, which reads this very result
+  negative_control: a YAML comment in the contract naming forbidden fragments (banana, survived, streak, 100%)
+  negative_control_result: survived_as_expected
+  earlier_runs: the first run left V08 and V31 alive. V08 (the boolean flag back) exposed a validator bug — a shell heredoc had written the regex's word boundaries as backspace characters, so the check could never match — fixed; V31 was a badly made mutant (it put the grid in a comment, which the check rightly ignores) and now draws a real progress indicator; both detected, and the whole set was run again
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: V01, mutant: contract_model, result: detected}
+    - {id: V02, mutant: contract_table_chosen, result: detected}
+    - {id: V03, mutant: contract_text_stored, result: detected}
+    - {id: V04, mutant: contract_device_claimed, result: detected}
+    - {id: V05, mutant: contract_mutant_survived, result: detected}
+    - {id: V06, mutant: contract_run_failed, result: detected}
+    - {id: V07, mutant: contract_families_reordered, result: detected}
+    - {id: V08, mutant: boolean_flag_back, result: detected}
+    - {id: V09, mutant: opening_row_is_a_recheck, result: detected}
+    - {id: V10, mutant: no_fresh_check_drops, result: detected}
+    - {id: V11, mutant: positive_recheck_drops, result: detected}
+    - {id: V12, mutant: forgiven_kept, result: detected}
+    - {id: V13, mutant: replay_forgets_state, result: detected}
+    - {id: V14, mutant: rebuild_reads_stored_axis, result: detected}
+    - {id: V15, mutant: replay_writes_the_store, result: detected}
+    - {id: V16, mutant: replay_ignores_cutoff, result: detected}
+    - {id: V17, mutant: unknown_start, result: detected}
+    - {id: V18, mutant: changes_not_13e, result: detected}
+    - {id: V19, mutant: query_writes, result: detected}
+    - {id: V20, mutant: net_session_diff, result: detected}
+    - {id: V21, mutant: plan_claimed_without_replan, result: detected}
+    - {id: V22, mutant: independent_not_measured, result: detected}
+    - {id: V23, mutant: assistance_not_distinct, result: detected}
+    - {id: V24, mutant: port_default_dropped, result: detected}
+    - {id: V25, mutant: conversation_column, result: detected}
+    - {id: V26, mutant: changes_in_own_words, result: detected}
+    - {id: V27, mutant: unfound_plan_claimed, result: detected}
+    - {id: V28, mutant: days_from_a_calendar, result: detected}
+    - {id: V29, mutant: streak_in_copy, result: detected}
+    - {id: V30, mutant: score_field, result: detected}
+    - {id: V31, mutant: screen_draws_a_grid, result: detected}
+    - {id: V32, mutant: edge_unchecked, result: detected}
+    - {id: V33, mutant: test_renamed, result: detected}
+    - {id: V34, mutant: narrowing_undeclared, result: detected}
+    - {id: V35, mutant: spec_not_accepted, result: detected}
+    - {id: V36, mutant: spec_wrong_next, result: detected}
+    - {id: V37, mutant: research_source_dropped, result: detected}
+    - {id: V38, mutant: decision_missing, result: detected}
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew test (every module's JVM tests, the AI adapter's included)", tier: T1-T3, result: PASS}
+  - {id: RUN-02, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-03, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-04, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-05, command: "read the eight curriculum packages from both built APKs and compare their SHA-256 with the source assets; the APK without the AI adapter has no INTERNET permission", tier: T5, result: PASS}
+  - {id: RUN-06, command: "ShippedCourseTest's 16B section and HistoryStorageTest: the real SQLite store, recorded work replayed by LearningHistoryQuery", tier: T2, result: PASS}
+  - {id: RUN-07, command: "the five narrowed earlier validators (12A, 13C, 13D, 12D, 12E) rerun after the D-123 correction", tier: T2, result: PASS}
+jvm_tests: 1141
+validator_sweep: {glob: "tools/validate_*.py", total: 65, passed: 65, note: "55 light and 10 heavy validators, every one in a single pass; the frozen reports the earlier validators rewrite were restored from git"}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  screen_seen_on_device: false
+  sqlite_read_on_jvm_run: true
+
+forbidden_patterns:
+  - a streak, attendance count, calendar grid or a gap drawn as a miss
+  - a grade, score, average or trend line across sessions
+  - a change claimed that no engine made, or a plan claimed unchanged that nobody found
+  - a stored tutor or learner text
+  - a history that writes truth or projections
+  - a mastery rebuild that gives two answers for the same evidence

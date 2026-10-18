@@ -1932,3 +1932,67 @@ Ayrıntı: `docs/CONTENT_QA_SPEC.md`.
 - Sonraki numbered step `16B — Öğrenme geçmişi`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/SKILL_ANALYTICS_SPEC.md`.
+
+## D-123 — Öğrenme geçmişi = LHRX-v0 (ve mastery yeniden kontrol düzeltmesi)
+**Durum:** Kabul edildi — 2026-10-18
+
+- 16B final modeli `LHRX-v0 — learning history and longitudinal assessment report, replayed from evidence` oldu.
+  - Progress artık öğrenme geçmişini ve oturumlar arası ölçme raporunu gösteriyor.
+  - Skill detayı o Skill'in kendi geçmişini açıyor.
+- **Kaynaklar:**
+  - canonical spec: `docs/LEARNING_HISTORY_SPEC.md`;
+  - machine-readable contract: `arch/16b_learning_history/learning_history.yaml`;
+  - research: `research/16b_learning_history_research.md`;
+  - validator: `tools/validate_learning_history.py`;
+  - kod: `core-engines` (`MasteryEngine.VerificationState`, `MasteryEngine.replay`), `core-model` (`HistoryFacts.kt`, `EvidenceRow.attemptId`/`assistanceLevels`), `core-ports` (`planVersions`, `assessmentSessions`), `data-persistence`, `core-application` (`LearningHistory.kt`, `RebuildMastery`, `MasteryTimeline`), `core-presentation` (`HistoryPresentation.kt`), `app-ui` (`HistoryScreen.kt`).
+- Ana invariant: **öğrenme geçmişi, kayıt sırasındaki saklı kanıttır.**
+  - Her satır, kanonik motorların söylediği değişikliği taşır. Motorlar o satıra kadarki kanıt üzerinde, satırın kendi çalışma gününde yeniden oynatılır ve değişikliği 13E'nin kendi sözlüğüyle söyler.
+  - Ölçme raporu her oturumun `ASUX-v0` aileleridir: oturumun kendi satırlarının yol açtığı değişiklikler, ölçemediği şeyler ve yeniden hesaplamasının yazdığı plan sürümü.
+  - Hiçbir şey yazılmaz ve puanlanmaz. Girdisi olmayan gün çizilmez. Hiçbir motorun yapmadığı değişiklik söylenemez.
+  - Aynı kanıttan mastery her zaman aynı sonucu verir.
+- **Kullanıcı kararları:**
+  - 2026-10-17, açık onayla:
+    - "ne değişti" saklı kanıt üzerinde motorlar yeniden oynatılarak bulunur, yeni tablo yok;
+    - kapsam geçmiş + `assessment_report`;
+    - tutor ve öğrenci metni saklanmaz, yalnız kaydedilmiş yardım seviyeleri ve denemeler; çalışma oturumu saklanmaz;
+    - core + gerçek ekran.
+  - 2026-10-18: mastery yeniden kontrol hatası 16B içinde, beyan edilmiş bir düzeltme olarak düzeltilir.
+- **Mastery düzeltmesi (`GRE-v0` §16.2, 12A'nın `MSTX-v0` kodu düzeltildi; kabul edilmiş spec değişmedi):**
+  - Hata: yeniden kurma saklanan mastery ekseninden devam ediyordu. Açık bir doğrulamada, onu açan çelişkiyi "başarısız yeniden kontrol" sayıyordu. Bu yüzden aynı kanıtın ikinci kez kurulması da, *geçilen* taze bir yeniden kontrol de mastery'yi düşürüyordu.
+  - Hatayı 16B'nin tekrar oynatması buldu: satır satır oynatma, toplu yeniden hesaplamayla çelişti. Hatayı sabitleyen 12A testinin girdisinde taze bir yeniden kontrol yoktu.
+  - Kural:
+    - yalnız açılıştaki çelişkiden sonra kaydedilmiş kanıt taze yeniden kontroldür;
+    - taze kontrol yoksa mastery korunur ve doğrulama açık kalır;
+    - taze, temiz bir çelişki doğrulamayı olumsuz kapatır ve kapılar yeniden karar verir;
+    - taze, temiz bir olumlu sonuç doğrulamayı kapatır; açılıştaki çelişki gürültü olarak pencereden çıkar ve mastery korunur;
+    - yardımlı, kesinleşmemiş, itirazlı, ön koşulu eksik ya da çözümü görülmüş iş asla yeniden kontrol değildir.
+  - `MasteryEngine.replay` mastery'yi kanıttan, kayıt sırasıyla belirler. `RebuildMastery` ve `MasteryTimeline` aynı adımları kullanır ve saklanan eksen okunmaz.
+- **Beyan edilmiş uzantılar:**
+  - `MasteryEngine.VerificationState` ve `replay`;
+  - `EvidenceRow.attemptId` ve `assistanceLevels` (emsal: 13F `assessmentSessionId`, 14A `solutionExposed`);
+  - varsayılanlı port inceltmeleri `planVersions()` ve `assessmentSessions()`; port sayısı değişmedi.
+- **Bulunanlar:**
+  - Oturum raporu hiç saklanmıyordu.
+  - Aynı kanıtın iki yeniden hesaplaması farklı sonuç veriyordu.
+  - Geçilen bir yeniden kontrol mastery'yi düşürüyordu.
+  - Geçilen bir yeniden kontrol kalıcılığı da yeniden doğrular ve açık bir soruyu da kapatır; geçmiş üçünü de gösterir.
+- **Daraltılan kapılar:** beş önceki validator ("Narrowed at 16B"; liste contract'ın `narrowed_gates`'inde):
+  - 12A: `E12A-05`, `E12A-07`, `E12A-10`;
+  - 13C: `E13C-08`;
+  - 13D: `E13D-09`;
+  - 12D/12E: `latestPlan` okuması `planOf`a taşındı.
+- **Doğrulama:**
+  - Kotlin mutation 24/24, validator mutation 38/38; kontrol mutantları hayatta kaldı.
+  - Validator 95/95 PASS.
+  - 1141 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Sweep 65/65 (55 light + 10 heavy).
+- Çalıştırılmayan: **T6**. Ekranlar cihazda görülmedi.
+- **Açık loop'lar:**
+  - Tekrar oynatma maliyeti (18E).
+  - Mastery öncesi pencerede kalan bir çelişkinin sonraki doğrulamanın açanları arasında sayılabilmesi (18C).
+  - Haftalık slotların oturum kimliğini taşıması (16D).
+  - Topic/zayıflık/İngilizce görünümleri (16C).
+  - T6 (19).
+- Sonraki numbered step `16C — Progress / weakness gösterim kuralları`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/LEARNING_HISTORY_SPEC.md`.

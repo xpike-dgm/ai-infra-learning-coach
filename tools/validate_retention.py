@@ -244,11 +244,11 @@ check("E13C-08_no_truth_written", "appendTruth" not in app, "retention writes tr
 events = body(app, "private fun events(")
 replay = body(timeline, "fun of(")
 check("E13C-08_replay_shared", "MasteryTimeline.of(skill, profiles, rows)" in events, "retention does not read the shared timeline")
-for needle in ("previouslyMastered = previous in MASTERED,", "unresolvedVerification = previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE,",
-               "previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT,"):
+# Narrowed at 16B (`LHRX-v0` / `D-123`): the timeline and RebuildMastery no longer mirror each other's hysteresis text; both call the one
+# MasteryEngine.replay, so they cannot differ at all. The three needles name that one call.
+for needle in ("MasteryEngine.replay(skill, profiles, rows)", "decisions[index + 1]", "decisions[index]"):
     check(f"E13C-08_replay_mirrors_{needle[:28]}", needle in replay, f"replay differs: {needle}")
-check("E13C-08_mastery_rebuild_same_rule", "previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT ||" in mastery_app
-      and "unresolvedVerification = previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE" in mastery_app, "RebuildMastery's rule moved")
+check("E13C-08_mastery_rebuild_same_rule", "MasteryEngine.replay(skill, profiles, rows).last()" in mastery_app, "RebuildMastery's rule moved")
 check("E13C-08_near_repeat_computed", "row.resource != null && other.resource == row.resource" in events and "other.variantFamilyId == row.variantFamilyId" in events, "near repeat not computed")
 check("E13C-08_direct_computed", "directEvidenceTypes?.contains(row.evidenceType) == true" in events, "directness not computed")
 write = body(app, "fun write(")

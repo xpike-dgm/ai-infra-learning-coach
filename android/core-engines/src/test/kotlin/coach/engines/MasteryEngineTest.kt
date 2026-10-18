@@ -237,14 +237,68 @@ class MasteryEngineTest {
         assertTrue(decision.verificationDue)
     }
 
+    // ---------------------------------------------------------------- §16.2 recheck (16B, `D-123`)
+
+    private fun skillAxis(rows: List<EvidenceRow>) =
+        MasteryEngine.replay(skill, listOf(profile()), rows.map { objective to it }).last().axisState
+
+    private fun bad(family: String) = row(quality = 0.0, outcome = EvidenceOutcome.NEGATIVE, family = family)
+
+    @Test
+    fun `the row that opened a verification is never its own recheck, however often it is decided`() {
+        val rows = twoCleanGroups() + bad("family.c")
+        val opened = MasteryEngine.decide(profile(), rows, previouslyMastered = true)
+        assertTrue(opened.passed && opened.verificationDue)
+        val again = MasteryEngine.decide(profile(), rows, previouslyMastered = true, verification = opened.verification)
+        assertTrue(again.passed, "deciding the same evidence again took mastery away")
+        assertTrue(again.verificationDue)
+    }
+
+    @Test
+    fun `without a fresh check a verification stays open and mastery is held`() {
+        val rows = twoCleanGroups() + bad("family.c")
+        assertEquals(MasteryAxisState.CONFIRMATION_VERIFICATION_DUE, skillAxis(rows))
+        // A practice attempt with help is not a recheck (`GRE-v0` §16.1).
+        assertEquals(MasteryAxisState.CONFIRMATION_VERIFICATION_DUE, skillAxis(rows + row(independence = IndependenceClass.ASSISTED, family = "family.d")))
+    }
+
+    @Test
+    fun `a clean positive recheck closes the verification and keeps mastery`() {
+        assertEquals(MasteryAxisState.CONFIRMED_CURRENT, skillAxis(twoCleanGroups() + bad("family.c") + row(family = "family.d")))
+    }
+
+    @Test
+    fun `after a passed recheck the forgiven contradiction stays out of the score, so later practice keeps mastery`() {
+        // Without forgiving it, the window would be 1, 1, 0, 1 — below the threshold — and help afterwards would unmaster.
+        val rows = twoCleanGroups() + bad("family.c") + row(family = "family.d") + row(independence = IndependenceClass.ASSISTED, family = "family.e")
+        assertEquals(MasteryAxisState.CONFIRMED_CURRENT, skillAxis(rows))
+    }
+
+    @Test
+    fun `a contradiction already adjudicated never opens a verification again`() {
+        // Built in recording order: a row's sequence is the order it is made in.
+        val clean = twoCleanGroups()
+        val opening = bad("family.c")
+        val recheck = row(family = "family.d")
+        val later = bad("family.e")
+        val last = MasteryEngine.replay(skill, listOf(profile()), (clean + opening + recheck + later).map { objective to it })
+            .last().objectives.single()
+        assertTrue(last.verificationDue)
+        assertEquals(setOf(later.id), last.verification.openedBy, "a forgiven contradiction was counted again")
+    }
+
     @Test
     fun `a failed recheck resolves the verification and lets the gates decide again`() {
-        val rows = twoCleanGroups() + row(quality = 0.0, outcome = EvidenceOutcome.NEGATIVE, family = "family.c")
-        val decision = MasteryEngine.decide(
-            profile(), rows, previouslyMastered = true, unresolvedVerification = true,
-        )
-        assertFalse(decision.passed)
-        assertFalse(decision.verificationDue, "the verification stayed open forever")
+        val axis = skillAxis(twoCleanGroups() + bad("family.c") + bad("family.d"))
+        assertEquals(MasteryAxisState.DEVELOPING_INDEPENDENT, axis, "the verification stayed open, or mastery was held past a failed recheck")
+    }
+
+    @Test
+    fun `replaying the same evidence always gives the same decisions`() {
+        val rows = (twoCleanGroups() + bad("family.c") + row(family = "family.d")).map { objective to it }
+        assertEquals(MasteryEngine.replay(skill, listOf(profile()), rows), MasteryEngine.replay(skill, listOf(profile()), rows))
+        assertEquals(rows.size + 1, MasteryEngine.replay(skill, listOf(profile()), rows).size)
+        assertEquals(MasteryAxisState.NOT_YET_EVIDENCED, MasteryEngine.replay(skill, listOf(profile()), emptyList()).single().axisState)
     }
 
     @Test

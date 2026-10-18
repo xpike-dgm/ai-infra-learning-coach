@@ -334,7 +334,8 @@ check("E12E-04_stale_passes_only_the_day", "tasks = emptyList()" in load_body an
       "a plan from another day passes more than its day")
 check("E12E-04_query_reads_only", not re.search(r"appendTruth|writeProjection|inTransaction", query + explain_query),
       "reading the plan writes")
-latest = body(adapter, "override fun latestPlan(")
+# Narrowed at 16B (`LHRX-v0` / `D-123`): 16B's planVersions reads every version the way the newest is read, so the reading moved into planOf.
+latest = body(adapter, "override fun latestPlan(") + body(adapter, "private fun planOf(")
 check("E12E-04_latest_body_read", len(latest) > 500, "the latestPlan reader returned nothing")
 check("E12E-04_rows_in_position_order",
       '"SELECT id, position, skill_logical_id, skill_version FROM planned_task WHERE plan_version_id = ? ORDER BY position, id"' in latest,

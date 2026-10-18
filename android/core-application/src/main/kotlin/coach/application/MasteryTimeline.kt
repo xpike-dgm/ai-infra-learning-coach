@@ -9,11 +9,10 @@ import coach.model.VersionedRef
 /**
  * The mastery engine's decision after every evidence row of one Skill (13C, shared since 13D).
  *
- * Mastery is path-dependent: a rebuild reads the previous axis, so a contradiction opens verification only
- * after mastery. Retention and weakness both need to know whether the Skill was mastered before and after
- * each row, and both must get the **same** answer — the one a rebuild after that row would have written.
- * This replay mirrors [RebuildMastery] exactly: the previous axis feeds the next decision the same way the
- * stored axis feeds a rebuild.
+ * Retention and weakness both need to know whether the Skill was mastered before and after each row, and both must
+ * get the **same** answer the stored mastery axis has. Since 16B (`D-123`) that answer is [MasteryEngine.replay] —
+ * mastery decided from the evidence itself, in recording order — which [RebuildMastery] writes too, so the timeline
+ * and the stored axis cannot drift apart, and rebuilding twice gives the same answer.
  */
 internal object MasteryTimeline {
 
@@ -25,28 +24,13 @@ internal object MasteryTimeline {
 
     /** [rows] are each Objective's evidence paired with its Objective, in recording order. */
     fun of(skill: VersionedRef, profiles: List<ObjectiveGateProfile>, rows: List<Pair<VersionedRef, EvidenceRow>>): List<Step> {
-        val byObjective = profiles.associateBy { it.ref }
-        var previous: MasteryAxisState? = null
-        return rows.mapIndexed { index, (objective, row) ->
-            val prefix = rows.take(index + 1)
-            val decisions = profiles.map { profile ->
-                MasteryEngine.decide(
-                    profile = profile,
-                    rows = prefix.filter { it.first == profile.ref }.map { it.second },
-                    previouslyMastered = previous in MASTERED,
-                    unresolvedVerification = previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE,
-                )
-            }
-            val decision = MasteryEngine.decideSkill(
-                skill = skill,
-                decisions = decisions,
-                profiles = byObjective,
-                previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT,
-                allRows = prefix.map { it.second },
-            )
-            val before = previous in MASTERED
-            previous = decision.axisState
-            Step(objective, row, before, decision.axisState in MASTERED)
+        val decisions = MasteryEngine.replay(skill, profiles, rows)
+        val sequences = rows.map { it.second.sequence }.distinct().sorted()
+        val afterSequence = sequences.withIndex().associate { (index, sequence) -> sequence to decisions[index + 1] }
+        val beforeSequence = sequences.withIndex().associate { (index, sequence) -> sequence to decisions[index] }
+        return rows.map { (objective, row) ->
+            Step(objective, row, beforeSequence.getValue(row.sequence).axisState in MASTERED,
+                afterSequence.getValue(row.sequence).axisState in MASTERED)
         }
     }
 
