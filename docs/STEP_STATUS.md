@@ -84,8 +84,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **15G — Assessment content** | ✅ | ACNX-v0 / D-120. Yayımlanmış Objective'lere, yayımlanmış hiçbir şeyi değiştirmeden ek paket (v7): 613 item, 240 büyüyen görev v2'si, 21 cross-topic transfer item'ı (ayın slotuna ayrılır), 144 seçenek düzeyinde misconception anahtarı; graph, ders ve etiket eklenmedi, 1–6. paketler bayt bayt aynı. `TRANSFER_OPPORTUNITY` sahibi `TransferEngine` (beyan edilmiş uzantı). Bağımsız inceleme 4 turda 613/613, 144/144. Havuz: 65 Objective'in 54'ü ≥15; 3 teknik Objective 14, 8 İngilizce Objective 10–12 (kullanıcı kararı, eksik kayıtlı). Mutation üretici 22/22, Kotlin 32/32; QA 108/108 PASS. T6 çalıştırılmadı. |
 | **15H — Content QA** | ✅ | CQAX-v0 / D-121. Aşama 15'in içeriği yalnız graph'ının, kontrollerinin ve etiketlerinin taşıdığını söyler; ek paket (v8): 81 item'ın sonraki sürümü (eskisi eklenen bir `retired` kaydıyla emekli, üzerine yazılmadı), 6 yeni item, 138 görev sürümü, 49 kenar (12 hard), 18 ders gereksinimi; sabit çıktı, gösterim, ders kodu, graph, etiket, havuz ve criticality denetimi (`tools/content_qa.py`) her bulguyu çözüyor; `requires_transfer` kapandı (standard Objective'de kapı yok, critical reddedilir). Bağımsız inceleme 4 inceleyici, 87/87 item, 49/49 kenar. Kullanıcı kararları: graph'a ekle, kapat, sonraki sürüm, teknik 15. 142/142 QA PASS. |
 | **16A — Skill analytics** | ✅ | SKAX-v0 / D-122. Bir Skill'in öğrenciye görünen durumu, kendi motorlarının yazdığı dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir ve saklanan satırla ekran aynı tek fonksiyonu kullanır; bir eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill 'yeniden hesaplanıyor'dur, tahmin edilmiş bir durum yoktur; Progress envanter sayar, hiçbir sayımı bölmez. Sekiz durum ve türetmesi `core-model`de tek fonksiyon; her `skill_state` yazıcısı sunumu eksenlerden türetiyor, `AssembleSkillState` ön koşul eksenini yazıyor; Progress sekmesi ve Skill detayı depodan okuyor. Hiçbir şey yapmamış öğrenci: 4 'Henüz Kanıt Yok', 56 'Ön Koşul Bekliyor' — planner'ın beklettikleri. Kullanıcı kararları: Skill projeksiyonu + detay + özet; core + gerçek ekran; eksik eksen 'yeniden hesaplanıyor'. Kotlin mutation 30/30, validator mutation 38/38; 90/90 QA PASS. |
-| **16B — Öğrenme geçmişi** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
-| **16–20** | ⬜ Bekliyor | 16B sonrası canonical sırada. |
+| **16B — Öğrenme geçmişi** | ✅ | LHRX-v0 / D-123. Öğrenme geçmişi kayıt sırasındaki saklı kanıttır ve her satır, motorların o satıra kadarki kanıt üzerinde yeniden oynatılmasıyla söylediği değişikliği 13E'nin sözleriyle taşır; ölçme raporu her oturumun `ASUX-v0` aileleridir, not ya da eğilim değil; hiçbir şey yazılmaz, girdisi olmayan gün çizilmez ve aynı kanıttan mastery her zaman aynı sonucu verir. Mastery düzeltmesi (`GRE-v0` §16.2, kullanıcı kararı 2026-10-18): 12A'nın yeniden kurması açık bir doğrulamada onu açan çelişkiyi 'başarısız yeniden kontrol' sayıyordu, bu yüzden aynı kanıtın ikinci kurulumu da geçilen taze bir yeniden kontrol de mastery'yi düşürüyordu; artık yalnız açılıştan sonraki temiz kanıt yeniden kontroldür, olumluysa mastery korunur ve mastery kanıttan, kayıt sırasıyla (`MasteryEngine.replay`) belirlenir. Yeni tablo yok; tutor/öğrenci metni saklanmaz. Kullanıcı kararları: kanıttan yeniden oynat; geçmiş + rapor; metin yok; core + ekran; motor düzeltmesi 16B içinde. Kotlin mutation 24/24, validator mutation 38/38; 95/95 QA PASS. |
+| **16C — Progress / weakness gösterim kuralları** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
+| **16–20** | ⬜ Bekliyor | 16C sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -104,7 +105,21 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 16A
+## Son tamamlanan numaralı adım — 16B
+
+**Final:** `LHRX-v0 — learning history and longitudinal assessment report, replayed from evidence` / D-123.
+**Ana çıktı:** `docs/LEARNING_HISTORY_SPEC.md` + `arch/16b_learning_history/` + `tools/validate_learning_history.py` + `android/`.
+
+16B sonucu:
+- öğrenme geçmişi kayıt sırasındaki saklı kanıttır ve her satır, motorların o satıra kadarki kanıt üzerinde yeniden oynatılmasıyla söylediği değişikliği 13E'nin sözleriyle taşır; ölçme raporu her oturumun `ASUX-v0` aileleridir, not ya da eğilim değil; hiçbir şey yazılmaz, girdisi olmayan gün çizilmez ve aynı kanıttan mastery her zaman aynı sonucu verir,
+- onay kullanıcının 2026-10-17 açık onayı ("merge et devam et"); kullanıcı kararları: "ne değişti" kanıttan yeniden oynatılır (yeni tablo yok); geçmiş + `assessment_report`; tutor/öğrenci metni saklanmaz, yalnız yardım seviyeleri; core + gerçek ekran; 2026-10-18: mastery yeniden kontrol hatası 16B içinde düzeltilir,
+- **bulgu:** oturum raporu hiç saklanmıyordu; aynı kanıtın iki yeniden hesaplaması farklı sonuç veriyordu ve geçilen bir yeniden kontrol mastery'yi düşürüyordu (12A'nın hatayı sabitleyen testinde taze yeniden kontrol yoktu),
+- Mastery düzeltmesi (`GRE-v0` §16.2, kullanıcı kararı 2026-10-18): 12A'nın yeniden kurması açık bir doğrulamada onu açan çelişkiyi 'başarısız yeniden kontrol' sayıyordu, bu yüzden aynı kanıtın ikinci kurulumu da geçilen taze bir yeniden kontrol de mastery'yi düşürüyordu; artık yalnız açılıştan sonraki temiz kanıt yeniden kontroldür, olumluysa mastery korunur ve mastery kanıttan, kayıt sırasıyla (`MasteryEngine.replay`) belirlenir,
+- beş önceki validator "Narrowed at 16B" ile daraltıldı (12A, 13C, 13D, 12D, 12E); şema ve modül sınırları değişmedi, iki varsayılanlı port inceltmesi,
+- Mutation Kotlin 24/24, validator 38/38; independent validator **95/95 PASS**,
+- **T6 çalıştırılmadı; ekranlar cihazda görülmedi**.
+
+## Önceki numaralı adım — 16A
 
 **Final:** `SKAX-v0 — Skill state projection, skill_detail and progress_overview` / D-122.
 **Ana çıktı:** `docs/SKILL_ANALYTICS_SPEC.md` + `arch/16a_skill_analytics/` + `tools/validate_skill_analytics.py` + `android/`.
@@ -490,6 +505,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 16B Öğrenme geçmişi
+## Aktif adım — 16C Progress / weakness gösterim kuralları
 
-**16B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H ve 16A her biri ayrı açık onayla yürütüldü). 16A'nın açık loop'ları (düzeltme bayatlığı ve `assessment_opportunity` 16D, ters invalidation 18E, Topic/zayıflık/İngilizce 16C, geçmiş ve `assessment_report` 16B) `vault/agent/OPEN_LOOPS.md`de.
+**16C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A ve 16B her biri ayrı açık onayla yürütüldü). Girdiler: Topic durum makinesi (`TSM-v0`), zayıflık/misconception görünümü, Technical English profili (`TEPM-v0`), 16A'nın ertelediği `remediation_context` ve `integration_or_english_context`.

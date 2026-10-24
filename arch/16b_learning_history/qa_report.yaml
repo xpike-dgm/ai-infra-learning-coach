@@ -1,0 +1,366 @@
+model: LHRX-v0
+stage_step: 16B
+decision: D-123
+result: PASS
+checks_total: 95
+checks_passed: 95
+checks_failed: 0
+checks:
+- check: A16B-00_exists_learning_history.yaml
+  result: PASS
+  details: missing arch\16b_learning_history\learning_history.yaml
+- check: A16B-00_exists_LEARNING_HISTORY_SPEC.md
+  result: PASS
+  details: missing docs\LEARNING_HISTORY_SPEC.md
+- check: A16B-00_exists_16b_learning_history_research.md
+  result: PASS
+  details: missing research\16b_learning_history_research.md
+- check: A16B-00_exists_progress.yaml
+  result: PASS
+  details: missing ux\8e_progress_skill_weakness\progress.yaml
+- check: A16B-00_exists_MASTERY_FORMULA_V0.md
+  result: PASS
+  details: missing docs\MASTERY_FORMULA_V0.md
+- check: A16B-00_exists_MasteryEngine.kt
+  result: PASS
+  details: missing android\core-engines\src\main\kotlin\coach\engines\MasteryEngine.kt
+- check: A16B-00_exists_RebuildMastery.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\RebuildMastery.kt
+- check: A16B-00_exists_MasteryTimeline.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\MasteryTimeline.kt
+- check: A16B-00_exists_LearningHistory.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\LearningHistory.kt
+- check: A16B-00_exists_HistoryFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\HistoryFacts.kt
+- check: A16B-00_exists_EvidenceFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\EvidenceFacts.kt
+- check: A16B-00_exists_Ports.kt
+  result: PASS
+  details: missing android\core-ports\src\main\kotlin\coach\ports\Ports.kt
+- check: A16B-00_exists_SqlitePersistence.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\SqlitePersistence.kt
+- check: A16B-00_exists_Schema.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\Schema.kt
+- check: A16B-00_exists_HistoryPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\HistoryPresentation.kt
+- check: A16B-00_exists_AssessmentSession.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\AssessmentSession.kt
+- check: A16B-00_exists_ProgramChangeFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\ProgramChangeFacts.kt
+- check: A16B-00_exists_HistoryScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\HistoryScreen.kt
+- check: A16B-00_exists_MainActivity.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
+- check: A16B-00_exists_CoachApplication.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
+- check: A16B-00_exists_MasteryEngineTest.kt
+  result: PASS
+  details: missing android\core-engines\src\test\kotlin\coach\engines\MasteryEngineTest.kt
+- check: A16B-00_exists_LearningHistoryTest.kt
+  result: PASS
+  details: missing android\core-application\src\test\kotlin\coach\application\LearningHistoryTest.kt
+- check: A16B-00_exists_HistoryPresentationTest.kt
+  result: PASS
+  details: missing android\core-presentation\src\test\kotlin\coach\presentation\HistoryPresentationTest.kt
+- check: A16B-00_exists_HistoryStorageTest.kt
+  result: PASS
+  details: missing android\data-persistence\src\test\kotlin\coach\persistence\HistoryStorageTest.kt
+- check: A16B-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: A16B-01_model
+  result: PASS
+  details: ''
+- check: A16B-01_user_decisions
+  result: PASS
+  details: '{''approval'': ''explicit_user_approval_2026-10-17'', ''what_changed_source'':
+    ''replay_engines_over_stored_evidence_no_new_table'', ''scope'': ''learning_history_and_longitudinal_assessment_report'',
+    ''stored_text'': ''no_tutor_or_learner_text_assistance_levels_only_working_session_unstored'',
+    ''delivery'': ''core_and_real_compose_screen'', ''engine_fix'': ''fix_mastery_recheck_inside_16b_declared_2026-10-18''}'
+- check: A16B-01_scope
+  result: PASS
+  details: '{''schema_changed'': False, ''migration_added'': False, ''new_truth_table'':
+    False, ''ports_changed'': ''refinements_only'', ''boundaries_changed'': False,
+    ''mastery_rule_changed'': ''corrected_to_gre_v0_16_2'', ''retention_rule_changed'':
+    False, ''weakness_rule_changed'': False, ''planner_rule_changed'': False, ''conversation_text_stored'':
+    False, ''working_session_stored'': False, ''screen_drawn'': True}'
+- check: A16B-02_gre_says_positive_recheck_keeps
+  result: PASS
+  details: ''
+- check: A16B-02_state_carried
+  result: PASS
+  details: ''
+- check: A16B-02_no_open_flag_left
+  result: PASS
+  details: the boolean that could not tell a fresh recheck is back
+- check: A16B-02_only_later_rows_are_a_recheck
+  result: PASS
+  details: ''
+- check: A16B-02_no_fresh_check_holds
+  result: PASS
+  details: ''
+- check: A16B-02_failed_recheck_resolves
+  result: PASS
+  details: ''
+- check: A16B-02_positive_recheck_keeps
+  result: PASS
+  details: ''
+- check: A16B-02_forgiven_leave_the_window
+  result: PASS
+  details: ''
+- check: A16B-02_opening_row_handled
+  result: PASS
+  details: ''
+- check: A16B-02_only_eligible_rows
+  result: PASS
+  details: assisted or provisional work could act as a recheck
+- check: A16B-03_replay_from_evidence
+  result: PASS
+  details: ''
+- check: A16B-03_rebuild_uses_replay
+  result: PASS
+  details: ''
+- check: A16B-03_timeline_uses_replay
+  result: PASS
+  details: ''
+- check: A16B-04_families_are_spwx
+  result: PASS
+  details: '[''assessment'', ''remediation'', ''review'', ''learning'']'
+- check: A16B-04_family_precedence
+  result: PASS
+  details: ''
+- check: A16B-05_replay_writes_nothing
+  result: PASS
+  details: ''
+- check: A16B-05_replay_cuts_evidence
+  result: PASS
+  details: ''
+- check: A16B-05_replay_same_rebuilds
+  result: PASS
+  details: ''
+- check: A16B-05_known_start_and_own_day
+  result: PASS
+  details: ''
+- check: A16B-05_changes_are_13e
+  result: PASS
+  details: ''
+- check: A16B-05_query_only_reads
+  result: PASS
+  details: ''
+- check: A16B-06_session_changes_its_own
+  result: PASS
+  details: ''
+- check: A16B-06_plan_found_or_not_claimed
+  result: PASS
+  details: ''
+- check: A16B-06_not_measured
+  result: PASS
+  details: ''
+- check: A16B-06_slot_answered_by_session_evidence
+  result: PASS
+  details: ''
+- check: A16B-07_port_refinements_defaulted
+  result: PASS
+  details: ''
+- check: A16B-07_port_count_unchanged
+  result: PASS
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'',
+    ''TutorPort'']'
+- check: A16B-07_assistance_levels_read
+  result: PASS
+  details: ''
+- check: A16B-07_all_versions_in_order
+  result: PASS
+  details: ''
+- check: A16B-07_no_new_table
+  result: PASS
+  details: ''
+- check: A16B-07_no_text_on_evidence
+  result: PASS
+  details: ''
+- check: A16B-08_changes_in_13e_words
+  result: PASS
+  details: ''
+- check: A16B-08_report_families_are_asux
+  result: PASS
+  details: ''
+- check: A16B-08_change_families_are_asux
+  result: PASS
+  details: ''
+- check: A16B-08_reasons_are_asux
+  result: PASS
+  details: ''
+- check: A16B-08_unfound_plan_not_claimed
+  result: PASS
+  details: ''
+- check: A16B-08_days_only_with_entries
+  result: PASS
+  details: a day without an entry could be drawn
+- check: A16B-08_no_score_or_blame
+  result: PASS
+  details: '[]'
+- check: A16B-08_no_aggregate_field
+  result: PASS
+  details: ''
+- check: A16B-09_screen_decides_nothing
+  result: PASS
+  details: ''
+- check: A16B-09_wired_on_accepted_edges
+  result: PASS
+  details: ''
+- check: A16B-10_test_the_row_that_opened_a_verification_is_ne
+  result: PASS
+  details: 'MasteryEngineTest.kt: the row that opened a verification is never its
+    own recheck, however often it is decided'
+- check: A16B-10_test_a_clean_positive_recheck_closes_the_veri
+  result: PASS
+  details: 'MasteryEngineTest.kt: a clean positive recheck closes the verification
+    and keeps mastery'
+- check: A16B-10_test_a_failed_recheck_resolves_the_verificati
+  result: PASS
+  details: 'MasteryEngineTest.kt: a failed recheck resolves the verification and lets
+    the gates decide again'
+- check: A16B-10_test_replaying_the_same_evidence_always_gives
+  result: PASS
+  details: 'MasteryEngineTest.kt: replaying the same evidence always gives the same
+    decisions'
+- check: A16B-10_test_recomputing_again_changes_nothing_and_a
+  result: PASS
+  details: 'LearningHistoryTest.kt: recomputing again changes nothing, and a passed
+    recheck keeps mastery (D-123)'
+- check: A16B-10_test_replaying_writes_nothing_and_ends_where
+  result: PASS
+  details: 'LearningHistoryTest.kt: replaying writes nothing and ends where the live
+    recompute ended'
+- check: A16B-10_test_a_session_s_report_says_what_its_own_pro
+  result: PASS
+  details: 'LearningHistoryTest.kt: a session''s report says what its own program
+    change report said, plan changes included'
+- check: A16B-10_test_without_a_plan_written_for_the_session
+  result: PASS
+  details: 'LearningHistoryTest.kt: without a plan written for the session, no plan
+    change is claimed'
+- check: A16B-10_test_days_appear_only_when_something_happened
+  result: PASS
+  details: 'HistoryPresentationTest.kt: days appear only when something happened,
+    newest first, and nothing marks a gap'
+- check: A16B-10_test_nothing_changed_is_said_plainly_and_an
+  result: PASS
+  details: 'HistoryPresentationTest.kt: nothing changed is said plainly, and an unfound
+    plan is not claimed unchanged'
+- check: A16B-10_test_an_evidence_row_carries_its_attempt_and
+  result: PASS
+  details: 'HistoryStorageTest.kt: an evidence row carries its attempt and the distinct
+    assistance levels recorded on it, in order'
+- check: A16B-10_test_with_all_eight_packages_a_learner_who_h
+  result: PASS
+  details: 'ShippedCourseTest.kt: with all eight packages, a learner who has done
+    nothing has no history, and recorded work is replayed as the engines decided'
+- check: A16B-11_narrowed_validate_mastery_engine
+  result: PASS
+  details: tools/validate_mastery_engine.py
+- check: A16B-11_narrowed_validate_retention
+  result: PASS
+  details: tools/validate_retention.py
+- check: A16B-11_narrowed_validate_remediation
+  result: PASS
+  details: tools/validate_remediation.py
+- check: A16B-11_narrowed_validate_replan
+  result: PASS
+  details: tools/validate_replan.py
+- check: A16B-11_narrowed_validate_reason_codes
+  result: PASS
+  details: tools/validate_reason_codes.py
+- check: A16B-12_kotlin_mutation_all_detected
+  result: PASS
+  details: 24/24
+- check: A16B-12_kotlin_crash_not_detection
+  result: PASS
+  details: ''
+- check: A16B-12_validator_mutation
+  result: PASS
+  details: '{''tool'': ''tools/validate_learning_history.py'', ''total'': 38, ''detected'':
+    38, ''scope'': ''one change per mutant to an input the validator reads — the contract,
+    the corrected hysteresis and the replay, RebuildMastery, the history replay and
+    query, the SQLite read, a port, the schema, the projection and its copy, the screen,
+    the wiring, a test name, a narrowed earlier validator, the spec, the research
+    and DECISIONS'', ''detection'': ''a FAIL line not in the baseline; a run that
+    prints no result line is a crash and never a detection'', ''crash_is_not_a_detection'':
+    True, ''baseline'': ''the only check allowed to fail at baseline is A16B-12_validator_mutation,
+    which reads this very result'', ''negative_control'': ''a YAML comment in the
+    contract naming forbidden fragments (banana, survived, streak, 100%)'', ''negative_control_result'':
+    ''survived_as_expected'', ''earlier_runs'': "the first run left V08 and V31 alive.
+    V08 (the boolean flag back) exposed a validator bug — a shell heredoc had written
+    the regex''s word boundaries as backspace characters, so the check could never
+    match — fixed; V31 was a badly made mutant (it put the grid in a comment, which
+    the check rightly ignores) and now draws a real progress indicator; both detected,
+    and the whole set was run again", ''final_run_is_a_single_clean_run'': True, ''mutants'':
+    [{''id'': ''V01'', ''mutant'': ''contract_model'', ''result'': ''detected''},
+    {''id'': ''V02'', ''mutant'': ''contract_table_chosen'', ''result'': ''detected''},
+    {''id'': ''V03'', ''mutant'': ''contract_text_stored'', ''result'': ''detected''},
+    {''id'': ''V04'', ''mutant'': ''contract_device_claimed'', ''result'': ''detected''},
+    {''id'': ''V05'', ''mutant'': ''contract_mutant_survived'', ''result'': ''detected''},
+    {''id'': ''V06'', ''mutant'': ''contract_run_failed'', ''result'': ''detected''},
+    {''id'': ''V07'', ''mutant'': ''contract_families_reordered'', ''result'': ''detected''},
+    {''id'': ''V08'', ''mutant'': ''boolean_flag_back'', ''result'': ''detected''},
+    {''id'': ''V09'', ''mutant'': ''opening_row_is_a_recheck'', ''result'': ''detected''},
+    {''id'': ''V10'', ''mutant'': ''no_fresh_check_drops'', ''result'': ''detected''},
+    {''id'': ''V11'', ''mutant'': ''positive_recheck_drops'', ''result'': ''detected''},
+    {''id'': ''V12'', ''mutant'': ''forgiven_kept'', ''result'': ''detected''}, {''id'':
+    ''V13'', ''mutant'': ''replay_forgets_state'', ''result'': ''detected''}, {''id'':
+    ''V14'', ''mutant'': ''rebuild_reads_stored_axis'', ''result'': ''detected''},
+    {''id'': ''V15'', ''mutant'': ''replay_writes_the_store'', ''result'': ''detected''},
+    {''id'': ''V16'', ''mutant'': ''replay_ignores_cutoff'', ''result'': ''detected''},
+    {''id'': ''V17'', ''mutant'': ''unknown_start'', ''result'': ''detected''}, {''id'':
+    ''V18'', ''mutant'': ''changes_not_13e'', ''result'': ''detected''}, {''id'':
+    ''V19'', ''mutant'': ''query_writes'', ''result'': ''detected''}, {''id'': ''V20'',
+    ''mutant'': ''net_session_diff'', ''result'': ''detected''}, {''id'': ''V21'',
+    ''mutant'': ''plan_claimed_without_replan'', ''result'': ''detected''}, {''id'':
+    ''V22'', ''mutant'': ''independent_not_measured'', ''result'': ''detected''},
+    {''id'': ''V23'', ''mutant'': ''assistance_not_distinct'', ''result'': ''detected''},
+    {''id'': ''V24'', ''mutant'': ''port_default_dropped'', ''result'': ''detected''},
+    {''id'': ''V25'', ''mutant'': ''conversation_column'', ''result'': ''detected''},
+    {''id'': ''V26'', ''mutant'': ''changes_in_own_words'', ''result'': ''detected''},
+    {''id'': ''V27'', ''mutant'': ''unfound_plan_claimed'', ''result'': ''detected''},
+    {''id'': ''V28'', ''mutant'': ''days_from_a_calendar'', ''result'': ''detected''},
+    {''id'': ''V29'', ''mutant'': ''streak_in_copy'', ''result'': ''detected''}, {''id'':
+    ''V30'', ''mutant'': ''score_field'', ''result'': ''detected''}, {''id'': ''V31'',
+    ''mutant'': ''screen_draws_a_grid'', ''result'': ''detected''}, {''id'': ''V32'',
+    ''mutant'': ''edge_unchecked'', ''result'': ''detected''}, {''id'': ''V33'', ''mutant'':
+    ''test_renamed'', ''result'': ''detected''}, {''id'': ''V34'', ''mutant'': ''narrowing_undeclared'',
+    ''result'': ''detected''}, {''id'': ''V35'', ''mutant'': ''spec_not_accepted'',
+    ''result'': ''detected''}, {''id'': ''V36'', ''mutant'': ''spec_wrong_next'',
+    ''result'': ''detected''}, {''id'': ''V37'', ''mutant'': ''research_source_dropped'',
+    ''result'': ''detected''}, {''id'': ''V38'', ''mutant'': ''decision_missing'',
+    ''result'': ''detected''}]}'
+- check: A16B-12_runs_pass
+  result: PASS
+  details: ''
+- check: A16B-12_device_not_claimed
+  result: PASS
+  details: ''
+- check: A16B-13_spec_status
+  result: PASS
+  details: no result placeholder is left
+- check: A16B-13_spec_next
+  result: PASS
+  details: ''
+- check: A16B-13_research
+  result: PASS
+  details: ''
+- check: A16B-13_decision
+  result: PASS
+  details: D-123 heading in DECISIONS

@@ -72,7 +72,11 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 15G Assessment content: ACNX-v0 / D-120 ile tamamlandı; yedinci paket ek paket — 613 item, 240 büyüyen görev v2'si, 21 transfer item'ı (ayın slotuna ayrılır), 144 seçenek düzeyinde misconception anahtarı; bağımsız inceleme dört turda 613/613.
 - [x] 15H Content QA: CQAX-v0 / D-121 ile tamamlandı; sekizinci paket ek paket — 81 item'ın sonraki sürümü (eskisi `retired` kaydıyla emekli), 6 yeni item, 138 görev sürümü, 49 kenar (12 hard), 18 ders gereksinimi; denetim `tools/content_qa.py`; bağımsız inceleme 87/87, 49/49. **AŞAMA 15 kapandı.**
 - [x] 16A Skill analytics: SKAX-v0 / D-122 ile tamamlandı; sekiz durumun tek türetmesi `core-model`de, `AssembleSkillState`, `ProgressQuery`, Progress sekmesi ve Skill detayı; eksik eksen 'yeniden hesaplanıyor'.
-- [ ] 16B Öğrenme geçmişi **AKTİF** — kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
+- [x] 16B Öğrenme geçmişi: LHRX-v0 / D-123 ile tamamlandı; geçmiş ve rapor kanıttan yeniden oynatılıyor, mastery yeniden kontrolü düzeltildi.
+- [ ] 16C Progress / weakness gösterim kuralları **AKTİF** — kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
+- [ ] Geçmişin tekrar oynatma maliyeti (Skill'in satırlarında karesel; içteki mastery oynatması da) cihazda ölçülecek → 18E.
+- [ ] Mastery öncesi pencerede kalan bir çelişki, sonraki bir doğrulamayı açanlar arasında sayılabiliyor → 18C.
+- [ ] Haftalık slotlar yalnız oturumun kimliğini taşıyan kanıtla yanıtlanmış sayılıyor; slotları sunan uygulama yolu kimliği geçmeli → 16D.
 - [ ] Satırdan sonra eklenen bir düzeltme (`evidence_disposition`) yeni kanıt gibi görünmüyor, yani Progress bunu bayatlık saymıyor; düzeltmeyi uygulamadan kaydeden yol yeniden hesaplamalı → 16D.
 - [ ] Dikkat setinin `assessment_opportunity` grubunun üreticisi yok (uygulama bir Skill için oturum kurmuyor) → 16D.
 - [ ] `skill_detail → planner_explanation` kabul edilmiş bir IA kenarı değil; Objective'lerin depoda açıklama metni yok (etiket id'nin eylemi) → 17.
@@ -128,7 +132,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] Tutor adaptörünün gerçek çağrı noktası, router ve model kimliklerinin güncel kaynakla doğrulanması: 14G'de yapıldı (D-111; kaynak 2026-10-02, build'e kayıtlı).
 - [ ] Yazılmış ipucu basamakları ve her görevin instruction mode'u: AŞAMA 15 yazmadı (paketlerde alan yok) → 20I.
 - [ ] Tutor panelini çizmek; `AskTutor` ve `AttemptSubmission.independence`'ı uygulamanın kanıt yolundan çağırmak → 16D.
-- [ ] Tutor konuşmalarının öğrenme geçmişi olarak saklanması → 16B.
+- [x] Tutor konuşmalarının öğrenme geçmişi olarak saklanması → 16B'de kapandı (D-123, kullanıcı kararı): metin saklanmaz; geçmiş kaydedilmiş yardım seviyelerini gösterir.
 - [ ] Tutor yanıtlarının beyan ettikleri seviyeye karşı kalibrasyonu → 18D.
 - [ ] Topic `available → mastered` geçişi Objective waiver'larından → 16C.
 - [ ] Hızlı yol girişini (Learn) sunmak, istek/geri çekme/sonucu ve oturum sonrası yeniden hesaplamayı uygulamadan çağırmak → 16D; giriş yerleşimi tanısal kaynağı → 16D.
@@ -136,7 +140,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Waiver'ı curriculum sürümleri arasında taşımak (`KGC-v0` §26 göç kayıtları) → 19B. Objective'lerini beyan eden authored dersler ve tanı item'ları AŞAMA 15'te yazıldı.
 - [ ] Waiver replay maliyeti (bir Objective'in satırlarında karesel, yalnız yeniden kurmada) → 18E.
 - [ ] Raporu ve yeniden hesaplamayı gerçek oturumdan sonra uygulamadan çağırmak, `stateChangeRefs`'i doldurmak → 16D.
-- [ ] Kalıcı `assessment_report` ve boylamsal geçmiş → 16B (16A sözleşmesi; `SPWX-v0` §§12–13 birlikte, önceki satırın 16C'si 16B ile çelişiyordu).
+- [x] Kalıcı `assessment_report` ve boylamsal geçmiş → 16B'de kapandı (D-123): saklı kanıttan yeniden oynatılan oturum aileleri.
 - [x] Curriculum paketinde transfer/artifact kapı alanları → 15H'de kapandı (D-121): standard Objective'de kapı yok; critical bir Objective yayımlanmadan önce alanlar saklanmalı (üretici reddeder).
 - [ ] Topic durum makinesi (`TSM-v0` altı durum, `RVR-v0` §15 `weakening` dahil) → **16C** (kullanıcı kararı, D-102).
 - [ ] 11C yüksek riskli duraklatma boşluk politikası → **18D** (kullanıcı kararı, D-102); o zamana kadar devam ettirilmez.
@@ -181,13 +185,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Objective gate profilleri: AŞAMA 15'in 65 Objective'i `GRE-v0` varsayılanında (hepsi standard) → 18C kalibre eder.
 - [ ] Testlet grup rubric'i (`q_g`) → 14; şimdilik grup satırlarının ortalaması stand-in.
 - [ ] Gün özetine bildirilecek gerçek değişiklikler: 12A karar veriyor, recompute zinciri 13E'de; gün özetine bağlayan uygulama yolu → 16D.
-- [ ] Günler arası kalıcı öğrenme geçmişi ve `assessment_report` → 16B.
+- [x] Günler arası kalıcı öğrenme geçmişi ve `assessment_report` → 16B'de kapandı (D-123).
 - [x] Haftalık blueprint kompozisyonu (`WBA-v0`) 13A'da; aylık (`MCA-v0`) 13B'de.
 - [ ] 4096 karakterden büyük artifact gövdeleri için gerçek blob store → 14/15.
 - [ ] `assessment_resource_version` değer kümeleri şemada CHECK değil; tek yazma yolunda core'da doğrulanıyor → şema sıkılaştırması LDBX sahipliğinde, 12/13.
 - [ ] Resume'da içerik uyumu, prerequisite ve açık ihtiyacı doğrulayan olgular; `resume_context_ref` ve `continue_learning` yeniden girişi → 12.
 - [ ] High-stakes pause için gap politikası (uydurulmadı; bugün hiçbir high-stakes devam bağımsız sayılmaz) → 13, kalibrasyon 18D.
-- [ ] Kalıcı oturum/öğrenme geçmişi; working session bugün saklanmıyor → 16B.
+- [x] Kalıcı oturum/öğrenme geçmişi → 16B'de kapandı (D-123): geçmiş kanıttan kurulur; çalışma oturumu `TRUX-v0`'daki gibi saklanmaz (kullanıcı kararı).
 - [ ] `plan_exhausted` ve `capacity_reached` oturum sebeplerinin üreticisi (planner'ın yeniden hesaplanan seçimi ve kapasite hükmü) → 12.
 - [ ] Attempt üzerinde `planned_task_ref` ve `runner_completion_state` saklanmıyor (DDM adlandırmıyor) → 12.
 - [x] Artifact gövdesi depolaması: 11D'de kısa yanıt için `data:` URI; büyüğü reddediliyor (blob store 14/15).

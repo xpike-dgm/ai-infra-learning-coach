@@ -80,6 +80,13 @@ data class EvidenceRow(
     val assessmentSessionId: Long? = null,
     /** The catalog misconception labels recorded on this row (14B), each with where it came from. */
     val misconceptionTags: List<MisconceptionTag> = emptyList(),
+    /** The attempt that produced the row (16B), so a history can group an attempt's rows; `null` if none was recorded. */
+    val attemptId: Long? = null,
+    /**
+     * The assistance levels recorded on that attempt (16B), as the learner asked for them — what was shown, never
+     * the conversation (user decision: no tutor or learner text is stored).
+     */
+    val assistanceLevels: List<AssistanceLevel> = emptyList(),
 ) {
     init {
         require(quality == null || quality in 0.0..1.0) { "a group result is in [0,1], not a score out of anything" }

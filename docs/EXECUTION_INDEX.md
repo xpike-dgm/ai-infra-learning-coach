@@ -212,8 +212,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # AŞAMA 16 — İlerleme, Analitik, Ayarlar ve Günlük Kullanım Araçları
 - [x] **16A — Skill analytics** — `SKAX-v0 / D-122`
-- [ ] **16B — Öğrenme geçmişi** **AKTİF**
-- [ ] **16C — Progress / weakness gösterim kuralları**
+- [x] **16B — Öğrenme geçmişi** — `LHRX-v0 / D-123`
+- [ ] **16C — Progress / weakness gösterim kuralları** **AKTİF**
 - [ ] **16D — Ayarlar**
 - [ ] **16E — Bildirimler**
 
@@ -263,9 +263,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A`  
-**Son tamamlanan:** **`16A — SKAX-v0 / D-122`**  
-**Aktif:** **`16B — Öğrenme geçmişi`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16B`  
+**Son tamamlanan:** **`16B — LHRX-v0 / D-123`**  
+**Aktif:** **`16C — Progress / weakness gösterim kuralları`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -331,4 +331,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 16A `SKAX-v0` ile Progress sekmesi depodan okuyor ve **AŞAMA 16 başladı**: bir Skill'in öğrenciye görünen durumu, kendi motorlarının yazdığı dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir ve saklanan satırla ekran aynı tek fonksiyonu kullanır; bir eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill 'yeniden hesaplanıyor'dur, tahmin edilmiş bir durum yoktur; Progress envanter sayar, hiçbir sayımı bölmez. Sekiz durumun türetmesi `core-model`de tek fonksiyon; her `skill_state` yazıcısı sunumu eksenlerden türetiyor ve satır `RecomputeSkillState`'in sonunda ön koşul ekseniyle birleştiriliyor; okuma kapıyı yeniden soruyor. Hiçbir şey yapmamış öğrencide 56 bekleyen Skill planner'ın beklettikleriyle aynı. T6 çalıştırılmadı.
 
-16B başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+16B `LHRX-v0` ile öğrenme geçmişi ve ölçme raporu kodda: öğrenme geçmişi kayıt sırasındaki saklı kanıttır ve her satır, motorların o satıra kadarki kanıt üzerinde yeniden oynatılmasıyla söylediği değişikliği 13E'nin sözleriyle taşır; ölçme raporu her oturumun `ASUX-v0` aileleridir, not ya da eğilim değil; hiçbir şey yazılmaz, girdisi olmayan gün çizilmez ve aynı kanıttan mastery her zaman aynı sonucu verir. Mastery düzeltmesi (`GRE-v0` §16.2, kullanıcı kararı 2026-10-18): 12A'nın yeniden kurması açık bir doğrulamada onu açan çelişkiyi 'başarısız yeniden kontrol' sayıyordu, bu yüzden aynı kanıtın ikinci kurulumu da geçilen taze bir yeniden kontrol de mastery'yi düşürüyordu; artık yalnız açılıştan sonraki temiz kanıt yeniden kontroldür, olumluysa mastery korunur ve mastery kanıttan, kayıt sırasıyla (`MasteryEngine.replay`) belirlenir. T6 çalıştırılmadı.
+
+16C başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

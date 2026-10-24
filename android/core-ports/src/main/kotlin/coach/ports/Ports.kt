@@ -153,6 +153,13 @@ interface PersistencePort {
     fun latestPlan(): StoredPlan?
 
     /**
+     * Every plan version, oldest first (16B). A history's plan changes are the difference between two recorded
+     * versions, and the version a session's recompute wrote is found by its own trace's watermark. A refinement of
+     * this port, not a new one; an adapter that keeps only the newest plan answers with that one.
+     */
+    fun planVersions(): List<StoredPlan> = listOfNotNull(latestPlan())
+
+    /**
      * Every stored pause, oldest first, as the rows were written (12D). Decoding the context is core's
      * job; a row whose text does not decode is not a pause anyone can resume.
      */
@@ -172,6 +179,13 @@ interface PersistencePort {
      * the session history into core.
      */
     fun latestAssessmentSessionIn(scope: AssessmentScope, format: String): StoredTruth?
+
+    /**
+     * Every assessment session row, oldest first, as written (16B). The longitudinal `assessment_report` reads across
+     * sessions; decoding a blueprint stays core's. A refinement of this port; an adapter that keeps only the newest
+     * session of each scope answers with those.
+     */
+    fun assessmentSessions(): List<StoredTruth> = AssessmentScope.entries.mapNotNull { latestAssessmentSession(it) }
 
     /**
      * Every exposure the learner has had to these item versions or variant families (13A). A weekly slot

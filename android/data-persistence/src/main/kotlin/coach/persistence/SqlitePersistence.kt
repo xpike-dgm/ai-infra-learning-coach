@@ -8,6 +8,7 @@ import androidx.sqlite.execSQL
 import coach.model.AssessmentScope
 import coach.model.CurriculumPackage
 import coach.model.DifficultyClass
+import coach.model.AssistanceLevel
 import coach.model.EvaluatorStatus
 import coach.model.EvidenceDispositions
 import coach.model.EvidenceOutcome
@@ -335,7 +336,10 @@ class SqlitePersistence private constructor(
                              AND ((e.resource_logical_id IS NOT NULL AND x.resource_logical_id = e.resource_logical_id)
                                   OR (e.variant_family_id IS NOT NULL AND x.variant_family_id = e.variant_family_id))
                              AND x.sequence < coalesce((SELECT a.sequence FROM attempt a WHERE a.id = e.source_attempt_id), e.sequence)),
-                   e.misconception_tags
+                   e.misconception_tags,
+                   e.source_attempt_id,
+                   (SELECT group_concat(level) FROM (SELECT DISTINCT s.level FROM assistance_event s
+                    WHERE s.attempt_id = e.source_attempt_id ORDER BY s.level))
             FROM evidence_event e
             JOIN evidence_event_objective o ON o.evidence_event_id = e.id
             WHERE o.objective_logical_id = ? AND o.objective_version = ?
@@ -375,6 +379,11 @@ class SqlitePersistence private constructor(
                     // The catalog labels the row carries (14B). Only core writes this column, in its own strict format;
                     // text that does not decode names nothing rather than something guessed.
                     misconceptionTags = MisconceptionTags.decode(if (statement.isNull(20)) null else statement.getText(20)).orEmpty(),
+                    // 16B: the attempt and the assistance levels recorded on it, for the history. Levels are read by
+                    // their stored id; a value the vocabulary does not know is not guessed at.
+                    attemptId = if (statement.isNull(21)) null else statement.getLong(21),
+                    assistanceLevels = if (statement.isNull(22)) emptyList()
+                    else statement.getText(22).split(",").mapNotNull { id -> AssistanceLevel.entries.firstOrNull { it.id == id } },
                 )
                 // The row is never edited; its newest disposition is how every engine reads it (13D).
                 rows += EvidenceDispositions.effective(
@@ -406,6 +415,14 @@ class SqlitePersistence private constructor(
     override fun latestPlan(): StoredPlan? {
         val id = query("SELECT id FROM plan_version ORDER BY sequence DESC LIMIT 1") { it.getLong(0) }.singleOrNull()
             ?: return null
+        return planOf(id)
+    }
+
+    // 16B: every version, oldest first, read exactly as the newest one is.
+    override fun planVersions(): List<StoredPlan> =
+        query("SELECT id FROM plan_version ORDER BY sequence") { it.getLong(0) }.mapNotNull(::planOf)
+
+    private fun planOf(id: Long): StoredPlan? {
         val row = readTruth("plan_version", id) ?: return null
         val tasks = connection.prepare("SELECT COUNT(*) FROM planned_task WHERE plan_version_id = ?").use { statement ->
             statement.bindLong(1, id)
@@ -449,6 +466,11 @@ class SqlitePersistence private constructor(
         } ?: return null
         return readTruth("assessment_session", id)?.let { StoredTruth(id, it) }
     }
+
+    // 16B: every session, oldest first, as written; the longitudinal report reads across them.
+    override fun assessmentSessions(): List<StoredTruth> =
+        query("SELECT id FROM assessment_session ORDER BY sequence") { it.getLong(0) }
+            .mapNotNull { id -> readTruth("assessment_session", id)?.let { StoredTruth(id, it) } }
 
     /**
      * The newest session of one scope whose stored content begins with [format]'s name (13F). The version suffix

@@ -353,7 +353,8 @@ check("E12D-09_latest_plan", "fun latestPlan(): StoredPlan?" in ports, "latestPl
 check("E12D-09_checkpoint_rows", "fun resumeCheckpointRows(): List<StoredTruth>" in ports, "resumeCheckpointRows is missing")
 check("E12D-09_raw_trace_returned", "val traceText: String?" in facts and "PlanTraceCodec" not in adapter,
       "the adapter interprets the trace")
-latest = body(adapter, "override fun latestPlan(")
+# Narrowed at 16B (`LHRX-v0` / `D-123`): 16B's planVersions reads every version the way the newest is read, so the reading moved into planOf.
+latest = body(adapter, "override fun latestPlan(") + body(adapter, "private fun planOf(")
 check("E12D-09_latest_body_read", len(latest) > 300, "the latestPlan reader returned nothing")
 # The trace query also orders by sequence, so the check names the plan query itself (V31 found the
 # looser form passing while the plan query was reversed).

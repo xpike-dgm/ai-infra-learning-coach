@@ -1100,8 +1100,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 30/30, validator mutation 38/38; 90/90 QA PASS,
 - **T6 çalıştırılmadı; ekran cihazda görülmedi**.
 
-### [ ] 16B — Öğrenme geçmişi — **AKTİF**
-### [ ] 16C — Progress / weakness kuralları
+### [x] 16B — Öğrenme geçmişi — LHRX-v0 / D-123
+
+**16B final coverage:**
+- öğrenme geçmişi kayıt sırasındaki saklı kanıttır ve her satır, motorların o satıra kadarki kanıt üzerinde yeniden oynatılmasıyla söylediği değişikliği 13E'nin sözleriyle taşır; ölçme raporu her oturumun `ASUX-v0` aileleridir, not ya da eğilim değil; hiçbir şey yazılmaz, girdisi olmayan gün çizilmez ve aynı kanıttan mastery her zaman aynı sonucu verir,
+- tekrar oynatma: mastery, retention ve zayıflık motorları bellek içi bir depo kopyasında önek üzerinde, satırın kendi gününde yeniden kurulur; gerçek depoya hiçbir şey yazılmaz; ilk satırdan önceki durum motorların kanıtsız söylediğidir,
+- aileler: ölçme, pekiştirme, tekrar, öğrenme (ilk uyan); değişiklikler 13E'nin `StateChangeKind`'i ve cümleleri; yardım seviyeleri gösterilir, metin saklanmaz,
+- rapor: oturumun kendi satırlarının değişiklikleri, `ASUX-v0` §13.3 gerekçeleriyle ölçülemeyenler (yanıtlanmamış slotlar dahil) ve oturumun yazdığı yeniden planın değişiklikleri; bulunamazsa plan değişmedi denmez,
+- Mastery düzeltmesi (`GRE-v0` §16.2, kullanıcı kararı 2026-10-18): 12A'nın yeniden kurması açık bir doğrulamada onu açan çelişkiyi 'başarısız yeniden kontrol' sayıyordu, bu yüzden aynı kanıtın ikinci kurulumu da geçilen taze bir yeniden kontrol de mastery'yi düşürüyordu; artık yalnız açılıştan sonraki temiz kanıt yeniden kontroldür, olumluysa mastery korunur ve mastery kanıttan, kayıt sırasıyla (`MasteryEngine.replay`) belirlenir,
+- beş önceki validator daraltıldı; iki varsayılanlı port inceltmesi; şema değişmedi,
+- Kotlin mutation 24/24, validator mutation 38/38; 95/95 QA PASS,
+- **T6 çalıştırılmadı; ekranlar cihazda görülmedi**.
+
+### [ ] 16C — Progress / weakness kuralları — **AKTİF**
 ### [ ] 16D — Ayarlar
 ### [ ] 16E — Bildirimler
 
@@ -1171,8 +1182,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A`  
-**Son tamamlanan:** **`16A — SKAX-v0 / D-122`**  
-**Aktif:** **`16B — Öğrenme geçmişi`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16B`  
+**Son tamamlanan:** **`16B — LHRX-v0 / D-123`**  
+**Aktif:** **`16C — Progress / weakness kuralları`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **16B fresh PRE-STEP + kullanıcının yeni açık onayı → Öğrenme geçmişi → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **16C fresh PRE-STEP + kullanıcının yeni açık onayı → Progress / weakness kuralları → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

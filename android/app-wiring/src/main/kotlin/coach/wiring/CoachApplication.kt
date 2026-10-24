@@ -8,11 +8,13 @@ import android.util.Log
 import coach.application.DayCloseFacts
 import coach.application.IngestCurriculum
 import coach.application.PlannerExplanationQuery
+import coach.application.LearningHistoryQuery
 import coach.application.ProgressQuery
 import coach.application.StoreOpenOutcome
 import coach.application.StoreStartup
 import coach.application.TodayFactsQuery
 import coach.model.PlannerExplanationFacts
+import coach.model.HistoryFacts
 import coach.model.ProgressFacts
 import coach.model.SkillDetailFacts
 import coach.model.VersionedRef
@@ -129,6 +131,18 @@ class CoachApplication : Application() {
         val opened = startup.store ?: return
         storeThread.execute {
             val facts = ProgressQuery(opened.graph.persistence, opened.graph.content).detail(skill)
+            main.post { onLoaded(facts) }
+        }
+    }
+
+    /**
+     * The learning history and the assessment report, off the main thread (16B). Replaying the engines over the stored
+     * evidence is disk and CPU work; [skill] narrows it to one Skill for `skill_detail`'s history.
+     */
+    fun loadHistory(skill: VersionedRef?, onLoaded: (HistoryFacts) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val facts = LearningHistoryQuery(opened.graph.persistence).load(skill)
             main.post { onLoaded(facts) }
         }
     }
