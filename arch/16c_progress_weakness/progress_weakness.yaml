@@ -1,0 +1,258 @@
+model: PWPX-v0
+stage_step: 16C
+status: accepted_16c
+decision: D-124
+implements: [SPWX-v0, TSM-v0, TEPM-v0, WLRM-v0, VDSX-v0, UXIA-v0]
+engines_read: [MSTX-v0, RVRX-v0, WLRX-v0, PRQX-v0, WAAX-v0, VDWX-v0, SKAX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: topic_state_topic_detail_weakness_context_and_technical_english_profile_read_from_the_skill_states_the_engines_wrote
+
+question: Bir konu, bir zayıflık ve Teknik İngilizce profili öğrenciye nasıl gösterilir — becerilerin kendi durumlarından, hiçbir ortalama, yüzde, seviye iddiası ya da kapı uydurmadan?
+
+primary_invariant: >-
+  A Topic's state is TSM-v0's first rule that holds over its Skills' own states (16A's one function), whether work on it
+  was ever recorded, and whether each Objective's lesson was worked or diagnostically waived; it is never an average, a
+  percentage or a prerequisite claim, an unstarted Topic is locked only when none of its Skills can start, and a started
+  Topic never goes back to locked. A weakness is shown where it was located — a hypothesis only as the catalog's own
+  question, a remediation with what closes it, never the learner. The Technical English profile is TEPM-v0's one band
+  rule over the English Skills' states, with its history replayed from the evidence; it is never a general or official
+  level, never a number, and English is never a gate. Nothing is written.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-24
+  scope: topic_state_topic_detail_weakness_context_and_technical_english_profile_core_and_real_compose_screen
+  topic_entry: an_unstarted_topic_is_available_when_one_of_its_skills_can_start_locked_only_when_none_can
+  topic_entry_first_choice: every_hard_edge_from_outside_the_topic_satisfied
+  topic_entry_revised_because: the shipped graph showed 12 of 27 Topics as locked while the planner offered one of their Skills
+  coverage_gate: the_objective_s_teach_task_has_a_recorded_attempt_or_a_13f_diagnostic_waiver
+  english_history: replay_the_mastery_engine_over_the_evidence_no_new_table
+  english_unpublished_band: named_not_published_never_incomplete_or_failed
+  english_anchors_source: curriculum/english/7b_cefr_progression/alignment.yaml
+
+assistant_defaults:
+  - every Skill a Topic places is required for it (topic_skill links carry no optionality)
+  - weakening is a mastered Topic with a retention signal — at_risk, or an open verification on mastery or retention; review_due alone keeps it mastered (RVR-v0, SPWX-v0 §15)
+  - a Topic is started by any recorded attempt on an item of one of its Skills (lesson items included) or any evidence on one of its Objectives; truth is append-only, so it stays started
+  - a started Topic with a Skill whose own state cannot be told is recomputing, never a guessed state (16A's rule, one level up)
+  - an Objective with no authored teach task is never covered, and says so
+  - a Skill whose prerequisite metadata the gate cannot read is not startable; a locked Topic names it as a metadata problem, not as a blocker Skill
+  - the historical English band uses the replayed mastery decision; a confirmed remediation needs the mastery gates to have failed (13D), so a mastered Skill has none
+  - only no_extension_evidence has a producer — no B2+ extension item is authored (15F wrote A1/A2)
+  - the English profile names its Skills as text; UXIA-v0 accepts no technical_english_profile -> skill_detail edge
+  - working Turkish microcopy (17 owns its polish); the six Topic labels are SPWX-v0 §6's
+
+declared_extensions:
+  - {what: "TopicState, TopicCoverage, TopicMember, TopicReading, TopicProjection and TopicStateProjection.derive in core-model", why: "the read path and the screen need the very same function and MSBX-v0 lets neither depend on the other", precedent: "SkillPresentationProjection (16A)"}
+  - {what: "CefrBand, TechnicalEnglishAnchors, EnglishProfileProjection in core-model", why: "TEPM-v0's band rule for the current band and the replayed one alike", source_checked: "curriculum/english/7b_cefr_progression/alignment.yaml, entry for entry, by the 16C validator"}
+  - {what: "PersistencePort.attemptedResources, defaulted", extends: "16B's planVersions/assessmentSessions (port refinements, port count unchanged)", default_answer: "nothing — only ever under-states coverage"}
+  - {what: "ContentPort.lessonItemsFor, defaulted", extends: "14C explanationsFor, 14D codeTestsFor (content refinements)"}
+  - {what: "ObjectiveProgress.misconceptions and SkillDetailFacts.englishBand, defaulted fields", extends: "16A ProgressFacts"}
+
+scope:
+  schema_changed: false
+  migration_added: false
+  new_truth_table: false
+  ports_changed: refinements_only
+  boundaries_changed: false
+  mastery_rule_changed: false
+  retention_rule_changed: false
+  weakness_rule_changed: false
+  gate_rule_changed: false
+  planner_rule_changed: false
+  topic_state_written: false
+  english_profile_written: false
+  screen_drawn: true
+
+topic:
+  states: [locked, available, learning, mastered, weakening, remediation_required]
+  labels_tr: {locked: Kilitli, available: Hazır, learning: Öğreniliyor, mastered: Öğrenildi, weakening: Tekrar Gerekebilir, remediation_required: Pekiştirme Gerekli}
+  tones: {locked: neutral, available: neutral, learning: active, mastered: positive_confirmed, weakening: neutral, remediation_required: attention}
+  derivation:
+    owner: android/core-model/src/main/kotlin/coach/TopicFacts.kt
+    function: TopicStateProjection.derive
+    not_started:
+      - {when: "one of its Skills can start (the gate's eligibility does not wait)", state: available, reason_code: hard_prerequisites_satisfied}
+      - {when: otherwise, state: locked, names: outside Skills its Skills wait for, or a metadata problem}
+    started:
+      - {rule: 1, when: "a Skill's presentation state is remediation_required", state: remediation_required, reason_code: remediation_triggered}
+      - {rule: 2, when: "every Skill confirmed by the mastery engine, every Objective covered, and a retention signal on one", state: weakening, reason_code: retention_risk_confirmed}
+      - {rule: 3, when: "every Skill confirmed and every Objective covered", state: mastered, reason_code: mastery_gate_satisfied}
+      - {rule: 4, when: otherwise, state: learning, reason_code: topic_started}
+    recomputing_when: a started Topic has a Skill whose own state cannot be told (16A)
+    started_never_locked: true
+    average_of_skills: false
+    percentage: false
+    prerequisite_claim: false
+  coverage: [lesson_worked, diagnostic_waiver, not_covered, no_lesson_authored]
+  covered: [lesson_worked, diagnostic_waiver]
+  lesson_items_disjoint_from_practice_items: true
+
+weakness_context:
+  display:
+    hypothesis: the catalog's own open question, nothing more
+    supported: localized signal, named
+    confirmed: localized remediation on this Objective, named
+    resolved: history, not a current problem
+  remediation_closure_said: fresh, clean, independent, direct, verified, prerequisite-valid evidence in another context; finishing a task never closes it
+  ai_hypothesis_above_hypothesis: false
+  failure_language: false
+  broadcast_up_or_down: false
+
+english_profile:
+  bands: [A1, A2, B1]
+  anchors_per_band: 5
+  published_anchors: {A1: 5, A2: 5, B1: 0}
+  rule: the highest band all of whose anchor Skills at or below it are currently confirmed (confirmed_current, confirmed_review_due, confirmation_verification_due)
+  status_values: [not_yet_complete, complete_current, complete_review_due, complete_verification_due]
+  band_completion: [complete, incomplete, not_published, recomputing]
+  historical_highest: replayed from the evidence (MasteryEngine.replay), never below the current band
+  confirmation_sources: [learned_and_verified, validated_entry_evidence]
+  extension_states: [no_extension_evidence, extension_practice_only, extension_evidence_present, extension_review_due, extension_verification_due]
+  extension_states_with_a_producer: [no_extension_evidence]
+  general_or_official_level_claim: false
+  numeric_aggregate: false
+  english_is_a_gate: false
+
+found:
+  - the_first_entry_rule_locked_topics_the_planner_was_offering
+  - a_new_learner_has_four_topics_open_and_twenty_three_waiting
+  - lesson_items_never_appear_in_practice_tasks
+  - the_topic_state_and_english_profile_tables_have_no_writer_and_need_none
+
+suites:
+  topic_model: {file: android/core-model/src/test/kotlin/coach/model/TopicStateProjectionTest.kt}
+  english_model: {file: android/core-model/src/test/kotlin/coach/model/EnglishProfileProjectionTest.kt}
+  query: {file: android/core-application/src/test/kotlin/coach/application/TopicQueryTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/TopicPresentationTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+open_loops:
+  topic_state_projection_unwritten: {owner: 18E, note: "the topic_state and english_profile tables stay unwritten: both are read-derived, nothing reads a stored copy, and a Topic depends on outside Skills whose changes do not re-assemble it — the reverse-invalidation loop 16A named"}
+  planner_reading_topic_state: {owner: 18B, note: "TSM-v0 §13's planner reading of Topic state is not used; the planner decides per Skill"}
+  b2_extension_content: {owner: 20, note: "no B2+ extension item is authored, so only no_extension_evidence is produced"}
+  english_profile_to_skill_detail: {owner: 17, note: "not an accepted UXIA-v0 edge; the profile names Skills as text"}
+  topic_history: {owner: 18E, note: "TSM-v0 §14's transition history can be replayed like 16B's; not built"}
+  integration_context: {owner: 18D, note: "skill_detail shows an English Skill's anchor band; TEIP-v0 dual-target integration context has no stored task-to-Skill pairing to read yet"}
+  replay_cost: {owner: 18E, note: "the historical band replays mastery over every English Skill's evidence on each profile read"}
+  disposition_reason_in_traces: {owner: 16D, note: "13D sent the disposition reason in traces to 16C; 16C built the Topic, weakness and English views and did not show it — it moves with the app path that records a disposition (16D)"}
+  t6_and_device: {owner: 19}
+
+mutation_results_kotlin:
+  scope: one change per mutant to the Topic derivation and coverage, the read, the English band rule and its replay, the weakness context and the copy and tones; then the 16C JVM suites of core-model, core-application, core-presentation and app-wiring (ShippedCourseTest on the real store)
+  total: 31
+  detected: 31
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  negative_control: N00 changes a KDoc comment in TopicPresentation.kt
+  negative_control_result: survived_as_expected
+  earlier_runs: the first attempt never reached Gradle — the runner called gradlew.bat by a bare name that did not resolve, the baseline exited 1 with no test results, and the runner accepted it, so every mutant read as survived; it was discarded unrecorded as a result, and the runner now refuses a baseline that is not exit 0 and a run that writes no test results (11D's lesson again). Before the real run, two tests were added where the mutants would have survived — a stored diagnostic waiver covering a Topic Objective, and the historical band never below the current one
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: K01, mutant: one_open_skill_does_not_open, result: detected}
+    - {id: K02, mutant: started_topic_relocks, result: detected}
+    - {id: K03, mutant: remediation_ignored, result: detected}
+    - {id: K04, mutant: coverage_gate_dropped, result: detected}
+    - {id: K05, mutant: review_due_is_weakening, result: detected}
+    - {id: K06, mutant: verification_unconfirms, result: detected}
+    - {id: K07, mutant: recomputing_guessed, result: detected}
+    - {id: K08, mutant: waiting_shown_when_open, result: detected}
+    - {id: K09, mutant: waiver_not_coverage, result: detected}
+    - {id: K10, mutant: missing_lesson_covers, result: detected}
+    - {id: K11, mutant: attempt_does_not_start, result: detected}
+    - {id: K12, mutant: first_entry_rule_back, result: detected}
+    - {id: K13, mutant: lesson_attempt_ignored, result: detected}
+    - {id: K14, mutant: waiver_ignored, result: detected}
+    - {id: K15, mutant: inside_blockers_named, result: detected}
+    - {id: K16, mutant: band_walk_skips_a_gap, result: detected}
+    - {id: K17, mutant: remediation_counts_confirmed, result: detected}
+    - {id: K18, mutant: recomputing_band_claimed, result: detected}
+    - {id: K19, mutant: verification_status_ignored, result: detected}
+    - {id: K20, mutant: history_below_current, result: detected}
+    - {id: K21, mutant: unpublished_is_a_gap, result: detected}
+    - {id: K22, mutant: history_not_replayed, result: detected}
+    - {id: K23, mutant: history_keeps_last_only, result: detected}
+    - {id: K24, mutant: entry_source_lost, result: detected}
+    - {id: K25, mutant: silent_label_shown, result: detected}
+    - {id: K26, mutant: hypothesis_as_finding, result: detected}
+    - {id: K27, mutant: closure_dropped, result: detected}
+    - {id: K28, mutant: weakening_raised_tone, result: detected}
+    - {id: K29, mutant: unpublished_worded_as_gap, result: detected}
+    - {id: K30, mutant: history_note_hidden, result: detected}
+    - {id: K31, mutant: locked_label_changed, result: detected}
+
+validator_mutation:
+  tool: tools/validate_progress_weakness.py
+  total: 46
+  detected: 46
+  scope: one change per mutant to an input the validator reads — the contract, the Topic derivation, coverage and copy, the tones, the read, the English anchors, band rule, replay and wording, the weakness context, a port, a screen, the wiring, a test name, the spec, the research and DECISIONS
+  detection: a FAIL line not in the baseline; a run that prints no result line is a crash and never a detection
+  crash_is_detection: false
+  baseline: the only check allowed to fail at baseline is A16C-12_validator_mutation, which reads this very result
+  negative_control: a YAML comment in the contract naming forbidden fragments (banana, survived, streak, 100%)
+  negative_control_result: survived_as_expected
+  earlier_runs: the first run left V16 (an open verification no longer confirming a Skill) alive — the check read the expression-bodied confirmed() and retentionSignal() with a brace scan that ran into the next function, so a dropped condition was still found further down; both are now read to their own end, and the whole set was run again. Before any run, a shell heredoc had written the validator's word boundaries as backspace characters; a syntax error and a scan for the character caught it, and the lines were rewritten from a file
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: V01, mutant: contract_model, result: detected}
+    - {id: V02, mutant: contract_first_entry_rule, result: detected}
+    - {id: V03, mutant: contract_topic_state_written, result: detected}
+    - {id: V04, mutant: contract_device_claimed, result: detected}
+    - {id: V05, mutant: contract_mutant_survived, result: detected}
+    - {id: V06, mutant: contract_run_failed, result: detected}
+    - {id: V07, mutant: states_reordered, result: detected}
+    - {id: V08, mutant: label_changed, result: detected}
+    - {id: V09, mutant: tone_raised, result: detected}
+    - {id: V10, mutant: reason_code_invented, result: detected}
+    - {id: V11, mutant: every_skill_must_start, result: detected}
+    - {id: V12, mutant: locked_after_start, result: detected}
+    - {id: V13, mutant: waiting_shown_always, result: detected}
+    - {id: V14, mutant: recomputing_guessed, result: detected}
+    - {id: V15, mutant: review_due_weakening, result: detected}
+    - {id: V16, mutant: verification_unconfirms, result: detected}
+    - {id: V17, mutant: waiver_not_covering, result: detected}
+    - {id: V18, mutant: average_of_skills, result: detected}
+    - {id: V19, mutant: first_entry_rule_back, result: detected}
+    - {id: V20, mutant: attempts_ignored, result: detected}
+    - {id: V21, mutant: inside_blockers_named, result: detected}
+    - {id: V22, mutant: query_writes, result: detected}
+    - {id: V23, mutant: topic_row_stored, result: detected}
+    - {id: V24, mutant: anchor_moved, result: detected}
+    - {id: V25, mutant: extension_eligibility_lost, result: detected}
+    - {id: V26, mutant: remediation_counts_confirmed, result: detected}
+    - {id: V27, mutant: band_walk_skips, result: detected}
+    - {id: V28, mutant: history_not_replayed, result: detected}
+    - {id: V29, mutant: history_below_current, result: detected}
+    - {id: V30, mutant: english_code_invented, result: detected}
+    - {id: V31, mutant: level_claimed, result: detected}
+    - {id: V32, mutant: english_made_a_gate, result: detected}
+    - {id: V33, mutant: unpublished_as_gap, result: detected}
+    - {id: V34, mutant: hypothesis_as_finding, result: detected}
+    - {id: V35, mutant: closure_dropped, result: detected}
+    - {id: V36, mutant: port_default_dropped, result: detected}
+    - {id: V37, mutant: english_profile_links_skill, result: detected}
+    - {id: V38, mutant: topic_bar_drawn, result: detected}
+    - {id: V39, mutant: edge_unchecked, result: detected}
+    - {id: V40, mutant: test_renamed, result: detected}
+    - {id: V41, mutant: spec_not_accepted, result: detected}
+    - {id: V42, mutant: spec_wrong_next, result: detected}
+    - {id: V43, mutant: research_source_dropped, result: detected}
+    - {id: V44, mutant: decision_missing, result: detected}
+    - {id: V45, mutant: finding_dropped, result: detected}
+    - {id: V46, mutant: lessons_not_disjoint, result: detected}
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew test (every module's JVM tests, the AI adapter's included)", tier: T1-T3, result: PASS}
+  - {id: RUN-02, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-03, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-04, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-05, command: "read the eight curriculum packages from both built APKs and compare their SHA-256 with the source assets; the APK without the AI adapter has no INTERNET permission", tier: T5, result: PASS}
+  - {id: RUN-06, command: "ShippedCourseTest's 16C section: the real SQLite store with all eight packages — 27 Topics, 4 open and 23 waiting exactly as the gate holds their Skills, the Technical English profile not complete with B1 not published, and a recorded lesson attempt covering its Objective", tier: T2, result: PASS}
+jvm_tests: 1177
+validator_sweep: {glob: "tools/validate_*.py", total: 66, passed: 66, note: "56 light and 10 heavy validators, every one in a single pass; the frozen reports the earlier validators rewrite were restored from git"}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  screen_seen_on_device: false
+  sqlite_read_on_jvm_run: true

@@ -24,6 +24,7 @@ import coach.presentation.ProgressCopy
 import coach.presentation.ProgressOverview
 import coach.presentation.SkillChip
 import coach.presentation.SkillDetailView
+import coach.presentation.TopicOverviewView
 
 /**
  * Progress, as `SPWX-v0` defined it and `WFPX-v0` placed it (16A). This file renders and decides nothing: every state,
@@ -40,6 +41,10 @@ fun ProgressScreen(
     // 16B: `progress -> learning_history` and `progress -> assessment_report` are accepted edges (`UXIA-v0`).
     onOpenHistory: (() -> Unit)? = null,
     onOpenReport: (() -> Unit)? = null,
+    // 16C: `progress -> topic_detail` and `progress -> technical_english_profile` are accepted edges (`UXIA-v0`).
+    topics: TopicOverviewView? = null,
+    onOpenTopic: ((VersionedRef) -> Unit)? = null,
+    onOpenEnglish: (() -> Unit)? = null,
 ) {
     Column(
         modifier = modifier
@@ -63,6 +68,7 @@ fun ProgressScreen(
         view.contexts.forEach { Text(ProgressCopy.stateTexts.getValue(it), style = MaterialTheme.typography.bodySmall) }
         onOpenHistory?.let { open -> TextButton(onClick = open, modifier = Modifier.minimumTouchTarget()) { Text("Öğrenme geçmişi") } }
         onOpenReport?.let { open -> TextButton(onClick = open, modifier = Modifier.minimumTouchTarget()) { Text("Ölçme raporu") } }
+        onOpenEnglish?.let { open -> TextButton(onClick = open, modifier = Modifier.minimumTouchTarget()) { Text("Teknik İngilizce profili") } }
 
         // 1. demonstrated_capability_inventory
         if (view.inventory.isNotEmpty() || view.recomputing > 0) {
@@ -78,6 +84,12 @@ fun ProgressScreen(
             Text(ProgressCopy.ATTENTION_TITLE, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
             if (view.attention.isEmpty()) Text(ProgressCopy.ATTENTION_EMPTY, style = MaterialTheme.typography.bodyMedium)
             view.attention.forEach { CountLine(it.label, it.count) }
+        }
+
+        // 16C: the Topics, each a state in words that opens topic_detail.
+        if (topics != null && onOpenTopic != null && topics.topics.isNotEmpty()) {
+            HorizontalDivider()
+            TopicsSection(topics, onOpenTopic)
         }
 
         // The Skills themselves, grouped for orientation; each opens the one shared skill_detail.
@@ -138,6 +150,15 @@ fun SkillDetailScreen(
 
         HorizontalDivider()
         view.axes.forEach { axis -> CountLineText(axis.title, axis.value) }
+        view.englishContext?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+
+        // 16C: remediation_context — a located gap and what closes it, never a verdict about the learner.
+        view.remediation?.let { r ->
+            HorizontalDivider()
+            Text(r.title, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            Text(r.text, style = MaterialTheme.typography.bodyMedium)
+            r.closure?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+        }
 
         HorizontalDivider()
         Text("Objective kırılımı", style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
@@ -147,6 +168,7 @@ fun SkillDetailScreen(
                 Text(objective.label + required, style = MaterialTheme.typography.bodyLarge)
                 Text(objective.shown, style = MaterialTheme.typography.bodyMedium)
                 objective.weakness?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+                objective.misconceptions.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
                 Text(objective.evidence.filter { it.count > 0 }.joinToString(" · ") { "${it.label}: ${it.count}" }
                     .ifEmpty { "Kanıt yok" }, style = MaterialTheme.typography.bodySmall)
             }

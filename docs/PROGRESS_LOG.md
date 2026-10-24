@@ -1463,3 +1463,30 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `16B tamamlandı; 16C aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `16C — Progress / weakness gösterim kuralları`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-24 — 16C — Progress / weakness gösterim kuralları tamamlandı — PWPX-v0 / D-124
+
+- 16B (#61) CI yeşil olunca kullanıcının isteğiyle ("16B yi merge et 16C ye başla") squash-merge edildi (0f52522). Fresh 16C PRE yapıldı ve kanonik kaynaklar `16B ✅ / 16C active-not-executed` gösterdi; mesaj 16C'nin de onayıydı.
+- **Kullanıcı kararları (2026-10-24):**
+  - Kapsam: konu durumu (`TSM-v0`), `topic_detail`, Skill detayında zayıflık/misconception bağlamı, Teknik İngilizce profili; core + gerçek Compose ekranı.
+  - Kapsam kapısı: hedefin öğretim görevine kayıtlı deneme ya da 13F tanısal waiver.
+  - İngilizce: tarihsel band kanıttan yeniden oynatılır (yeni tablo yok); B1 'henüz yayımlanmadı'; çapalar 7B'den, validator ile.
+  - Konu girişi: ilk seçim 'dışarıdan gelen her hard kenar karşılanmış'; veri çelişince aynı gün 'bir beceri açıksa Hazır'.
+- **Bulgu:**
+  - İlk giriş kuralı sevk edilen 27 konunun 12'sini, planner becerilerinden birini sunarken kilitli gösterecekti (ör. `topic.python.values_types`, ilk gün dersi verilen `state_assignment_model`).
+  - Yeni bir öğrencide 4 konu açık, 23 konu bekliyor.
+  - Öğretim görevlerinin 67 item'ı hiçbir pratik görevinin 1023 item'ında geçmiyor; 65 hedefin hepsinin öğretim görevi var.
+  - `topic_state` ve `english_profile` tablolarının yazıcısı yok; okunurken türetiliyor (18E).
+  - Mutation koşucusu ilk denemede Gradle'ı hiç çalıştırmadı (`gradlew.bat` çözümlenmedi, taban 1 ile çıktı ve kabul edildi); koşucu artık sonuç dosyası olmayan ya da başarısız tabanı reddediyor.
+- **Kod:**
+  - Yeni: `TopicFacts.kt`, `EnglishProfileFacts.kt`, `TopicQuery.kt`, `EnglishProfileQuery.kt`, `TopicPresentation.kt`, `EnglishProfilePresentation.kt`, `TopicScreen.kt`, `EnglishProfileScreen.kt`.
+  - `ProgressQuery.detail` misconception bağlamını ve İngilizce çapa bandını taşıyor; `attemptedResources`/`lessonItemsFor` varsayılanlı port inceltmeleri.
+  - Şema değişmedi.
+- **Araştırma:** iç sözleşmeler `TSM-v0`, `SPWX-v0`, `TEPM-v0`, `TECP-v0`, `VDSX-v0`, `UXIA-v0`; Wikipedia (CEFR, Mastery learning; 2026-10-24).
+- **Mutation:** Kotlin 31/31.
+- **Validator mutation:** 46/46.
+- **Validator:** 117/117 PASS; sweep 66/66 (56 light + 10 heavy); 1177 JVM testi.
+- **T6 çalıştırılmadı; ekranlar cihazda görülmedi**.
+- D-050 POST living-memory accepted state'i `16C tamamlandı; 16D aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `16D — Ayarlar`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

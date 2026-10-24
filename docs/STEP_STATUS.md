@@ -85,8 +85,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **15H — Content QA** | ✅ | CQAX-v0 / D-121. Aşama 15'in içeriği yalnız graph'ının, kontrollerinin ve etiketlerinin taşıdığını söyler; ek paket (v8): 81 item'ın sonraki sürümü (eskisi eklenen bir `retired` kaydıyla emekli, üzerine yazılmadı), 6 yeni item, 138 görev sürümü, 49 kenar (12 hard), 18 ders gereksinimi; sabit çıktı, gösterim, ders kodu, graph, etiket, havuz ve criticality denetimi (`tools/content_qa.py`) her bulguyu çözüyor; `requires_transfer` kapandı (standard Objective'de kapı yok, critical reddedilir). Bağımsız inceleme 4 inceleyici, 87/87 item, 49/49 kenar. Kullanıcı kararları: graph'a ekle, kapat, sonraki sürüm, teknik 15. 142/142 QA PASS. |
 | **16A — Skill analytics** | ✅ | SKAX-v0 / D-122. Bir Skill'in öğrenciye görünen durumu, kendi motorlarının yazdığı dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir ve saklanan satırla ekran aynı tek fonksiyonu kullanır; bir eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill 'yeniden hesaplanıyor'dur, tahmin edilmiş bir durum yoktur; Progress envanter sayar, hiçbir sayımı bölmez. Sekiz durum ve türetmesi `core-model`de tek fonksiyon; her `skill_state` yazıcısı sunumu eksenlerden türetiyor, `AssembleSkillState` ön koşul eksenini yazıyor; Progress sekmesi ve Skill detayı depodan okuyor. Hiçbir şey yapmamış öğrenci: 4 'Henüz Kanıt Yok', 56 'Ön Koşul Bekliyor' — planner'ın beklettikleri. Kullanıcı kararları: Skill projeksiyonu + detay + özet; core + gerçek ekran; eksik eksen 'yeniden hesaplanıyor'. Kotlin mutation 30/30, validator mutation 38/38; 90/90 QA PASS. |
 | **16B — Öğrenme geçmişi** | ✅ | LHRX-v0 / D-123. Öğrenme geçmişi kayıt sırasındaki saklı kanıttır ve her satır, motorların o satıra kadarki kanıt üzerinde yeniden oynatılmasıyla söylediği değişikliği 13E'nin sözleriyle taşır; ölçme raporu her oturumun `ASUX-v0` aileleridir, not ya da eğilim değil; hiçbir şey yazılmaz, girdisi olmayan gün çizilmez ve aynı kanıttan mastery her zaman aynı sonucu verir. Mastery düzeltmesi (`GRE-v0` §16.2, kullanıcı kararı 2026-10-18): 12A'nın yeniden kurması açık bir doğrulamada onu açan çelişkiyi 'başarısız yeniden kontrol' sayıyordu, bu yüzden aynı kanıtın ikinci kurulumu da geçilen taze bir yeniden kontrol de mastery'yi düşürüyordu; artık yalnız açılıştan sonraki temiz kanıt yeniden kontroldür, olumluysa mastery korunur ve mastery kanıttan, kayıt sırasıyla (`MasteryEngine.replay`) belirlenir. Yeni tablo yok; tutor/öğrenci metni saklanmaz. Kullanıcı kararları: kanıttan yeniden oynat; geçmiş + rapor; metin yok; core + ekran; motor düzeltmesi 16B içinde. Kotlin mutation 24/24, validator mutation 38/38; 95/95 QA PASS. |
-| **16C — Progress / weakness gösterim kuralları** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
-| **16–20** | ⬜ Bekliyor | 16C sonrası canonical sırada. |
+| **16C — Progress / weakness gösterim kuralları** | ✅ | PWPX-v0 / D-124. Bir konunun durumu orkestrasyondur, mastery değildir: konu, becerilerinin kendi durumları, konuda çalışma kaydedilip kaydedilmediği ve her hedefin dersinin işlenip işlenmediği ya da tanısal olarak geçilip geçilmediği üzerinde `TSM-v0`'ın ilk uyan kuralıdır; ortalama, yüzde ya da ön koşul iddiası değildir, başlanmamış bir konu ancak hiçbir becerisi başlatılamıyorsa kilitlidir ve başlanmış bir konu asla geri kilitlenmez; zayıflık bulunduğu yerde gösterilir — hipotez yalnız katalogun kendi sorusudur, pekiştirme neyin kapatacağıyla birlikte söylenir; Teknik İngilizce profili `TEPM-v0`'ın tek band kuralıdır, geçmişi kanıttan yeniden oynatılır, genel ya da resmî bir düzey değildir ve İngilizce kapı değildir; hiçbir şey yazılmaz. Bulunanlar: ilk giriş kuralı (dışarıdan gelen her hard kenar karşılanmış) sevk edilen graph'ta 27 konunun 12'sini, planner becerilerinden birini sunarken kilitli gösterecekti — kullanıcı aynı gün 'bir beceri açıksa Hazır' kuralına geçti; yeni bir öğrencide 4 konu açık, 23 konu bekliyor; öğretim görevlerinin item'ları hiçbir pratik görevinde geçmiyor. Kullanıcı kararları: konu + `topic_detail` + zayıflık/misconception bağlamı + Teknik İngilizce profili, core + gerçek ekran; kapsam kapısı ders denemesi ya da tanısal waiver; İngilizce geçmişi kanıttan yeniden oynatılır, B1 'henüz yayımlanmadı'; konu girişi 'bir beceri açıksa Hazır' (2026-10-24). Kotlin mutation 31/31, validator mutation 46/46; 117/117 QA PASS. |
+| **16D — Ayarlar** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
+| **16–20** | ⬜ Bekliyor | 16D sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -105,7 +106,20 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 16B
+## Son tamamlanan numaralı adım — 16C
+
+**Final:** `PWPX-v0 — Topic state, topic_detail, the weakness context and the Technical English profile, read from the Skill states the engines wrote` / D-124.
+**Ana çıktı:** `docs/PROGRESS_WEAKNESS_SPEC.md` + `arch/16c_progress_weakness/` + `tools/validate_progress_weakness.py` + `android/`.
+
+16C sonucu:
+- bir konunun durumu orkestrasyondur, mastery değildir: konu, becerilerinin kendi durumları, konuda çalışma kaydedilip kaydedilmediği ve her hedefin dersinin işlenip işlenmediği ya da tanısal olarak geçilip geçilmediği üzerinde `TSM-v0`'ın ilk uyan kuralıdır; ortalama, yüzde ya da ön koşul iddiası değildir, başlanmamış bir konu ancak hiçbir becerisi başlatılamıyorsa kilitlidir ve başlanmış bir konu asla geri kilitlenmez; zayıflık bulunduğu yerde gösterilir — hipotez yalnız katalogun kendi sorusudur, pekiştirme neyin kapatacağıyla birlikte söylenir; Teknik İngilizce profili `TEPM-v0`'ın tek band kuralıdır, geçmişi kanıttan yeniden oynatılır, genel ya da resmî bir düzey değildir ve İngilizce kapı değildir; hiçbir şey yazılmaz,
+- onay kullanıcının 2026-10-24 açık onayı ("16B yi merge et 16C ye başla"); kullanıcı kararları: konu + `topic_detail` + zayıflık/misconception bağlamı + Teknik İngilizce profili, core + gerçek ekran; kapsam kapısı ders denemesi ya da tanısal waiver; İngilizce geçmişi kanıttan yeniden oynatılır, B1 'henüz yayımlanmadı'; konu girişi 'bir beceri açıksa Hazır' (2026-10-24),
+- **bulgu:** ilk giriş kuralı (dışarıdan gelen her hard kenar karşılanmış) sevk edilen graph'ta 27 konunun 12'sini, planner becerilerinden birini sunarken kilitli gösterecekti — kullanıcı aynı gün 'bir beceri açıksa Hazır' kuralına geçti; yeni bir öğrencide 4 konu açık, 23 konu bekliyor; öğretim görevlerinin item'ları hiçbir pratik görevinde geçmiyor,
+- `topic_state` ve `english_profile` tablolarının yazıcısı yok ve gerekmiyor; iki varsayılanlı port inceltmesi; şema ve modül sınırları değişmedi,
+- Mutation Kotlin 31/31, validator 46/46; independent validator **117/117 PASS**,
+- **T6 çalıştırılmadı; ekranlar cihazda görülmedi**.
+
+## Önceki numaralı adım — 16B
 
 **Final:** `LHRX-v0 — learning history and longitudinal assessment report, replayed from evidence` / D-123.
 **Ana çıktı:** `docs/LEARNING_HISTORY_SPEC.md` + `arch/16b_learning_history/` + `tools/validate_learning_history.py` + `android/`.
@@ -505,6 +519,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 16C Progress / weakness gösterim kuralları
+## Aktif adım — 16D Ayarlar
 
-**16C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A ve 16B her biri ayrı açık onayla yürütüldü). Girdiler: Topic durum makinesi (`TSM-v0`), zayıflık/misconception görünümü, Technical English profili (`TEPM-v0`), 16A'nın ertelediği `remediation_context` ve `integration_or_english_context`.
+**16D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A, 16B ve 16C her biri ayrı açık onayla yürütüldü). Girdiler: Profile'ın ayar yüzeyi (`UXIA-v0`), 14G'nin AI anahtar ekranı, 16A–16C'nin 16D'ye bıraktıkları (yeniden hesaplamayı ve dispozisyonları uygulamadan çağırmak, `assessment_opportunity`, haftalık slotların oturum kimliği), 10E'nin restore kontrolleri.

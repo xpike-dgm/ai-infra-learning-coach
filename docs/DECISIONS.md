@@ -1996,3 +1996,64 @@ Ayrıntı: `docs/SKILL_ANALYTICS_SPEC.md`.
 - Sonraki numbered step `16C — Progress / weakness gösterim kuralları`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/LEARNING_HISTORY_SPEC.md`.
+
+## D-124 — Progress / weakness gösterim kuralları = PWPX-v0
+**Durum:** Kabul edildi — 2026-10-24
+
+- 16C final modeli `PWPX-v0 — Topic state, topic_detail, the weakness context and the Technical English profile, read from the Skill states the engines wrote` oldu.
+  - Progress artık konuları ve Teknik İngilizce profilini gösteriyor.
+  - Skill detayı zayıflık/misconception bağlamını ve bir İngilizce Skill'in çapa bandını gösteriyor.
+- **Kaynaklar:**
+  - canonical spec: `docs/PROGRESS_WEAKNESS_SPEC.md`;
+  - machine-readable contract: `arch/16c_progress_weakness/progress_weakness.yaml`;
+  - research: `research/16c_progress_weakness_research.md`;
+  - validator: `tools/validate_progress_weakness.py`;
+  - kod: `core-model` (`TopicFacts.kt`, `EnglishProfileFacts.kt`), `core-ports` (`attemptedResources`, `lessonItemsFor`), `data-persistence`, `data-curriculum`, `core-application` (`TopicQuery.kt`, `EnglishProfileQuery.kt`, `ProgressQuery.detail`), `core-presentation` (`TopicPresentation.kt`, `EnglishProfilePresentation.kt`), `app-ui` (`TopicScreen.kt`, `EnglishProfileScreen.kt`).
+- Ana invariant: **bir konunun durumu orkestrasyondur, mastery değildir.**
+  - Konu durumu `TSM-v0`'ın ilk uyan kuralıdır ve üç şeyden okunur: becerilerinin kendi durumları (16A'nın tek fonksiyonu), konuda hiç çalışma kaydedilip kaydedilmediği ve her hedefin dersinin işlenip işlenmediği ya da tanısal olarak geçilip geçilmediği.
+  - Ortalama, yüzde ya da ön koşul iddiası değildir.
+  - Başlanmamış bir konu ancak hiçbir becerisi başlatılamıyorsa kilitlidir; başlanmış bir konu asla geri kilitlenmez.
+  - Zayıflık bulunduğu yerde gösterilir: hipotez yalnız katalogun kendi sorusudur, pekiştirme neyin kapatacağıyla birlikte söylenir ve öğrenci hakkında değildir.
+  - Teknik İngilizce profili `TEPM-v0`'ın tek band kuralıdır; geçmişi kanıttan yeniden oynatılır; genel ya da resmî bir düzey değildir, sayı değildir ve İngilizce kapı değildir.
+  - Hiçbir şey yazılmaz.
+- **Kullanıcı kararları (2026-10-24, açık onayla):**
+  - kapsam: konu durumu + `topic_detail` + Skill detayında zayıflık/misconception bağlamı + Teknik İngilizce profili; core + gerçek ekran;
+  - kapsam kapısı: hedefin öğretim görevine kayıtlı bir deneme ya da 13F tanısal waiver'ı;
+  - İngilizce: tarihsel en yüksek band kanıttan yeniden oynatılır (yeni tablo yok); B1 "henüz yayımlanmadı" diye adlandırılır, eksik ya da başarısız denmez; çapalar 7B'nin `alignment.yaml`'ından, validator ile;
+  - konu girişi: ilk seçim "dışarıdan gelen her hard kenar karşılanmış" idi; sevk edilen graph'ta 27 konunun 12'si, planner becerilerinden birini sunarken kilitli görünecekti. Aynı gün revize edildi: başlanmamış konu, becerilerinden biri kapıya göre açıksa "Hazır"dır; hiçbiri açık değilse "Kilitli"dir ve beklediği dış becerileri adlandırır.
+- **Asistanın varsayılan seçimleri:**
+  - Konunun yerleştirdiği her beceri onun için zorunludur.
+  - `weakening` öğrenilmiş bir konuda kalıcılık sinyalidir: `at_risk` ya da açık bir doğrulama. Tek başına `review_due` konuyu öğrenilmiş bırakır.
+  - Bir konu, becerilerinden birinin item'ına kaydedilmiş herhangi bir deneme ya da hedeflerinden birine kaydedilmiş herhangi bir kanıtla başlamış olur.
+  - Öğretim görevi olmayan hedef asla kapsanmış sayılmaz.
+  - Yalnız `no_extension_evidence` üretilir (B2+ uzantı içeriği yok).
+  - Profil becerilerini metin olarak adlandırır (`technical_english_profile → skill_detail` kabul edilmiş bir kenar değil).
+- **Beyan edilmiş uzantılar:**
+  - `core-model`deki konu ve İngilizce türetmeleri (emsal: 16A `SkillPresentationProjection`);
+  - `TechnicalEnglishAnchors`, 7B'nin `alignment.yaml`'ının madde madde aynısı;
+  - varsayılanlı port inceltmeleri `PersistencePort.attemptedResources` ve `ContentPort.lessonItemsFor`; port sayısı değişmedi;
+  - `ObjectiveProgress.misconceptions` ve `SkillDetailFacts.englishBand`.
+- **Bulunanlar:**
+  - İlk giriş kuralı, planner'ın sunduğu konuları kilitliyordu (27'nin 12'si).
+  - Yeni bir öğrencide 4 konu açık, 23 konu bekliyor; dördü dört giriş becerisinin konusu.
+  - Öğretim görevlerinin item'ları hiçbir pratik görevinde geçmiyor (67'ye karşı 1023), ve 65 hedefin hepsinin öğretim görevi var.
+  - `topic_state` ve `english_profile` tablolarının yazıcısı yok ve gerekmiyor.
+- **Doğrulama:**
+  - Kotlin mutation 31/31, validator mutation 46/46; kontrol mutantları hayatta kaldı.
+  - Validator 117/117 PASS.
+  - 1177 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Sweep 66/66 (56 light + 10 heavy).
+- Çalıştırılmayan: **T6**. Ekranlar cihazda görülmedi.
+- **Açık loop'lar:**
+  - `topic_state` / `english_profile` projeksiyonlarının yazılması (18E).
+  - Planner'ın konu durumunu okuması (18B).
+  - B2+ uzantı içeriği (20).
+  - `technical_english_profile → skill_detail` kenarı (17).
+  - Konu geçiş geçmişi (18E).
+  - `TEIP-v0` entegrasyon bağlamı (18D).
+  - İngilizce yeniden oynatma maliyeti (18E).
+  - İzlerde dispozisyon nedeni (13D bunu 16C'ye bırakmıştı; 16C göstermedi) → 16D.
+  - T6 (19).
+- Sonraki numbered step `16D — Ayarlar`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/PROGRESS_WEAKNESS_SPEC.md`.

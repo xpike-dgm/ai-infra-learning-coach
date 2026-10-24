@@ -249,12 +249,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **AŞAMA 15 ✅ TAMAMLANDI**
 - **16A ✅ Skill analytics — SKAX-v0 / D-122**
 - **16B ✅ Öğrenme geçmişi — LHRX-v0 / D-123**
-- **16C 🟡 Progress / weakness gösterim kuralları — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- **16C ✅ Progress / weakness gösterim kuralları — PWPX-v0 / D-124**
+- **16D 🟡 Ayarlar — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
 - 16–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 16C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 16D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -761,4 +762,14 @@ Tutor ve öğrenci metni saklanmaz; geçmiş yalnız kaydedilmiş yardım seviye
 Onay kullanıcının 2026-10-17 açık onayı; motor düzeltmesi 2026-10-18 kararı. Kotlin mutation 24/24, validator mutation 38/38; 95/95 QA PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/LEARNING_HISTORY_SPEC.md` / D-123.
+
+## 12.47 16C Progress / weakness gösterim kuralları — PWPX-v0 / D-124
+
+Progress artık konuları ve Teknik İngilizce profilini gösteriyor; Skill detayı zayıflık/misconception bağlamını ve bir İngilizce Skill'in çapa bandını gösteriyor. Ana invariant: **bir konunun durumu orkestrasyondur, mastery değildir: konu, becerilerinin kendi durumları, konuda çalışma kaydedilip kaydedilmediği ve her hedefin dersinin işlenip işlenmediği ya da tanısal olarak geçilip geçilmediği üzerinde `TSM-v0`'ın ilk uyan kuralıdır; ortalama, yüzde ya da ön koşul iddiası değildir, başlanmamış bir konu ancak hiçbir becerisi başlatılamıyorsa kilitlidir ve başlanmış bir konu asla geri kilitlenmez; zayıflık bulunduğu yerde gösterilir — hipotez yalnız katalogun kendi sorusudur, pekiştirme neyin kapatacağıyla birlikte söylenir; Teknik İngilizce profili `TEPM-v0`'ın tek band kuralıdır, geçmişi kanıttan yeniden oynatılır, genel ya da resmî bir düzey değildir ve İngilizce kapı değildir; hiçbir şey yazılmaz.**
+
+Bulunanlar: ilk giriş kuralı (dışarıdan gelen her hard kenar karşılanmış) sevk edilen graph'ta 27 konunun 12'sini, planner becerilerinden birini sunarken kilitli gösterecekti — kullanıcı aynı gün 'bir beceri açıksa Hazır' kuralına geçti; yeni bir öğrencide 4 konu açık, 23 konu bekliyor; öğretim görevlerinin item'ları hiçbir pratik görevinde geçmiyor. `topic_state` ve `english_profile` tablolarının yazıcısı yok ve gerekmiyor (okunurken türetiliyor; 18E).
+
+Onay kullanıcının 2026-10-24 açık onayı. Kullanıcı kararları: konu + `topic_detail` + zayıflık/misconception bağlamı + Teknik İngilizce profili, core + gerçek ekran; kapsam kapısı ders denemesi ya da tanısal waiver; İngilizce geçmişi kanıttan yeniden oynatılır, B1 'henüz yayımlanmadı'; konu girişi 'bir beceri açıksa Hazır' (2026-10-24). Şema değişmedi; iki varsayılanlı port inceltmesi (`attemptedResources`, `lessonItemsFor`). Kotlin mutation 31/31, validator mutation 46/46; 117/117 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/PROGRESS_WEAKNESS_SPEC.md` / D-124.
 

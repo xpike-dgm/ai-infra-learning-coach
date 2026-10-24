@@ -518,6 +518,24 @@ class SqlitePersistence private constructor(
         }
     }
 
+    /** The resource versions among [resources] that have at least one `attempt` row (16C). */
+    override fun attemptedResources(resources: List<VersionedRef>): Set<VersionedRef> {
+        if (resources.isEmpty()) return emptySet()
+        val wanted = resources.distinct()
+        val sql = "SELECT DISTINCT resource_logical_id, resource_version FROM attempt WHERE " +
+            wanted.joinToString(" OR ") { "(resource_logical_id = ? AND resource_version = ?)" }
+        connection.prepare(sql).use { statement ->
+            var index = 1
+            wanted.forEach {
+                statement.bindText(index++, it.logicalId)
+                statement.bindLong(index++, it.version.toLong())
+            }
+            val found = mutableSetOf<VersionedRef>()
+            while (statement.step()) found += VersionedRef(statement.getText(0), statement.getLong(1).toInt())
+            return found
+        }
+    }
+
     /**
      * Distinct Skills with evidence recorded on or after [studyDay], by each row's own study day — never
      * an instant range, for the same reason [countTruth] never uses one (13A).

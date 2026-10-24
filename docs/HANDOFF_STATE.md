@@ -311,14 +311,15 @@ PEM-v0:
 - **AŞAMA 15 TAMAMLANDI**
 - 16A ✅ SKAX-v0 / D-122
 - 16B ✅ LHRX-v0 / D-123
-- 16C 🟡 active-not-executed
+- 16C ✅ PWPX-v0 / D-124
+- 16D 🟡 active-not-executed
 - 16–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `16B — LHRX-v0 / D-123`  
-**Aktif:** `16C — Progress / weakness gösterim kuralları`  
-**16C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `16C — PWPX-v0 / D-124`  
+**Aktif:** `16D — Ayarlar`  
+**16D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1575,3 +1576,22 @@ LHRX-v0:
 ## 96. 16C handoff
 
 16C — Progress / weakness gösterim kuralları. 16B ran on the user's explicit approval of 2026-10-17 (and the engine decision of 2026-10-18); 16C needs a fresh PRE and the user's new explicit approval. Inputs: `TSM-v0` (six Topic states, `weakening` included; D-102 sent Topic state here), `SPWX-v0` §§6, 9, 10 (Topic labels, `topic_detail`, weakness and remediation presentation), `TEPM-v0` (the Technical English profile), 16A's deferred `remediation_context` and `integration_or_english_context`, the supported/confirmed misconception view (14B). Carried: replay cost (18E), weekly slots passing the session id (16D), disposition staleness and `assessment_opportunity` (16D), T6 (19).
+
+## 97. D-124 / 16C final özeti
+
+Canonical: `docs/PROGRESS_WEAKNESS_SPEC.md`.
+Contract/QA: `arch/16c_progress_weakness/` (contract, QA report, stale audit).
+Synthesis: `research/16c_progress_weakness_research.md`.
+Code: `core-model` (`TopicFacts.kt` — `TopicState`, `TopicCoverage`, `TopicStateProjection`; `EnglishProfileFacts.kt` — `TechnicalEnglishAnchors`, `EnglishProfileProjection`; `ObjectiveProgress.misconceptions`, `SkillDetailFacts.englishBand`), `core-ports` (`attemptedResources`, `lessonItemsFor`, defaulted), `data-persistence` (attempted resources), `data-curriculum` (lesson items of teach tasks), `core-application` (`TopicQuery`, `EnglishProfileQuery`, `ProgressQuery.detail`), `core-presentation` (`TopicPresentation.kt`, `EnglishProfilePresentation.kt`, `ProgressPresentation` weakness context, Topic tones), `app-ui` (`TopicScreen.kt`, `EnglishProfileScreen.kt`), `app-wiring`. Validator `tools/validate_progress_weakness.py`.
+
+PWPX-v0:
+- a Topic's state is TSM-v0's first rule that holds over its Skills' own states, whether work on it was recorded, and whether each Objective's lesson was worked or diagnostically waived; never an average, a percentage or a prerequisite claim; an unstarted Topic is locked only when none of its Skills can start, and a started Topic is never locked again,
+- a weakness is shown where it was located: a hypothesis only as the catalog's own question, a remediation with what closes it; the Technical English profile is TEPM-v0's band rule, its history replayed from the evidence, never a general or official level, never a number, and English is never a gate; nothing is written,
+- approval: the user's explicit approval of 2026-10-24 ("16B yi merge et 16C ye başla"); user decisions: all four parts with core plus screens; coverage by a lesson attempt or a diagnostic waiver; the English history replayed, B1 named not published, anchors from 7B; Topic entry revised the same day to "one startable Skill opens it",
+- found: the first entry rule (every outside edge satisfied) would have shown 12 of 27 shipped Topics as locked while the planner offered one of their Skills; a new learner has 4 Topics open and 23 waiting; lesson items never appear in practice tasks; the topic_state and english_profile tables need no writer,
+- Mutation Kotlin 31/31, validator 46/46; independent QA 117/117 PASS,
+- T6 was not run and the screens have not been seen on a device.
+
+## 98. 16D handoff
+
+16D — Ayarlar. 16C ran on the user's explicit approval of 2026-10-24; 16D needs a fresh PRE and the user's new explicit approval. Inputs: Profile's settings surface (`UXIA-v0`), 14G's AI key screen, what 16A–16C left to 16D (calling the recompute and dispositions from the app, `assessment_opportunity`, weekly slots passing the session id), 10E's restore checks. Carried: the topic_state/english_profile projections and topic history (18E), the planner reading Topic state (18B), B2+ extension content (20), the english_profile → skill_detail edge (17), T6 (19).

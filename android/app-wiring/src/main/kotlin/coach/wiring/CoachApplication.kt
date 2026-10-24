@@ -6,6 +6,7 @@ import android.os.Looper
 import android.os.StrictMode
 import android.util.Log
 import coach.application.DayCloseFacts
+import coach.application.EnglishProfileQuery
 import coach.application.IngestCurriculum
 import coach.application.PlannerExplanationQuery
 import coach.application.LearningHistoryQuery
@@ -13,6 +14,10 @@ import coach.application.ProgressQuery
 import coach.application.StoreOpenOutcome
 import coach.application.StoreStartup
 import coach.application.TodayFactsQuery
+import coach.application.TopicQuery
+import coach.model.EnglishProfile
+import coach.model.TopicDetailFacts
+import coach.model.TopicFacts
 import coach.model.PlannerExplanationFacts
 import coach.model.HistoryFacts
 import coach.model.ProgressFacts
@@ -118,11 +123,34 @@ class CoachApplication : Application() {
      * Reads what Progress may say, off the main thread (16A). It asks the prerequisite gate and reads each Skill's
      * evidence, which is disk work like Today's facts.
      */
-    fun loadProgress(onLoaded: (ProgressFacts) -> Unit) {
+    fun loadProgress(onLoaded: (ProgressFacts, TopicFacts) -> Unit) {
         val opened = startup.store ?: return
         storeThread.execute {
             val facts = ProgressQuery(opened.graph.persistence, opened.graph.content).load()
+            // 16C: the Topics read the very same Skill rows, so a Topic can never contradict the Skills shown beside it.
+            val topics = TopicQuery(opened.graph.persistence, opened.graph.content).load(facts)
+            main.post { onLoaded(facts, topics) }
+        }
+    }
+
+    /** One Topic's `topic_detail` facts, off the main thread (16C); `null` for a Topic nothing places. */
+    fun loadTopicDetail(topic: VersionedRef, onLoaded: (TopicDetailFacts?) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val facts = TopicQuery(opened.graph.persistence, opened.graph.content).detail(topic)
             main.post { onLoaded(facts) }
+        }
+    }
+
+    /**
+     * The Technical English profile, off the main thread (16C). Its historical band replays the mastery engine over the
+     * English Skills' evidence, which is disk and CPU work. `null` when no curriculum is published.
+     */
+    fun loadEnglishProfile(onLoaded: (EnglishProfile?) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val profile = EnglishProfileQuery(opened.graph.persistence, opened.graph.content).load()
+            main.post { onLoaded(profile) }
         }
     }
 

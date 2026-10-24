@@ -1112,8 +1112,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 24/24, validator mutation 38/38; 95/95 QA PASS,
 - **T6 çalıştırılmadı; ekranlar cihazda görülmedi**.
 
-### [ ] 16C — Progress / weakness kuralları — **AKTİF**
-### [ ] 16D — Ayarlar
+### [x] 16C — Progress / weakness kuralları — PWPX-v0 / D-124
+
+**16C final coverage:**
+- bir konunun durumu orkestrasyondur, mastery değildir: konu, becerilerinin kendi durumları, konuda çalışma kaydedilip kaydedilmediği ve her hedefin dersinin işlenip işlenmediği ya da tanısal olarak geçilip geçilmediği üzerinde `TSM-v0`'ın ilk uyan kuralıdır; ortalama, yüzde ya da ön koşul iddiası değildir, başlanmamış bir konu ancak hiçbir becerisi başlatılamıyorsa kilitlidir ve başlanmış bir konu asla geri kilitlenmez; zayıflık bulunduğu yerde gösterilir — hipotez yalnız katalogun kendi sorusudur, pekiştirme neyin kapatacağıyla birlikte söylenir; Teknik İngilizce profili `TEPM-v0`'ın tek band kuralıdır, geçmişi kanıttan yeniden oynatılır, genel ya da resmî bir düzey değildir ve İngilizce kapı değildir; hiçbir şey yazılmaz,
+- konu: `TSM-v0`'ın altı durumu ve §10 sırası; başlanmamış konu bir becerisi başlatılabiliyorsa `available`, hiçbiri değilse `locked` ve beklediği dış becerileri adlandırır; kapsam ders denemesi ya da tanısal waiver; `review_due` konuyu öğrenilmiş bırakır; tonlar `VDSX-v0`,
+- zayıflık: hipotez katalogun sorusu, destekli/doğrulanmış yerel ve adlı, giderilen geçmiş; pekiştirme neyin kapatacağıyla söylenir,
+- İngilizce: `TEPM-v0` band kuralı, A1/A2 yayımlı, B1 'henüz yayımlanmadı'; tarihsel band kanıttan yeniden oynatılır; yalnız `no_extension_evidence` üretilir,
+- bulgu: ilk giriş kuralı (dışarıdan gelen her hard kenar karşılanmış) sevk edilen graph'ta 27 konunun 12'sini, planner becerilerinden birini sunarken kilitli gösterecekti — kullanıcı aynı gün 'bir beceri açıksa Hazır' kuralına geçti; yeni bir öğrencide 4 konu açık, 23 konu bekliyor; öğretim görevlerinin item'ları hiçbir pratik görevinde geçmiyor,
+- hiçbir şey yazılmaz; iki varsayılanlı port inceltmesi; şema değişmedi,
+- Kotlin mutation 31/31, validator mutation 46/46; 117/117 QA PASS,
+- **T6 çalıştırılmadı; ekranlar cihazda görülmedi**.
+
+### [ ] 16D — Ayarlar — **AKTİF**
 ### [ ] 16E — Bildirimler
 
 ---
@@ -1182,8 +1193,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16B`  
-**Son tamamlanan:** **`16B — LHRX-v0 / D-123`**  
-**Aktif:** **`16C — Progress / weakness kuralları`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16C`  
+**Son tamamlanan:** **`16C — PWPX-v0 / D-124`**  
+**Aktif:** **`16D — Ayarlar`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **16C fresh PRE-STEP + kullanıcının yeni açık onayı → Progress / weakness kuralları → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **16D fresh PRE-STEP + kullanıcının yeni açık onayı → Ayarlar → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

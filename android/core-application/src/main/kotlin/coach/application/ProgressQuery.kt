@@ -3,6 +3,7 @@ package coach.application
 import coach.model.EvidenceQualifiers
 import coach.model.EvidenceRow
 import coach.model.EvidenceSummary
+import coach.model.MisconceptionContext
 import coach.model.NamedEntity
 import coach.model.ObjectiveProgress
 import coach.model.PrerequisiteContext
@@ -11,6 +12,7 @@ import coach.model.SkillDetailFacts
 import coach.model.SkillPresentationProjection
 import coach.model.SkillProgressRow
 import coach.model.SkillRow
+import coach.model.TechnicalEnglishAnchors
 import coach.model.VersionedRef
 import coach.model.WeaknessSignal
 import coach.ports.ContentPort
@@ -58,6 +60,7 @@ class ProgressQuery(
                 weakness = persistence.readProjection(WeaknessRows.key(objective.ref))?.payload?.get("state")
                     ?.let { id -> WeaknessSignal.entries.firstOrNull { it.id == id } },
                 evidence = EvidenceSummary.of(rows),
+                misconceptions = misconceptionsOf(objective.ref),
             )
         }
         val named = (row.prerequisite.hardBlockers + row.prerequisite.uncertain + row.prerequisite.softGaps).distinct()
@@ -69,8 +72,20 @@ class ProgressQuery(
             evidence = EvidenceSummary.of(evidence.values.flatten()),
             skillNames = named,
             topics = topicsOf(skill),
+            englishBand = TechnicalEnglishAnchors.bandOf(skill.logicalId),
         )
     }
+
+    /**
+     * 16C: the catalogued misconceptions 14B's memory holds a signal for on [objective] — open or resolved — as it wrote
+     * them. A label with no stored row, or one stored as `none`, is not shown: the memory has nothing to say about it.
+     */
+    private fun misconceptionsOf(objective: VersionedRef): List<MisconceptionContext> =
+        persistence.misconceptionsOf(objective).mapNotNull { m ->
+            val signal = persistence.readProjection(MisconceptionRows.key(m.ref))?.payload?.get("state")
+                ?.let { id -> WeaknessSignal.entries.firstOrNull { it.id == id } }
+            signal?.takeIf { it != WeaknessSignal.NONE }?.let { MisconceptionContext(m.ref, m.name, m.openQuestion, it) }
+        }
 
     private fun evidenceOf(skill: VersionedRef): Map<VersionedRef, List<EvidenceRow>> =
         persistence.objectivesOf(skill).associate { it.ref to persistence.evidenceFor(it.ref) }

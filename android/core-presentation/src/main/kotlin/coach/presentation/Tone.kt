@@ -1,6 +1,7 @@
 package coach.presentation
 
 import coach.model.SkillPresentationState
+import coach.model.TopicState
 
 /**
  * `VDSX-v0 / D-073`: the design system is an **expression layer**. It may not add severity the
@@ -41,6 +42,17 @@ val SkillPresentationState.tone: LearningTone
         SkillPresentationState.CONFIRMATION_VERIFICATION_DUE -> LearningTone.ATTENTION
         SkillPresentationState.REMEDIATION_REQUIRED -> LearningTone.ATTENTION
         SkillPresentationState.PREREQUISITE_UNRESOLVED -> LearningTone.NEUTRAL
+    }
+
+/** Exactly one declared tone per Topic state (`VDSX-v0` §topic_state_tones, 16C). No Topic state wears the fault tone. */
+val TopicState.tone: LearningTone
+    get() = when (this) {
+        TopicState.LOCKED -> LearningTone.NEUTRAL
+        TopicState.AVAILABLE -> LearningTone.NEUTRAL
+        TopicState.LEARNING -> LearningTone.ACTIVE
+        TopicState.MASTERED -> LearningTone.POSITIVE_CONFIRMED
+        TopicState.WEAKENING -> LearningTone.NEUTRAL
+        TopicState.REMEDIATION_REQUIRED -> LearningTone.ATTENTION
     }
 
 /** Attention qualifiers carry their own tone and never change the state's (`VDSX-v0`). */

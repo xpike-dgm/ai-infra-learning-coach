@@ -1,6 +1,7 @@
 package coach.presentation
 
 import coach.model.AttentionQualifier
+import coach.model.CefrBand
 import coach.model.EvidenceKind
 import coach.model.EvidenceSummary
 import coach.model.MasteryAxisState
@@ -165,6 +166,26 @@ object ProgressCopy {
     const val METADATA = "Ön koşul bilgisinde sorun var; tahmin edilmiyor"
     const val PREREQUISITES_CLEAR = "Ön koşulları çözülmüş."
 
+    // 16C (`SPWX-v0` §10): a located gap, never the learner; no failure language, no ranking.
+    fun misconceptionLine(signal: WeaknessSignal, name: String, openQuestion: String): String? = when (signal) {
+        // A hypothesis is the catalog's own question and nothing more (`hypothesis: open_question_at_most`).
+        WeaknessSignal.HYPOTHESIS -> "Açık soru: $openQuestion"
+        WeaknessSignal.SUPPORTED -> "Yerel bir sinyal: $name"
+        WeaknessSignal.CONFIRMED -> "Bu hedefte pekiştirme: $name"
+        WeaknessSignal.RESOLVED -> "Geçmişte: $name — artık güncel bir sorun değil"
+        WeaknessSignal.NONE -> null
+    }
+    const val REMEDIATION_TITLE = "Pekiştirme bağlamı"
+    val remediationTexts: Map<WeaknessAxis, String> = mapOf(
+        WeaknessAxis.HYPOTHESIS to "Açık bir soru var. Bu bir eksik değil; cevabını yeni çalışma verecek.",
+        WeaknessAxis.SUPPORTED to "Yerel bir sinyal var; henüz doğrulanmış bir eksik değil.",
+        WeaknessAxis.REMEDIATION_REQUIRED to "Yalnız işaretli hedeflerde pekiştirme gerekiyor; becerinin geri kalanı ve ona bağlı beceriler etkilenmez.",
+        WeaknessAxis.RESOLVED to "Daha önceki bir pekiştirme kapandı; bu geçmiştir, güncel bir sorun değil.",
+    )
+    // `closure_requires_canonical_evidence`, `task_completion_closes_remediation: false` (`SPWX-v0` §10).
+    const val REMEDIATION_CLOSURE = "Pekiştirme yalnız yeni ve temiz kanıtla kapanır: yardımsız, doğrudan, doğrulanmış, ön koşulları yerinde ve farklı bir bağlamda. Bir görevi bitirmek tek başına kapatmaz."
+    fun englishContext(band: CefrBand) = "Teknik İngilizce · ${band.id} çapası. İngilizce hiçbir teknik iş için kapı değildir."
+
     /** The id namespace of a Skill, for orientation only — never a domain score (`SPWX-v0` §7.3). */
     val trackLabels: Map<String, String> = mapOf(
         "computing" to "Bilgisayar",
@@ -220,7 +241,12 @@ data class ObjectiveLine(
     val shown: String,
     val weakness: String?,
     val evidence: List<EvidenceLine>,
+    /** 16C: the Objective's catalogued misconceptions, each by its display rule. */
+    val misconceptions: List<String> = emptyList(),
 )
+
+/** 16C: what the weakness axis means for this Skill and what would close it, when it has something to say. */
+data class RemediationView(val title: String, val text: String, val closure: String?)
 
 data class PrerequisiteLine(val title: String, val skills: List<Pair<VersionedRef, String>>)
 
@@ -236,6 +262,10 @@ data class SkillDetailView(
     val prerequisite: List<PrerequisiteLine>,
     val prerequisiteNote: String?,
     val topics: List<String>,
+    /** 16C: `remediation_context_optional` (`SPWX-v0` §8). */
+    val remediation: RemediationView? = null,
+    /** 16C: `integration_or_english_context_optional` — only an English Skill's anchor band; nothing is invented. */
+    val englishContext: String? = null,
 )
 
 object ProgressPresentation {
@@ -311,6 +341,7 @@ object ProgressPresentation {
                 },
                 weakness = o.weakness?.let(ProgressCopy.objectiveWeaknessLabels::get),
                 evidence = evidenceLines(o.evidence),
+                misconceptions = o.misconceptions.mapNotNull { ProgressCopy.misconceptionLine(it.signal, it.name, it.openQuestion) },
             )
         }
         val context = row.prerequisite
@@ -336,6 +367,14 @@ object ProgressPresentation {
             prerequisite = prerequisite,
             prerequisiteNote = note,
             topics = facts.topics.map { it.name },
+            remediation = ProgressCopy.remediationTexts[reading.weakness]?.let { text ->
+                RemediationView(
+                    title = ProgressCopy.REMEDIATION_TITLE,
+                    text = text,
+                    closure = if (reading.weakness == WeaknessAxis.REMEDIATION_REQUIRED) ProgressCopy.REMEDIATION_CLOSURE else null,
+                )
+            },
+            englishContext = facts.englishBand?.let(ProgressCopy::englishContext),
         )
     }
 
