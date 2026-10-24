@@ -220,6 +220,14 @@ interface PersistencePort {
      * the Objective names nothing, whoever proposed it. A refinement of this port, not a new one.
      */
     fun misconceptionsOf(objective: VersionedRef): List<MisconceptionRow>
+
+    /**
+     * Which of these resource versions have at least one recorded attempt (16C). A Topic is started once work on it is
+     * recorded, and an Objective is covered once its lesson was worked (`TSM-v0` §12); both are attempts, and an attempt
+     * that is still `evaluation_pending` has no evidence yet. A refinement of this port, not a new one; an adapter that
+     * cannot tell answers with nothing, which only ever under-states coverage.
+     */
+    fun attemptedResources(resources: List<VersionedRef>): Set<VersionedRef> = emptySet()
 }
 
 /** A truth row together with the id the store gave it. */
@@ -285,6 +293,13 @@ interface ContentPort {
 
     /** The rubric of one pinned open-response item version (14F), if written. Content (15). */
     fun rubricFor(item: VersionedRef): Rubric?
+
+    /**
+     * The items of every authored teach task targeting one pinned Objective version, every task version included (16C).
+     * Working one of them is what "the lesson was worked" means for the Topic's coverage gate (`TSM-v0` §12). Content
+     * (15); an empty list is the truthful "no lesson authored", never "covered". A refinement of this port, not a new one.
+     */
+    fun lessonItemsFor(objective: VersionedRef): List<VersionedRef> = emptyList()
 }
 
 /**

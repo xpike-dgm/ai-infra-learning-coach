@@ -87,6 +87,20 @@ data class ObjectiveProgress(
     /** The weakness engine's signal for this Objective, `null` when it has not written one. */
     val weakness: WeaknessSignal?,
     val evidence: EvidenceSummary,
+    /** 16C: the catalogued misconceptions the memory holds an open signal or a history for on this Objective. */
+    val misconceptions: List<MisconceptionContext> = emptyList(),
+)
+
+/**
+ * One catalogued misconception as `skill_detail` may show it (16C; `SPWX-v0` §10). The signal is what 14B's memory
+ * wrote, never more: an AI-proposed label never rose above a hypothesis there, and a hypothesis is shown only as the
+ * catalog's own question.
+ */
+data class MisconceptionContext(
+    val misconception: VersionedRef,
+    val name: String,
+    val openQuestion: String,
+    val signal: WeaknessSignal,
 )
 
 /** Everything `skill_detail` shows about one Skill. */
@@ -98,6 +112,8 @@ data class SkillDetailFacts(
     /** The names of the Skills [SkillProgressRow.prerequisite] names, so a blocker is shown by name and linked. */
     val skillNames: Map<VersionedRef, String>,
     val topics: List<NamedEntity>,
+    /** 16C: a Technical English Skill's `TECP-v0` anchor band; `null` for every other Skill. */
+    val englishBand: CefrBand? = null,
 )
 
 /** Everything the store can say about Progress right now. */

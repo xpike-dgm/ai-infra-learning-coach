@@ -73,7 +73,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 15H Content QA: CQAX-v0 / D-121 ile tamamlandı; sekizinci paket ek paket — 81 item'ın sonraki sürümü (eskisi `retired` kaydıyla emekli), 6 yeni item, 138 görev sürümü, 49 kenar (12 hard), 18 ders gereksinimi; denetim `tools/content_qa.py`; bağımsız inceleme 87/87, 49/49. **AŞAMA 15 kapandı.**
 - [x] 16A Skill analytics: SKAX-v0 / D-122 ile tamamlandı; sekiz durumun tek türetmesi `core-model`de, `AssembleSkillState`, `ProgressQuery`, Progress sekmesi ve Skill detayı; eksik eksen 'yeniden hesaplanıyor'.
 - [x] 16B Öğrenme geçmişi: LHRX-v0 / D-123 ile tamamlandı; geçmiş ve rapor kanıttan yeniden oynatılıyor, mastery yeniden kontrolü düzeltildi.
-- [ ] 16C Progress / weakness gösterim kuralları **AKTİF** — kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
+- [x] 16C Progress / weakness gösterim kuralları: PWPX-v0 / D-124 ile tamamlandı; konu durumu, `topic_detail`, zayıflık bağlamı ve Teknik İngilizce profili; başlanmamış konu bir becerisi açıksa 'Hazır'.
+- [ ] 16D Ayarlar **AKTİF** — kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
+- [ ] `topic_state` / `english_profile` projeksiyonlarını yazmak ve konu geçiş geçmişi → 18E.
+- [ ] Planner'ın konu durumunu okuması (`TSM-v0` §13) → 18B.
+- [ ] B2+ uzantı içeriği (yalnız `no_extension_evidence` üretiliyor) → 20.
+- [ ] `technical_english_profile → skill_detail` kenarı (kabul edilmiş değil; profil becerileri metin olarak adlandırıyor) → 17.
+- [ ] `TEIP-v0` entegrasyon bağlamı (görev–Skill eşlemesi saklanmıyor) → 18D.
 - [ ] Geçmişin tekrar oynatma maliyeti (Skill'in satırlarında karesel; içteki mastery oynatması da) cihazda ölçülecek → 18E.
 - [ ] Mastery öncesi pencerede kalan bir çelişki, sonraki bir doğrulamayı açanlar arasında sayılabiliyor → 18C.
 - [ ] Haftalık slotlar yalnız oturumun kimliğini taşıyan kanıtla yanıtlanmış sayılıyor; slotları sunan uygulama yolu kimliği geçmeli → 16D.
@@ -126,7 +132,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Hangi biçimin öğrenciye daha çok yardım ettiğinin kalibrasyonu → 18.
 - [x] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15G'de kapandı (D-120): seçenek düzeyinde `[answer_misconception]`, 144 anahtar (66 eklenen, 78 yayımlanmış item'da), yalnız bağımsız incelemenin geçirdiği eşleme.
 - [ ] Misconception hafızasının item seçiminde kullanımı → 16D (runner'ın havuzdan item seçmesiyle). `misconception_contrast` içeriği AŞAMA 15'te yazıldı.
-- [ ] Destekli/doğrulanmış misconception'ların Progress görünümü → 16C.
+- [x] Destekli/doğrulanmış misconception'ların Progress görünümü → 16C'de Skill detayında (D-124).
 - [ ] Yanlış analizini gerçek bir oturumdan sonra uygulamadan çağırmak → 16D.
 - [ ] Katalogun gerçek öğrenci hatalarıyla genişletilmesi ve yükselme kalibrasyonu → 18.
 - [x] Tutor adaptörünün gerçek çağrı noktası, router ve model kimliklerinin güncel kaynakla doğrulanması: 14G'de yapıldı (D-111; kaynak 2026-10-02, build'e kayıtlı).
@@ -134,7 +140,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Tutor panelini çizmek; `AskTutor` ve `AttemptSubmission.independence`'ı uygulamanın kanıt yolundan çağırmak → 16D.
 - [x] Tutor konuşmalarının öğrenme geçmişi olarak saklanması → 16B'de kapandı (D-123, kullanıcı kararı): metin saklanmaz; geçmiş kaydedilmiş yardım seviyelerini gösterir.
 - [ ] Tutor yanıtlarının beyan ettikleri seviyeye karşı kalibrasyonu → 18D.
-- [ ] Topic `available → mastered` geçişi Objective waiver'larından → 16C.
+- [x] Topic `available → mastered` geçişi Objective waiver'larından → 16C'de kapsam kapısı (D-124).
 - [ ] Hızlı yol girişini (Learn) sunmak, istek/geri çekme/sonucu ve oturum sonrası yeniden hesaplamayı uygulamadan çağırmak → 16D; giriş yerleşimi tanısal kaynağı → 16D.
 - [ ] Planner kaynaklı tanı (kalibre edilmiş karar değeri) → 18B.
 - [ ] Waiver'ı curriculum sürümleri arasında taşımak (`KGC-v0` §26 göç kayıtları) → 19B. Objective'lerini beyan eden authored dersler ve tanı item'ları AŞAMA 15'te yazıldı.
@@ -142,10 +148,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Raporu ve yeniden hesaplamayı gerçek oturumdan sonra uygulamadan çağırmak, `stateChangeRefs`'i doldurmak → 16D.
 - [x] Kalıcı `assessment_report` ve boylamsal geçmiş → 16B'de kapandı (D-123): saklı kanıttan yeniden oynatılan oturum aileleri.
 - [x] Curriculum paketinde transfer/artifact kapı alanları → 15H'de kapandı (D-121): standard Objective'de kapı yok; critical bir Objective yayımlanmadan önce alanlar saklanmalı (üretici reddeder).
-- [ ] Topic durum makinesi (`TSM-v0` altı durum, `RVR-v0` §15 `weakening` dahil) → **16C** (kullanıcı kararı, D-102).
+- [x] Topic durum makinesi (`TSM-v0` altı durum, `RVR-v0` §15 `weakening` dahil) → 16C'de türetiliyor (D-124).
 - [ ] 11C yüksek riskli duraklatma boşluk politikası → **18D** (kullanıcı kararı, D-102); o zamana kadar devam ettirilmez.
 - [ ] Remediation strateji rotalarından içerik: AŞAMA 15 alternatif anlatım ve misconception karşılaştırması yazdı; rota başına içerik → 20I. Misconception hafızası 14B'de kapandı (D-106). Rehberliğin azalması 14A'da kapandı: tutor esirgeyerek azaltmaz, scaffold planner seçimi ve görev instruction mode'uyla kanıtla azalır (`TEIP-v0` §5.4).
-- [ ] Geriye dönük contamination'ı oturum kapanınca uygulamadan çağırmak → 16D; izlerde dispozisyon nedeni → 16C.
+- [ ] Geriye dönük contamination'ı oturum kapanınca uygulamadan çağırmak → 16D; izlerde dispozisyon nedeni → 16D (16C konu/zayıflık/İngilizce görünümlerini kurdu, dispozisyon nedenini izlerde göstermedi; düzeltmeyi kaydeden uygulama yoluyla birlikte).
 - [ ] Motorları kanıttan sonra uygulamadan yeniden kurmak — çekirdekte `RecomputeSkillState` (13E) sırayı tutuyor, uygulamadan çağırmak — ve `RebuildMastery`'nin `skill_state`'e kendi watermark'ını yazması → 16D.
 - [x] `skill_state.prerequisite_axis_state` → 16A'da kapandı (D-122): `AssembleSkillState` kapının Skill'deki yeni iş için verdiği eligibility'yi yazıyor; Progress okuması kapıyı yeniden soruyor (bağımlılar yeniden birleştirilmiyor, 18E).
 - [ ] Geciken tekrar aciliyet kovaları ve başarı bandı → 18C; uzun yokluk sonrası temsili kontrol → 18B.

@@ -9,6 +9,7 @@ import coach.model.CurriculumPackage
 import coach.model.ExplanationVariant
 import coach.model.LearningNeed
 import coach.model.TaskCandidate
+import coach.model.TaskPurpose
 import coach.model.VersionedRef
 import coach.model.WrongAnswerMisconception
 import coach.ports.ContentDocument
@@ -95,6 +96,11 @@ class FileContentSource(
 
     /** The rubric for exactly this item version (14F). */
     override fun rubricFor(item: VersionedRef): Rubric? = parsed?.rubrics.orEmpty().singleOrNull { it.item == item }
+
+    /** The items of every teach task targeting exactly this Objective version, every task version included (16C). */
+    override fun lessonItemsFor(objective: VersionedRef): List<VersionedRef> =
+        parsed?.tasks.orEmpty().filter { it.purpose == TaskPurpose.TEACH && objective in it.targetObjectives }
+            .flatMap { it.items }.distinct().sortedBy { it.toString() }
 
     private fun checkSequence(packages: List<PackageFormat.Parsed>) {
         val reasons = buildList {

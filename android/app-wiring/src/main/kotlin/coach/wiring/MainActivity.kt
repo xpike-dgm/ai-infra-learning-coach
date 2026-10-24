@@ -32,6 +32,11 @@ import coach.presentation.LearningHistoryView
 import coach.presentation.ProgressOverview
 import coach.presentation.ProgressPresentation
 import coach.presentation.SkillDetailView
+import coach.presentation.EnglishProfilePresentation
+import coach.presentation.EnglishProfileView
+import coach.presentation.TopicDetailView
+import coach.presentation.TopicOverviewView
+import coach.presentation.TopicPresentation
 import coach.presentation.Revalidation
 import coach.presentation.RunnerFlow
 import coach.presentation.RunnerRevalidation
@@ -55,6 +60,8 @@ import coach.ui.AssessmentReportScreen
 import coach.ui.LearningHistoryScreen
 import coach.ui.ProgressScreen
 import coach.ui.SkillDetailScreen
+import coach.ui.EnglishProfileScreen
+import coach.ui.TopicDetailScreen
 import coach.ui.TaskRunnerScreen
 import coach.ui.TodayScreen
 import coach.ui.AiSettingsScreen
@@ -154,6 +161,10 @@ private fun Shell(
     // 16B: the learning history (whole, or one Skill's) and the longitudinal assessment report, read on the store thread.
     var history by remember { mutableStateOf<Pair<String, LearningHistoryView>?>(null) }
     var report by remember { mutableStateOf<AssessmentReportView?>(null) }
+    // 16C: the Topics shown on Progress, the one topic_detail opened from it, and the Technical English profile.
+    var topics by remember { mutableStateOf<TopicOverviewView?>(null) }
+    var topicDetail by remember { mutableStateOf<TopicDetailView?>(null) }
+    var english by remember { mutableStateOf<EnglishProfileView?>(null) }
 
     // The window class is computed by core-presentation from the accepted WFPX-v0
     // breakpoints, not by the UI toolkit's own bucketing, so the mapping stays canonical.
@@ -169,6 +180,8 @@ private fun Shell(
             history != null -> Surface.LearningHistory
             report != null -> Surface.AssessmentReport
             skillDetail != null -> Surface.SkillDetail
+            topicDetail != null -> Surface.TopicDetail
+            english != null -> Surface.TechnicalEnglishProfile
             else -> Surface.rootOf(selected)
         },
         windowClass = windowClass,
@@ -180,9 +193,15 @@ private fun Shell(
         skillDetail = null
         history = null
         report = null
+        topicDetail = null
+        english = null
         if (destination == Destination.PROGRESS) {
             progress = null
-            app.loadProgress { facts -> progress = ProgressPresentation.overview(facts, health) }
+            topics = null
+            app.loadProgress { facts, topicFacts ->
+                progress = ProgressPresentation.overview(facts, health)
+                topics = TopicPresentation.overview(topicFacts)
+            }
         }
     }) {
         val entry = runnerEntry
@@ -215,6 +234,16 @@ private fun Shell(
                 onOpenSkill = { ref -> app.loadSkillDetail(ref) { facts -> facts?.let { skillDetail = ProgressPresentation.detail(it) } } },
                 onBack = { skillDetail = null },
             )
+            topicDetail != null -> TopicDetailScreen(
+                view = topicDetail!!,
+                onOpenSkill = { ref ->
+                    if (NavigationGraph.canOpen(Surface.TopicDetail.id, Surface.SkillDetail.id)) {
+                        app.loadSkillDetail(ref) { facts -> facts?.let { skillDetail = ProgressPresentation.detail(it) } }
+                    }
+                },
+                onBack = { topicDetail = null },
+            )
+            english != null -> EnglishProfileScreen(view = english!!, onBack = { english = null })
             entry != null -> TaskRunnerScreen(
                 state = RunnerRevalidation.stateAtEntry(entry),
                 entry = entry,
@@ -279,6 +308,17 @@ private fun Shell(
                 onOpenReport = {
                     if (NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.AssessmentReport.id)) {
                         app.loadHistory(null) { facts -> report = HistoryPresentation.report(facts, health) }
+                    }
+                },
+                topics = topics,
+                onOpenTopic = { ref ->
+                    if (NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.TopicDetail.id)) {
+                        app.loadTopicDetail(ref) { facts -> facts?.let { topicDetail = TopicPresentation.detail(it) } }
+                    }
+                },
+                onOpenEnglish = {
+                    if (NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.TechnicalEnglishProfile.id)) {
+                        app.loadEnglishProfile { profile -> english = EnglishProfilePresentation.of(profile) }
                     }
                 },
             )

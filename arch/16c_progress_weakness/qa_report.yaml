@@ -1,0 +1,454 @@
+model: PWPX-v0
+stage_step: 16C
+decision: D-124
+result: PASS
+checks_total: 117
+checks_passed: 117
+checks_failed: 0
+checks:
+- check: A16C-00_exists_progress_weakness.yaml
+  result: PASS
+  details: missing arch\16c_progress_weakness\progress_weakness.yaml
+- check: A16C-00_exists_PROGRESS_WEAKNESS_SPEC.md
+  result: PASS
+  details: missing docs\PROGRESS_WEAKNESS_SPEC.md
+- check: A16C-00_exists_16c_progress_weakness_research.md
+  result: PASS
+  details: missing research\16c_progress_weakness_research.md
+- check: A16C-00_exists_TOPIC_STATE_MACHINE.md
+  result: PASS
+  details: missing docs\TOPIC_STATE_MACHINE.md
+- check: A16C-00_exists_progress.yaml
+  result: PASS
+  details: missing ux\8e_progress_skill_weakness\progress.yaml
+- check: A16C-00_exists_policy.yaml
+  result: PASS
+  details: missing curriculum\english\7e_mastery_profile\policy.yaml
+- check: A16C-00_exists_alignment.yaml
+  result: PASS
+  details: missing curriculum\english\7b_cefr_progression\alignment.yaml
+- check: A16C-00_exists_design_system.yaml
+  result: PASS
+  details: missing ux\8f_design_system\design_system.yaml
+- check: A16C-00_exists_ia.yaml
+  result: PASS
+  details: missing ux\8a_information_architecture\ia.yaml
+- check: A16C-00_exists_TopicFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\TopicFacts.kt
+- check: A16C-00_exists_EnglishProfileFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\EnglishProfileFacts.kt
+- check: A16C-00_exists_ProgressFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\ProgressFacts.kt
+- check: A16C-00_exists_Ports.kt
+  result: PASS
+  details: missing android\core-ports\src\main\kotlin\coach\ports\Ports.kt
+- check: A16C-00_exists_SqlitePersistence.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\SqlitePersistence.kt
+- check: A16C-00_exists_FileContentSource.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\FileContentSource.kt
+- check: A16C-00_exists_TopicQuery.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\TopicQuery.kt
+- check: A16C-00_exists_EnglishProfileQuery.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\EnglishProfileQuery.kt
+- check: A16C-00_exists_ProgressQuery.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\ProgressQuery.kt
+- check: A16C-00_exists_TopicPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\TopicPresentation.kt
+- check: A16C-00_exists_EnglishProfilePresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\EnglishProfilePresentation.kt
+- check: A16C-00_exists_ProgressPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\ProgressPresentation.kt
+- check: A16C-00_exists_Tone.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\Tone.kt
+- check: A16C-00_exists_TopicScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\TopicScreen.kt
+- check: A16C-00_exists_EnglishProfileScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\EnglishProfileScreen.kt
+- check: A16C-00_exists_ProgressScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\ProgressScreen.kt
+- check: A16C-00_exists_MainActivity.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
+- check: A16C-00_exists_CoachApplication.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
+- check: A16C-00_exists_TopicStateProjectionTest.kt
+  result: PASS
+  details: missing android\core-model\src\test\kotlin\coach\model\TopicStateProjectionTest.kt
+- check: A16C-00_exists_EnglishProfileProjectionTest.kt
+  result: PASS
+  details: missing android\core-model\src\test\kotlin\coach\model\EnglishProfileProjectionTest.kt
+- check: A16C-00_exists_TopicQueryTest.kt
+  result: PASS
+  details: missing android\core-application\src\test\kotlin\coach\application\TopicQueryTest.kt
+- check: A16C-00_exists_TopicPresentationTest.kt
+  result: PASS
+  details: missing android\core-presentation\src\test\kotlin\coach\presentation\TopicPresentationTest.kt
+- check: A16C-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: A16C-01_model
+  result: PASS
+  details: ''
+- check: A16C-01_user_decisions
+  result: PASS
+  details: '{''approval'': ''explicit_user_approval_2026-10-24'', ''scope'': ''topic_state_topic_detail_weakness_context_and_technical_english_profile_core_and_real_compose_screen'',
+    ''topic_entry'': ''an_unstarted_topic_is_available_when_one_of_its_skills_can_start_locked_only_when_none_can'',
+    ''topic_entry_first_choice'': ''every_hard_edge_from_outside_the_topic_satisfied'',
+    ''topic_entry_revised_because'': ''the shipped graph showed 12 of 27 Topics as
+    locked while the planner offered one of their Skills'', ''coverage_gate'': ''the_objective_s_teach_task_has_a_recorded_attempt_or_a_13f_diagnostic_waiver'',
+    ''english_history'': ''replay_the_mastery_engine_over_the_evidence_no_new_table'',
+    ''english_unpublished_band'': ''named_not_published_never_incomplete_or_failed'',
+    ''english_anchors_source'': ''curriculum/english/7b_cefr_progression/alignment.yaml''}'
+- check: A16C-01_scope
+  result: PASS
+  details: ''
+- check: A16C-02_six_states_tsm_order
+  result: PASS
+  details: '[''locked'', ''available'', ''learning'', ''mastered'', ''weakening'',
+    ''remediation_required'']'
+- check: A16C-02_labels_are_spwx
+  result: PASS
+  details: '{''LOCKED'': ''Kilitli'', ''AVAILABLE'': ''Hazır'', ''LEARNING'': ''Öğreniliyor'',
+    ''MASTERED'': ''Öğrenildi'', ''WEAKENING'': ''Tekrar Gerekebilir'', ''REMEDIATION_REQUIRED'':
+    ''Pekiştirme Gerekli''}'
+- check: A16C-02_tones_are_vdsx
+  result: PASS
+  details: '{''locked'': ''neutral'', ''available'': ''neutral'', ''learning'': ''active'',
+    ''mastered'': ''positive_confirmed'', ''weakening'': ''neutral'', ''remediation_required'':
+    ''attention''}'
+- check: A16C-02_no_fault_tone
+  result: PASS
+  details: ''
+- check: A16C-02_reason_codes_are_tsm_14
+  result: PASS
+  details: '[''hard_prerequisites_satisfied'', ''mastery_gate_satisfied'', ''remediation_triggered'',
+    ''retention_risk_confirmed'', ''topic_started''] vs [''curriculum_requirement_changed'',
+    ''diagnostic_mastery_confirmed'', ''hard_prerequisites_satisfied'', ''mastery_gate_satisfied'',
+    ''remediation_recovered'', ''remediation_triggered'', ''retention_recovered'',
+    ''retention_risk_confirmed'', ''topic_started'']'
+- check: A16C-03_one_startable_skill_opens
+  result: PASS
+  details: ''
+- check: A16C-03_locked_only_before_start
+  result: PASS
+  details: LOCKED is produced only in the not-started branch
+- check: A16C-03_waiting_named_only_when_locked
+  result: PASS
+  details: ''
+- check: A16C-03_recomputing_never_guessed
+  result: PASS
+  details: ''
+- check: A16C-03_tsm_10_2_order
+  result: PASS
+  details: '[2003, 2169, 2272, 2358, 2412]'
+- check: A16C-03_verification_keeps_confirmation
+  result: PASS
+  details: ''
+- check: A16C-03_review_due_is_not_weakening
+  result: PASS
+  details: ''
+- check: A16C-03_only_lesson_or_waiver_covers
+  result: PASS
+  details: '{''LESSON_WORKED'': ''true'', ''DIAGNOSTIC_WAIVER'': ''true'', ''NOT_COVERED'':
+    ''false'', ''NO_LESSON_AUTHORED'': ''false''}'
+- check: A16C-03_no_average_or_percentage
+  result: PASS
+  details: ''
+- check: A16C-04_startable_is_the_gate
+  result: PASS
+  details: ''
+- check: A16C-04_started_by_attempt_or_evidence
+  result: PASS
+  details: ''
+- check: A16C-04_outside_only_named
+  result: PASS
+  details: ''
+- check: A16C-04_coverage_order
+  result: PASS
+  details: ''
+- check: A16C-04_same_rows_as_progress
+  result: PASS
+  details: ''
+- check: A16C-04_topic_query_only_reads
+  result: PASS
+  details: ''
+- check: A16C-04_english_query_only_reads
+  result: PASS
+  details: ''
+- check: A16C-04_nothing_writes_topic_or_english_rows
+  result: PASS
+  details: '[]'
+- check: A16C-05_anchors_are_tecp
+  result: PASS
+  details: 15 vs 15
+- check: A16C-05_extension_eligible_is_tecp
+  result: PASS
+  details: '[''skill.english.ask_clarifying_technical_question'', ''skill.english.documentation_navigation'',
+    ''skill.english.read_definition_and_constraint'', ''skill.english.read_procedure_sequence'']'
+- check: A16C-05_bands_are_tepm
+  result: PASS
+  details: ''
+- check: A16C-05_statuses_are_tepm
+  result: PASS
+  details: ''
+- check: A16C-05_sources_are_tepm
+  result: PASS
+  details: ''
+- check: A16C-05_extension_states_are_tepm
+  result: PASS
+  details: ''
+- check: A16C-05_reason_codes_are_tepm
+  result: PASS
+  details: '[]'
+- check: A16C-05_confirmed_never_remediation
+  result: PASS
+  details: '{''CONFIRMED_CURRENT'', ''CONFIRMED_REVIEW_DUE'', ''CONFIRMATION_VERIFICATION_DUE''}'
+- check: A16C-05_band_rule_at_or_below
+  result: PASS
+  details: ''
+- check: A16C-05_unpublished_and_recomputing_named
+  result: PASS
+  details: ''
+- check: A16C-05_review_never_demotes
+  result: PASS
+  details: ''
+- check: A16C-05_history_replayed_never_below
+  result: PASS
+  details: ''
+- check: A16C-05_no_number_for_english
+  result: PASS
+  details: ''
+- check: A16C-06_no_level_claim_or_blame
+  result: PASS
+  details: '[]'
+- check: A16C-06_english_scope_and_gate_said
+  result: PASS
+  details: ''
+- check: A16C-06_unpublished_named
+  result: PASS
+  details: ''
+- check: A16C-06_headline_is_qualified
+  result: PASS
+  details: ''
+- check: A16C-06_locked_is_not_a_verdict
+  result: PASS
+  details: ''
+- check: A16C-07_hypothesis_is_the_catalog_question
+  result: PASS
+  details: ''
+- check: A16C-07_closure_said_task_never_closes
+  result: PASS
+  details: ''
+- check: A16C-07_only_held_signals_read
+  result: PASS
+  details: ''
+- check: A16C-07_spwx_display_rules
+  result: PASS
+  details: ''
+- check: A16C-08_port_refinements_defaulted
+  result: PASS
+  details: ''
+- check: A16C-08_port_count_unchanged
+  result: PASS
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'',
+    ''TutorPort'']'
+- check: A16C-08_adapter_reads_attempts
+  result: PASS
+  details: ''
+- check: A16C-08_lessons_are_teach_tasks
+  result: PASS
+  details: ''
+- check: A16C-09_edges_accepted
+  result: PASS
+  details: ''
+- check: A16C-09_wired_on_accepted_edges
+  result: PASS
+  details: ''
+- check: A16C-09_english_profile_links_no_skill
+  result: PASS
+  details: no accepted technical_english_profile -> skill_detail edge
+- check: A16C-09_screen_decides_nothing_TopicScreen
+  result: PASS
+  details: ''
+- check: A16C-09_screen_decides_nothing_EnglishProfileScreen
+  result: PASS
+  details: ''
+- check: A16C-09_screen_decides_nothing_ProgressScreen
+  result: PASS
+  details: ''
+- check: A16C-10_new_learner_four_open
+  result: PASS
+  details: 27 topics, 4 open
+- check: A16C-10_first_rule_disagreed
+  result: PASS
+  details: '[''topic.python.values_types@v1'']'
+- check: A16C-10_lesson_items_disjoint
+  result: PASS
+  details: 67 vs 1023
+- check: A16C-10_every_objective_has_a_lesson
+  result: PASS
+  details: '65'
+- check: A16C-10_b1_unpublished_a1_a2_published
+  result: PASS
+  details: ''
+- check: A16C-11_test_an_unstarted_topic_is_available_when_one
+  result: PASS
+  details: 'TopicStateProjectionTest.kt: an unstarted Topic is available when one
+    of its Skills can start, and locked only when none can'
+- check: A16C-11_test_a_started_topic_never_goes_back_to_locke
+  result: PASS
+  details: 'TopicStateProjectionTest.kt: a started Topic never goes back to locked,
+    whatever its entry says now'
+- check: A16C-11_test_mastered_needs_every_skill_confirmed_and
+  result: PASS
+  details: 'TopicStateProjectionTest.kt: mastered needs every Skill confirmed and
+    every Objective covered — finishing the lessons is not enough'
+- check: A16C-11_test_a_scheduled_review_keeps_the_topic_maste
+  result: PASS
+  details: 'TopicStateProjectionTest.kt: a scheduled review keeps the Topic mastered,
+    while at_risk or an open verification is weakening'
+- check: A16C-11_test_e7e_f01_partial_a2_is_a1_complete_with_t
+  result: PASS
+  details: 'EnglishProfileProjectionTest.kt: E7E-F01 partial A2 is A1 complete with
+    the exact A2 gap visible and an uneven profile'
+- check: A16C-11_test_e7e_f04_and_f15_a_confirmed_remediation
+  result: PASS
+  details: 'EnglishProfileProjectionTest.kt: E7E-F04 and F15 a confirmed remediation
+    lowers the current band and the history stays'
+- check: A16C-11_test_nothing_evidenced_is_not_yet_complete_a
+  result: PASS
+  details: 'EnglishProfileProjectionTest.kt: nothing evidenced is not yet complete,
+    and an unpublished band is named as such, never as a gap'
+- check: A16C-11_test_an_attempt_on_a_lesson_item_starts_the_t
+  result: PASS
+  details: 'TopicQueryTest.kt: an attempt on a lesson item starts the Topic and covers
+    that Objective, even before any evidence'
+- check: A16C-11_test_a_stored_diagnostic_waiver_covers_its_ob
+  result: PASS
+  details: 'TopicQueryTest.kt: a stored diagnostic waiver covers its Objective without
+    a lesson attempt, and marks the confirmation''s source'
+- check: A16C-11_test_every_a1_skill_confirmed_is_the_a1_base
+  result: PASS
+  details: 'TopicQueryTest.kt: every A1 Skill confirmed is the A1 base, and the replay
+    keeps the band after a clean recheck fails'
+- check: A16C-11_test_skill_detail_shows_a_hypothesis_only_as
+  result: PASS
+  details: 'TopicPresentationTest.kt: skill detail shows a hypothesis only as the
+    catalog''s question and remediation with what closes it'
+- check: A16C-11_test_the_english_profile_uses_allowed_wording
+  result: PASS
+  details: 'TopicPresentationTest.kt: the English profile uses allowed wording only,
+    names an unpublished band and keeps its history'
+- check: A16C-11_test_with_all_eight_packages_a_new_learner_s
+  result: PASS
+  details: 'ShippedCourseTest.kt: with all eight packages, a new learner''s Topic
+    is available exactly when one of its Skills can start, and nothing is written'
+- check: A16C-11_test_with_all_eight_packages_the_technical_e
+  result: PASS
+  details: 'ShippedCourseTest.kt: with all eight packages, the Technical English profile
+    is honestly not complete, B1 is not published and nothing is claimed'
+- check: A16C-12_kotlin_mutation_all_detected
+  result: PASS
+  details: 31/31
+- check: A16C-12_kotlin_crash_not_detection
+  result: PASS
+  details: ''
+- check: A16C-12_validator_mutation
+  result: PASS
+  details: '{''tool'': ''tools/validate_progress_weakness.py'', ''total'': 46, ''detected'':
+    46, ''scope'': ''one change per mutant to an input the validator reads — the contract,
+    the Topic derivation, coverage and copy, the tones, the read, the English anchors,
+    band rule, replay and wording, the weakness context, a port, a screen, the wiring,
+    a test name, the spec, the research and DECISIONS'', ''detection'': ''a FAIL line
+    not in the baseline; a run that prints no result line is a crash and never a detection'',
+    ''crash_is_detection'': False, ''baseline'': ''the only check allowed to fail
+    at baseline is A16C-12_validator_mutation, which reads this very result'', ''negative_control'':
+    ''a YAML comment in the contract naming forbidden fragments (banana, survived,
+    streak, 100%)'', ''negative_control_result'': ''survived_as_expected'', ''earlier_runs'':
+    "the first run left V16 (an open verification no longer confirming a Skill) alive
+    — the check read the expression-bodied confirmed() and retentionSignal() with
+    a brace scan that ran into the next function, so a dropped condition was still
+    found further down; both are now read to their own end, and the whole set was
+    run again. Before any run, a shell heredoc had written the validator''s word boundaries
+    as backspace characters; a syntax error and a scan for the character caught it,
+    and the lines were rewritten from a file", ''final_run_is_a_single_clean_run'':
+    True, ''mutants'': [{''id'': ''V01'', ''mutant'': ''contract_model'', ''result'':
+    ''detected''}, {''id'': ''V02'', ''mutant'': ''contract_first_entry_rule'', ''result'':
+    ''detected''}, {''id'': ''V03'', ''mutant'': ''contract_topic_state_written'',
+    ''result'': ''detected''}, {''id'': ''V04'', ''mutant'': ''contract_device_claimed'',
+    ''result'': ''detected''}, {''id'': ''V05'', ''mutant'': ''contract_mutant_survived'',
+    ''result'': ''detected''}, {''id'': ''V06'', ''mutant'': ''contract_run_failed'',
+    ''result'': ''detected''}, {''id'': ''V07'', ''mutant'': ''states_reordered'',
+    ''result'': ''detected''}, {''id'': ''V08'', ''mutant'': ''label_changed'', ''result'':
+    ''detected''}, {''id'': ''V09'', ''mutant'': ''tone_raised'', ''result'': ''detected''},
+    {''id'': ''V10'', ''mutant'': ''reason_code_invented'', ''result'': ''detected''},
+    {''id'': ''V11'', ''mutant'': ''every_skill_must_start'', ''result'': ''detected''},
+    {''id'': ''V12'', ''mutant'': ''locked_after_start'', ''result'': ''detected''},
+    {''id'': ''V13'', ''mutant'': ''waiting_shown_always'', ''result'': ''detected''},
+    {''id'': ''V14'', ''mutant'': ''recomputing_guessed'', ''result'': ''detected''},
+    {''id'': ''V15'', ''mutant'': ''review_due_weakening'', ''result'': ''detected''},
+    {''id'': ''V16'', ''mutant'': ''verification_unconfirms'', ''result'': ''detected''},
+    {''id'': ''V17'', ''mutant'': ''waiver_not_covering'', ''result'': ''detected''},
+    {''id'': ''V18'', ''mutant'': ''average_of_skills'', ''result'': ''detected''},
+    {''id'': ''V19'', ''mutant'': ''first_entry_rule_back'', ''result'': ''detected''},
+    {''id'': ''V20'', ''mutant'': ''attempts_ignored'', ''result'': ''detected''},
+    {''id'': ''V21'', ''mutant'': ''inside_blockers_named'', ''result'': ''detected''},
+    {''id'': ''V22'', ''mutant'': ''query_writes'', ''result'': ''detected''}, {''id'':
+    ''V23'', ''mutant'': ''topic_row_stored'', ''result'': ''detected''}, {''id'':
+    ''V24'', ''mutant'': ''anchor_moved'', ''result'': ''detected''}, {''id'': ''V25'',
+    ''mutant'': ''extension_eligibility_lost'', ''result'': ''detected''}, {''id'':
+    ''V26'', ''mutant'': ''remediation_counts_confirmed'', ''result'': ''detected''},
+    {''id'': ''V27'', ''mutant'': ''band_walk_skips'', ''result'': ''detected''},
+    {''id'': ''V28'', ''mutant'': ''history_not_replayed'', ''result'': ''detected''},
+    {''id'': ''V29'', ''mutant'': ''history_below_current'', ''result'': ''detected''},
+    {''id'': ''V30'', ''mutant'': ''english_code_invented'', ''result'': ''detected''},
+    {''id'': ''V31'', ''mutant'': ''level_claimed'', ''result'': ''detected''}, {''id'':
+    ''V32'', ''mutant'': ''english_made_a_gate'', ''result'': ''detected''}, {''id'':
+    ''V33'', ''mutant'': ''unpublished_as_gap'', ''result'': ''detected''}, {''id'':
+    ''V34'', ''mutant'': ''hypothesis_as_finding'', ''result'': ''detected''}, {''id'':
+    ''V35'', ''mutant'': ''closure_dropped'', ''result'': ''detected''}, {''id'':
+    ''V36'', ''mutant'': ''port_default_dropped'', ''result'': ''detected''}, {''id'':
+    ''V37'', ''mutant'': ''english_profile_links_skill'', ''result'': ''detected''},
+    {''id'': ''V38'', ''mutant'': ''topic_bar_drawn'', ''result'': ''detected''},
+    {''id'': ''V39'', ''mutant'': ''edge_unchecked'', ''result'': ''detected''}, {''id'':
+    ''V40'', ''mutant'': ''test_renamed'', ''result'': ''detected''}, {''id'': ''V41'',
+    ''mutant'': ''spec_not_accepted'', ''result'': ''detected''}, {''id'': ''V42'',
+    ''mutant'': ''spec_wrong_next'', ''result'': ''detected''}, {''id'': ''V43'',
+    ''mutant'': ''research_source_dropped'', ''result'': ''detected''}, {''id'': ''V44'',
+    ''mutant'': ''decision_missing'', ''result'': ''detected''}, {''id'': ''V45'',
+    ''mutant'': ''finding_dropped'', ''result'': ''detected''}, {''id'': ''V46'',
+    ''mutant'': ''lessons_not_disjoint'', ''result'': ''detected''}]}'
+- check: A16C-12_runs_pass
+  result: PASS
+  details: ''
+- check: A16C-12_device_not_claimed
+  result: PASS
+  details: ''
+- check: A16C-13_spec_status
+  result: PASS
+  details: no result placeholder is left
+- check: A16C-13_spec_next
+  result: PASS
+  details: ''
+- check: A16C-13_research
+  result: PASS
+  details: ''
+- check: A16C-13_decision
+  result: PASS
+  details: D-124 heading in DECISIONS

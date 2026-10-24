@@ -1,6 +1,19 @@
 package coach.wiring
 
 import coach.application.BuildDailyPlan
+import coach.application.EnglishProfileQuery
+import coach.application.SubmitAttempt
+import coach.application.TopicQuery
+import coach.model.AttemptSubmission
+import coach.model.BandCompletion
+import coach.model.BaseProfileStatus
+import coach.model.ExtensionState
+import coach.model.ProvenanceOrigin
+import coach.model.TopicCoverage
+import coach.model.TopicProjection
+import coach.model.TopicState
+import coach.presentation.EnglishProfilePresentation
+import coach.presentation.TopicPresentation
 import coach.application.IngestCurriculum
 import coach.application.LearningHistoryQuery
 import coach.application.RecomputeSkillState
@@ -419,5 +432,68 @@ class ShippedCourseTest {
         assertEquals(listOf("capability_confirmed"), history.entries.first().changes.map { it.kind.id })
         assertEquals(emptyList(), history.entries.last().changes)
         assertEquals(before, store.readProjection("skill_state:${execution.logicalId}@v1"))
+    }
+
+    // ---------------------------------------------------------------- 16C — Progress / weakness (PWPX-v0)
+
+    @Test
+    fun `with all eight packages, a new learner's Topic is available exactly when one of its Skills can start, and nothing is written`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        val progress = ProgressQuery(store, withContentQa).load()
+        val topics = TopicQuery(store, withContentQa).load(progress).topics
+        assertEquals(27, topics.size)
+        val states = topics.associate { it.topic to assertIs<TopicProjection.Derived>(it.projection, it.topic.toString()) }
+        assertEquals(setOf(TopicState.AVAILABLE, TopicState.LOCKED), states.values.map { it.state }.toSet())
+        // The four entry Skills sit in four Topics; everything else waits, exactly as the planner holds it back.
+        assertEquals(4, states.values.count { it.state == TopicState.AVAILABLE })
+        assertEquals(23, states.values.count { it.state == TopicState.LOCKED })
+        // One gate, one answer: a Topic is open exactly when Progress shows one of its Skills as startable (not waiting),
+        // so it is never locked while the planner offers one of its Skills; a locked one names the outside Skills it waits for.
+        val skillStates = progress.skills.associate { it.skill to assertIs<SkillStateProjection.Derived>(it.projection).state }
+        states.forEach { (topic, p) ->
+            val open = p.reading.members.any { skillStates.getValue(it.skill) != SkillPresentationState.PREREQUISITE_UNRESOLVED }
+            assertEquals(open, p.state == TopicState.AVAILABLE, topic.toString())
+            if (p.state == TopicState.LOCKED) assertTrue(p.waitingFor.isNotEmpty() || p.metadataProblem, topic.toString())
+            val members = p.reading.members.map { it.skill }.toSet()
+            assertTrue(p.waitingFor.all { it !in members && store.skill(it) != null }, topic.toString())
+        }
+        val entry = setOf(skill("skill.computing.program_execution_model"), skill("skill.programming.state_assignment_model"), terminal, labels)
+        assertTrue(states.values.filter { p -> p.reading.members.any { it.skill in entry } }.all { it.state == TopicState.AVAILABLE })
+        // Every published Objective has a lesson to work, so none is "no lesson authored".
+        assertTrue(states.values.flatMap { p -> p.reading.members.flatMap { it.objectives } }.all { it.second == TopicCoverage.NOT_COVERED })
+        assertTrue(store.publishedSkills().none { store.readProjection("skill_state:${it.ref.logicalId}@v1") != null })
+    }
+
+    @Test
+    fun `with all eight packages, the Technical English profile is honestly not complete, B1 is not published and nothing is claimed`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        val profile = EnglishProfileQuery(store, withContentQa).load()!!
+        assertEquals(10, profile.reading.skills.count { it.row != null })
+        assertEquals(BaseProfileStatus.NOT_YET_COMPLETE, profile.status)
+        assertEquals(listOf(BandCompletion.INCOMPLETE, BandCompletion.INCOMPLETE, BandCompletion.NOT_PUBLISHED), profile.bands.map { it.completion })
+        assertNull(profile.historicalHighestBand)
+        assertEquals(listOf(skill("skill.english.documentation_navigation")), profile.extensions.map { it.skill })
+        assertTrue(profile.extensions.all { it.state == ExtensionState.NO_EXTENSION_EVIDENCE })
+        val view = EnglishProfilePresentation.of(profile)!!
+        assertEquals("Teknik İngilizce — temel profil henüz tamamlanmadı", view.headline)
+    }
+
+    @Test
+    fun `work recorded in a Topic starts it, its worked lesson covers that Objective, and the Topic stays learning`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        val execution = skill("skill.computing.program_execution_model")
+        val objective = VersionedRef("objective.computing.program_execution_model.explain_pipeline", 1)
+        val lesson = withContentQa.lessonItemsFor(objective)
+        assertTrue(lesson.isNotEmpty())
+        SubmitAttempt(store, clock).submit(AttemptSubmission(lesson.first(), "data:,x", ProvenanceOrigin.USER_AUTHORED))
+        recordExplanation(1); RecomputeSkillState(store, clock).recompute(execution)
+        recordExplanation(2); RecomputeSkillState(store, clock).recompute(execution)
+        val topic = VersionedRef("topic.python.execution", 1)
+        val p = assertIs<TopicProjection.Derived>(TopicQuery(store, withContentQa).load().topics.single { it.topic == topic }.projection)
+        assertEquals(TopicState.LEARNING, p.state)
+        assertEquals(TopicCoverage.LESSON_WORKED, p.reading.members.flatMap { it.objectives }.toMap()[objective])
+        assertTrue(execution !in p.notYetConfirmed, "the confirmed Skill is not named as unconfirmed")
+        val detail = TopicPresentation.detail(TopicQuery(store, withContentQa).detail(topic)!!)
+        assertEquals("Öğreniliyor", detail.chip.label)
     }
 }

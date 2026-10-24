@@ -213,8 +213,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 # AŞAMA 16 — İlerleme, Analitik, Ayarlar ve Günlük Kullanım Araçları
 - [x] **16A — Skill analytics** — `SKAX-v0 / D-122`
 - [x] **16B — Öğrenme geçmişi** — `LHRX-v0 / D-123`
-- [ ] **16C — Progress / weakness gösterim kuralları** **AKTİF**
-- [ ] **16D — Ayarlar**
+- [x] **16C — Progress / weakness gösterim kuralları** — `PWPX-v0 / D-124`
+- [ ] **16D — Ayarlar** **AKTİF**
 - [ ] **16E — Bildirimler**
 
 ---
@@ -263,9 +263,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16B`  
-**Son tamamlanan:** **`16B — LHRX-v0 / D-123`**  
-**Aktif:** **`16C — Progress / weakness gösterim kuralları`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16C`  
+**Son tamamlanan:** **`16C — PWPX-v0 / D-124`**  
+**Aktif:** **`16D — Ayarlar`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -333,4 +333,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 16B `LHRX-v0` ile öğrenme geçmişi ve ölçme raporu kodda: öğrenme geçmişi kayıt sırasındaki saklı kanıttır ve her satır, motorların o satıra kadarki kanıt üzerinde yeniden oynatılmasıyla söylediği değişikliği 13E'nin sözleriyle taşır; ölçme raporu her oturumun `ASUX-v0` aileleridir, not ya da eğilim değil; hiçbir şey yazılmaz, girdisi olmayan gün çizilmez ve aynı kanıttan mastery her zaman aynı sonucu verir. Mastery düzeltmesi (`GRE-v0` §16.2, kullanıcı kararı 2026-10-18): 12A'nın yeniden kurması açık bir doğrulamada onu açan çelişkiyi 'başarısız yeniden kontrol' sayıyordu, bu yüzden aynı kanıtın ikinci kurulumu da geçilen taze bir yeniden kontrol de mastery'yi düşürüyordu; artık yalnız açılıştan sonraki temiz kanıt yeniden kontroldür, olumluysa mastery korunur ve mastery kanıttan, kayıt sırasıyla (`MasteryEngine.replay`) belirlenir. T6 çalıştırılmadı.
 
-16C başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+16C `PWPX-v0` ile konu durumu, zayıflık bağlamı ve Teknik İngilizce profili kodda: bir konunun durumu orkestrasyondur, mastery değildir: konu, becerilerinin kendi durumları, konuda çalışma kaydedilip kaydedilmediği ve her hedefin dersinin işlenip işlenmediği ya da tanısal olarak geçilip geçilmediği üzerinde `TSM-v0`'ın ilk uyan kuralıdır; ortalama, yüzde ya da ön koşul iddiası değildir, başlanmamış bir konu ancak hiçbir becerisi başlatılamıyorsa kilitlidir ve başlanmış bir konu asla geri kilitlenmez; zayıflık bulunduğu yerde gösterilir — hipotez yalnız katalogun kendi sorusudur, pekiştirme neyin kapatacağıyla birlikte söylenir; Teknik İngilizce profili `TEPM-v0`'ın tek band kuralıdır, geçmişi kanıttan yeniden oynatılır, genel ya da resmî bir düzey değildir ve İngilizce kapı değildir; hiçbir şey yazılmaz. Bulunanlar: ilk giriş kuralı (dışarıdan gelen her hard kenar karşılanmış) sevk edilen graph'ta 27 konunun 12'sini, planner becerilerinden birini sunarken kilitli gösterecekti — kullanıcı aynı gün 'bir beceri açıksa Hazır' kuralına geçti; yeni bir öğrencide 4 konu açık, 23 konu bekliyor; öğretim görevlerinin item'ları hiçbir pratik görevinde geçmiyor. T6 çalıştırılmadı.
+
+16D başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
