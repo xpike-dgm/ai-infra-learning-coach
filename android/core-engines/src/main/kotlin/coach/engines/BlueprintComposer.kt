@@ -356,6 +356,13 @@ object BlueprintComposer {
         AssessmentScope.DAILY_MICRO -> error("a daily measurement composes no blueprint")
     }
 
+    /** The opposite of [candidateId] (16E): the cycle a planned slot belongs to, or `null` for any other task. */
+    fun scopeOfCandidate(candidateId: String): AssessmentScope? = when {
+        candidateId.startsWith("weekly:") -> AssessmentScope.WEEKLY_BLUEPRINT
+        candidateId.startsWith("monthly:") -> AssessmentScope.MONTHLY_CAPABILITY
+        else -> null
+    }
+
     // ------------------------------------------------------------------------------------ result
 
     /**

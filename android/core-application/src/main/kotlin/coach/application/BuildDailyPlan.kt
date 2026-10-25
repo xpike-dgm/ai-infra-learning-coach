@@ -37,6 +37,11 @@ class BuildDailyPlan(
      * `false`, so only deterministically checked items are routed — never one whose answer nothing could check.
      */
     private val evaluatorAvailable: Boolean = false,
+    /**
+     * `false` only for [preview] (16E): the same composition, returned instead of written. Every plan the app keeps is
+     * written by a builder left at the default.
+     */
+    private val writes: Boolean = true,
 ) {
     /**
      * What happened, for a replan within one study day (D-033 §16). [keptPositions] are the previous
@@ -61,9 +66,21 @@ class BuildDailyPlan(
         data class Refused(val reason: String) : Built
 
         data class Planned(val planVersionId: Long, val trace: PlanTrace) : Built
+
+        /** The plan composed by a [preview]; nothing was written, so it has no version id (16E). */
+        data class Previewed(val trace: PlanTrace) : Built
     }
 
     fun replan(request: ReplanRequest): Built = build(request.capacity, request)
+
+    /**
+     * The plan the planner would write if asked now, **without writing it** (16E). The daily reminder speaks of today's
+     * plan before the learner has opened the app; writing a plan from a background wake would put a plan on a day the
+     * learner never opened, so the reminder asks for exactly this composition instead. `null` when nothing is published
+     * or today already has its plan — then the stored plan is the one to read.
+     */
+    fun preview(capacity: DailyCapacityInput): PlanTrace? =
+        (BuildDailyPlan(persistence, content, clock, evaluatorAvailable, writes = false).build(capacity) as? Built.Previewed)?.trace
 
     fun build(capacity: DailyCapacityInput, replan: ReplanRequest? = null): Built {
         // Read first, like every projection: the trace can then never claim to have seen more truth
@@ -178,6 +195,9 @@ class BuildDailyPlan(
                 },
             )
         }
+
+        // A preview (16E) stops here: the composed plan is returned and nothing below is written.
+        if (!writes) return Built.Previewed(trace)
 
         val planVersionId = persistence.inTransaction {
             val planId = persistence.appendTruth(

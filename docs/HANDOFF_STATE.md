@@ -313,15 +313,15 @@ PEM-v0:
 - 16B ✅ LHRX-v0 / D-123
 - 16C ✅ PWPX-v0 / D-124
 - 16D ✅ STGX-v0 / D-126
-- 16E 🟡 active-not-executed
-- 16F ⬜ added by D-125
+- 16E ✅ RMDX-v0 / D-127
+- 16F 🟡 active-not-executed (added by D-125)
 - 16–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `16D — STGX-v0 / D-126`  
-**Aktif:** `16E — Bildirimler`  
-**16E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `16E — RMDX-v0 / D-127`  
+**Aktif:** `16F — Uçtan uca günlük döngü`  
+**16F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1615,3 +1615,22 @@ STGX-v0:
 ## 100. 16E handoff
 
 16E — Bildirimler. 16D ran on the user's explicit approval of 2026-10-25; 16E needs a fresh PRE and the user's new explicit approval. Inputs: Profile's `reminders` (`UXIA-v0`), the no-obligation, no-debt, no-streak language of Today and the end of day (`THUX-v0`, `SRR-v0`, 11E), D-080 (personal use). After 16E comes 16F — Uçtan uca günlük döngü (D-125), whose inputs are 16D's `moved_to_16f`. Carried: theme and accessibility preferences (17D), focus preference (18B), the pickers and restore on a device and T6 (19).
+
+## 101. D-127 / 16E final özeti
+
+Canonical: `docs/NOTIFICATIONS_SPEC.md`.
+Contract/QA: `arch/16e_notifications/` (contract, QA report, stale audit).
+Synthesis: `research/16e_notifications_research.md`.
+Code: `core-model` (`ReminderFacts.kt` — `ReminderPreference`, `ReminderTime`, `ReminderSchedule`, `ReminderPlanContent`, `ReminderSilence`, `ReminderDecision`), `core-ports` (`reminderPreferences`, defaulted), `core-engines` (`BlueprintComposer.scopeOfCandidate`), `data-persistence` (schema v10 `reminder_preference`), `core-application` (`Reminders.kt` — `ReminderSettings`, `ReminderCheck`; `BuildDailyPlan.preview`), `core-presentation` (`ReminderPresentation.kt`), `app-ui` (`ProfileScreen.kt` reminder section), `app-wiring` (`Reminders.kt` — alarm, receivers, notification; `CoachApplication`, `MainActivity`, both manifests). Validator `tools/validate_notifications.py`.
+
+RMDX-v0:
+- a reminder is one quiet note a day at most, at the learner's time, and it says only what today's plan holds — the plan the planner selected inside today's time, read from the store or composed without being written; it is off until the learner turns it on, the setting is appended to the store, and it writes no truth; anything that could make it stale or unfounded is silence; it never counts days, keeps a series, names an absence or says what the learner did not do,
+- approval: the user's explicit approval of 2026-10-25 ("16E ye başla"); user decisions: one daily reminder with content from current state and silence when nothing is real; off by default with the permission asked only when turned on; an approximate window with no exact-alarm permission,
+- found: every start of the process planned today, so a reminder's alarm would have written plans on days the learner never opened — the store's open now plans nothing and the learner's open plans; the reminder reads `BuildDailyPlan.preview`, the same composition one line before the write; `preference_record`'s key CHECK cannot grow without a rebuild, so the reminder has its own table; Android does not document alarms after an update or force-stop, so the alarm is re-armed on every open,
+- narrowed: `A16D-04_schema_v9` and `A16D-05_app_plans_before_today_is_read` (16D) and 16D's storage test, each "Narrowed at 16E",
+- Mutation Kotlin 29/29, validator 47/47; independent QA 103/103 PASS,
+- T6 was not run; the alarm, the receivers, the permission prompt and the notification have not been seen on a device.
+
+## 102. 16F handoff
+
+16F — Uçtan uca günlük döngü (D-125). 16E ran on the user's explicit approval of 2026-10-25; 16F needs a fresh PRE and the user's new explicit approval. Inputs: 16D's `moved_to_16f` (the runner serving items and explanations, attempts and evidence from the app with the attempt-to-planned-task link and reporting started work to a replan, the recompute and reports after a session, code and open-response evaluation and the self-check, the tutor panel, the alternative-explanation menu and the comprehension check, the fast path, slots carrying the session id, dispositions from the app, `assessment_opportunity`) and 16E's open loop (once attempts link to planned tasks, the reminder's "work recorded today" can become "unstarted tasks in today's plan"). Carried: notification polish (17), theme and accessibility preferences (17D), focus preference (18B), the reminder and the pickers on a device and T6 (19).

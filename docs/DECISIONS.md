@@ -2122,3 +2122,63 @@ Ayrıntı: `docs/PROGRESS_WEAKNESS_SPEC.md`.
 - Sonraki numbered step `16E — Bildirimler`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/SETTINGS_SPEC.md`.
+
+## D-127 — Bildirimler = RMDX-v0
+**Durum:** Kabul edildi — 2026-10-25
+
+- 16E final modeli `RMDX-v0 — one quiet daily reminder at the learner's time that says only what today's plan holds` oldu.
+  - Öğrenci Profile'dan günlük bir hatırlatma açabiliyor ve saatini seçiyor.
+  - Hatırlatma yalnız bugünün planında yeni iş varsa ve bugün çalışma kaydedilmediyse gelir.
+- **Kaynaklar:**
+  - canonical spec: `docs/NOTIFICATIONS_SPEC.md`;
+  - machine-readable contract: `arch/16e_notifications/notifications.yaml`;
+  - research: `research/16e_notifications_research.md`;
+  - validator: `tools/validate_notifications.py`;
+  - kod: `core-model` (`ReminderFacts.kt`), `core-ports` (`reminderPreferences`), `core-engines` (`BlueprintComposer.scopeOfCandidate`), `data-persistence` (şema v10 `reminder_preference`), `core-application` (`Reminders.kt` — `ReminderSettings`, `ReminderCheck`; `BuildDailyPlan.preview`), `core-presentation` (`ReminderPresentation.kt`), `app-ui` (`ProfileScreen.kt`), `app-wiring` (`Reminders.kt`, `CoachApplication`, `MainActivity`, iki manifest).
+- Ana invariant: **bir hatırlatma günde en çok bir kez, öğrencinin seçtiği saatte gelen sessiz bir nottur ve yalnız bugünün planında ne olduğunu söyler.**
+  - Söylediği plan, planner'ın bugünün süresi içinde seçtiği plandır: depodan okunur ya da yazılmadan kurulur.
+  - Öğrenci açana kadar kapalıdır; karar her tercih gibi depoya eklenir ve yedek onu taşır.
+  - Hiçbir truth yazmaz.
+  - Onu bayat ya da dayanaksız yapabilecek her şey sessizliktir: kapatılmış, Android engelliyor, başka bir güne düşmüş, bugünkü zaten gösterilmiş, yeni iş planlanmamış ya da bugün çalışma kaydedilmiş.
+  - Gün saymaz, seri tutmaz, yokluğu adlandırmaz, yokluktan sonra sesini yükseltmez ve öğrencinin ne yapmadığını söylemez.
+- **Kullanıcı kararları (2026-10-25, açık onayla):**
+  - kapsam: öğrencinin saatinde tek günlük hatırlatma, günde en çok bir; içerik o anki durumdan (bugünün planı, içindeki tekrar, içindeki haftalık/aylık değerlendirme); söylenecek gerçek bir şey yoksa hiç gönderilmez;
+  - varsayılan: Profile'dan açılana kadar kapalı; Android bildirim izni (13+) yalnız o anda istenir;
+  - zamanlama: yaklaşık (kesin olmayan pencere), kesin alarm izni yok.
+- **Asistanın varsayılan seçimleri:**
+  - İçerik, öğrenci bugün uygulamayı açtıysa bugünün kayıtlı planından, açmadıysa `BuildDailyPlan.preview`'den gelir; bugüne sığmayan tekrar ya da değerlendirme anılmaz, çünkü sığmamak borç değildir.
+  - Bugün kaydedilmiş bir deneme o günün hatırlatmasını susturur; 16F denemeleri planlı göreve bağlayana kadar.
+  - Saat önerisi 19:00 (alan oradan başlar); açılmadan hiçbir şey zamanlanmaz.
+  - Pencere 10 dakika (Android'in en kısa kesin olmayan penceresi); alarm asla erken çalmaz.
+  - Başka bir yerel güne düşen hatırlatma sessizdir.
+  - Son gösterilen hatırlatmanın çalışma günü cihazda tutulur (öğrenci kararı değil, teslim kaydı).
+  - Dokunmak uygulamayı simgesinin açtığı gibi açar; başlangıç yeri Today'dir ve bildirim hiçbir görev taşımaz.
+  - Ayar kendi ek-only tablosunda (şema v10).
+  - Alıcı depo ve karar için en çok 8 saniye bekler (alıcıların toplam süresi 10 saniye).
+  - Gün sonu bildirimi ve yokluk bildirimi yok.
+- **Beyan edilmiş uzantılar:**
+  - `reminder_preference` (şema v10), kullanıcı bölgesinde ek-only tablo (emsal: D-104 `diagnostic_coverage`, D-126 `preference_record`);
+  - varsayılanlı port inceltmesi `reminderPreferences`; port sayısı değişmedi;
+  - `BuildDailyPlan.preview` ve `Built.Previewed`: aynı gövde, yazma transaction'ından bir satır önce döner;
+  - `BlueprintComposer.scopeOfCandidate`: `candidateId`'nin tersi.
+- **Bulunanlar:**
+  - Her süreç başlangıcı bugünü planlıyordu (16D'de mağaza açılışı plan yazıyordu); bir alarm ya da yeniden başlatma süreci başlattığı için günlük bir hatırlatma öğrencinin hiç açmadığı günlere plan yazacaktı. Mağaza açılışı artık plan yazmıyor; plan öğrenci uygulamayı açınca yazılıyor.
+  - Hatırlatmanın çoğu zaman henüz plan yazılmamış bir gün için konuşması gerekiyor; `BuildDailyPlan.preview` planner'ın yazacağı planın aynısını yazmadan döndürür ve kurs testi, birkaç günlük aradan sonra da, öğrenci açınca tam o planın yazıldığını gösteriyor.
+  - `preference_record`'ın kapalı anahtar listesi bir SQLite CHECK'i; CHECK ancak tablo yeniden kurularak değişir, bu da her satırı yeniden yazar. Hatırlatmanın kendi tablosu var.
+  - Android bir güncelleme ya da zorla durdurma sonrası alarmın kalıp kalmadığını belgelemiyor; alarm her açılışta, `MY_PACKAGE_REPLACED`'de, saat ve saat dilimi değişiminde, her alarmdan sonra ve geri yüklemeden sonra yeniden kuruluyor.
+  - Önceki kapılar eski biçimi sabitliyordu: 16D'nin `A16D-04_schema_v9` ve `A16D-05_app_plans_before_today_is_read` kontrolleri ve depo testi "Narrowed at 16E" ile daraltıldı. İlk taslak `BuildDailyPlan.build`'i ikiye bölmüştü; 12C/12D/13C/13D/13F doğrulayıcıları `build`'in gövdesini olduğu gibi okuduğu için geri alındı.
+- **Doğrulama:**
+  - Kotlin mutation 29/29, validator mutation 47/47; kontrol mutantları hayatta kaldı.
+  - Validator 103/103 PASS.
+  - 1219 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Sweep 68/68 (58 light + 10 heavy).
+- Çalıştırılmayan: **T6**. Alarm, alıcılar, izin istemi ve bildirim cihazda görülmedi.
+- **Açık loop'lar:**
+  - Uçtan uca günlük döngü; denemeler planlı göreve bağlanınca 'bugün çalışma kaydedildi' kuralı 'bugünün planında başlanmamış iş' olabilir (16F).
+  - Bildirim cilası (17).
+  - Tema ve erişilebilirlik tercihleri (17D).
+  - Odak tercihi (18B).
+  - Hatırlatma cihazda ve T6 (19).
+- Sonraki numbered step `16F — Uçtan uca günlük döngü`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/NOTIFICATIONS_SPEC.md`.

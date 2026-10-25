@@ -251,13 +251,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **16B ✅ Öğrenme geçmişi — LHRX-v0 / D-123**
 - **16C ✅ Progress / weakness gösterim kuralları — PWPX-v0 / D-124**
 - **16D ✅ Ayarlar — STGX-v0 / D-126**
-- **16E 🟡 Bildirimler — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- **16F ⬜ Uçtan uca günlük döngü — D-125 ile eklendi**
+- **16E ✅ Bildirimler — RMDX-v0 / D-127**
+- **16F 🟡 Uçtan uca günlük döngü — AKTİF, HENÜZ YÜRÜTÜLMEDİ (D-125 ile eklendi)**
 - 16–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 16E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 16F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -784,4 +784,14 @@ Bulunanlar: 11'den beri her adımın uygulama çağrısı 16D'ye gönderilmişti
 Onay kullanıcının 2026-10-25 açık onayı. Kullanıcı kararları: ayarlar + bugünün planı, uçtan uca bağlantı 16F'ye; kısa/normal/yoğun 30/60/90 dk önayar, değiştirilebilir, bugüne özel seçim; yedekleme kontrolleri 16D'de, açık onay, değiştirilen profil saklanır; haftalık/aylık döngü sabit; odak tercihi 18B. Şema v9 `preference_record`; varsayılanlı port inceltmesi `preferenceRecords`; `StoreStartup.replace`. Kotlin mutation 23/23, validator mutation 42/42; 91/91 QA PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/SETTINGS_SPEC.md` / D-126.
+
+## 12.49 16E Bildirimler — RMDX-v0 / D-127
+
+Öğrenci Profile'dan günlük bir hatırlatma açabiliyor; hatırlatma seçilen saatte, yalnız bugünün planında yeni iş varsa ve bugün çalışma kaydedilmediyse gelir. Ana invariant: **bir hatırlatma günde en çok bir kez, öğrencinin seçtiği saatte gelen sessiz bir nottur ve yalnız bugünün planında ne olduğunu söyler — planner'ın bugünün süresi içinde seçtiği plan, depodan okunur ya da yazılmadan kurulur; öğrenci açana kadar kapalıdır ve karar her tercih gibi depoya eklenir; hiçbir truth yazmaz; onu bayat ya da dayanaksız yapabilecek her şey sessizliktir — kapatılmış, Android engelliyor, başka bir güne düşmüş, bugünkü zaten gösterilmiş, yeni iş planlanmamış ya da bugün çalışma kaydedilmiş; gün saymaz, seri tutmaz, yokluğu adlandırmaz ve öğrencinin ne yapmadığını söylemez.**
+
+Bulunanlar: her süreç başlangıcı bugünü planlıyordu — bir alarm ya da yeniden başlatma süreci başlatır, yani günlük bir hatırlatma öğrencinin hiç açmadığı günlere plan yazacaktı; artık plan yalnız öğrenci uygulamayı açınca yazılıyor ve hatırlatma planner'ın yazmadan kurduğu planı okuyor (`BuildDailyPlan.preview`); `preference_record`'ın anahtar listesi bir CHECK olduğundan tablo yeniden kurulmadan büyüyemiyordu, hatırlatmanın kendi tablosu var; Android bir güncelleme ya da zorla durdurma sonrası alarmın kalıp kalmadığını belgelemiyor, alarm her açılışta yeniden kuruluyor.
+
+Onay kullanıcının 2026-10-25 açık onayı. Kullanıcı kararları: tek günlük hatırlatma, günde en çok bir, içerik o anki durumdan, söylenecek gerçek bir şey yoksa hiç gönderilmez; varsayılan kapalı, izin yalnız açılırken; yaklaşık zamanlama, kesin alarm izni yok. Şema v10 `reminder_preference`; varsayılanlı port inceltmesi `reminderPreferences`; `BuildDailyPlan.preview`. Kotlin mutation 29/29, validator mutation 47/47; 103/103 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/NOTIFICATIONS_SPEC.md` / D-127.
 

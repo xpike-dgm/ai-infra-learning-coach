@@ -1,0 +1,231 @@
+model: RMDX-v0
+stage_step: 16E
+status: accepted_16e
+decision: D-127
+implements: [UXIA-v0, THUX-v0, SRR-v0, EODX-v0, V1_SCOPE_17, SC-043]
+engines_read: [PLNX-v0, RPLX-v0, STGX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: one_quiet_daily_reminder_at_the_learner_s_time_that_says_only_what_today_s_plan_holds
+
+question: Seçtiğim saatte, bugünün planında gerçekten yeni bir iş varsa, bana tek ve sessiz bir hatırlatma gelebilir mi — hiçbir günü saymadan, hiçbir seriyi tutmadan, hiçbir yokluğu borç saymadan ve hiçbir şey yazmadan?
+
+primary_invariant: >-
+  A reminder is one quiet note a day at most, at the time the learner chose, and it says only what today's plan holds —
+  the plan the planner selected inside today's time, read from the store or composed without being written. It is off
+  until the learner turns it on, and the decision is appended to the store like every preference. It writes no truth.
+  Anything that could make it stale or unfounded is silence: it was turned off, Android blocks it, it arrived on another
+  date, today's was already shown, nothing new is planned, or work is already recorded today. It never counts days,
+  keeps a series, names an absence, raises its voice after one, or says what the learner did not do.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-25
+  scope: one_daily_reminder_at_the_learner_s_time_at_most_one_a_day_content_built_from_current_state_silence_when_nothing_real_to_say
+  default: off_until_turned_on_in_profile_notification_permission_asked_only_then
+  timing: approximate_inexact_window_no_exact_alarm_permission
+
+assistant_defaults:
+  - the content is today's plan as the planner selected it — the stored plan when the learner already opened the app today, otherwise BuildDailyPlan.preview, the same composition never written — so a review or an assessment that did not fit today is not named; not fitting is not a debt (D-033, SRR-v0)
+  - work recorded today means an attempt recorded on today's study day; until 16F links attempts to planned tasks, any recorded work silences the day's reminder rather than risk a stale one
+  - the time suggestion is 19:00, where the field starts; nothing is scheduled until the learner turns the reminder on
+  - the window is ten minutes, Android's shortest inexact window from API 31; the alarm never fires early
+  - a reminder is only about its own local date; one delivered on another date (Doze, a late wake) is silent
+  - the study day of the last reminder shown is kept on the device (not in the store): it is delivery bookkeeping, not a learner decision, and keeps the reminder to one a day
+  - a tap opens the app the way its icon does; Today is the start destination and the notification carries no task, so nothing is opened past the checks every entry makes (UXIA-v0 §15)
+  - the reminder setting is its own append-only table (schema v10), not more keys in preference_record, because changing that table's closed key CHECK would rebuild it and rewrite every stored row
+  - the receiver waits at most eight seconds for the store and the decision; a receiver has ten in all, goAsync included; past that the reminder is silence
+  - no end-of-day notification and no absence notification exist; EODX-v0's day closes because the date changed, and SRR-v0's absence is not debt
+  - working Turkish microcopy; 17 owns the polish
+
+found:
+  - every_process_start_planned_today
+  - the_reminder_needs_a_plan_on_days_the_learner_has_not_opened
+  - the_preference_key_check_cannot_grow_without_a_table_rebuild
+  - android_does_not_document_alarms_after_an_update_or_force_stop
+
+declared_extensions:
+  - {what: "reminder_preference, an append-only table in the user region (schema v10)", extends: "16D's preference_record (precedent: D-104's diagnostic_coverage, D-126's preference_record)", why: "the export is the database (LFPS-v0 §11); a CHECK change would rewrite every preference row"}
+  - {what: "PersistencePort.reminderPreferences, defaulted", extends: "16D's preferenceRecords (port refinements, port count unchanged)", default_answer: "nothing — the reminder is off"}
+  - {what: "BuildDailyPlan.preview and Built.Previewed", extends: "12C/12D's build: the same body, returning the composed plan one line before the write transaction", why: "a background wake must never write a plan on a day the learner did not open"}
+  - {what: "BlueprintComposer.scopeOfCandidate", extends: "13A/13B's candidateId, its inverse"}
+  - {what: "ReminderFacts in core-model", why: "core-application decides with them, core-presentation words them, app-wiring schedules from them"}
+
+scope:
+  schema_changed: true
+  schema_version: 10
+  migration_added: true
+  migration_tested_against_populated_previous_version: true
+  ports_changed: refinements_only
+  boundaries_changed: false
+  planner_rule_changed: false
+  capacity_rule_changed: false
+  mastery_rule_changed: false
+  reminder_writes_truth: false
+  app_plans_on_process_start: false
+  exact_alarm_permission: false
+  end_of_day_notification: false
+  absence_notification: false
+  screen_drawn: true
+
+schema_migration: {from: 9, to: 10, owner: 16E, tables: [reminder_preference], truth_altered: false, decision: D-127}
+
+reminder:
+  per_study_day_at_most: 1
+  default_enabled: false
+  suggested_minute: 1140
+  minute_range: [0, 1439]
+  window_minutes: 10
+  window_source: "AlarmManager.setWindow: apps should not pass in a window of less than 10 minutes (API 31+)"
+  alarm_type: RTC_WAKEUP
+  receiver_budget_millis: 8000
+  receiver_limit_source: "BroadcastReceiver.goAsync: receivers may run for up to 10 seconds, goAsync included"
+  content_from: [stored_plan_for_today, plan_preview]
+  content_fields: [task_count, planned_minutes, includes_review, includes_weekly_assessment, includes_monthly_assessment]
+  title_fixed: true
+  tap_opens: app_launch_today_start_destination
+  silences: [disabled, notifications_blocked, delivered_on_another_day, already_shown_today, no_curriculum, plan_unreadable, nothing_planned, work_recorded_today, day_unreadable, store_not_ready]
+  rearm_on: [app_open, boot_completed, my_package_replaced, time_set, timezone_changed, after_each_alarm, restore]
+  rearm_receiver_enabled_only_while_on: true
+  forbidden_language: [day_count, series, absence, debt, urgency, verdict, percentage, goal]
+
+narrowed_gates:
+  rule: an earlier check now accepts exactly the D-127 change and still fails on any unowned move; each narrowed line carries a "Narrowed at 16E (`RMDX-v0` / `D-127`)" comment
+  gates:
+    - {file: tools/validate_settings.py, checks: [A16D-04_schema_v9, A16D-05_app_plans_before_today_is_read]}
+    - {file: android/data-persistence/src/test/kotlin/coach/persistence/PreferenceStorageTest.kt, checks: ["schema v9 adds preferences to a populated v8 database"]}
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/ReminderFactsTest.kt}
+  plan: {file: android/core-application/src/test/kotlin/coach/application/BuildDailyPlanTest.kt}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/ReminderStorageTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/ReminderPresentationTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+open_loops:
+  end_to_end_daily_loop: {owner: 16F, note: "once attempts link to planned tasks, 'work recorded today' can become 'today's plan has unstarted tasks'"}
+  theme_accessibility_preferences: {owner: 17D}
+  notification_polish: {owner: 17}
+  focus_preference: {owner: 18B}
+  reminder_on_device: {owner: 19, note: "the alarm, the receivers, the permission prompt and the notification have not been seen on a device; their decisions were run on the JVM through the same classes"}
+  t6_and_device: {owner: 19}
+
+mutation_results_kotlin:
+  scope: one change per mutant to the reminder setting and its fold, the time reading, the next trigger, the delivery date, every silence in ReminderCheck.decide, the content read from the plan, the preview's stop before the write, the stored-plan-then-preview order, the cycle inverse, the schema's checks and guards, and the notification and Profile words; then the 16E JVM suites of core-model, core-application, core-presentation, data-persistence and app-wiring (ShippedCourseTest on the real store with all eight packages)
+  total: 29
+  detected: 29
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: 16C/16D's hardened runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a KDoc comment in ReminderPresentation.kt
+  negative_control_result: survived_as_expected
+  not_mutated: "app-wiring's Reminders.kt (the alarm, the receivers, posting) needs Android's AlarmManager and NotificationManager, which no JVM test here can run; its shape is held by the validator (A16E-09/10/11) and its decisions are core's, which are mutated above"
+  earlier_runs: before the run, two tests were added where a mutant would have survived (an unreadable day or plan is silence; a kept task is not new and a review or a cycle is named only when the plan holds one). In the full run R18 was written as `if (false)`, which broke Kotlin's smart cast and did not compile — a crash, never counted as a detection; it was rewritten to compare with a day that never comes and run again alone against a passing baseline on the same code, and detected
+  final_run_is_a_single_clean_run: false
+  mutants:
+    - {id: R01, mutant: on_by_default, result: detected}
+    - {id: R02, mutant: oldest_row_wins, result: detected}
+    - {id: R03, mutant: out_of_range_row_read, result: detected}
+    - {id: R04, mutant: lenient_time, result: detected}
+    - {id: R05, mutant: the_moment_itself, result: detected}
+    - {id: R06, mutant: always_tomorrow, result: detected}
+    - {id: R07, mutant: any_date_is_its_day, result: detected}
+    - {id: R08, mutant: off_ignored, result: detected}
+    - {id: R09, mutant: android_block_ignored, result: detected}
+    - {id: R10, mutant: another_date_shown, result: detected}
+    - {id: R11, mutant: twice_a_day, result: detected}
+    - {id: R12, mutant: work_today_ignored, result: detected}
+    - {id: R13, mutant: unreadable_day_is_zero, result: detected}
+    - {id: R14, mutant: kept_task_named_new, result: detected}
+    - {id: R15, mutant: review_never_named, result: detected}
+    - {id: R16, mutant: weekly_never_named, result: detected}
+    - {id: R17, mutant: preview_writes, result: detected}
+    - {id: R18, mutant: stored_plan_ignored, result: detected}
+    - {id: R19, mutant: preview_never_used, result: detected}
+    - {id: R20, mutant: unreadable_plan_guessed, result: detected}
+    - {id: R21, mutant: scope_inverse_wrong, result: detected}
+    - {id: R22, mutant: schema_minute_unbounded, result: detected}
+    - {id: R23, mutant: schema_switch_unbounded, result: detected}
+    - {id: R24, mutant: reminder_unguarded, result: detected}
+    - {id: R25, mutant: title_varies, result: detected}
+    - {id: R26, mutant: pressing_word, result: detected}
+    - {id: R27, mutant: refusal_without_a_way_back, result: detected}
+    - {id: R28, mutant: blocked_said_on, result: detected}
+    - {id: R29, mutant: zero_minutes_shown, result: detected}
+
+validator_mutation:
+  tool: tools/validate_notifications.py
+  total: 47
+  detected: 47
+  scope: one change per mutant to an input the validator reads — the contract, the setting's default and fold, the schema and its guards, every silence, the preview, the store's open, the receivers, the alarm, the budget, the manifests, the permission request, the words, a test name, DECISIONS, the spec, the research and a narrowed gate's marker
+  detection: a FAIL line not in the baseline; a run that prints no result line is a crash and never a detection
+  crash_is_detection: false
+  baseline: the only check allowed to fail at baseline is A16E-14_validator_mutation, which reads this very result
+  negative_control: a YAML comment in the contract naming forbidden fragments (banana, survived, streak, 100%)
+  negative_control_result: survived_as_expected
+  earlier_runs: the first run left one alive — V47 (one of validate_settings.py's two "Narrowed at 16E" markers removed; the check accepted any one marker in the file); the check now wants one marker per narrowed check, and the whole set was run again
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: V01, mutant: contract_model, result: detected}
+    - {id: V02, mutant: contract_default_on, result: detected}
+    - {id: V03, mutant: contract_exact_alarm, result: detected}
+    - {id: V04, mutant: contract_reminder_writes, result: detected}
+    - {id: V05, mutant: contract_device_claimed, result: detected}
+    - {id: V06, mutant: contract_mutant_survived, result: detected}
+    - {id: V07, mutant: contract_run_failed, result: detected}
+    - {id: V08, mutant: default_on, result: detected}
+    - {id: V09, mutant: oldest_wins, result: detected}
+    - {id: V10, mutant: day_longer_than_a_day, result: detected}
+    - {id: V11, mutant: the_moment_itself, result: detected}
+    - {id: V12, mutant: schema_not_bumped, result: detected}
+    - {id: V13, mutant: reminder_unguarded, result: detected}
+    - {id: V14, mutant: minute_unbounded, result: detected}
+    - {id: V15, mutant: preference_table_rebuilt, result: detected}
+    - {id: V16, mutant: credential_like_column, result: detected}
+    - {id: V17, mutant: off_not_first, result: detected}
+    - {id: V18, mutant: twice_a_day, result: detected}
+    - {id: V19, mutant: work_today_ignored, result: detected}
+    - {id: V20, mutant: unreadable_day_is_zero, result: detected}
+    - {id: V21, mutant: reminder_builds_a_plan, result: detected}
+    - {id: V22, mutant: kept_task_named_new, result: detected}
+    - {id: V23, mutant: review_by_title, result: detected}
+    - {id: V24, mutant: preview_writes, result: detected}
+    - {id: V25, mutant: second_non_writer, result: detected}
+    - {id: V26, mutant: store_open_plans_again, result: detected}
+    - {id: V27, mutant: receiver_plans, result: detected}
+    - {id: V28, mutant: exact_alarm, result: detected}
+    - {id: V29, mutant: window_too_short, result: detected}
+    - {id: V30, mutant: budget_past_the_limit, result: detected}
+    - {id: V31, mutant: posted_when_silent, result: detected}
+    - {id: V32, mutant: second_clock, result: detected}
+    - {id: V33, mutant: tap_opens_a_task, result: detected}
+    - {id: V34, mutant: rearm_receiver_always_on, result: detected}
+    - {id: V35, mutant: permission_missing_in_ai_build, result: detected}
+    - {id: V36, mutant: network_in_no_ai_build, result: detected}
+    - {id: V37, mutant: permission_asked_at_start, result: detected}
+    - {id: V38, mutant: pressing_copy, result: detected}
+    - {id: V39, mutant: obligation_note_dropped, result: detected}
+    - {id: V40, mutant: title_varies, result: detected}
+    - {id: V41, mutant: test_renamed, result: detected}
+    - {id: V42, mutant: decision_missing, result: detected}
+    - {id: V43, mutant: spec_not_accepted, result: detected}
+    - {id: V44, mutant: spec_wrong_next, result: detected}
+    - {id: V45, mutant: migration_unowned, result: detected}
+    - {id: V46, mutant: research_source_dropped, result: detected}
+    - {id: V47, mutant: narrowed_gate_unmarked, result: detected}
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew test (every module's JVM tests, the AI adapter's included)", tier: T1-T3, result: PASS}
+  - {id: RUN-02, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-03, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-04, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-05, command: "read both built APKs' manifests: POST_NOTIFICATIONS and RECEIVE_BOOT_COMPLETED in both, the re-arm receiver disabled, no exact-alarm permission, no INTERNET in the build without the AI adapter; the eight curriculum packages' SHA-256 equal to the source assets", tier: T5, result: PASS}
+  - {id: RUN-06, command: "ShippedCourseTest's 16E section and ReminderStorageTest: the real SQLite store with all eight packages; the reminder names the plan the planner then writes, writes no truth, is silent in each case, names the re-entry plan after days away; schema v10 on a populated v9 database; a backup carries the setting", tier: T2, result: PASS}
+jvm_tests: 1219
+validator_sweep: {glob: "tools/validate_*.py", total: 68, passed: 68, note: "58 light and 10 heavy validators; the frozen reports the earlier validators rewrite were restored from git"}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  notification_seen_on_device: false
+  alarm_seen_on_device: false
+  sqlite_read_on_jvm_run: true

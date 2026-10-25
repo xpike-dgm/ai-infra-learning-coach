@@ -1,6 +1,12 @@
 package coach.wiring
 
 import coach.application.BuildDailyPlan
+import coach.application.ReminderCheck
+import coach.application.ReminderSettings
+import coach.model.ReminderDecision
+import coach.model.ReminderSilence
+import coach.model.ReminderPlanContent
+import coach.ports.PersistencePort
 import coach.application.CapacitySettings
 import coach.application.PlanToday
 import coach.application.TodayFactsQuery
@@ -566,5 +572,111 @@ class ShippedCourseTest {
         val first = assertNotNull(view.primaryTask)
         val entry = setOf(skill("skill.computing.program_execution_model"), skill("skill.programming.state_assignment_model"), terminal, labels)
         assertTrue(first.targetSkillRefs.any { it in entry }, first.targetSkillRefs.toString())
+    }
+
+    // ---------------------------------------------------------------- 16E — Bildirimler (RMDX-v0)
+
+    private fun remind(clockNow: ClockPort, lastShown: String? = null, allowed: Boolean = true, scheduled: String = clockNow.now().studyDay) =
+        ReminderCheck(store, withContentQa, clockNow).decide(scheduled, lastShown, allowed)
+
+    @Test
+    fun `with all eight packages, a new learner's reminder names the plan the planner would write, and writes nothing`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        ReminderSettings(store, clock).set(enabled = true, minuteOfDay = 19 * 60)
+        val watermark = store.truthWatermark()
+        val shown = assertIs<ReminderDecision.Show>(remind(clock))
+        // Deciding wrote no truth: no plan sits on a day the learner has not opened.
+        assertEquals(watermark, store.truthWatermark())
+        assertEquals(0, store.planVersions().size)
+        // When the learner opens the app, the planner writes exactly the plan the reminder spoke of.
+        val built = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, clock).ensure())
+        assertEquals(ReminderCheck.contentOf(built.trace), shown.content)
+        assertEquals("2026-10-02", shown.studyDay)
+        assertTrue(shown.content.plannedMinutes <= built.trace.capacity.hardBudgetMinutes, "inside today's time, never more")
+        // Once today's plan is stored, the reminder reads it and says the same.
+        assertEquals(shown, remind(clock))
+    }
+
+    @Test
+    fun `the reminder is silence when off, blocked by Android, late, already shown today, or when work is recorded today`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        assertEquals(ReminderDecision.Silent(ReminderSilence.DISABLED), remind(clock))
+        ReminderSettings(store, clock).set(enabled = true, minuteOfDay = 19 * 60)
+        assertEquals(ReminderDecision.Silent(ReminderSilence.NOTIFICATIONS_BLOCKED), remind(clock, allowed = false))
+        assertEquals(ReminderDecision.Silent(ReminderSilence.DELIVERED_ON_ANOTHER_DAY), remind(clock, scheduled = "2026-10-01"))
+        assertEquals(ReminderDecision.Silent(ReminderSilence.ALREADY_SHOWN_TODAY), remind(clock, lastShown = "2026-10-02"))
+        assertIs<ReminderDecision.Show>(remind(clock, lastShown = "2026-10-01"))
+        // Work recorded today: the learner has been here, and a reminder could only repeat what they know.
+        val lesson = withContentQa.lessonItemsFor(VersionedRef("objective.computing.program_execution_model.explain_pipeline", 1))
+        SubmitAttempt(store, clock).submit(AttemptSubmission(lesson.first(), "data:,x", ProvenanceOrigin.USER_AUTHORED))
+        assertEquals(ReminderDecision.Silent(ReminderSilence.WORK_RECORDED_TODAY), remind(clock))
+        // Turning it off is a row too, and the newest row is the setting.
+        ReminderSettings(store, clock).set(enabled = false, minuteOfDay = 19 * 60)
+        assertEquals(ReminderDecision.Silent(ReminderSilence.DISABLED), remind(clock))
+        assertEquals(2, store.reminderPreferences().size)
+    }
+
+    @Test
+    fun `after days away the reminder names today's fresh plan, never yesterday's, and still writes nothing`() {
+        val day = DayClock("2026-10-25")
+        IngestCurriculum(store, withContentQa, day).ingestAll()
+        ReminderSettings(store, day).set(enabled = true, minuteOfDay = 8 * 60)
+        PlanToday(store, withContentQa, day).ensure()
+        day.day = "2026-10-29"
+        val watermark = store.truthWatermark()
+        val shown = assertIs<ReminderDecision.Show>(remind(day))
+        assertEquals("2026-10-29", shown.studyDay)
+        assertEquals(watermark, store.truthWatermark())
+        assertEquals(1, store.planVersions().size, "the days away left no plan behind")
+        val reentry = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, day).ensure())
+        assertEquals("reentry", reentry.trace.generationKind)
+        assertEquals(ReminderCheck.contentOf(reentry.trace), shown.content)
+    }
+
+    /** The real store, with one read broken: what the reminder must do when it cannot know. */
+    private class CannotCount(store: SqlitePersistence) : PersistencePort by store {
+        override fun countTruth(kind: String, studyDay: String): Int = error("this day cannot be read")
+    }
+
+    private class CannotReadPlan(private val store: SqlitePersistence) : PersistencePort by store {
+        override fun latestPlan() = store.latestPlan()?.copy(traceText = "not a trace")
+    }
+
+    @Test
+    fun `a day or a plan that cannot be read is silence, never a zero or a guess`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        ReminderSettings(store, clock).set(enabled = true, minuteOfDay = 19 * 60)
+        assertEquals(ReminderDecision.Silent(ReminderSilence.DAY_UNREADABLE),
+            ReminderCheck(CannotCount(store), withContentQa, clock).decide("2026-10-02", null, true))
+        PlanToday(store, withContentQa, clock).ensure()
+        assertEquals(ReminderDecision.Silent(ReminderSilence.PLAN_UNREADABLE),
+            ReminderCheck(CannotReadPlan(store), withContentQa, clock).decide("2026-10-02", null, true))
+    }
+
+    @Test
+    fun `a task kept because it was started is not new, and a review or an assessment is named only when the plan holds one`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        val trace = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, clock).ensure()).trace
+        val plain = assertNotNull(ReminderCheck.contentOf(trace))
+        assertEquals(ReminderPlanContent(trace.selected.size, trace.selected.sumOf { it.plannedMinutes }, false, false, false), plain)
+        // A new learner's plan holds no review and no cycle slot, so none is named.
+        assertTrue(trace.selected.none { it.purpose == TaskPurpose.RETAIN })
+        // One task kept from an earlier version (already started) is not new work, and a plan of only kept work names none.
+        val kept = trace.copy(selected = trace.selected.mapIndexed { i, e -> if (i == 0) e.copy(preserved = true) else e })
+        assertEquals(trace.selected.size - 1, ReminderCheck.contentOf(kept)?.taskCount ?: 0)
+        assertNull(ReminderCheck.contentOf(trace.copy(selected = trace.selected.map { it.copy(preserved = true) })))
+        // A review, this week's slot and this month's slot are named exactly when the plan holds them.
+        val review = trace.copy(selected = trace.selected.mapIndexed { i, e -> if (i == 0) e.copy(purpose = TaskPurpose.RETAIN) else e })
+        assertEquals(Triple(true, false, false), ReminderCheck.contentOf(review)!!.let { Triple(it.includesReview, it.includesWeeklyAssessment, it.includesMonthlyAssessment) })
+        val weekly = trace.copy(selected = trace.selected.mapIndexed { i, e -> if (i == 0) e.copy(candidateId = "weekly:2026-W40:slot-1") else e })
+        assertEquals(Triple(false, true, false), ReminderCheck.contentOf(weekly)!!.let { Triple(it.includesReview, it.includesWeeklyAssessment, it.includesMonthlyAssessment) })
+        val monthly = trace.copy(selected = trace.selected.mapIndexed { i, e -> if (i == 0) e.copy(candidateId = "monthly:2026-10:slot-1") else e })
+        assertEquals(Triple(false, false, true), ReminderCheck.contentOf(monthly)!!.let { Triple(it.includesReview, it.includesWeeklyAssessment, it.includesMonthlyAssessment) })
+    }
+
+    @Test
+    fun `with nothing published the reminder is silent`() {
+        ReminderSettings(store, clock).set(enabled = true, minuteOfDay = 19 * 60)
+        assertEquals(ReminderDecision.Silent(ReminderSilence.NO_CURRICULUM), remind(clock))
     }
 }

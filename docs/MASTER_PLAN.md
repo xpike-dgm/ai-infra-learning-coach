@@ -1136,8 +1136,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 23/23, validator mutation 42/42; 91/91 QA PASS,
 - **T6 çalıştırılmadı; ekranlar cihazda görülmedi**.
 
-### [ ] 16E — Bildirimler — **AKTİF**
-### [ ] 16F — Uçtan uca günlük döngü — D-125 ile eklendi
+### [x] 16E — Bildirimler — RMDX-v0 / D-127
+
+**16E final coverage:**
+- bir hatırlatma günde en çok bir kez, öğrencinin seçtiği saatte gelen sessiz bir nottur ve yalnız bugünün planında ne olduğunu söyler — planner'ın bugünün süresi içinde seçtiği plan, depodan okunur ya da yazılmadan kurulur; öğrenci açana kadar kapalıdır ve karar her tercih gibi depoya eklenir; hiçbir truth yazmaz; onu bayat ya da dayanaksız yapabilecek her şey sessizliktir — kapatılmış, Android engelliyor, başka bir güne düşmüş, bugünkü zaten gösterilmiş, yeni iş planlanmamış ya da bugün çalışma kaydedilmiş; gün saymaz, seri tutmaz, yokluğu adlandırmaz ve öğrencinin ne yapmadığını söylemez,
+- ne zaman: öğrencinin saati, günde en çok bir, yaklaşık (10 dk pencere, kesin alarm izni yok); başka bir güne düşen, bugün zaten gösterilmiş, Android'in engellediği ya da bugün çalışma kaydedilmiş günde sessiz,
+- ne söyler: bugünün planındaki yeni görevlerin sayısı, planın kendi dakika tahmini, içinde tekrar ya da haftalık/aylık değerlendirme olup olmadığı; başlık her gün aynı,
+- ayar: Profile'da açık/kapalı ve saat; varsayılan kapalı; izin yalnız açılırken; şema v10 `reminder_preference`, ek-only, yedekte taşınır,
+- plan: mağaza açılışı artık plan yazmıyor; öğrenci açınca yazılıyor; hatırlatma `BuildDailyPlan.preview` ile yazmadan okuyor,
+- bulgu: her süreç başlangıcı bugünü planlıyordu — bir alarm ya da yeniden başlatma süreci başlatır, yani günlük bir hatırlatma öğrencinin hiç açmadığı günlere plan yazacaktı; artık plan yalnız öğrenci uygulamayı açınca yazılıyor ve hatırlatma planner'ın yazmadan kurduğu planı okuyor (`BuildDailyPlan.preview`); `preference_record`'ın anahtar listesi bir CHECK olduğundan tablo yeniden kurulmadan büyüyemiyordu, hatırlatmanın kendi tablosu var; Android bir güncelleme ya da zorla durdurma sonrası alarmın kalıp kalmadığını belgelemiyor, alarm her açılışta yeniden kuruluyor,
+- Kotlin mutation 29/29, validator mutation 47/47; 103/103 QA PASS,
+- **T6 çalıştırılmadı; bildirim cihazda görülmedi**.
+
+### [ ] 16F — Uçtan uca günlük döngü — D-125 ile eklendi — **AKTİF**
 
 ---
 
@@ -1205,8 +1216,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16D`  
-**Son tamamlanan:** **`16D — STGX-v0 / D-126`**  
-**Aktif:** **`16E — Bildirimler`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16E`  
+**Son tamamlanan:** **`16E — RMDX-v0 / D-127`**  
+**Aktif:** **`16F — Uçtan uca günlük döngü`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **16E fresh PRE-STEP + kullanıcının yeni açık onayı → Bildirimler → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti. 16F (D-125) 16E'den sonra gelir.
+Bir sonraki yürütme: **16F fresh PRE-STEP + kullanıcının yeni açık onayı → Uçtan uca günlük döngü → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

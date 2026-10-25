@@ -1,0 +1,395 @@
+model: RMDX-v0
+stage_step: 16E
+decision: D-127
+result: PASS
+checks_total: 103
+checks_passed: 103
+checks_failed: 0
+checks:
+- check: A16E-00_exists_notifications.yaml
+  result: PASS
+  details: missing arch\16e_notifications\notifications.yaml
+- check: A16E-00_exists_NOTIFICATIONS_SPEC.md
+  result: PASS
+  details: missing docs\NOTIFICATIONS_SPEC.md
+- check: A16E-00_exists_16e_notifications_research.md
+  result: PASS
+  details: missing research\16e_notifications_research.md
+- check: A16E-00_exists_ia.yaml
+  result: PASS
+  details: missing ux\8a_information_architecture\ia.yaml
+- check: A16E-00_exists_V1_SCOPE.md
+  result: PASS
+  details: missing docs\V1_SCOPE.md
+- check: A16E-00_exists_V1_SUCCESS_CRITERIA.md
+  result: PASS
+  details: missing docs\V1_SUCCESS_CRITERIA.md
+- check: A16E-00_exists_ReminderFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\ReminderFacts.kt
+- check: A16E-00_exists_Ports.kt
+  result: PASS
+  details: missing android\core-ports\src\main\kotlin\coach\ports\Ports.kt
+- check: A16E-00_exists_BlueprintComposer.kt
+  result: PASS
+  details: missing android\core-engines\src\main\kotlin\coach\engines\BlueprintComposer.kt
+- check: A16E-00_exists_Schema.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\Schema.kt
+- check: A16E-00_exists_Migrations.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\Migrations.kt
+- check: A16E-00_exists_SqlitePersistence.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\SqlitePersistence.kt
+- check: A16E-00_exists_Reminders.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\Reminders.kt
+- check: A16E-00_exists_BuildDailyPlan.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\BuildDailyPlan.kt
+- check: A16E-00_exists_ReminderPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\ReminderPresentation.kt
+- check: A16E-00_exists_ProfileScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\ProfileScreen.kt
+- check: A16E-00_exists_Reminders.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\Reminders.kt
+- check: A16E-00_exists_CoachApplication.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
+- check: A16E-00_exists_MainActivity.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
+- check: A16E-00_exists_AndroidManifest.xml
+  result: PASS
+  details: missing android\app-wiring\src\main\AndroidManifest.xml
+- check: A16E-00_exists_AndroidManifest.xml
+  result: PASS
+  details: missing android\app-wiring\src\withAi\AndroidManifest.xml
+- check: A16E-00_exists_ReminderFactsTest.kt
+  result: PASS
+  details: missing android\core-model\src\test\kotlin\coach\model\ReminderFactsTest.kt
+- check: A16E-00_exists_BuildDailyPlanTest.kt
+  result: PASS
+  details: missing android\core-application\src\test\kotlin\coach\application\BuildDailyPlanTest.kt
+- check: A16E-00_exists_ReminderStorageTest.kt
+  result: PASS
+  details: missing android\data-persistence\src\test\kotlin\coach\persistence\ReminderStorageTest.kt
+- check: A16E-00_exists_ReminderPresentationTest.kt
+  result: PASS
+  details: missing android\core-presentation\src\test\kotlin\coach\presentation\ReminderPresentationTest.kt
+- check: A16E-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: A16E-01_model
+  result: PASS
+  details: ''
+- check: A16E-01_user_decisions
+  result: PASS
+  details: '{''approval'': ''explicit_user_approval_2026-10-25'', ''scope'': ''one_daily_reminder_at_the_learner_s_time_at_most_one_a_day_content_built_from_current_state_silence_when_nothing_real_to_say'',
+    ''default'': ''off_until_turned_on_in_profile_notification_permission_asked_only_then'',
+    ''timing'': ''approximate_inexact_window_no_exact_alarm_permission''}'
+- check: A16E-01_scope
+  result: PASS
+  details: ''
+- check: A16E-01_profile_owns_reminders
+  result: PASS
+  details: UXIA-v0
+- check: A16E-01_v1_scope_and_sc043
+  result: PASS
+  details: ''
+- check: A16E-02_off_by_default
+  result: PASS
+  details: ''
+- check: A16E-02_suggestion_is_only_a_suggestion
+  result: PASS
+  details: ''
+- check: A16E-02_minutes_within_a_day
+  result: PASS
+  details: ''
+- check: A16E-02_newest_readable_wins
+  result: PASS
+  details: ''
+- check: A16E-02_time_read_strictly
+  result: PASS
+  details: ''
+- check: A16E-03_never_the_moment_itself
+  result: PASS
+  details: ''
+- check: A16E-03_its_own_day
+  result: PASS
+  details: ''
+- check: A16E-04_schema_v10
+  result: PASS
+  details: ''
+- check: A16E-04_append_only_and_guarded
+  result: PASS
+  details: ''
+- check: A16E-04_schema_refuses
+  result: PASS
+  details: ''
+- check: A16E-04_no_credential_like_column
+  result: PASS
+  details: 10E's credential guard
+- check: A16E-04_preference_table_not_rebuilt
+  result: PASS
+  details: 16D's rows are not rewritten
+- check: A16E-04_migration_owned
+  result: PASS
+  details: '{''from'': 9, ''to'': 10, ''owner'': ''16E'', ''tables'': [''reminder_preference''],
+    ''truth_altered'': False, ''decision'': ''D-127''}'
+- check: A16E-04_port_defaulted
+  result: PASS
+  details: ''
+- check: A16E-04_adapter_reads_in_order
+  result: PASS
+  details: ''
+- check: A16E-04_written_by_append_only
+  result: PASS
+  details: ''
+- check: A16E-05_silence_order
+  result: PASS
+  details: '[238, 313, 406, 502, 612, 781, 853, 1003, 1127]'
+- check: A16E-05_off_first
+  result: PASS
+  details: ''
+- check: A16E-05_its_own_date_and_once_a_day
+  result: PASS
+  details: ''
+- check: A16E-05_work_today_silences
+  result: PASS
+  details: ''
+- check: A16E-05_silences_closed
+  result: PASS
+  details: '[''disabled'', ''already_shown_today'', ''delivered_on_another_day'',
+    ''store_not_ready'', ''no_curriculum'', ''plan_unreadable'', ''nothing_planned'',
+    ''work_recorded_today'', ''day_unreadable'', ''notifications_blocked'']'
+- check: A16E-06_decision_writes_no_truth
+  result: PASS
+  details: ''
+- check: A16E-06_stored_plan_then_preview
+  result: PASS
+  details: ''
+- check: A16E-06_preview_stops_before_the_write
+  result: PASS
+  details: ''
+- check: A16E-06_builders_write_by_default
+  result: PASS
+  details: only the preview turns writing off
+- check: A16E-06_store_open_plans_nothing
+  result: PASS
+  details: ''
+- check: A16E-06_learner_open_plans
+  result: PASS
+  details: ''
+- check: A16E-06_receivers_never_plan
+  result: PASS
+  details: ''
+- check: A16E-07_only_today_s_new_tasks
+  result: PASS
+  details: ''
+- check: A16E-07_review_and_cycles_from_the_plan
+  result: PASS
+  details: ''
+- check: A16E-07_scope_inverse_of_candidate_id
+  result: PASS
+  details: ''
+- check: A16E-08_notification_never_presses
+  result: PASS
+  details: '[]'
+- check: A16E-08_title_fixed
+  result: PASS
+  details: ''
+- check: A16E-08_note_says_no_obligation
+  result: PASS
+  details: ''
+- check: A16E-08_screen_decides_nothing
+  result: PASS
+  details: ''
+- check: A16E-09_inexact_ten_minutes
+  result: PASS
+  details: ''
+- check: A16E-09_no_exact_alarm
+  result: PASS
+  details: '[]'
+- check: A16E-09_immutable_intents
+  result: PASS
+  details: ''
+- check: A16E-09_rearm_receiver_off_until_on
+  result: PASS
+  details: ''
+- check: A16E-09_alarm_receiver_private
+  result: PASS
+  details: ''
+- check: A16E-09_permissions_both_builds
+  result: PASS
+  details: the build without AI still has no network permission
+- check: A16E-09_budget_inside_ten_seconds
+  result: PASS
+  details: ''
+- check: A16E-09_posts_only_what_core_decided
+  result: PASS
+  details: ''
+- check: A16E-09_one_notification_one_channel
+  result: PASS
+  details: ''
+- check: A16E-09_checks_android_before_posting
+  result: PASS
+  details: ''
+- check: A16E-09_the_app_s_one_clock
+  result: PASS
+  details: ''
+- check: A16E-10_permission_asked_only_on_turn_on
+  result: PASS
+  details: ''
+- check: A16E-11_tap_opens_the_app_as_its_icon_does
+  result: PASS
+  details: the notification carries no task
+- check: A16E-12_test_with_no_stored_row_the_reminder_is_off_a
+  result: PASS
+  details: 'ReminderFactsTest.kt: with no stored row the reminder is off and the time
+    is only the suggestion'
+- check: A16E-12_test_the_next_reminder_is_today_s_time_while
+  result: PASS
+  details: 'ReminderFactsTest.kt: the next reminder is today''s time while it is still
+    ahead, otherwise tomorrow''s, never the moment itself'
+- check: A16E-12_test_a_time_a_dst_change_skips_moves_forward
+  result: PASS
+  details: 'ReminderFactsTest.kt: a time a DST change skips moves forward by the gap,
+    and a time that occurs twice is the first'
+- check: A16E-12_test_a_preview_is_the_very_plan_build_would_w
+  result: PASS
+  details: 'BuildDailyPlanTest.kt: a preview is the very plan build would write, and
+    it writes nothing'
+- check: A16E-12_test_schema_v10_adds_the_reminder_to_a_popula
+  result: PASS
+  details: 'ReminderStorageTest.kt: schema v10 adds the reminder to a populated v9
+    database and leaves every truth row as it was'
+- check: A16E-12_test_the_schema_refuses_a_minute_outside_the
+  result: PASS
+  details: 'ReminderStorageTest.kt: the schema refuses a minute outside the day and
+    an on or off that is neither'
+- check: A16E-12_test_a_backup_carries_the_reminder_setting_wi
+  result: PASS
+  details: 'ReminderStorageTest.kt: a backup carries the reminder setting with the
+    profile'
+- check: A16E-12_test_no_reminder_text_can_count_days_keep_a
+  result: PASS
+  details: 'ReminderPresentationTest.kt: no reminder text can count days, keep a series,
+    name an absence or press'
+- check: A16E-12_test_profile_says_off_on_or_that_android_bl
+  result: PASS
+  details: 'ReminderPresentationTest.kt: Profile says off, on, or that Android blocks
+    it, and offers Android''s settings only then'
+- check: A16E-12_test_with_all_eight_packages_a_new_learner_s
+  result: PASS
+  details: 'ShippedCourseTest.kt: with all eight packages, a new learner''s reminder
+    names the plan the planner would write, and writes nothing'
+- check: A16E-12_test_the_reminder_is_silence_when_off_blocke
+  result: PASS
+  details: 'ShippedCourseTest.kt: the reminder is silence when off, blocked by Android,
+    late, already shown today, or when work is recorded today'
+- check: A16E-12_test_after_days_away_the_reminder_names_today
+  result: PASS
+  details: 'ShippedCourseTest.kt: after days away the reminder names today''s fresh
+    plan, never yesterday''s, and still writes nothing'
+- check: A16E-12_test_a_day_or_a_plan_that_cannot_be_read_is_s
+  result: PASS
+  details: 'ShippedCourseTest.kt: a day or a plan that cannot be read is silence,
+    never a zero or a guess'
+- check: A16E-12_test_a_task_kept_because_it_was_started_is_no
+  result: PASS
+  details: 'ShippedCourseTest.kt: a task kept because it was started is not new, and
+    a review or an assessment is named only when the plan holds one'
+- check: A16E-13_narrowed_gates_marked
+  result: PASS
+  details: 'one marker per narrowed check: [''tools/validate_settings.py'', ''android/data-persistence/src/test/kotlin/coach/persistence/PreferenceStorageTest.kt'']'
+- check: A16E-14_kotlin_mutation_all_detected
+  result: PASS
+  details: 29/29
+- check: A16E-14_kotlin_crash_not_detection
+  result: PASS
+  details: ''
+- check: A16E-14_validator_mutation
+  result: PASS
+  details: '{''tool'': ''tools/validate_notifications.py'', ''total'': 47, ''detected'':
+    47, ''scope'': "one change per mutant to an input the validator reads — the contract,
+    the setting''s default and fold, the schema and its guards, every silence, the
+    preview, the store''s open, the receivers, the alarm, the budget, the manifests,
+    the permission request, the words, a test name, DECISIONS, the spec, the research
+    and a narrowed gate''s marker", ''detection'': ''a FAIL line not in the baseline;
+    a run that prints no result line is a crash and never a detection'', ''crash_is_detection'':
+    False, ''baseline'': ''the only check allowed to fail at baseline is A16E-14_validator_mutation,
+    which reads this very result'', ''negative_control'': ''a YAML comment in the
+    contract naming forbidden fragments (banana, survived, streak, 100%)'', ''negative_control_result'':
+    ''survived_as_expected'', ''earlier_runs'': ''the first run left one alive — V47
+    (one of validate_settings.py\''s two "Narrowed at 16E" markers removed; the check
+    accepted any one marker in the file); the check now wants one marker per narrowed
+    check, and the whole set was run again'', ''final_run_is_a_single_clean_run'':
+    True, ''mutants'': [{''id'': ''V01'', ''mutant'': ''contract_model'', ''result'':
+    ''detected''}, {''id'': ''V02'', ''mutant'': ''contract_default_on'', ''result'':
+    ''detected''}, {''id'': ''V03'', ''mutant'': ''contract_exact_alarm'', ''result'':
+    ''detected''}, {''id'': ''V04'', ''mutant'': ''contract_reminder_writes'', ''result'':
+    ''detected''}, {''id'': ''V05'', ''mutant'': ''contract_device_claimed'', ''result'':
+    ''detected''}, {''id'': ''V06'', ''mutant'': ''contract_mutant_survived'', ''result'':
+    ''detected''}, {''id'': ''V07'', ''mutant'': ''contract_run_failed'', ''result'':
+    ''detected''}, {''id'': ''V08'', ''mutant'': ''default_on'', ''result'': ''detected''},
+    {''id'': ''V09'', ''mutant'': ''oldest_wins'', ''result'': ''detected''}, {''id'':
+    ''V10'', ''mutant'': ''day_longer_than_a_day'', ''result'': ''detected''}, {''id'':
+    ''V11'', ''mutant'': ''the_moment_itself'', ''result'': ''detected''}, {''id'':
+    ''V12'', ''mutant'': ''schema_not_bumped'', ''result'': ''detected''}, {''id'':
+    ''V13'', ''mutant'': ''reminder_unguarded'', ''result'': ''detected''}, {''id'':
+    ''V14'', ''mutant'': ''minute_unbounded'', ''result'': ''detected''}, {''id'':
+    ''V15'', ''mutant'': ''preference_table_rebuilt'', ''result'': ''detected''},
+    {''id'': ''V16'', ''mutant'': ''credential_like_column'', ''result'': ''detected''},
+    {''id'': ''V17'', ''mutant'': ''off_not_first'', ''result'': ''detected''}, {''id'':
+    ''V18'', ''mutant'': ''twice_a_day'', ''result'': ''detected''}, {''id'': ''V19'',
+    ''mutant'': ''work_today_ignored'', ''result'': ''detected''}, {''id'': ''V20'',
+    ''mutant'': ''unreadable_day_is_zero'', ''result'': ''detected''}, {''id'': ''V21'',
+    ''mutant'': ''reminder_builds_a_plan'', ''result'': ''detected''}, {''id'': ''V22'',
+    ''mutant'': ''kept_task_named_new'', ''result'': ''detected''}, {''id'': ''V23'',
+    ''mutant'': ''review_by_title'', ''result'': ''detected''}, {''id'': ''V24'',
+    ''mutant'': ''preview_writes'', ''result'': ''detected''}, {''id'': ''V25'', ''mutant'':
+    ''second_non_writer'', ''result'': ''detected''}, {''id'': ''V26'', ''mutant'':
+    ''store_open_plans_again'', ''result'': ''detected''}, {''id'': ''V27'', ''mutant'':
+    ''receiver_plans'', ''result'': ''detected''}, {''id'': ''V28'', ''mutant'': ''exact_alarm'',
+    ''result'': ''detected''}, {''id'': ''V29'', ''mutant'': ''window_too_short'',
+    ''result'': ''detected''}, {''id'': ''V30'', ''mutant'': ''budget_past_the_limit'',
+    ''result'': ''detected''}, {''id'': ''V31'', ''mutant'': ''posted_when_silent'',
+    ''result'': ''detected''}, {''id'': ''V32'', ''mutant'': ''second_clock'', ''result'':
+    ''detected''}, {''id'': ''V33'', ''mutant'': ''tap_opens_a_task'', ''result'':
+    ''detected''}, {''id'': ''V34'', ''mutant'': ''rearm_receiver_always_on'', ''result'':
+    ''detected''}, {''id'': ''V35'', ''mutant'': ''permission_missing_in_ai_build'',
+    ''result'': ''detected''}, {''id'': ''V36'', ''mutant'': ''network_in_no_ai_build'',
+    ''result'': ''detected''}, {''id'': ''V37'', ''mutant'': ''permission_asked_at_start'',
+    ''result'': ''detected''}, {''id'': ''V38'', ''mutant'': ''pressing_copy'', ''result'':
+    ''detected''}, {''id'': ''V39'', ''mutant'': ''obligation_note_dropped'', ''result'':
+    ''detected''}, {''id'': ''V40'', ''mutant'': ''title_varies'', ''result'': ''detected''},
+    {''id'': ''V41'', ''mutant'': ''test_renamed'', ''result'': ''detected''}, {''id'':
+    ''V42'', ''mutant'': ''decision_missing'', ''result'': ''detected''}, {''id'':
+    ''V43'', ''mutant'': ''spec_not_accepted'', ''result'': ''detected''}, {''id'':
+    ''V44'', ''mutant'': ''spec_wrong_next'', ''result'': ''detected''}, {''id'':
+    ''V45'', ''mutant'': ''migration_unowned'', ''result'': ''detected''}, {''id'':
+    ''V46'', ''mutant'': ''research_source_dropped'', ''result'': ''detected''}, {''id'':
+    ''V47'', ''mutant'': ''narrowed_gate_unmarked'', ''result'': ''detected''}]}'
+- check: A16E-14_runs_pass
+  result: PASS
+  details: ''
+- check: A16E-14_device_not_claimed
+  result: PASS
+  details: ''
+- check: A16E-15_spec_status
+  result: PASS
+  details: no result placeholder is left
+- check: A16E-15_spec_next
+  result: PASS
+  details: ''
+- check: A16E-15_research
+  result: PASS
+  details: ''
+- check: A16E-15_decision
+  result: PASS
+  details: ''

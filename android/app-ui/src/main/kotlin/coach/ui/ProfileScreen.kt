@@ -33,19 +33,27 @@ import coach.model.TodayCapacityChoice
 import coach.presentation.AiSettingsView
 import coach.presentation.BackupView
 import coach.presentation.CapacitySettingsView
+import coach.presentation.ReminderCopy
+import coach.presentation.ReminderPresentation
+import coach.presentation.ReminderSettingsView
 import coach.presentation.SettingsCopy
 import coach.presentation.SettingsPresentation
 import coach.presentation.TodayCapacityOption
 
 /**
- * Profile (16D): how this personal app operates for the learner — the daily time, backups and the AI key (`UXIA-v0`).
- * This file renders and decides nothing: every line was settled in `SettingsPresentation` and `AiSettingsPresentation`
- * in core. Minutes are typed and shown as numbers; there is no slider, bar or meter that could read as a target.
+ * Profile (16D): how this personal app operates for the learner — the daily time, the reminder (16E), backups and the AI
+ * key (`UXIA-v0`). This file renders and decides nothing: every line was settled in `SettingsPresentation`,
+ * `ReminderPresentation` and `AiSettingsPresentation` in core. Minutes are typed and shown as numbers; there is no slider, bar or meter that could read as a target.
  */
 @Composable
 fun ProfileScreen(
     capacity: CapacitySettingsView?,
     onSetLength: (CapacityProfile, Int) -> Unit,
+    reminder: ReminderSettingsView?,
+    onReminderOn: (Int) -> Unit,
+    onReminderOff: () -> Unit,
+    onReminderTime: (Int) -> Unit,
+    onOpenNotificationSettings: () -> Unit,
     backup: BackupView,
     onExport: () -> Unit,
     onRestore: () -> Unit,
@@ -62,6 +70,11 @@ fun ProfileScreen(
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         capacity?.let { CapacitySection(it, onSetLength) }
+
+        reminder?.let {
+            HorizontalDivider()
+            ReminderSection(it, onReminderOn, onReminderOff, onReminderTime, onOpenNotificationSettings)
+        }
 
         HorizontalDivider()
         Text(backup.title, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
@@ -116,6 +129,54 @@ private fun CapacitySection(view: CapacitySettingsView, onSetLength: (CapacityPr
     }
     Text(view.defaultNote, style = MaterialTheme.typography.bodySmall)
     Text(view.today, style = MaterialTheme.typography.bodyMedium)
+}
+
+/**
+ * The reminder (16E): on or off, and the time typed as `SS:DD`. A switch-like pair of buttons and a text field; there is
+ * no count, calendar or series anywhere to draw.
+ */
+@Composable
+private fun ReminderSection(
+    view: ReminderSettingsView,
+    onOn: (Int) -> Unit,
+    onOff: () -> Unit,
+    onTime: (Int) -> Unit,
+    onOpenSystemSettings: () -> Unit,
+) {
+    Text(view.title, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+    Text(view.note, style = MaterialTheme.typography.bodySmall)
+    Text(view.status, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+    var typed by remember(view.time) { mutableStateOf(view.time) }
+    val parsed = ReminderPresentation.parseTime(typed)
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        OutlinedTextField(
+            value = typed,
+            onValueChange = { typed = it.filter { c -> c.isDigit() || c == ':' }.take(5) },
+            label = { Text(ReminderCopy.TIME_LABEL) },
+            singleLine = true,
+            isError = parsed == null,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.weight(1f),
+        )
+        if (view.enabled) {
+            OutlinedButton(
+                onClick = { parsed?.let(onTime) },
+                enabled = parsed != null && typed.trim() != view.time,
+                modifier = Modifier.minimumTouchTarget(),
+            ) { Text(ReminderCopy.SAVE_TIME) }
+        }
+    }
+    if (parsed == null) Text(ReminderCopy.TIME_INVALID, style = MaterialTheme.typography.bodySmall)
+    if (view.enabled) {
+        OutlinedButton(onClick = onOff, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(ReminderCopy.TURN_OFF) }
+    } else {
+        OutlinedButton(onClick = { parsed?.let(onOn) }, enabled = parsed != null, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+            Text(ReminderCopy.TURN_ON)
+        }
+    }
+    if (view.offersSystemSettings) {
+        TextButton(onClick = onOpenSystemSettings, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(ReminderCopy.OPEN_SYSTEM_SETTINGS) }
+    }
 }
 
 /** Today's capacity dialog (`THUX-v0` `change_today_capacity`): a profile, a number of minutes, or no choice. */

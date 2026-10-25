@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 9
+    const val VERSION = 10
 
     // ---------------------------------------------------------------- table inventories
 
@@ -57,8 +57,16 @@ object Schema {
      */
     val userPreferenceTables = listOf("preference_record")
 
-    /** Every append-only user table: `DDM-v0`'s truth and the 16D preferences, guarded alike. */
-    val appendOnlyTables = truthTables + userPreferenceTables
+    /**
+     * 16E (`D-127`): the reminder setting, append-only like the 16D preferences and for the same reason — the export is
+     * this database. It is its own table rather than more keys in `preference_record`, because that table's closed key
+     * list is a CHECK and SQLite can change a CHECK only by rebuilding the table, which would rewrite every stored row.
+     * A new table adds and rewrites nothing.
+     */
+    val reminderPreferenceTables = listOf("reminder_preference")
+
+    /** Every append-only user table: `DDM-v0`'s truth, the 16D preferences and the 16E reminder, guarded alike. */
+    val appendOnlyTables = truthTables + userPreferenceTables + reminderPreferenceTables
 
     /**
      * Region 3 — projections. Droppable and rebuildable without touching truth. `DDM-v0`'s eight, plus
@@ -827,6 +835,25 @@ object Schema {
             """,
             "CREATE INDEX IF NOT EXISTS preference_record_by_key ON preference_record (preference_name, sequence)",
         ) + userPreferenceTables.flatMap(::appendOnlyGuards)
+
+    /**
+     * Version 10 adds `reminder_preference` (16E, `D-127`). One row is the whole setting — on or off, and the local
+     * minute of the day — so a row can never hold half a decision. The schema refuses a minute outside the day and an
+     * on/off value that is neither.
+     */
+    val v10: List<String>
+        get() = listOf(
+            """
+            CREATE TABLE IF NOT EXISTS reminder_preference (
+                id                     INTEGER PRIMARY KEY AUTOINCREMENT,
+                $SEQUENCE,
+                reminder_enabled       INTEGER NOT NULL,
+                minute_of_day          INTEGER NOT NULL,${time("recorded_at", "recorded_on")},
+                CHECK (reminder_enabled IN (0, 1)),
+                CHECK (minute_of_day BETWEEN 0 AND 1439)
+            )
+            """,
+        ) + reminderPreferenceTables.flatMap(::appendOnlyGuards)
 
     /** `WLRM-v0`'s misconception sources, plus the empty value of a label nothing has carried yet. */
     const val MISCONCEPTION_SOURCES = "'', 'deterministic', 'ai_proposed'"

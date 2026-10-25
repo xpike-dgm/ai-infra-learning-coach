@@ -172,7 +172,24 @@ check("A16D-03_strict_reading", "it.all(Char::isDigit)" in minutes_of and "takeI
 
 # ---------------------------------------------------------------- 2. storage (LFPS-v0 §11, DDM-v0)
 check("A16D-04_preferences_exported", "preferences" in ((lfps.get("backup_export_restore") or {}).get("export_includes") or []), "LFPS-v0 exports preferences")
-check("A16D-04_schema_v9", "const val VERSION = 9" in schema and "8 to Schema.v9," in strip_comments(read(MIGRATIONS)), "")
+# Narrowed at 16E (`RMDX-v0` / `D-127`): this step's schema was version 9. A later version is accepted only when every
+# version after 9 is owned by an accepted later contract's `schema_migration` (16E: 9 -> 10, `reminder_preference`), so an
+# unowned move still fails.
+def _schema_9_or_owned_later(text: str) -> bool:
+    found = re.search(r"const val VERSION = (\d+)", text)
+    if not found:
+        return False
+    version = int(found.group(1))
+    owned = set()
+    for path in sorted((ROOT / "arch").glob("*/*.yaml")):
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        migration = data.get("schema_migration") if isinstance(data, dict) else None
+        if isinstance(migration, dict) and isinstance(migration.get("to"), int):
+            owned.add(migration["to"])
+    return version >= 9 and all(v in owned for v in range(10, version + 1))
+
+
+check("A16D-04_schema_v9", _schema_9_or_owned_later(schema) and "8 to Schema.v9," in strip_comments(read(MIGRATIONS)), "")
 check("A16D-04_append_only_and_guarded", "val userPreferenceTables = listOf(\"preference_record\")" in schema
       and "val appendOnlyTables = truthTables + userPreferenceTables" in schema and ") + userPreferenceTables.flatMap(::appendOnlyGuards)" in schema
       and "truth + truthGuards()" in schema[schema.find("val v1: List<String>"):schema.find("val v1: List<String>") + 200]
@@ -202,9 +219,13 @@ check("A16D-05_replan_only_on_a_new_budget", "if (built !is BuildDailyPlan.Built
 check("A16D-05_cycles_composed_once", "BlueprintScopes.COMPOSED.forEach" in settings and "ComposeAssessmentBlueprint(scope, persistence, content, clock).compose(evaluatorAvailable)" in settings, "")
 open_app = body(application, "private fun openApp()")
 refresh = body(application, "fun refreshToday(")
-check("A16D-05_app_plans_before_today_is_read", open_app.find("planToday(graph)") > open_app.find("ingestAll()") > 0
-      and open_app.find("planToday(graph)") < open_app.find("TodayFactsQuery(graph.persistence, graph.clock).load()")
-      and 0 <= refresh.find("planToday(opened.graph)") < refresh.find("TodayFactsQuery"), "")
+# Narrowed at 16E (`RMDX-v0` / `D-127`): 16D planned today when the store opened. Every start of the process opens the
+# store — the reminder's alarm and the reboot signal too — so 16E plans only when the learner opens the app: opening the
+# store plans nothing, the activity asks refreshToday once the store is ready, and refreshToday still plans before Today
+# is read. A plan written from openApp again, or Today read before planning, still fails.
+check("A16D-05_app_plans_before_today_is_read", "planToday(" not in open_app and open_app.find("ingestAll()") > 0
+      and 0 <= refresh.find("planToday(opened.graph)") < refresh.find("TodayFactsQuery")
+      and "app.refreshToday" in activity[activity.find("private val listener"):activity.find("private val app:")], "")
 check("A16D-05_app_never_builds_a_plan_itself", "BuildDailyPlan(" not in application and "BuildDailyPlan(" not in activity, "")
 check("A16D-05_capacity_change_replans", "PlanToday(opened.graph.persistence, opened.graph.content, opened.graph.clock, evaluatorAvailable()).afterCapacityChange()" in application, "")
 check("A16D-05_today_action_is_thux", (home.get("capacity_context") or {}).get("today_override_action") == "change_today_capacity"
