@@ -160,6 +160,23 @@ class BuildDailyPlanTest {
     }
 
     @Test
+    fun `a preview is the very plan build would write, and it writes nothing`() {
+        val store = Store().apply { publish(linux); publish(pointer) }
+        val content = Content(mapOf(
+            "new_learning:$linux" to listOf(task("linux-1", "new_learning:$linux", linux)),
+            "new_learning:$pointer" to listOf(task("ptr-1", "new_learning:$pointer", pointer)),
+        ))
+        // 16E: the reminder reads this before the learner has opened the app; a background wake must write no plan.
+        val preview = BuildDailyPlan(store, content, clock).preview(capacity)
+        assertEquals(0, store.transactions)
+        assertTrue(store.appended.isEmpty())
+        val built = assertIs<BuildDailyPlan.Built.Planned>(BuildDailyPlan(store, content, clock).build(capacity))
+        assertEquals(built.trace, preview)
+        // With nothing published there is nothing to preview.
+        assertEquals(null, BuildDailyPlan(Store().apply { curriculumVersion = null }, content, clock).preview(capacity))
+    }
+
+    @Test
     fun `the watermark is read before any state, so the plan never claims to have seen more`() {
         val store = Store().apply { publish(linux) }
         BuildDailyPlan(store, Content(), clock).build(capacity)

@@ -7,6 +7,10 @@ import android.os.StrictMode
 import android.util.Log
 import android.net.Uri
 import coach.application.CapacitySettings
+import coach.application.ReminderSettings
+import coach.model.ReminderPreference
+import coach.model.StoreStatus
+import coach.presentation.NotificationAccess
 import coach.application.DayCloseFacts
 import coach.application.PlanToday
 import coach.model.CapacityPreferences
@@ -42,8 +46,11 @@ import java.io.File
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
-/** The opened store, plus what it could say about today — its plan and its record — when it opened. */
-class OpenedApp(val graph: AppGraph, val today: TodayFacts, val day: DayCloseFacts.Loaded)
+/**
+ * The opened store. Today's plan and record are not read here: opening the store is what every start of the process
+ * does — a reminder's alarm and a reboot signal included — and only the learner opening the app plans today (16E).
+ */
+class OpenedApp(val graph: AppGraph)
 
 /**
  * Process scope for the store (`APHX-v0`).
@@ -199,6 +206,60 @@ class CoachApplication : Application() {
 
     private fun evaluatorAvailable(): Boolean = evaluatorAvailability() == EvaluatorAvailability.AVAILABLE
 
+    /** For the reminder's preview, which must route the same items the planner would (16E). */
+    internal fun evaluatorAvailableNow(): Boolean = evaluatorAvailable()
+
+    // ---------------------------------------------------------------- the daily reminder (16E)
+
+    /**
+     * Runs [work] on the store thread once the store is ready, or [onTimeout] if it is not ready within [budgetMillis].
+     * A receiver uses this: its process may have been started by the alarm itself, with the store still opening.
+     */
+    internal fun whenStoreReady(budgetMillis: Long, onTimeout: () -> Unit, work: (OpenedApp) -> Unit) {
+        val settled = java.util.concurrent.atomic.AtomicBoolean(false)
+        lateinit var listener: StoreStartup.Listener<OpenedApp>
+        val timeout = Runnable {
+            if (settled.compareAndSet(false, true)) {
+                startup.stopObserving(listener)
+                onTimeout()
+            }
+        }
+        listener = StoreStartup.Listener { status, store ->
+            val ready = store != null && status == StoreStatus.Ready
+            // A store that failed to open will not open on its own; that is silence too, not a wait to the end.
+            val failed = store == null && status != StoreStatus.Opening && status != StoreStatus.Ready
+            if ((ready || failed) && settled.compareAndSet(false, true)) {
+                main.removeCallbacks(timeout)
+                startup.stopObserving(listener)
+                if (ready) storeThread.execute { work(store!!) } else onTimeout()
+            }
+        }
+        main.postDelayed(timeout, budgetMillis)
+        startup.observe(listener)
+    }
+
+    /** The reminder setting and what Android allows, off the main thread (16E). */
+    fun loadReminder(onLoaded: (ReminderPreference, NotificationAccess) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val preference = ReminderSettings(opened.graph.persistence, opened.graph.clock).read()
+            main.post { onLoaded(preference, Reminders.access(this)) }
+        }
+    }
+
+    /** Records the learner's reminder setting and arms or disarms the alarm from it (16E). */
+    fun setReminder(enabled: Boolean, minuteOfDay: Int, onDone: (ReminderPreference, NotificationAccess) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val settings = ReminderSettings(opened.graph.persistence, opened.graph.clock)
+            settings.set(enabled, minuteOfDay)
+            val preference = settings.read()
+            if (preference.enabled) Reminders.ensureChannel(this)
+            Reminders.applySetting(this, preference, opened.graph.clock.now().instantEpochMillis)
+            main.post { onDone(preference, Reminders.access(this)) }
+        }
+    }
+
     /** The capacity preferences as they stand today, off the main thread (16D). */
     fun loadCapacity(onLoaded: (CapacityPreferences) -> Unit) {
         val opened = startup.store ?: return
@@ -345,15 +406,12 @@ class CoachApplication : Application() {
                 // 15B: every package that ships is published once, oldest first; each later one only adds.
                 val published = IngestCurriculum(graph.persistence, graph.content, graph.clock).ingestAll()
                 Log.i(TAG, "curriculum ingestion: ${published.ifEmpty { "no authored package" }}")
-                // 16D: today's plan exists before Today is first read.
-                planToday(graph)
-                StoreOpenOutcome.Opened(
-                    OpenedApp(
-                        graph,
-                        TodayFactsQuery(graph.persistence, graph.clock).load(),
-                        DayCloseFacts(graph.persistence, graph.clock).load(),
-                    )
-                )
+                // 16E: opening the store plans nothing. Every start of the process opens it — a reminder's alarm and
+                // a reboot signal too — and a plan written then would sit on a day the learner never opened. Today's
+                // plan is made when the learner opens the app (MainActivity asks through refreshToday).
+                // The reminder is armed again from the stored setting: an update or a restore may have cleared it.
+                Reminders.applySetting(this, ReminderSettings(graph.persistence, graph.clock).read(), graph.clock.now().instantEpochMillis)
+                StoreOpenOutcome.Opened(OpenedApp(graph))
             }
             is StoreOpener.Result.NotOpened -> {
                 // Diagnostics only. The store holds no credential, so nothing secret can be logged.

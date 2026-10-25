@@ -1506,3 +1506,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `16D tamamlandı; 16E aktif ve henüz yürütülmedi; 16F eklendi` konumuna taşır.
 
 **Sonraki kesin adım:** `16E — Bildirimler`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-25 — 16E — Bildirimler tamamlandı — RMDX-v0 / D-127
+
+- 16D (#63) zaten merge edilmişti (de92b7c). Kullanıcı "16E ye başla" dedi; fresh 16E PRE yapıldı ve kanonik kaynaklar `16D ✅ / 16E active-not-executed` gösterdi; mesaj 16E'nin onayıydı.
+- **Kullanıcı kararları (2026-10-25):** tek günlük hatırlatma, günde en çok bir, içerik o anki durumdan, söylenecek gerçek bir şey yoksa hiç gönderilmez; varsayılan kapalı, izin yalnız açılırken; yaklaşık zamanlama, kesin alarm izni yok.
+- **Bulgu:** her süreç başlangıcı bugünü planlıyordu — bir alarm ya da yeniden başlatma süreci başlatır, yani günlük bir hatırlatma öğrencinin hiç açmadığı günlere plan yazacaktı; artık plan yalnız öğrenci uygulamayı açınca yazılıyor ve hatırlatma planner'ın yazmadan kurduğu planı okuyor (`BuildDailyPlan.preview`); `preference_record`'ın anahtar listesi bir CHECK olduğundan tablo yeniden kurulmadan büyüyemiyordu, hatırlatmanın kendi tablosu var; Android bir güncelleme ya da zorla durdurma sonrası alarmın kalıp kalmadığını belgelemiyor, alarm her açılışta yeniden kuruluyor.
+- **Kod:** yeni `ReminderFacts.kt`, `Reminders.kt` (core-application: `ReminderSettings`, `ReminderCheck`; app-wiring: alarm, alıcılar, bildirim), `ReminderPresentation.kt`; `BuildDailyPlan.preview`; `BlueprintComposer.scopeOfCandidate`; Profile'da hatırlatma bölümü; şema v10 `reminder_preference`; `reminderPreferences` varsayılanlı port inceltmesi; iki manifest (bildirim ve açılış izinleri, iki alıcı).
+- **Araştırma:** iç sözleşmeler `UXIA-v0`, `V1_SCOPE` §17 / SC-043, `SRR-v0`, `THUX-v0`, `EODX-v0`, `VDSX-v0`; Android alarm ve bildirim belgeleri (2026-10-25).
+- **Daraltılan kapılar:** 16D'nin `A16D-04_schema_v9` ve `A16D-05_app_plans_before_today_is_read` kontrolleri ve depo testi ("Narrowed at 16E"). İlk taslak `BuildDailyPlan.build`'i ikiye bölmüştü; beş önceki doğrulayıcı `build`'in gövdesini olduğu gibi okuduğu için geri alındı, önizleme yazmadan bir satır önce duruyor.
+- **Mutation:** Kotlin 29/29.
+- **Validator mutation:** 47/47.
+- **Validator:** 103/103 PASS; sweep 68/68 (58 light + 10 heavy); 1219 JVM testi.
+- **T6 çalıştırılmadı; bildirim cihazda görülmedi**.
+- D-050 POST living-memory accepted state'i `16E tamamlandı; 16F aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `16F — Uçtan uca günlük döngü`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

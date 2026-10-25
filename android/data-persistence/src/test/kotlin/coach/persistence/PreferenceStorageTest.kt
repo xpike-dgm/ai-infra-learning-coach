@@ -69,7 +69,8 @@ class PreferenceStorageTest {
         Fixtures.populated(file, version = 8)
         val before = SqlitePersistence.openWithoutMigrating(file.absolutePath).use { Fixtures.truthContent(it) }
         SqlitePersistence.open(file.absolutePath).use { db ->
-            assertEquals(9, Schema.VERSION)
+            // Narrowed at 16E (`RMDX-v0` / `D-127`): version 10 adds the reminder table; v9's preferences are what this checks.
+            assertTrue(Schema.VERSION >= 9)
             assertEquals(Schema.VERSION, db.query("SELECT schema_version FROM schema_metadata") { it.getLong(0).toInt() }.single())
             val after = Fixtures.truthContent(db)
             Schema.appendOnlyTables.forEach { assertEquals(before[it], after[it], it) }

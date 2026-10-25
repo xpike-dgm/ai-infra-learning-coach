@@ -75,8 +75,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 16B Öğrenme geçmişi: LHRX-v0 / D-123 ile tamamlandı; geçmiş ve rapor kanıttan yeniden oynatılıyor, mastery yeniden kontrolü düzeltildi.
 - [x] 16C Progress / weakness gösterim kuralları: PWPX-v0 / D-124 ile tamamlandı; konu durumu, `topic_detail`, zayıflık bağlamı ve Teknik İngilizce profili; başlanmamış konu bir becerisi açıksa 'Hazır'.
 - [x] 16D Ayarlar: STGX-v0 / D-126 ile tamamlandı; kapasite tercihleri, bugünün planı uygulamadan, yedekleme kontrolleri, şema v9 `preference_record`.
-- [ ] 16E Bildirimler **AKTİF** — kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
-- [ ] 16F Uçtan uca günlük döngü (D-125 ile eklendi) — girdileri 16D kontratının `moved_to_16f` listesi.
+- [x] 16E Bildirimler: RMDX-v0 / D-127 ile tamamlandı; günlük hatırlatma, şema v10 `reminder_preference`, plan yalnız öğrenci açınca yazılıyor.
+- [ ] Hatırlatmanın 'bugün çalışma kaydedildi' kuralı → 16F'de denemeler planlı göreve bağlanınca 'bugünün planında başlanmamış iş' olabilir.
+- [ ] Hatırlatma (alarm, alıcılar, izin istemi, bildirim) cihazda → 19.
+- [ ] 16F Uçtan uca günlük döngü **AKTİF** (D-125 ile eklendi) — girdileri 16D kontratının `moved_to_16f` listesi; kullanıcının yeni açık onayı gerekir.
 - [ ] Tema ve erişilebilirlik tercihleri → 17D.
 - [ ] Dosya seçicileri ve geri yükleme cihazda → 19.
 - [ ] `topic_state` / `english_profile` projeksiyonlarını yazmak ve konu geçiş geçmişi → 18E.

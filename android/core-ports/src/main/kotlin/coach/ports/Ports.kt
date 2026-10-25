@@ -18,6 +18,7 @@ import coach.model.ObjectiveEvidenceProfile
 import coach.model.ObjectiveRow
 import coach.model.PreferenceRecord
 import coach.model.PrerequisiteEdge
+import coach.model.ReminderPreferenceRecord
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
@@ -236,6 +237,13 @@ interface PersistencePort {
      * and the accepted presets hold.
      */
     fun preferenceRecords(): List<PreferenceRecord> = emptyList()
+
+    /**
+     * Every stored reminder setting, oldest first (16E). The newest row is the setting; with none, the reminder is off.
+     * A refinement of this port, not a new one; an adapter that keeps none answers with nothing, and nothing is
+     * scheduled.
+     */
+    fun reminderPreferences(): List<ReminderPreferenceRecord> = emptyList()
 }
 
 /** A truth row together with the id the store gave it. */

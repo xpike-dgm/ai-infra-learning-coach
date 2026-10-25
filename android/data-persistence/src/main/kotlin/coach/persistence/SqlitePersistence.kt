@@ -22,6 +22,7 @@ import coach.model.ObjectiveRow
 import coach.model.PrerequisiteEdge
 import coach.model.PrerequisiteSnapshot
 import coach.model.PreferenceRecord
+import coach.model.ReminderPreferenceRecord
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
@@ -523,6 +524,12 @@ class SqlitePersistence private constructor(
     override fun preferenceRecords(): List<PreferenceRecord> =
         query("SELECT preference_name, preference_value, applies_to_day, sequence FROM preference_record ORDER BY sequence") {
             PreferenceRecord(it.getText(0), it.getText(1), if (it.isNull(2)) null else it.getText(2), it.getLong(3))
+        }
+
+    /** Every `reminder_preference` row, oldest first (16E). */
+    override fun reminderPreferences(): List<ReminderPreferenceRecord> =
+        query("SELECT reminder_enabled, minute_of_day, sequence FROM reminder_preference ORDER BY sequence") {
+            ReminderPreferenceRecord(enabled = it.getLong(0) == 1L, minuteOfDay = it.getLong(1).toInt(), sequence = it.getLong(2))
         }
 
     /** The resource versions among [resources] that have at least one `attempt` row (16C). */

@@ -215,8 +215,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **16B — Öğrenme geçmişi** — `LHRX-v0 / D-123`
 - [x] **16C — Progress / weakness gösterim kuralları** — `PWPX-v0 / D-124`
 - [x] **16D — Ayarlar** — `STGX-v0 / D-126`
-- [ ] **16E — Bildirimler** **AKTİF**
-- [ ] **16F — Uçtan uca günlük döngü** — `D-125` ile eklendi (yeniden numaralama yok)
+- [x] **16E — Bildirimler** — `RMDX-v0 / D-127`
+- [ ] **16F — Uçtan uca günlük döngü** — `D-125` ile eklendi (yeniden numaralama yok) **AKTİF**
 
 ---
 
@@ -264,9 +264,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16D`  
-**Son tamamlanan:** **`16D — STGX-v0 / D-126`**  
-**Aktif:** **`16E — Bildirimler`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16E`  
+**Son tamamlanan:** **`16E — RMDX-v0 / D-127`**  
+**Aktif:** **`16F — Uçtan uca günlük döngü`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -340,4 +340,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 `D-125`: `16F — Uçtan uca günlük döngü` AŞAMA 16'nın sonuna eklendi; girdileri 16D kontratının `moved_to_16f` listesi.
 
-16E başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+16E `RMDX-v0` ile günlük hatırlatma kodda: bir hatırlatma günde en çok bir kez, öğrencinin seçtiği saatte gelen sessiz bir nottur ve yalnız bugünün planında ne olduğunu söyler — planner'ın bugünün süresi içinde seçtiği plan, depodan okunur ya da yazılmadan kurulur; öğrenci açana kadar kapalıdır ve karar her tercih gibi depoya eklenir; hiçbir truth yazmaz; onu bayat ya da dayanaksız yapabilecek her şey sessizliktir — kapatılmış, Android engelliyor, başka bir güne düşmüş, bugünkü zaten gösterilmiş, yeni iş planlanmamış ya da bugün çalışma kaydedilmiş; gün saymaz, seri tutmaz, yokluğu adlandırmaz ve öğrencinin ne yapmadığını söylemez. Bulunanlar: her süreç başlangıcı bugünü planlıyordu — bir alarm ya da yeniden başlatma süreci başlatır, yani günlük bir hatırlatma öğrencinin hiç açmadığı günlere plan yazacaktı; artık plan yalnız öğrenci uygulamayı açınca yazılıyor ve hatırlatma planner'ın yazmadan kurduğu planı okuyor (`BuildDailyPlan.preview`); `preference_record`'ın anahtar listesi bir CHECK olduğundan tablo yeniden kurulmadan büyüyemiyordu, hatırlatmanın kendi tablosu var; Android bir güncelleme ya da zorla durdurma sonrası alarmın kalıp kalmadığını belgelemiyor, alarm her açılışta yeniden kuruluyor. T6 çalıştırılmadı.
+
+16F başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

@@ -74,6 +74,13 @@ import coach.presentation.BackupState
 import coach.presentation.SettingsPresentation
 import coach.presentation.AiCheckState
 import coach.presentation.AiSettingsPresentation
+import android.Manifest
+import android.content.Intent
+import android.os.Build
+import android.provider.Settings
+import coach.model.ReminderPreference
+import coach.presentation.NotificationAccess
+import coach.presentation.ReminderPresentation
 
 class MainActivity : ComponentActivity() {
 
@@ -84,11 +91,23 @@ class MainActivity : ComponentActivity() {
     // 16D: a restore closes and reopens the store, and the shell leaves composition while it does; the backup
     // controls' state lives here so the restore's outcome is still there when Profile is shown again.
     private val backupState = mutableStateOf<BackupState>(BackupState.Idle)
+    // 16E: the reminder setting and what Android allows. Read again on every start, because the learner may have
+    // changed this app's notifications in Android's own settings in the meantime.
+    private val reminderState = mutableStateOf<Pair<ReminderPreference, NotificationAccess>?>(null)
     private val listener = StoreStartup.Listener<OpenedApp> { status, store ->
         storeStatus.value = status
         opened.value = store
-        todayFacts.value = store?.today
-        dayFacts.value = store?.day
+        // 16E: the learner is opening the app, so today is planned now and then read; opening the store alone plans
+        // nothing. Until the facts arrive the app is still opening, and the blocking surface says so.
+        todayFacts.value = null
+        dayFacts.value = null
+        if (store != null) {
+            app.refreshToday { today, day ->
+                todayFacts.value = today
+                dayFacts.value = day
+            }
+            app.loadReminder { preference, access -> reminderState.value = preference to access }
+        }
     }
 
     private val app: CoachApplication get() = application as CoachApplication
@@ -121,7 +140,10 @@ class MainActivity : ComponentActivity() {
                     )
                 } else {
                     Shell(health, current, facts, dayFacts.value, explain = app::loadExplanation, app = app,
-                        onTodayFacts = { todayFacts.value = it }, backupState = backupState)
+                        onTodayFacts = { todayFacts.value = it }, backupState = backupState, reminderState = reminderState,
+                        openNotificationSettings = {
+                            startActivity(Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE, packageName))
+                        })
                 }
             }
         }
@@ -134,6 +156,7 @@ class MainActivity : ComponentActivity() {
             todayFacts.value = today
             dayFacts.value = day
         }
+        app.loadReminder { preference, access -> reminderState.value = preference to access }
     }
 
     override fun onDestroy() {
@@ -153,6 +176,8 @@ private fun Shell(
     // 16D: a capacity change replans today; Today's facts are the activity's, so the new ones are handed back.
     onTodayFacts: (TodayFacts) -> Unit,
     backupState: MutableState<BackupState>,
+    reminderState: MutableState<Pair<ReminderPreference, NotificationAccess>?>,
+    openNotificationSettings: () -> Unit,
 ) {
     var selected by remember { mutableStateOf(Destination.start) }
     // The focused flow in front of the shell, if any. Its entry decision is made in core.
@@ -189,6 +214,24 @@ private fun Shell(
     }
     val restoreFrom = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri == null) backup = BackupState.Idle else app.prepareRestore(uri) { backup = it }
+    }
+    // 16E: the reminder. Turning it on asks Android's permission first where Android requires one (13+); a refusal
+    // records nothing and leaves the reminder off.
+    var reminder by reminderState
+    var reminderRefused by remember { mutableStateOf(false) }
+    var minuteAwaitingPermission by remember { mutableStateOf<Int?>(null) }
+    val reminderChanged: (ReminderPreference, NotificationAccess) -> Unit = { preference, access ->
+        reminder = preference to access
+        reminderRefused = false
+    }
+    val askNotificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        val minute = minuteAwaitingPermission
+        minuteAwaitingPermission = null
+        if (granted && minute != null) {
+            app.setReminder(true, minute, reminderChanged)
+        } else {
+            app.loadReminder { preference, access -> reminder = preference to access; reminderRefused = true }
+        }
     }
     val capacityChanged: (CapacityPreferences, TodayFacts) -> Unit = { preferences, todays ->
         capacity = preferences
@@ -368,13 +411,29 @@ private fun Shell(
             selected == Destination.PROFILE -> ProfileScreen(
                 capacity = capacity?.let(SettingsPresentation::capacity),
                 onSetLength = { profile, minutes -> app.setProfileLength(profile, minutes, capacityChanged) },
+                reminder = reminder?.let { (preference, access) -> ReminderPresentation.settings(preference, access, reminderRefused) },
+                onReminderOn = { minute ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && reminder?.second == NotificationAccess.NEEDS_PERMISSION) {
+                        minuteAwaitingPermission = minute
+                        askNotificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    } else {
+                        app.setReminder(true, minute, reminderChanged)
+                    }
+                },
+                onReminderOff = { reminder?.let { (preference, _) -> app.setReminder(false, preference.minuteOfDay, reminderChanged) } },
+                onReminderTime = { minute -> app.setReminder(true, minute, reminderChanged) },
+                onOpenNotificationSettings = openNotificationSettings,
                 backup = SettingsPresentation.backup(backup),
                 onExport = { backup = BackupState.Working; exportTo.launch("coach-yedek.coachdb") },
                 onRestore = { backup = BackupState.Working; restoreFrom.launch(arrayOf("*/*")) },
                 onConfirmRestore = {
                     backup = BackupState.Working
                     // The reopened store is a different profile: its own preferences are read again.
-                    app.confirmRestore { outcome -> backup = outcome; app.loadCapacity { capacity = it } }
+                    app.confirmRestore { outcome ->
+                        backup = outcome
+                        app.loadCapacity { capacity = it }
+                        app.loadReminder { preference, access -> reminder = preference to access }
+                    }
                 },
                 onCancelRestore = { app.cancelRestore(); backup = BackupState.Idle },
                 ai = AiSettingsPresentation.of(aiKey, aiCheck, app.aiSettings.providerName()),
