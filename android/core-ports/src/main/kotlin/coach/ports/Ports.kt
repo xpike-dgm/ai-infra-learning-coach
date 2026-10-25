@@ -16,6 +16,7 @@ import coach.model.LearningNeed
 import coach.model.MisconceptionRow
 import coach.model.ObjectiveEvidenceProfile
 import coach.model.ObjectiveRow
+import coach.model.PreferenceRecord
 import coach.model.PrerequisiteEdge
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
@@ -228,6 +229,13 @@ interface PersistencePort {
      * cannot tell answers with nothing, which only ever under-states coverage.
      */
     fun attemptedResources(resources: List<VersionedRef>): Set<VersionedRef> = emptySet()
+
+    /**
+     * Every stored preference row, oldest first (16D). The newest row of a key is the preference; reading them all keeps
+     * that rule in core. A refinement of this port, not a new one; an adapter that keeps none answers with nothing,
+     * and the accepted presets hold.
+     */
+    fun preferenceRecords(): List<PreferenceRecord> = emptyList()
 }
 
 /** A truth row together with the id the store gave it. */

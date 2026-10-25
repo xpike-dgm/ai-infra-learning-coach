@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113 / 15C ✅ CFNX-v0 / D-114 / 15D ✅ MMFX-v0 / D-116 / 15E ✅ LGSX-v0 / D-118 / 15F ✅ EAAX-v0 / D-119 / 15G ✅ ACNX-v0 / D-120 / 15H ✅ CQAX-v0 / D-121 / 16A ✅ SKAX-v0 / D-122 / 16B ✅ LHRX-v0 / D-123 / 16C ✅ PWPX-v0 / D-124`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13, AŞAMA 14 ve AŞAMA 15'in kapandığını, aktif adımın `16D active-not-executed` olduğunu ve önceki adımın `PWPX-v0 / D-124` ile tamamlandığını living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113 / 15C ✅ CFNX-v0 / D-114 / 15D ✅ MMFX-v0 / D-116 / 15E ✅ LGSX-v0 / D-118 / 15F ✅ EAAX-v0 / D-119 / 15G ✅ ACNX-v0 / D-120 / 15H ✅ CQAX-v0 / D-121 / 16A ✅ SKAX-v0 / D-122 / 16B ✅ LHRX-v0 / D-123 / 16C ✅ PWPX-v0 / D-124 / 16D ✅ STGX-v0 / D-126`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13, AŞAMA 14 ve AŞAMA 15'in kapandığını, aktif adımın `16E active-not-executed` olduğunu ve önceki adımın `STGX-v0 / D-126` ile tamamlandığını (16F D-125 ile eklendi) living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1165,14 +1165,16 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 16A ✅ SKAX-v0 / D-122
 - AŞAMA 16B ✅ LHRX-v0 / D-123
 - AŞAMA 16C ✅ PWPX-v0 / D-124
-- AŞAMA 16D 🟡 active-not-executed
+- AŞAMA 16D ✅ STGX-v0 / D-126
+- AŞAMA 16E 🟡 active-not-executed
+- AŞAMA 16F ⬜ D-125 ile eklendi
 - 16–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `16C — Progress / weakness gösterim kuralları`  
-**Final:** `PWPX-v0 — Topic state, topic_detail, the weakness context and the Technical English profile, read from the Skill states the engines wrote` / D-124  
-**Canonical:** `docs/PROGRESS_WEAKNESS_SPEC.md` + `arch/16c_progress_weakness/`
+**Son tamamlanan numaralı adım:** `16D — Ayarlar`  
+**Final:** `STGX-v0 — the learner's own settings, capacity and backup, and today's plan made by the app from them` / D-126  
+**Canonical:** `docs/SETTINGS_SPEC.md` + `arch/16d_settings/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1236,17 +1238,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 16A:** ✅ TAMAMLANDI  
 **AŞAMA 16B:** ✅ TAMAMLANDI  
 **AŞAMA 16C:** ✅ TAMAMLANDI  
-**Aktif adım:** `16D — Ayarlar`  
+**AŞAMA 16D:** ✅ TAMAMLANDI  
+**Aktif adım:** `16E — Bildirimler`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-16D için:
+16E için:
 
 ```text
-fresh 16D PRE-STEP GitHub refresh
+fresh 16E PRE-STEP GitHub refresh
 → user explicit approval verification (D-117 ended with 15F)
-→ 16D execution
+→ 16E execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1542,6 +1545,7 @@ Research output automatic decision değildir; manager değerlendirip canonical m
 - 16C Progress/weakness rules
 - 16D Settings
 - 16E Notifications
+- 16F End-to-end daily loop (D-125)
 
 ## AŞAMA 17 — UI/UX polish
 - 17A Visual polish
@@ -1840,7 +1844,9 @@ AŞAMA 14 ✅ TAMAMLANDI
 16A ✅ SKAX-v0 / D-122
 16B ✅ LHRX-v0 / D-123
 16C ✅ PWPX-v0 / D-124
-16D 🟡 active-not-executed
+16D ✅ STGX-v0 / D-126
+16E 🟡 active-not-executed
+16F ⬜ D-125
 16–20 ⬜
 ```
 
@@ -2038,9 +2044,9 @@ AŞAMA 14 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `16D — Ayarlar`.
+**Sıradaki gerçek numbered work:** `16E — Bildirimler`.
 
-**16D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**16E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2090,8 +2096,8 @@ AŞAMA 14 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `16D — Ayarlar`.  
-**16D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `16E — Bildirimler`.  
+**16E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2502,4 +2508,15 @@ Bulunanlar: ilk giriş kuralı (dışarıdan gelen her hard kenar karşılanmı�
 
 **AŞAMA 16C ✅ PWPX-v0 / D-124.**
 
-**Aktif adım:** `16D — Ayarlar` — henüz yürütülmedi; fresh PRE + kullanıcının yeni açık onayı zorunlu (D-117'nin sürekli onayı 15F ile bitti).
+---
+## 16D completion addendum — D-126 (and D-125)
+
+16D `STGX-v0 — the learner's own settings, capacity and backup, and today's plan made by the app from them` ile tamamlandı. Canonical: `docs/SETTINGS_SPEC.md`; contract `arch/16d_settings/settings.yaml`; validator `tools/validate_settings.py`. D-125 ile AŞAMA 16'nın sonuna `16F — Uçtan uca günlük döngü` eklendi.
+
+Ana invariant: bir tercih öğrencinin kararıdır, eklenir ve asla düzenlenmez ve depoda durur, böylece yedek onu taşır; bugünün planını bu tercihlerden planner kurar — bugünün kendi seçimi yoksa normal gün, bugünün seçimi yalnız bugüne aittir ve borç bırakmaz, bir değişiklik bugünü ancak bütçe değiştiyse yeniden planlar; süre bir tavandır, hedef ya da ölçü değildir; yedek yalnız öğrencinin koyduğu yere gider, geri yükleme onaysız hiçbir şeyi değiştirmez ve değiştirilen profil her zaman saklanır.
+
+Bulunanlar: 11'den beri her adımın uygulama çağrısı 16D'ye gönderilmişti — kullanıcı bölmeye karar verdi ve uçtan uca bağlantı yeni 16F'ye gitti (D-125); `preference_key` kolonu kimlik bilgisi taramasına takıldı, iki `_study_day` kolonu adaptörün zaman kuralını bozdu; geri yükleme depoyu kapatıp açarken shell durumunu unutuyordu. Onay kullanıcının 2026-10-25 açık onayı. Kotlin mutation 23/23, validator mutation 42/42; 91/91 QA PASS. T6 çalıştırılmadı.
+
+**AŞAMA 16D ✅ STGX-v0 / D-126.**
+
+**Aktif adım:** `16E — Bildirimler` — henüz yürütülmedi; fresh PRE + kullanıcının yeni açık onayı zorunlu (D-117'nin sürekli onayı 15F ile bitti).

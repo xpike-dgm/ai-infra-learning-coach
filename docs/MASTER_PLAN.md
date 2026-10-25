@@ -1124,8 +1124,20 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 31/31, validator mutation 46/46; 117/117 QA PASS,
 - **T6 çalıştırılmadı; ekranlar cihazda görülmedi**.
 
-### [ ] 16D — Ayarlar — **AKTİF**
-### [ ] 16E — Bildirimler
+### [x] 16D — Ayarlar — STGX-v0 / D-126
+
+**16D final coverage:**
+- bir tercih öğrencinin kararıdır, eklenir ve asla düzenlenmez ve depoda durur, böylece yedek onu taşır; bugünün planını bu tercihlerden planner kurar — bugünün kendi seçimi yoksa normal gün, bugünün seçimi yalnız bugüne aittir ve borç bırakmaz, bir değişiklik bugünü ancak bütçe değiştiyse yeniden planlar; süre bir tavandır, hedef ya da ölçü değildir; yedek yalnız öğrencinin koyduğu yere gider, geri yükleme onaysız hiçbir şeyi değiştirmez ve değiştirilen profil her zaman saklanır,
+- kapasite: kısa/normal/yoğun gün, `ADAPTIVE_PLANNER_SPEC` §3 v0 önayarları 30/60/90 dk, değiştirilebilir; bugüne özel seçim yalnız bugüne; D-033 sırası; değişiklik yalnız bütçe değiştiyse `today_capacity_changed` ile yeniden planlar,
+- bugünün planı: uygulama açılışta ve yeni günde planner'a sorar; haftanın ve ayın blueprint'i döngü başına bir kez,
+- tercihler: şema v9 `preference_record`, ek-only, yedekte taşınır,
+- yedekleme: dışa aktarma ve geri yükleme sistem dosya seçicisiyle; geri yükleme açık onay ister, değiştirilen profil saklanır, ret hiçbir şeyi değiştirmez,
+- bulgu: 11'den beri her adımın uygulama çağrısı 16D'ye gönderilmişti — kullanıcı bölmeye karar verdi ve uçtan uca bağlantı yeni 16F'ye gitti (D-125); `preference_key` kolonu kimlik bilgisi taramasına takıldı, iki `_study_day` kolonu adaptörün zaman kuralını bozdu; geri yükleme depoyu kapatıp açarken shell durumunu unutuyordu,
+- Kotlin mutation 23/23, validator mutation 42/42; 91/91 QA PASS,
+- **T6 çalıştırılmadı; ekranlar cihazda görülmedi**.
+
+### [ ] 16E — Bildirimler — **AKTİF**
+### [ ] 16F — Uçtan uca günlük döngü — D-125 ile eklendi
 
 ---
 
@@ -1193,8 +1205,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16C`  
-**Son tamamlanan:** **`16C — PWPX-v0 / D-124`**  
-**Aktif:** **`16D — Ayarlar`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16D`  
+**Son tamamlanan:** **`16D — STGX-v0 / D-126`**  
+**Aktif:** **`16E — Bildirimler`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **16D fresh PRE-STEP + kullanıcının yeni açık onayı → Ayarlar → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **16E fresh PRE-STEP + kullanıcının yeni açık onayı → Bildirimler → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti. 16F (D-125) 16E'den sonra gelir.

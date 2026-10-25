@@ -2057,3 +2057,68 @@ Ayrıntı: `docs/LEARNING_HISTORY_SPEC.md`.
 - Sonraki numbered step `16D — Ayarlar`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/PROGRESS_WEAKNESS_SPEC.md`.
+
+## D-125 — 16F eklendi: Uçtan uca günlük döngü
+**Durum:** Kabul edildi — 2026-10-25 (kullanıcı kararı)
+
+- 11'den 16C'ye kadar her adım "uygulamadan çağırma" işini 16D'ye bırakmıştı: planner, görev çalıştırıcının item sunması, cevap ve kanıt, değerlendirme, yeniden hesaplama ve raporlar, tutor, hızlı yol, kod ve açık uçlu cevaplar.
+- Kullanıcı 16D'yi böldü: 16D ayarları ve bugünün planını uygulamadan kurmayı taşır; geri kalan uçtan uca bağlantı yeni bir adıma, **16F — Uçtan uca günlük döngü**ye gider.
+- 16F, AŞAMA 16'nın sonuna, D-099'un 13F'yi eklediği gibi eklenir; yeniden numaralama yoktur. Sıra: 16D → 16E → 16F → 17A.
+- 16F'nin girdileri `arch/16d_settings/settings.yaml`'ın `moved_to_16f` listesidir.
+
+## D-126 — Ayarlar = STGX-v0
+**Durum:** Kabul edildi — 2026-10-25
+
+- 16D final modeli `STGX-v0 — the learner's own settings, capacity and backup, and today's plan made by the app from them` oldu.
+  - Uygulama bugünün planını öğrencinin süresinden gerçekten kuruyor; Today gerçek görevleri gösteriyor.
+  - Profile günlük süreyi, yedeklemeyi ve yapay zekâ anahtarını tutuyor; Today'de "Bugünkü süreyi değiştir" var.
+- **Kaynaklar:**
+  - canonical spec: `docs/SETTINGS_SPEC.md`;
+  - machine-readable contract: `arch/16d_settings/settings.yaml`;
+  - research: `research/16d_settings_research.md`;
+  - validator: `tools/validate_settings.py`;
+  - kod: `core-model` (`PreferenceFacts.kt`), `core-ports` (`preferenceRecords`), `data-persistence` (şema v9 `preference_record`, `ProfileReplacement`), `core-application` (`Settings.kt` — `CapacitySettings`, `PlanToday`; `StoreStartup.replace`), `core-presentation` (`SettingsPresentation.kt`), `app-ui` (`ProfileScreen.kt`), `app-wiring`.
+- Ana invariant: **bir tercih öğrencinin kararıdır, eklenir ve asla düzenlenmez; depoda durur ve yedek onu taşır.**
+  - Bugünün planını, bu tercihlerden planner kurar: bugünün kendi seçimi yoksa normal gün geçerlidir; bugünün seçimi yalnız bugüne aittir ve borç bırakmaz; bir değişiklik bugünü ancak bütçe değiştiyse yeniden planlar.
+  - Süre bir tavandır; hedef ya da ölçü değildir.
+  - Yedek yalnız öğrencinin koyduğu yere gider; geri yükleme öğrenci onaylamadan hiçbir şeyi değiştirmez ve değiştirilen profil her zaman saklanır.
+- **Kullanıcı kararları (2026-10-25, açık onayla):**
+  - kapsam: ayarlar + bugünün planını uygulamadan kurmak; uçtan uca bağlantının geri kalanı 16F'ye (D-125);
+  - kapasite: kısa/normal/yoğun gün, `ADAPTIVE_PLANNER_SPEC` §3'ün v0 önayarları 30/60/90 dk, değiştirilebilir, bugüne özel seçim;
+  - yedekleme kontrolleri 16D'de; geri yükleme açık onay ister, değiştirilen profil yanına saklanır;
+  - haftalık/aylık döngü sabit (Pazartesi başlangıçlı ISO hafta, takvim ayı); ayar yok;
+  - odak tercihi 18B'ye.
+- **Asistanın varsayılan seçimleri:**
+  - Tercihler depoda, ek-only bir tabloda (şema v9); platform ayarlarında değil.
+  - Süreler 0–1440 tam dakika; okunamayan bir satır atlanır, tahmin edilmez.
+  - Uygulama açılışta ve yeni bir çalışma günü görüldüğünde planlar; önce haftanın ve ayın blueprint'i döngü başına bir kez kurulur.
+  - Kapasite değişikliği yalnız bugünün sert bütçesi farklıysa `today_capacity_changed` ile yeniden planlar; Today'den henüz hiçbir şey başlatılamadığı için korunmuş iş bildirilmez (16F).
+  - Değiştirilen profilin doğrulanmış kopyası hiçbir şey değiştirilmeden önce yazılır; yazılamazsa hiçbir şey değiştirilmez.
+- **Beyan edilmiş uzantılar:**
+  - `preference_record` (şema v9), kullanıcı bölgesinde ek-only tablo (emsal: D-104 `diagnostic_coverage`);
+  - varsayılanlı port inceltmesi `preferenceRecords`; port sayısı değişmedi;
+  - `StoreStartup.replace`;
+  - `ProfileReplacement` (10E'nin mekanizması, 16D'nin kontrolü).
+- **Bulunanlar:**
+  - 11'den beri her adımın uygulama çağrısı 16D'ye gönderilmişti (→ D-125).
+  - `preference_key` adlı bir kolon 10E'nin kimlik bilgisi taramasına takılıyor; kolon `preference_name`.
+  - İki `_study_day` kolonu adaptörün zaman kuralını bozuyor; kolon `applies_to_day`.
+  - Geri yükleme depoyu kapatıp açarken shell kendi durumunu unutuyordu; yedekleme durumu shell'in üstünde tutuluyor.
+  - Önceki kapılar şemayı sabitliyor: 10D/11C/11E kontrolleri olduğu gibi geçiyor (`truthTables` DDM-v0'ın on üçü kaldı, `appendOnlyTables` yanına eklendi); altı 14x kontrolü sürüm 8'i sabitliyordu ve "Narrowed at 16D" ile daraltıldı (sürüm 9, bu kontratın `schema_migration`'ı ile sahipli).
+  - 14F'nin `E14F-07_not_published` kontrolü hiç düşemiyordu (bir heredoc kelime sınırını geri silme karakteri olarak yazmıştı); "Repaired at 16D" ile onarıldı.
+- **Doğrulama:**
+  - Kotlin mutation 23/23, validator mutation 42/42; kontrol mutantları hayatta kaldı.
+  - Validator 91/91 PASS.
+  - 1197 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Sweep 67/67 (57 light + 10 heavy).
+- Çalıştırılmayan: **T6**. Ekranlar ve sistem dosya seçicileri cihazda görülmedi.
+- **Açık loop'lar:**
+  - Uçtan uca günlük döngü (16F).
+  - Hatırlatmalar (16E).
+  - Tema ve erişilebilirlik tercihleri (17D).
+  - Odak tercihi (18B).
+  - Dosya seçicileri ve geri yükleme cihazda (19).
+  - T6 (19).
+- Sonraki numbered step `16E — Bildirimler`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/SETTINGS_SPEC.md`.

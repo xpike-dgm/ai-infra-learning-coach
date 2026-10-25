@@ -25,6 +25,7 @@ import coach.presentation.AttentionFamily
 import coach.presentation.AttentionItem
 import coach.presentation.PrimaryActionKind
 import coach.presentation.DaySummaryView
+import coach.presentation.SettingsCopy
 import coach.presentation.Surface
 import coach.presentation.TodayState
 import coach.presentation.TodayTaskRow
@@ -117,6 +118,8 @@ fun TodayScreen(
     // The end of the day belongs to Today's own day context (11E); NSHX-v0's surface set is closed,
     // so no new destination is invented for it and longitudinal history stays Progress's (16B).
     daySummary: DaySummaryView? = null,
+    // 16D: `THUX-v0`'s `change_today_capacity` — Today's one capacity action; the lengths themselves live in Profile.
+    onChangeTodayCapacity: (() -> Unit)? = null,
 ) {
     Column(
         modifier = modifier
@@ -130,6 +133,9 @@ fun TodayScreen(
 
         // 2. day_plan_context
         view.capacity?.let { CapacityLine(it) }
+        onChangeTodayCapacity?.let { change ->
+            TextButton(onClick = change, modifier = Modifier.minimumTouchTarget()) { Text(SettingsCopy.TODAY_ACTION) }
+        }
         daySummary?.let { EndOfDayView(it) }
 
         // 3. remaining_plan

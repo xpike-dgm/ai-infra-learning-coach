@@ -239,7 +239,27 @@ check("E14D-07_test_keys", '"code_test" to setOf("suite", "id", "objective", "mi
 assemble = body(fmt, "private fun codeTests(")
 check("E14D-07_undeclared_suite_refused", "is not declared" in assemble and "has more than one suite" in assemble, "")
 check("E14D-07_not_published", "codetest" not in pkg.lower() and "code_test" not in schema.lower(), "content, never published")
-check("E14D-07_schema_unchanged", "const val VERSION = 8" in schema and contract.get("schema_version") == 8, "")
+# Narrowed at 16D (`STGX-v0` / `D-126`): this step's schema was version 8. A later version is accepted only when every
+# version after 8 is owned by an accepted later contract's `schema_migration` (16D: 8 -> 9, `preference_record`), so an
+# unowned move still fails.
+def _schema_8_or_owned_later(text: str) -> bool:
+    import glob as _glob
+    import re as _re
+    import yaml as _yaml
+    found = _re.search(r"const val VERSION = (\d+)", text)
+    if not found:
+        return False
+    version = int(found.group(1))
+    owned = set()
+    for path in _glob.glob(str(ROOT / "arch" / "*" / "*.yaml")):
+        data = _yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
+        migration = data.get("schema_migration") if isinstance(data, dict) else None
+        if isinstance(migration, dict) and isinstance(migration.get("to"), int):
+            owned.add(migration["to"])
+    return version >= 8 and all(v in owned for v in range(9, version + 1))
+
+
+check("E14D-07_schema_unchanged", _schema_8_or_owned_later(schema) and contract.get("schema_version") == 8, "")
 
 # ---------------------------------------------------------------- what is said
 copy = body(pres, "object CodeEvaluationCopy")

@@ -40,10 +40,12 @@ fun AiSettingsScreen(
     onRemove: () -> Unit,
     onCheck: () -> Unit,
     modifier: Modifier = Modifier,
+    // 16D: Profile holds this as one section among its settings, inside Profile's own scroll.
+    embedded: Boolean = false,
 ) {
     var typed by remember { mutableStateOf("") }
     Column(
-        modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
+        modifier = if (embedded) modifier.fillMaxWidth() else modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         Text(text = view.title, style = MaterialTheme.typography.titleLarge, modifier = Modifier.semantics { heading() })

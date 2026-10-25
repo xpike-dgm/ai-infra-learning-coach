@@ -1,0 +1,252 @@
+model: STGX-v0
+stage_step: 16D
+status: accepted_16d
+decision: D-126
+implements: [UXIA-v0, THUX-v0, LFPS-v0, D-033, SRR-v0]
+engines_read: [PLNX-v0, RPLX-v0, WBAX-v0, MCAX-v0, APHX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: the_learner_s_own_settings_capacity_and_backup_and_today_s_plan_made_by_the_app_from_them
+
+question: Uygulama kendi kişisel kullanımımda nasıl çalışsın — günlük sürem, yedeğim — ve bugünün planı bu süreden gerçekten kurulsun mu, hiçbir süreyi hedef, hiçbir geri yüklemeyi sessiz bir kayıp yapmadan?
+
+primary_invariant: >-
+  A preference is the learner's decision, appended and never edited, and it lives in the store so a backup carries it.
+  Today's plan is made by the planner from those preferences — the normal profile unless today has its own choice,
+  which applies to today only and leaves no debt — and a change replans today only if today's budget changed. Time is
+  a ceiling, never a target or a measure. A backup goes only where the learner puts it, a restore replaces nothing
+  until the learner confirms, and the replaced profile is always kept.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-25
+  scope: settings_and_today_s_plan_from_the_app_rest_of_the_end_to_end_wiring_in_new_step_16f
+  new_step: 16F_uctan_uca_gunluk_dongu_added_like_d_099_no_renumbering
+  capacity_presets: short_30_normal_60_intensive_90_from_adaptive_planner_spec_3_editable_and_a_today_only_choice
+  backup_controls: in_16d_restore_confirmed_explicitly_replaced_profile_kept_aside
+  cycles: fixed_iso_week_from_monday_and_calendar_month_no_setting
+  focus_preference: 18B
+
+assistant_defaults:
+  - preferences are a new append-only table in the store (schema v9), not platform settings, because LFPS-v0 §11 exports preferences and the export is the database
+  - a profile length and today's minutes are whole minutes from 0 to 1440; an unreadable stored row is skipped, never guessed
+  - a profile chosen for today and minutes for today are both "today's choice"; the newest one for today wins and clearing it is a row too
+  - the app plans on open and when a new study day is seen; this week's and this month's blueprints are composed first, once per cycle
+  - a capacity change replans with today_capacity_changed only when today's hard budget differs from the plan's; nothing the learner started is reported kept, because nothing can be started from Today yet (16F)
+  - the replaced profile is a verified copy written before anything is replaced; if it cannot be made, nothing is replaced; a refused backup leaves no copy behind
+  - the backup state lives above the shell, so a restore's outcome survives the store being closed and reopened
+  - working Turkish microcopy; 17 owns the polish
+
+declared_extensions:
+  - {what: "preference_record, an append-only table in the user region (schema v9)", extends: "DDM-v0's thirteen truth tables (precedent: D-104's diagnostic_coverage)", why: "LFPS-v0 §11 puts preferences in the export; the export is the database"}
+  - {what: "PersistencePort.preferenceRecords, defaulted", extends: "16C's attemptedResources (port refinements, port count unchanged)", default_answer: "nothing — the accepted presets hold"}
+  - {what: "StoreStartup.replace", extends: "APHX-v0's StoreStartup: close the open store, run the work, reopen it — the store is never read while it is replaced"}
+  - {what: "ProfileReplacement in data-persistence", extends: "10E's Backup mechanism with the control 10E left to 16D"}
+  - {what: "CapacityPreferences and TodayCapacityChoice in core-model", why: "core-application writes and reads them; core-presentation shows them"}
+
+scope:
+  schema_changed: true
+  schema_version: 9
+  migration_added: true
+  migration_tested_against_populated_previous_version: true
+  ports_changed: refinements_only
+  boundaries_changed: false
+  planner_rule_changed: false
+  capacity_rule_changed: false
+  mastery_rule_changed: false
+  assessment_rule_changed: false
+  cycles_changed: false
+  focus_preference: false
+  app_plans_today: true
+  app_runs_tasks: false
+  screen_drawn: true
+
+capacity:
+  source_contract: D-033
+  presets_v0: {short: 30, normal: 60, intensive: 90}
+  presets_source: docs/ADAPTIVE_PLANNER_SPEC.md §3
+  minutes_range: [0, 1440]
+  resolution: [today_minutes, today_profile, normal_profile]
+  today_choice_scope: its_own_study_day
+  today_choice_carries_over: false
+  replan_trigger: today_capacity_changed
+  replan_only_when_budget_changes: true
+  is_a_target: false
+  is_a_progress_measure: false
+
+schema_migration: {from: 8, to: 9, owner: 16D, tables: [preference_record], truth_altered: false, decision: D-126}
+
+preference_storage:
+  table: preference_record
+  append_only: true
+  keys: [capacity.short_minutes, capacity.normal_minutes, capacity.intensive_minutes, capacity.today]
+  today_key_has_a_day: true
+  standing_keys_have_no_day: true
+  newest_row_wins: true
+  in_the_export: true
+
+backup:
+  export: {user_initiated: true, destination_chosen_by_learner: true, verified_before_handed_over: true, uploaded: false}
+  restore: {explicit_confirmation: true, replaced_profile_kept: true, verified_before_replacing: true, atomic: true, merge: false}
+  refusals: [INTEGRITY_CHECK_FAILED, NOT_A_PROFILE_ARCHIVE, NEWER_SCHEMA, MIGRATION_INCOMPLETE]
+  refusal_changes_nothing: true
+
+closed_loops:
+  weekly_cycle_start_setting: {decision: fixed, note: "ISO week from Monday stays (user decision); a start day would change the meaning of stored week ids"}
+  monthly_cycle_setting: {decision: fixed, note: "the calendar month stays (user decision)"}
+  profile_backup_controls: {decision: built, note: "10E's mechanism, 16D's controls"}
+  planner_from_the_app: {decision: built, note: "Today shows the plan the planner wrote from the learner's time"}
+  capacity_setting_storage: {decision: built}
+  compose_week_from_the_app: {decision: built, note: "with the planner, once per cycle"}
+
+moved_to_16f:
+  - the runner presenting a task's explanations and choosing unseen items from its pool
+  - submitting an attempt and its evidence from the app, the attempt-to-planned-task link, and reporting started work to a replan
+  - calling the recompute, the program change report, the wrong-answer analysis and the remediation after a session
+  - evaluating code and open responses from the app, the self-check screen, moving files between phone and computer
+  - the tutor panel, the alternative-explanation menu and the comprehension check
+  - the fast path's entry and its use cases; entry placement as a diagnostic source
+  - weekly and monthly slots carrying the session id; dispositions recorded from the app and the disposition reason in traces; assessment_opportunity
+
+narrowed_gates:
+  rule: an earlier check now accepts exactly the D-126 change — schema version 9 owned by this contract's schema_migration — and still fails on any unowned move; each narrowed line carries a "Narrowed at 16D (`STGX-v0` / `D-126`)" comment
+  gates:
+    - {file: tools/validate_wrong_answer_analysis.py, checks: [E14B-07_schema_version]}
+    - {file: tools/validate_code_evaluation.py, checks: [E14D-07_schema_unchanged]}
+    - {file: tools/validate_alternative_explanation.py, checks: [E14C-10_schema_unchanged]}
+    - {file: tools/validate_code_comprehension.py, checks: [E14E-07_schema_unchanged]}
+    - {file: tools/validate_open_response_evaluation.py, checks: [E14F-07_schema_unchanged]}
+    - {file: tools/validate_provider_adapter.py, checks: [E14G-10_schema_unchanged]}
+  kept_unchanged: "the 10D, 11C and 11E checks read Schema.truthTables, truthGuards() and readTruth/countTruth literally; the schema keeps DDM-v0's thirteen as truthTables and adds appendOnlyTables beside it, so those checks hold as written"
+  repaired:
+    - {file: tools/validate_open_response_evaluation.py, check: E14F-07_not_published, defect: "two regexes held a literal backspace where a word boundary was meant (written by a heredoc in 14F), so the check could never fail", note: "Repaired at 16D"}
+
+found:
+  - every step since 11 sent its app call to 16D
+  - the_14f_not_published_check_could_never_fail
+  - preference_key_reads_as_a_credential_column
+  - two_study_day_columns_break_the_adapter_s_time_rule
+  - a_restore_closes_the_store_and_the_shell_forgets_its_state
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/CapacityPreferencesTest.kt}
+  startup: {file: android/core-application/src/test/kotlin/coach/application/StoreStartupTest.kt}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/PreferenceStorageTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/SettingsPresentationTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+open_loops:
+  reminders: {owner: 16E}
+  theme_accessibility_preferences: {owner: 17D}
+  focus_preference: {owner: 18B}
+  end_to_end_daily_loop: {owner: 16F}
+  saf_flow_on_device: {owner: 19, note: "the file pickers and the restore were run on the JVM through the same classes, not on a device"}
+  t6_and_device: {owner: 19}
+
+mutation_results_kotlin:
+  scope: one change per mutant to the preference fold, the planner's input, the use cases, the schema's day rule, the replacement, the startup's replace and the copy; then the 16D JVM suites of core-model, core-application, core-presentation, data-persistence and app-wiring (ShippedCourseTest on the real store)
+  total: 23
+  detected: 23
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: 16C's hardened runner — a baseline that is not exit 0, or a run that writes no test results, is refused
+  negative_control: N00 changes a KDoc comment in SettingsPresentation.kt
+  negative_control_result: survived_as_expected
+  not_mutated: "two candidates are equivalent here and were not counted: dropping the weekly/monthly composition (a learner with no evidence has nothing to measure, so composing writes nothing — 13A/13B own its tests), and StoreStartup.replace's status check (with no ready store there is no store to hand over either)"
+  earlier_runs: before any run one test was added where a mutant would have survived (the learner's own normal length is the first plan's budget); the first run (23/23) was on the code before the schema guards were restored to their accepted shape (truthTables and truthGuards() as 10D wrote them), so the whole set was run again on the final code
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: P01, mutant: today_choice_any_day, result: detected}
+    - {id: P02, mutant: oldest_row_wins, result: detected}
+    - {id: P03, mutant: unreadable_row_read, result: detected}
+    - {id: P04, mutant: preset_changed, result: detected}
+    - {id: P05, mutant: range_widened, result: detected}
+    - {id: P06, mutant: today_profile_ignored, result: detected}
+    - {id: P07, mutant: today_minutes_ignored, result: detected}
+    - {id: P08, mutant: lenient_digits, result: detected}
+    - {id: P09, mutant: today_without_its_day, result: detected}
+    - {id: P10, mutant: replan_for_an_unchanged_budget, result: detected}
+    - {id: P11, mutant: never_replan, result: detected}
+    - {id: P12, mutant: wrong_trigger, result: detected}
+    - {id: P13, mutant: ensure_ignores_preferences, result: detected}
+    - {id: P14, mutant: nothing_kept_aside, result: detected}
+    - {id: P15, mutant: refused_leaves_a_copy, result: detected}
+    - {id: P16, mutant: replace_never_reopens, result: detected}
+    - {id: P17, mutant: store_readable_while_replaced, result: detected}
+    - {id: P18, mutant: day_rule_dropped, result: detected}
+    - {id: P19, mutant: refusal_claims_nothing, result: detected}
+    - {id: P20, mutant: replaced_profile_said_deleted, result: detected}
+    - {id: P21, mutant: typed_minutes_lenient, result: detected}
+    - {id: P22, mutant: clear_option_always, result: detected}
+    - {id: P23, mutant: preset_and_custom_swapped, result: detected}
+
+validator_mutation:
+  tool: tools/validate_settings.py
+  total: 42
+  detected: 42
+  scope: one change per mutant to an input the validator reads — the contract, the presets and range, the fold, the schema and its guards, the use cases, the app's planning, the replacement, the restore path, the pickers, the copy, the screen, a port, a test name, the plan, DECISIONS, the spec and the research
+  detection: a FAIL line not in the baseline; a run that prints no result line is a crash and never a detection
+  crash_is_detection: false
+  baseline: the only check allowed to fail at baseline is A16D-11_validator_mutation, which reads this very result
+  negative_control: a YAML comment in the contract naming forbidden fragments (banana, survived, streak, 100%)
+  negative_control_result: survived_as_expected
+  earlier_runs: the first run left three alive, each a weak check — V15 (a key added to the closed list; the check only matched capacity.* names), V25 (the copy's guard disabled; the check found the refusal without its condition) and V37 (16F dropped from the plan's checklist; the check accepted any mention); all three were tightened and the whole set was run again; after the schema guards were restored to their accepted shape a migration-ownership check (V42) was added and all 42 were run again on the final code
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: V01, mutant: contract_model, result: detected}
+    - {id: V02, mutant: contract_no_new_step, result: detected}
+    - {id: V03, mutant: contract_app_runs_tasks, result: detected}
+    - {id: V04, mutant: contract_device_claimed, result: detected}
+    - {id: V05, mutant: contract_mutant_survived, result: detected}
+    - {id: V06, mutant: contract_run_failed, result: detected}
+    - {id: V07, mutant: preset_drifted, result: detected}
+    - {id: V08, mutant: day_longer_than_a_day, result: detected}
+    - {id: V09, mutant: scheduled_default_invented, result: detected}
+    - {id: V10, mutant: today_choice_any_day, result: detected}
+    - {id: V11, mutant: oldest_wins, result: detected}
+    - {id: V12, mutant: lenient_minutes, result: detected}
+    - {id: V13, mutant: schema_not_bumped, result: detected}
+    - {id: V14, mutant: preferences_unguarded, result: detected}
+    - {id: V15, mutant: key_list_opened, result: detected}
+    - {id: V16, mutant: day_rule_dropped, result: detected}
+    - {id: V17, mutant: credential_like_column, result: detected}
+    - {id: V18, mutant: preference_updated, result: detected}
+    - {id: V19, mutant: plan_ignores_preferences, result: detected}
+    - {id: V20, mutant: replan_always, result: detected}
+    - {id: V21, mutant: kept_positions_invented, result: detected}
+    - {id: V22, mutant: cycles_not_composed, result: detected}
+    - {id: V23, mutant: app_plans_after_today_read, result: detected}
+    - {id: V24, mutant: app_builds_its_own_plan, result: detected}
+    - {id: V25, mutant: replaced_without_keeping, result: detected}
+    - {id: V26, mutant: refused_leaves_copy, result: detected}
+    - {id: V27, mutant: restore_without_startup, result: detected}
+    - {id: V28, mutant: restore_without_confirmation, result: detected}
+    - {id: V29, mutant: file_chosen_by_the_app, result: detected}
+    - {id: V30, mutant: state_lost_on_reopen, result: detected}
+    - {id: V31, mutant: time_made_a_target, result: detected}
+    - {id: V32, mutant: refusal_claims_nothing, result: detected}
+    - {id: V33, mutant: kept_profile_not_said, result: detected}
+    - {id: V34, mutant: slider_drawn, result: detected}
+    - {id: V35, mutant: port_default_dropped, result: detected}
+    - {id: V36, mutant: test_renamed, result: detected}
+    - {id: V37, mutant: 16f_dropped_from_plan, result: detected}
+    - {id: V38, mutant: decision_missing, result: detected}
+    - {id: V39, mutant: spec_not_accepted, result: detected}
+    - {id: V40, mutant: spec_wrong_next, result: detected}
+    - {id: V42, mutant: migration_unowned, result: detected}
+    - {id: V41, mutant: research_source_dropped, result: detected}
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew test (every module's JVM tests, the AI adapter's included)", tier: T1-T3, result: PASS}
+  - {id: RUN-02, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-03, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-04, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-05, command: "read the eight curriculum packages from both built APKs and compare their SHA-256 with the source assets; the APK without the AI adapter has no INTERNET permission", tier: T5, result: PASS}
+  - {id: RUN-06, command: "ShippedCourseTest's 16D section and PreferenceStorageTest: the real SQLite store with all eight packages planned inside the learner's time, replanned for a shorter day, today's choice gone the next day; schema v9 on a populated v8 database; a restore keeping the replaced profile", tier: T2, result: PASS}
+jvm_tests: 1197
+validator_sweep: {glob: "tools/validate_*.py", total: 67, passed: 67, note: "57 light and 10 heavy validators; in the heavy pass validate_code_evaluation.py (14D) failed once on its pinned schema version 8, was narrowed like the other 14x checks and passed when run again alone; the frozen reports the earlier validators rewrite were restored from git"}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  screen_seen_on_device: false
+  sqlite_read_on_jvm_run: true

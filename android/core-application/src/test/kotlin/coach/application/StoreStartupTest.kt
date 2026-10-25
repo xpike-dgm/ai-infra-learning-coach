@@ -147,4 +147,48 @@ class StoreStartupTest {
         delivered.forEach { it.run() }
         assertEquals(StoreStatus.Ready, seen.last())
     }
+
+    @Test
+    fun `replacing the profile closes the open store, runs the work off the caller's thread, and reopens`() {
+        var opens = 0
+        val seen = CopyOnWriteArrayList<StoreStatus>()
+        val workThread = CopyOnWriteArrayList<Thread>()
+        val startup = StoreStartup(
+            open = { opens += 1; StoreOpenOutcome.Opened("store-$opens") },
+            background = direct,
+            deliver = direct,
+        )
+        startup.observe { status, _ -> seen += status }
+        startup.start()
+        assertEquals("store-1", startup.store)
+        var result: Result<String>? = null
+        startup.replace(work = { open -> workThread += Thread.currentThread(); "replaced $open" }, onDone = { result = it })
+        // While the file is being replaced nothing can read the old store; afterwards a freshly opened one is handed out.
+        assertTrue(StoreStatus.Opening in seen.drop(seen.indexOf(StoreStatus.Ready) + 1), seen.toString())
+        assertEquals("replaced store-1", result!!.getOrThrow())
+        assertEquals("store-2", startup.store)
+        assertEquals(StoreStatus.Ready, startup.status)
+    }
+
+    @Test
+    fun `replacing is ignored unless the store is ready, and a failing work still reopens`() {
+        val startup = StoreStartup<String>(
+            open = { StoreOpenOutcome.NotOpened(StoreStatus.RecoverableFailure) },
+            background = direct,
+            deliver = direct,
+        )
+        startup.start()
+        var ran = false
+        startup.replace(work = { ran = true }, onDone = {})
+        assertTrue(!ran, "there was no store to replace")
+
+        var opens = 0
+        val ready = StoreStartup(open = { opens += 1; StoreOpenOutcome.Opened("s$opens") }, background = direct, deliver = direct)
+        ready.start()
+        var outcome: Result<Unit>? = null
+        ready.replace(work = { error("restore failed") }, onDone = { outcome = it })
+        assertTrue(outcome!!.isFailure)
+        assertEquals(StoreStatus.Ready, ready.status, "a failed replacement still reopens the store rather than leaving it closed")
+        assertEquals("s2", ready.store)
+    }
 }

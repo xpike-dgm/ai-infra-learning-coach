@@ -5,7 +5,19 @@ import android.os.Handler
 import android.os.Looper
 import android.os.StrictMode
 import android.util.Log
+import android.net.Uri
+import coach.application.CapacitySettings
 import coach.application.DayCloseFacts
+import coach.application.PlanToday
+import coach.model.CapacityPreferences
+import coach.model.CapacityProfile
+import coach.model.EvaluatorAvailability
+import coach.model.TodayCapacityChoice
+import coach.persistence.Backup
+import coach.persistence.ProfileReplacement
+import coach.persistence.SqlitePersistence
+import coach.presentation.BackupRefusal
+import coach.presentation.BackupState
 import coach.application.EnglishProfileQuery
 import coach.application.IngestCurriculum
 import coach.application.PlannerExplanationQuery
@@ -99,6 +111,8 @@ class CoachApplication : Application() {
     fun refreshToday(onLoaded: (TodayFacts, DayCloseFacts.Loaded) -> Unit) {
         val opened = startup.store ?: return
         storeThread.execute {
+            // 16D: a new study day gets its plan before Today is read — re-entry, never yesterday's plan replayed.
+            planToday(opened.graph)
             val facts = TodayFactsQuery(opened.graph.persistence, opened.graph.clock).load()
             // The day's own record is read on the same thread and against the same clock, so a
             // process kept open past midnight reports the new day rather than yesterday's (11E).
@@ -175,6 +189,146 @@ class CoachApplication : Application() {
         }
     }
 
+    /**
+     * Today's plan, from the learner's capacity preferences (16D, `STGX-v0`). The planner decides; this only asks it,
+     * once a day — a day that already has its plan writes nothing.
+     */
+    private fun planToday(graph: AppGraph) {
+        PlanToday(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).ensure()
+    }
+
+    private fun evaluatorAvailable(): Boolean = evaluatorAvailability() == EvaluatorAvailability.AVAILABLE
+
+    /** The capacity preferences as they stand today, off the main thread (16D). */
+    fun loadCapacity(onLoaded: (CapacityPreferences) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val preferences = CapacitySettings(opened.graph.persistence, opened.graph.clock).read()
+            main.post { onLoaded(preferences) }
+        }
+    }
+
+    /** One profile's standing length; today's plan is replanned only if today's budget changed (16D). */
+    fun setProfileLength(profile: CapacityProfile, minutes: Int, onDone: (CapacityPreferences, TodayFacts) -> Unit) =
+        changeCapacity(onDone) { it.setProfile(profile, minutes) }
+
+    /** Today's own time (`THUX-v0` `change_today_capacity`); it replans today and applies to today only (16D). */
+    fun setTodayCapacity(choice: TodayCapacityChoice, onDone: (CapacityPreferences, TodayFacts) -> Unit) =
+        changeCapacity(onDone) { it.setToday(choice) }
+
+    private fun changeCapacity(onDone: (CapacityPreferences, TodayFacts) -> Unit, change: (CapacitySettings) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val settings = CapacitySettings(opened.graph.persistence, opened.graph.clock)
+            change(settings)
+            PlanToday(opened.graph.persistence, opened.graph.content, opened.graph.clock, evaluatorAvailable()).afterCapacityChange()
+            val facts = TodayFactsQuery(opened.graph.persistence, opened.graph.clock).load()
+            val preferences = settings.read()
+            main.post { onDone(preferences, facts) }
+        }
+    }
+
+    // ---------------------------------------------------------------- backup, export, restore (16D)
+
+    /** The backup the learner chose to restore, copied into the app's cache; only the store thread touches it. */
+    private var restoreCandidate: File? = null
+
+    /**
+     * Writes a verified backup to [destination], a file the learner chose (`LFPS-v0` §11.1: user-initiated, nothing
+     * uploaded). The archive is made in the app's cache, checked as a restore would check it, then copied out.
+     */
+    fun exportBackup(destination: Uri, onDone: (BackupState) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val staging = File(cacheDir, "export-${System.nanoTime()}.coachdb")
+            val state = try {
+                when (val exported = Backup.export(opened.graph.persistence as SqlitePersistence, staging)) {
+                    Backup.ExportResult.Exported -> {
+                        val out = contentResolver.openOutputStream(destination) ?: error("no stream for the chosen file")
+                        out.use { stream -> staging.inputStream().use { it.copyTo(stream) } }
+                        BackupState.Exported
+                    }
+                    is Backup.ExportResult.Failed -> BackupState.ExportFailed(refusalOf(exported.refusal))
+                }
+            } catch (failure: Exception) {
+                Log.w(TAG, "export failed", failure)
+                BackupState.ExportFailed(null)
+            } finally {
+                staging.delete()
+            }
+            main.post { onDone(state) }
+        }
+    }
+
+    /** Copies the chosen backup into the cache and asks for confirmation; nothing is replaced yet. */
+    fun prepareRestore(source: Uri, onDone: (BackupState) -> Unit) {
+        storeThread.execute {
+            val candidate = File(cacheDir, "restore-candidate.coachdb")
+            val state = try {
+                candidate.delete()
+                val input = contentResolver.openInputStream(source) ?: error("no stream for the chosen file")
+                input.use { stream -> candidate.outputStream().use { stream.copyTo(it) } }
+                restoreCandidate = candidate
+                BackupState.ConfirmRestore
+            } catch (failure: Exception) {
+                Log.w(TAG, "the chosen backup could not be read", failure)
+                candidate.delete()
+                restoreCandidate = null
+                BackupState.RestoreRefused(BackupRefusal.INTEGRITY_CHECK_FAILED)
+            }
+            main.post { onDone(state) }
+        }
+    }
+
+    fun cancelRestore() {
+        storeThread.execute {
+            restoreCandidate?.delete()
+            restoreCandidate = null
+        }
+    }
+
+    /**
+     * Replaces the profile with the prepared backup, after the learner confirmed it (`LFPS-v0` §11.2). The store is
+     * closed, the live profile is kept aside, the backup is verified and swapped in, and the store is opened again —
+     * the reopened store reports its own status, and a refusal changes nothing.
+     */
+    fun confirmRestore(onDone: (BackupState) -> Unit) {
+        storeThread.execute {
+            val candidate = restoreCandidate
+            if (candidate == null) {
+                main.post { onDone(BackupState.Idle) }
+                return@execute
+            }
+            restoreCandidate = null
+            startup.replace(
+                work = { opened ->
+                    ProfileReplacement.replace(
+                        liveStore = opened.graph.persistence as SqlitePersistence,
+                        liveFile = getDatabasePath(AppGraph.DATABASE_NAME),
+                        archive = candidate,
+                        keepDirectory = File(filesDir, "replaced-profiles"),
+                        stamp = opened.graph.clock.now().instantEpochMillis.toString(),
+                    ).also { candidate.delete() }
+                },
+                onDone = { result ->
+                    val state = when (val outcome = result.getOrNull()) {
+                        is ProfileReplacement.Outcome.Restored -> BackupState.Restored
+                        is ProfileReplacement.Outcome.Refused -> BackupState.RestoreRefused(refusalOf(outcome.refusal))
+                        is ProfileReplacement.Outcome.NotKeptNotReplaced -> BackupState.NotKeptNotReplaced
+                        is ProfileReplacement.Outcome.ReplacedButNotReady -> BackupState.ReplacedNotReady
+                        null -> {
+                            Log.w(TAG, "restore failed", result.exceptionOrNull())
+                            BackupState.NotKeptNotReplaced
+                        }
+                    }
+                    onDone(state)
+                },
+            )
+        }
+    }
+
+    private fun refusalOf(refusal: Backup.Refusal): BackupRefusal = BackupRefusal.valueOf(refusal.name)
+
     /** Runs on the store thread. Resolving the path touches the filesystem too, so it happens here. */
     private fun openApp(): StoreOpenOutcome<OpenedApp> {
         // Whether a key is saved is read here, on the store thread, so the main thread only reads a flag (14G).
@@ -191,6 +345,8 @@ class CoachApplication : Application() {
                 // 15B: every package that ships is published once, oldest first; each later one only adds.
                 val published = IngestCurriculum(graph.persistence, graph.content, graph.clock).ingestAll()
                 Log.i(TAG, "curriculum ingestion: ${published.ifEmpty { "no authored package" }}")
+                // 16D: today's plan exists before Today is first read.
+                planToday(graph)
                 StoreOpenOutcome.Opened(
                     OpenedApp(
                         graph,

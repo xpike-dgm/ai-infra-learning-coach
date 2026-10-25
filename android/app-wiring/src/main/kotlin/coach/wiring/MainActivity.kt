@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -64,7 +65,13 @@ import coach.ui.EnglishProfileScreen
 import coach.ui.TopicDetailScreen
 import coach.ui.TaskRunnerScreen
 import coach.ui.TodayScreen
-import coach.ui.AiSettingsScreen
+import coach.ui.ProfileScreen
+import coach.ui.TodayCapacityDialog
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import coach.model.CapacityPreferences
+import coach.presentation.BackupState
+import coach.presentation.SettingsPresentation
 import coach.presentation.AiCheckState
 import coach.presentation.AiSettingsPresentation
 
@@ -74,6 +81,9 @@ class MainActivity : ComponentActivity() {
     private val opened = mutableStateOf<OpenedApp?>(null)
     private val todayFacts = mutableStateOf<TodayFacts?>(null)
     private val dayFacts = mutableStateOf<DayCloseFacts.Loaded?>(null)
+    // 16D: a restore closes and reopens the store, and the shell leaves composition while it does; the backup
+    // controls' state lives here so the restore's outcome is still there when Profile is shown again.
+    private val backupState = mutableStateOf<BackupState>(BackupState.Idle)
     private val listener = StoreStartup.Listener<OpenedApp> { status, store ->
         storeStatus.value = status
         opened.value = store
@@ -110,7 +120,8 @@ class MainActivity : ComponentActivity() {
                         },
                     )
                 } else {
-                    Shell(health, current, facts, dayFacts.value, explain = app::loadExplanation, app = app)
+                    Shell(health, current, facts, dayFacts.value, explain = app::loadExplanation, app = app,
+                        onTodayFacts = { todayFacts.value = it }, backupState = backupState)
                 }
             }
         }
@@ -139,6 +150,9 @@ private fun Shell(
     day: DayCloseFacts.Loaded?,
     explain: ((PlannerExplanationFacts) -> Unit) -> Unit,
     app: CoachApplication,
+    // 16D: a capacity change replans today; Today's facts are the activity's, so the new ones are handed back.
+    onTodayFacts: (TodayFacts) -> Unit,
+    backupState: MutableState<BackupState>,
 ) {
     var selected by remember { mutableStateOf(Destination.start) }
     // The focused flow in front of the shell, if any. Its entry decision is made in core.
@@ -165,6 +179,21 @@ private fun Shell(
     var topics by remember { mutableStateOf<TopicOverviewView?>(null) }
     var topicDetail by remember { mutableStateOf<TopicDetailView?>(null) }
     var english by remember { mutableStateOf<EnglishProfileView?>(null) }
+    // 16D: the capacity preferences (Profile and Today's capacity dialog) and the backup controls' state.
+    var capacity by remember { mutableStateOf<CapacityPreferences?>(null) }
+    var todayDialog by remember { mutableStateOf(false) }
+    var backup by backupState
+    // The system's own file pickers: the learner chooses where a backup goes and which one comes back (`LFPS-v0` §11).
+    val exportTo = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/octet-stream")) { uri ->
+        if (uri == null) backup = BackupState.Idle else app.exportBackup(uri) { backup = it }
+    }
+    val restoreFrom = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri == null) backup = BackupState.Idle else app.prepareRestore(uri) { backup = it }
+    }
+    val capacityChanged: (CapacityPreferences, TodayFacts) -> Unit = { preferences, todays ->
+        capacity = preferences
+        onTodayFacts(todays)
+    }
 
     // The window class is computed by core-presentation from the accepted WFPX-v0
     // breakpoints, not by the UI toolkit's own bucketing, so the mapping stays canonical.
@@ -187,6 +216,15 @@ private fun Shell(
         windowClass = windowClass,
     )
 
+    val prefs = capacity
+    if (todayDialog && prefs != null) {
+        TodayCapacityDialog(
+            options = SettingsPresentation.todayOptions(prefs),
+            onChoose = { choice -> todayDialog = false; app.setTodayCapacity(choice, capacityChanged) },
+            onDismiss = { todayDialog = false },
+        )
+    }
+
     AppShell(state = state, onSelect = { destination ->
         selected = destination
         explanation = null
@@ -195,6 +233,7 @@ private fun Shell(
         report = null
         topicDetail = null
         english = null
+        if (destination == Destination.PROFILE) app.loadCapacity { capacity = it }
         if (destination == Destination.PROGRESS) {
             progress = null
             topics = null
@@ -263,6 +302,10 @@ private fun Shell(
                 // Today's own projection: which state applies and which task may be offered is
                 // decided in core, never here (MSBX-v0).
                 view = today,
+                // 16D: `change_today_capacity` — the dialog's options are the learner's own profile lengths.
+                onChangeTodayCapacity = {
+                    app.loadCapacity { capacity = it; todayDialog = true }
+                },
                 // Entry is revalidated in core against what can actually be confirmed; nothing
                 // unconfirmed is assumed to hold (TRUX-v0 entry_revalidation).
                 onStart = {
@@ -322,17 +365,28 @@ private fun Shell(
                     }
                 },
             )
-            selected == Destination.PROFILE -> AiSettingsScreen(
-                view = AiSettingsPresentation.of(aiKey, aiCheck, app.aiSettings.providerName()),
-                onSave = { key ->
+            selected == Destination.PROFILE -> ProfileScreen(
+                capacity = capacity?.let(SettingsPresentation::capacity),
+                onSetLength = { profile, minutes -> app.setProfileLength(profile, minutes, capacityChanged) },
+                backup = SettingsPresentation.backup(backup),
+                onExport = { backup = BackupState.Working; exportTo.launch("coach-yedek.coachdb") },
+                onRestore = { backup = BackupState.Working; restoreFrom.launch(arrayOf("*/*")) },
+                onConfirmRestore = {
+                    backup = BackupState.Working
+                    // The reopened store is a different profile: its own preferences are read again.
+                    app.confirmRestore { outcome -> backup = outcome; app.loadCapacity { capacity = it } }
+                },
+                onCancelRestore = { app.cancelRestore(); backup = BackupState.Idle },
+                ai = AiSettingsPresentation.of(aiKey, aiCheck, app.aiSettings.providerName()),
+                onSaveKey = { key ->
                     aiCheck = AiCheckState.IDLE
                     app.aiWork({ app.aiSettings.save(key); app.aiSettings.state() }) { aiKey = it }
                 },
-                onRemove = {
+                onRemoveKey = {
                     aiCheck = AiCheckState.IDLE
                     app.aiWork({ app.aiSettings.remove(); app.aiSettings.state() }) { aiKey = it }
                 },
-                onCheck = {
+                onCheckKey = {
                     aiCheck = AiCheckState.CHECKING
                     app.aiWork({ app.aiSettings.check() }) { aiCheck = it }
                 },

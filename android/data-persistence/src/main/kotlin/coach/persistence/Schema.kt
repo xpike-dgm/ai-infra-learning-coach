@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 8
+    const val VERSION = 9
 
     // ---------------------------------------------------------------- table inventories
 
@@ -49,6 +49,16 @@ object Schema {
         "plan_version", "planned_task", "planner_decision_trace", "resume_checkpoint",
         "evidence_disposition",
     )
+
+    /**
+     * 16D (`D-126`): the learner's own preferences, append-only like every user truth. `LFPS-v0` §11 puts preferences
+     * in the export, and the export is this database, so they live here — never in platform settings a restore could
+     * not carry. A change is a new row; the newest row of a key is the preference.
+     */
+    val userPreferenceTables = listOf("preference_record")
+
+    /** Every append-only user table: `DDM-v0`'s truth and the 16D preferences, guarded alike. */
+    val appendOnlyTables = truthTables + userPreferenceTables
 
     /**
      * Region 3 — projections. Droppable and rebuildable without touching truth. `DDM-v0`'s eight, plus
@@ -515,18 +525,19 @@ object Schema {
      * `evidence_disposition`, so there is no legitimate UPDATE path to leave open, and `TVSX-v0`
      * requires the refusal to come from the layer that forbids it.
      */
-    private fun truthGuards(): List<String> = truthTables.flatMap { table ->
-        listOf(
-            """
-            CREATE TRIGGER IF NOT EXISTS ${table}_no_update BEFORE UPDATE ON $table
-            BEGIN SELECT RAISE(ABORT, '$table is append-only: correct by appending a disposition'); END
-            """,
-            """
-            CREATE TRIGGER IF NOT EXISTS ${table}_no_delete BEFORE DELETE ON $table
-            BEGIN SELECT RAISE(ABORT, '$table is append-only: rows are never deleted'); END
-            """,
-        )
-    }
+    private fun truthGuards(): List<String> = truthTables.flatMap(::appendOnlyGuards)
+
+    /** The two guards one append-only table carries; 16D's preferences get the very same ones (`D-126`). */
+    private fun appendOnlyGuards(table: String): List<String> = listOf(
+        """
+        CREATE TRIGGER IF NOT EXISTS ${table}_no_update BEFORE UPDATE ON $table
+        BEGIN SELECT RAISE(ABORT, '$table is append-only: correct by appending a disposition'); END
+        """,
+        """
+        CREATE TRIGGER IF NOT EXISTS ${table}_no_delete BEFORE DELETE ON $table
+        BEGIN SELECT RAISE(ABORT, '$table is append-only: rows are never deleted'); END
+        """,
+    )
 
     /** Curriculum rows are never overwritten once written; a change is a new version. */
     private fun curriculumGuards(): List<String> = curriculumTables.flatMap { table ->
@@ -790,6 +801,32 @@ object Schema {
             """,
             "CREATE INDEX IF NOT EXISTS misconception_state_by_objective ON misconception_state (objective_logical_id, objective_version)",
         )
+
+    /** 16D (`D-126`): the preference keys there are, and no others. */
+    val preferenceKeys = listOf(
+        "capacity.short_minutes", "capacity.normal_minutes", "capacity.intensive_minutes", "capacity.today",
+    )
+
+    /**
+     * Version 9 adds `preference_record` (16D, `D-126`). A standing preference has no day; `capacity.today` is
+     * scoped to the one study day it was given for, and the schema refuses either the other way round.
+     */
+    val v9: List<String>
+        get() = listOf(
+            """
+            CREATE TABLE IF NOT EXISTS preference_record (
+                id                     INTEGER PRIMARY KEY AUTOINCREMENT,
+                $SEQUENCE,
+                preference_name         TEXT    NOT NULL,
+                preference_value       TEXT    NOT NULL,
+                applies_to_day   TEXT,${time("recorded_at", "recorded_on")},
+                CHECK (preference_name IN (${preferenceKeys.joinToString(", ") { "'$it'" }})),
+                CHECK (length(trim(preference_value)) > 0),
+                CHECK ((preference_name = 'capacity.today') = (applies_to_day IS NOT NULL))
+            )
+            """,
+            "CREATE INDEX IF NOT EXISTS preference_record_by_key ON preference_record (preference_name, sequence)",
+        ) + userPreferenceTables.flatMap(::appendOnlyGuards)
 
     /** `WLRM-v0`'s misconception sources, plus the empty value of a label nothing has carried yet. */
     const val MISCONCEPTION_SOURCES = "'', 'deterministic', 'ai_proposed'"

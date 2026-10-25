@@ -242,7 +242,27 @@ check("E14B-06_copy_no_number", not re.search(r"\d", " ".join(copy)), "a number 
 check("E14B-06_no_combining_dot", chr(0x0307) not in pres_raw + facts_raw, "U+0307 in copy")
 
 # ---------------------------------------------------------------- storage and boundaries
-check("E14B-07_schema_version", "const val VERSION = 8" in schema and "7 to Schema.v8," in mig and contract.get("schema_version") == 8, "schema version")
+# Narrowed at 16D (`STGX-v0` / `D-126`): this step's schema was version 8. A later version is accepted only when every
+# version after 8 is owned by an accepted later contract's `schema_migration` (16D: 8 -> 9, `preference_record`), so an
+# unowned move still fails.
+def _schema_8_or_owned_later(text: str) -> bool:
+    import glob as _glob
+    import re as _re
+    import yaml as _yaml
+    found = _re.search(r"const val VERSION = (\d+)", text)
+    if not found:
+        return False
+    version = int(found.group(1))
+    owned = set()
+    for path in _glob.glob(str(ROOT / "arch" / "*" / "*.yaml")):
+        data = _yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
+        migration = data.get("schema_migration") if isinstance(data, dict) else None
+        if isinstance(migration, dict) and isinstance(migration.get("to"), int):
+            owned.add(migration["to"])
+    return version >= 8 and all(v in owned for v in range(9, version + 1))
+
+
+check("E14B-07_schema_version", _schema_8_or_owned_later(schema) and "7 to Schema.v8," in mig and contract.get("schema_version") == 8, "schema version")
 check("E14B-07_projection", '"misconception_state" to listOf("misconception_logical_id", "misconception_version")' in sql
       and '"diagnostic_coverage", "misconception_state",' in schema, "projection key")
 check("E14B-07_truth_untouched", not re.search(r"ALTER TABLE (evidence_event|attempt|assessment_session)", v8) and "truthTables" not in v8, "truth altered")

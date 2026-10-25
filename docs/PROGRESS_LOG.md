@@ -1490,3 +1490,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `16C tamamlandı; 16D aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `16D — Ayarlar`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-25 — 16D — Ayarlar tamamlandı — STGX-v0 / D-126 (D-125: 16F eklendi)
+
+- 16C (#62) CI yeşil olunca kullanıcının isteğiyle ("merge et ve devam et") squash-merge edildi (e1cada2). Fresh 16D PRE yapıldı ve kanonik kaynaklar `16C ✅ / 16D active-not-executed` gösterdi; mesaj 16D'nin de onayıydı.
+- **Bulgu (PRE):** 11'den 16C'ye her adım "uygulamadan çağırma" işini 16D'ye bırakmıştı. Kullanıcı böldü: 16D ayarlar + bugünün planı; geri kalanı yeni `16F — Uçtan uca günlük döngü` (D-125, D-099 gibi, yeniden numaralama yok).
+- **Kullanıcı kararları (2026-10-25):** ayarlar + bugünün planı, uçtan uca bağlantı 16F'ye; kısa/normal/yoğun 30/60/90 dk önayar, değiştirilebilir, bugüne özel seçim; yedekleme kontrolleri 16D'de, açık onay, değiştirilen profil saklanır; haftalık/aylık döngü sabit; odak tercihi 18B.
+- **Bulgu (yürütme):** `preference_key` kolonu 10E'nin kimlik bilgisi taramasına takıldı (`preference_name`); iki `_study_day` kolonu adaptörün zaman kuralını bozdu (`applies_to_day`); geri yükleme depoyu kapatıp açarken shell durumunu unutuyordu (yedekleme durumu shell'in üstünde).
+- **Kod:** yeni `PreferenceFacts.kt`, `Settings.kt` (`CapacitySettings`, `PlanToday`), `ProfileReplacement.kt`, `SettingsPresentation.kt`, `ProfileScreen.kt`; `StoreStartup.replace`; şema v9 `preference_record`; `preferenceRecords` varsayılanlı port inceltmesi.
+- **Araştırma:** iç sözleşmeler `UXIA-v0`, `THUX-v0`, D-033 / `ADAPTIVE_PLANNER_SPEC`, `SRR-v0`, `LFPS-v0`, `APHX-v0`; Android Storage Access Framework (2026-10-25).
+- **Mutation:** Kotlin 23/23.
+- **Validator mutation:** 42/42.
+- **Validator:** 91/91 PASS; sweep 67/67 (57 light + 10 heavy); 1197 JVM testi.
+- **T6 çalıştırılmadı; ekranlar ve dosya seçicileri cihazda görülmedi**.
+- D-050 POST living-memory accepted state'i `16D tamamlandı; 16E aktif ve henüz yürütülmedi; 16F eklendi` konumuna taşır.
+
+**Sonraki kesin adım:** `16E — Bildirimler`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

@@ -250,12 +250,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **16A ✅ Skill analytics — SKAX-v0 / D-122**
 - **16B ✅ Öğrenme geçmişi — LHRX-v0 / D-123**
 - **16C ✅ Progress / weakness gösterim kuralları — PWPX-v0 / D-124**
-- **16D 🟡 Ayarlar — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- **16D ✅ Ayarlar — STGX-v0 / D-126**
+- **16E 🟡 Bildirimler — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- **16F ⬜ Uçtan uca günlük döngü — D-125 ile eklendi**
 - 16–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 16D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 16E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -772,4 +774,14 @@ Bulunanlar: ilk giriş kuralı (dışarıdan gelen her hard kenar karşılanmı�
 Onay kullanıcının 2026-10-24 açık onayı. Kullanıcı kararları: konu + `topic_detail` + zayıflık/misconception bağlamı + Teknik İngilizce profili, core + gerçek ekran; kapsam kapısı ders denemesi ya da tanısal waiver; İngilizce geçmişi kanıttan yeniden oynatılır, B1 'henüz yayımlanmadı'; konu girişi 'bir beceri açıksa Hazır' (2026-10-24). Şema değişmedi; iki varsayılanlı port inceltmesi (`attemptedResources`, `lessonItemsFor`). Kotlin mutation 31/31, validator mutation 46/46; 117/117 QA PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/PROGRESS_WEAKNESS_SPEC.md` / D-124.
+
+## 12.48 16D Ayarlar — STGX-v0 / D-126 (ve D-125: 16F eklendi)
+
+Uygulama artık bugünün planını öğrencinin süresinden gerçekten kuruyor ve Today gerçek görevleri gösteriyor; Profile günlük süreyi, yedeklemeyi ve yapay zekâ anahtarını tutuyor. Ana invariant: **bir tercih öğrencinin kararıdır, eklenir ve asla düzenlenmez ve depoda durur, böylece yedek onu taşır; bugünün planını bu tercihlerden planner kurar — bugünün kendi seçimi yoksa normal gün, bugünün seçimi yalnız bugüne aittir ve borç bırakmaz, bir değişiklik bugünü ancak bütçe değiştiyse yeniden planlar; süre bir tavandır, hedef ya da ölçü değildir; yedek yalnız öğrencinin koyduğu yere gider, geri yükleme onaysız hiçbir şeyi değiştirmez ve değiştirilen profil her zaman saklanır.**
+
+Bulunanlar: 11'den beri her adımın uygulama çağrısı 16D'ye gönderilmişti — kullanıcı bölmeye karar verdi ve uçtan uca bağlantı yeni 16F'ye gitti (D-125); `preference_key` kolonu kimlik bilgisi taramasına takıldı, iki `_study_day` kolonu adaptörün zaman kuralını bozdu; geri yükleme depoyu kapatıp açarken shell durumunu unutuyordu.
+
+Onay kullanıcının 2026-10-25 açık onayı. Kullanıcı kararları: ayarlar + bugünün planı, uçtan uca bağlantı 16F'ye; kısa/normal/yoğun 30/60/90 dk önayar, değiştirilebilir, bugüne özel seçim; yedekleme kontrolleri 16D'de, açık onay, değiştirilen profil saklanır; haftalık/aylık döngü sabit; odak tercihi 18B. Şema v9 `preference_record`; varsayılanlı port inceltmesi `preferenceRecords`; `StoreStartup.replace`. Kotlin mutation 23/23, validator mutation 42/42; 91/91 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/SETTINGS_SPEC.md` / D-126.
 

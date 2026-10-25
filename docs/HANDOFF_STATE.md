@@ -312,14 +312,16 @@ PEM-v0:
 - 16A ✅ SKAX-v0 / D-122
 - 16B ✅ LHRX-v0 / D-123
 - 16C ✅ PWPX-v0 / D-124
-- 16D 🟡 active-not-executed
+- 16D ✅ STGX-v0 / D-126
+- 16E 🟡 active-not-executed
+- 16F ⬜ added by D-125
 - 16–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `16C — PWPX-v0 / D-124`  
-**Aktif:** `16D — Ayarlar`  
-**16D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `16D — STGX-v0 / D-126`  
+**Aktif:** `16E — Bildirimler`  
+**16E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1595,3 +1597,21 @@ PWPX-v0:
 ## 98. 16D handoff
 
 16D — Ayarlar. 16C ran on the user's explicit approval of 2026-10-24; 16D needs a fresh PRE and the user's new explicit approval. Inputs: Profile's settings surface (`UXIA-v0`), 14G's AI key screen, what 16A–16C left to 16D (calling the recompute and dispositions from the app, `assessment_opportunity`, weekly slots passing the session id), 10E's restore checks. Carried: the topic_state/english_profile projections and topic history (18E), the planner reading Topic state (18B), B2+ extension content (20), the english_profile → skill_detail edge (17), T6 (19).
+
+## 99. D-125 / D-126 / 16D final özeti
+
+Canonical: `docs/SETTINGS_SPEC.md`.
+Contract/QA: `arch/16d_settings/` (contract, QA report, stale audit).
+Synthesis: `research/16d_settings_research.md`.
+Code: `core-model` (`PreferenceFacts.kt` — `PreferenceRecord`, `TodayCapacityChoice`, `CapacityPreferences`), `core-ports` (`preferenceRecords`, defaulted), `data-persistence` (schema v9 `preference_record`; `ProfileReplacement`), `core-application` (`Settings.kt` — `CapacitySettings`, `PlanToday`; `StoreStartup.replace`), `core-presentation` (`SettingsPresentation.kt`), `app-ui` (`ProfileScreen.kt`, `TodayCapacityDialog`, Today's capacity action), `app-wiring`. Validator `tools/validate_settings.py`.
+
+STGX-v0:
+- a preference is the learner's decision, appended and never edited, and it lives in the store so a backup carries it; today's plan is made by the planner from those preferences — the normal profile unless today has its own choice, which applies to today only — and a change replans today only if today's budget changed; time is a ceiling, never a target; a backup goes only where the learner puts it, a restore replaces nothing until confirmed and the replaced profile is always kept,
+- approval: the user's explicit approval of 2026-10-25 ("merge et ve devam et"); user decisions: settings plus today's plan, the rest of the end-to-end wiring in a new step 16F (D-125); presets 30/60/90 editable with a today-only choice; backup controls with confirmation and the replaced profile kept; fixed cycles; focus preference in 18B,
+- found: every step since 11 sent its app call to 16D; `preference_key` read as a credential column; two `_study_day` columns broke the adapter's time rule; the shell forgot its state while a restore reopened the store,
+- Mutation Kotlin 23/23, validator 42/42; independent QA 91/91 PASS,
+- T6 was not run; the screens and the system file pickers have not been seen on a device.
+
+## 100. 16E handoff
+
+16E — Bildirimler. 16D ran on the user's explicit approval of 2026-10-25; 16E needs a fresh PRE and the user's new explicit approval. Inputs: Profile's `reminders` (`UXIA-v0`), the no-obligation, no-debt, no-streak language of Today and the end of day (`THUX-v0`, `SRR-v0`, 11E), D-080 (personal use). After 16E comes 16F — Uçtan uca günlük döngü (D-125), whose inputs are 16D's `moved_to_16f`. Carried: theme and accessibility preferences (17D), focus preference (18B), the pickers and restore on a device and T6 (19).
