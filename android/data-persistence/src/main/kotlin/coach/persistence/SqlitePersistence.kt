@@ -21,6 +21,7 @@ import coach.model.ObjectiveEvidenceProfile
 import coach.model.ObjectiveRow
 import coach.model.PrerequisiteEdge
 import coach.model.PrerequisiteSnapshot
+import coach.model.PreferenceRecord
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
@@ -129,7 +130,7 @@ class SqlitePersistence private constructor(
      * without, say, an attempt's resource version or a disposition's reason.
      */
     override fun appendTruth(record: TruthRecord): Long {
-        require(record.kind in Schema.truthTables) { "not a truth table: ${record.kind}" }
+        require(record.kind in Schema.appendOnlyTables) { "not a truth table: ${record.kind}" }
         val offsetSeconds = record.recordedAt.utcOffsetSeconds
         // DDM-v0 stores the offset in minutes. Every real zone offset is a whole number of
         // minutes; a value that is not is refused rather than silently truncated.
@@ -517,6 +518,12 @@ class SqlitePersistence private constructor(
             return rows
         }
     }
+
+    /** Every `preference_record` row, oldest first (16D). */
+    override fun preferenceRecords(): List<PreferenceRecord> =
+        query("SELECT preference_name, preference_value, applies_to_day, sequence FROM preference_record ORDER BY sequence") {
+            PreferenceRecord(it.getText(0), it.getText(1), if (it.isNull(2)) null else it.getText(2), it.getLong(3))
+        }
 
     /** The resource versions among [resources] that have at least one `attempt` row (16C). */
     override fun attemptedResources(resources: List<VersionedRef>): Set<VersionedRef> {

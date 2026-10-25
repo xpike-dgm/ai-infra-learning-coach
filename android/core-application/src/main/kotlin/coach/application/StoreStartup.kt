@@ -80,8 +80,34 @@ class StoreStartup<T : Any>(
         launch()
     }
 
-    private fun launch() {
+    /**
+     * Runs [work] with the open store on the background thread and opens the store again afterwards (16D). Replacing
+     * the profile from a backup has to close the live store, swap its file and reopen it; while that happens the status
+     * is [StoreStatus.Opening], so nothing reads a store that is being replaced. Ignored unless the store is ready —
+     * there is nothing to replace otherwise. [onDone] gets what [work] returned, or its failure, after the reopen.
+     */
+    fun <R> replace(work: (T) -> R, onDone: (Result<R>) -> Unit) {
+        val current = synchronized(lock) {
+            if (status !is StoreStatus.Ready) return
+            val open = store ?: return
+            status = StoreStatus.Opening
+            store = null
+            open
+        }
+        publish()
         background.execute {
+            val result = runCatching { work(current) }
+            openNow()
+            deliver.execute { onDone(result) }
+        }
+    }
+
+    private fun launch() {
+        background.execute { openNow() }
+    }
+
+    private fun openNow() {
+        run {
             val outcome = try {
                 open()
             } catch (defect: Throwable) {

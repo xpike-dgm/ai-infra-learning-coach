@@ -235,7 +235,27 @@ check("E14E-07_keys", keys is not None and re.findall(r'"(\w+)"', keys.group(1))
       "prompt", "choice_a", "choice_b", "choice_c", "choice_d", "answer"], keys.group(1) if keys else "")
 check("E14E-07_strict", "check(section)" in body(fmt, "fun comprehensionCheck(section: Section)"), "")
 check("E14E-07_not_published", "comprehension" not in pkg.lower() and "comprehension" not in schema.lower(), "content, never published")
-check("E14E-07_schema_unchanged", "const val VERSION = 8" in schema and contract.get("schema_version") == 8, "")
+# Narrowed at 16D (`STGX-v0` / `D-126`): this step's schema was version 8. A later version is accepted only when every
+# version after 8 is owned by an accepted later contract's `schema_migration` (16D: 8 -> 9, `preference_record`), so an
+# unowned move still fails.
+def _schema_8_or_owned_later(text: str) -> bool:
+    import glob as _glob
+    import re as _re
+    import yaml as _yaml
+    found = _re.search(r"const val VERSION = (\d+)", text)
+    if not found:
+        return False
+    version = int(found.group(1))
+    owned = set()
+    for path in _glob.glob(str(ROOT / "arch" / "*" / "*.yaml")):
+        data = _yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
+        migration = data.get("schema_migration") if isinstance(data, dict) else None
+        if isinstance(migration, dict) and isinstance(migration.get("to"), int):
+            owned.add(migration["to"])
+    return version >= 8 and all(v in owned for v in range(9, version + 1))
+
+
+check("E14E-07_schema_unchanged", _schema_8_or_owned_later(schema) and contract.get("schema_version") == 8, "")
 
 # ---------------------------------------------------------------- what is said
 copy = body(pres, "object ComprehensionCopy")

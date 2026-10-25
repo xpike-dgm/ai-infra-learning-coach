@@ -97,7 +97,10 @@ internal object Fixtures {
 
     /** Every row of every truth table plus the metadata row, as text, in a stable order. */
     fun truthContent(db: SqlitePersistence): Map<String, List<String>> =
-        (Schema.truthTables + "schema_metadata").associateWith { table ->
+        (Schema.appendOnlyTables + "schema_metadata").associateWith { table ->
+            // A table a newer schema added (16D's preference_record) is absent from an older database: it has no rows.
+            val present = db.query("SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = '$table'") { it.getLong(0) }.single() > 0
+            if (!present) return@associateWith emptyList()
             db.query("SELECT * FROM $table ORDER BY rowid") { s ->
                 (0 until s.getColumnCount()).joinToString("|") { if (s.isNull(it)) "∅" else s.getText(it) }
             }
@@ -155,6 +158,9 @@ internal object Fixtures {
                 seed(db, "evidence_event")
                 db.appendTruth(disposition(1, "contested"))
             }
+            "preference_record" -> db.appendTruth(
+                TruthRecord("preference_record", at, mapOf("preference_name" to "capacity.normal_minutes", "preference_value" to "45"))
+            )
             else -> error("no seed for $table")
         }
     }

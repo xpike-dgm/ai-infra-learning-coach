@@ -1,6 +1,14 @@
 package coach.wiring
 
 import coach.application.BuildDailyPlan
+import coach.application.CapacitySettings
+import coach.application.PlanToday
+import coach.application.TodayFactsQuery
+import coach.model.CapacityProfile
+import coach.model.TodayCapacityChoice
+import coach.presentation.TodayPresentation
+import coach.presentation.todayInput
+import kotlin.test.assertNotNull
 import coach.application.EnglishProfileQuery
 import coach.application.SubmitAttempt
 import coach.application.TopicQuery
@@ -495,5 +503,68 @@ class ShippedCourseTest {
         assertTrue(execution !in p.notYetConfirmed, "the confirmed Skill is not named as unconfirmed")
         val detail = TopicPresentation.detail(TopicQuery(store, withContentQa).detail(topic)!!)
         assertEquals("Öğreniliyor", detail.chip.label)
+    }
+
+    // ---------------------------------------------------------------- 16D — Ayarlar (STGX-v0)
+
+    private class DayClock(var day: String) : ClockPort {
+        override fun now() = StudyTimestamp(1_790_942_400_000 + 86_400_000L * day.takeLast(2).toLong(), day, 3 * 3600)
+    }
+
+    @Test
+    fun `with all eight packages and no preference, the app plans today inside the normal preset, once`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        val built = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, clock).ensure())
+        assertEquals(60, built.trace.capacity.hardBudgetMinutes)
+        assertEquals("normal_profile", built.trace.capacity.source.id)
+        assertTrue(built.trace.selected.isNotEmpty())
+        assertTrue(built.trace.selected.sumOf { it.plannedMinutes } <= built.trace.capacity.planningBudgetMinutes)
+        // Today reads the plan the planner wrote; a second call today writes nothing.
+        val facts = TodayFactsQuery(store, clock).load()
+        assertEquals(built.trace.selected.size, facts.plan!!.tasks.size)
+        assertEquals(60, facts.capacity!!.resolvedDailyMinutes)
+        assertIs<BuildDailyPlan.Built.AlreadyPlanned>(PlanToday(store, withContentQa, clock).ensure())
+        assertEquals(1, store.planVersions().size)
+    }
+
+    @Test
+    fun `a shorter day replans today inside it, the same choice again writes nothing, and tomorrow it is gone`() {
+        val day = DayClock("2026-10-25")
+        IngestCurriculum(store, withContentQa, day).ingestAll()
+        PlanToday(store, withContentQa, day).ensure()
+        CapacitySettings(store, day).setToday(TodayCapacityChoice.Profile(CapacityProfile.SHORT))
+        val replanned = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, day).afterCapacityChange())
+        assertEquals("today_capacity_changed", replanned.trace.replan!!.trigger.id)
+        assertEquals(30, replanned.trace.capacity.hardBudgetMinutes)
+        assertTrue(replanned.trace.selected.sumOf { it.plannedMinutes } <= replanned.trace.capacity.planningBudgetMinutes)
+        // A preference that leaves today's budget as it is writes no plan.
+        CapacitySettings(store, day).setProfile(CapacityProfile.INTENSIVE, 120)
+        assertIs<BuildDailyPlan.Built.AlreadyPlanned>(PlanToday(store, withContentQa, day).afterCapacityChange())
+        assertEquals(2, store.planVersions().size)
+        // The next study day: today's choice is gone, nothing carries over as a debt, and the normal preset holds.
+        day.day = "2026-10-26"
+        assertEquals(TodayCapacityChoice.None, CapacitySettings(store, day).read().today)
+        val next = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, day).ensure())
+        assertEquals("reentry", next.trace.generationKind)
+        assertEquals(60, next.trace.capacity.hardBudgetMinutes)
+    }
+
+    @Test
+    fun `the learner's own normal length is the first plan's budget, and nothing is chosen for today`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        CapacitySettings(store, clock).setProfile(CapacityProfile.NORMAL, 45)
+        val built = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, clock).ensure())
+        assertEquals(45, built.trace.capacity.hardBudgetMinutes)
+        assertEquals("normal_profile", built.trace.capacity.source.id)
+    }
+
+    @Test
+    fun `a new learner's Today now shows a real plan, and its first task is one of the four starting lessons`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        PlanToday(store, withContentQa, clock).ensure()
+        val view = TodayPresentation.of(todayInput(TodayFactsQuery(store, clock).load(), AppHealth.of(StoreStatus.Ready, EvaluatorAvailability.AVAILABLE)))
+        val first = assertNotNull(view.primaryTask)
+        val entry = setOf(skill("skill.computing.program_execution_model"), skill("skill.programming.state_assignment_model"), terminal, labels)
+        assertTrue(first.targetSkillRefs.any { it in entry }, first.targetSkillRefs.toString())
     }
 }

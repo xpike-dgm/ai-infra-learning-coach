@@ -1,0 +1,358 @@
+model: STGX-v0
+stage_step: 16D
+decision: D-126
+result: PASS
+checks_total: 91
+checks_passed: 91
+checks_failed: 0
+checks:
+- check: A16D-00_exists_settings.yaml
+  result: PASS
+  details: missing arch\16d_settings\settings.yaml
+- check: A16D-00_exists_SETTINGS_SPEC.md
+  result: PASS
+  details: missing docs\SETTINGS_SPEC.md
+- check: A16D-00_exists_16d_settings_research.md
+  result: PASS
+  details: missing research\16d_settings_research.md
+- check: A16D-00_exists_ADAPTIVE_PLANNER_SPEC.md
+  result: PASS
+  details: missing docs\ADAPTIVE_PLANNER_SPEC.md
+- check: A16D-00_exists_persistence.yaml
+  result: PASS
+  details: missing arch\9b_local_first_persistence\persistence.yaml
+- check: A16D-00_exists_ia.yaml
+  result: PASS
+  details: missing ux\8a_information_architecture\ia.yaml
+- check: A16D-00_exists_home.yaml
+  result: PASS
+  details: missing ux\8b_today_home\home.yaml
+- check: A16D-00_exists_PreferenceFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\PreferenceFacts.kt
+- check: A16D-00_exists_PlannerEngine.kt
+  result: PASS
+  details: missing android\core-engines\src\main\kotlin\coach\engines\PlannerEngine.kt
+- check: A16D-00_exists_Ports.kt
+  result: PASS
+  details: missing android\core-ports\src\main\kotlin\coach\ports\Ports.kt
+- check: A16D-00_exists_Schema.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\Schema.kt
+- check: A16D-00_exists_Migrations.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\Migrations.kt
+- check: A16D-00_exists_SqlitePersistence.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\SqlitePersistence.kt
+- check: A16D-00_exists_ProfileReplacement.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\ProfileReplacement.kt
+- check: A16D-00_exists_Settings.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\Settings.kt
+- check: A16D-00_exists_StoreStartup.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\StoreStartup.kt
+- check: A16D-00_exists_SettingsPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\SettingsPresentation.kt
+- check: A16D-00_exists_ProfileScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\ProfileScreen.kt
+- check: A16D-00_exists_TodayScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\TodayScreen.kt
+- check: A16D-00_exists_CoachApplication.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
+- check: A16D-00_exists_MainActivity.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
+- check: A16D-00_exists_CapacityPreferencesTest.kt
+  result: PASS
+  details: missing android\core-model\src\test\kotlin\coach\model\CapacityPreferencesTest.kt
+- check: A16D-00_exists_StoreStartupTest.kt
+  result: PASS
+  details: missing android\core-application\src\test\kotlin\coach\application\StoreStartupTest.kt
+- check: A16D-00_exists_PreferenceStorageTest.kt
+  result: PASS
+  details: missing android\data-persistence\src\test\kotlin\coach\persistence\PreferenceStorageTest.kt
+- check: A16D-00_exists_SettingsPresentationTest.kt
+  result: PASS
+  details: missing android\core-presentation\src\test\kotlin\coach\presentation\SettingsPresentationTest.kt
+- check: A16D-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: A16D-01_model
+  result: PASS
+  details: ''
+- check: A16D-01_user_decisions
+  result: PASS
+  details: '{''approval'': ''explicit_user_approval_2026-10-25'', ''scope'': ''settings_and_today_s_plan_from_the_app_rest_of_the_end_to_end_wiring_in_new_step_16f'',
+    ''new_step'': ''16F_uctan_uca_gunluk_dongu_added_like_d_099_no_renumbering'',
+    ''capacity_presets'': ''short_30_normal_60_intensive_90_from_adaptive_planner_spec_3_editable_and_a_today_only_choice'',
+    ''backup_controls'': ''in_16d_restore_confirmed_explicitly_replaced_profile_kept_aside'',
+    ''cycles'': ''fixed_iso_week_from_monday_and_calendar_month_no_setting'', ''focus_preference'':
+    ''18B''}'
+- check: A16D-01_scope
+  result: PASS
+  details: ''
+- check: A16D-02_presets_are_the_accepted_v0
+  result: PASS
+  details: '{''short'': 30, ''normal'': 60, ''intensive'': 90} {''short'': 30, ''normal'':
+    60, ''intensive'': 90}'
+- check: A16D-02_minutes_within_a_day
+  result: PASS
+  details: ''
+- check: A16D-02_planner_resolution_unchanged
+  result: PASS
+  details: '[219, 318, 671, 750]'
+- check: A16D-02_input_is_d033
+  result: PASS
+  details: ''
+- check: A16D-03_newest_readable_wins
+  result: PASS
+  details: ''
+- check: A16D-03_today_is_today_only
+  result: PASS
+  details: ''
+- check: A16D-03_presets_where_nothing_stored
+  result: PASS
+  details: ''
+- check: A16D-03_strict_reading
+  result: PASS
+  details: ''
+- check: A16D-04_preferences_exported
+  result: PASS
+  details: LFPS-v0 exports preferences
+- check: A16D-04_schema_v9
+  result: PASS
+  details: ''
+- check: A16D-04_append_only_and_guarded
+  result: PASS
+  details: DDM-v0's thirteen stay the truth list; preferences are guarded alike
+- check: A16D-04_migration_owned
+  result: PASS
+  details: '{''from'': 8, ''to'': 9, ''owner'': ''16D'', ''tables'': [''preference_record''],
+    ''truth_altered'': False, ''decision'': ''D-126''}'
+- check: A16D-04_keys_closed
+  result: PASS
+  details: '[''capacity.short_minutes'', ''capacity.normal_minutes'', ''capacity.intensive_minutes'',
+    ''capacity.today'']'
+- check: A16D-04_day_rule_in_schema
+  result: PASS
+  details: ''
+- check: A16D-04_no_credential_like_column
+  result: PASS
+  details: 10E's credential guard
+- check: A16D-04_port_defaulted
+  result: PASS
+  details: ''
+- check: A16D-04_adapter_reads_in_order
+  result: PASS
+  details: ''
+- check: A16D-04_written_by_append_only
+  result: PASS
+  details: ''
+- check: A16D-05_plan_asked_of_the_planner
+  result: PASS
+  details: ''
+- check: A16D-05_replan_only_on_a_new_budget
+  result: PASS
+  details: ''
+- check: A16D-05_cycles_composed_once
+  result: PASS
+  details: ''
+- check: A16D-05_app_plans_before_today_is_read
+  result: PASS
+  details: ''
+- check: A16D-05_app_never_builds_a_plan_itself
+  result: PASS
+  details: ''
+- check: A16D-05_capacity_change_replans
+  result: PASS
+  details: ''
+- check: A16D-05_today_action_is_thux
+  result: PASS
+  details: ''
+- check: A16D-06_lfps_restore_rules
+  result: PASS
+  details: ''
+- check: A16D-06_kept_before_replaced
+  result: PASS
+  details: ''
+- check: A16D-06_refusal_leaves_no_copy
+  result: PASS
+  details: ''
+- check: A16D-06_never_overwrites_a_kept_profile
+  result: PASS
+  details: ''
+- check: A16D-06_restore_through_startup_replace
+  result: PASS
+  details: ''
+- check: A16D-06_confirmation_required
+  result: PASS
+  details: ''
+- check: A16D-06_learner_chooses_the_file
+  result: PASS
+  details: ''
+- check: A16D-06_state_survives_the_reopen
+  result: PASS
+  details: ''
+- check: A16D-06_store_unreadable_while_replaced
+  result: PASS
+  details: ''
+- check: A16D-07_time_is_never_a_target
+  result: PASS
+  details: '[]'
+- check: A16D-07_smaller_day_not_a_failure
+  result: PASS
+  details: ''
+- check: A16D-07_refusal_changes_nothing
+  result: PASS
+  details: ''
+- check: A16D-07_confirm_says_kept
+  result: PASS
+  details: ''
+- check: A16D-08_screen_decides_nothing_ProfileScreen
+  result: PASS
+  details: ''
+- check: A16D-08_profile_holds_its_ia_items
+  result: PASS
+  details: ''
+- check: A16D-09_end_to_end_moved_not_claimed
+  result: PASS
+  details: '7'
+- check: A16D-09_16f_in_the_plan
+  result: PASS
+  details: the step's own checklist lines, not a mention
+- check: A16D-09_decisions
+  result: PASS
+  details: ''
+- check: A16D-10_test_with_nothing_stored_the_accepted_presets
+  result: PASS
+  details: 'CapacityPreferencesTest.kt: with nothing stored the accepted presets hold
+    and nothing is chosen for today'
+- check: A16D-10_test_today_s_choice_applies_to_its_own_day_on
+  result: PASS
+  details: 'CapacityPreferencesTest.kt: today''s choice applies to its own day only
+    and carries no debt into tomorrow'
+- check: A16D-10_test_the_newest_row_of_a_key_wins_and_an_unr
+  result: PASS
+  details: 'CapacityPreferencesTest.kt: the newest row of a key wins, and an unreadable
+    row is skipped rather than guessed'
+- check: A16D-10_test_replacing_the_profile_closes_the_open_st
+  result: PASS
+  details: 'StoreStartupTest.kt: replacing the profile closes the open store, runs
+    the work off the caller''s thread, and reopens'
+- check: A16D-10_test_schema_v9_adds_preferences_to_a_populate
+  result: PASS
+  details: 'PreferenceStorageTest.kt: schema v9 adds preferences to a populated v8
+    database and leaves every truth row as it was'
+- check: A16D-10_test_restoring_a_backup_keeps_the_replaced_pr
+  result: PASS
+  details: 'PreferenceStorageTest.kt: restoring a backup keeps the replaced profile
+    aside, preferences included, and the backup becomes the profile'
+- check: A16D-10_test_a_refused_backup_replaces_nothing_and_ke
+  result: PASS
+  details: 'PreferenceStorageTest.kt: a refused backup replaces nothing and keeps
+    no copy, because nothing was lost'
+- check: A16D-10_test_every_refusal_says_nothing_was_changed
+  result: PASS
+  details: 'SettingsPresentationTest.kt: every refusal says nothing was changed, the
+    confirmation says the old profile is kept, and nothing blames'
+- check: A16D-10_test_with_all_eight_packages_and_no_preferenc
+  result: PASS
+  details: 'ShippedCourseTest.kt: with all eight packages and no preference, the app
+    plans today inside the normal preset, once'
+- check: A16D-10_test_a_shorter_day_replans_today_inside_it_t
+  result: PASS
+  details: 'ShippedCourseTest.kt: a shorter day replans today inside it, the same
+    choice again writes nothing, and tomorrow it is gone'
+- check: A16D-10_test_a_new_learner_s_today_now_shows_a_real_p
+  result: PASS
+  details: 'ShippedCourseTest.kt: a new learner''s Today now shows a real plan, and
+    its first task is one of the four starting lessons'
+- check: A16D-11_kotlin_mutation_all_detected
+  result: PASS
+  details: 23/23
+- check: A16D-11_kotlin_crash_not_detection
+  result: PASS
+  details: ''
+- check: A16D-11_validator_mutation
+  result: PASS
+  details: '{''tool'': ''tools/validate_settings.py'', ''total'': 42, ''detected'':
+    42, ''scope'': "one change per mutant to an input the validator reads — the contract,
+    the presets and range, the fold, the schema and its guards, the use cases, the
+    app''s planning, the replacement, the restore path, the pickers, the copy, the
+    screen, a port, a test name, the plan, DECISIONS, the spec and the research",
+    ''detection'': ''a FAIL line not in the baseline; a run that prints no result
+    line is a crash and never a detection'', ''crash_is_detection'': False, ''baseline'':
+    ''the only check allowed to fail at baseline is A16D-11_validator_mutation, which
+    reads this very result'', ''negative_control'': ''a YAML comment in the contract
+    naming forbidden fragments (banana, survived, streak, 100%)'', ''negative_control_result'':
+    ''survived_as_expected'', ''earlier_runs'': "the first run left three alive, each
+    a weak check — V15 (a key added to the closed list; the check only matched capacity.*
+    names), V25 (the copy''s guard disabled; the check found the refusal without its
+    condition) and V37 (16F dropped from the plan''s checklist; the check accepted
+    any mention); all three were tightened and the whole set was run again; after
+    the schema guards were restored to their accepted shape a migration-ownership
+    check (V42) was added and all 42 were run again on the final code", ''final_run_is_a_single_clean_run'':
+    True, ''mutants'': [{''id'': ''V01'', ''mutant'': ''contract_model'', ''result'':
+    ''detected''}, {''id'': ''V02'', ''mutant'': ''contract_no_new_step'', ''result'':
+    ''detected''}, {''id'': ''V03'', ''mutant'': ''contract_app_runs_tasks'', ''result'':
+    ''detected''}, {''id'': ''V04'', ''mutant'': ''contract_device_claimed'', ''result'':
+    ''detected''}, {''id'': ''V05'', ''mutant'': ''contract_mutant_survived'', ''result'':
+    ''detected''}, {''id'': ''V06'', ''mutant'': ''contract_run_failed'', ''result'':
+    ''detected''}, {''id'': ''V07'', ''mutant'': ''preset_drifted'', ''result'': ''detected''},
+    {''id'': ''V08'', ''mutant'': ''day_longer_than_a_day'', ''result'': ''detected''},
+    {''id'': ''V09'', ''mutant'': ''scheduled_default_invented'', ''result'': ''detected''},
+    {''id'': ''V10'', ''mutant'': ''today_choice_any_day'', ''result'': ''detected''},
+    {''id'': ''V11'', ''mutant'': ''oldest_wins'', ''result'': ''detected''}, {''id'':
+    ''V12'', ''mutant'': ''lenient_minutes'', ''result'': ''detected''}, {''id'':
+    ''V13'', ''mutant'': ''schema_not_bumped'', ''result'': ''detected''}, {''id'':
+    ''V14'', ''mutant'': ''preferences_unguarded'', ''result'': ''detected''}, {''id'':
+    ''V15'', ''mutant'': ''key_list_opened'', ''result'': ''detected''}, {''id'':
+    ''V16'', ''mutant'': ''day_rule_dropped'', ''result'': ''detected''}, {''id'':
+    ''V17'', ''mutant'': ''credential_like_column'', ''result'': ''detected''}, {''id'':
+    ''V18'', ''mutant'': ''preference_updated'', ''result'': ''detected''}, {''id'':
+    ''V19'', ''mutant'': ''plan_ignores_preferences'', ''result'': ''detected''},
+    {''id'': ''V20'', ''mutant'': ''replan_always'', ''result'': ''detected''}, {''id'':
+    ''V21'', ''mutant'': ''kept_positions_invented'', ''result'': ''detected''}, {''id'':
+    ''V22'', ''mutant'': ''cycles_not_composed'', ''result'': ''detected''}, {''id'':
+    ''V23'', ''mutant'': ''app_plans_after_today_read'', ''result'': ''detected''},
+    {''id'': ''V24'', ''mutant'': ''app_builds_its_own_plan'', ''result'': ''detected''},
+    {''id'': ''V25'', ''mutant'': ''replaced_without_keeping'', ''result'': ''detected''},
+    {''id'': ''V26'', ''mutant'': ''refused_leaves_copy'', ''result'': ''detected''},
+    {''id'': ''V27'', ''mutant'': ''restore_without_startup'', ''result'': ''detected''},
+    {''id'': ''V28'', ''mutant'': ''restore_without_confirmation'', ''result'': ''detected''},
+    {''id'': ''V29'', ''mutant'': ''file_chosen_by_the_app'', ''result'': ''detected''},
+    {''id'': ''V30'', ''mutant'': ''state_lost_on_reopen'', ''result'': ''detected''},
+    {''id'': ''V31'', ''mutant'': ''time_made_a_target'', ''result'': ''detected''},
+    {''id'': ''V32'', ''mutant'': ''refusal_claims_nothing'', ''result'': ''detected''},
+    {''id'': ''V33'', ''mutant'': ''kept_profile_not_said'', ''result'': ''detected''},
+    {''id'': ''V34'', ''mutant'': ''slider_drawn'', ''result'': ''detected''}, {''id'':
+    ''V35'', ''mutant'': ''port_default_dropped'', ''result'': ''detected''}, {''id'':
+    ''V36'', ''mutant'': ''test_renamed'', ''result'': ''detected''}, {''id'': ''V37'',
+    ''mutant'': ''16f_dropped_from_plan'', ''result'': ''detected''}, {''id'': ''V38'',
+    ''mutant'': ''decision_missing'', ''result'': ''detected''}, {''id'': ''V39'',
+    ''mutant'': ''spec_not_accepted'', ''result'': ''detected''}, {''id'': ''V40'',
+    ''mutant'': ''spec_wrong_next'', ''result'': ''detected''}, {''id'': ''V42'',
+    ''mutant'': ''migration_unowned'', ''result'': ''detected''}, {''id'': ''V41'',
+    ''mutant'': ''research_source_dropped'', ''result'': ''detected''}]}'
+- check: A16D-11_runs_pass
+  result: PASS
+  details: ''
+- check: A16D-11_device_not_claimed
+  result: PASS
+  details: ''
+- check: A16D-12_spec_status
+  result: PASS
+  details: no result placeholder is left
+- check: A16D-12_spec_next
+  result: PASS
+  details: ''
+- check: A16D-12_research
+  result: PASS
+  details: ''

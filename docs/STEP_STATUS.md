@@ -86,8 +86,10 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **16A — Skill analytics** | ✅ | SKAX-v0 / D-122. Bir Skill'in öğrenciye görünen durumu, kendi motorlarının yazdığı dört eksen üzerinde `SPWX-v0`'ın tek önceliğidir ve saklanan satırla ekran aynı tek fonksiyonu kullanır; bir eksen yazılmamışsa ya da kanıt satırdan yeniyse Skill 'yeniden hesaplanıyor'dur, tahmin edilmiş bir durum yoktur; Progress envanter sayar, hiçbir sayımı bölmez. Sekiz durum ve türetmesi `core-model`de tek fonksiyon; her `skill_state` yazıcısı sunumu eksenlerden türetiyor, `AssembleSkillState` ön koşul eksenini yazıyor; Progress sekmesi ve Skill detayı depodan okuyor. Hiçbir şey yapmamış öğrenci: 4 'Henüz Kanıt Yok', 56 'Ön Koşul Bekliyor' — planner'ın beklettikleri. Kullanıcı kararları: Skill projeksiyonu + detay + özet; core + gerçek ekran; eksik eksen 'yeniden hesaplanıyor'. Kotlin mutation 30/30, validator mutation 38/38; 90/90 QA PASS. |
 | **16B — Öğrenme geçmişi** | ✅ | LHRX-v0 / D-123. Öğrenme geçmişi kayıt sırasındaki saklı kanıttır ve her satır, motorların o satıra kadarki kanıt üzerinde yeniden oynatılmasıyla söylediği değişikliği 13E'nin sözleriyle taşır; ölçme raporu her oturumun `ASUX-v0` aileleridir, not ya da eğilim değil; hiçbir şey yazılmaz, girdisi olmayan gün çizilmez ve aynı kanıttan mastery her zaman aynı sonucu verir. Mastery düzeltmesi (`GRE-v0` §16.2, kullanıcı kararı 2026-10-18): 12A'nın yeniden kurması açık bir doğrulamada onu açan çelişkiyi 'başarısız yeniden kontrol' sayıyordu, bu yüzden aynı kanıtın ikinci kurulumu da geçilen taze bir yeniden kontrol de mastery'yi düşürüyordu; artık yalnız açılıştan sonraki temiz kanıt yeniden kontroldür, olumluysa mastery korunur ve mastery kanıttan, kayıt sırasıyla (`MasteryEngine.replay`) belirlenir. Yeni tablo yok; tutor/öğrenci metni saklanmaz. Kullanıcı kararları: kanıttan yeniden oynat; geçmiş + rapor; metin yok; core + ekran; motor düzeltmesi 16B içinde. Kotlin mutation 24/24, validator mutation 38/38; 95/95 QA PASS. |
 | **16C — Progress / weakness gösterim kuralları** | ✅ | PWPX-v0 / D-124. Bir konunun durumu orkestrasyondur, mastery değildir: konu, becerilerinin kendi durumları, konuda çalışma kaydedilip kaydedilmediği ve her hedefin dersinin işlenip işlenmediği ya da tanısal olarak geçilip geçilmediği üzerinde `TSM-v0`'ın ilk uyan kuralıdır; ortalama, yüzde ya da ön koşul iddiası değildir, başlanmamış bir konu ancak hiçbir becerisi başlatılamıyorsa kilitlidir ve başlanmış bir konu asla geri kilitlenmez; zayıflık bulunduğu yerde gösterilir — hipotez yalnız katalogun kendi sorusudur, pekiştirme neyin kapatacağıyla birlikte söylenir; Teknik İngilizce profili `TEPM-v0`'ın tek band kuralıdır, geçmişi kanıttan yeniden oynatılır, genel ya da resmî bir düzey değildir ve İngilizce kapı değildir; hiçbir şey yazılmaz. Bulunanlar: ilk giriş kuralı (dışarıdan gelen her hard kenar karşılanmış) sevk edilen graph'ta 27 konunun 12'sini, planner becerilerinden birini sunarken kilitli gösterecekti — kullanıcı aynı gün 'bir beceri açıksa Hazır' kuralına geçti; yeni bir öğrencide 4 konu açık, 23 konu bekliyor; öğretim görevlerinin item'ları hiçbir pratik görevinde geçmiyor. Kullanıcı kararları: konu + `topic_detail` + zayıflık/misconception bağlamı + Teknik İngilizce profili, core + gerçek ekran; kapsam kapısı ders denemesi ya da tanısal waiver; İngilizce geçmişi kanıttan yeniden oynatılır, B1 'henüz yayımlanmadı'; konu girişi 'bir beceri açıksa Hazır' (2026-10-24). Kotlin mutation 31/31, validator mutation 46/46; 117/117 QA PASS. |
-| **16D — Ayarlar** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
-| **16–20** | ⬜ Bekliyor | 16D sonrası canonical sırada. |
+| **16D — Ayarlar** | ✅ | STGX-v0 / D-126. Bir tercih öğrencinin kararıdır, eklenir ve asla düzenlenmez ve depoda durur, böylece yedek onu taşır; bugünün planını bu tercihlerden planner kurar — bugünün kendi seçimi yoksa normal gün, bugünün seçimi yalnız bugüne aittir ve borç bırakmaz, bir değişiklik bugünü ancak bütçe değiştiyse yeniden planlar; süre bir tavandır, hedef ya da ölçü değildir; yedek yalnız öğrencinin koyduğu yere gider, geri yükleme onaysız hiçbir şeyi değiştirmez ve değiştirilen profil her zaman saklanır. Bulunanlar: 11'den beri her adımın uygulama çağrısı 16D'ye gönderilmişti — kullanıcı bölmeye karar verdi ve uçtan uca bağlantı yeni 16F'ye gitti (D-125); `preference_key` kolonu kimlik bilgisi taramasına takıldı, iki `_study_day` kolonu adaptörün zaman kuralını bozdu; geri yükleme depoyu kapatıp açarken shell durumunu unutuyordu. Kullanıcı kararları: ayarlar + bugünün planı, uçtan uca bağlantı 16F'ye; kısa/normal/yoğun 30/60/90 dk önayar, değiştirilebilir, bugüne özel seçim; yedekleme kontrolleri 16D'de, açık onay, değiştirilen profil saklanır; haftalık/aylık döngü sabit; odak tercihi 18B. Kotlin mutation 23/23, validator mutation 42/42; 91/91 QA PASS. |
+| **16E — Bildirimler** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
+| **16F — Uçtan uca günlük döngü** | ⬜ Bekliyor | D-125 ile eklendi; 16E sonrası. |
+| **17–20** | ⬜ Bekliyor | 16F sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -106,7 +108,20 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 16C
+## Son tamamlanan numaralı adım — 16D
+
+**Final:** `STGX-v0 — the learner's own settings, capacity and backup, and today's plan made by the app from them` / D-126 (D-125: 16F eklendi).
+**Ana çıktı:** `docs/SETTINGS_SPEC.md` + `arch/16d_settings/` + `tools/validate_settings.py` + `android/`.
+
+16D sonucu:
+- bir tercih öğrencinin kararıdır, eklenir ve asla düzenlenmez ve depoda durur, böylece yedek onu taşır; bugünün planını bu tercihlerden planner kurar — bugünün kendi seçimi yoksa normal gün, bugünün seçimi yalnız bugüne aittir ve borç bırakmaz, bir değişiklik bugünü ancak bütçe değiştiyse yeniden planlar; süre bir tavandır, hedef ya da ölçü değildir; yedek yalnız öğrencinin koyduğu yere gider, geri yükleme onaysız hiçbir şeyi değiştirmez ve değiştirilen profil her zaman saklanır,
+- onay kullanıcının 2026-10-25 açık onayı ("merge et ve devam et"); kullanıcı kararları: ayarlar + bugünün planı, uçtan uca bağlantı 16F'ye; kısa/normal/yoğun 30/60/90 dk önayar, değiştirilebilir, bugüne özel seçim; yedekleme kontrolleri 16D'de, açık onay, değiştirilen profil saklanır; haftalık/aylık döngü sabit; odak tercihi 18B,
+- **bulgu:** 11'den beri her adımın uygulama çağrısı 16D'ye gönderilmişti — kullanıcı bölmeye karar verdi ve uçtan uca bağlantı yeni 16F'ye gitti (D-125); `preference_key` kolonu kimlik bilgisi taramasına takıldı, iki `_study_day` kolonu adaptörün zaman kuralını bozdu; geri yükleme depoyu kapatıp açarken shell durumunu unutuyordu,
+- şema v9 `preference_record` (dolu v8'e karşı); varsayılanlı port inceltmesi; `StoreStartup.replace`; `ProfileReplacement`,
+- Mutation Kotlin 23/23, validator 42/42; independent validator **91/91 PASS**,
+- **T6 çalıştırılmadı; ekranlar ve dosya seçicileri cihazda görülmedi**.
+
+## Önceki numaralı adım — 16C
 
 **Final:** `PWPX-v0 — Topic state, topic_detail, the weakness context and the Technical English profile, read from the Skill states the engines wrote` / D-124.
 **Ana çıktı:** `docs/PROGRESS_WEAKNESS_SPEC.md` + `arch/16c_progress_weakness/` + `tools/validate_progress_weakness.py` + `android/`.
@@ -519,6 +534,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 16D Ayarlar
+## Aktif adım — 16E Bildirimler
 
-**16D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A, 16B ve 16C her biri ayrı açık onayla yürütüldü). Girdiler: Profile'ın ayar yüzeyi (`UXIA-v0`), 14G'nin AI anahtar ekranı, 16A–16C'nin 16D'ye bıraktıkları (yeniden hesaplamayı ve dispozisyonları uygulamadan çağırmak, `assessment_opportunity`, haftalık slotların oturum kimliği), 10E'nin restore kontrolleri.
+**16E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A, 16B, 16C ve 16D her biri ayrı açık onayla yürütüldü). Girdiler: Profile'ın `reminders` öğesi (`UXIA-v0`), Today'in ve gün sonunun dili (yükümlülük, borç, seri yok), D-080 (kişisel kullanım). 16F (uçtan uca günlük döngü) 16E'den sonra gelir (D-125); girdileri 16D kontratının `moved_to_16f` listesi.
