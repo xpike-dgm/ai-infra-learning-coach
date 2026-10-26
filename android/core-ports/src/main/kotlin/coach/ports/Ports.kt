@@ -2,6 +2,7 @@ package coach.ports
 
 import coach.model.AssessmentItem
 import coach.model.AssessmentScope
+import coach.model.AuthoredTask
 import coach.model.CodeTestSuite
 import coach.model.ComprehensionCheck
 import coach.model.AcceptedAnswers
@@ -244,6 +245,13 @@ interface PersistencePort {
      * scheduled.
      */
     fun reminderPreferences(): List<ReminderPreferenceRecord> = emptyList()
+
+    /**
+     * Which of these planned tasks have an attempt made for them (16F) — the learner started them. A refinement of this
+     * port, not a new one; an adapter that cannot tell answers with nothing, which only ever offers started work again,
+     * never hides unstarted work.
+     */
+    fun startedPlannedTasks(plannedTaskIds: Collection<Long>): Set<Long> = emptySet()
 }
 
 /** A truth row together with the id the store gave it. */
@@ -316,6 +324,13 @@ interface ContentPort {
      * (15); an empty list is the truthful "no lesson authored", never "covered". A refinement of this port, not a new one.
      */
     fun lessonItemsFor(objective: VersionedRef): List<VersionedRef> = emptyList()
+
+    /**
+     * One authored task version as written (16F): its explanations and its item pool, which the runner serves. Content
+     * (15). A refinement of this port, not a new one; `null` when no such version is authored, and a task nothing can
+     * read is never started.
+     */
+    fun authoredTask(ref: VersionedRef): AuthoredTask? = null
 }
 
 /**

@@ -34,6 +34,8 @@ class SubmitAttempt(
                         put("resource_version", submission.resource.version.toString())
                         // An attempt made inside an assessment session names it (13A); others name none.
                         submission.assessmentSessionId?.let { put("assessment_session_id", it.toString()) }
+                        // 16F: the planned task it was made for, so a replan keeps it and Today does not offer it again.
+                        submission.plannedTaskId?.let { put("planned_task_id", it.toString()) }
                     },
                 )
             )

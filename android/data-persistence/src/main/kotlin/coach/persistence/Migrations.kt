@@ -38,6 +38,7 @@ object Migrations {
         7 to Schema.v8,
         8 to Schema.v9,
         9 to Schema.v10,
+        10 to Schema.v11,
     )
 
     fun currentVersion(connection: SQLiteConnection): Int {

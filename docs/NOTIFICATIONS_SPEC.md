@@ -149,3 +149,7 @@ Assistant defaults:
 **Not run: T6.** The alarm, the receivers, the permission prompt and the notification have not been seen on a device; the decisions were run on the JVM through the same classes.
 
 **Next step:** **16F — Uçtan uca günlük döngü**. It needs a fresh PRE and the user's new explicit approval.
+
+---
+
+**16F note (2026-10-26, `D-128`):** the open loop of §8 is closed. Attempts now name their planned task, so rules 6–7 read which of today's tasks were started: the content counts only unstarted tasks, a day whose tasks are all started is silent (`work_recorded_today`), and a read that fails is silent (`day_unreadable`). The silences are unchanged. Details: `docs/END_TO_END_LOOP_SPEC.md`.

@@ -1,0 +1,394 @@
+model: E2EX-v0
+stage_step: 16F
+decision: D-128
+result: PASS
+checks_total: 104
+checks_passed: 104
+checks_failed: 0
+checks:
+- check: A16F-00_exists_end_to_end_loop.yaml
+  result: PASS
+  details: missing arch\16f_end_to_end_loop\end_to_end_loop.yaml
+- check: A16F-00_exists_END_TO_END_LOOP_SPEC.md
+  result: PASS
+  details: missing docs\END_TO_END_LOOP_SPEC.md
+- check: A16F-00_exists_16f_end_to_end_loop_research.md
+  result: PASS
+  details: missing research\16f_end_to_end_loop_research.md
+- check: A16F-00_exists_DAILY_WORKING_FLOW_SPEC.md
+  result: PASS
+  details: missing docs\DAILY_WORKING_FLOW_SPEC.md
+- check: A16F-00_exists_TaskRunFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\TaskRunFacts.kt
+- check: A16F-00_exists_AttemptFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\AttemptFacts.kt
+- check: A16F-00_exists_TodayFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\TodayFacts.kt
+- check: A16F-00_exists_AuthoredTaskFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\AuthoredTaskFacts.kt
+- check: A16F-00_exists_Ports.kt
+  result: PASS
+  details: missing android\core-ports\src\main\kotlin\coach\ports\Ports.kt
+- check: A16F-00_exists_Schema.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\Schema.kt
+- check: A16F-00_exists_Migrations.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\Migrations.kt
+- check: A16F-00_exists_SqlitePersistence.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\SqlitePersistence.kt
+- check: A16F-00_exists_FileContentSource.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\FileContentSource.kt
+- check: A16F-00_exists_RunTask.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\RunTask.kt
+- check: A16F-00_exists_SubmitAttempt.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\SubmitAttempt.kt
+- check: A16F-00_exists_BuildDailyPlan.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\BuildDailyPlan.kt
+- check: A16F-00_exists_DailyMicroAssessment.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\DailyMicroAssessment.kt
+- check: A16F-00_exists_ProgramChanges.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\ProgramChanges.kt
+- check: A16F-00_exists_Settings.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\Settings.kt
+- check: A16F-00_exists_TodayFactsQuery.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\TodayFactsQuery.kt
+- check: A16F-00_exists_Reminders.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\Reminders.kt
+- check: A16F-00_exists_TaskRunPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\TaskRunPresentation.kt
+- check: A16F-00_exists_TodayPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\TodayPresentation.kt
+- check: A16F-00_exists_TaskRunnerScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\TaskRunnerScreen.kt
+- check: A16F-00_exists_CoachApplication.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
+- check: A16F-00_exists_MainActivity.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
+- check: A16F-00_exists_TaskRunSession.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\TaskRunSession.kt
+- check: A16F-00_exists_TaskRunFactsTest.kt
+  result: PASS
+  details: missing android\core-model\src\test\kotlin\coach\model\TaskRunFactsTest.kt
+- check: A16F-00_exists_TaskLinkStorageTest.kt
+  result: PASS
+  details: missing android\data-persistence\src\test\kotlin\coach\persistence\TaskLinkStorageTest.kt
+- check: A16F-00_exists_TaskRunPresentationTest.kt
+  result: PASS
+  details: missing android\core-presentation\src\test\kotlin\coach\presentation\TaskRunPresentationTest.kt
+- check: A16F-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: A16F-01_model
+  result: PASS
+  details: ''
+- check: A16F-01_user_decisions
+  result: PASS
+  details: '{''approval'': ''explicit_user_approval_2026-10-25'', ''scope'': ''core_loop_only_entry_lesson_question_answer_answer_key_evaluation_evidence_recompute_report_replan_keeping_started_work_today_refreshed_reminder_rule_updated'',
+    ''new_step'': ''16G_added_like_d_099_no_renumbering_tutor_alternative_explanation_comprehension_wrong_answer_analysis_code_report_open_response_ai_fast_path_weekly_monthly_sessions_dispositions'',
+    ''feedback'': ''right_or_wrong_after_submit_seeing_the_answer_is_a_separate_optional_step_recorded_as_h4''}'
+- check: A16F-01_scope
+  result: PASS
+  details: ''
+- check: A16F-01_trux_rules_are_the_source
+  result: PASS
+  details: ''
+- check: A16F-01_entry_conditions_are_trux
+  result: PASS
+  details: ''
+- check: A16F-02_schema_v11
+  result: PASS
+  details: ''
+- check: A16F-02_one_added_column
+  result: PASS
+  details: an added nullable column, nothing rewritten
+- check: A16F-02_migration_owned
+  result: PASS
+  details: '{''from'': 10, ''to'': 11, ''owner'': ''16F'', ''tables'': [''attempt''],
+    ''truth_altered'': False, ''column_added'': ''planned_task_id'', ''decision'':
+    ''D-128''}'
+- check: A16F-02_ports_defaulted
+  result: PASS
+  details: ''
+- check: A16F-02_adapter_reads_the_link
+  result: PASS
+  details: ''
+- check: A16F-02_attempt_carries_the_link
+  result: PASS
+  details: ''
+- check: A16F-03_today_s_plan_only
+  result: PASS
+  details: ''
+- check: A16F-03_started_is_not_selected
+  result: PASS
+  details: ''
+- check: A16F-03_gate_asked
+  result: PASS
+  details: ''
+- check: A16F-03_need_still_open
+  result: PASS
+  details: ''
+- check: A16F-03_content_read_not_assumed
+  result: PASS
+  details: ''
+- check: A16F-03_assess_is_16g
+  result: PASS
+  details: ''
+- check: A16F-03_answer_key_only
+  result: PASS
+  details: ''
+- check: A16F-03_entry_writes_nothing
+  result: PASS
+  details: ''
+- check: A16F-03_runs_only_when_all_confirmed
+  result: PASS
+  details: ''
+- check: A16F-03_open_needs_is_build_s_composition
+  result: PASS
+  details: ''
+- check: A16F-03_usable_records_nothing
+  result: PASS
+  details: ''
+- check: A16F-04_unseen_in_order_never_twice
+  result: PASS
+  details: ''
+- check: A16F-04_blank_is_a_skip
+  result: PASS
+  details: ''
+- check: A16F-04_one_action_with_its_task
+  result: PASS
+  details: ''
+- check: A16F-04_judged_by_the_key_only
+  result: PASS
+  details: no AI judges an answer here
+- check: A16F-04_independence_derived
+  result: PASS
+  details: never decided by the runner
+- check: A16F-04_contamination_named
+  result: PASS
+  details: ''
+- check: A16F-04_too_long_refused
+  result: PASS
+  details: ''
+- check: A16F-05_after_submit_is_h4_after_submit
+  result: PASS
+  details: the frozen answer's evidence is not touched
+- check: A16F-05_before_writes_no_attempt
+  result: PASS
+  details: ''
+- check: A16F-05_disclosure_first
+  result: PASS
+  details: nothing is shown before the consequence is said
+- check: A16F-05_reveal_only_when_asked
+  result: PASS
+  details: never automatic
+- check: A16F-06_nothing_answered_changes_nothing
+  result: PASS
+  details: ''
+- check: A16F-06_started_work_kept
+  result: PASS
+  details: every replan keeps the tasks the learner started
+- check: A16F-06_started_is_read
+  result: PASS
+  details: ''
+- check: A16F-06_today_does_not_offer_started
+  result: PASS
+  details: ''
+- check: A16F-06_no_cached_list
+  result: PASS
+  details: ''
+- check: A16F-06_processed_once_even_on_exit
+  result: PASS
+  details: ''
+- check: A16F-06_report_words_from_13e
+  result: PASS
+  details: ''
+- check: A16F-07_no_verdict_words
+  result: PASS
+  details: '[]'
+- check: A16F-07_not_measured_is_not_wrong
+  result: PASS
+  details: ''
+- check: A16F-07_provenance_all_five_nothing_chosen
+  result: PASS
+  details: ''
+- check: A16F-07_teach_is_practice_said
+  result: PASS
+  details: ''
+- check: A16F-07_screen_decides_nothing
+  result: PASS
+  details: ''
+- check: A16F-07_exit_still_first
+  result: PASS
+  details: ''
+- check: A16F-08_reminder_counts_unstarted
+  result: PASS
+  details: ''
+- check: A16F-08_reminder_rule_recorded
+  result: PASS
+  details: ''
+- check: A16F-09_rest_moved_not_claimed
+  result: PASS
+  details: '8'
+- check: A16F-09_16g_in_the_plan
+  result: PASS
+  details: the step's own checklist lines
+- check: A16F-10_test_an_answer_is_right_partly_right_not_ri
+  result: PASS
+  details: 'TaskRunFactsTest.kt: an answer is right, partly right, not right or not
+    measurable, and nothing else'
+- check: A16F-10_test_a_task_runs_exactly_when_every_entry_con
+  result: PASS
+  details: 'TaskRunFactsTest.kt: a task runs exactly when every entry condition is
+    confirmed, and only a checked capability names its gap'
+- check: A16F-10_test_schema_v11_links_attempts_to_planned_tas
+  result: PASS
+  details: 'TaskLinkStorageTest.kt: schema v11 links attempts to planned tasks on
+    a populated v10 database and leaves every truth row as it was'
+- check: A16F-10_test_the_store_says_which_planned_tasks_were
+  result: PASS
+  details: 'TaskLinkStorageTest.kt: the store says which planned tasks were started,
+    and an attempt outside a planned task names none'
+- check: A16F-10_test_no_result_capability_or_end_of_run_line
+  result: PASS
+  details: 'TaskRunPresentationTest.kt: no result, capability or end-of-run line blames
+    the learner or claims a level'
+- check: A16F-10_test_orientation_says_what_why_and_how_long
+  result: PASS
+  details: 'TaskRunPresentationTest.kt: orientation says what, why and how long, the
+    help policy before any work, and asks provenance with nothing chosen'
+- check: A16F-10_test_a_new_learner_s_first_task_enters_with_e
+  result: PASS
+  details: 'ShippedCourseTest.kt: a new learner''s first task enters with every condition
+    confirmed, from the store and nothing assumed'
+- check: A16F-10_test_a_run_serves_unseen_questions_records_e
+  result: PASS
+  details: 'ShippedCourseTest.kt: a run serves unseen questions, records each answer
+    with its planned task, judges it by its key and writes its evidence'
+- check: A16F-10_test_a_started_task_is_not_offered_again_ent
+  result: PASS
+  details: 'ShippedCourseTest.kt: a started task is not offered again, entering it
+    again is refused, and the reminder no longer counts it'
+- check: A16F-10_test_a_replan_keeps_every_task_the_learner_st
+  result: PASS
+  details: 'ShippedCourseTest.kt: a replan keeps every task the learner started and
+    re-resolves only the rest'
+- check: A16F-10_test_the_end_of_a_run_reports_what_canonical
+  result: PASS
+  details: 'ShippedCourseTest.kt: the end of a run reports what canonical state did,
+    and a run with nothing answered changes nothing'
+- check: A16F-10_test_entry_names_what_it_could_not_confirm_a
+  result: PASS
+  details: 'ShippedCourseTest.kt: entry names what it could not confirm, and a task
+    the app cannot run says why without blaming anyone'
+- check: A16F-10_test_the_open_needs_entry_reads_are_the_very
+  result: PASS
+  details: 'ShippedCourseTest.kt: the open needs entry reads are the very needs today''s
+    plan was built from'
+- check: A16F-11_narrowed_gates_marked
+  result: PASS
+  details: 'one marker per narrowed check: [''tools/validate_task_runner.py'', ''tools/validate_program_change_report.py'',
+    ''tools/validate_diagnostic_waiver.py'', ''tools/validate_wrong_answer_analysis.py'',
+    ''tools/validate_settings.py'', ''tools/validate_notifications.py'', ''android/data-persistence/src/test/kotlin/coach/persistence/ReminderStorageTest.kt'',
+    ''android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt'']'
+- check: A16F-12_kotlin_mutation_all_detected
+  result: PASS
+  details: 29/29
+- check: A16F-12_kotlin_crash_not_detection
+  result: PASS
+  details: ''
+- check: A16F-12_validator_mutation
+  result: PASS
+  details: '{''tool'': ''tools/validate_end_to_end_loop.py'', ''total'': 44, ''detected'':
+    44, ''scope'': "one change per mutant to an input the validator reads — the contract,
+    the schema, every entry condition, serving, the skip, the link, the judge, the
+    independence, both reveals, the end, the entry invariant, the words, provenance,
+    the screen, the wiring, a test name, the plan, DECISIONS, the spec, the research
+    and a narrowed gate''s marker", ''detection'': ''a FAIL line not in the baseline;
+    a run that prints no result line is a crash and never a detection'', ''crash_is_detection'':
+    False, ''baseline'': ''the only check allowed to fail at baseline is A16F-12_validator_mutation,
+    which reads this very result'', ''negative_control'': ''a YAML comment in the
+    contract naming forbidden fragments (banana, survived, streak, 100%)'', ''negative_control_result'':
+    ''survived_as_expected'', ''earlier_runs'': ''none — the first run detected every
+    mutant'', ''final_run_is_a_single_clean_run'': True, ''mutants'': [{''id'': ''V01'',
+    ''mutant'': ''contract_model'', ''result'': ''detected''}, {''id'': ''V02'', ''mutant'':
+    ''contract_claims_sessions'', ''result'': ''detected''}, {''id'': ''V03'', ''mutant'':
+    ''contract_preselects_provenance'', ''result'': ''detected''}, {''id'': ''V04'',
+    ''mutant'': ''contract_device_claimed'', ''result'': ''detected''}, {''id'': ''V05'',
+    ''mutant'': ''contract_mutant_survived'', ''result'': ''detected''}, {''id'':
+    ''V06'', ''mutant'': ''contract_run_failed'', ''result'': ''detected''}, {''id'':
+    ''V07'', ''mutant'': ''contract_no_16g'', ''result'': ''detected''}, {''id'':
+    ''V08'', ''mutant'': ''migration_unowned'', ''result'': ''detected''}, {''id'':
+    ''V09'', ''mutant'': ''schema_not_bumped'', ''result'': ''detected''}, {''id'':
+    ''V10'', ''mutant'': ''schema_rewrites_attempt'', ''result'': ''detected''}, {''id'':
+    ''V11'', ''mutant'': ''started_entered_again'', ''result'': ''detected''}, {''id'':
+    ''V12'', ''mutant'': ''gate_not_asked'', ''result'': ''detected''}, {''id'': ''V13'',
+    ''mutant'': ''need_assumed'', ''result'': ''detected''}, {''id'': ''V14'', ''mutant'':
+    ''assess_runs'', ''result'': ''detected''}, {''id'': ''V15'', ''mutant'': ''any_item_judged'',
+    ''result'': ''detected''}, {''id'': ''V16'', ''mutant'': ''entry_writes'', ''result'':
+    ''detected''}, {''id'': ''V17'', ''mutant'': ''question_repeated'', ''result'':
+    ''detected''}, {''id'': ''V18'', ''mutant'': ''blank_written'', ''result'': ''detected''},
+    {''id'': ''V19'', ''mutant'': ''link_dropped'', ''result'': ''detected''}, {''id'':
+    ''V20'', ''mutant'': ''ai_judges'', ''result'': ''detected''}, {''id'': ''V21'',
+    ''mutant'': ''independence_decided'', ''result'': ''detected''}, {''id'': ''V22'',
+    ''mutant'': ''reveal_rewrites_evidence'', ''result'': ''detected''}, {''id'':
+    ''V23'', ''mutant'': ''before_writes_attempt'', ''result'': ''detected''}, {''id'':
+    ''V24'', ''mutant'': ''finish_drops_started'', ''result'': ''detected''}, {''id'':
+    ''V25'', ''mutant'': ''nothing_answered_processed'', ''result'': ''detected''},
+    {''id'': ''V26'', ''mutant'': ''runs_on_partial_entry'', ''result'': ''detected''},
+    {''id'': ''V27'', ''mutant'': ''verdict_word'', ''result'': ''detected''}, {''id'':
+    ''V28'', ''mutant'': ''not_measured_wrong'', ''result'': ''detected''}, {''id'':
+    ''V29'', ''mutant'': ''provenance_option_dropped'', ''result'': ''detected''},
+    {''id'': ''V30'', ''mutant'': ''provenance_preselected'', ''result'': ''detected''},
+    {''id'': ''V31'', ''mutant'': ''screen_decides'', ''result'': ''detected''}, {''id'':
+    ''V32'', ''mutant'': ''interior_before_exit'', ''result'': ''detected''}, {''id'':
+    ''V33'', ''mutant'': ''reveal_automatic'', ''result'': ''detected''}, {''id'':
+    ''V34'', ''mutant'': ''disclosure_skipped'', ''result'': ''detected''}, {''id'':
+    ''V35'', ''mutant'': ''exit_skips_processing'', ''result'': ''detected''}, {''id'':
+    ''V36'', ''mutant'': ''processed_twice'', ''result'': ''detected''}, {''id'':
+    ''V37'', ''mutant'': ''report_words_invented'', ''result'': ''detected''}, {''id'':
+    ''V38'', ''mutant'': ''test_renamed'', ''result'': ''detected''}, {''id'': ''V39'',
+    ''mutant'': ''16g_dropped_from_plan'', ''result'': ''detected''}, {''id'': ''V40'',
+    ''mutant'': ''decision_missing'', ''result'': ''detected''}, {''id'': ''V41'',
+    ''mutant'': ''spec_not_accepted'', ''result'': ''detected''}, {''id'': ''V42'',
+    ''mutant'': ''spec_wrong_next'', ''result'': ''detected''}, {''id'': ''V43'',
+    ''mutant'': ''research_source_dropped'', ''result'': ''detected''}, {''id'': ''V44'',
+    ''mutant'': ''narrowed_gate_unmarked'', ''result'': ''detected''}]}'
+- check: A16F-12_runs_pass
+  result: PASS
+  details: ''
+- check: A16F-12_device_not_claimed
+  result: PASS
+  details: ''
+- check: A16F-13_spec_status
+  result: PASS
+  details: ''
+- check: A16F-13_spec_next
+  result: PASS
+  details: ''
+- check: A16F-13_research
+  result: PASS
+  details: ''
+- check: A16F-13_decisions
+  result: PASS
+  details: ''

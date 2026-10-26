@@ -20,7 +20,7 @@ object ReminderCopy {
 
     const val SETTINGS_TITLE = "Hatırlatma"
     // What the reminder is and is not: one a day at most, only with new work in today's plan, never an obligation.
-    const val SETTINGS_NOTE = "Günde en çok bir kez gelir: yalnız bugünün planında yeni iş varsa ve bugün bir çalışma kaydedilmediyse. " +
+    const val SETTINGS_NOTE = "Günde en çok bir kez gelir: yalnız bugünün planında henüz başlamadığın bir görev varsa. " +
         "Saat yaklaşıktır. Hatırlatma bir yükümlülük değildir; gün saymaz, seri tutmaz, ara vermeyi borç saymaz."
     const val TURN_ON = "Hatırlatmayı aç"
     const val TURN_OFF = "Hatırlatmayı kapat"

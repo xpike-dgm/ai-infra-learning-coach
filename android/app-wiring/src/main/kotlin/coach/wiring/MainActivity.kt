@@ -74,6 +74,16 @@ import coach.presentation.BackupState
 import coach.presentation.SettingsPresentation
 import coach.presentation.AiCheckState
 import coach.presentation.AiSettingsPresentation
+import coach.model.AssistanceLevel
+import coach.model.AssistanceScope
+import coach.model.AssistanceSource
+import coach.model.AssistanceTiming
+import coach.presentation.AssistanceOutcome
+import coach.presentation.AssistancePolicy
+import coach.presentation.TaskRunCopy
+import coach.presentation.TaskRunPresentation
+import coach.presentation.TaskRunStage
+import coach.ui.TaskRunActions
 import android.Manifest
 import android.content.Intent
 import android.os.Build
@@ -187,6 +197,10 @@ private fun Shell(
     // never starts at all.
     var session by remember { mutableStateOf<WorkingSession?>(null) }
     var sessionsStarted by remember { mutableStateOf(0L) }
+    // 16F: the task run in front of the shell — its working memory and the stage core decided. Neither is stored; what
+    // the learner did is already in the store the moment it is recorded.
+    var runSession by remember { mutableStateOf<TaskRunSession?>(null) }
+    var runStage by remember { mutableStateOf<TaskRunStage?>(null) }
     // The shared planner explanation opened from Today (12E); its facts are read on the store thread.
     var explanation by remember { mutableStateOf<PlannerExplanationView?>(null) }
     // The AI settings on Profile (14G). The key state is read from memory; saving, removing and checking run off the
@@ -326,17 +340,99 @@ private fun Shell(
                 onBack = { topicDetail = null },
             )
             english != null -> EnglishProfileScreen(view = english!!, onBack = { english = null })
-            entry != null -> TaskRunnerScreen(
-                state = RunnerRevalidation.stateAtEntry(entry),
-                entry = entry,
-                // Back to Today in one action; NavigationGraph's return rule would also land here,
-                // because a run started from Today returns to Today.
-                onExit = {
-                    session = session?.let { WorkingSessions.on(it, SessionEvent.LearnerExited) }
-                    runnerEntry = null
-                    selected = Destination.TODAY
-                },
-            )
+            entry != null -> {
+                val run = runSession
+                // 16F: the next question, or the end of the run when none is left. The runner never advances a cached
+                // list: each question is the next unseen one the task holds (`TRUX-v0` §6.6).
+                fun serveNext(current: TaskRunSession) {
+                    runStage = TaskRunStage.Working
+                    app.serveNext(current.run, current.shown.map { it.ref }.toSet()) { item, prompt ->
+                        if (item == null) {
+                            finishRun(app, current, onTodayFacts) { lines -> runStage = TaskRunStage.Finished(listOf(TaskRunCopy.NO_MORE_QUESTIONS) + lines) }
+                        } else {
+                            current.shown += item
+                            current.current = item
+                            current.currentPrompt = prompt.orEmpty()
+                            current.lessonShown = false
+                            runStage = TaskRunStage.Question(current.shown.size, current.currentPrompt, null, disclosure = false, notice = null)
+                        }
+                    }
+                }
+                fun question(current: TaskRunSession, disclosure: Boolean = false, notice: String? = null) = TaskRunStage.Question(
+                    current.shown.size, current.currentPrompt,
+                    if (current.lessonShown) current.run.lesson.map { it.text } else null, disclosure, notice,
+                )
+                TaskRunnerScreen(
+                    state = runStage?.state ?: RunnerRevalidation.stateAtEntry(entry),
+                    entry = entry,
+                    // Back to Today in one action; NavigationGraph's return rule would also land here,
+                    // because a run started from Today returns to Today. Stopping costs nothing; whatever was recorded
+                    // is processed once, so the plan reflects it (`TRUX-v0` §7.4).
+                    onExit = {
+                        session = session?.let { WorkingSessions.on(it, SessionEvent.LearnerExited) }
+                        run?.let { finishRun(app, it, onTodayFacts) {} }
+                        runSession = null
+                        runStage = null
+                        runnerEntry = null
+                        selected = Destination.TODAY
+                    },
+                    stage = runStage,
+                    actions = if (run == null) TaskRunActions() else TaskRunActions(
+                        onBegin = { provenance ->
+                            run.provenance = provenance
+                            if (run.run.lesson.isNotEmpty()) runStage = TaskRunStage.Lesson(run.run.lesson.map { it.text }) else serveNext(run)
+                        },
+                        onToQuestions = { serveNext(run) },
+                        onShowLesson = { run.lessonShown = true; runStage = question(run) },
+                        onRequestSolution = {
+                            // H4 before an answer: the consequence is said first, and nothing is shown until acknowledged.
+                            val outcome = AssistancePolicy.request(AssistanceLevel.H4, AssistanceTiming.DURING_ATTEMPT,
+                                AssistanceScope.TARGET_OBJECTIVE, AssistanceSource.DETERMINISTIC_CONTENT, consequenceAcknowledged = false)
+                            if (outcome is AssistanceOutcome.ConsequenceDisclosureRequired) runStage = question(run, disclosure = true)
+                        },
+                        onAcknowledgeSolution = {
+                            val item = run.current
+                            if (item != null) app.revealAnswer(item, attemptId = null) { answers ->
+                                runStage = TaskRunStage.ShownBeforeAnswer(TaskRunPresentation.revealed(answers))
+                            }
+                        },
+                        onDeclineSolution = { runStage = question(run) },
+                        onSubmit = { typed ->
+                            val item = run.current
+                            val provenance = run.provenance
+                            if (item != null && provenance != null) {
+                                // The lesson seen again is recorded as the concept help it was (`TRUX-v0` §8.5).
+                                val help = if (!run.lessonShown) emptyList() else listOfNotNull(
+                                    (AssistancePolicy.request(AssistanceLevel.H2, AssistanceTiming.DURING_ATTEMPT, AssistanceScope.TARGET_OBJECTIVE,
+                                        AssistanceSource.DETERMINISTIC_CONTENT, consequenceAcknowledged = false) as? AssistanceOutcome.Granted)?.event
+                                )
+                                runStage = TaskRunStage.Working
+                                app.answerItem(run.run, item, typed, provenance, help) { answered ->
+                                    if (answered == null) {
+                                        runStage = question(run, notice = if (typed.isBlank()) TaskRunCopy.BLANK_IS_A_SKIP else TaskRunCopy.TOO_LONG)
+                                    } else {
+                                        run.answered += answered
+                                        run.lastAnswer = answered
+                                        runStage = TaskRunStage.Answered(TaskRunPresentation.resultLine(answered.result), revealed = null)
+                                    }
+                                }
+                            }
+                        },
+                        onReveal = {
+                            val item = run.current
+                            val answered = run.lastAnswer
+                            if (item != null && answered != null) app.revealAnswer(item, answered.attemptId) { answers ->
+                                runStage = TaskRunStage.Answered(TaskRunPresentation.resultLine(answered.result), TaskRunPresentation.revealed(answers))
+                            }
+                        },
+                        onNext = { serveNext(run) },
+                        onFinish = {
+                            runStage = TaskRunStage.Working
+                            finishRun(app, run, onTodayFacts) { lines -> runStage = TaskRunStage.Finished(lines) }
+                        },
+                    ),
+                )
+            }
             selected == Destination.TODAY -> TodayScreen(
                 // The day's own record, projected in core: what today recorded, never how it went.
                 daySummary = day?.let {
@@ -352,19 +448,31 @@ private fun Shell(
                 // Entry is revalidated in core against what can actually be confirmed; nothing
                 // unconfirmed is assumed to hold (TRUX-v0 entry_revalidation).
                 onStart = {
-                    val entry = RunnerRevalidation.atEntry(RunnerRevalidation.confirmedFromToday(today))
-                    runnerEntry = entry
                     val task = today.primaryTask
                     if (task != null) {
-                        WorkingSessions.startIfRunStarted(
-                            entry = entry,
-                            sessionId = sessionsStarted + 1,
-                            at = opened.graph.clock.now(),
-                            source = SessionEntrySource.TODAY_PRIMARY_ACTION,
-                            sourceTaskId = task.plannedTaskRef.toString(),
-                        )?.let { started ->
-                            sessionsStarted += 1
-                            session = started
+                        // 16F: every entry condition is confirmed in core from the store, the gate, the open needs and
+                        // the authored task (`TRUX-v0` §6.1); nothing unconfirmed is assumed to hold.
+                        app.openTask(task.plannedTaskRef) { facts, before ->
+                            val entry = RunnerRevalidation.atEntry(TaskRunPresentation.confirmed(facts))
+                            runnerEntry = entry
+                            val runnable = facts.run
+                            if (runnable != null && before != null) {
+                                runSession = TaskRunSession(runnable, before)
+                                runStage = TaskRunStage.Orient(TaskRunPresentation.orientation(runnable))
+                            } else {
+                                runSession = null
+                                runStage = TaskRunStage.Blocked((entry as? Revalidation.NotStartable)?.unmet.orEmpty(), TaskRunPresentation.capabilityLine(facts))
+                            }
+                            WorkingSessions.startIfRunStarted(
+                                entry = entry,
+                                sessionId = sessionsStarted + 1,
+                                at = opened.graph.clock.now(),
+                                source = SessionEntrySource.TODAY_PRIMARY_ACTION,
+                                sourceTaskId = task.plannedTaskRef.toString(),
+                            )?.let { started ->
+                                sessionsStarted += 1
+                                session = started
+                            }
                         }
                     }
                 },
@@ -459,5 +567,18 @@ private fun Shell(
                 AppRoot(statusLine = "${state.surface.id} · study day ${opened.graph.clock.now().studyDay}")
             }
         }
+    }
+}
+
+// The end of a run, once (16F): what was recorded is processed — recomputed, reported, and replanned only if canonical
+// state changed — and Today's facts come back, because the plan may have changed. A run with nothing answered changes
+// nothing, and says so. Line comments on purpose: earlier gates strip block comments, and the restore picker's MIME pattern
+// above reads to them as the start of one.
+private fun finishRun(app: CoachApplication, run: TaskRunSession, onTodayFacts: (TodayFacts) -> Unit, onLines: (List<String>) -> Unit) {
+    if (run.finished) return
+    run.finished = true
+    app.finishRun(run.run, run.before, run.answered.toList(), run.shown.toList()) { lines, facts, _ ->
+        onTodayFacts(facts)
+        onLines(lines)
     }
 }

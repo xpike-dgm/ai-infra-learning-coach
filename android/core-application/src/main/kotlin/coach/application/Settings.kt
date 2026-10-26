@@ -79,8 +79,7 @@ class PlanToday(
 
     /**
      * After a capacity preference changed: today's plan is replanned only if today's hard budget is now different.
-     * Nothing the learner started is kept, because nothing can be started from Today yet (16F); the replan therefore
-     * reports no kept positions rather than inventing any.
+     * Every task the learner started today is kept (16F, `StartedTasks`); only the rest is re-resolved.
      */
     fun afterCapacityChange(): BuildDailyPlan.Built {
         compose()
@@ -89,7 +88,7 @@ class PlanToday(
         if (built !is BuildDailyPlan.Built.AlreadyPlanned) return built
         val trace = persistence.latestPlan()?.traceText?.let(PlanTraceCodec::decode) ?: return built
         if (trace.capacity.hardBudgetMinutes == PlannerEngine.resolveCapacity(input).hardBudgetMinutes) return built
-        return builder().replan(BuildDailyPlan.ReplanRequest(ReplanTrigger.TODAY_CAPACITY_CHANGED, input))
+        return builder().replan(BuildDailyPlan.ReplanRequest(ReplanTrigger.TODAY_CAPACITY_CHANGED, input, keptPositions = StartedTasks.today(persistence, clock)))
     }
 
     private fun builder() = BuildDailyPlan(persistence, content, clock, evaluatorAvailable)

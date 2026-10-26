@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 10
+    const val VERSION = 11
 
     // ---------------------------------------------------------------- table inventories
 
@@ -854,6 +854,20 @@ object Schema {
             )
             """,
         ) + reminderPreferenceTables.flatMap(::appendOnlyGuards)
+
+    /**
+     * Version 11 links an attempt to the planned task it was made for (16F, `D-128`). `TRUX-v0` §6.5 hands off a
+     * `planned_task_ref` with every attempt, and 11B left the column to the step that runs a planned task: without it a
+     * replan cannot tell which of today's tasks the learner started (`RPLX-v0`), and Today would offer started work again.
+     *
+     * An added column, nullable and empty on every row written before: nothing stored is rewritten. An attempt made
+     * outside a planned task (an assessment session, the fast path) names none.
+     */
+    val v11: List<String>
+        get() = listOf(
+            "ALTER TABLE attempt ADD COLUMN planned_task_id INTEGER REFERENCES planned_task (id)",
+            "CREATE INDEX IF NOT EXISTS attempt_by_planned_task ON attempt (planned_task_id)",
+        )
 
     /** `WLRM-v0`'s misconception sources, plus the empty value of a label nothing has carried yet. */
     const val MISCONCEPTION_SOURCES = "'', 'deterministic', 'ai_proposed'"

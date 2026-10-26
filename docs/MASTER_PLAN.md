@@ -1148,7 +1148,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 29/29, validator mutation 47/47; 103/103 QA PASS,
 - **T6 çalıştırılmadı; bildirim cihazda görülmedi**.
 
-### [ ] 16F — Uçtan uca günlük döngü — D-125 ile eklendi — **AKTİF**
+### [x] 16F — Uçtan uca günlük döngü — D-125 ile eklendi — E2EX-v0 / D-128
+
+**16F final coverage:**
+- bir planlı görev ancak her giriş koşulu depodan, kapıdan, açık ihtiyaçlardan ve yazılı görevden doğrulandığında çalışır ve doğrulanamayan adlandırılır, suçlanmaz; görev çalıştırıcı dersin kendi anlatımını gösterir, görevin görülmemiş sorularını sunar, donmuş her cevabı yardımı, kökeni ve planlı göreviyle tek eylem olarak kaydeder, dersin cevap anahtarıyla değerlendirtir ve kanıt hattına verir — öğrencinin ne olduğuna karar vermez; cevap doğru, kısmen, eşleşmedi ya da ölçülemedi ve cevabı görmek ayrı bir adımdır; sonda rapor yalnız kanonik durumun ne yaptığını söyler ve yalnız bir değişiklik, başlanan her görevi koruyan yeni bir plan ister,
+- giriş: beş koşul depodan, kapıdan, açık ihtiyaçlardan ve yazılı görevden doğrulanıyor; `assess` görevi, cevap anahtarlı sorusu olmayan ya da taze sorusu kalmayan görev "yerel yetenek yok" diye adlandırılıyor,
+- koşu: oryantasyon, köken sorusu (önceden seçili yok), dersin kendi anlatımı, görülmemiş sorular yazıldığı sırayla, cevap anahtarıyla değerlendirme, kanıt hattı, isteğe bağlı cevap gösterme (H4),
+- son: yeniden hesaplama, 13E raporu, yalnız değişiklikte yeni plan; her yeniden plan başlanan görevi koruyor; Today başlanan görevi sunmuyor; hatırlatma başlanmamış görevleri sayıyor,
+- şema v11 `attempt.planned_task_id`,
+- bulgu: kullanıcı döngüyü yeniden böldü ve geri kalanı yeni 16G'ye gitti (D-129); 60 Skill'in 24'ünün görevleri yalnız kod testine dayanıyor ve 16G'ye kadar başlatılamaz; 13E'nin ve 16D'nin yeniden planı hiçbir şeyin başlanmadığını varsayıyordu; depo hangi görevin başladığını söyleyemiyordu (şema v11 `attempt.planned_task_id`); yeni bir öğrencinin ilk koşusu değişiklik raporlamıyor, çünkü hiçbir motorun yazmadığı durum bir 'önce' değildir (13E),
+- Kotlin mutation 29/29, validator mutation 44/44; 104/104 QA PASS,
+- **T6 çalıştırılmadı; koşu cihazda görülmedi**.
+
+### [ ] 16G — Uçtan uca günlük döngü: yardım ve ölçüm — D-129 ile eklendi — **AKTİF**
 
 ---
 
@@ -1216,8 +1228,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16E`  
-**Son tamamlanan:** **`16E — RMDX-v0 / D-127`**  
-**Aktif:** **`16F — Uçtan uca günlük döngü`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16F`  
+**Son tamamlanan:** **`16F — E2EX-v0 / D-128`**  
+**Aktif:** **`16G — Uçtan uca günlük döngü: yardım ve ölçüm`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **16F fresh PRE-STEP + kullanıcının yeni açık onayı → Uçtan uca günlük döngü → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **16G fresh PRE-STEP + kullanıcının yeni açık onayı → Yardım ve ölçüm → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

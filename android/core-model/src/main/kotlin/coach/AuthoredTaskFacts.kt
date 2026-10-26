@@ -73,6 +73,12 @@ data class AuthoredTask(
 
     companion object {
         val ID = Regex("^task(\\.[a-z0-9]+(_[a-z0-9]+)*){2,}$")
+
+        private val CANDIDATE = Regex("^authored:(task[a-z0-9_.]+)@v(\\d+):.+$")
+
+        /** The opposite of [candidateFor]'s id (16F): which authored task version a planned candidate is, or `null`. */
+        fun refOfCandidate(candidateId: String): VersionedRef? =
+            CANDIDATE.matchEntire(candidateId)?.let { VersionedRef(it.groupValues[1], it.groupValues[2].toInt()) }
     }
 }
 

@@ -252,12 +252,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **16C ✅ Progress / weakness gösterim kuralları — PWPX-v0 / D-124**
 - **16D ✅ Ayarlar — STGX-v0 / D-126**
 - **16E ✅ Bildirimler — RMDX-v0 / D-127**
-- **16F 🟡 Uçtan uca günlük döngü — AKTİF, HENÜZ YÜRÜTÜLMEDİ (D-125 ile eklendi)**
+- **16F ✅ Uçtan uca günlük döngü — E2EX-v0 / D-128**
+- **16G 🟡 Uçtan uca günlük döngü: yardım ve ölçüm — AKTİF, HENÜZ YÜRÜTÜLMEDİ (D-129 ile eklendi)**
 - 16–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 16F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 16G'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -794,4 +795,14 @@ Bulunanlar: her süreç başlangıcı bugünü planlıyordu — bir alarm ya da 
 Onay kullanıcının 2026-10-25 açık onayı. Kullanıcı kararları: tek günlük hatırlatma, günde en çok bir, içerik o anki durumdan, söylenecek gerçek bir şey yoksa hiç gönderilmez; varsayılan kapalı, izin yalnız açılırken; yaklaşık zamanlama, kesin alarm izni yok. Şema v10 `reminder_preference`; varsayılanlı port inceltmesi `reminderPreferences`; `BuildDailyPlan.preview`. Kotlin mutation 29/29, validator mutation 47/47; 103/103 QA PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/NOTIFICATIONS_SPEC.md` / D-127.
+
+## 12.50 16F Uçtan uca günlük döngü — E2EX-v0 / D-128 (ve D-129: 16G eklendi)
+
+Öğrenci artık Today'den bugünün planındaki bir görevi başlatıp sonuna kadar yapabiliyor: ders, sorular, cevap anahtarıyla değerlendirme, kanıt, değişiklik raporu ve gerekiyorsa başlanan işi koruyan yeni plan. Ana invariant: **bir planlı görev ancak her giriş koşulu depodan, kapıdan, açık ihtiyaçlardan ve yazılı görevden doğrulandığında çalışır ve doğrulanamayan adlandırılır, suçlanmaz; görev çalıştırıcı dersin kendi anlatımını gösterir, görevin görülmemiş sorularını sunar, donmuş her cevabı yardımı, kökeni ve planlı göreviyle tek eylem olarak kaydeder, dersin cevap anahtarıyla değerlendirtir ve kanıt hattına verir — öğrencinin ne olduğuna karar vermez; cevap doğru, kısmen, eşleşmedi ya da ölçülemedi ve cevabı görmek ayrı bir adımdır; sonda rapor yalnız kanonik durumun ne yaptığını söyler ve yalnız bir değişiklik, başlanan her görevi koruyan yeni bir plan ister.**
+
+Bulunanlar: kullanıcı döngüyü yeniden böldü ve geri kalanı yeni 16G'ye gitti (D-129); 60 Skill'in 24'ünün görevleri yalnız kod testine dayanıyor ve 16G'ye kadar başlatılamaz; 13E'nin ve 16D'nin yeniden planı hiçbir şeyin başlanmadığını varsayıyordu; depo hangi görevin başladığını söyleyemiyordu (şema v11 `attempt.planned_task_id`); yeni bir öğrencinin ilk koşusu değişiklik raporlamıyor, çünkü hiçbir motorun yazmadığı durum bir 'önce' değildir (13E).
+
+Onay kullanıcının 2026-10-25 açık onayı ("merge et ve 16F ye başla"). Kullanıcı kararları: yalnız çekirdek döngü, kalanı 16G'ye (D-129); gönderince yalnız doğru/yanlış, doğru cevabı görmek ayrı ve isteğe bağlı, H4 olarak kaydedilir. Şema v11 `attempt.planned_task_id`; varsayılanlı port inceltmeleri `startedPlannedTasks`, `authoredTask`. Kotlin mutation 29/29, validator mutation 44/44; 104/104 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/END_TO_END_LOOP_SPEC.md` / D-128.
 

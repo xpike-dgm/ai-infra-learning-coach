@@ -1,0 +1,258 @@
+model: E2EX-v0
+stage_step: 16F
+status: accepted_16f
+decision: D-128
+new_step_decision: D-129
+implements: [TRUX-v0, RNRX-v0, SESX-v0, DMAX-v0, OREX-v0, RPLX-v0, PCRX-v0, TDYX-v0, RMDX-v0, D-125]
+engines_read: [PLNX-v0, RPLX-v0, PRQX-v0, MSTX-v0, RVRX-v0, WLRX-v0, PCRX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: a_planned_task_run_from_today_to_its_end_entry_confirmed_lesson_shown_questions_served_answers_judged_by_their_key_evidence_written_and_the_plan_replanned_only_when_state_changed
+
+question: Bugünün planındaki bir görevi başlatıp sonuna kadar yapabilir miyim — girişi gerçekten doğrulanmış, dersi gösterilmiş, soruları sunulmuş, cevapları dersin anahtarıyla değerlendirilmiş, kanıtı yazılmış ve planı yalnız durum değiştiyse, başladığım işi koruyarak yenilenmiş biçimde?
+
+primary_invariant: >-
+  A planned task runs only when every entry condition is confirmed from the store, the gate, the open needs and the
+  authored task — nothing is assumed, and what cannot be confirmed is named, never blamed. The runner stays an execution
+  surface: it shows the course's own lesson, serves the task's unseen questions in their authored order, records each
+  frozen answer with its help, its provenance and the planned task it was made for as one learner action, has it judged
+  by the course's answer key and hands it to the evidence pipeline — it never decides what the answer proves about the
+  learner. The answer's result is right, partly, not right or not measured; seeing the answer is a separate step the
+  learner chooses. At the end the touched Skills are recomputed, the report says only what canonical state did, and only
+  a change asks the planner for a new plan, which keeps every task the learner started. The next task is always the
+  planner's current selection.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-25
+  scope: core_loop_only_entry_lesson_question_answer_answer_key_evaluation_evidence_recompute_report_replan_keeping_started_work_today_refreshed_reminder_rule_updated
+  new_step: 16G_added_like_d_099_no_renumbering_tutor_alternative_explanation_comprehension_wrong_answer_analysis_code_report_open_response_ai_fast_path_weekly_monthly_sessions_dispositions
+  feedback: right_or_wrong_after_submit_seeing_the_answer_is_a_separate_optional_step_recorded_as_h4
+
+assistant_defaults:
+  - the attempt names its planned task in a new nullable column (schema v11, attempt.planned_task_id); TRUX-v0 §6.5 hands off planned_task_ref and 11B left the column to the step that runs a planned task
+  - a started task is one with an attempt in today's plan version, or one an earlier version of today kept because it was started then; Today does not offer it again, and every replan (after evidence, after a capacity change) keeps it
+  - the required local capability means the app can run the activity now — an assess task needs the assessment session (16G); a task needs at least one item the app can judge by its answer key (code reports and rubric evaluation are 16G) that the learner has not seen
+  - items are offered with the CHECKPOINT intent (low-stakes checks of the task's own Objectives) and served unseen, in the task's authored order; the run never repeats a question and ends when none is left
+  - provenance is asked once, at orientation, with nothing preselected, and recorded on every answer of the run (TRUX-v0 §9)
+  - the lesson is the course's own explanation (CANONICAL) of the task's target Objectives; seeing it again during a question is H2 concept help, recorded with the answer
+  - seeing the answer before answering is H4 after the consequence is said (TRUX-v0 §8.3); the question becomes learning, no attempt and no evidence exist, and the solution exposure is recorded
+  - seeing the answer after answering is recorded as H4 after_submit and a solution exposure; the frozen answer's evidence stays as it was written (TRUX-v0 §6.4) — the item and its family are never again a fresh check
+  - the end-of-run processing runs once, when the learner finishes, when no question is left, or when they leave; with nothing answered nothing is recomputed or replanned
+  - the reminder's 16E rule "an attempt recorded today" became "every task in today's plan started" (the open loop 16E named); its silences are unchanged
+  - the entry's open needs come from BuildDailyPlan.openNeeds, the very composition build reads; build keeps its own lines because earlier gates read its body, and a test holds both to the same keys
+  - working Turkish microcopy; 17 owns the polish
+
+found:
+  - a_teaching_task_holds_one_lesson_question
+  - twenty_four_skills_tasks_are_code_tests_only
+  - the_replan_after_evidence_assumed_nothing_was_started
+  - a_stripped_block_comment_swallowed_the_restore_check
+  - a_parameter_named_onStart_hid_the_session_check
+  - a_new_learner_s_first_run_reports_no_change_because_no_engine_had_written_a_before
+
+declared_extensions:
+  - {what: "attempt.planned_task_id, a nullable column added to a truth table (schema v11)", extends: "DDM-v0's attempt (precedent: v3's assessment_session.blueprint, an added column)", why: "TRUX-v0 §6.5 planned_task_ref; RNRX-v0 §5.3 named the owner as the step that runs a planned task"}
+  - {what: "PersistencePort.startedPlannedTasks and ContentPort.authoredTask, defaulted", extends: "the port refinements since 11B (port count unchanged)", default_answer: "nothing started / no task readable — never hides unstarted work, never starts an unreadable task"}
+  - {what: "ServeDailyMicroItem.offer(serve = false) and usable", extends: "11D's offer: the same judgement, recording nothing when nothing is shown"}
+  - {what: "BuildDailyPlan.openNeeds", extends: "12C's need composition, read without planning"}
+  - {what: "ReportProgramChanges.report(keptPositions)", extends: "13E's replan, which assumed nothing was started"}
+  - {what: "PlannedTaskFact.started", extends: "11A/12D's kept: the same reason one plan version later"}
+  - {what: "AuthoredTask.refOfCandidate", extends: "15A's candidate id, its inverse"}
+  - {what: "TaskRunFacts in core-model; RunTask, OpenTask, StartedTasks in core-application; TaskRunPresentation in core-presentation", why: "the run's facts are read by core-application, worded by core-presentation, drawn by app-ui"}
+
+scope:
+  schema_changed: true
+  schema_version: 11
+  migration_added: true
+  migration_tested_against_populated_previous_version: true
+  ports_changed: refinements_only
+  boundaries_changed: false
+  planner_rule_changed: false
+  mastery_rule_changed: false
+  evidence_rule_changed: false
+  app_runs_tasks: true
+  assessment_sessions_wired: false
+  code_report_import: false
+  open_response_ai: false
+  tutor_panel: false
+  fast_path_entry: false
+  dispositions_from_the_app: false
+  screen_drawn: true
+
+schema_migration: {from: 10, to: 11, owner: 16F, tables: [attempt], truth_altered: false, column_added: planned_task_id, decision: D-128}
+
+run:
+  entry_conditions: [planned_task_still_selected, hard_prerequisites_satisfied, learning_need_still_open, content_version_compatible, required_local_capability_available]
+  capability_gaps: [assessment_interior_not_available, no_item_this_app_can_evaluate, no_unseen_item]
+  item_intent: checkpoint
+  items_served: unseen_in_authored_order
+  evaluation: answer_key_only
+  answer_results: [right, partly, not_right, not_measured]
+  blank_answer_writes_nothing: true
+  provenance_asked_at_orientation: true
+  provenance_preselected: false
+  lesson_help_level: H2
+  answer_before_submit: {level: H4, disclosure_first: true, attempt_written: false, evidence_written: false, solution_exposure: true}
+  answer_after_submit: {level: H4, timing: after_submit, frozen_evidence_changed: false, solution_exposure: true}
+  teach_task_independence: practice_only
+  next_task_source: recomputed_planner_selection
+  replan_only_on_state_change: true
+  replan_keeps_started_tasks: true
+  stop_costs_nothing: true
+
+reminder_rule_change:
+  from: an_attempt_recorded_today_silences_the_day
+  to: every_task_in_today_s_plan_started_silences_the_day_and_the_content_counts_only_unstarted_tasks
+  silences_changed: false
+  source: 16E open loop (D-127)
+
+narrowed_gates:
+  rule: an earlier check now accepts exactly the D-128 change and still fails on any other move; each narrowed line carries a "Narrowed at 16F (`E2EX-v0` / `D-128`)" comment
+  gates:
+    - {file: tools/validate_task_runner.py, checks: [E11B-10_start_revalidates_in_core]}
+    - {file: tools/validate_program_change_report.py, checks: [E13E-06_planner_own_replan]}
+    - {file: tools/validate_diagnostic_waiver.py, checks: [E13F-11_truth_untouched]}
+    - {file: tools/validate_wrong_answer_analysis.py, checks: [E14B-07_truth_untouched]}
+    - {file: tools/validate_settings.py, checks: [A16D-05_replan_only_on_a_new_budget, A16D-09_16f_in_the_plan]}
+    - {file: tools/validate_notifications.py, checks: [A16E-04_schema_v10, A16E-05_silence_order, A16E-05_work_today_silences, A16E-07_only_today_s_new_tasks]}
+    - {file: android/data-persistence/src/test/kotlin/coach/persistence/ReminderStorageTest.kt, checks: ["schema v10 adds the reminder to a populated v9 database"]}
+    - {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt, checks: ["the reminder is silence when off ...", "a day or a plan that cannot be read is silence ..."]}
+
+moved_to_16g:
+  - the tutor panel, the alternative-explanation menu and the comprehension check inside the run
+  - the wrong-answer analysis after a wrong answer
+  - code items: importing the PC runner's report, moving files between phone and computer, the code evaluation route
+  - open responses judged by a rubric through the evaluator, and the self-check
+  - the fast path's entry and its use cases; entry placement as a diagnostic source
+  - weekly, monthly and daily assessment sessions from Today; slots carrying the session id
+  - dispositions recorded from the app and the disposition reason in traces; assessment_opportunity
+  - resuming a started task from a checkpoint (11C's durable pause from the app)
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/TaskRunFactsTest.kt}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/TaskLinkStorageTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/TaskRunPresentationTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+open_loops:
+  the_rest_of_the_loop: {owner: 16G}
+  run_polish: {owner: 17}
+  runner_on_device: {owner: 19, note: "the run has not been seen on a device; its decisions and writes were run on the JVM through the same classes, on the real store"}
+  t6_and_device: {owner: 19}
+
+mutation_results_kotlin:
+  scope: one change per mutant to the entry conditions (started, gate, need, Skill, assess, answer key, unseen), serving, the blank skip, the planned-task link, the derived independence, the reveal's exposure, the end's processing and its kept work, the capacity replan's kept work, Today's started mark, the schema's column, the non-recording offer, the answer result, the copy, the reminder's count, the candidate reading, the lesson's form and the open needs; then the 16F JVM suites of core-model, core-presentation, data-persistence and app-wiring (ShippedCourseTest on the real store with all eight packages)
+  total: 29
+  detected: 29
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: the hardened 16C-16E runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a KDoc comment in TaskRunPresentation.kt
+  negative_control_result: survived_as_expected
+  not_mutated: "the reveal's timing (after_submit) is not visible through any port a test reads — EvidenceRow carries the levels, not the timing — so it is held by the validator (A16F-05) rather than counted as a detected mutant; app-wiring's run wiring needs Android and is held by the validator (A16F-05/06/07)"
+  earlier_runs: "before the run, tests were added where a mutant would have survived — the gate making a task wait, a Skill no longer published, and an end of run whose state change is certain (the first version replanned only conditionally). "
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: F01, mutant: started_task_entered_again, result: detected}
+    - {id: F02, mutant: gate_ignored, result: detected}
+    - {id: F03, mutant: need_assumed_open, result: detected}
+    - {id: F04, mutant: skill_assumed_published, result: detected}
+    - {id: F05, mutant: assess_task_runs, result: detected}
+    - {id: F06, mutant: any_item_judged, result: detected}
+    - {id: F07, mutant: seen_served_again, result: detected}
+    - {id: F08, mutant: question_repeated, result: detected}
+    - {id: F09, mutant: blank_answer_written, result: detected}
+    - {id: F10, mutant: task_link_dropped, result: detected}
+    - {id: F11, mutant: independence_decided_by_runner, result: detected}
+    - {id: F12, mutant: reveal_records_no_exposure, result: detected}
+    - {id: F13, mutant: nothing_answered_still_processed, result: detected}
+    - {id: F14, mutant: finish_drops_started_work, result: detected}
+    - {id: F15, mutant: report_replan_drops_started_work, result: detected}
+    - {id: F16, mutant: capacity_replan_drops_started_work, result: detected}
+    - {id: F17, mutant: today_offers_started_work, result: detected}
+    - {id: F18, mutant: today_never_marks_started, result: detected}
+    - {id: F19, mutant: kept_work_not_started, result: detected}
+    - {id: F20, mutant: link_column_dropped, result: detected}
+    - {id: F21, mutant: usable_records_exposure, result: detected}
+    - {id: F22, mutant: right_called_not_right, result: detected}
+    - {id: F23, mutant: gap_not_named, result: detected}
+    - {id: F24, mutant: provenance_option_dropped, result: detected}
+    - {id: F25, mutant: not_measured_called_wrong, result: detected}
+    - {id: F26, mutant: reminder_counts_started_work, result: detected}
+    - {id: F27, mutant: candidate_version_misread, result: detected}
+    - {id: F28, mutant: lesson_not_the_course_s_own, result: detected}
+    - {id: F29, mutant: open_needs_drift, result: detected}
+
+validator_mutation:
+  tool: tools/validate_end_to_end_loop.py
+  total: 44
+  detected: 44
+  scope: one change per mutant to an input the validator reads — the contract, the schema, every entry condition, serving, the skip, the link, the judge, the independence, both reveals, the end, the entry invariant, the words, provenance, the screen, the wiring, a test name, the plan, DECISIONS, the spec, the research and a narrowed gate's marker
+  detection: a FAIL line not in the baseline; a run that prints no result line is a crash and never a detection
+  crash_is_detection: false
+  baseline: the only check allowed to fail at baseline is A16F-12_validator_mutation, which reads this very result
+  negative_control: a YAML comment in the contract naming forbidden fragments (banana, survived, streak, 100%)
+  negative_control_result: survived_as_expected
+  earlier_runs: "none — the first run detected every mutant"
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: V01, mutant: contract_model, result: detected}
+    - {id: V02, mutant: contract_claims_sessions, result: detected}
+    - {id: V03, mutant: contract_preselects_provenance, result: detected}
+    - {id: V04, mutant: contract_device_claimed, result: detected}
+    - {id: V05, mutant: contract_mutant_survived, result: detected}
+    - {id: V06, mutant: contract_run_failed, result: detected}
+    - {id: V07, mutant: contract_no_16g, result: detected}
+    - {id: V08, mutant: migration_unowned, result: detected}
+    - {id: V09, mutant: schema_not_bumped, result: detected}
+    - {id: V10, mutant: schema_rewrites_attempt, result: detected}
+    - {id: V11, mutant: started_entered_again, result: detected}
+    - {id: V12, mutant: gate_not_asked, result: detected}
+    - {id: V13, mutant: need_assumed, result: detected}
+    - {id: V14, mutant: assess_runs, result: detected}
+    - {id: V15, mutant: any_item_judged, result: detected}
+    - {id: V16, mutant: entry_writes, result: detected}
+    - {id: V17, mutant: question_repeated, result: detected}
+    - {id: V18, mutant: blank_written, result: detected}
+    - {id: V19, mutant: link_dropped, result: detected}
+    - {id: V20, mutant: ai_judges, result: detected}
+    - {id: V21, mutant: independence_decided, result: detected}
+    - {id: V22, mutant: reveal_rewrites_evidence, result: detected}
+    - {id: V23, mutant: before_writes_attempt, result: detected}
+    - {id: V24, mutant: finish_drops_started, result: detected}
+    - {id: V25, mutant: nothing_answered_processed, result: detected}
+    - {id: V26, mutant: runs_on_partial_entry, result: detected}
+    - {id: V27, mutant: verdict_word, result: detected}
+    - {id: V28, mutant: not_measured_wrong, result: detected}
+    - {id: V29, mutant: provenance_option_dropped, result: detected}
+    - {id: V30, mutant: provenance_preselected, result: detected}
+    - {id: V31, mutant: screen_decides, result: detected}
+    - {id: V32, mutant: interior_before_exit, result: detected}
+    - {id: V33, mutant: reveal_automatic, result: detected}
+    - {id: V34, mutant: disclosure_skipped, result: detected}
+    - {id: V35, mutant: exit_skips_processing, result: detected}
+    - {id: V36, mutant: processed_twice, result: detected}
+    - {id: V37, mutant: report_words_invented, result: detected}
+    - {id: V38, mutant: test_renamed, result: detected}
+    - {id: V39, mutant: 16g_dropped_from_plan, result: detected}
+    - {id: V40, mutant: decision_missing, result: detected}
+    - {id: V41, mutant: spec_not_accepted, result: detected}
+    - {id: V42, mutant: spec_wrong_next, result: detected}
+    - {id: V43, mutant: research_source_dropped, result: detected}
+    - {id: V44, mutant: narrowed_gate_unmarked, result: detected}
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew test (every module's JVM tests, the AI adapter's included)", tier: T1-T3, result: PASS}
+  - {id: RUN-02, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-03, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-04, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-05, command: "read both built APKs: the eight curriculum packages' SHA-256 equal the source assets; the manifests keep 16E's permissions and receivers, and no INTERNET without the AI adapter", tier: T5, result: PASS}
+  - {id: RUN-06, command: "ShippedCourseTest's 16F section and TaskLinkStorageTest: the real SQLite store with all eight packages; a new learner's first task enters with every condition confirmed, a run serves, records with its planned task, judges by its key and writes evidence, a started task is not offered again, every replan keeps started work, the end reports and replans only on change; schema v11 on a populated v10 database", tier: T2, result: PASS}
+jvm_tests: 1237
+validator_sweep: {glob: "tools/validate_*.py", total: 69, run: 68, passed: 68, not_run: [validate_content_qa.py], note: "the machine ran out of disk space twice while validate_content_qa.py rebuilt the eight packages (it needs about 10 GB of temporary space and 7-11 GB was free), so it was stopped rather than risk filling the disk; its inputs - the eight packages, tools/content_qa.py and tools/build_curriculum_package.py - are byte-identical to main (an empty diff), and no 16F file is among them; A16D-09 failed once on the ticked 16F line, was narrowed and passed when run again; the frozen reports the earlier validators rewrite were restored from git"}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  run_seen_on_device: false
+  sqlite_read_on_jvm_run: true

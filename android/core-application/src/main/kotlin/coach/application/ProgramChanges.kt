@@ -101,7 +101,11 @@ class ReportProgramChanges(
 ) {
     data class Reported(val report: ProgramChangeReport, val plan: BuildDailyPlan.Built?)
 
-    fun report(before: ProgramSnapshot, touched: List<VersionedRef>, capacity: DailyCapacityInput): Reported {
+    /**
+     * [keptPositions] are today's tasks the learner started (16F, `StartedTasks`): a replan keeps them and re-resolves only
+     * the rest (`TRUX-v0` §10.1, 12D).
+     */
+    fun report(before: ProgramSnapshot, touched: List<VersionedRef>, capacity: DailyCapacityInput, keptPositions: Set<Int> = emptySet()): Reported {
         val recompute = RecomputeSkillState(persistence, clock)
         touched.distinct().forEach { recompute.recompute(it) }
         val capture = CaptureProgramSnapshot(persistence, clock)
@@ -109,7 +113,7 @@ class ReportProgramChanges(
         val states = ProgramChangeEngine.report(before, changed).stateChanges
         val trigger = triggerFor(states)
         val built = trigger?.let {
-            BuildDailyPlan(persistence, content, clock).replan(BuildDailyPlan.ReplanRequest(trigger = it, capacity = capacity))
+            BuildDailyPlan(persistence, content, clock).replan(BuildDailyPlan.ReplanRequest(trigger = it, capacity = capacity, keptPositions = keptPositions))
         }
         return Reported(ProgramChangeEngine.report(before, capture.capture()), built)
     }

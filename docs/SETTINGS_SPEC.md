@@ -124,3 +124,7 @@ Assistant defaults:
 **Not run: T6.** The screens and the system file pickers have not been seen on a device.
 
 **Next step:** **16E — Bildirimler**. It needs a fresh PRE and the user's new explicit approval.
+
+---
+
+**16F note (2026-10-26, `D-128`):** a capacity change's replan now keeps the tasks the learner started (`StartedTasks.today`); §3's "nothing is reported as already started" held only while nothing could be started from Today. Details: `docs/END_TO_END_LOOP_SPEC.md`.

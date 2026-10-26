@@ -5,6 +5,7 @@ import coach.engines.ReplanEngine
 import coach.engines.WeaknessEngine
 import coach.model.DailyCapacityInput
 import coach.model.GenerationKind
+import coach.model.LearningNeed
 import coach.model.PlanTrace
 import coach.model.PlanTraceCodec
 import coach.model.PrerequisiteCandidate
@@ -81,6 +82,22 @@ class BuildDailyPlan(
      */
     fun preview(capacity: DailyCapacityInput): PlanTrace? =
         (BuildDailyPlan(persistence, content, clock, evaluatorAvailable, writes = false).build(capacity) as? Built.Previewed)?.trace
+
+    /**
+     * The needs open right now, each from its own engine's axis (16F): the very composition [build] reads before it
+     * plans, so a task's entry can confirm its need is still open (`TRUX-v0` §6.1). It writes no truth. [build] keeps its
+     * own copy of these lines because earlier gates read its body as written; a test holds the two to the same keys.
+     */
+    fun openNeeds(): List<LearningNeed> {
+        RefreshDueRetention(persistence, clock).refresh()
+        val states = PlanningStates.read(persistence, persistence.publishedSkills())
+        val pauses = persistence.resumeCheckpointRows()
+            .mapNotNull { row -> row.record.payload["context"]?.let(ResumeContextCodec::decode) }
+        val diagnostic = DiagnosticPlanning.read(persistence, states)
+        return ReplanEngine.withPausedWork(
+            PlannerEngine.needsFromSkillStates(states) + WeaknessEngine.needs(states) + diagnostic?.needs.orEmpty() +
+                TransferPlanning.needs(persistence, content, states), pauses).needs
+    }
 
     fun build(capacity: DailyCapacityInput, replan: ReplanRequest? = null): Built {
         // Read first, like every projection: the trace can then never claim to have seen more truth

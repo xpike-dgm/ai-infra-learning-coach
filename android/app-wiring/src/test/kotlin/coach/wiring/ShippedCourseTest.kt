@@ -2,6 +2,16 @@ package coach.wiring
 
 import coach.application.BuildDailyPlan
 import coach.application.ReminderCheck
+import coach.application.OpenTask
+import coach.application.RunTask
+import coach.application.StartedTasks
+import coach.application.CaptureProgramSnapshot
+import coach.model.AnswerResult
+import coach.model.AuthoredTask
+import coach.model.CapabilityGap
+import coach.model.ExposureFact
+import coach.model.TaskServing
+import coach.ports.ContentPort
 import coach.application.ReminderSettings
 import coach.model.ReminderDecision
 import coach.model.ReminderSilence
@@ -606,9 +616,13 @@ class ShippedCourseTest {
         assertEquals(ReminderDecision.Silent(ReminderSilence.DELIVERED_ON_ANOTHER_DAY), remind(clock, scheduled = "2026-10-01"))
         assertEquals(ReminderDecision.Silent(ReminderSilence.ALREADY_SHOWN_TODAY), remind(clock, lastShown = "2026-10-02"))
         assertIs<ReminderDecision.Show>(remind(clock, lastShown = "2026-10-01"))
-        // Work recorded today: the learner has been here, and a reminder could only repeat what they know.
-        val lesson = withContentQa.lessonItemsFor(VersionedRef("objective.computing.program_execution_model.explain_pipeline", 1))
-        SubmitAttempt(store, clock).submit(AttemptSubmission(lesson.first(), "data:,x", ProvenanceOrigin.USER_AUTHORED))
+        // Narrowed at 16F (`E2EX-v0` / `D-128`): attempts now name their planned task, so the reminder counts only tasks
+        // not started yet, and is silent once every task in today's plan is started.
+        val built = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, clock).ensure())
+        val tasks = store.latestPlan()!!.plannedTasks
+        startTask(tasks.first().plannedTaskId)
+        assertEquals(built.trace.selected.size - 1, assertIs<ReminderDecision.Show>(remind(clock)).content.taskCount)
+        tasks.drop(1).forEach { startTask(it.plannedTaskId) }
         assertEquals(ReminderDecision.Silent(ReminderSilence.WORK_RECORDED_TODAY), remind(clock))
         // Turning it off is a row too, and the newest row is the setting.
         ReminderSettings(store, clock).set(enabled = false, minuteOfDay = 19 * 60)
@@ -636,6 +650,8 @@ class ShippedCourseTest {
     /** The real store, with one read broken: what the reminder must do when it cannot know. */
     private class CannotCount(store: SqlitePersistence) : PersistencePort by store {
         override fun countTruth(kind: String, studyDay: String): Int = error("this day cannot be read")
+        // Narrowed at 16F (`E2EX-v0` / `D-128`): the reminder reads which of today's tasks were started, not a count.
+        override fun startedPlannedTasks(plannedTaskIds: Collection<Long>): Set<Long> = error("this day cannot be read")
     }
 
     private class CannotReadPlan(private val store: SqlitePersistence) : PersistencePort by store {
@@ -646,9 +662,9 @@ class ShippedCourseTest {
     fun `a day or a plan that cannot be read is silence, never a zero or a guess`() {
         IngestCurriculum(store, withContentQa, clock).ingestAll()
         ReminderSettings(store, clock).set(enabled = true, minuteOfDay = 19 * 60)
+        PlanToday(store, withContentQa, clock).ensure()
         assertEquals(ReminderDecision.Silent(ReminderSilence.DAY_UNREADABLE),
             ReminderCheck(CannotCount(store), withContentQa, clock).decide("2026-10-02", null, true))
-        PlanToday(store, withContentQa, clock).ensure()
         assertEquals(ReminderDecision.Silent(ReminderSilence.PLAN_UNREADABLE),
             ReminderCheck(CannotReadPlan(store), withContentQa, clock).decide("2026-10-02", null, true))
     }
@@ -678,5 +694,187 @@ class ShippedCourseTest {
     fun `with nothing published the reminder is silent`() {
         ReminderSettings(store, clock).set(enabled = true, minuteOfDay = 19 * 60)
         assertEquals(ReminderDecision.Silent(ReminderSilence.NO_CURRICULUM), remind(clock))
+    }
+
+    // ---------------------------------------------------------------- 16F — Uçtan uca günlük döngü (E2EX-v0)
+
+    /** An attempt made for a planned task, as the runner records it: the learner started that task. */
+    private fun startTask(plannedTaskId: Long) {
+        val lesson = withContentQa.lessonItemsFor(VersionedRef("objective.computing.program_execution_model.explain_pipeline", 1))
+        SubmitAttempt(store, clock).submit(AttemptSubmission(lesson.first(), "data:,x", ProvenanceOrigin.USER_AUTHORED, plannedTaskId = plannedTaskId))
+    }
+
+    private fun firstTaskId(): Long = TodayFactsQuery(store, clock).load().plan!!.tasks.first().plannedTaskId
+
+    @Test
+    fun `a new learner's first task enters with every condition confirmed, from the store and nothing assumed`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        PlanToday(store, withContentQa, clock).ensure()
+        val watermark = store.truthWatermark()
+        val facts = OpenTask(store, withContentQa, clock).open(firstTaskId())
+        assertTrue(facts.startable, facts.toString())
+        val run = assertNotNull(facts.run)
+        assertTrue(run.items.isNotEmpty() && run.items.all { withContentQa.answerKeyFor(it) != null }, "only questions an answer key can judge")
+        assertTrue(run.lesson.isNotEmpty() && run.lesson.all { it.objective in run.targetObjectives }, "the course's own lesson for its Objectives")
+        assertEquals(watermark, store.truthWatermark(), "entry writes no truth")
+        // A task that is not in today's plan cannot be entered.
+        assertEquals(false, OpenTask(store, withContentQa, clock).open(999_999).stillSelected)
+    }
+
+    @Test
+    fun `a run serves unseen questions, records each answer with its planned task, judges it by its key and writes its evidence`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        PlanToday(store, withContentQa, clock).ensure()
+        val run = assertNotNull(OpenTask(store, withContentQa, clock).open(firstTaskId()).run)
+        val runner = RunTask(store, withContentQa, clock)
+        val item = assertNotNull(runner.serve(run, emptySet()))
+        assertTrue(store.exposuresFor(listOf(item.ref), emptyList()).any { it.kind == ExposureFact.ITEM_VERSION_SEEN }, "shown is seen")
+        // A blank answer is a skip: nothing is written.
+        val before = store.truthWatermark()
+        assertNull(runner.answer(run, item, "  ", ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        assertEquals(before, store.truthWatermark())
+
+        val right = assertNotNull(runner.answer(run, item, withContentQa.answerKeyFor(item.ref)!!.answers.first(), ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        assertEquals(AnswerResult.RIGHT, right.result)
+        assertEquals(setOf(run.plannedTaskId), store.startedPlannedTasks(listOf(run.plannedTaskId)))
+        assertTrue(right.evidenceIds.isNotEmpty())
+        fun row(id: Long) = item.targetObjectives.flatMap { store.evidenceFor(it) }.single { it.id == id }
+        // A teaching task's answers are practice by design (`2D` §6), and never a mastery claim.
+        assertEquals(if (run.purpose == TaskPurpose.TEACH) "practice_only" else "independent", row(right.evidenceIds.first()).independenceClass.id)
+        assertEquals("positive", row(right.evidenceIds.first()).outcome.id)
+
+        // This lesson holds one question; the run ends there rather than repeating it.
+        assertNull(runner.serve(run, setOf(item.ref)).takeIf { run.items.size == 1 })
+        val second = assertNotNull(OpenTask(store, withContentQa, clock).open(TodayFactsQuery(store, clock).load().plan!!.tasks[1].plannedTaskId).run)
+        val next = assertNotNull(runner.serve(second, emptySet()))
+        val wrong = assertNotNull(runner.answer(second, next, "zzz-not-an-answer", ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        assertEquals(AnswerResult.NOT_RIGHT, wrong.result)
+        // Seeing the answer is asked for after the answer froze: it is recorded as help after submission and as a solution
+        // exposure, and the frozen answer keeps what it showed.
+        val shown = runner.reveal(next, wrong.attemptId)
+        assertEquals(withContentQa.answerKeyFor(next.ref)!!.answers, shown)
+        val wrongRow = next.targetObjectives.flatMap { store.evidenceFor(it) }.single { it.id == wrong.evidenceIds.first() }
+        assertEquals(listOf(coach.model.AssistanceLevel.H4), wrongRow.assistanceLevels)
+        assertTrue(store.exposuresFor(listOf(next.ref), listOf(next.variantFamilyId)).any { it.kind == ExposureFact.SOLUTION_EXPOSURE })
+        // The frozen answer keeps what it showed: the evidence written at submission is unchanged by the reveal.
+        assertEquals("negative", wrongRow.outcome.id)
+    }
+
+    @Test
+    fun `a started task is not offered again, entering it again is refused, and the reminder no longer counts it`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        PlanToday(store, withContentQa, clock).ensure()
+        val first = firstTaskId()
+        val run = assertNotNull(OpenTask(store, withContentQa, clock).open(first).run)
+        val runner = RunTask(store, withContentQa, clock)
+        val item = assertNotNull(runner.serve(run, emptySet()))
+        runner.answer(run, item, "B", ProvenanceOrigin.USER_AUTHORED, emptyList())
+        val today = TodayFactsQuery(store, clock).load()
+        assertTrue(today.plan!!.tasks.single { it.plannedTaskId == first }.started)
+        val view = TodayPresentation.of(todayInput(today, AppHealth.of(StoreStatus.Ready, EvaluatorAvailability.AVAILABLE)))
+        assertTrue(view.primaryTask?.plannedTaskRef != first, "a started task is not today's next action")
+        assertEquals(false, OpenTask(store, withContentQa, clock).open(first).stillSelected)
+        assertEquals(setOf(run.position), StartedTasks.today(store, clock))
+    }
+
+    @Test
+    fun `a replan keeps every task the learner started and re-resolves only the rest`() {
+        val day = DayClock("2026-10-25")
+        IngestCurriculum(store, withContentQa, day).ingestAll()
+        PlanToday(store, withContentQa, day).ensure()
+        val first = TodayFactsQuery(store, day).load().plan!!.tasks.first()
+        SubmitAttempt(store, day).submit(AttemptSubmission(VersionedRef("item.computing.program_execution_model.explain_pipeline.f01", 1), "data:,x",
+            ProvenanceOrigin.USER_AUTHORED, plannedTaskId = first.plannedTaskId))
+        CapacitySettings(store, day).setToday(TodayCapacityChoice.Profile(CapacityProfile.SHORT))
+        val replanned = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, day).afterCapacityChange())
+        assertEquals(listOf(first.position), replanned.trace.replan!!.preservedPositions)
+        val kept = replanned.trace.selected.single { it.preserved }
+        assertEquals(first.targetSkillRefs.single(), kept.primarySkill)
+        // The kept task is still started in the new version, and Today still does not offer it.
+        assertTrue(TodayFactsQuery(store, day).load().plan!!.tasks.single { it.position == kept.position }.kept)
+        assertEquals(setOf(kept.position), StartedTasks.today(store, day))
+    }
+
+    @Test
+    fun `the end of a run reports what canonical state did, and a run with nothing answered changes nothing`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        PlanToday(store, withContentQa, clock).ensure()
+        val execution = skill("skill.computing.program_execution_model")
+        val taskId = TodayFactsQuery(store, clock).load().plan!!.tasks.first { execution in it.targetSkillRefs }.plannedTaskId
+        val run = assertNotNull(OpenTask(store, withContentQa, clock).open(taskId).run)
+        val runner = RunTask(store, withContentQa, clock)
+        // A state no engine wrote is not a "before" (13E): the Skill's starting state is written first, as any earlier run would.
+        RecomputeSkillState(store, clock).recompute(execution)
+        val before = CaptureProgramSnapshot(store, clock).capture()
+        assertNull(runner.finish(run, before, emptyList(), emptyList()), "nothing answered: nothing recomputed, nothing replanned")
+        val item = assertNotNull(runner.serve(run, emptySet()))
+        val answered = assertNotNull(runner.answer(run, item, withContentQa.answerKeyFor(item.ref)!!.answers.first(), ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        // Two clean independent answers on the Skill: canonical state really changes (`GRE-v0` §8), so the end replans.
+        recordExplanation(1)
+        recordExplanation(2)
+        val plans = store.planVersions().size
+        val reported = assertNotNull(runner.finish(run, before, listOf(answered), listOf(item)))
+        assertTrue(reported.report.stateChanges.any { it.kind.id == "capability_confirmed" && it.skill == execution }, reported.report.stateChanges.toString())
+        assertEquals(plans + 1, store.planVersions().size)
+        // The new plan keeps the task the learner started, and re-resolves only the rest.
+        val replanned = assertIs<BuildDailyPlan.Built.Planned>(reported.plan)
+        assertEquals(listOf(run.position), replanned.trace.replan!!.preservedPositions)
+    }
+
+    /** The shipped content with one reading changed: what entry must say when the app cannot run a task. */
+    private class Narrowed(val base: ContentPort, val noKeys: Boolean = false, val asAssessment: Boolean = false) : ContentPort by base {
+        override fun answerKeyFor(item: VersionedRef) = if (noKeys) null else base.answerKeyFor(item)
+        override fun authoredTask(ref: VersionedRef): AuthoredTask? = base.authoredTask(ref)?.let { task ->
+            if (!asAssessment) task else task.copy(purpose = TaskPurpose.ASSESS, serves = TaskServing.servedBy(TaskPurpose.ASSESS).take(1).toSet())
+        }
+    }
+
+    /** The real store, with every question already seen. */
+    private class AllSeen(val base: SqlitePersistence) : PersistencePort by base {
+        override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>) =
+            resources.map { ExposureFact(it, null, ExposureFact.ITEM_VERSION_SEEN) }
+    }
+
+    /** The real store, whose gate makes every target wait on what pointer formation waits on. */
+    private class Waiting(val base: SqlitePersistence) : PersistencePort by base {
+        override fun prerequisiteEdgesInto(target: VersionedRef) =
+            base.prerequisiteEdgesInto(VersionedRef("skill.c.pointer_formation", 1)).map { it.copy(target = target) }
+    }
+
+    /** The real store, which no longer knows the task's Skill. */
+    private class SkillGone(val base: SqlitePersistence) : PersistencePort by base {
+        override fun skill(ref: VersionedRef) = null
+    }
+
+    /** The real store, with no Skill published: no need can be open. */
+    private class NoNeeds(val base: SqlitePersistence) : PersistencePort by base {
+        override fun publishedSkills() = emptyList<coach.model.SkillRow>()
+    }
+
+    @Test
+    fun `entry names what it could not confirm, and a task the app cannot run says why without blaming anyone`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        PlanToday(store, withContentQa, clock).ensure()
+        val id = firstTaskId()
+        val noKeys = OpenTask(store, Narrowed(withContentQa, noKeys = true), clock).open(id)
+        assertEquals(CapabilityGap.NO_ITEM_THIS_APP_CAN_EVALUATE, noKeys.capabilityGap)
+        assertNull(noKeys.run)
+        assertEquals(CapabilityGap.ASSESSMENT_INTERIOR_NOT_AVAILABLE, OpenTask(store, Narrowed(withContentQa, asAssessment = true), clock).open(id).capabilityGap)
+        assertEquals(CapabilityGap.NO_UNSEEN_ITEM, OpenTask(AllSeen(store), withContentQa, clock).open(id).capabilityGap)
+        val noNeeds = OpenTask(NoNeeds(store), withContentQa, clock).open(id)
+        assertEquals(false, noNeeds.needStillOpen)
+        assertNull(noNeeds.run)
+        assertTrue(noNeeds.stillSelected && noNeeds.contentCompatible)
+        val waiting = OpenTask(Waiting(store), withContentQa, clock).open(id)
+        assertEquals(false, waiting.prerequisitesSatisfied)
+        assertNull(waiting.run)
+        assertEquals(false, OpenTask(SkillGone(store), withContentQa, clock).open(id).contentCompatible)
+    }
+
+    @Test
+    fun `the open needs entry reads are the very needs today's plan was built from`() {
+        IngestCurriculum(store, withContentQa, clock).ingestAll()
+        val built = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, clock).ensure())
+        assertEquals(built.trace.needs.map { it.needKey }.toSet(), BuildDailyPlan(store, withContentQa, clock).openNeeds().map { it.needKey }.toSet())
     }
 }

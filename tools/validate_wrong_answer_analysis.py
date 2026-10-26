@@ -151,7 +151,10 @@ row_params = re.findall(r"val (\w+):", body(facts, "data class MisconceptionRow(
 check("E14B-03_catalog_row", row_params == ["ref", "objective", "name", "openQuestion"], str(row_params))
 check("E14B-03_id_pattern", 'Regex("^misconception(\\\\.[a-z0-9]+(_[a-z0-9]+)*){2,}$")' in facts, "catalog id pattern")
 check("E14B-03_question", 'openQuestion.trimEnd().endsWith("?")' in facts and "CHECK (trim(open_question) LIKE '%?')" in schema, "a label is stated")
-v8 = schema[schema.find("val v8: List<String>"):schema.find("const val MISCONCEPTION_SOURCES")] if "val v8: List<String>" in schema else ""
+# Narrowed at 16F (`E2EX-v0` / `D-128`): v8 is read up to the next migration; the later v11 (16F) adds a column to
+# `attempt` under its own contract and is not v8's.
+_v8_end = min([i for i in (schema.find("val v9: List<String>"), schema.find("const val MISCONCEPTION_SOURCES")) if i > 0] or [len(schema)])
+v8 = schema[schema.find("val v8: List<String>"):_v8_end] if "val v8: List<String>" in schema else ""
 check("E14B-03_table", "CREATE TABLE IF NOT EXISTS misconception (" in v8 and
       "FOREIGN KEY (objective_logical_id, objective_version) REFERENCES objective (logical_id, version)" in v8, "catalog table")
 check("E14B-03_immutable", 'val curriculumExtensionTables = listOf("misconception")' in schema and "curriculumExtensionTables.flatMap" in v8

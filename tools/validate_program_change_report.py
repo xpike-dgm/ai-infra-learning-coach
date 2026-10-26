@@ -215,7 +215,10 @@ check("E13E-06_watermark_first", 0 <= capture.find("persistence.truthWatermark()
 check("E13E-06_unwritten_axis", "axes[column]?.ifEmpty { null } ?: ResolvePrerequisites.NOT_YET_EVALUATED" in capture, "an empty axis reads as written")
 report_app = body(app, "fun report(before: ProgramSnapshot")
 check("E13E-06_replan_only_on_change", "val built = trigger?.let {" in report_app and "kinds.isEmpty() -> null" in app, "a replan with nothing changed")
-check("E13E-06_planner_own_replan", "BuildDailyPlan(persistence, content, clock).replan(BuildDailyPlan.ReplanRequest(trigger = it, capacity = capacity))" in report_app,
+# Narrowed at 16F (`E2EX-v0` / `D-128`): the replan now keeps the tasks the learner started (`keptPositions`, read by
+# the caller from the store); it is still the planner's own replan with the event the change names.
+check("E13E-06_planner_own_replan", "BuildDailyPlan(persistence, content, clock).replan(BuildDailyPlan.ReplanRequest(trigger = it, capacity = capacity))" in report_app
+      or "BuildDailyPlan(persistence, content, clock).replan(BuildDailyPlan.ReplanRequest(trigger = it, capacity = capacity, keptPositions = keptPositions))" in report_app,
       "the plan is changed outside the planner")
 check("E13E-06_report_after_plan", "return Reported(ProgramChangeEngine.report(before, capture.capture()), built)" in report_app, "the report is read before the new plan")
 triggers = re.findall(r"-> ReplanTrigger\.([A-Z_]+)", body(app, "fun triggerFor("))
