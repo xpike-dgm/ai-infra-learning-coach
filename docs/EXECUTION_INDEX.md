@@ -218,12 +218,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **16E — Bildirimler** — `RMDX-v0 / D-127`
 - [x] **16F — Uçtan uca günlük döngü** — `D-125` ile eklendi (yeniden numaralama yok) — `E2EX-v0 / D-128`
 - [x] **16G — Uçtan uca günlük döngü: yardım ve ölçüm** — `D-129` ile eklendi (yeniden numaralama yok) — `HLPX-v0 / D-130`
-- [ ] **16H — Uçtan uca günlük döngü: ölçme oturumları** — `D-131` ile eklendi (yeniden numaralama yok) **AKTİF**
+- [x] **16H — Uçtan uca günlük döngü: ölçme oturumları** — `D-131` ile eklendi (yeniden numaralama yok) — `ASRX-v0 / D-132`
 
 ---
 
 # AŞAMA 17 — UI/UX Polish ve Erişilebilirlik
-- [ ] **17A — Görsel polish**
+- [ ] **17A — Görsel polish** **AKTİF**
 - [ ] **17B — Motion**
 - [ ] **17C — Kullanılabilirlik**
 - [ ] **17D — Accessibility**
@@ -266,9 +266,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16G`  
-**Son tamamlanan:** **`16G — HLPX-v0 / D-130`**  
-**Aktif:** **`16H — Uçtan uca günlük döngü: ölçme oturumları`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`  
+**Son tamamlanan:** **`16H — ASRX-v0 / D-132`**  
+**Aktif:** **`17A — Görsel polish`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -352,4 +352,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 `D-131`: `16H — Uçtan uca günlük döngü: ölçme oturumları` AŞAMA 16'nın sonuna eklendi; girdileri 16G kontratının `moved_to_16h` listesi.
 
-16H başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+16H `ASRX-v0` ile Today'den ölçme kodda: bugün için planlanan bir ölçme — günlük ölçme görevi, haftanın ya da ayın bir slotu, hızlı yolun bir kontrolü — onu neyin kurduğundan bağımsız olarak tek ölçme iç yüzünde koşar ve türü ek ağırlık değildir; giriş tahmin etmez ve hiçbir şey yazmaz; her deneme oturumunu taşır, günlük ölçmenin oturumu öğrenci başlarken açılır ve bir slotun cevabı o slotun kanıtıdır; boş bırakılan soru yanlış değildir, cevaplanmış bir soru bildirilebilir ve kanıtı eklenen bir dispozisyonla itirazlı tutulur, satır düzenlenmez; sonuçta not, yüzde ya da geçti/kaldı yoktur; hızlı yolu yalnız öğrenci bir konudan açar, bugünün planına hemen girer ve başlanan işi korur, bırakmak hiçbir şey borçlandırmaz. Bulunanlar: haftalık/aylık blueprint 16D'den beri açılışta kuruluyordu ve slotlar plana giriyor ama açılamıyordu; yazılı bir görev ve bir slot aynı ihtiyaca hizmet edince planner birini seçiyor; hızlı yol isteği için bir yeniden plan olayı yoktu (`diagnostic_requested`, D-132); Learn sekmesinin ekranı yok; giriş yerleştirme akışı ve onun tanısal kaynağı yok (18A); düzeltmenin nedeni uygulanıyor ama satırda taşınmıyordu. T6 çalıştırılmadı.
+
+**AŞAMA 16 TAMAMLANDI** — SKAX-v0 → LHRX-v0 → PWPX-v0 → STGX-v0 → RMDX-v0 → E2EX-v0 → HLPX-v0 → ASRX-v0.
+
+17A başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

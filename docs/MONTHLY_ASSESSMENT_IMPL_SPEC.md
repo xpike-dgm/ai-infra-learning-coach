@@ -247,3 +247,7 @@ The five 12x `schema_version_unchanged` gates needed no change: 13A already made
 If accepted, 13B becomes `MCAX-v0 / D-100`.
 
 Next numbered step: **13C — Spaced repetition**. It must receive a fresh PRE-STEP and explicit user approval before execution. 13C owns retention scheduling and its needs; the monthly `delayed_retention_sampling` and critical revalidation roles already read `retention_review_due` as the planner opens it. Open loops carried: transfer and professional-evidence producers (15), the diagnostic waiver and S06 (13F), retroactive contamination (13D), calling composition from the app (16D) and the T6 device run.
+
+---
+
+**16H note (2026-10-26, `D-132`):** a planned monthly slot opens and records exactly like a weekly one (`MeasurementKind.MONTHLY_SLOT`); the monthly label adds no weight. Details: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.

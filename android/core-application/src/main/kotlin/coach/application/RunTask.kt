@@ -11,7 +11,17 @@ import coach.model.AssistanceScope
 import coach.model.AssistanceSource
 import coach.model.AssistanceTiming
 import coach.model.AttemptSubmission
+import coach.model.AssessmentBlueprint
+import coach.model.AssessmentScope
 import coach.model.AuthoredTask
+import coach.model.BlueprintCodecs
+import coach.model.BlueprintEvidenceFact
+import coach.model.BlueprintScopes
+import coach.model.BlueprintSlotOutcome
+import coach.model.EvidenceDispositions
+import coach.model.Measurement
+import coach.model.MeasurementKind
+import coach.engines.BlueprintComposer
 import coach.model.CapabilityGap
 import coach.model.CodeEvaluation
 import coach.model.CodeEvaluationRoute
@@ -102,11 +112,15 @@ class OpenTask(
         // A started task is not offered again: its run is the learner's history, and continuing is resume's path (11C).
         if (row.position in StartedTasks.positions(persistence, stored, read.trace)) return notSelected
 
+        val needOpen = BuildDailyPlan(persistence, content, clock, evaluatorAvailable).openNeeds().any { it.needKey == entry.needKey }
+        // 16H: a planned blueprint slot or diagnostic check is a measurement, not an authored task (`ASUX-v0` §4).
+        BlueprintComposer.scopeOfCandidate(entry.candidateId)?.let { scope -> return openSlot(stored, row.plannedTaskId, entry, scope, needOpen) }
+        if (entry.candidateId.startsWith(DIAGNOSTIC_PREFIX)) return openDiagnostic(stored, row.plannedTaskId, entry, needOpen)
+
         val ref = AuthoredTask.refOfCandidate(entry.candidateId)
         val task = ref?.let(content::authoredTask)?.takeIf { it.primarySkill == entry.primarySkill }
         val prerequisites = task != null && !ResolvePrerequisites(persistence)
             .resolve(PrerequisiteCandidate(entry.candidateId, entry.primarySkill, task.requiredSkills)).eligibility.waits
-        val needOpen = BuildDailyPlan(persistence, content, clock, evaluatorAvailable).openNeeds().any { it.needKey == entry.needKey }
         val compatible = task != null && persistence.skill(entry.primarySkill) != null
         if (task == null || !compatible) return TaskEntryFacts(true, prerequisites, needOpen, false, false)
 
@@ -117,15 +131,80 @@ class OpenTask(
     }
 
     /**
-     * The task's items this app can serve now: judged by an answer key (code reports and rubric evaluators are not wired
-     * yet), usable as the store's own validation allows, and never seen before. An `assess` task's interior is the
-     * assessment session's, which is not wired here at all (`TRUX-v0` §5).
+     * One slot of this cycle's weekly or monthly blueprint (13A, 13B). The slot must still be in the stored blueprint of
+     * **this** cycle, ready, for this Skill, with its item published and judgeable here — an earlier cycle's slot is not
+     * debt, and a slot the store cannot read is not guessed. Its item's own prerequisites are the gate's to judge.
+     */
+    private fun openSlot(stored: StoredPlan, plannedTaskId: Long, entry: PlannedEntry, scope: AssessmentScope, needOpen: Boolean): TaskEntryFacts {
+        val session = persistence.latestAssessmentSession(scope)
+        val blueprint = session?.record?.payload?.get("blueprint")?.let { BlueprintCodecs.decode(scope, it) }
+            ?.takeIf { it.cycleId == BlueprintScopes.cycleOf(scope, clock.now().studyDay) }
+        val slot = blueprint?.readySlots?.singleOrNull {
+            BlueprintComposer.candidateId(scope, blueprint.cycleId, it.slotId) == entry.candidateId && it.targetSkill == entry.primarySkill
+        }
+        val item = slot?.item?.takeIf { persistence.resourceVersion(it) != null }?.let(content::assessmentItem)
+        val prerequisites = slot != null && !ResolvePrerequisites(persistence)
+            .resolve(PrerequisiteCandidate(entry.candidateId, entry.primarySkill, slot.itemRequiredSkills)).eligibility.waits
+        val compatible = session != null && slot != null && item != null && persistence.skill(entry.primarySkill) != null
+        if (!compatible) return TaskEntryFacts(true, prerequisites, needOpen, false, false)
+        val measurement = Measurement(if (scope == AssessmentScope.MONTHLY_CAPABILITY) MeasurementKind.MONTHLY_SLOT else MeasurementKind.WEEKLY_SLOT,
+            slot!!.role.intent, session!!.id, slot.slotId)
+        return measured(stored, plannedTaskId, entry, item!!, slot.targetObjectives, measurement, prerequisites, needOpen)
+    }
+
+    /**
+     * One check of the learner's open diagnostic (13F). Only the diagnostic the learner opened, and only while it is the
+     * open one: a withdrawn or replaced request's checks are not run. Its item's prerequisites are the gate's.
+     */
+    private fun openDiagnostic(stored: StoredPlan, plannedTaskId: Long, entry: PlannedEntry, needOpen: Boolean): TaskEntryFacts {
+        val parts = entry.candidateId.split(':')
+        val sessionId = parts.getOrNull(1)?.toLongOrNull()
+        val objective = parts.getOrNull(2)?.let(::refOf)
+        val itemRef = parts.getOrNull(3)?.let(::refOf)
+        val active = DiagnosticSessions.active(persistence)
+        val target = active?.takeIf { parts.size == 4 && it.sessionId == sessionId }?.scope?.targets
+            ?.singleOrNull { it.objective == objective && it.skill == entry.primarySkill }
+        val item = itemRef?.takeIf { persistence.resourceVersion(it) != null }?.let(content::assessmentItem)
+            ?.takeIf { objective in it.targetObjectives }
+        val prerequisites = item != null && !ResolvePrerequisites(persistence)
+            .resolve(PrerequisiteCandidate(entry.candidateId, entry.primarySkill, item.requiredSkills)).eligibility.waits
+        val compatible = target != null && item != null && persistence.skill(entry.primarySkill) != null
+        if (!compatible) return TaskEntryFacts(true, prerequisites, needOpen, false, false)
+        val measurement = Measurement(MeasurementKind.DIAGNOSTIC, AssessmentIntent.MASTERY_EVIDENCE, sessionId!!)
+        return measured(stored, plannedTaskId, entry, item!!, listOf(objective!!), measurement, prerequisites, needOpen)
+    }
+
+    /** A single-item measurement: judgeable here, usable for its intent, and never seen before. */
+    private fun measured(stored: StoredPlan, plannedTaskId: Long, entry: PlannedEntry, item: AssessmentItem, objectives: List<VersionedRef>,
+                         measurement: Measurement, prerequisites: Boolean, needOpen: Boolean): TaskEntryFacts {
+        val server = ServeDailyMicroItem(persistence, content, clock)
+        val gap = when {
+            RunItems.kind(item, content) == null || !server.usable(item.ref, measurement.intent, evaluatorAvailable) -> CapabilityGap.NO_ITEM_THIS_APP_CAN_EVALUATE
+            seen(item.ref) -> CapabilityGap.NO_UNSEEN_ITEM
+            else -> null
+        }
+        val run = if (prerequisites && needOpen && gap == null) RunnableTask(
+            plannedTaskId = plannedTaskId, position = entry.position, planVersionId = stored.planVersionId, task = null,
+            title = entry.title, purpose = entry.purpose, skill = entry.primarySkill, targetObjectives = objectives,
+            plannedMinutes = entry.plannedMinutes, needKey = entry.needKey, lesson = emptyList(), items = listOf(item.ref),
+            measurement = measurement,
+        ) else null
+        return TaskEntryFacts(true, prerequisites, needOpen, true, gap == null, gap, run)
+    }
+
+    private fun refOf(text: String): VersionedRef? =
+        Regex("^(.+)@v(\\d+)$").matchEntire(text)?.let { VersionedRef(it.groupValues[1], it.groupValues[2].toInt()) }
+
+    /**
+     * The task's items this app can serve now: judged by an answer key, the course's tests or a rubric (16G), usable as
+     * the store's own validation allows for the task's intent, and never seen before. An `assess` task runs in the
+     * assessment interior since 16H (`TRUX-v0` §5), its items trusted for a verification.
      */
     private fun servable(task: AuthoredTask): Pair<List<VersionedRef>, CapabilityGap?> {
-        if (task.purpose == TaskPurpose.ASSESS) return emptyList<VersionedRef>() to CapabilityGap.ASSESSMENT_INTERIOR_NOT_AVAILABLE
         val server = ServeDailyMicroItem(persistence, content, clock)
+        val intent = intentOf(task)
         // 16G: an answer key, the course's tests or a rubric the evaluator may judge — not only an answer key (16F).
-        val judgeable = task.items.filter { ref -> content.assessmentItem(ref)?.let { RunItems.kind(it, content) } != null && server.usable(ref, INTENT, evaluatorAvailable) }
+        val judgeable = task.items.filter { ref -> content.assessmentItem(ref)?.let { RunItems.kind(it, content) } != null && server.usable(ref, intent, evaluatorAvailable) }
         if (judgeable.isEmpty()) return judgeable to CapabilityGap.NO_ITEM_THIS_APP_CAN_EVALUATE
         val unseen = judgeable.filterNot { seen(it) }
         return if (unseen.isEmpty()) unseen to CapabilityGap.NO_UNSEEN_ITEM else unseen to null
@@ -150,15 +229,22 @@ class OpenTask(
             targetObjectives = task.targetObjectives,
             plannedMinutes = entry.plannedMinutes,
             needKey = entry.needKey,
-            lesson = task.targetObjectives.flatMap { objective ->
+            // 16H: a daily assessment is a check, not teaching — it shows no lesson first.
+            lesson = if (task.purpose == TaskPurpose.ASSESS) emptyList() else task.targetObjectives.flatMap { objective ->
                 content.explanationsFor(objective).filter { it.form == ExplanationForm.CANONICAL }
             },
             items = items,
+            measurement = if (task.purpose == TaskPurpose.ASSESS) Measurement(MeasurementKind.DAILY_ASSESSMENT, intentOf(task), sessionId = null) else null,
         )
 
     companion object {
         /** A task's own items are low-stakes checks of its Objectives (`DMA-v0` §3); none of them is a verification. */
         val INTENT = AssessmentIntent.CHECKPOINT
+
+        /** An `assess` task serves a verification (`AuthoredTask`'s purpose → trigger); every other task's items are checks. */
+        fun intentOf(task: AuthoredTask): AssessmentIntent = if (task.purpose == TaskPurpose.ASSESS) AssessmentIntent.VERIFICATION else INTENT
+
+        const val DIAGNOSTIC_PREFIX = "diagnostic:"
     }
 }
 
@@ -179,7 +265,7 @@ class RunTask(
     fun serve(run: RunnableTask, served: Set<VersionedRef>): AssessmentItem? {
         val server = ServeDailyMicroItem(persistence, content, clock)
         run.items.filterNot { it in served }.forEach { ref ->
-            val offer = server.offer(ref, OpenTask.INTENT, evaluatorAvailable)
+            val offer = server.offer(ref, run.measurement?.intent ?: OpenTask.INTENT, evaluatorAvailable)
             if (offer is ItemOffer.Ready) return offer.item
         }
         return null
@@ -196,7 +282,7 @@ class RunTask(
         if (response.isBlank()) return null
         val body = ArtifactBody.store(response.trim()) as? ArtifactBody.Stored.Inline ?: return null
         val key = content.answerKeyFor(item.ref) ?: return null
-        val submission = AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId)
+        val submission = submission(run, item, body, provenance, assistance)
         val recorded = SubmitAttempt(persistence, clock).submit(submission)
 
         val verdict = OpenResponse.byKey(item, key, response.trim())
@@ -206,23 +292,33 @@ class RunTask(
             is EvaluationResult.Provisional -> evaluation.componentResults.map { it.signal }
             else -> emptyList()
         }
-        val skill = run.skill.takeIf { it in item.targetSkills } ?: item.targetSkills.first()
-        val gate = ResolvePrerequisites(persistence).resolve(PrerequisiteCandidate("run:${run.plannedTaskId}", skill, item.requiredSkills))
-        val evidence = evaluation?.let {
-            RecordEvidence(persistence, clock).record(
-                attemptId = recorded.attemptId,
-                skill = skill,
-                evidenceType = item.evidenceType,
-                evaluation = it,
-                independence = submission.independence(run.purpose),
-                artifactId = recorded.artifactId,
-                resource = item.ref,
-                variantFamilyId = item.variantFamilyId,
-                // Work on a Skill whose prerequisites are not there now is not the target's to blame (12B).
-                prerequisiteSnapshot = if (gate.eligibility.waits) PrerequisiteSnapshot.CONTAMINATED else gate.readinessSnapshotRefs.joinToString(";").ifEmpty { null },
-            ).evidenceIds
-        }.orEmpty()
+        // 16H: one evidence path for every answer, so a blueprint slot's evidence is the slot's (13A).
+        val evidence = evaluation?.let { evidence(run, item, recorded.attemptId, recorded.artifactId, it, submission.independence(run.purpose)) }.orEmpty()
         return AnsweredItem(item.ref, recorded.attemptId, AnswerResult.of(signals), evidence)
+    }
+
+    /**
+     * Opens a daily assessment's session when the learner begins (16H; `DDM-v0` `assessment_session`): one `daily` row,
+     * so its attempts are one session's. A slot's and a diagnostic's session already exist, and a run that is not a
+     * measurement opens none — those return the run unchanged.
+     */
+    fun beginSession(run: RunnableTask): RunnableTask {
+        val measurement = run.measurement?.takeIf { it.kind == MeasurementKind.DAILY_ASSESSMENT && it.sessionId == null } ?: return run
+        val id = persistence.inTransaction {
+            persistence.appendTruth(TruthRecord("assessment_session", clock.now(), mapOf("scope" to AssessmentScope.DAILY_MICRO.storedAs)))
+        }
+        return run.copy(measurement = measurement.copy(sessionId = id))
+    }
+
+    /**
+     * The learner's report that an answered question was wrong or unanswerable (16H, user decision; `ASUX-v0` §10). Its
+     * evidence is held as contested — a disposition is appended, the row is never edited (13D) — and nothing about the
+     * learner gets worse for reporting it. Only in a measurement, and only on what that answer wrote.
+     */
+    fun contest(run: RunnableTask, answered: AnsweredItem): List<Long> {
+        require(run.measurement != null) { "an item is contested inside an assessment session" }
+        val disposition = RecordDisposition(persistence, clock)
+        return answered.evidenceIds.map { disposition.record(it, EvidenceDispositions.CONTESTED, CONTESTED_REASON, DECIDED_BY_LEARNER) }
     }
 
     /**
@@ -236,7 +332,7 @@ class RunTask(
         val body = ArtifactBody.store(code) as? ArtifactBody.Stored.Inline ?: return RunAnswer.NotRecorded(tooLong = true)
         val verdict = EvaluateCode(content, evaluator).evaluate(item, code, report)
         if (verdict is CodeVerdict.NotMeasured && verdict.reason != CodeNotMeasured.EVALUATOR_DID_NOT_ANSWER) return RunAnswer.NotRecorded(code = verdict.reason)
-        val submission = AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId)
+        val submission = submission(run, item, body, provenance, assistance)
         val answered = record(run, item, submission, body, (verdict as? CodeVerdict.Measured)?.result)
         // 14E: code the learner did not write alone is followed by a comprehension check, written ones first.
         return RunAnswer.Recorded(answered, code = verdict, offer = Comprehension.offer(submission, content.comprehensionChecksFor(item.ref)))
@@ -251,7 +347,7 @@ class RunTask(
         if (response.isBlank()) return RunAnswer.NotRecorded(blank = true)
         val body = ArtifactBody.store(response.trim()) as? ArtifactBody.Stored.Inline ?: return RunAnswer.NotRecorded(tooLong = true)
         // Frozen first: the learner's answer is in the store before any evaluator is asked.
-        val submission = AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId)
+        val submission = submission(run, item, body, provenance, assistance)
         val frozen = record(run, item, submission, body, result = null)
         return judge(run, item, frozen, response)
     }
@@ -289,10 +385,27 @@ class RunTask(
         return AnsweredItem(item.ref, recorded.attemptId, AnswerResult.of(signals(result)), evidence, artifactId = recorded.artifactId, independence = independence)
     }
 
+    /** One attempt with its help, provenance, planned task and — in a measurement — its assessment session (11B, 16H). */
+    private fun submission(run: RunnableTask, item: AssessmentItem, body: ArtifactBody.Stored.Inline, provenance: ProvenanceOrigin,
+                           assistance: List<AssistanceEvent>) =
+        AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId,
+            assessmentSessionId = run.measurement?.sessionId)
+
     private fun evidence(run: RunnableTask, item: AssessmentItem, attemptId: Long, artifactId: Long?, result: EvaluationResult,
                          independence: coach.model.IndependenceClass): List<Long> {
         val skill = run.skill.takeIf { it in item.targetSkills } ?: item.targetSkills.first()
         val gate = ResolvePrerequisites(persistence).resolve(PrerequisiteCandidate("run:${run.plannedTaskId}", skill, item.requiredSkills))
+        val gateSnapshot = if (gate.eligibility.waits) PrerequisiteSnapshot.CONTAMINATED else gate.readinessSnapshotRefs.joinToString(";").ifEmpty { null }
+        // 16H: a blueprint slot's evidence is recorded as the slot's, so a prerequisite this same session just showed
+        // missing does not count against its target (`WBA-v0` §25, `MCA-v0` §20).
+        val measurement = run.measurement
+        if (measurement != null && measurement.kind.isSlot) {
+            val blueprint = checkNotNull(SlotSessions.blueprint(persistence, measurement)) { "the slot's blueprint was read at entry" }
+            return RecordSlotEvidence(persistence, clock).record(
+                blueprint = blueprint, slotId = measurement.slotId!!, attemptId = attemptId, evaluation = result, independence = independence,
+                sessionSoFar = SlotSessions.outcomes(persistence, blueprint, measurement.sessionId!!), gateSnapshot = gateSnapshot, artifactId = artifactId,
+            ).evidenceIds
+        }
         return RecordEvidence(persistence, clock).record(
             attemptId = attemptId, skill = skill, evidenceType = item.evidenceType, evaluation = result, independence = independence,
             artifactId = artifactId, resource = item.ref, variantFamilyId = item.variantFamilyId,
@@ -363,8 +476,50 @@ class RunTask(
      */
     fun finish(run: RunnableTask, before: ProgramSnapshot, answered: List<AnsweredItem>, items: List<AssessmentItem>): ReportProgramChanges.Reported? {
         if (answered.none { it.evidenceIds.isNotEmpty() }) return null
+        // 16H: inside a blueprint session a prerequisite shown missing after a dependent slot was answered contaminates
+        // that slot's evidence by an appended disposition, never an edit (13D).
+        val measurement = run.measurement
+        if (measurement != null && measurement.kind.isSlot) {
+            SlotSessions.blueprint(persistence, measurement)?.let { blueprint ->
+                ApplyRetroactiveContamination(persistence, clock).apply(blueprint, SlotSessions.outcomes(persistence, blueprint, measurement.sessionId!!))
+            }
+        }
         val touched = (listOf(run.skill) + items.flatMap { it.targetSkills }).distinct()
         val capacity = CapacitySettings(persistence, clock).read().input()
         return ReportProgramChanges(persistence, content, clock).report(before, touched, capacity, StartedTasks.today(persistence, clock))
     }
+
+    companion object {
+        /** Why a contested row is held, and who decided it: the learner's report (`DDM-v0`'s deciders). */
+        const val CONTESTED_REASON = "learner_reported_item_problem"
+        const val DECIDED_BY_LEARNER = "user_report"
+    }
+}
+
+/**
+ * A blueprint session as a slot run reads it (16H): its blueprint, from the session row the slot was planned from, and
+ * what each of its slots has produced so far — read from the attempts that name this session, never kept in memory.
+ */
+internal object SlotSessions {
+
+    fun blueprint(persistence: PersistencePort, measurement: Measurement): AssessmentBlueprint? {
+        val id = measurement.sessionId ?: return null
+        val row = persistence.readTruth("assessment_session", id) ?: return null
+        return row.payload["blueprint"]?.let { BlueprintCodecs.decode(measurement.scope, it) }
+    }
+
+    fun outcomes(persistence: PersistencePort, blueprint: AssessmentBlueprint, sessionId: Long): List<BlueprintSlotOutcome> =
+        blueprint.readySlots.mapNotNull { slot ->
+            val rows = slot.targetObjectives.flatMap { persistence.evidenceFor(it) }
+                .filter { it.assessmentSessionId == sessionId && it.resource == slot.item }
+            if (rows.isEmpty()) return@mapNotNull null
+            BlueprintSlotOutcome(
+                slotId = slot.slotId,
+                submitted = true,
+                attemptId = rows.mapNotNull { it.attemptId }.firstOrNull(),
+                evidence = rows.map {
+                    BlueprintEvidenceFact(it.id, it.objective, it.outcome, it.evaluatorStatus, it.independenceClass, prerequisiteContaminated = !it.prerequisiteValid)
+                },
+            )
+        }
 }

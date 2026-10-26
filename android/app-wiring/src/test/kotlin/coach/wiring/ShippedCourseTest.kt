@@ -859,7 +859,11 @@ class ShippedCourseTest {
         val noKeys = OpenTask(store, Narrowed(withContentQa, noKeys = true), clock).open(id)
         assertEquals(CapabilityGap.NO_ITEM_THIS_APP_CAN_EVALUATE, noKeys.capabilityGap)
         assertNull(noKeys.run)
-        assertEquals(CapabilityGap.ASSESSMENT_INTERIOR_NOT_AVAILABLE, OpenTask(store, Narrowed(withContentQa, asAssessment = true), clock).open(id).capabilityGap)
+        // Narrowed at 16H (`ASRX-v0` / `D-132`): an assess task runs in the assessment interior now — never "not available" —
+        // as a daily assessment with no lesson first.
+        val assessed = OpenTask(store, Narrowed(withContentQa, asAssessment = true), clock).open(id)
+        assertTrue(assessed.capabilityGap != CapabilityGap.ASSESSMENT_INTERIOR_NOT_AVAILABLE, assessed.toString())
+        assessed.run?.let { assertEquals(coach.model.MeasurementKind.DAILY_ASSESSMENT, it.measurement?.kind); assertTrue(it.lesson.isEmpty()) }
         assertEquals(CapabilityGap.NO_UNSEEN_ITEM, OpenTask(AllSeen(store), withContentQa, clock).open(id).capabilityGap)
         val noNeeds = OpenTask(NoNeeds(store), withContentQa, clock).open(id)
         assertEquals(false, noNeeds.needStillOpen)
@@ -1136,5 +1140,162 @@ class ShippedCourseTest {
         // High-stakes work pauses marked, as PausePolicy decided — never continued as the same independent attempt.
         val marked = assertNotNull(help.pause(run, coach.model.CheckpointKind.HIGH_STAKES_PAUSE, listOf(a), listOf(b)))
         assertEquals(coach.model.CheckpointKind.HIGH_STAKES_PAUSE, coach.application.ResumeCheckpoints(store, clock).read(marked)?.context?.kind)
+    }
+
+    // ---------------------------------------------------------------- 16H — ölçme oturumları (ASRX-v0)
+
+    /** The shipped course, with no authored task offered for [skill]'s needs: what serves them is a measurement. */
+    private class OnlyMeasurementsFor(val base: ContentPort, val skill: VersionedRef) : ContentPort by base {
+        override fun taskCandidates(need: LearningNeed) = if (skill in need.targetSkills) emptyList() else base.taskCandidates(need)
+    }
+
+    /** A learner with one clean answer on today's first Skill, and the next day with this week's blueprint composed. */
+    private fun withBlueprint(): Triple<DayClock, VersionedRef, ContentPort> {
+        val day1 = DayClock("2026-10-05")
+        IngestCurriculum(store, withSuites, day1).ingestAll()
+        PlanToday(store, withSuites, day1).ensure()
+        val first = TodayFactsQuery(store, day1).load().plan!!.tasks.first()
+        val run = assertNotNull(OpenTask(store, withSuites, day1).open(first.plannedTaskId).run)
+        val runner = RunTask(store, withSuites, day1)
+        val item = assertNotNull(runner.serve(run, emptySet()))
+        val answered = assertNotNull(runner.answer(run, item, withSuites.answerKeyFor(item.ref)!!.answers.first(), ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        runner.finish(run, CaptureProgramSnapshot(store, day1).capture(), listOf(answered), listOf(item))
+        val day2 = DayClock("2026-10-06")
+        // The week is composed when the learner opens the app (13A, 16D): read which Skill its slot measures.
+        PlanToday(store, withSuites, day2).ensure()
+        val weekly = assertNotNull(store.latestAssessmentSession(coach.model.AssessmentScope.WEEKLY_BLUEPRINT))
+        val blueprint = assertNotNull(coach.model.BlueprintCodecs.decode(coach.model.AssessmentScope.WEEKLY_BLUEPRINT, weekly.record.payload.getValue("blueprint")))
+        val skill = blueprint.readySlots.first().targetSkill
+        return Triple(day2, skill, OnlyMeasurementsFor(withSuites, skill))
+    }
+
+    private fun plannedId(day: ClockPort, prefix: String): Long? {
+        val stored = store.latestPlan() ?: return null
+        val trace = coach.model.PlanTraceCodec.decode(stored.traceText!!) ?: return null
+        val position = trace.selected.firstOrNull { it.candidateId.startsWith(prefix) }?.position ?: return null
+        return stored.plannedTasks.single { it.position == position }.plannedTaskId
+    }
+
+    @Test
+    fun `a planned blueprint slot opens as a measurement of its session, and its answer is that session's slot evidence`() {
+        val (day, skill, content) = withBlueprint()
+        assertTrue(skill in ProgressQuery(store, content, day).load().assessmentOpportunities, "a ready slot is an assessment opportunity")
+        // Only a measurement serves this Skill's need now, so the replanned day holds its slot.
+        BuildDailyPlan(store, content, day).replan(BuildDailyPlan.ReplanRequest(coach.model.ReplanTrigger.NEW_EVIDENCE_RECORDED,
+            CapacitySettings(store, day).read().input(), keptPositions = StartedTasks.today(store, day)))
+        val id = assertNotNull(plannedId(day, "weekly:") ?: plannedId(day, "monthly:"), "a slot is planned")
+        val facts = OpenTask(store, content, day).open(id)
+        val run = assertNotNull(facts.run, facts.toString())
+        val measurement = assertNotNull(run.measurement)
+        assertTrue(measurement.kind.isSlot)
+        assertNull(run.task, "a slot is a planned item, not an authored task")
+        assertTrue(run.lesson.isEmpty(), "a measurement shows no lesson first")
+        assertEquals(store.latestAssessmentSession(measurement.scope)!!.id, measurement.sessionId)
+        assertEquals(1, run.items.size)
+        // An item the learner has already seen is not a fresh measurement.
+        assertEquals(CapabilityGap.NO_UNSEEN_ITEM, OpenTask(AllSeen(store), content, day).open(id).capabilityGap)
+
+        val runner = RunTask(store, content, day)
+        assertEquals(run, runner.beginSession(run), "a slot's session exists before the run; nothing is opened")
+        val item = assertNotNull(runner.serve(run, emptySet()))
+        val key = assertNotNull(content.answerKeyFor(item.ref), "the slot's item is judged by its key")
+        run {
+            val answered = assertNotNull(runner.answer(run, item, key.answers.first(), ProvenanceOrigin.USER_AUTHORED, emptyList()))
+            val rows = item.targetObjectives.flatMap { store.evidenceFor(it) }.filter { it.id in answered.evidenceIds }
+            assertTrue(rows.isNotEmpty() && rows.all { it.assessmentSessionId == measurement.sessionId && it.resource == item.ref }, rows.toString())
+            assertNotNull(runner.finish(run, CaptureProgramSnapshot(store, day).capture(), listOf(answered), listOf(item)))
+        }
+        // Served: the slot is not offered again, and entering it again is refused.
+        assertEquals(false, OpenTask(store, content, day).open(id).stillSelected)
+    }
+
+    @Test
+    fun `a daily assessment opens its own session as the learner begins, and a reported answer is held as contested`() {
+        IngestCurriculum(store, withSuites, clock).ingestAll()
+        PlanToday(store, withSuites, clock).ensure()
+        val facts = OpenTask(store, Narrowed(withSuites, asAssessment = true), clock).open(firstTaskId())
+        val run = assertNotNull(facts.run, facts.toString())
+        assertEquals(coach.model.MeasurementKind.DAILY_ASSESSMENT, run.measurement?.kind)
+        assertNull(run.measurement?.sessionId, "the session opens when the learner begins, not at entry")
+        assertEquals(coach.model.AssessmentIntent.VERIFICATION, run.measurement?.intent, "an assess task serves a verification")
+        val content = Narrowed(withSuites, asAssessment = true)
+        val runner = RunTask(store, content, clock)
+        val begun = runner.beginSession(run)
+        val sessionId = assertNotNull(begun.measurement?.sessionId)
+        assertEquals("daily", store.readTruth("assessment_session", sessionId)?.payload?.get("scope"))
+        assertEquals(begun, runner.beginSession(begun), "begun once")
+
+        val item = assertNotNull(runner.serve(begun, emptySet()))
+        val answered = assertNotNull(runner.answer(begun, item, "zzz-not-an-answer", ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        fun rows() = item.targetObjectives.flatMap { store.evidenceFor(it) }.filter { it.id in answered.evidenceIds }
+        assertTrue(rows().all { it.assessmentSessionId == sessionId })
+        assertTrue(rows().none { it.contested })
+        val dispositions = runner.contest(begun, answered)
+        assertEquals(answered.evidenceIds.size, dispositions.size)
+        assertTrue(rows().all { it.contested && it.disposition == "contested" && it.dispositionReason == RunTask.CONTESTED_REASON }, rows().toString())
+        // The history says why the row does not count; reporting it is never held against the learner.
+        val history = LearningHistoryQuery(store).load(begun.skill).entries.single { it.attemptId == answered.attemptId }
+        assertEquals("contested", history.disposition)
+        // Only a measurement is contested.
+        val practice = assertNotNull(OpenTask(store, withSuites, clock).open(TodayFactsQuery(store, clock).load().plan!!.tasks[1].plannedTaskId).run)
+        kotlin.test.assertFailsWith<IllegalArgumentException> { runner.contest(practice, answered) }
+
+        // The result is `ASUX-v0`'s: an unanswered question left the session partial, and the reported one is not measured.
+        val other = VersionedRef("item.x.unanswered", 1)
+        val result = coach.presentation.MeasurementPresentation.result(coach.model.AssessmentScope.DAILY_MICRO, listOf(item.ref, other),
+            listOf(answered), skipped = setOf(other), contested = setOf(item.ref))
+        assertTrue(result.partial)
+        assertTrue(coach.presentation.NotReliablyMeasured.CONTESTED_ITEM in result.notReliablyMeasured)
+        assertTrue(coach.presentation.NotReliablyMeasured.UNSUBMITTED_SLOT in result.notReliablyMeasured)
+    }
+
+    /** The shipped course with every item's own ceiling lowered to a low-stakes check: fit for a checkpoint, never for a verification. */
+    private class LowStakes(val base: ContentPort) : ContentPort by base {
+        override fun assessmentItem(ref: VersionedRef) = base.assessmentItem(ref)?.copy(declaredUseCeiling = coach.model.UseCeiling.LOW_STAKES_ASSESSMENT)
+    }
+
+    @Test
+    fun `a measurement serves only an item its own intent trusts, never one fit only for a lower-stakes check`() {
+        IngestCurriculum(store, withSuites, clock).ingestAll()
+        PlanToday(store, withSuites, clock).ensure()
+        val practice = assertNotNull(OpenTask(store, withSuites, clock).open(firstTaskId()).run)
+        val content = LowStakes(withSuites)
+        val item = practice.items.first()
+        // A practice run's checkpoint still takes it; the same item is no verification.
+        assertNotNull(RunTask(store, content, clock).serve(practice.copy(items = listOf(item)), emptySet()))
+        val verification = practice.copy(lesson = emptyList(), items = listOf(item),
+            measurement = coach.model.Measurement(coach.model.MeasurementKind.DAILY_ASSESSMENT, coach.model.AssessmentIntent.VERIFICATION, sessionId = 1))
+        assertNull(RunTask(store, content, clock).serve(verification, emptySet()), "a verification is served only an item trusted for one")
+    }
+
+    @Test
+    fun `the fast path joins today's plan at once, keeps started work, opens its checks in its own session, and leaving it owes nothing`() {
+        IngestCurriculum(store, withSuites, clock).ingestAll()
+        PlanToday(store, withSuites, clock).ensure()
+        val started = firstTaskId()
+        startTask(started)
+        val skill = skill("skill.computing.program_execution_model")
+        val plans = store.planVersions().size
+        val requested = coach.application.FastPath(store, withSuites, clock).request(listOf(skill, skill("skill.python.run_repl_script"), skill("skill.nowhere.unpublished")))
+        val written = assertIs<coach.application.RequestDiagnostic.Requested.Written>(requested.request)
+        val replanned = assertIs<BuildDailyPlan.Built.Planned>(requested.plan)
+        assertEquals(plans + 1, store.planVersions().size, "the request replanned today")
+        assertEquals(coach.model.ReplanTrigger.DIAGNOSTIC_REQUESTED, replanned.trace.replan!!.trigger)
+        assertTrue(replanned.trace.selected.any { it.preserved }, "the started task is kept")
+        assertTrue(skill in ProgressQuery(store, withSuites, clock).load().assessmentOpportunities, "an open check is an assessment opportunity")
+
+        val id = assertNotNull(plannedId(clock, "diagnostic:"), "a fast-path check is planned today")
+        run {
+            val run = assertNotNull(OpenTask(store, withSuites, clock).open(id).run)
+            assertEquals(coach.model.MeasurementKind.DIAGNOSTIC, run.measurement?.kind)
+            assertEquals(written.sessionId, run.measurement?.sessionId)
+            assertEquals(coach.model.AssessmentIntent.MASTERY_EVIDENCE, run.measurement?.intent)
+        }
+        assertIs<coach.application.WithdrawDiagnostic.Withdrawn.Written>(coach.application.FastPath(store, withSuites, clock).withdraw())
+        assertEquals(coach.application.ReadDiagnosticResult.Read.NothingOpen, coach.application.FastPath(store, withSuites, clock).result())
+        // A withdrawn request's checks are not run.
+        assertEquals(false, OpenTask(store, withSuites, clock).open(id).contentCompatible)
+        // A Skill new learning cannot start on is left out of the request, never the reason to refuse the rest.
+        assertTrue(written.scope.skills.all { store.skill(it)?.lifecycleStatus == "published" })
     }
 }

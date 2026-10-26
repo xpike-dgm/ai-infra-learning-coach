@@ -254,12 +254,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **16E ✅ Bildirimler — RMDX-v0 / D-127**
 - **16F ✅ Uçtan uca günlük döngü — E2EX-v0 / D-128**
 - **16G ✅ Uçtan uca günlük döngü: yardım ve ölçüm — HLPX-v0 / D-130**
-- **16H 🟡 Uçtan uca günlük döngü: ölçme oturumları — AKTİF, HENÜZ YÜRÜTÜLMEDİ (D-131 ile eklendi)**
-- 16–20 ⬜
+- **16H ✅ Uçtan uca günlük döngü: ölçme oturumları — ASRX-v0 / D-132**
+- **AŞAMA 16 ✅ TAMAMLANDI**
+- **17A 🟡 Görsel polish — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 17–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 16H'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 17A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -816,4 +818,14 @@ Bulunanlar: kullanıcı döngünün geri kalanını yeniden böldü ve Today'den
 Onay kullanıcının 2026-10-26 açık onayı ("merge et ve 16G ye başla"). Kullanıcı kararları: görev içindeki her şey 16G'de, Today'den ölçme yeni 16H'de (D-131); kod taşıma kopyala-yapıştır — uygulama suite'i ve koşucuyu Kopyala düğmeleriyle verir, öğrenci PC'de çalıştırıp raporu yapıştırır, ağ ya da dosya izni yok. Şema değişmedi; varsayılanlı port inceltmeleri `codeSuiteText`, `codeRunnerText`; `tools/ship_code_suites.py`. Kotlin mutation 31/31, validator mutation 50/50; 105/105 QA PASS. T6 ve canlı sağlayıcı çağrısı çalıştırılmadı.
 
 Canonical: `docs/RUN_HELP_SPEC.md` / D-130.
+
+## 12.52 16H Uçtan uca günlük döngü: ölçme oturumları — ASRX-v0 / D-132 (AŞAMA 16 tamamlandı)
+
+Öğrenci artık Today'den günlük ölçmeyi, haftanın ya da ayın bir slotunu ve hızlı yolun bir kontrolünü tek ölçme iç yüzünde yapabiliyor; bir soruyu boş bırakabiliyor, cevapladığı hatalı bir soruyu bildirebiliyor ve bir konuda hızlı yolu isteyip bırakabiliyor. Ana invariant: **bugün için planlanan bir ölçme — günlük ölçme görevi, haftanın ya da ayın bir slotu, hızlı yolun bir kontrolü — onu neyin kurduğundan bağımsız olarak tek ölçme iç yüzünde koşar ve türü ek ağırlık değildir; giriş tahmin etmez ve hiçbir şey yazmaz; her deneme oturumunu taşır, günlük ölçmenin oturumu öğrenci başlarken açılır ve bir slotun cevabı o slotun kanıtıdır; boş bırakılan soru yanlış değildir, cevaplanmış bir soru bildirilebilir ve kanıtı eklenen bir dispozisyonla itirazlı tutulur, satır düzenlenmez; sonuçta not, yüzde ya da geçti/kaldı yoktur; hızlı yolu yalnız öğrenci bir konudan açar, bugünün planına hemen girer ve başlanan işi korur, bırakmak hiçbir şey borçlandırmaz.**
+
+Bulunanlar: haftalık/aylık blueprint 16D'den beri açılışta kuruluyordu ve slotlar plana giriyor ama açılamıyordu; yazılı bir görev ve bir slot aynı ihtiyaca hizmet edince planner birini seçiyor; hızlı yol isteği için bir yeniden plan olayı yoktu (`diagnostic_requested`, D-132); Learn sekmesinin ekranı yok; giriş yerleştirme akışı ve onun tanısal kaynağı yok (18A); düzeltmenin nedeni uygulanıyor ama satırda taşınmıyordu.
+
+Onay kullanıcının 2026-10-26 açık onayı ("merge et ve 16H ye başla"). Kullanıcı kararları: kapsam `moved_to_16h`'nin tamamı; haftalık/aylık plan açılışta otomatik (16D'den beri böyle); bildirme evet, 'Bu soruda sorun var' kanıtı itirazlı tutar; hızlı yol bugünün planına hemen girer (yeni olay `diagnostic_requested`); hızlı yol girişi konu ayrıntısında. Şema değişmedi; beyan edilmiş uzantı `ReplanTrigger.DIAGNOSTIC_REQUESTED`. Kotlin mutation 26/26, validator mutation 50/50; 89/89 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md` / D-132.
 

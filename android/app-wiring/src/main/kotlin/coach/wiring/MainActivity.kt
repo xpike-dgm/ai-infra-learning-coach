@@ -84,6 +84,8 @@ import coach.presentation.TaskRunCopy
 import coach.presentation.TaskRunPresentation
 import coach.presentation.TaskRunStage
 import coach.model.RunItemKind
+import coach.presentation.FastPathView
+import coach.model.VersionedRef
 import coach.ui.TaskRunActions
 import android.Manifest
 import android.content.Intent
@@ -218,6 +220,9 @@ private fun Shell(
     // 16C: the Topics shown on Progress, the one topic_detail opened from it, and the Technical English profile.
     var topics by remember { mutableStateOf<TopicOverviewView?>(null) }
     var topicDetail by remember { mutableStateOf<TopicDetailView?>(null) }
+    // 16H: the open Topic's Skills, and the fast path as it stands for them.
+    var topicSkills by remember { mutableStateOf<List<VersionedRef>>(emptyList()) }
+    var fastPath by remember { mutableStateOf<FastPathView?>(null) }
     var english by remember { mutableStateOf<EnglishProfileView?>(null) }
     // 16D: the capacity preferences (Profile and Today's capacity dialog) and the backup controls' state.
     var capacity by remember { mutableStateOf<CapacityPreferences?>(null) }
@@ -339,6 +344,10 @@ private fun Shell(
                     }
                 },
                 onBack = { topicDetail = null },
+                // 16H: the fast path lives on the Topic (user decision); only the learner opens it.
+                fastPath = fastPath,
+                onRequestFastPath = { app.requestFastPath(topicSkills) { view, facts -> fastPath = view; onTodayFacts(facts) } },
+                onWithdrawFastPath = { app.withdrawFastPath { view -> fastPath = view } },
             )
             english != null -> EnglishProfileScreen(view = english!!, onBack = { english = null })
             entry != null -> {
@@ -380,7 +389,11 @@ private fun Shell(
                     actions = if (run == null || flow == null) TaskRunActions() else TaskRunActions(
                         onBegin = { provenance ->
                             run.provenance = provenance
-                            if (run.run.lesson.isNotEmpty()) runStage = TaskRunStage.Lesson(run.run.lesson.map { it.text }) else serveNext(run)
+                            // 16H: a daily assessment opens its session as the learner begins; any other run is unchanged.
+                            app.beginRun(run.run) { begun ->
+                                run.run = begun
+                                if (run.run.lesson.isNotEmpty()) runStage = TaskRunStage.Lesson(run.run.lesson.map { it.text }) else serveNext(run)
+                            }
                         },
                         onToQuestions = { serveNext(run) },
                         onShowLesson = { run.lessonShown = true; runStage = question(run) },
@@ -446,6 +459,8 @@ private fun Shell(
                         onPracticeAsk = { flow.practiceAsk() },
                         onPracticeAnswer = { flow.practiceAnswer(it) },
                         onPause = { flow.pause() },
+                        onSkip = { flow.skip { serveNext(run) } },
+                        onContest = { flow.contest() },
                         onFinish = {
                             runStage = TaskRunStage.Working
                             finishRun(app, run, onTodayFacts) { lines -> runStage = TaskRunStage.Finished(lines) }
@@ -527,7 +542,14 @@ private fun Shell(
                 topics = topics,
                 onOpenTopic = { ref ->
                     if (NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.TopicDetail.id)) {
-                        app.loadTopicDetail(ref) { facts -> facts?.let { topicDetail = TopicPresentation.detail(it) } }
+                        app.loadTopicDetail(ref) { facts ->
+                            facts?.let {
+                                topicDetail = TopicPresentation.detail(it)
+                                topicSkills = it.members.map { member -> member.skill }
+                                fastPath = null
+                                app.loadFastPath(topicSkills) { view -> fastPath = view }
+                            }
+                        }
                     }
                 },
                 onOpenEnglish = {
@@ -597,7 +619,7 @@ private fun Shell(
 private fun finishRun(app: CoachApplication, run: TaskRunSession, onTodayFacts: (TodayFacts) -> Unit, onLines: (List<String>) -> Unit) {
     if (run.finished) return
     run.finished = true
-    app.finishRun(run.run, run.before, run.answered.toList(), run.shown.toList()) { lines, facts, _ ->
+    app.finishRun(run.run, run.before, run.answered.toList(), run.shown.toList(), run.skipped.toSet(), run.contested.toSet()) { lines, facts, _ ->
         onTodayFacts(facts)
         onLines(lines)
     }

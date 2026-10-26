@@ -374,6 +374,12 @@ enum class ReplanTrigger(val id: String, val reasonCode: String?) {
     DIAGNOSTIC_WAIVER_GRANTED("diagnostic_waiver_granted", "replan.prerequisite_state_changed"),
     TASK_PREREQUISITE_METADATA_INVALID("task_prerequisite_metadata_invalid", "replan.prerequisite_state_changed"),
     CURRICULUM_PREREQUISITE_EDGE_CHANGED("curriculum_prerequisite_edge_changed", "replan.curriculum_version_changed"),
+
+    /**
+     * 16H (`D-132`, user decision): the learner asked for the fast path, and its checks join today's plan now. A declared
+     * extension of `PDT-v0` §15's list; its reason is `PDT-v0` §8.7's own fast-path code, and it keeps the day's budget.
+     */
+    DIAGNOSTIC_REQUESTED("diagnostic_requested", DiagnosticCodes.USER_REQUESTED_FAST_PATH),
     ;
 
     /** D-033 §8: these change the remaining budget itself; every other event keeps the day's budget. */

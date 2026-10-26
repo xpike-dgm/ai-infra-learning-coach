@@ -18,6 +18,8 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import coach.model.VersionedRef
+import androidx.compose.material3.OutlinedButton
+import coach.presentation.FastPathView
 import coach.presentation.TopicCopy
 import coach.presentation.TopicDetailView
 import coach.presentation.TopicOverviewView
@@ -61,6 +63,10 @@ fun TopicDetailScreen(
     onOpenSkill: (VersionedRef) -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    // 16H: the fast path on this Topic — offered, open with its result, or a sentence about what just happened.
+    fastPath: FastPathView? = null,
+    onRequestFastPath: () -> Unit = {},
+    onWithdrawFastPath: () -> Unit = {},
 ) {
     Column(
         modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
@@ -69,6 +75,19 @@ fun TopicDetailScreen(
         TextButton(onClick = onBack, modifier = Modifier.minimumTouchTarget()) { Text("Geri") }
         Text(view.name, style = MaterialTheme.typography.titleLarge, modifier = Modifier.semantics { heading() })
         StateChip(label = view.chip.label, tone = view.chip.tone)
+        when (fastPath) {
+            null -> Unit
+            is FastPathView.Offer -> {
+                Text(fastPath.text, style = MaterialTheme.typography.bodyMedium)
+                OutlinedButton(onClick = onRequestFastPath, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(fastPath.action) }
+            }
+            is FastPathView.Open -> {
+                Text(fastPath.headline, style = MaterialTheme.typography.bodyLarge)
+                fastPath.lines.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
+                TextButton(onClick = onWithdrawFastPath, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(fastPath.action) }
+            }
+            is FastPathView.Said -> Text(fastPath.text, style = MaterialTheme.typography.bodyMedium)
+        }
         Text(view.text, style = MaterialTheme.typography.bodyMedium)
         view.metadataNote?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
         view.reasons.forEach { reason ->

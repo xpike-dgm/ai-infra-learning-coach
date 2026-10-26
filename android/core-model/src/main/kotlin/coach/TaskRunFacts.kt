@@ -13,7 +13,10 @@ package coach.model
  * never negative evidence.
  */
 enum class CapabilityGap(val id: String) {
-    /** An `assess` task: its interior is the assessment session's (`TRUX-v0` §5), which is not wired yet. */
+    /**
+     * An `assess` task when the assessment session was not wired (16F). Since 16H the session runs here and nothing
+     * produces this gap; it stays so a name that was once shown keeps its meaning.
+     */
     ASSESSMENT_INTERIOR_NOT_AVAILABLE("assessment_interior_not_available"),
 
     /** None of the task's items can be judged here: code items need their test report, a rubric needs an evaluator. */
@@ -23,12 +26,47 @@ enum class CapabilityGap(val id: String) {
     NO_UNSEEN_ITEM("no_unseen_item"),
 }
 
+/**
+ * What kind of measurement a run is (16H, `ASRX-v0`): a daily assessment task, one slot of this week's or this month's
+ * blueprint, or one check of the learner's open diagnostic. Every one runs in the **one** assessment interior
+ * (`ASUX-v0` §4); the kind is context, never extra evidence weight.
+ */
+enum class MeasurementKind(val id: String, val scope: AssessmentScope) {
+    DAILY_ASSESSMENT("daily_assessment", AssessmentScope.DAILY_MICRO),
+    WEEKLY_SLOT("weekly_slot", AssessmentScope.WEEKLY_BLUEPRINT),
+    MONTHLY_SLOT("monthly_slot", AssessmentScope.MONTHLY_CAPABILITY),
+    DIAGNOSTIC("diagnostic", AssessmentScope.DAILY_MICRO),
+    ;
+
+    val isSlot: Boolean get() = this == WEEKLY_SLOT || this == MONTHLY_SLOT
+}
+
+/**
+ * The assessment session a measuring run's attempts belong to (`DDM-v0`: `attempt.assessment_session_id`). A slot's and
+ * a diagnostic's session exist before the run (the blueprint, the learner's request); a daily assessment's is opened
+ * when the learner begins, so [sessionId] is `null` only until then. [intent] is what its items must be trusted for.
+ */
+data class Measurement(
+    val kind: MeasurementKind,
+    val intent: AssessmentIntent,
+    val sessionId: Long?,
+    val slotId: String? = null,
+) {
+    init {
+        require(kind.isSlot == (slotId != null)) { "only a blueprint slot names its slot" }
+        require(kind == MeasurementKind.DAILY_ASSESSMENT || sessionId != null) { "a slot's and a diagnostic's session exist before the run" }
+    }
+
+    val scope: AssessmentScope get() = kind.scope
+}
+
 /** What a task run works from: the planned task, its authored content and the items the app can serve and judge. */
 data class RunnableTask(
     val plannedTaskId: Long,
     val position: Int,
     val planVersionId: Long,
-    val task: VersionedRef,
+    /** The authored task; `null` for a blueprint slot or a diagnostic check, which are planned items, not authored tasks (16H). */
+    val task: VersionedRef?,
     val title: String,
     val purpose: TaskPurpose,
     val skill: VersionedRef,
@@ -40,9 +78,15 @@ data class RunnableTask(
     val lesson: List<ExplanationVariant>,
     /** Unseen items the app can judge — by an answer key, the course's tests or a rubric (16G) — in the task's authored order. */
     val items: List<VersionedRef>,
+    /** 16H: the measurement this run is, or `null` for a teaching or practice task. */
+    val measurement: Measurement? = null,
 ) {
     init {
         require(lesson.all { it.form == ExplanationForm.CANONICAL }) { "the lesson is the course's own explanation" }
+        require(task != null || (measurement != null && measurement.kind != MeasurementKind.DAILY_ASSESSMENT)) {
+            "only a blueprint slot or a diagnostic check runs without an authored task"
+        }
+        require(measurement == null || lesson.isEmpty()) { "a measurement shows no lesson first: it is a check, not teaching" }
     }
 }
 

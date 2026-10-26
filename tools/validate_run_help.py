@@ -184,8 +184,12 @@ check("A16G-03_kind_rules", "if (content.answerKeyFor(item.ref) != null) return 
       and "CodeEvaluation.route(item, suite) == CodeEvaluationRoute.TESTS && content.codeSuiteText(item.ref) != null" in kind
       and "OpenResponse.route(item, null, content.rubricFor(item.ref)) == OpenResponseRoute.AI_RUBRIC" in kind, "no AI for a task that needs a verified result")
 servable = body(run_src, "private fun servable(")
-check("A16G-03_servable_is_judgeable_and_usable", "RunItems.kind(it, content) } != null && server.usable(ref, INTENT, evaluatorAvailable)" in servable
-      and "if (task.purpose == TaskPurpose.ASSESS)" in servable, "")
+# Narrowed at 16H (`ASRX-v0 / D-132`): the task's own intent — a verification for an assess task.
+check("A16G-03_servable_is_judgeable_and_usable", ("RunItems.kind(it, content) } != null && server.usable(ref, INTENT, evaluatorAvailable)" in servable
+      or "RunItems.kind(it, content) } != null && server.usable(ref, intent, evaluatorAvailable)" in servable)
+      and ("if (task.purpose == TaskPurpose.ASSESS)" in servable
+           # Narrowed at 16H (`ASRX-v0 / D-132`): an assess task runs in the assessment interior, as a daily assessment.
+           or "measurement = if (task.purpose == TaskPurpose.ASSESS) Measurement(MeasurementKind.DAILY_ASSESSMENT, intentOf(task), sessionId = null) else null" in run_src), "")
 
 # ---------------------------------------------------------------- 3. code: the course's tests, nothing written for nothing measured
 code = body(run_src, "fun answerCode(")
@@ -197,8 +201,11 @@ check("A16G-04_report_not_stored", "EvaluateCode(content, evaluator).evaluate(it
       and (contract.get("code") or {}).get("report_stored") is False and (contract.get("code") or {}).get("artifact") == "the_code", "the code is the artifact")
 check("A16G-04_comprehension_offered_after_code", "offer = Comprehension.offer(submission, content.comprehensionChecksFor(item.ref))" in code, "")
 record = body(run_src, "private fun record(")
+# Narrowed at 16H (`ASRX-v0 / D-132`): the attempt is built by one helper that also names its assessment session.
 check("A16G-04_one_action_with_its_task", "SubmitAttempt(persistence, clock).submit(submission)" in record
-      and "AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId)" in code
+      and ("AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId)" in code
+           or ("val submission = submission(run, item, body, provenance, assistance)" in code
+               and "AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId," in body(run_src, "private fun submission(")))
       and "val independence = submission.independence(run.purpose)" in record, "independence derived, never decided")
 
 # ---------------------------------------------------------------- 4. open answers: frozen first, provisional at most, never retried alone

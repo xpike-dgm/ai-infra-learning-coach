@@ -236,4 +236,15 @@ class ProgressPresentationTest {
         // No evidence and nothing written: no weakness is "none", not "not evaluated".
         assertEquals("Yok", view.axes.single { it.axis == UnevaluatedAxis.WEAKNESS }.value)
     }
+
+    @Test
+    fun `a Skill an assessment session could measure now is an assessment opportunity, and nothing else is one`() {
+        val measured = row("skill.python.read_input", mastery = MasteryAxisState.DEVELOPING_INDEPENDENT)
+        val other = row("skill.python.loops", mastery = MasteryAxisState.DEVELOPING_INDEPENDENT)
+        val none = ProgressPresentation.overview(facts(measured, other), ready)
+        assertTrue(none.attention.none { it.group == AttentionGroup.ASSESSMENT_OPPORTUNITY }, "16H: nothing is an opportunity without a session to measure it")
+        val view = ProgressPresentation.overview(facts(measured, other).copy(assessmentOpportunities = setOf(measured.skill)), ready)
+        assertEquals(listOf(measured.skill), view.attention.single { it.group == AttentionGroup.ASSESSMENT_OPPORTUNITY }.skills)
+    }
 }
+

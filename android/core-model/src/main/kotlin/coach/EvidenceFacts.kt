@@ -87,6 +87,12 @@ data class EvidenceRow(
      * the conversation (user decision: no tutor or learner text is stored).
      */
     val assistanceLevels: List<AssistanceLevel> = emptyList(),
+    /**
+     * 16H: the newest correction appended to this row and why (13D `evidence_disposition`), as the store read it. The
+     * row's own fields already carry its effect; these say which correction it was, so a trace can name it.
+     */
+    val disposition: String? = null,
+    val dispositionReason: String? = null,
 ) {
     init {
         require(quality == null || quality in 0.0..1.0) { "a group result is in [0,1], not a score out of anything" }

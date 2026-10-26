@@ -215,7 +215,10 @@ check("E12D-03_triggers_read", len(capacity_triggers) == 8 and len(pbr_triggers)
 declared = set(capacity_triggers) | set(pbr_triggers) | set(prg_triggers)
 kotlin_triggers = set(enum_names(facts, "ReplanTrigger"))
 not_accepted = {t.upper() for t in contract["triggers"]["not_accepted"]}
-check("E12D-03_triggers_are_the_contracts", kotlin_triggers == declared - not_accepted,
+# Narrowed at 16H (`ASRX-v0 / D-132`): the learner's fast-path request is one declared extension of the list (`D-132`, user decision); its
+# reason is `PDT-v0` §8.7's own fast-path code. Nothing else may be added.
+_extended16h = {"DIAGNOSTIC_REQUESTED"} if "DIAGNOSTIC_REQUESTED(\"diagnostic_requested\", DiagnosticCodes.USER_REQUESTED_FAST_PATH)" in facts else set()
+check("E12D-03_triggers_are_the_contracts", kotlin_triggers - _extended16h == declared - not_accepted,
       f"missing={sorted(declared - not_accepted - kotlin_triggers)} extra={sorted(kotlin_triggers - declared)}")
 check("E12D-03_focus_not_accepted", "USER_FOCUS_CHANGED" not in kotlin_triggers and not_accepted == {"USER_FOCUS_CHANGED"},
       "the focus event is accepted with nothing to act on")

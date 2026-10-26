@@ -2314,3 +2314,61 @@ Ayrıntı: `docs/RUN_HELP_SPEC.md`.
 - Kullanıcı 16G'yi böldü: 16G görev içindeki her şeyi taşır (D-130); Today'den ölçme yeni bir adıma, **16H — Uçtan uca günlük döngü: ölçme oturumları**na gider.
 - 16H, AŞAMA 16'nın sonuna, D-099, D-125 ve D-129 gibi eklenir; yeniden numaralama yoktur. Sıra: 16G → 16H → 17A.
 - 16H'nin girdileri `arch/16g_run_help/run_help.yaml`'ın `moved_to_16h` listesidir: Today'den başlatılan günlük, haftalık ve aylık ölçme oturumları ve slotların oturum kimliği; hızlı yolun girişi ve kullanım durumları, tanısal kaynak olarak giriş yerleştirmesi; uygulamadan kaydedilen dispozisyonlar ve izlerdeki dispozisyon nedeni; `assessment_opportunity`.
+
+## D-132 — Today'den ölçme oturumları = ASRX-v0
+**Durum:** Kabul edildi — 2026-10-26
+
+- 16H final modeli `ASRX-v0 — measurement from Today: daily assessment tasks, weekly and monthly slots and fast-path checks run in the one assessment interior; their attempts carry their session; a reported answer is held as contested; the fast path opens from a Topic and replans today` oldu.
+  - Öğrenci Today'den günlük bir ölçmeyi, haftanın ya da ayın bir slotunu ve hızlı yolun bir kontrolünü tek ölçme iç yüzünde yapabiliyor.
+  - Bir soruyu boş bırakabiliyor, cevapladığı hatalı bir soruyu bildirebiliyor.
+  - Bir konuda hızlı yolu isteyip bırakabiliyor.
+- **Kaynaklar:**
+  - canonical spec: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`;
+  - machine-readable contract: `arch/16h_assessment_sessions/assessment_sessions.yaml`;
+  - research: `research/16h_assessment_sessions_research.md`;
+  - validator: `tools/validate_assessment_sessions_run.py`;
+  - kod: `core-model` (`Measurement`, `MeasurementKind`, `RunnableTask.measurement`, `ReplanTrigger.DIAGNOSTIC_REQUESTED`, `EvidenceRow.disposition`, `ProgressFacts.assessmentOpportunities`), `core-application` (`RunTask.kt` — `OpenTask.openSlot`/`openDiagnostic`, `RunTask.beginSession`/`contest`, `SlotSessions`; `FastPath.kt`; `AssessmentOpportunities`; `ProgressQuery(clock)`), `core-presentation` (`MeasurementCopy`, `MeasurementPresentation`, `FastPathView`), `app-ui` (`TaskRunnerScreen.kt`, `TopicScreen.kt`), `app-wiring` (`TaskRunFlow`, `TaskRunSession`, `CoachApplication`, `MainActivity`).
+- Ana invariant: **bugün için planlanan bir ölçme, onu neyin kurduğundan bağımsız olarak tek ölçme iç yüzünde koşar; türü bağlamdır, ek ağırlık değildir.**
+  - Giriş tahmin etmez: slot hâlâ bu döngünün saklı blueprint'inde, kontrol hâlâ açık tanının, item yayımlanmış, değerlendirilebilir, niyetine uygun ve görülmemiş olmalıdır.
+  - Her deneme oturumunu taşır; günlük ölçmenin oturumu öğrenci başladığında açılır; bir slotun cevabı o slotun kanıtıdır.
+  - Boş bırakılan soru yanlış değildir; cevaplanmış bir soru bildirilebilir ve kanıtı eklenen bir dispozisyonla itirazlı tutulur, satır düzenlenmez ve öğrencinin aleyhine işlemez.
+  - Sonuç durumu, güvenilir biçimde ölçülemeyenleri ve motorların söylediğini taşır; not, yüzde, geçti/kaldı yoktur.
+  - Hızlı yolu yalnız öğrenci, bir konudan açar; bugünün planına hemen girer ve başlanan işi korur; bırakmak hiçbir şey borçlandırmaz.
+- **Kullanıcı kararları (2026-10-26, açık onayla — "merge et ve 16H ye başla"):**
+  - kapsam: `moved_to_16h`'nin tamamı tek adımda;
+  - haftalık/aylık plan uygulama açılınca otomatik kurulur (16D'den beri zaten böyle);
+  - itiraz: evet, "Bu soruda sorun var" — kanıt itirazlı tutulur, yanlış sayılmaz, oturum sürer;
+  - hızlı yol bugünün planına hemen girer: yeni bir yeniden plan olayı `diagnostic_requested` (`PDT-v0` §15'in kapalı listesine beyan edilmiş uzantı);
+  - hızlı yol girişi konu ayrıntısında; Learn sekmesi 17'ye kadar boş.
+- **Asistanın varsayılan seçimleri:**
+  - Üç ölçme türü mevcut görev çalıştırıcıda, her seferinde bir item olarak koşar; oryantasyon oturumu ve bağımsızlık açıklamasını her işten önce söyler.
+  - Günlük ölçme `daily` oturum satırını girişte değil öğrenci başlarken yazar; giriş hâlâ hiçbir truth yazmaz.
+  - Niyetler: `assess` görevi doğrulama, slot rolünün niyeti, tanı kontrolü mastery kanıtı, diğer görevler checkpoint.
+  - Ölçme önce ders göstermez.
+  - Slot kanıtı oturumun önceki slotlarıyla `RecordSlotEvidence` üzerinden yazılır; slot koşusunun sonunda yeniden hesaplamadan önce geriye dönük contamination çalışır.
+  - İtiraz yalnız kanıt yazan cevaplanmış bir soruda sunulur: `contested`, neden `learner_reported_item_problem`, karar veren `user_report`; cevaplamadan önce yol boş bırakmaktır.
+  - Koşu sonu yeniden hesaplama itirazlı satırı itirazlı okur.
+  - Yeniden geçerli sayılan (`reinstated`) satır yine satırın kendisidir ve izlerde düzeltme adı taşımaz.
+  - Hızlı yol yalnız yeni öğrenmeye açık becerileri ister; diğerleri isteği bozmadan dışarıda kalır.
+  - Hızlı yoldan çıkmak yeniden plan yapmaz; bugünün kontrolleri girişte adıyla düşer.
+- **Beyan edilmiş uzantılar:**
+  - `ReplanTrigger.DIAGNOSTIC_REQUESTED` (`PDT-v0` §15), nedeni `PDT-v0` §8.7'nin kendi hızlı yol kodu, günün bütçesini korur;
+  - `Measurement`, `MeasurementKind`, `RunnableTask.measurement`, boş bırakılabilir `RunnableTask.task`; `OpenTask.openSlot`/`openDiagnostic`, `RunTask.beginSession`/`contest`, `SlotSessions`; `FastPath`; `EvidenceRow.disposition`/`dispositionReason`, `HistoryEntry` alanları; `ProgressFacts.assessmentOpportunities`, `AssessmentOpportunities`, `ProgressQuery(clock)`; `MeasurementCopy`, `MeasurementPresentation`, `FastPathView`.
+- **Bulunanlar:**
+  - Haftalık/aylık blueprint 16D'den beri açılışta kuruluyordu ve slotlar plana giriyor ama açılamıyordu.
+  - Yazılı bir görev ve bir slot aynı ihtiyaca hizmet edince planner birini seçiyor.
+  - Hızlı yol isteği için bir yeniden plan olayı yoktu.
+  - Learn sekmesinin ekranı yok.
+  - Giriş yerleştirme akışı ve onun için bir tanısal kaynak yok (18A).
+  - Düzeltmenin nedeni uygulanıyor ama satırda taşınmıyordu.
+  - Önceki kapılar 16H'nin değiştirdiğini sabitliyordu: 16F'nin beş, 16G'nin iki, 12D'nin bir kontrolü ve 16F'nin bir testi "Narrowed at 16H" ile daraltıldı.
+- **Doğrulama:**
+  - Kotlin mutation 26/26, validator mutation 50/50; kontrol mutantları hayatta kaldı.
+  - Validator 89/89 PASS.
+  - 1268 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Sweep 70/71 (validate_content_qa.py not run and validate_assessment_content.py without the earlier rebuilds: disk space; their inputs unchanged).
+- Çalıştırılmayan: **T6**. Oturumlar cihazda görülmedi.
+- **Devredilenler:** tanısal kaynak olarak giriş yerleştirmesi (18A); Learn sekmesinin ekranı (17); misconception hafızasının item seçiminde kullanımı (18D); `RebuildMastery`'nin kendi watermark'ı (18E); gün özetine bir koşunun gerçek değişiklikleri (17); blueprint sonucunun `stateChangeRefs`'i (18D).
+- **AŞAMA 16 TAMAMLANDI.** Sonraki numbered step `17A — Görsel polish`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.

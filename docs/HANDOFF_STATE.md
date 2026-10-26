@@ -316,14 +316,16 @@ PEM-v0:
 - 16E ✅ RMDX-v0 / D-127
 - 16F ✅ E2EX-v0 / D-128
 - 16G ✅ HLPX-v0 / D-130
-- 16H 🟡 active-not-executed (added by D-131)
-- 16–20 ⬜
+- 16H ✅ ASRX-v0 / D-132
+- **AŞAMA 16 TAMAMLANDI**
+- 17A 🟡 active-not-executed
+- 17–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `16G — HLPX-v0 / D-130`  
-**Aktif:** `16H — Uçtan uca günlük döngü: ölçme oturumları`  
-**16H henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `16H — ASRX-v0 / D-132`  
+**Aktif:** `17A — Görsel polish`  
+**17A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1674,3 +1676,24 @@ HLPX-v0:
 ## 106. 16H handoff
 
 16H — Uçtan uca günlük döngü: ölçme oturumları (D-131). 16G ran on the user's explicit approval; 16H needs a fresh PRE and the user's new explicit approval. Inputs: 16G's `moved_to_16h` — daily, weekly and monthly assessment sessions started from Today and slots carrying the session id; the fast path's entry and entry placement as a diagnostic source; dispositions from the app and the disposition reason in traces; `assessment_opportunity`. Carried: run polish (17), written comprehension checks in a package (20I), the run, the Copy buttons and the tutor on a device and T6 (19).
+
+## 107. D-132 / 16H final özeti — AŞAMA 16 TAMAMLANDI
+
+Canonical: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.
+Contract/QA: `arch/16h_assessment_sessions/` (contract, QA report, stale audit).
+Synthesis: `research/16h_assessment_sessions_research.md`.
+Code: `core-model` (`Measurement`, `MeasurementKind`, `RunnableTask.measurement`, nullable `task`; `ReplanTrigger.DIAGNOSTIC_REQUESTED`; `EvidenceRow.disposition`/`dispositionReason`; `HistoryEntry` fields; `ProgressFacts.assessmentOpportunities`), `core-application` (`RunTask.kt` — `OpenTask.openSlot`/`openDiagnostic`/`measured`, `RunTask.beginSession`/`contest`, `SlotSessions`; `FastPath.kt`; `AssessmentOpportunities`; `ProgressQuery(clock)`; `LearningHistory`), `core-presentation` (`MeasurementCopy`, `MeasurementPresentation`, `FastPathView`, `ProgressPresentation`, `HistoryCopy.disposition`), `app-ui` (`TaskRunnerScreen.kt`, `TopicScreen.kt`), `app-wiring` (`TaskRunFlow`, `TaskRunSession`, `CoachApplication`, `MainActivity`). Validator `tools/validate_assessment_sessions_run.py`.
+
+ASRX-v0:
+- a measurement planned for today — a daily assessment task, a slot of this cycle's weekly or monthly blueprint, a check of the open diagnostic — runs in the one assessment interior; entry confirms from the stored blueprint, the open diagnostic and the item and writes nothing; every attempt carries its session; a daily session opens when the learner begins; a slot's answer is the slot's evidence; a skip writes nothing and is not incorrect; a report appends a contested disposition and edits nothing; the result has no score; the fast path is the learner's, from a Topic, replans today keeping started work, and withdrawing owes nothing,
+- approval: the user's explicit approval of 2026-10-26 ("merge et ve 16H ye başla"); user decisions: all of `moved_to_16h`; blueprint on open (already since 16D); contest yes; fast path replans now (`diagnostic_requested`, D-132); fast path on the Topic detail,
+- found: the blueprint was already composed on open and its slots reached plans unopenable; a slot and an authored task serving one need are alternatives; no trigger existed for the request; the Learn tab has no screen; no entry placement flow exists (18A); a correction's reason was not carried on the row,
+- narrowed: five 16F, two 16G and one 12D checks and one 16F test, each "Narrowed at 16H",
+- Mutation Kotlin 26/26, validator 50/50; independent QA 89/89 PASS,
+- T6 was not run; the sessions have not been seen on a device.
+
+**AŞAMA 16 TAMAMLANDI** — SKAX-v0 → LHRX-v0 → PWPX-v0 → STGX-v0 → RMDX-v0 → E2EX-v0 → HLPX-v0 → ASRX-v0.
+
+## 108. 17A handoff
+
+17A — Görsel polish. 16H ran on the user's explicit approval; 17A needs a fresh PRE and the user's new explicit approval. Carried into AŞAMA 17: run and notification polish, the Learn tab's own screen, the day summary naming a run's real changes, usage/cost visibility. Carried elsewhere: entry placement as a diagnostic source (18A), misconception memory in item selection and a blueprint result's stateChangeRefs (18D), `RebuildMastery`'s own watermark (18E), written comprehension checks (20I), the run, the sessions and the fast path on a device and T6 (19).

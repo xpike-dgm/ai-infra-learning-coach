@@ -67,4 +67,24 @@ class TaskRunFactsTest {
         assertEquals(ComprehensionOffer.NotOffered, RunAnswer.Recorded(pending).offer, "nothing follows unless the run says so")
         assertEquals(listOf(RunItemKind.ANSWER_KEY, RunItemKind.CODE_TESTS, RunItemKind.RUBRIC), RunItemKind.entries)
     }
+
+    // 16H (`ASRX-v0`)
+
+    @Test
+    fun `a measurement names its session, a slot its slot, and only a slot or a diagnostic runs without an authored task`() {
+        assertEquals(AssessmentScope.WEEKLY_BLUEPRINT, Measurement(MeasurementKind.WEEKLY_SLOT, AssessmentIntent.VERIFICATION, 3, "slot-1").scope)
+        assertEquals(AssessmentScope.DAILY_MICRO, Measurement(MeasurementKind.DIAGNOSTIC, AssessmentIntent.MASTERY_EVIDENCE, 3).scope)
+        assertFailsWith<IllegalArgumentException> { Measurement(MeasurementKind.WEEKLY_SLOT, AssessmentIntent.VERIFICATION, 3) }
+        assertFailsWith<IllegalArgumentException> { Measurement(MeasurementKind.DIAGNOSTIC, AssessmentIntent.MASTERY_EVIDENCE, 3, "slot-1") }
+        assertFailsWith<IllegalArgumentException> { Measurement(MeasurementKind.MONTHLY_SLOT, AssessmentIntent.VERIFICATION, null, "slot-1") }
+        Measurement(MeasurementKind.DAILY_ASSESSMENT, AssessmentIntent.VERIFICATION, null)
+        val slot = run().copy(task = null, lesson = emptyList(), measurement = Measurement(MeasurementKind.MONTHLY_SLOT, AssessmentIntent.VERIFICATION, 4, "slot-2"))
+        assertNull(slot.task)
+        assertFailsWith<IllegalArgumentException> { run().copy(task = null) }
+        assertFailsWith<IllegalArgumentException> { run().copy(task = null, measurement = Measurement(MeasurementKind.DAILY_ASSESSMENT, AssessmentIntent.VERIFICATION, null)) }
+        val lesson = ExplanationVariant(VersionedRef("explanation.computing.canonical", 1), objective, ExplanationForm.CANONICAL, null, "metin")
+        assertFailsWith<IllegalArgumentException> { slot.copy(lesson = listOf(lesson)) }
+        assertEquals(setOf(MeasurementKind.WEEKLY_SLOT, MeasurementKind.MONTHLY_SLOT), MeasurementKind.entries.filter { it.isSlot }.toSet())
+    }
 }
+

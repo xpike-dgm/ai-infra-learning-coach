@@ -192,3 +192,7 @@ Two port refinements, no new interface: `latestPlan()` returns the newest plan's
 If accepted, 12D becomes `RPLX-v0 / D-095`.
 
 Next numbered step: **12E — Explanation / reason codes**. It must receive a fresh PRE-STEP and explicit user approval before execution. Open loops carried: reason text and Today reading the plan (12E), the 3H scenarios (12F), `skill_state` assembly, retention and weakness (13), the recompute chain and an attempt → planned-task link (15), calling the planner and the focus preference (16D), starvation thresholds (18C), reverse invalidation and candidate caps (18E), and the T6 device run.
+
+---
+
+**16H note (2026-10-26, `D-132`):** one trigger joins the list by user decision: `diagnostic_requested`, the learner's fast-path request, reasoned with `PDT-v0` §8.7's `diagnostic.user_requested_fast_path`; it keeps the day's budget and every started task. Details: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.

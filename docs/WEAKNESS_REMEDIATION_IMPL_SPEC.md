@@ -227,3 +227,7 @@ Next numbered step: **13E — Program değişiklik raporu**. It must receive a f
 ---
 
 **14B note (2026-10-01, `D-106`):** misconception memory is now in code and stays in the `WLRM-v0` family: `MisconceptionEngine` replays each catalog label by `WeaknessEngine.rule` unchanged, capped by its source (an `ai_proposed` label never rises above a hypothesis). `WeaknessEvent` gained `misconceptionTags`; no attribution rule changed. One-Skill event building moved to `WeaknessEvents`, shared with the wrong-answer analysis. Details: `docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md`.
+
+---
+
+**16H note (2026-10-26, `D-132`):** the app now records a correction: a learner's report appends `contested`, reason `learner_reported_item_problem`, decided by `user_report`. A row carries its newest correction and reason so traces can name it; a reinstated row is the row again and names nothing. Details: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.

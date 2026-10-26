@@ -1,0 +1,288 @@
+model: ASRX-v0
+stage_step: 16H
+decision: D-132
+result: PASS
+checks_total: 89
+checks_passed: 89
+checks_failed: 0
+checks:
+- check: A16H-00_exists_assessment_sessions.yaml
+  result: PASS
+  details: missing arch\16h_assessment_sessions\assessment_sessions.yaml
+- check: A16H-00_exists_ASSESSMENT_SESSIONS_RUN_SPEC.md
+  result: PASS
+  details: missing docs\ASSESSMENT_SESSIONS_RUN_SPEC.md
+- check: A16H-00_exists_16h_assessment_sessions_research.md
+  result: PASS
+  details: missing research\16h_assessment_sessions_research.md
+- check: A16H-00_exists_ASSESSMENT_SESSION_UX_SPEC.md
+  result: PASS
+  details: missing docs\ASSESSMENT_SESSION_UX_SPEC.md
+- check: A16H-00_exists_TaskRunFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\TaskRunFacts.kt
+- check: A16H-00_exists_PlannerFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\PlannerFacts.kt
+- check: A16H-00_exists_EvidenceFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\EvidenceFacts.kt
+- check: A16H-00_exists_WeaknessFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\WeaknessFacts.kt
+- check: A16H-00_exists_ProgressFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\ProgressFacts.kt
+- check: A16H-00_exists_RunTask.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\RunTask.kt
+- check: A16H-00_exists_FastPath.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\FastPath.kt
+- check: A16H-00_exists_BlueprintAssessment.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\BlueprintAssessment.kt
+- check: A16H-00_exists_ProgressQuery.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\ProgressQuery.kt
+- check: A16H-00_exists_LearningHistory.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\LearningHistory.kt
+- check: A16H-00_exists_Settings.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\Settings.kt
+- check: A16H-00_exists_TaskRunPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\TaskRunPresentation.kt
+- check: A16H-00_exists_ProgressPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\ProgressPresentation.kt
+- check: A16H-00_exists_HistoryPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\HistoryPresentation.kt
+- check: A16H-00_exists_TaskRunnerScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\TaskRunnerScreen.kt
+- check: A16H-00_exists_TopicScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\TopicScreen.kt
+- check: A16H-00_exists_CoachApplication.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
+- check: A16H-00_exists_MainActivity.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
+- check: A16H-00_exists_TaskRunFlow.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\TaskRunFlow.kt
+- check: A16H-00_exists_TaskRunSession.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\TaskRunSession.kt
+- check: A16H-00_exists_TaskRunFactsTest.kt
+  result: PASS
+  details: missing android\core-model\src\test\kotlin\coach\model\TaskRunFactsTest.kt
+- check: A16H-00_exists_MeasurementPresentationTest.kt
+  result: PASS
+  details: missing android\core-presentation\src\test\kotlin\coach\presentation\MeasurementPresentationTest.kt
+- check: A16H-00_exists_ProgressPresentationTest.kt
+  result: PASS
+  details: missing android\core-presentation\src\test\kotlin\coach\presentation\ProgressPresentationTest.kt
+- check: A16H-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: A16H-01_model
+  result: PASS
+  details: ''
+- check: A16H-01_user_decisions
+  result: PASS
+  details: '{''approval'': ''explicit_user_approval_2026-10-26'', ''scope'': ''everything_in_moved_to_16h_sessions_from_today_slot_session_ids_fast_path_entry_dispositions_and_contest_assessment_opportunity'',
+    ''blueprint_composition'': ''automatic_when_the_learner_opens_the_app_in_a_new_week_or_month_already_the_behaviour_since_16d'',
+    ''contest'': ''yes_a_reported_answer_is_held_as_contested_not_evidence_not_wrong_the_session_continues'',
+    ''fast_path_replan'': ''immediately_a_new_replan_trigger_diagnostic_requested_declared_extension_of_pdt_v0_s15'',
+    ''fast_path_entry'': ''on_the_topic_detail_the_learn_tab_stays_empty_until_17''}'
+- check: A16H-01_scope
+  result: PASS
+  details: ''
+- check: A16H-01_asux_is_the_source
+  result: PASS
+  details: ''
+- check: A16H-01_measurement_recorded
+  result: PASS
+  details: ''
+- check: A16H-02_four_kinds_one_interior
+  result: PASS
+  details: ''
+- check: A16H-02_measurement_invariants
+  result: PASS
+  details: a measurement teaches nothing first, a slot names its slot
+- check: A16H-03_slot_this_cycle_only
+  result: PASS
+  details: an earlier cycle's slot is not debt
+- check: A16H-03_slot_gate_reads_the_item
+  result: PASS
+  details: ''
+- check: A16H-03_check_of_the_open_diagnostic_only
+  result: PASS
+  details: ''
+- check: A16H-03_judgeable_usable_unseen
+  result: PASS
+  details: ''
+- check: A16H-03_entry_writes_nothing
+  result: PASS
+  details: ''
+- check: A16H-03_assess_is_a_daily_assessment
+  result: PASS
+  details: ''
+- check: A16H-04_serves_for_its_intent
+  result: PASS
+  details: ''
+- check: A16H-04_daily_session_at_begin
+  result: PASS
+  details: ''
+- check: A16H-04_every_attempt_carries_its_session
+  result: PASS
+  details: key, tests and rubric alike
+- check: A16H-04_slot_evidence_is_the_slot_s
+  result: PASS
+  details: ''
+- check: A16H-04_session_read_from_attempts
+  result: PASS
+  details: never kept in memory
+- check: A16H-04_retroactive_before_recompute
+  result: PASS
+  details: present, and before the recompute
+- check: A16H-04_contest_appends_never_edits
+  result: PASS
+  details: ''
+- check: A16H-04_skip_writes_nothing
+  result: PASS
+  details: ''
+- check: A16H-04_contest_only_on_evidence
+  result: PASS
+  details: ''
+- check: A16H-05_row_carries_its_correction
+  result: PASS
+  details: a reinstated row is the row again
+- check: A16H-05_history_names_it
+  result: PASS
+  details: ''
+- check: A16H-06_boundaries_honest
+  result: PASS
+  details: ''
+- check: A16H-06_not_measured_named
+  result: PASS
+  details: ''
+- check: A16H-06_no_verdict_words
+  result: PASS
+  details: '[]'
+- check: A16H-06_wired_result
+  result: PASS
+  details: ''
+- check: A16H-07_only_startable_skills
+  result: PASS
+  details: the learner opens it; the rest are left out, not refusing all
+- check: A16H-07_replans_keeping_started
+  result: PASS
+  details: nothing planned when nothing was requested
+- check: A16H-07_declared_trigger
+  result: PASS
+  details: ''
+- check: A16H-07_withdraw_owes_nothing
+  result: PASS
+  details: ''
+- check: A16H-07_on_the_topic
+  result: PASS
+  details: ''
+- check: A16H-08_opportunity_is_a_session_fact
+  result: PASS
+  details: this cycle's unserved slots and open checks
+- check: A16H-08_opportunity_shown
+  result: PASS
+  details: ''
+- check: A16H-09_orientation_before_work
+  result: PASS
+  details: ''
+- check: A16H-09_skip_and_report_drawn
+  result: PASS
+  details: ''
+- check: A16H-09_screen_decides_nothing
+  result: PASS
+  details: ''
+- check: A16H-09_session_opened_on_begin
+  result: PASS
+  details: ''
+- check: A16H-09_exit_still_first
+  result: PASS
+  details: ''
+- check: A16H-10_moved_on_named
+  result: PASS
+  details: ''
+- check: A16H-10_stage_16_complete
+  result: PASS
+  details: ''
+- check: A16H-11_test_a_measurement_names_its_session_a_slot
+  result: PASS
+  details: 'TaskRunFactsTest.kt: a measurement names its session, a slot its slot,
+    and only a slot or a diagnostic runs without an authored task'
+- check: A16H-11_test_orientation_names_the_session_and_what_i
+  result: PASS
+  details: 'MeasurementPresentationTest.kt: orientation names the session and what
+    independence means, before any work'
+- check: A16H-11_test_a_skipped_question_leaves_the_session_pa
+  result: PASS
+  details: 'MeasurementPresentationTest.kt: a skipped question leaves the session
+    partial and is not incorrect, and a reported one is not measured'
+- check: A16H-11_test_the_result_says_its_state_what_could_no
+  result: PASS
+  details: 'MeasurementPresentationTest.kt: the result says its state, what could
+    not be measured and what the engines reported, and nothing else'
+- check: A16H-11_test_a_skill_an_assessment_session_could_meas
+  result: PASS
+  details: 'ProgressPresentationTest.kt: a Skill an assessment session could measure
+    now is an assessment opportunity, and nothing else is one'
+- check: A16H-11_test_a_planned_blueprint_slot_opens_as_a_meas
+  result: PASS
+  details: 'ShippedCourseTest.kt: a planned blueprint slot opens as a measurement
+    of its session, and its answer is that session''s slot evidence'
+- check: A16H-11_test_a_daily_assessment_opens_its_own_session
+  result: PASS
+  details: 'ShippedCourseTest.kt: a daily assessment opens its own session as the
+    learner begins, and a reported answer is held as contested'
+- check: A16H-11_test_the_fast_path_joins_today_s_plan_at_once
+  result: PASS
+  details: 'ShippedCourseTest.kt: the fast path joins today''s plan at once, keeps
+    started work, opens its checks in its own session, and leaving it owes nothing'
+- check: A16H-12_narrowed_gates_marked
+  result: PASS
+  details: 'one marker per narrowed check: [''tools/validate_end_to_end_loop.py'',
+    ''tools/validate_run_help.py'', ''tools/validate_replan.py'', ''android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt'']'
+- check: A16H-13_kotlin_mutation_all_detected
+  result: PASS
+  details: 26/26
+- check: A16H-13_kotlin_crash_not_detection
+  result: PASS
+  details: ''
+- check: A16H-13_validator_mutation
+  result: PASS
+  details: '50'
+- check: A16H-13_runs_pass
+  result: PASS
+  details: ''
+- check: A16H-13_device_not_claimed
+  result: PASS
+  details: ''
+- check: A16H-13_no_claim_words
+  result: PASS
+  details: ''
+- check: A16H-14_decision
+  result: PASS
+  details: ''
+- check: A16H-14_spec_accepted
+  result: PASS
+  details: ''
+- check: A16H-14_spec_next_is_17a
+  result: PASS
+  details: ''
+- check: A16H-14_research_sources
+  result: PASS
+  details: ''

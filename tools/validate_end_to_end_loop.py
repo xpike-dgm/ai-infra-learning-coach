@@ -171,11 +171,15 @@ check("A16F-03_need_still_open", "openNeeds().any { it.needKey == entry.needKey 
 check("A16F-03_content_read_not_assumed", "AuthoredTask.refOfCandidate(entry.candidateId)" in open_ and "content::authoredTask" in open_
       and "persistence.skill(entry.primarySkill) != null" in open_, "")
 servable = body(run_src, "private fun servable(")
-check("A16F-03_assess_is_16g", "if (task.purpose == TaskPurpose.ASSESS) return" in servable and "CapabilityGap.ASSESSMENT_INTERIOR_NOT_AVAILABLE" in servable, "")
+# Narrowed at 16H (`ASRX-v0 / D-132`): an assess task now runs in the assessment interior, as a daily assessment with no lesson first.
+check("A16F-03_assess_is_16g", ("if (task.purpose == TaskPurpose.ASSESS) return" in servable and "CapabilityGap.ASSESSMENT_INTERIOR_NOT_AVAILABLE" in servable)
+      or "measurement = if (task.purpose == TaskPurpose.ASSESS) Measurement(MeasurementKind.DAILY_ASSESSMENT, intentOf(task), sessionId = null) else null" in run_src, "")
 # Narrowed at 16G (`HLPX-v0 / D-130`): an item is servable when the app can judge it at all — an answer key, the course's
 # tests with a shipped suite, or a rubric the evaluator may judge (`RunItems.kind`), still only when usable.
 check("A16F-03_answer_key_only", ("content.answerKeyFor(it) != null && server.usable(it, INTENT, evaluatorAvailable)" in servable
-       or "RunItems.kind(it, content) } != null && server.usable(ref, INTENT, evaluatorAvailable)" in servable)
+       or "RunItems.kind(it, content) } != null && server.usable(ref, INTENT, evaluatorAvailable)" in servable
+       # Narrowed at 16H (`ASRX-v0 / D-132`): the task's own intent — a verification for an assess task, a check otherwise.
+       or "RunItems.kind(it, content) } != null && server.usable(ref, intent, evaluatorAvailable)" in servable)
       and "CapabilityGap.NO_ITEM_THIS_APP_CAN_EVALUATE" in servable and "CapabilityGap.NO_UNSEEN_ITEM" in servable, "")
 check("A16F-03_entry_writes_nothing", not re.search(r"appendTruth|inTransaction|\.build\(|\.replan\(|offer\(", open_), "")
 check("A16F-03_runs_only_when_all_confirmed", "require((run != null) == startable)" in facts
@@ -190,17 +194,29 @@ check("A16F-03_usable_records_nothing", "if (serve) recordExposure(item.ref, ite
 # ---------------------------------------------------------------- 3. the run: serve, answer, judge, record
 runtask = body(run_src, "class RunTask(")
 serve = body(runtask, "fun serve(")
-check("A16F-04_unseen_in_order_never_twice", "run.items.filterNot { it in served }.forEach" in serve and "server.offer(ref, OpenTask.INTENT, evaluatorAvailable)" in serve
+# Narrowed at 16H (`ASRX-v0 / D-132`): a measurement's items are offered for its own intent; every other run's for the check intent.
+check("A16F-04_unseen_in_order_never_twice", "run.items.filterNot { it in served }.forEach" in serve
+      and ("server.offer(ref, OpenTask.INTENT, evaluatorAvailable)" in serve or "server.offer(ref, run.measurement?.intent ?: OpenTask.INTENT, evaluatorAvailable)" in serve)
       and run_cfg.get("items_served") == "unseen_in_authored_order", "")
 answer = body(runtask, "fun answer(")
 check("A16F-04_blank_is_a_skip", "if (response.isBlank()) return null" in answer and run_cfg.get("blank_answer_writes_nothing") is True, "")
-check("A16F-04_one_action_with_its_task", "AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId)" in answer
-      and answer.find("SubmitAttempt(persistence, clock).submit(submission)") < answer.find("RecordEvidence(persistence, clock).record("), "")
+# Narrowed at 16H (`ASRX-v0 / D-132`): every answer's attempt is built by one helper that also names its assessment session, and is
+# submitted before its evidence is recorded through the one evidence path.
+_submission16h = body(runtask, "private fun submission(")
+check("A16F-04_one_action_with_its_task", ("AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId)" in answer
+      and answer.find("SubmitAttempt(persistence, clock).submit(submission)") < answer.find("RecordEvidence(persistence, clock).record("))
+      or ("AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId," in _submission16h
+          and "val submission = submission(run, item, body, provenance, assistance)" in answer
+          and answer.find("SubmitAttempt(persistence, clock).submit(submission)") < answer.find("evidence(run, item, recorded.attemptId")), "")
 # Narrowed at 16G (`HLPX-v0 / D-130`): the answer-key path still asks no AI; code and rubric answers are 16G's own paths.
 check("A16F-04_judged_by_the_key_only", "OpenResponse.byKey(item, key, response.trim())" in answer and "evaluator" not in answer.replace("evaluatorAvailable", "")
       and run_cfg.get("evaluation") == "answer_key_only", "no AI judges an answer here")
-check("A16F-04_independence_derived", "independence = submission.independence(run.purpose)," in answer, "never decided by the runner")
-check("A16F-04_contamination_named", "PrerequisiteSnapshot.CONTAMINATED" in answer and "gate.eligibility.waits" in answer, "")
+# Narrowed at 16H (`ASRX-v0 / D-132`): the derived independence and the gate's contamination now pass through the one evidence path.
+_evidence16h = body(runtask, "private fun evidence(")
+check("A16F-04_independence_derived", "independence = submission.independence(run.purpose)," in answer
+      or "evidence(run, item, recorded.attemptId, recorded.artifactId, it, submission.independence(run.purpose))" in answer, "never decided by the runner")
+check("A16F-04_contamination_named", ("PrerequisiteSnapshot.CONTAMINATED" in answer and "gate.eligibility.waits" in answer)
+      or ("PrerequisiteSnapshot.CONTAMINATED" in _evidence16h and "gate.eligibility.waits" in _evidence16h), "")
 check("A16F-04_too_long_refused", "ArtifactBody.store(response.trim()) as? ArtifactBody.Stored.Inline ?: return null" in answer, "")
 
 # ---------------------------------------------------------------- 4. seeing the answer
