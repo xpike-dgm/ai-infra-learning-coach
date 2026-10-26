@@ -194,3 +194,7 @@ Next numbered step: **11C — Session state**. It owns the resume checkpoint's c
 ---
 
 **14A note (2026-10-01, `D-105`):** `RunnerCopy.CONSEQUENCE_DISCLOSURE` is unchanged and remains the wording while an answer is open. After an answer is frozen the attempt is untouched (`2D` §5.3), so tutor help there is disclosed with `TutorCopy.DISCLOSURE_AFTER_ANSWER`. Help from the tutor is recorded as an `AssistanceEvent` only when it was actually shown. Details: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md`.
+
+---
+
+**16F note (2026-10-26, `D-128`):** the five entry conditions are now confirmed from engine facts (`OpenTask`: the store, the gate, the open needs, the authored task), exactly as §4.1 said they would be — the rule was not loosened. `planned_task_ref` (§5.3) is `attempt.planned_task_id` (schema v11). The runner serves a task's unseen answer-key questions and hands each frozen answer to the evidence pipeline. Details: `docs/END_TO_END_LOOP_SPEC.md`.

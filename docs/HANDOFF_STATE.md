@@ -314,14 +314,15 @@ PEM-v0:
 - 16C ✅ PWPX-v0 / D-124
 - 16D ✅ STGX-v0 / D-126
 - 16E ✅ RMDX-v0 / D-127
-- 16F 🟡 active-not-executed (added by D-125)
+- 16F ✅ E2EX-v0 / D-128
+- 16G 🟡 active-not-executed (added by D-129)
 - 16–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `16E — RMDX-v0 / D-127`  
-**Aktif:** `16F — Uçtan uca günlük döngü`  
-**16F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `16F — E2EX-v0 / D-128`  
+**Aktif:** `16G — Uçtan uca günlük döngü: yardım ve ölçüm`  
+**16G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1634,3 +1635,22 @@ RMDX-v0:
 ## 102. 16F handoff
 
 16F — Uçtan uca günlük döngü (D-125). 16E ran on the user's explicit approval of 2026-10-25; 16F needs a fresh PRE and the user's new explicit approval. Inputs: 16D's `moved_to_16f` (the runner serving items and explanations, attempts and evidence from the app with the attempt-to-planned-task link and reporting started work to a replan, the recompute and reports after a session, code and open-response evaluation and the self-check, the tutor panel, the alternative-explanation menu and the comprehension check, the fast path, slots carrying the session id, dispositions from the app, `assessment_opportunity`) and 16E's open loop (once attempts link to planned tasks, the reminder's "work recorded today" can become "unstarted tasks in today's plan"). Carried: notification polish (17), theme and accessibility preferences (17D), focus preference (18B), the reminder and the pickers on a device and T6 (19).
+
+## 103. D-128 / D-129 / 16F final özeti
+
+Canonical: `docs/END_TO_END_LOOP_SPEC.md`.
+Contract/QA: `arch/16f_end_to_end_loop/` (contract, QA report, stale audit).
+Synthesis: `research/16f_end_to_end_loop_research.md`.
+Code: `core-model` (`TaskRunFacts.kt` — `CapabilityGap`, `RunnableTask`, `TaskEntryFacts`, `AnswerResult`, `AnsweredItem`; `AttemptSubmission.plannedTaskId`; `PlannedTaskFact.started`; `AuthoredTask.refOfCandidate`), `core-ports` (`startedPlannedTasks`, `authoredTask`, defaulted), `data-persistence` (schema v11 `attempt.planned_task_id`), `data-curriculum` (`authoredTask`), `core-application` (`RunTask.kt` — `OpenTask`, `RunTask`, `StartedTasks`; `BuildDailyPlan.openNeeds`; `ServeDailyMicroItem.usable`; kept work in `ReportProgramChanges` and `PlanToday`; `TodayFactsQuery`; `ReminderCheck`), `core-presentation` (`TaskRunPresentation.kt`, `TaskRunStage`), `app-ui` (`TaskRunnerScreen.kt`), `app-wiring` (`TaskRunSession`, `CoachApplication`, `MainActivity`). Validator `tools/validate_end_to_end_loop.py`.
+
+E2EX-v0:
+- a planned task runs only when every entry condition is confirmed from the store, the gate, the open needs and the authored task; the runner shows the course's own lesson, serves the task's unseen answer-key questions, records each frozen answer with its help, provenance and planned task as one action, has it judged by the key and hands it to the evidence pipeline; the result is right, partly, not right or not measured, and seeing the answer is a step the learner chooses; at the end the report says only what canonical state did and only a change replans, keeping every started task,
+- approval: the user's explicit approval of 2026-10-25 ("merge et ve 16F ye başla"); user decisions (2026-10-26): the core loop only, the rest in a new step 16G (D-129); right/wrong after submitting, the answer on request as H4,
+- found: twenty-four of sixty Skills have only code-test tasks and cannot start until 16G; a teaching task holds one lesson question; 13E's and 16D's replans assumed nothing was started; the store could not tell which task was started (schema v11); a new learner's first run reports no change, because a state no engine wrote is not a "before" (13E); two earlier checks misread new code and the code was changed,
+- narrowed: 11B, 13E, 13F, 14B, 16D and four 16E checks and two 16E tests, each "Narrowed at 16F",
+- Mutation Kotlin 29/29, validator 44/44; independent QA 104/104 PASS,
+- T6 was not run; the run has not been seen on a device.
+
+## 104. 16G handoff
+
+16G — Uçtan uca günlük döngü: yardım ve ölçüm (D-129). 16F ran on the user's explicit approval; 16G needs a fresh PRE and the user's new explicit approval. Inputs: 16F's `moved_to_16g` — the tutor panel, the alternative-explanation menu and the comprehension check inside the run; the wrong-answer analysis; code items (importing the PC runner's report, moving files, the code evaluation route); open responses through the evaluator and the self-check; the fast path's entry; weekly, monthly and daily assessment sessions from Today and slots carrying the session id; dispositions from the app and `assessment_opportunity`; resuming a started task from a checkpoint. Carried: run and notification polish (17), theme and accessibility preferences (17D), focus preference (18B), the run, the reminder and the pickers on a device and T6 (19).

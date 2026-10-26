@@ -8,6 +8,18 @@ import android.util.Log
 import android.net.Uri
 import coach.application.CapacitySettings
 import coach.application.ReminderSettings
+import coach.application.CaptureProgramSnapshot
+import coach.application.OpenTask
+import coach.application.RunTask
+import coach.model.AnsweredItem
+import coach.model.AssessmentItem
+import coach.model.AssistanceEvent
+import coach.model.ProgramSnapshot
+import coach.model.ProvenanceOrigin
+import coach.model.RunnableTask
+import coach.model.TaskEntryFacts
+import coach.presentation.ProgramChangeResults
+import coach.presentation.TaskRunCopy
 import coach.model.ReminderPreference
 import coach.model.StoreStatus
 import coach.presentation.NotificationAccess
@@ -208,6 +220,81 @@ class CoachApplication : Application() {
 
     /** For the reminder's preview, which must route the same items the planner would (16E). */
     internal fun evaluatorAvailableNow(): Boolean = evaluatorAvailable()
+
+    // ---------------------------------------------------------------- running a planned task (16F)
+
+    /**
+     * Entry for one of today's planned tasks, off the main thread (16F): every condition is confirmed in core, and when
+     * the task can run the program's state is captured first, so the end of the run can say what really changed.
+     */
+    fun openTask(plannedTaskId: Long, onDone: (TaskEntryFacts, ProgramSnapshot?) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            val facts = OpenTask(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).open(plannedTaskId)
+            val before = facts.run?.let { CaptureProgramSnapshot(graph.persistence, graph.clock).capture() }
+            main.post { onDone(facts, before) }
+        }
+    }
+
+    /** The run's next unseen question and its text, recorded as seen when shown; `null` when none is left. */
+    fun serveNext(run: RunnableTask, served: Set<VersionedRef>, onDone: (AssessmentItem?, String?) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            val item = RunTask(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).serve(run, served)
+            val prompt = item?.let { graph.content.resource(it.ref)?.body }
+            main.post { onDone(item, prompt) }
+        }
+    }
+
+    /** Records one frozen answer and its evidence; `null` for a skip or an answer too long to carry. */
+    fun answerItem(
+        run: RunnableTask, item: AssessmentItem, response: String, provenance: ProvenanceOrigin, assistance: List<AssistanceEvent>,
+        onDone: (AnsweredItem?) -> Unit,
+    ) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            val answered = RunTask(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).answer(run, item, response, provenance, assistance)
+            main.post { onDone(answered) }
+        }
+    }
+
+    /** The accepted answer, after the learner asked; recorded as help after submission and as a solution exposure. */
+    fun revealAnswer(item: AssessmentItem, attemptId: Long?, onDone: (List<String>) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            val run = RunTask(graph.persistence, graph.content, graph.clock, evaluatorAvailable())
+            val answers = if (attemptId != null) run.reveal(item, attemptId) else run.revealBeforeAnswer(item)
+            main.post { onDone(answers) }
+        }
+    }
+
+    /**
+     * The end of a run, finished or stopped: what canonical state and the plan really did (13E), worded in core, and
+     * Today's facts read again, because a replan may have changed today's plan.
+     */
+    fun finishRun(
+        run: RunnableTask, before: ProgramSnapshot, answered: List<AnsweredItem>, items: List<AssessmentItem>,
+        onDone: (List<String>, TodayFacts, DayCloseFacts.Loaded) -> Unit,
+    ) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            val reported = RunTask(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).finish(run, before, answered, items)
+            val label: (VersionedRef) -> String = { ref -> graph.persistence.skill(ref)?.canonicalName ?: ref.logicalId }
+            val lines = when (reported) {
+                null -> listOf(TaskRunCopy.NOTHING_ANSWERED)
+                else -> ProgramChangeResults.summary(reported.report)?.let(::listOf)
+                    ?: ProgramChangeResults.canonicalChanges(reported.report, label).values.flatten()
+            }
+            val facts = TodayFactsQuery(graph.persistence, graph.clock).load()
+            val day = DayCloseFacts(graph.persistence, graph.clock).load()
+            main.post { onDone(lines, facts, day) }
+        }
+    }
 
     // ---------------------------------------------------------------- the daily reminder (16E)
 

@@ -395,7 +395,8 @@ object TodayPresentation {
      * it was already started (12D), and continuing a run is the resumable session's path, which
      * revalidates first (11C). Offering it again as new work would ask the learner to redo it.
      */
-    private fun startable(task: PlannedTaskFact): Boolean = !task.blocked && !task.kept
+    // 16F: nor work the learner started in this version of today's plan — the same reason, one version later.
+    private fun startable(task: PlannedTaskFact): Boolean = !task.blocked && !task.kept && !task.started
 
     private fun row(task: PlannedTaskFact, disposition: TaskDisposition) = TodayTaskRow(
         plannedTaskRef = task.plannedTaskId,

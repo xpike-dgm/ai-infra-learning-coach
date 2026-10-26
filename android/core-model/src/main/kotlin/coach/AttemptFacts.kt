@@ -80,6 +80,11 @@ data class AttemptSubmission(
      * `assessment_session_id`; a weekly result is read from the session's own attempts, never guessed.
      */
     val assessmentSessionId: Long? = null,
+    /**
+     * The planned task this attempt was made for (16F, `TRUX-v0` §6.5 `planned_task_ref`). A replan keeps a started task
+     * and Today does not offer it again; an attempt outside a planned task names none.
+     */
+    val plannedTaskId: Long? = null,
 ) {
     init {
         require(artifactContentRef.isNotBlank()) { "an attempt must reference the artifact it froze" }

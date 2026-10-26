@@ -2182,3 +2182,68 @@ Ayrıntı: `docs/SETTINGS_SPEC.md`.
 - Sonraki numbered step `16F — Uçtan uca günlük döngü`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/NOTIFICATIONS_SPEC.md`.
+
+## D-128 — Uçtan uca günlük döngü (çekirdek) = E2EX-v0
+**Durum:** Kabul edildi — 2026-10-26
+
+- 16F final modeli `E2EX-v0 — a planned task run from Today to its end: entry confirmed, lesson shown, questions served, answers judged by their key, evidence written, and the plan replanned only when state changed` oldu.
+  - Öğrenci Today'den bugünün planındaki bir görevi başlatıp sonuna kadar yapabiliyor: ders anlatımı, sorular, cevap, değerlendirme, kanıt, rapor ve gerekiyorsa yeni plan.
+- **Kaynaklar:**
+  - canonical spec: `docs/END_TO_END_LOOP_SPEC.md`;
+  - machine-readable contract: `arch/16f_end_to_end_loop/end_to_end_loop.yaml`;
+  - research: `research/16f_end_to_end_loop_research.md`;
+  - validator: `tools/validate_end_to_end_loop.py`;
+  - kod: `core-model` (`TaskRunFacts.kt`), `core-ports` (`startedPlannedTasks`, `authoredTask`), `data-persistence` (şema v11 `attempt.planned_task_id`), `data-curriculum` (`authoredTask`), `core-application` (`RunTask.kt` — `OpenTask`, `RunTask`, `StartedTasks`; `BuildDailyPlan.openNeeds`), `core-presentation` (`TaskRunPresentation.kt`), `app-ui` (`TaskRunnerScreen.kt`), `app-wiring` (`TaskRunSession`, `CoachApplication`, `MainActivity`).
+- Ana invariant: **bir planlı görev ancak her giriş koşulu depodan, kapıdan, açık ihtiyaçlardan ve yazılı görevden doğrulandığında çalışır.**
+  - Hiçbir şey varsayılmaz; doğrulanamayan adlandırılır, suçlanmaz.
+  - Görev çalıştırıcı bir yürütme yüzeyi olarak kalır: dersin kendi anlatımını gösterir, görevin görülmemiş sorularını sunar, donmuş her cevabı yardımı, kökeni ve planlı göreviyle tek öğrenci eylemi olarak kaydeder, dersin cevap anahtarıyla değerlendirtir ve kanıt hattına verir.
+  - Cevap doğru, kısmen doğru, eşleşmedi ya da ölçülemedi; cevabı görmek öğrencinin seçtiği ayrı bir adımdır.
+  - Sonda rapor yalnız kanonik durumun ne yaptığını söyler; yalnız bir değişiklik planner'dan yeni plan ister ve o plan öğrencinin başladığı her görevi korur.
+- **Kullanıcı kararları (2026-10-26, açık onayla):**
+  - kapsam: yalnız çekirdek döngü — Today'den gerçek giriş kontrolüyle başlatma, ders, soru, cevap, cevap anahtarıyla değerlendirme, kanıt, yeniden hesaplama ve değişiklik raporu, başlanan işi koruyan yeniden plan, Today'in güncellenmesi, hatırlatma kuralının güncellenmesi; kalanı 16G'ye (D-129);
+  - geri bildirim: gönderince yalnız doğru/yanlış; doğru cevabı görmek ayrı ve isteğe bağlı bir adım, H4 olarak kaydedilir.
+- **Asistanın varsayılan seçimleri:**
+  - Deneme, yapıldığı planlı görevi boş bırakılabilir yeni bir kolonda adlandırır (şema v11, `attempt.planned_task_id`).
+  - Başlanmış görev: bugünkü plan sürümünde denemesi olan ya da bugünün önceki bir sürümünün koruduğu görev; Today onu sunmaz, her yeniden plan onu korur.
+  - Yerel yetenek: `assess` görevi ölçme oturumu ister (16G); görevin cevap anahtarıyla değerlendirilebilen, görülmemiş bir sorusu olmalı.
+  - Sorular CHECKPOINT niyetiyle, görülmemiş, görevin yazıldığı sırayla sunulur, hiçbiri tekrarlanmaz; kalmayınca koşu biter.
+  - Köken oryantasyonda bir kez sorulur, hiçbir seçenek önceden seçili değildir, koşunun her cevabına kaydedilir.
+  - Soru sırasında dersin anlatımını yeniden görmek H2'dir ve cevapla kaydedilir.
+  - Cevap vermeden cevabı görmek, sonucu söylendikten sonra H4'tür: deneme ve kanıt yoktur, çözüm exposure'ı kaydedilir.
+  - Cevap verdikten sonra cevabı görmek H4 `after_submit` ve çözüm exposure'ıdır; donmuş cevabın kanıtı yazıldığı gibi kalır (`TRUX-v0` §6.4).
+  - Koşu sonu işlemi bir kez çalışır: bitince, soru kalmayınca ya da öğrenci çıkınca; cevap yoksa hiçbir şey yeniden hesaplanmaz.
+  - Hatırlatmada "bugün bir deneme kaydedildi" kuralının yerini "bugünün planındaki her görev başladı" aldı (16E'nin açık loop'u); sessizlik nedenleri değişmedi.
+- **Beyan edilmiş uzantılar:**
+  - `attempt.planned_task_id` (şema v11), bir truth tablosuna eklenen boş bırakılabilir kolon (emsal: v3 `assessment_session.blueprint`);
+  - varsayılanlı port inceltmeleri `startedPlannedTasks`, `authoredTask`; port sayısı değişmedi;
+  - `ServeDailyMicroItem.offer(serve = false)` ve `usable`; `BuildDailyPlan.openNeeds`; `ReportProgramChanges.report(keptPositions)`; `PlannedTaskFact.started`; `AuthoredTask.refOfCandidate`.
+- **Bulunanlar:**
+  - Kullanıcı döngüyü yeniden böldü (→ D-129).
+  - 1112 item'ın 618'i cevap anahtarlı, 480'i kod testli, 14'ü rubric'li; 60 Skill'in 24'ünün (Python/C kodlama) görevleri yalnız kod testine dayanıyor ve 16G'ye kadar "yerel yetenek yok" diye başlatılamaz.
+  - Bir öğretim görevinde tek ders sorusu var; koşu ders ve o sorudur.
+  - 13E'nin ve 16D'nin yeniden planı hiçbir şeyin başlanmadığını varsayıyordu; ikisi de artık deponun bildirdiği başlanmış görevleri koruyor.
+  - Yeni bir öğrencinin ilk koşusu değişiklik raporlamıyor: hiçbir motorun yazmadığı durum bir "önce" değildir (13E); kanıt kaydedilir ve sonraki okuma onu görür.
+  - İki önceki kontrol yeni kodu yanlış okudu ve kod değiştirildi, kontrol değil: 16D'nin geri yükleme kontrolü blok yorum ayıklıyor ve `"*/*"` bir blok açıyordu; 11C'nin oturum kontrolü ilk `onStart = {`'u okuyordu (eylem `onBegin` oldu).
+  - Önceki kapılar 16F'nin değiştirdiğini sabitliyordu: 11B, 13E, 13F, 14B, 16D ve 16E'nin dört kontrolü ve 16E'nin iki testi "Narrowed at 16F" ile daraltıldı.
+- **Doğrulama:**
+  - Kotlin mutation 29/29, validator mutation 44/44; kontrol mutantları hayatta kaldı.
+  - Validator 104/104 PASS.
+  - 1237 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Sweep 68/69 (validate_content_qa.py not run: disk space; its inputs unchanged).
+- Çalıştırılmayan: **T6**. Koşu cihazda görülmedi.
+- **Açık loop'lar:**
+  - Döngünün geri kalanı (16G, D-129).
+  - Koşu cilası (17).
+  - Koşu cihazda ve T6 (19).
+- Sonraki numbered step `16G — Uçtan uca günlük döngü: yardım ve ölçüm`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/END_TO_END_LOOP_SPEC.md`.
+
+## D-129 — 16G eklendi: Uçtan uca günlük döngü — yardım ve ölçüm
+**Durum:** Kabul edildi — 2026-10-26 (kullanıcı kararı)
+
+- 16D'nin `moved_to_16f` listesi döngünün geri kalanının tamamını taşıyordu.
+- Kullanıcı 16F'yi böldü: 16F çekirdek döngüyü taşır (D-128); geri kalanı yeni bir adıma, **16G — Uçtan uca günlük döngü: yardım ve ölçüm**e gider.
+- 16G, AŞAMA 16'nın sonuna, D-099 ve D-125 gibi eklenir; yeniden numaralama yoktur. Sıra: 16F → 16G → 17A.
+- 16G'nin girdileri `arch/16f_end_to_end_loop/end_to_end_loop.yaml`'ın `moved_to_16g` listesidir: tutor paneli, alternatif anlatım, anlama kontrolü, yanlış cevap analizi, kod raporu, açık uçlu AI değerlendirmesi ve öz-kontrol, hızlı yol, Today'den ölçme oturumları ve slotların oturum kimliği, dispozisyonlar ve `assessment_opportunity`, başlanmış bir görevi checkpoint'ten devam ettirmek.
+

@@ -216,7 +216,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **16C — Progress / weakness gösterim kuralları** — `PWPX-v0 / D-124`
 - [x] **16D — Ayarlar** — `STGX-v0 / D-126`
 - [x] **16E — Bildirimler** — `RMDX-v0 / D-127`
-- [ ] **16F — Uçtan uca günlük döngü** — `D-125` ile eklendi (yeniden numaralama yok) **AKTİF**
+- [x] **16F — Uçtan uca günlük döngü** — `D-125` ile eklendi (yeniden numaralama yok) — `E2EX-v0 / D-128`
+- [ ] **16G — Uçtan uca günlük döngü: yardım ve ölçüm** — `D-129` ile eklendi (yeniden numaralama yok) **AKTİF**
 
 ---
 
@@ -264,9 +265,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16E`  
-**Son tamamlanan:** **`16E — RMDX-v0 / D-127`**  
-**Aktif:** **`16F — Uçtan uca günlük döngü`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16F`  
+**Son tamamlanan:** **`16F — E2EX-v0 / D-128`**  
+**Aktif:** **`16G — Uçtan uca günlük döngü: yardım ve ölçüm`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -342,4 +343,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 16E `RMDX-v0` ile günlük hatırlatma kodda: bir hatırlatma günde en çok bir kez, öğrencinin seçtiği saatte gelen sessiz bir nottur ve yalnız bugünün planında ne olduğunu söyler — planner'ın bugünün süresi içinde seçtiği plan, depodan okunur ya da yazılmadan kurulur; öğrenci açana kadar kapalıdır ve karar her tercih gibi depoya eklenir; hiçbir truth yazmaz; onu bayat ya da dayanaksız yapabilecek her şey sessizliktir — kapatılmış, Android engelliyor, başka bir güne düşmüş, bugünkü zaten gösterilmiş, yeni iş planlanmamış ya da bugün çalışma kaydedilmiş; gün saymaz, seri tutmaz, yokluğu adlandırmaz ve öğrencinin ne yapmadığını söylemez. Bulunanlar: her süreç başlangıcı bugünü planlıyordu — bir alarm ya da yeniden başlatma süreci başlatır, yani günlük bir hatırlatma öğrencinin hiç açmadığı günlere plan yazacaktı; artık plan yalnız öğrenci uygulamayı açınca yazılıyor ve hatırlatma planner'ın yazmadan kurduğu planı okuyor (`BuildDailyPlan.preview`); `preference_record`'ın anahtar listesi bir CHECK olduğundan tablo yeniden kurulmadan büyüyemiyordu, hatırlatmanın kendi tablosu var; Android bir güncelleme ya da zorla durdurma sonrası alarmın kalıp kalmadığını belgelemiyor, alarm her açılışta yeniden kuruluyor. T6 çalıştırılmadı.
 
-16F başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+16F `E2EX-v0` ile çekirdek günlük döngü kodda: bir planlı görev ancak her giriş koşulu depodan, kapıdan, açık ihtiyaçlardan ve yazılı görevden doğrulandığında çalışır ve doğrulanamayan adlandırılır, suçlanmaz; görev çalıştırıcı dersin kendi anlatımını gösterir, görevin görülmemiş sorularını sunar, donmuş her cevabı yardımı, kökeni ve planlı göreviyle tek eylem olarak kaydeder, dersin cevap anahtarıyla değerlendirtir ve kanıt hattına verir — öğrencinin ne olduğuna karar vermez; cevap doğru, kısmen, eşleşmedi ya da ölçülemedi ve cevabı görmek ayrı bir adımdır; sonda rapor yalnız kanonik durumun ne yaptığını söyler ve yalnız bir değişiklik, başlanan her görevi koruyan yeni bir plan ister. Bulunanlar: kullanıcı döngüyü yeniden böldü ve geri kalanı yeni 16G'ye gitti (D-129); 60 Skill'in 24'ünün görevleri yalnız kod testine dayanıyor ve 16G'ye kadar başlatılamaz; 13E'nin ve 16D'nin yeniden planı hiçbir şeyin başlanmadığını varsayıyordu; depo hangi görevin başladığını söyleyemiyordu (şema v11 `attempt.planned_task_id`); yeni bir öğrencinin ilk koşusu değişiklik raporlamıyor, çünkü hiçbir motorun yazmadığı durum bir 'önce' değildir (13E). T6 çalıştırılmadı.
+
+`D-129`: `16G — Uçtan uca günlük döngü: yardım ve ölçüm` AŞAMA 16'nın sonuna eklendi; girdileri 16F kontratının `moved_to_16g` listesi.
+
+16G başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

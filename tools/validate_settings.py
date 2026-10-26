@@ -215,7 +215,10 @@ after = body(settings, "fun afterCapacityChange(): BuildDailyPlan.Built")
 check("A16D-05_plan_asked_of_the_planner", "compose()" in ensure and "builder().build(CapacitySettings(persistence, clock).read().input())" in ensure, "")
 check("A16D-05_replan_only_on_a_new_budget", "if (built !is BuildDailyPlan.Built.AlreadyPlanned) return built" in after
       and "if (trace.capacity.hardBudgetMinutes == PlannerEngine.resolveCapacity(input).hardBudgetMinutes) return built" in after
-      and "BuildDailyPlan.ReplanRequest(ReplanTrigger.TODAY_CAPACITY_CHANGED, input)" in after and "keptPositions" not in after, "")
+      # Narrowed at 16F (`E2EX-v0` / `D-128`): a capacity replan now keeps the tasks the learner started, read from the store
+      # (`StartedTasks.today`) — never positions invented by the caller.
+      and ("BuildDailyPlan.ReplanRequest(ReplanTrigger.TODAY_CAPACITY_CHANGED, input)" in after and "keptPositions" not in after
+           or "BuildDailyPlan.ReplanRequest(ReplanTrigger.TODAY_CAPACITY_CHANGED, input, keptPositions = StartedTasks.today(persistence, clock))" in after), "")
 check("A16D-05_cycles_composed_once", "BlueprintScopes.COMPOSED.forEach" in settings and "ComposeAssessmentBlueprint(scope, persistence, content, clock).compose(evaluatorAvailable)" in settings, "")
 open_app = body(application, "private fun openApp()")
 refresh = body(application, "fun refreshToday(")
@@ -270,8 +273,10 @@ check("A16D-08_profile_holds_its_ia_items", all(x in ((next((d for d in ia.get("
 # ---------------------------------------------------------------- 6. the new step 16F (D-125)
 moved = contract.get("moved_to_16f") or []
 check("A16D-09_end_to_end_moved_not_claimed", len(moved) >= 6 and scope.get("app_runs_tasks") is False, str(len(moved)))
-check("A16D-09_16f_in_the_plan", "- [ ] **16F — Uçtan uca günlük döngü** — `D-125`" in read(EXECUTION_INDEX)
-      and "### [ ] 16F — Uçtan uca günlük döngü" in read(MASTER_PLAN), "the step's own checklist lines, not a mention")
+# Narrowed at 16F (`E2EX-v0` / `D-128`): 16F is done, so its checklist lines are ticked; they must still be the step's
+# own lines, open or done, never a mention.
+check("A16D-09_16f_in_the_plan", any(f"- [{x}] **16F — Uçtan uca günlük döngü** — `D-125`" in read(EXECUTION_INDEX) for x in " x")
+      and any(f"### [{x}] 16F — Uçtan uca günlük döngü" in read(MASTER_PLAN) for x in " x"), "the step's own checklist lines, not a mention")
 decisions = read(DECISIONS)
 check("A16D-09_decisions", re.search(r"^## D-125 .*16F", decisions, re.M) is not None and re.search(r"^## D-126 .*STGX-v0", decisions, re.M) is not None, "")
 

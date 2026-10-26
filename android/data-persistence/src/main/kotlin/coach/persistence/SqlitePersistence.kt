@@ -532,6 +532,19 @@ class SqlitePersistence private constructor(
             ReminderPreferenceRecord(enabled = it.getLong(0) == 1L, minuteOfDay = it.getLong(1).toInt(), sequence = it.getLong(2))
         }
 
+    /** Which of these planned tasks have at least one `attempt` made for them (16F). */
+    override fun startedPlannedTasks(plannedTaskIds: Collection<Long>): Set<Long> {
+        if (plannedTaskIds.isEmpty()) return emptySet()
+        val wanted = plannedTaskIds.distinct()
+        val sql = "SELECT DISTINCT planned_task_id FROM attempt WHERE planned_task_id IN (${wanted.joinToString(", ") { "?" }})"
+        connection.prepare(sql).use { statement ->
+            wanted.forEachIndexed { i, id -> statement.bindLong(i + 1, id) }
+            val found = mutableSetOf<Long>()
+            while (statement.step()) found += statement.getLong(0)
+            return found
+        }
+    }
+
     /** The resource versions among [resources] that have at least one `attempt` row (16C). */
     override fun attemptedResources(resources: List<VersionedRef>): Set<VersionedRef> {
         if (resources.isEmpty()) return emptySet()

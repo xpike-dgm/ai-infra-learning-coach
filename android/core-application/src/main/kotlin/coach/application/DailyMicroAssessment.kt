@@ -85,6 +85,11 @@ class ServeDailyMicroItem(
         intent: AssessmentIntent,
         evaluatorAvailable: Boolean,
         scope: AssessmentScope = AssessmentScope.DAILY_MICRO,
+        /**
+         * `false` only to ask whether the item may be used **without serving it** (16F, [usable]): nothing is recorded,
+         * because the learner sees nothing.
+         */
+        serve: Boolean = true,
     ): ItemOffer {
         val published = persistence.resourceVersion(ref) ?: return ItemOffer.Unknown
         val authored = content.assessmentItem(ref) ?: return ItemOffer.Unknown
@@ -100,11 +105,15 @@ class ServeDailyMicroItem(
         return when (val fit = ItemSelection.fit(item, intent, scope, profiles, evaluatorAvailable)) {
             is ItemFit.NotUsable -> ItemOffer.Unusable(fit.reasons)
             is ItemFit.Usable -> {
-                recordExposure(item.ref, item.variantFamilyId, ITEM_VERSION_SEEN, null)
+                if (serve) recordExposure(item.ref, item.variantFamilyId, ITEM_VERSION_SEEN, null)
                 ItemOffer.Ready(item, fit)
             }
         }
     }
+
+    /** Whether a pinned item may be used for this intent, without serving it (16F): a task's entry asks this. */
+    fun usable(ref: VersionedRef, intent: AssessmentIntent, evaluatorAvailable: Boolean): Boolean =
+        offer(ref, intent, evaluatorAvailable, serve = false) is ItemOffer.Ready
 
     /**
      * Records that a solution was exposed for this item (`QAB-v0` §24). Exposure is permanent

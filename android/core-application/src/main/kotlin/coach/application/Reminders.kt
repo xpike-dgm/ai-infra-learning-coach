@@ -52,7 +52,8 @@ class ReminderSettings(
  *
  * Everything that could make a reminder stale or unfounded is silence: the learner turned it off, Android blocks it,
  * it arrived on another date, today's was already shown, nothing is published, the plan cannot be read, nothing new is
- * planned, work is already recorded today, or the day cannot be read. Silence is never a message about the learner.
+ * planned, every task in today's plan is already started (16F), or that cannot be read. Silence is never a message about
+ * the learner.
  */
 class ReminderCheck(
     private val persistence: PersistencePort,
@@ -72,18 +73,19 @@ class ReminderCheck(
         if (lastShownStudyDay == today) return silent(ReminderSilence.ALREADY_SHOWN_TODAY)
         if (persistence.latestCurriculumVersion() == null) return silent(ReminderSilence.NO_CURRICULUM)
 
-        // Work recorded today means the learner has been here today; a reminder would only repeat what they know. An
-        // attempt is the record of work (11B); a count that cannot be read is not a zero (11E).
-        val attempts = runCatching { persistence.countTruth(ATTEMPT, today) }.getOrNull()
-            ?: return silent(ReminderSilence.DAY_UNREADABLE)
-        if (attempts > 0) return silent(ReminderSilence.WORK_RECORDED_TODAY)
-
         val trace = when (val plan = todaysPlan(today)) {
             is TodaysPlan.Unreadable -> return silent(ReminderSilence.PLAN_UNREADABLE)
             is TodaysPlan.Trace -> plan.trace
             TodaysPlan.None -> return silent(ReminderSilence.NOTHING_PLANNED)
         }
-        return contentOf(trace)?.let { ReminderDecision.Show(today, it) } ?: silent(ReminderSilence.NOTHING_PLANNED)
+        // 16F: attempts now name the planned task they were made for, so the reminder speaks only of tasks not started
+        // yet; started work the learner already knows about. Which tasks were started is read, never guessed: a read
+        // that fails is not "none started" (11E). A preview plan has nothing started — it was never stored.
+        val started = runCatching { StartedTasks.today(persistence, clock) }.getOrNull()
+            ?: return silent(ReminderSilence.DAY_UNREADABLE)
+        contentOf(trace, started)?.let { return ReminderDecision.Show(today, it) }
+        val fresh = trace.selected.filterNot { it.preserved }
+        return silent(if (fresh.isNotEmpty() && fresh.all { it.position in started }) ReminderSilence.WORK_RECORDED_TODAY else ReminderSilence.NOTHING_PLANNED)
     }
 
     private sealed interface TodaysPlan {
@@ -107,17 +109,16 @@ class ReminderCheck(
     }
 
     companion object {
-        private const val ATTEMPT = "attempt"
 
         private fun silent(reason: ReminderSilence) = ReminderDecision.Silent(reason)
 
         /**
          * What a reminder may name, all of it from the trace: the tasks the planner selected today — never one kept
-         * because it was already started — their planned minutes, whether one is a review, and whether a weekly or
+         * or started today because it was already started (16F) — their planned minutes, whether one is a review, and whether a weekly or
          * monthly slot is among them. `null` when nothing new is planned.
          */
-        fun contentOf(trace: PlanTrace): ReminderPlanContent? {
-            val fresh = trace.selected.filterNot { it.preserved }
+        fun contentOf(trace: PlanTrace, started: Set<Int> = emptySet()): ReminderPlanContent? {
+            val fresh = trace.selected.filterNot { it.preserved || it.position in started }
             if (fresh.isEmpty()) return null
             val scopes = fresh.mapNotNull { BlueprintComposer.scopeOfCandidate(it.candidateId) }.toSet()
             return ReminderPlanContent(

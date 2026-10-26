@@ -269,8 +269,11 @@ for state in flow["semantic_states"]:
     check(f"E11B-09_label_{state}", f"RunnerState.{state.upper()} to" in screen, f"no label for {state}")
 check("E11B-09_no_locale_naive_case", not re.search(r"\.(uppercase|lowercase|capitalize)\(\s*\)", screen),
       "no locale-naive case transform")
+# Narrowed at 16F (`E2EX-v0` / `D-128`): entry is now confirmed from the facts core reads (the store, the gate, the open
+# needs, the authored task) instead of Today's one confirmation; it is still revalidated in core, never in the UI.
 check("E11B-10_start_revalidates_in_core",
-      "RunnerRevalidation.atEntry(RunnerRevalidation.confirmedFromToday(" in activity,
+      "RunnerRevalidation.atEntry(RunnerRevalidation.confirmedFromToday(" in activity
+      or "RunnerRevalidation.atEntry(TaskRunPresentation.confirmed(facts))" in activity,
       "Today's start is revalidated in core")
 check("E11B-10_runner_suspends_shell", "RunnerFlow.surface" in activity, "the runner is a focused flow in front of the shell")
 

@@ -183,3 +183,7 @@ Next numbered step: **13F — Tanısal atlama (VDW-v0)** (added by `D-099`). It 
 ---
 
 **13F note (2026-10-01, `D-104`):** two state-change kinds join the eleven above — `coverage_waived` (`confirmed_capabilities`, `replan.prerequisite_state_changed`) and `coverage_waiver_withdrawn` (`not_reliably_measured`, `replan.evidence_state_changed`), each naming its Objective; a snapshot reads the open diagnostic's coverage; `RecomputeSkillState` rebuilds the diagnostic coverage after weakness and before readiness; a waiver makes the replan event `diagnostic_waiver_granted` after remediation and verification. Nothing above changed meaning; the schema moved to v7 for 13F.
+
+---
+
+**16F note (2026-10-26, `D-128`):** the replan the report asks for now keeps the tasks the learner started (`keptPositions`, read from the store by `StartedTasks`); before 16F nothing could be started, so it passed none. Details: `docs/END_TO_END_LOOP_SPEC.md`.

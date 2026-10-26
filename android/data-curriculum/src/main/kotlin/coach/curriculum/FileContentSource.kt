@@ -1,6 +1,7 @@
 package coach.curriculum
 
 import coach.model.AssessmentItem
+import coach.model.AuthoredTask
 import coach.model.CodeTestSuite
 import coach.model.ComprehensionCheck
 import coach.model.AcceptedAnswers
@@ -98,6 +99,8 @@ class FileContentSource(
     override fun rubricFor(item: VersionedRef): Rubric? = parsed?.rubrics.orEmpty().singleOrNull { it.item == item }
 
     /** The items of every teach task targeting exactly this Objective version, every task version included (16C). */
+    override fun authoredTask(ref: VersionedRef): AuthoredTask? = parsed?.tasks.orEmpty().singleOrNull { it.ref == ref }
+
     override fun lessonItemsFor(objective: VersionedRef): List<VersionedRef> =
         parsed?.tasks.orEmpty().filter { it.purpose == TaskPurpose.TEACH && objective in it.targetObjectives }
             .flatMap { it.items }.distinct().sortedBy { it.toString() }

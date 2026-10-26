@@ -56,7 +56,8 @@ class ReminderStorageTest {
         Fixtures.populated(file, version = 9)
         val before = SqlitePersistence.openWithoutMigrating(file.absolutePath).use { Fixtures.truthContent(it) }
         SqlitePersistence.open(file.absolutePath).use { db ->
-            assertEquals(10, Schema.VERSION)
+            // Narrowed at 16F (`E2EX-v0` / `D-128`): version 11 links attempts to planned tasks; v10's reminder is what this checks.
+            assertTrue(Schema.VERSION >= 10)
             assertEquals(Schema.VERSION, db.query("SELECT schema_version FROM schema_metadata") { it.getLong(0).toInt() }.single())
             val after = Fixtures.truthContent(db)
             Schema.appendOnlyTables.forEach { assertEquals(before[it], after[it], it) }

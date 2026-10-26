@@ -176,7 +176,23 @@ check("A16E-03_never_the_moment_itself", "if (candidate.isAfter(now)) candidate 
 check("A16E-03_its_own_day", "fun sameDay(" in facts and "dateOf(scheduled, zone) == dateOf(now, zone)" in facts, "")
 
 # ---------------------------------------------------------------- 2. storage (LFPS-v0 §11, DDM-v0)
-check("A16E-04_schema_v10", "const val VERSION = 10" in schema and "9 to Schema.v10," in strip_comments(read(MIGRATIONS)), "")
+# Narrowed at 16F (`E2EX-v0` / `D-128`): this step's schema was version 10. A later version is accepted only when every
+# version after 10 is owned by an accepted later contract's `schema_migration` (16F: 10 -> 11, `attempt.planned_task_id`).
+def _schema_10_or_owned_later(text: str) -> bool:
+    found = re.search(r"const val VERSION = (\d+)", text)
+    if not found:
+        return False
+    version = int(found.group(1))
+    owned = set()
+    for path in sorted((ROOT / "arch").glob("*/*.yaml")):
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        migration = data.get("schema_migration") if isinstance(data, dict) else None
+        if isinstance(migration, dict) and isinstance(migration.get("to"), int):
+            owned.add(migration["to"])
+    return version >= 10 and all(v in owned for v in range(11, version + 1))
+
+
+check("A16E-04_schema_v10", _schema_10_or_owned_later(schema) and "9 to Schema.v10," in strip_comments(read(MIGRATIONS)), "")
 check("A16E-04_append_only_and_guarded", 'val reminderPreferenceTables = listOf("reminder_preference")' in schema
       and "val appendOnlyTables = truthTables + userPreferenceTables + reminderPreferenceTables" in schema
       and ") + reminderPreferenceTables.flatMap(::appendOnlyGuards)" in schema
@@ -201,17 +217,22 @@ check("A16E-04_written_by_append_only", "persistence.appendTruth(" in settings_c
 
 # ---------------------------------------------------------------- 3. when a reminder is shown (SC-043)
 decide = body(use_cases, "fun decide(")
+# Narrowed at 16F (`E2EX-v0` / `D-128`): attempts now name their planned task, so "every task started" is read after the
+# plan (the plan says which tasks there are); the five silences before the plan keep their order.
 order = ["ReminderSilence.DISABLED", "ReminderSilence.NOTIFICATIONS_BLOCKED", "ReminderSilence.DELIVERED_ON_ANOTHER_DAY",
-         "ReminderSilence.ALREADY_SHOWN_TODAY", "ReminderSilence.NO_CURRICULUM", "ReminderSilence.DAY_UNREADABLE",
-         "ReminderSilence.WORK_RECORDED_TODAY", "ReminderSilence.PLAN_UNREADABLE", "ReminderSilence.NOTHING_PLANNED"]
+         "ReminderSilence.ALREADY_SHOWN_TODAY", "ReminderSilence.NO_CURRICULUM", "ReminderSilence.PLAN_UNREADABLE",
+         "ReminderSilence.NOTHING_PLANNED", "ReminderSilence.DAY_UNREADABLE", "ReminderSilence.WORK_RECORDED_TODAY"]
 positions = [decide.find(s) for s in order]
 check("A16E-05_silence_order", all(p >= 0 for p in positions) and positions == sorted(positions), str(positions))
 check("A16E-05_off_first", "if (!ReminderSettings(persistence, clock).read().enabled) return silent(ReminderSilence.DISABLED)" in decide, "")
 check("A16E-05_its_own_date_and_once_a_day", "if (scheduledStudyDay != today) return silent(ReminderSilence.DELIVERED_ON_ANOTHER_DAY)" in decide
       and "if (lastShownStudyDay == today) return silent(ReminderSilence.ALREADY_SHOWN_TODAY)" in decide
       and reminder.get("per_study_day_at_most") == 1, "")
-check("A16E-05_work_today_silences", "persistence.countTruth(ATTEMPT, today)" in decide and "?: return silent(ReminderSilence.DAY_UNREADABLE)" in decide
-      and "if (attempts > 0) return silent(ReminderSilence.WORK_RECORDED_TODAY)" in decide and 'private const val ATTEMPT = "attempt"' in use_cases, "")
+# Narrowed at 16F (`E2EX-v0` / `D-128`): "work recorded today" became "every task in today's plan started" — the 16E open
+# loop — read from the attempts' planned tasks; a read that fails is still silence, never "none started".
+check("A16E-05_work_today_silences", "StartedTasks.today(persistence, clock)" in decide and "?: return silent(ReminderSilence.DAY_UNREADABLE)" in decide
+      and "contentOf(trace, started)" in decide and "fresh.all { it.position in started }" in decide
+      and "ReminderSilence.WORK_RECORDED_TODAY" in decide, "")
 enum_ids = re.findall(r'^\s+[A-Z_]+\("([a-z_]+)"\),', body(facts, "enum class ReminderSilence"), re.M)
 check("A16E-05_silences_closed", sorted(enum_ids) == sorted(reminder.get("silences") or []) and len(set(enum_ids)) == len(enum_ids) == 10, str(enum_ids))
 
@@ -233,8 +254,9 @@ check("A16E-06_learner_open_plans", "app.refreshToday" in activity[activity.find
 check("A16E-06_receivers_never_plan", not re.search(r"PlanToday\(|BuildDailyPlan\(|refreshToday|appendTruth|inTransaction", wiring), "")
 
 # ---------------------------------------------------------------- 5. what it says
-content_of = body(use_cases, "fun contentOf(trace: PlanTrace)")
-check("A16E-07_only_today_s_new_tasks", "trace.selected.filterNot { it.preserved }" in content_of and "if (fresh.isEmpty()) return null" in content_of
+# Narrowed at 16F (`E2EX-v0` / `D-128`): the content also leaves out the tasks started today.
+content_of = body(use_cases, "fun contentOf(trace: PlanTrace")
+check("A16E-07_only_today_s_new_tasks", "trace.selected.filterNot { it.preserved || it.position in started }" in content_of and "if (fresh.isEmpty()) return null" in content_of
       and "fresh.sumOf { it.plannedMinutes }" in content_of, "")
 check("A16E-07_review_and_cycles_from_the_plan", "it.purpose == TaskPurpose.RETAIN" in content_of and "BlueprintComposer.scopeOfCandidate(it.candidateId)" in content_of, "")
 composer = strip_comments(read(COMPOSER))

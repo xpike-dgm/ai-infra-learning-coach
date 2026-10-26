@@ -17,6 +17,19 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import coach.model.ProvenanceOrigin
+import coach.presentation.TaskOrientationView
+import coach.presentation.TaskRunCopy
+import coach.presentation.TaskRunStage
 import coach.presentation.EntryCondition
 import coach.presentation.ResumeCondition
 import coach.presentation.Revalidation
@@ -67,12 +80,32 @@ private val conditionLabelsTr: Map<String, String> = mapOf(
         "aradan geçen süreden sonra bu çalışmanın bağımsız sayılabileceği doğrulanamadı",
 )
 
+/**
+ * What the learner can do inside a run (16F). Each is a request the composition root carries to core; the screen decides
+ * nothing about what it means.
+ */
+class TaskRunActions(
+    val onBegin: (ProvenanceOrigin) -> Unit = {},
+    val onToQuestions: () -> Unit = {},
+    val onShowLesson: () -> Unit = {},
+    val onRequestSolution: () -> Unit = {},
+    val onAcknowledgeSolution: () -> Unit = {},
+    val onDeclineSolution: () -> Unit = {},
+    val onSubmit: (String) -> Unit = {},
+    val onReveal: () -> Unit = {},
+    val onNext: () -> Unit = {},
+    val onFinish: () -> Unit = {},
+)
+
 @Composable
 fun TaskRunnerScreen(
     state: RunnerState,
     entry: Revalidation?,
     onExit: () -> Unit,
     modifier: Modifier = Modifier,
+    // 16F: the run's interior, decided in core; without one the screen is 11B's frame alone.
+    stage: TaskRunStage? = null,
+    actions: TaskRunActions = TaskRunActions(),
 ) {
     Column(
         modifier = modifier
@@ -122,7 +155,94 @@ fun TaskRunnerScreen(
             )
             else -> Unit
         }
+
+        stage?.let { TaskRunInterior(it, actions) }
     }
+}
+
+@Composable
+private fun TaskRunInterior(stage: TaskRunStage, actions: TaskRunActions) {
+    when (stage) {
+        is TaskRunStage.Blocked -> stage.capabilityLine?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+        is TaskRunStage.Orient -> OrientationInterior(stage.view, actions.onBegin)
+        is TaskRunStage.Lesson -> {
+            Text(TaskRunCopy.LESSON_TITLE, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            stage.texts.forEach { Text(it, style = MaterialTheme.typography.bodyLarge) }
+            OutlinedButton(onClick = actions.onToQuestions, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.TO_QUESTIONS) }
+        }
+        is TaskRunStage.Question -> QuestionInterior(stage, actions)
+        is TaskRunStage.ShownBeforeAnswer -> {
+            Text(stage.text, style = MaterialTheme.typography.bodyLarge)
+            NextOrFinish(actions)
+        }
+        TaskRunStage.Working -> Unit
+        is TaskRunStage.Answered -> {
+            Text(stage.result, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+            val revealed = stage.revealed
+            if (revealed != null) {
+                Text(revealed, style = MaterialTheme.typography.bodyMedium)
+            } else {
+                // Seeing the answer is a separate step the learner chooses (user decision, 2026-10-26).
+                TextButton(onClick = actions.onReveal, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_ANSWER) }
+            }
+            NextOrFinish(actions)
+        }
+        is TaskRunStage.Finished -> stage.lines.forEach { Text(it, style = MaterialTheme.typography.bodyLarge) }
+    }
+}
+
+@Composable
+private fun OrientationInterior(view: TaskOrientationView, onStart: (ProvenanceOrigin) -> Unit) {
+    Text(view.title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.semantics { heading() })
+    Text(view.purpose + (view.minutes?.let { " · $it" } ?: ""), style = MaterialTheme.typography.bodyMedium)
+    view.teachNote?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+    Text(view.provenanceQuestion, style = MaterialTheme.typography.bodyLarge)
+    var chosen by remember { mutableStateOf<ProvenanceOrigin?>(null) }
+    view.provenanceOptions.forEach { (origin, label) ->
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+            RadioButton(selected = chosen == origin, onClick = { chosen = origin })
+            Text(label, style = MaterialTheme.typography.bodyMedium)
+        }
+    }
+    // Nothing is preselected: the learner's own answer is recorded, never a default (`TRUX-v0` §9).
+    OutlinedButton(onClick = { chosen?.let(onStart) }, enabled = chosen != null, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+        Text(TaskRunCopy.START)
+    }
+}
+
+@Composable
+private fun QuestionInterior(stage: TaskRunStage.Question, actions: TaskRunActions) {
+    Text("Soru ${stage.number}", style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+    Text(stage.prompt, style = MaterialTheme.typography.bodyLarge)
+    stage.notice?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+    if (stage.disclosure) {
+        ConsequenceDisclosure(onAcknowledge = actions.onAcknowledgeSolution, onDecline = actions.onDeclineSolution)
+        return
+    }
+    var typed by remember(stage.number) { mutableStateOf("") }
+    OutlinedTextField(
+        value = typed,
+        onValueChange = { typed = it },
+        label = { Text(TaskRunCopy.ANSWER_LABEL) },
+        modifier = Modifier.fillMaxWidth(),
+    )
+    OutlinedButton(onClick = { actions.onSubmit(typed) }, enabled = typed.isNotBlank(), modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+        Text(TaskRunCopy.SUBMIT)
+    }
+    // Help is always requestable (`TRUX-v0` §8.1): the lesson again, or — after the consequence is said — the answer.
+    val lesson = stage.lessonShown
+    if (lesson == null) {
+        TextButton(onClick = actions.onShowLesson, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_LESSON) }
+    } else {
+        lesson.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
+    }
+    TextButton(onClick = actions.onRequestSolution, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_SOLUTION_BEFORE) }
+}
+
+@Composable
+private fun NextOrFinish(actions: TaskRunActions) {
+    OutlinedButton(onClick = actions.onNext, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.NEXT) }
+    TextButton(onClick = actions.onFinish, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.FINISH) }
 }
 
 /** Shown before H3 or H4 is granted, in measurement terms (`TRUX-v0` §8.3). */

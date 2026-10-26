@@ -40,7 +40,11 @@ class TodayFactsQuery(
             is PlanReading.Read.Unreadable -> TodayFacts(studyDay, curriculumLoaded = curriculumLoaded, planUnreadable = true)
             is PlanReading.Read.Today -> TodayFacts(
                 studyDay = studyDay,
-                plan = PlanReading.snapshot(read),
+                // 16F: a task the learner started today is marked, so Today does not offer it as new work.
+                plan = PlanReading.snapshot(read).let { snapshot ->
+                    val started = StartedTasks.positions(persistence, stored, read.trace)
+                    snapshot.copy(tasks = snapshot.tasks.map { it.copy(started = it.position in started) })
+                },
                 capacity = PlanReading.capacity(read.trace),
                 curriculumLoaded = curriculumLoaded,
                 planReplaced = read.trace.replan != null,

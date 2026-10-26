@@ -98,7 +98,7 @@ object ReminderSchedule {
  * debt (D-033, `SRR-v0`) — and a weekly or monthly assessment is named only when a slot of its cycle is in the plan.
  */
 data class ReminderPlanContent(
-    /** New tasks in today's plan: those the planner selected today, never one kept because it was already started. */
+    /** Tasks in today's plan not started yet: never one kept because it was started, nor one started today (16F). */
     val taskCount: Int,
     /** The plan's own estimate of those tasks' minutes, a fact the trace recorded — never a target. */
     val plannedMinutes: Int,
@@ -135,10 +135,13 @@ enum class ReminderSilence(val id: String) {
     /** The planner has nothing to select today (`empty_valid`), or nothing it selected is new. */
     NOTHING_PLANNED("nothing_planned"),
 
-    /** Work is already recorded today, so a reminder could only repeat what the learner already knows. */
+    /**
+     * Every task in today's plan is already started, so a reminder could only repeat what the learner already knows. Until
+     * 16F linked attempts to planned tasks, any attempt recorded today stood in for this (16E).
+     */
     WORK_RECORDED_TODAY("work_recorded_today"),
 
-    /** Whether work was recorded today could not be read, and a reminder might then be stale. */
+    /** Which of today's tasks were started could not be read, and a reminder might then be stale. */
     DAY_UNREADABLE("day_unreadable"),
 
     /** Android will not show notifications for this app; the system decides that, not this product. */

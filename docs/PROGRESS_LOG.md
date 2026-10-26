@@ -1522,3 +1522,20 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `16E tamamlandı; 16F aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `16F — Uçtan uca günlük döngü`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-26 — 16F — Uçtan uca günlük döngü tamamlandı — E2EX-v0 / D-128 (D-129: 16G eklendi)
+
+- Kullanıcı "merge et ve 16F ye başla" dedi; 16E'yi (#64) kendisi merge etmişti (13204f8). Fresh 16F PRE yapıldı ve kanonik kaynaklar `16E ✅ / 16F active-not-executed` gösterdi; mesaj 16F'nin onayıydı.
+- **Bulgu (PRE):** 16D'nin `moved_to_16f` listesi döngünün geri kalanının tamamını taşıyordu. Kullanıcı böldü: 16F çekirdek döngü; geri kalanı yeni `16G — Uçtan uca günlük döngü: yardım ve ölçüm` (D-129, D-099 gibi, yeniden numaralama yok).
+- **Kullanıcı kararları (2026-10-26):** yalnız çekirdek döngü, kalanı 16G'ye (D-129); gönderince yalnız doğru/yanlış, doğru cevabı görmek ayrı ve isteğe bağlı, H4 olarak kaydedilir.
+- **Bulgu (yürütme):** kullanıcı döngüyü yeniden böldü ve geri kalanı yeni 16G'ye gitti (D-129); 60 Skill'in 24'ünün görevleri yalnız kod testine dayanıyor ve 16G'ye kadar başlatılamaz; 13E'nin ve 16D'nin yeniden planı hiçbir şeyin başlanmadığını varsayıyordu; depo hangi görevin başladığını söyleyemiyordu (şema v11 `attempt.planned_task_id`); yeni bir öğrencinin ilk koşusu değişiklik raporlamıyor, çünkü hiçbir motorun yazmadığı durum bir 'önce' değildir (13E). İki önceki kontrol yeni kodu yanlış okudu ve kod değiştirildi: 16D'nin geri yükleme kontrolü `"*/*"` dizgisini blok yorum açılışı sayıyordu; 11C'nin oturum kontrolü ilk `onStart = {`'u okuyordu.
+- **Kod:** yeni `TaskRunFacts.kt`, `RunTask.kt` (`OpenTask`, `RunTask`, `StartedTasks`), `TaskRunPresentation.kt`, `TaskRunSession.kt`; görev çalıştırıcının içi; şema v11 `attempt.planned_task_id`; `startedPlannedTasks` ve `authoredTask` varsayılanlı port inceltmeleri; `BuildDailyPlan.openNeeds`; başlanan işi koruyan yeniden planlar; hatırlatma başlanmamış görevleri sayıyor.
+- **Araştırma:** iç sözleşmeler `TRUX-v0`, `RNRX-v0`, `DMAX-v0`, `OREX-v0`, `2D` §6, `RPLX-v0`, `PCRX-v0`, `RMDX-v0`; dış kaynak gerekmedi.
+- **Daraltılan kapılar:** 11B, 13E, 13F, 14B, 16D ve 16E'nin dört kontrolü ve 16E'nin iki testi ("Narrowed at 16F").
+- **Mutation:** Kotlin 29/29.
+- **Validator mutation:** 44/44.
+- **Validator:** 104/104 PASS; sweep 68/69 (validate_content_qa.py not run: disk space; its inputs unchanged); 1237 JVM testi.
+- **T6 çalıştırılmadı; koşu cihazda görülmedi**.
+- D-050 POST living-memory accepted state'i `16F tamamlandı; 16G eklendi, aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `16G — Uçtan uca günlük döngü: yardım ve ölçüm`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

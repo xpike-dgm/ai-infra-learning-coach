@@ -76,6 +76,11 @@ data class PlannedTaskFact(
      * the resumable session's path, which revalidates first (11C).
      */
     val kept: Boolean = false,
+    /**
+     * The learner already made an attempt for this task in today's plan (16F). Like a kept task it is part of the plan
+     * but not new work to start: offering it again would ask the learner to redo it.
+     */
+    val started: Boolean = false,
 )
 
 /**

@@ -301,7 +301,9 @@ check("E13F-10_recompute_order", 0 <= changes_app.find("RebuildWeakness(persiste
 check("E13F-10_session_on_evidence", "val assessmentSessionId: Long? = null," in evidence
       and "(SELECT a.assessment_session_id FROM attempt a WHERE a.id = e.source_attempt_id)" in sql, "evidence forgets its session")
 
-v7 = schema[schema.find("val v7: List<String>"):]
+# Narrowed at 16F (`E2EX-v0` / `D-128`): v7 is read up to the next migration. Read to the end of the file it took in
+# v11 (16F), which adds a column to `attempt` — a later migration, owned by its own contract — as if v7 had altered truth.
+v7 = schema[schema.find("val v7: List<String>"):(schema.find("val v8: List<String>") if "val v8: List<String>" in schema else len(schema))]
 mig = contract.get("schema_migration", {})
 # Narrowed at 14B: a later, owned migration (v8, `D-106`) runs after this one; 13F still owns exactly 6 -> 7.
 _v = re.search(r"const val VERSION = (\d+)", schema)
