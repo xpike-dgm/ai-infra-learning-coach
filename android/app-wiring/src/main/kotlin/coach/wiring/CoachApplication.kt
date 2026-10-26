@@ -10,7 +10,13 @@ import coach.application.CapacitySettings
 import coach.application.ReminderSettings
 import coach.application.CaptureProgramSnapshot
 import coach.application.OpenTask
+import coach.application.FastPath
+import coach.application.ReadDiagnosticResult
+import coach.application.RequestDiagnostic
 import coach.application.RunHelp
+import coach.presentation.FastPathView
+import coach.presentation.MeasurementCopy
+import coach.presentation.MeasurementPresentation
 import coach.application.RunItems
 import coach.application.RunTask
 import coach.model.AnswerResult
@@ -173,7 +179,8 @@ class CoachApplication : Application() {
     fun loadProgress(onLoaded: (ProgressFacts, TopicFacts) -> Unit) {
         val opened = startup.store ?: return
         storeThread.execute {
-            val facts = ProgressQuery(opened.graph.persistence, opened.graph.content).load()
+            // 16H: with the clock, Progress can name what an assessment session could measure now.
+            val facts = ProgressQuery(opened.graph.persistence, opened.graph.content, opened.graph.clock).load()
             // 16C: the Topics read the very same Skill rows, so a Topic can never contradict the Skills shown beside it.
             val topics = TopicQuery(opened.graph.persistence, opened.graph.content).load(facts)
             main.post { onLoaded(facts, topics) }
@@ -299,6 +306,9 @@ class CoachApplication : Application() {
      */
     fun finishRun(
         run: RunnableTask, before: ProgramSnapshot, answered: List<AnsweredItem>, items: List<AssessmentItem>,
+        // 16H: in a measurement, the questions left unanswered and those reported, for the session's result.
+        skipped: Set<VersionedRef> = emptySet(),
+        contested: Set<VersionedRef> = emptySet(),
         onDone: (List<String>, TodayFacts, DayCloseFacts.Loaded) -> Unit,
     ) {
         val opened = startup.store ?: return
@@ -306,11 +316,15 @@ class CoachApplication : Application() {
             val graph = opened.graph
             val reported = RunTask(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).finish(run, before, answered, items)
             val label: (VersionedRef) -> String = { ref -> graph.persistence.skill(ref)?.canonicalName ?: ref.logicalId }
-            val lines = when (reported) {
+            val reportedLines = when (reported) {
                 null -> listOf(TaskRunCopy.NOTHING_ANSWERED)
                 else -> ProgramChangeResults.summary(reported.report)?.let(::listOf)
                     ?: ProgramChangeResults.canonicalChanges(reported.report, label).values.flatten()
             }
+            // 16H: a measurement's result is `ASUX-v0`'s — its state, what could not be measured, then what changed.
+            val measurement = run.measurement
+            val lines = if (measurement == null) reportedLines else MeasurementPresentation.lines(
+                MeasurementPresentation.result(measurement.scope, items.map { it.ref }, answered, skipped, contested), reportedLines)
             val facts = TodayFactsQuery(graph.persistence, graph.clock).load()
             val day = DayCloseFacts(graph.persistence, graph.clock).load()
             main.post { onDone(lines, facts, day) }
@@ -456,6 +470,66 @@ class CoachApplication : Application() {
         storeThread.execute {
             val id = runHelp(opened.graph).pause(run, kind, shown, remaining)
             main.post { onDone(id) }
+        }
+    }
+
+    // ---------------------------------------------------------------- measurement sessions and the fast path (16H)
+
+    /** Opens a daily assessment's session when the learner begins; any other run comes back unchanged. */
+    fun beginRun(run: RunnableTask, onDone: (RunnableTask) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val begun = runTask(opened.graph).beginSession(run)
+            main.post { onDone(begun) }
+        }
+    }
+
+    /** The learner's report that an answered question was wrong or unanswerable: its evidence is held as contested. */
+    fun contestAnswer(run: RunnableTask, answered: AnsweredItem, onDone: () -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            runTask(opened.graph).contest(run, answered)
+            main.post { onDone() }
+        }
+    }
+
+    /** The fast path on a Topic: the open diagnostic's result when it checks one of [skills], else the offer. */
+    fun loadFastPath(skills: List<VersionedRef>, onDone: (FastPathView) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            val view = when (val read = FastPath(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).result()) {
+                is ReadDiagnosticResult.Read.Result ->
+                    if (read.result.scope.skills.any { it in skills }) FastPathView.open(read.result, TaskRunPresentation::objectiveLabel) else FastPathView.offer()
+                ReadDiagnosticResult.Read.NothingOpen -> FastPathView.offer()
+                is ReadDiagnosticResult.Read.Unreadable -> FastPathView.Said(MeasurementCopy.FAST_PATH_UNREADABLE)
+            }
+            main.post { onDone(view) }
+        }
+    }
+
+    /** Asks for the fast path over a Topic's Skills; today's plan is replanned with its checks (`D-132`). */
+    fun requestFastPath(skills: List<VersionedRef>, onDone: (FastPathView, TodayFacts) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            val view = when (FastPath(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).request(skills).request) {
+                is RequestDiagnostic.Requested.Written -> FastPathView.Said(MeasurementCopy.FAST_PATH_REQUESTED)
+                RequestDiagnostic.Requested.NothingToDiagnose -> FastPathView.Said(MeasurementCopy.FAST_PATH_NOTHING)
+                else -> FastPathView.Said(MeasurementCopy.FAST_PATH_NOT_STARTABLE)
+            }
+            val facts = TodayFactsQuery(graph.persistence, graph.clock).load()
+            main.post { onDone(view, facts) }
+        }
+    }
+
+    /** Leaves the fast path; what was waived stays waived. */
+    fun withdrawFastPath(onDone: (FastPathView) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            FastPath(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).withdraw()
+            main.post { onDone(FastPathView.Said(MeasurementCopy.FAST_PATH_WITHDRAWN)) }
         }
     }
 

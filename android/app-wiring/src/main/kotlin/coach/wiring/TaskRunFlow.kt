@@ -11,6 +11,7 @@ import coach.model.TutorOutcome
 import coach.model.TutorPreparation
 import coach.model.TutorRules
 import coach.presentation.HelpPanel
+import coach.presentation.MeasurementCopy
 import coach.presentation.PauseDecision
 import coach.presentation.PausePolicy
 import coach.presentation.RunHelpPresentation
@@ -44,8 +45,9 @@ internal class TaskRunFlow(
     /** An answer-key answer was recorded (16F): kept for later additions, and what a wrong answer said is read (14B). */
     fun keyAnswered(answered: AnsweredItem, response: String, stage: TaskRunStage.Answered) {
         run.lastResponse = response.trim()
-        run.answeredStage = stage
+        run.answeredStage = stage.copy(canContest = contestable(answered))
         run.closeHelp()
+        redraw()
         val item = run.current ?: return
         app.wrongAnswer(run.run, item, answered) { summary ->
             if (summary != null && run.lastAnswer == answered) {
@@ -69,7 +71,7 @@ internal class TaskRunFlow(
                 run.answered += recorded.answered
                 run.lastAnswer = recorded.answered
                 run.lastResponse = response
-                run.answeredStage = stage
+                run.answeredStage = stage.copy(canContest = contestable(recorded.answered))
                 run.checks = (recorded.offer as? ComprehensionOffer.Written)?.checks.orEmpty()
                 run.checkIndex = 0
                 run.closeHelp()
@@ -100,6 +102,29 @@ internal class TaskRunFlow(
         val attemptId = run.lastAnswer?.attemptId ?: return
         app.selfCheck(item, attemptId) { lines ->
             run.answeredStage = run.answeredStage?.copy(selfCheck = lines)
+            redraw()
+        }
+    }
+
+    // ------------------------------------------------------------ a measurement (16H)
+
+    /** Only in a measurement, and only an answer that wrote evidence: that evidence is what a report holds. */
+    private fun contestable(answered: AnsweredItem) =
+        run.run.measurement != null && answered.evidenceIds.isNotEmpty() && answered.item !in run.contested
+
+    /** Leaves the current question unanswered: nothing is written, and it is not incorrect (`ASUX-v0` §7.3). */
+    fun skip(next: () -> Unit) {
+        run.current?.let { run.skipped += it.ref }
+        next()
+    }
+
+    /** Reports the answered question as wrong or unanswerable; its evidence is held as contested, never counted against. */
+    fun contest() {
+        val answered = run.lastAnswer ?: return
+        if (!contestable(answered)) return
+        app.contestAnswer(run.run, answered) {
+            run.contested += answered.item
+            run.answeredStage = run.answeredStage?.copy(canContest = false, notice = MeasurementCopy.CONTESTED_NOTICE)
             redraw()
         }
     }

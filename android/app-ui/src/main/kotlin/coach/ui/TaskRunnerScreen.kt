@@ -39,6 +39,7 @@ import coach.model.TutorIntent
 import coach.presentation.ComprehensionView
 import coach.presentation.HelpPanel
 import coach.presentation.HelpView
+import coach.presentation.MeasurementCopy
 import coach.presentation.OpenResponseCopy
 import coach.presentation.RunHelpCopy
 import coach.presentation.TaskOrientationView
@@ -125,6 +126,9 @@ class TaskRunActions(
     val onPracticeAsk: () -> Unit = {},
     val onPracticeAnswer: (String) -> Unit = {},
     val onPause: () -> Unit = {},
+    // 16H: in a measurement, leaving a question unanswered and reporting an answered one.
+    val onSkip: () -> Unit = {},
+    val onContest: () -> Unit = {},
 )
 
 @Composable
@@ -216,6 +220,8 @@ private fun TaskRunInterior(stage: TaskRunStage, actions: TaskRunActions) {
 private fun OrientationInterior(view: TaskOrientationView, onStart: (ProvenanceOrigin) -> Unit) {
     Text(view.title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.semantics { heading() })
     Text(view.purpose + (view.minutes?.let { " · $it" } ?: ""), style = MaterialTheme.typography.bodyMedium)
+    // 16H: which session this is and what independence means here, before any work (`ASUX-v0` §6).
+    view.measurement.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
     view.teachNote?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
     Text(view.provenanceQuestion, style = MaterialTheme.typography.bodyLarge)
     var chosen by remember { mutableStateOf<ProvenanceOrigin?>(null) }
@@ -264,6 +270,8 @@ private fun QuestionInterior(stage: TaskRunStage.Question, actions: TaskRunActio
         lesson.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
     }
     HelpSection(stage.help, actions)
+    // 16H: in a measurement a question may be left unanswered; that is not incorrect.
+    if (stage.canSkip) TextButton(onClick = actions.onSkip, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(MeasurementCopy.SKIP) }
     // Only an answer key has an accepted answer to show (14F); a code item and an open answer do not.
     if (stage.kind == RunItemKind.ANSWER_KEY) {
         TextButton(onClick = actions.onRequestSolution, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_SOLUTION_BEFORE) }
@@ -326,6 +334,8 @@ private fun AnsweredInterior(stage: TaskRunStage.Answered, actions: TaskRunActio
         Text(summary.headline, style = MaterialTheme.typography.bodyMedium)
         (summary.lines + summary.named + summary.openQuestions).forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
     }
+    // 16H: an answered measurement question may be reported; its evidence is then held, never counted against.
+    if (stage.canContest) TextButton(onClick = actions.onContest, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(MeasurementCopy.CONTEST) }
     stage.comprehension?.let { ComprehensionInterior(it, actions) }
     HelpSection(stage.help, actions)
     TextButton(onClick = actions.onPause, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.PAUSE) }

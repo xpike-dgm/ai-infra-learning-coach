@@ -120,4 +120,9 @@ data class SkillDetailFacts(
 data class ProgressFacts(
     val curriculumLoaded: Boolean,
     val skills: List<SkillProgressRow>,
+    /**
+     * 16H: Skills an assessment session could measure now — a ready, unserved slot of this week's or this month's
+     * blueprint, or an Objective the open diagnostic still checks. A fact about the session, never a priority (`SPWX-v0` §7.2).
+     */
+    val assessmentOpportunities: Set<VersionedRef> = emptySet(),
 )

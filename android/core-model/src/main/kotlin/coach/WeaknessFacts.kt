@@ -177,5 +177,8 @@ object EvidenceDispositions {
             else row.copy(evaluatorStatus = EvaluatorStatus.INVALID)
         SUPERSEDED -> row.copy(evaluatorStatus = EvaluatorStatus.INVALID)
         else -> error("unknown disposition $disposition")
+    }.let {
+        // 16H: the correction is named for traces; a reinstated row is the row again (13D), so it names nothing.
+        if (disposition == null || disposition == REINSTATED) it else it.copy(disposition = disposition, dispositionReason = reason)
     }
 }

@@ -257,3 +257,7 @@ No guarantee was weakened.
 If accepted, 13A becomes `WBAX-v0 / D-098`.
 
 Next numbered step: **13B — Aylık sınav**. It must receive a fresh PRE-STEP and explicit user approval before execution. `MCA-v0` reuses the generic blueprint/slot/result contract of `WBA-v0` §28; 13A's composer, codec, planner bridge and interior view are its starting point. Open loops carried: the diagnostic waiver and S06 (13F), retroactive contamination (13D), retention and weakness needs (13C/13D), content freshness (15/18D), calling composition from the app (16D) and the T6 device run.
+
+---
+
+**16H note (2026-10-26, `D-132`):** a planned slot now opens as a measurement of its blueprint session: entry reads the stored blueprint of this cycle, every attempt carries `assessment_session_id`, the answer is recorded through `RecordSlotEvidence` with what the session's earlier slots produced, and `ApplyRetroactiveContamination` runs at the end of a slot run. A slot and an authored task serving one need are alternatives; the planner picks one. Details: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.

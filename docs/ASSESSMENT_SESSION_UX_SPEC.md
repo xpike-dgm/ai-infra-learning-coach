@@ -487,3 +487,7 @@ Next numbered step:
 **8E — Skill/progress/weakness UX**
 
 8E will define the Progress information domain: exact Skill/Topic state labels, weakness and remediation presentation, the Technical English profile surface, learning history and the `assessment_report` this session hands off to. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**16H note (2026-10-26, `D-132`):** the interior now runs from Today for all three scopes plus the fast path's checks, in the task runner: orientation says the session and the independence disclosure before any work; *Boş bırak* writes nothing and is not incorrect; *Bu soruda sorun var* on an answered question appends a `contested` disposition (13D) and edits nothing; the result names its state and what could not be measured, with no score. Details: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.

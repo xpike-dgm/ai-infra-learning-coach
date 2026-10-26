@@ -17,6 +17,7 @@ import coach.model.RunAnswer
 import coach.model.RunItemKind
 import coach.model.RunnableTask
 import coach.model.TutorIntent
+import coach.model.VersionedRef
 import coach.presentation.CodeTransferView
 import coach.presentation.HelpPanel
 import coach.presentation.HelpView
@@ -28,7 +29,14 @@ import coach.presentation.TaskRunStage
  * — nothing it decides: every judgement is core's, and everything that counts is already in the store the moment it is
  * recorded. Like 11C's working session it is not stored, so losing it loses nothing the learner did.
  */
-internal class TaskRunSession(val run: RunnableTask, val before: ProgramSnapshot) {
+internal class TaskRunSession(run: RunnableTask, val before: ProgramSnapshot) {
+    /** The run; a daily assessment's gains its session id when the learner begins (16H). */
+    var run: RunnableTask = run
+
+    /** 16H: questions left unanswered, and answered ones the learner reported — for the session's result. */
+    val skipped = mutableSetOf<VersionedRef>()
+    val contested = mutableSetOf<VersionedRef>()
+
     /** The learner's own answer to the provenance question, asked once at orientation (`TRUX-v0` §9). */
     var provenance: ProvenanceOrigin? = null
 
@@ -126,6 +134,7 @@ internal fun TaskRunSession.helpView(frozen: Boolean): HelpView? = if (!helpOpen
 internal fun TaskRunSession.questionStage(disclosure: Boolean = false, notice: String? = null) = TaskRunStage.Question(
     shown.size, currentPrompt, if (lessonShown) run.lesson.map { it.text } else null, disclosure, notice,
     kind = kind, code = code, help = helpView(frozen = false),
+    canSkip = run.measurement != null,
 )
 
 /** How a served question is answered, and what a code item's learner copies (16G). */

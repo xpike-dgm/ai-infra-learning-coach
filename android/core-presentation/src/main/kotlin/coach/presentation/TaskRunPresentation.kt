@@ -2,7 +2,12 @@ package coach.presentation
 
 import coach.model.AnswerResult
 import coach.model.CapabilityGap
+import coach.model.AnsweredItem
+import coach.model.AssessmentScope
 import coach.model.CheckpointKind
+import coach.model.DiagnosticResult
+import coach.model.IndependenceClass
+import coach.model.MeasurementKind
 import coach.model.CodeVerdict
 import coach.model.OpenResponseVerdict
 import coach.model.RubricCriterion
@@ -112,6 +117,8 @@ data class TaskOrientationView(
     val provenanceQuestion: String,
     val provenanceOptions: List<Pair<ProvenanceOrigin, String>>,
     val hasLesson: Boolean,
+    /** 16H: for a measurement, which session it is and what independence means here — said before any work (`ASUX-v0` §6). */
+    val measurement: List<String> = emptyList(),
 )
 
 object TaskRunPresentation {
@@ -137,6 +144,7 @@ object TaskRunPresentation {
         provenanceQuestion = TaskRunCopy.PROVENANCE_QUESTION,
         provenanceOptions = TaskRunCopy.provenanceLabels.toList(),
         hasLesson = run.lesson.isNotEmpty(),
+        measurement = run.measurement?.let { listOf(MeasurementCopy.scope(it.kind), SessionCopy.INDEPENDENCE_DISCLOSURE, MeasurementCopy.NOT_A_VERDICT) }.orEmpty(),
     )
 
     fun resultLine(result: AnswerResult): String = TaskRunCopy.resultLines.getValue(result)
@@ -253,6 +261,8 @@ sealed interface TaskRunStage {
         val kind: RunItemKind = RunItemKind.ANSWER_KEY,
         val code: CodeTransferView? = null,
         val help: HelpView? = null,
+        /** 16H: in a measurement the learner may leave a question unanswered; that is not incorrect (`ASUX-v0` §7.3). */
+        val canSkip: Boolean = false,
     ) : TaskRunStage {
         override val state = if (lessonShown != null || disclosure || help?.panel != null) RunnerState.ASSISTANCE_OPEN else RunnerState.ACTIVE_WORK
     }
@@ -283,6 +293,8 @@ sealed interface TaskRunStage {
         val comprehension: ComprehensionView? = null,
         val help: HelpView? = null,
         val notice: String? = null,
+        /** 16H: in a measurement an answered question may be reported as wrong or unanswerable (user decision). */
+        val canContest: Boolean = false,
     ) : TaskRunStage {
         override val state = when {
             pending -> RunnerState.EVALUATION_PENDING
@@ -301,3 +313,97 @@ sealed interface TaskRunStage {
         override val state = RunnerState.FEEDBACK_RESOLVED
     }
 }
+
+/**
+ * A measurement run as the learner reads it (16H, `ASRX-v0`). Every sentence is `ASUX-v0`'s meaning: which session it is,
+ * that a skipped question is not wrong, that a reported question is held rather than counted, and a result made of what
+ * the engines said and what could not be measured — never a score, a grade, a percentage or a pass/fail.
+ */
+object MeasurementCopy {
+    fun scope(kind: MeasurementKind): String = when (kind) {
+        MeasurementKind.DAILY_ASSESSMENT -> "Günlük ölçme"
+        MeasurementKind.WEEKLY_SLOT -> "Haftalık ölçme"
+        MeasurementKind.MONTHLY_SLOT -> "Aylık ölçme"
+        MeasurementKind.DIAGNOSTIC -> "Hızlı ilerleme kontrolü"
+    }
+
+    const val NOT_A_VERDICT = "Bu bir sınav notu değil: sonuç, motorların bu kanıttan ne söylediği ve neyin güvenilir biçimde ölçülemediğidir."
+    const val SKIP = "Boş bırak"
+    const val CONTEST = "Bu soruda sorun var"
+    const val RESULT_READY = "Ölçüm tamamlandı."
+    const val RESULT_PARTIAL = "Ölçümün bir kısmı yapıldı. Yapılmayan kısım yanlış sayılmadı ve borç olarak taşınmıyor."
+    const val NOT_RELIABLY_MEASURED = "Güvenilir biçimde ölçülemeyenler"
+    const val FAST_PATH_OFFER = "Bu konuyu zaten biliyorsan hızlı yolu deneyebilirsin: birkaç soruyla, gösterdiğin bölümlerin başlangıç anlatımları atlanır. Bu bir kestirme değil; aynı kanıtı daha erken toplar."
+    const val FAST_PATH_REQUEST = "Bunu biliyorum, hızlı yolu dene"
+    const val FAST_PATH_WITHDRAW = "Hızlı yoldan çık"
+    const val FAST_PATH_REQUESTED = "Hızlı yol açıldı; kontrol soruları bugünün planına eklendi. Başladığın işler korundu."
+    const val FAST_PATH_NOTHING = "Bu konuda kontrol edilecek bir bölüm kalmadı: hepsi zaten gösterilmiş ya da atlanmış."
+    const val FAST_PATH_WITHDRAWN = "Hızlı yoldan çıktın. Atlanan bölümler atlanmış kalır; diğerleri normal öğrenme akışında devam eder. Bu bir kayıp değil."
+    const val FAST_PATH_NOT_STARTABLE = "Bu konunun becerileri henüz yeni bir başlangıca açık değil; hızlı yol istenemedi."
+    const val FAST_PATH_UNREADABLE = "Açık hızlı yol kontrolü şu an okunamadı; hiçbir şey tahmin edilmedi."
+    const val CONTESTED_NOTICE = SessionCopy.CONTESTED
+    const val SKIPPED_NOTICE = SessionCopy.SKIPPED
+}
+
+object MeasurementPresentation {
+
+    /**
+     * The session's result (`ASUX-v0` §13): one boundary per question shown — answered (frozen), skipped (unsubmitted),
+     * reported (contested) or never answered (open) — and what could not be measured reliably from what was answered.
+     */
+    fun result(scope: AssessmentScope, shown: List<VersionedRef>, answered: List<AnsweredItem>, skipped: Set<VersionedRef>,
+               contested: Set<VersionedRef>): SessionResult {
+        val view = AssessmentSessionView(
+            scope = scope, intents = emptyList(),
+            blocks = if (shown.isEmpty()) emptyList() else listOf(Block("run", shown.map { Boundary(it.toString(), BoundaryKind.ITEM, listOf(it)) })),
+            independenceMode = coach.model.IndependenceMode.H0_REQUIRED, allowedTools = coach.model.AllowedToolsPolicy(emptyList()),
+            state = SessionState.RESULT_READY,
+            statuses = shown.associate { ref ->
+                ref.toString() to when {
+                    ref in contested -> BoundaryStatus.CONTESTED
+                    answered.any { it.item == ref } -> BoundaryStatus.FROZEN
+                    ref in skipped -> BoundaryStatus.UNSUBMITTED
+                    else -> BoundaryStatus.OPEN
+                }
+            },
+        )
+        val unreliable = buildSet {
+            answered.forEach { a ->
+                if (a.pending) add(NotReliablyMeasured.PROVISIONAL_EVALUATION)
+                else if (a.result == AnswerResult.NOT_MEASURED) add(NotReliablyMeasured.INVALID_ITEM)
+                when (a.independence) {
+                    IndependenceClass.ASSISTED -> add(NotReliablyMeasured.ASSISTED_ATTEMPT)
+                    IndependenceClass.REQUIRES_INDEPENDENT_RECHECK -> add(NotReliablyMeasured.SOLUTION_EXPOSED_ATTEMPT)
+                    else -> Unit
+                }
+            }
+        }
+        return SessionResults.of(view, unreliable = unreliable)
+    }
+
+    /** The result as lines: its state, what could not be measured, then what the engines reported (13E). */
+    fun lines(result: SessionResult, reported: List<String>): List<String> = buildList {
+        add(if (result.partial) MeasurementCopy.RESULT_PARTIAL else MeasurementCopy.RESULT_READY)
+        if (result.showsNotReliablyMeasured) {
+            add("${MeasurementCopy.NOT_RELIABLY_MEASURED}: " + result.notReliablyMeasured.joinToString(", ") { HistoryCopy.notMeasuredLabels.getValue(it) })
+        }
+        addAll(reported)
+    }
+}
+
+/** The fast path on a Topic (16H): offered, open with its result, or not available — never a verdict. */
+sealed interface FastPathView {
+    data class Offer(val text: String, val action: String) : FastPathView
+    data class Open(val headline: String, val lines: List<String>, val action: String) : FastPathView
+    data class Said(val text: String) : FastPathView
+
+    companion object {
+        fun offer() = Offer(MeasurementCopy.FAST_PATH_OFFER, MeasurementCopy.FAST_PATH_REQUEST)
+
+        fun open(result: DiagnosticResult, label: (VersionedRef) -> String): Open {
+            val summary = DiagnosticResults.summary(result, label)
+            return Open(summary.headline, summary.lines, MeasurementCopy.FAST_PATH_WITHDRAW)
+        }
+    }
+}
+

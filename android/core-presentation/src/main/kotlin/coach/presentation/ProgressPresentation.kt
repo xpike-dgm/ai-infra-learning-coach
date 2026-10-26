@@ -48,7 +48,7 @@ enum class AttentionGroup(val id: String) {
     REVIEW_DUE("review_due"),
     RETENTION_AT_RISK("retention_at_risk"),
     PREREQUISITE_BLOCKED("prerequisite_blocked"),
-    /** Named by `SPWX-v0`; nothing produces it yet — the app composes no assessment session for a Skill (16D). */
+    /** 16H: a ready slot of this cycle's blueprint, or an Objective the open diagnostic still checks (`ProgressFacts`). */
     ASSESSMENT_OPPORTUNITY("assessment_opportunity"),
 }
 
@@ -294,7 +294,8 @@ object ProgressPresentation {
             if (count == 0) null else InventoryLine(state, ProgressCopy.stateLabels.getValue(state), count)
         }
         val attention = AttentionGroup.entries.mapNotNull { group ->
-            val skills = derived.filter { (_, d) -> inGroup(group, d) }.map { it.first.skill }
+            val skills = derived.filter { (row, d) -> inGroup(group, d) || (group == AttentionGroup.ASSESSMENT_OPPORTUNITY && row.skill in facts.assessmentOpportunities) }
+                .map { it.first.skill }
             if (skills.isEmpty()) null else AttentionLine(group, ProgressCopy.attentionLabels.getValue(group), skills)
         }
         val evidenced = facts.skills.any { it.projection.reading.evidenced }

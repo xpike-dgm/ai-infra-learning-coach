@@ -214,3 +214,7 @@ Recorded in `arch/16g_run_help/run_help.yaml`. Highlights:
 - The run, the Copy buttons and the tutor on a device, and T6 (19).
 
 Next numbered step: `16H — Uçtan uca günlük döngü: ölçme oturumları`. It needs a fresh PRE and the user's new explicit approval.
+
+---
+
+**16H note (2026-10-26, `D-132`):** `moved_to_16h` is done (`ASRX-v0`): measurement sessions from Today, slot session ids, the fast path on the Topic, contest and `assessment_opportunity`. Entry placement as a diagnostic source went to 18A. Two 16G checks were narrowed ("Narrowed at 16H"). Details: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.

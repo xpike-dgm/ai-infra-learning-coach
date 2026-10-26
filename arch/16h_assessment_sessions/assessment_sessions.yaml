@@ -1,0 +1,251 @@
+model: ASRX-v0
+stage_step: 16H
+status: accepted_16h
+decision: D-132
+implements: [ASUX-v0, DMAX-v0, WBAX-v0, MCAX-v0, VDWX-v0, WLRX-v0, SPWX-v0, LHRX-v0, E2EX-v0, HLPX-v0, D-131]
+engines_read: [PLNX-v0, RPLX-v0, PRQX-v0, MSTX-v0, WLRX-v0, PCRX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: measurement_from_today_daily_assessment_tasks_weekly_and_monthly_slots_and_fast_path_checks_run_in_the_one_assessment_interior_their_attempts_carry_their_session_a_reported_answer_is_held_as_contested_the_fast_path_opens_from_a_topic_and_replans_today
+
+question: Today'den bir ölçme görevini — günlük ölçmeyi, haftanın ya da ayın bir slotunu, hızlı yolun bir kontrolünü — tek ölçme iç yüzünde yapabilir, bir soruyu boş bırakabilir, hatalı bir soruyu bildirebilir ve bir konuda hızlı yolu isteyip bırakabilir miyim — hiçbir şeyin not, yüzde ya da geçti/kaldı olmadığı, boş bırakmanın yanlış sayılmadığı ve bildirmenin aleyhime işlemediği biçimde?
+
+primary_invariant: >-
+  A measurement planned for today runs in the one assessment interior, whatever composed it: a daily assessment task, a
+  slot of this cycle's weekly or monthly blueprint, or a check of the learner's open diagnostic. Its kind is context and
+  never extra weight. Entry confirms the slot is still in this cycle's stored blueprint, the check still belongs to the
+  open diagnostic, and the item is published, judgeable, usable for its intent and unseen — nothing is guessed. Every
+  attempt carries its session; a daily assessment's session opens when the learner begins, and a slot's answer is
+  recorded as that slot's evidence, so a prerequisite the same session showed missing does not count against its
+  target. A question may be left unanswered and that is not incorrect; an answered one may be reported, and its
+  evidence is held as contested by an appended disposition, never edited and never held against the learner. The result
+  is its state, what could not be measured and what the engines reported. The fast path is opened only by the learner,
+  from a Topic, joins today's plan at once and keeps started work; leaving it owes nothing.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-26
+  scope: everything_in_moved_to_16h_sessions_from_today_slot_session_ids_fast_path_entry_dispositions_and_contest_assessment_opportunity
+  blueprint_composition: automatic_when_the_learner_opens_the_app_in_a_new_week_or_month_already_the_behaviour_since_16d
+  contest: yes_a_reported_answer_is_held_as_contested_not_evidence_not_wrong_the_session_continues
+  fast_path_replan: immediately_a_new_replan_trigger_diagnostic_requested_declared_extension_of_pdt_v0_s15
+  fast_path_entry: on_the_topic_detail_the_learn_tab_stays_empty_until_17
+
+assistant_defaults:
+  - the three measurement kinds run in the existing task runner, one item at a time — every one is a single atomic boundary (a slot and a diagnostic check carry one item; a daily assessment's items are served in the task's order); orientation says which session it is and the independence disclosure before any work (ASUX-v0 §6)
+  - a daily assessment opens one daily assessment_session row when the learner begins, not at entry, so entry still writes no truth (16F); a slot's and a diagnostic's session exist before the run (the blueprint, the request)
+  - an assess task's items are offered for the verification intent (its purpose serves verification_due); a slot's for its role's intent; a diagnostic check's for mastery evidence (13F's route); every other task's stay checkpoint
+  - a measurement shows no lesson first; it is a check, not teaching
+  - a slot's evidence goes through RecordSlotEvidence with what the session's earlier slots produced, read from the attempts that name the session; at the end of a slot run ApplyRetroactiveContamination runs before the recompute (13A, 13B, 13D)
+  - a contest is offered only on an answered question that wrote evidence; it appends evidence_disposition contested, reason learner_reported_item_problem, decided by user_report (DDM-v0's deciders); before answering, leaving the question unanswered is the way — a report with no evidence would have nothing to hold, and promising a review nobody records would be untrue
+  - the end-of-run recompute re-reads every answered Skill, so a contested row is read as contested before anything is reported (13D's open loop on stale Progress after a correction closes with it)
+  - a reinstated row is the row again (13D) and names no correction in traces
+  - the fast path requests only Skills new learning may start on (KGC-v0 §27); the others are left out rather than refusing the whole request
+  - withdrawing does not replan: today's checks then fail entry by name (the request is no longer the open one), and the next plan omits them
+  - working Turkish microcopy; 17 owns the polish
+
+found:
+  - the_weekly_and_monthly_blueprint_was_already_composed_on_open_since_16d_and_slots_reached_plans_unopenable
+  - an_authored_practice_task_and_a_slot_serve_the_same_need_so_the_planner_picks_one_of_them
+  - no_replan_trigger_existed_for_a_fast_path_request
+  - the_learn_tab_has_no_screen
+  - no_entry_placement_flow_or_diagnostic_source_exists
+  - the_disposition_reason_was_applied_but_never_carried_on_the_row
+
+declared_extensions:
+  - {what: "ReplanTrigger.DIAGNOSTIC_REQUESTED", extends: "PDT-v0 §15's closed trigger list (D-132, user decision)", reason_code: "PDT-v0 §8.7 diagnostic.user_requested_fast_path", keeps_budget: true}
+  - {what: "Measurement, MeasurementKind; RunnableTask.measurement; RunnableTask.task nullable", extends: "16F's TaskRunFacts"}
+  - {what: "OpenTask.openSlot, openDiagnostic; RunTask.beginSession, contest; SlotSessions", extends: "16F's entry and run"}
+  - {what: "FastPath", extends: "13F's RequestDiagnostic, WithdrawDiagnostic, ReadDiagnosticResult"}
+  - {what: "EvidenceRow.disposition, dispositionReason; HistoryEntry.disposition, dispositionReason", extends: "13D's EvidenceDispositions.effective and 16B's history"}
+  - {what: "ProgressFacts.assessmentOpportunities; AssessmentOpportunities; ProgressQuery(clock)", extends: "16A's attention set"}
+  - {what: "MeasurementCopy, MeasurementPresentation, FastPathView; TaskRunStage canSkip, canContest; TaskOrientationView.measurement", extends: "16F/16G's TaskRunPresentation"}
+
+scope:
+  schema_changed: false
+  schema_version: 11
+  ports_changed: false
+  boundaries_changed: false
+  planner_rule_changed: false
+  replan_trigger_added: true
+  mastery_rule_changed: false
+  evidence_rule_changed: false
+  sessions_from_today: true
+  slot_session_ids: true
+  fast_path_entry: true
+  contest_from_the_app: true
+  disposition_reason_in_traces: true
+  assessment_opportunity: true
+  entry_placement_diagnostic_source: false
+  learn_tab_screen: false
+  screen_drawn: true
+
+measurement:
+  kinds: [daily_assessment, weekly_slot, monthly_slot, diagnostic]
+  interior: one
+  kind_adds_weight: false
+  lesson_first: false
+  entry_writes_truth: false
+  daily_session_opened: when_the_learner_begins
+  attempts_carry_session: true
+  slot_evidence: record_slot_evidence_with_session_so_far
+  retroactive_contamination: at_the_end_of_a_slot_run
+  intents: {daily_assessment: verification, slot: its_role, diagnostic: mastery_evidence, other_tasks: checkpoint}
+  skip: {offered: true, writes: nothing, incorrect: false}
+  contest: {offered: after_an_answer_that_wrote_evidence, writes: evidence_disposition_contested, edits_the_row: false, decided_by: user_report, held_against_the_learner: false}
+  result: [state_partial_or_ready, not_reliably_measured, engine_report]
+  score_or_grade: false
+
+fast_path:
+  opened_by: the_learner_only
+  entry: topic_detail
+  skills: published_new_learning_only
+  replan: diagnostic_requested_keeps_started_work
+  withdraw: owes_nothing_no_replan
+  result: thirteen_f_diagnostic_results
+
+moved_on:
+  - {what: "entry placement as a diagnostic source", owner: 18A, why: "no entry placement flow and no diagnostic source for it exist; inventing one is not 16H's"}
+  - {what: "the Learn tab's own screen", owner: 17}
+  - {what: "misconception memory in item selection", owner: 18D}
+  - {what: "RebuildMastery writing its own watermark on skill_state", owner: 18E}
+  - {what: "the day summary naming real changes from a run", owner: 17}
+  - {what: "a blueprint result's stateChangeRefs, which nothing stores", owner: 18D, note: "the run's result shows 13E's report; no stored blueprint result exists to carry the refs"}
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/TaskRunFactsTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/MeasurementPresentationTest.kt}
+  progress: {file: android/core-presentation/src/test/kotlin/coach/presentation/ProgressPresentationTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+narrowed_gates:
+  rule: an earlier check now accepts exactly the D-132 change and still fails on any other move; each narrowed line carries a "Narrowed at 16H (`ASRX-v0 / D-132`)" comment
+  gates:
+    - {file: tools/validate_end_to_end_loop.py, checks: [A16F-03_assess_is_16g, A16F-03_answer_key_only, A16F-04_unseen_in_order_never_twice, A16F-04_one_action_with_its_task, A16F-04_independence_derived]}
+    - {file: tools/validate_run_help.py, checks: [A16G-03_servable_is_judgeable_and_usable, A16G-04_one_action_with_its_task]}
+    - {file: tools/validate_replan.py, checks: [E12D-03_triggers_are_the_contracts]}
+    - {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt, checks: ["entry names what it could not confirm, ..."]}
+
+open_loops:
+  run_polish: {owner: 17}
+  measurement_on_device: {owner: 19, note: "the sessions and the fast path have not been seen on a device; their decisions and writes were run on the JVM through the same classes, on the real store"}
+  t6_and_device: {owner: 19}
+
+mutation_results_kotlin:
+  scope: one change per mutant to the measurement entry (an assess task's lesson and intent, a seen item, a check's intent, a slot's kind), the session (the attempt's session id, the daily session at begin), contest (outside a measurement, invalidating), serving's intent, the fast path (unstartable Skills, no replan, dropped started work, the trigger), dispositions on the row and in the history, the result (skip, contest, assisted), orientation, the Progress opportunity and the model's invariants; then the 16H JVM suites of core-model (TaskRunFactsTest, WeaknessFactsTest), core-presentation (MeasurementPresentationTest, ProgressPresentationTest) and app-wiring (ShippedCourseTest on the real store with all eight packages and the shipped suites)
+  total: 26
+  detected: 26
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: the hardened 16C-16G runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a KDoc comment in TaskRunPresentation.kt
+  negative_control_result: survived_as_expected
+  not_mutated: "guards that no shipped plan can reach — a slot of another cycle or Skill, a check of a diagnostic no longer open, the session filter on a slot's outcomes, whether slot evidence goes through RecordSlotEvidence — are held by the validator (A16H-03/04) rather than counted; app-wiring's flow needs Android and is held by the validator (A16H-04/07/09)"
+  earlier_runs: "before the run, tests were added where a mutant would have gone undetected — an assess task's intent, a check's intent, a seen slot item and an unpublished Skill in a fast-path request. In the full run H07 (serving ignores the measurement's intent) was not detected: every shipped item fits both a checkpoint and a verification. A test with a low-stakes item was added after the run and H07 was run again alone, against the same suites: detected"
+  final_run_is_a_single_clean_run: false
+  mutants:
+    - {id: H01, mutant: assess_task_shows_a_lesson, result: detected}
+    - {id: H02, mutant: assess_task_only_a_check, result: detected}
+    - {id: H03, mutant: attempt_names_no_session, result: detected}
+    - {id: H04, mutant: daily_session_never_opened, result: detected}
+    - {id: H05, mutant: contest_outside_a_measurement, result: detected}
+    - {id: H06, mutant: contest_invalidates, result: detected}
+    - {id: H07, mutant: serve_ignores_measurement_intent, result: detected}
+    - {id: H08, mutant: seen_slot_served, result: detected}
+    - {id: H09, mutant: diagnostic_only_a_check, result: detected}
+    - {id: H10, mutant: slot_kind_swapped, result: detected}
+    - {id: H11, mutant: fast_path_unstartable_refuses_all, result: detected}
+    - {id: H12, mutant: fast_path_no_replan, result: detected}
+    - {id: H13, mutant: fast_path_drops_started, result: detected}
+    - {id: H14, mutant: fast_path_wrong_event, result: detected}
+    - {id: H15, mutant: reinstated_names_a_correction, result: detected}
+    - {id: H16, mutant: disposition_not_carried, result: detected}
+    - {id: H17, mutant: history_drops_disposition, result: detected}
+    - {id: H18, mutant: skip_counted_as_answered, result: detected}
+    - {id: H19, mutant: contest_counted_as_answered, result: detected}
+    - {id: H20, mutant: assisted_not_named, result: detected}
+    - {id: H21, mutant: orientation_says_nothing, result: detected}
+    - {id: H22, mutant: progress_ignores_opportunities, result: detected}
+    - {id: H23, mutant: opportunities_never_read, result: detected}
+    - {id: H24, mutant: contested_history_words, result: detected}
+    - {id: H25, mutant: measurement_may_teach_first, result: detected}
+    - {id: H26, mutant: slot_without_task_allowed_for_daily, result: detected}
+
+validator_mutation:
+  tool: tools/validate_assessment_sessions_run.py
+  total: 50
+  detected: 50
+  scope: one change per mutant to an input the validator reads — the contract, the measurement model, slot and check entry, entry writes, an assess task, serving, the session, slot evidence, contamination, contest, skip, dispositions, the result, the words, the fast path and its trigger, the opportunity, the screens, the wiring, a test name, the plan, DECISIONS, the spec, the research and a narrowed gate's marker
+  detection: a FAIL line not in the baseline; a run that prints no result line is a crash and never a detection
+  crash_is_detection: false
+  baseline: the only check allowed to fail at baseline is A16H-13_validator_mutation, which reads this very result
+  negative_control: a YAML comment in the contract naming forbidden fragments (banana, survived, streak, 100%)
+  negative_control_result: survived_as_expected
+  earlier_runs: "the first run left V22 undetected: the ordering check compared find() positions, so a removed contamination call (-1) still read as 'before'; the check now requires the call to be present, and the whole run was repeated — this is that single clean run"
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: V01, mutant: contract_model, result: detected}
+    - {id: V02, mutant: contract_claims_placement, result: detected}
+    - {id: V03, mutant: contract_entry_writes, result: detected}
+    - {id: V04, mutant: contract_device_claimed, result: detected}
+    - {id: V05, mutant: contract_mutant_survived, result: detected}
+    - {id: V06, mutant: contract_run_failed, result: detected}
+    - {id: V07, mutant: contract_score, result: detected}
+    - {id: V08, mutant: contract_moved_unowned, result: detected}
+    - {id: V09, mutant: kind_scope_wrong, result: detected}
+    - {id: V10, mutant: measurement_may_teach, result: detected}
+    - {id: V11, mutant: slot_any_cycle, result: detected}
+    - {id: V12, mutant: slot_gate_ignores_item, result: detected}
+    - {id: V13, mutant: check_any_diagnostic, result: detected}
+    - {id: V14, mutant: seen_measured, result: detected}
+    - {id: V15, mutant: entry_writes, result: detected}
+    - {id: V16, mutant: assess_blocked_again, result: detected}
+    - {id: V17, mutant: serve_any_intent, result: detected}
+    - {id: V18, mutant: session_at_entry, result: detected}
+    - {id: V19, mutant: attempt_no_session, result: detected}
+    - {id: V20, mutant: slot_evidence_plain, result: detected}
+    - {id: V21, mutant: session_from_memory, result: detected}
+    - {id: V22, mutant: contamination_after_report, result: detected}
+    - {id: V23, mutant: contest_anywhere, result: detected}
+    - {id: V24, mutant: contest_by_validator, result: detected}
+    - {id: V25, mutant: skip_writes, result: detected}
+    - {id: V26, mutant: contest_without_evidence, result: detected}
+    - {id: V27, mutant: reinstated_named, result: detected}
+    - {id: V28, mutant: skip_frozen, result: detected}
+    - {id: V29, mutant: assisted_hidden, result: detected}
+    - {id: V30, mutant: verdict_word, result: detected}
+    - {id: V31, mutant: result_unwired, result: detected}
+    - {id: V32, mutant: fast_path_any_skill, result: detected}
+    - {id: V33, mutant: fast_path_drops_started, result: detected}
+    - {id: V34, mutant: trigger_undeclared, result: detected}
+    - {id: V35, mutant: withdraw_replans, result: detected}
+    - {id: V36, mutant: fast_path_off_topic, result: detected}
+    - {id: V37, mutant: opportunity_served_slot, result: detected}
+    - {id: V38, mutant: opportunity_unshown, result: detected}
+    - {id: V39, mutant: orientation_silent, result: detected}
+    - {id: V40, mutant: skip_undrawn, result: detected}
+    - {id: V41, mutant: screen_decides, result: detected}
+    - {id: V42, mutant: begin_unwired, result: detected}
+    - {id: V43, mutant: history_unnamed, result: detected}
+    - {id: V44, mutant: test_renamed, result: detected}
+    - {id: V45, mutant: plan_unticked, result: detected}
+    - {id: V46, mutant: decision_missing, result: detected}
+    - {id: V47, mutant: spec_not_accepted, result: detected}
+    - {id: V48, mutant: spec_wrong_next, result: detected}
+    - {id: V49, mutant: research_source_dropped, result: detected}
+    - {id: V50, mutant: narrowed_gate_unmarked, result: detected}
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew test (every module's JVM tests, the AI adapter's included)", tier: T1-T3, result: PASS}
+  - {id: RUN-02, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-03, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-04, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-05, command: "read both built APKs: the eight curriculum packages, the 480 suites and the runner equal their source assets; the manifests keep their permissions, no INTERNET without the AI adapter and no storage permission", tier: T5, result: PASS}
+  - {id: RUN-06, command: "ShippedCourseTest's 16H section: the real SQLite store with all eight packages; a blueprint composed on open, a slot planned, opened as a measurement of its session and answered as its slot evidence, never offered again; a daily assessment opening its session at begin and a report held as contested and named in the history; the fast path replanning today, keeping started work, its check in its own session, and a withdrawal", tier: T2, result: PASS}
+jvm_tests: 1268
+validator_sweep: {glob: "tools/validate_*.py", total: 71, run: 70, passed: 70, not_run: [validate_content_qa.py], partial: [validate_assessment_content.py], note: "the disk had 1.9-2.0 GB free (it fell from 8.4 GB during the step, from outside this work; nothing was deleted). validate_content_qa.py was not run (it needs about 10 GB of temporary space); validate_assessment_content.py ran with --no-write --skip-earlier-rebuild, 102/102: every check that reads the code 16H changed ran, and only the rebuild of the six earlier packages was skipped. The inputs of both - the eight packages, curriculum/, tools/content_qa.py, tools/build_curriculum_package.py - are byte-identical to main; the frozen QA reports earlier validators rewrite were restored from git"}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  run_seen_on_device: false
+  sqlite_read_on_jvm_run: true

@@ -1556,3 +1556,20 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `16G tamamlandı; 16H eklendi, aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `16H — Uçtan uca günlük döngü: ölçme oturumları`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-26 — 16H — Uçtan uca günlük döngü: ölçme oturumları tamamlandı — ASRX-v0 / D-132 (AŞAMA 16 tamamlandı)
+
+- Kullanıcı "merge et ve 16H ye başla" dedi; 16G (#66) merge edildi (b976421). Fresh 16H PRE yapıldı ve kanonik kaynaklar `16G ✅ / 16H active-not-executed` gösterdi.
+- **Kullanıcı kararları (2026-10-26):** kapsam `moved_to_16h`'nin tamamı; haftalık/aylık plan açılışta otomatik (16D'den beri böyle); bildirme evet, 'Bu soruda sorun var' kanıtı itirazlı tutar; hızlı yol bugünün planına hemen girer (yeni olay `diagnostic_requested`); hızlı yol girişi konu ayrıntısında.
+- **Bulgu:** haftalık/aylık blueprint 16D'den beri açılışta kuruluyordu ve slotlar plana giriyor ama açılamıyordu; yazılı bir görev ve bir slot aynı ihtiyaca hizmet edince planner birini seçiyor; hızlı yol isteği için bir yeniden plan olayı yoktu (`diagnostic_requested`, D-132); Learn sekmesinin ekranı yok; giriş yerleştirme akışı ve onun tanısal kaynağı yok (18A); düzeltmenin nedeni uygulanıyor ama satırda taşınmıyordu.
+- **Kod:** `Measurement`/`MeasurementKind`, `OpenTask.openSlot`/`openDiagnostic`, `RunTask.beginSession`/`contest`, `SlotSessions`, yeni `FastPath.kt`, `AssessmentOpportunities`, `ReplanTrigger.DIAGNOSTIC_REQUESTED`, satırda düzeltme nedeni, `MeasurementPresentation`, görev çalıştırıcıda 'Boş bırak' ve 'Bu soruda sorun var', konu ayrıntısında hızlı yol.
+- **Araştırma:** iç sözleşmeler `ASUX-v0`, `DMAX-v0`, `WBAX-v0`, `MCAX-v0`, `VDWX-v0`, `WLRX-v0`, `SPWX-v0`, `PDT-v0`; dış: AERA/APA/NCME 2014, ITC 2014, Black & Wiliam 1998.
+- **Daraltılan kapılar:** 16F'nin beş, 16G'nin iki, 12D'nin bir kontrolü ve 16F'nin bir testi ("Narrowed at 16H").
+- **Mutation:** Kotlin 26/26.
+- **Validator mutation:** 50/50.
+- **Validator:** 89/89 PASS; sweep 70/71 (validate_content_qa.py not run and validate_assessment_content.py without the earlier rebuilds: disk space; their inputs unchanged); 1268 JVM testi.
+- **T6 çalıştırılmadı; oturumlar cihazda görülmedi**.
+- **AŞAMA 16 TAMAMLANDI** — SKAX-v0 → LHRX-v0 → PWPX-v0 → STGX-v0 → RMDX-v0 → E2EX-v0 → HLPX-v0 → ASRX-v0.
+- D-050 POST living-memory accepted state'i `16H tamamlandı; AŞAMA 16 kapandı; 17A aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `17A — Görsel polish`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

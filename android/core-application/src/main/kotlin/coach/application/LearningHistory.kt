@@ -133,6 +133,8 @@ class LearningHistoryQuery(private val persistence: PersistencePort) {
         changes = step.changes,
         contested = step.row.contested,
         solutionExposed = step.row.solutionExposed,
+        disposition = step.row.disposition,
+        dispositionReason = step.row.dispositionReason,
     )
 
     private fun reports(steps: List<HistoryReplay.Step>, entries: List<HistoryEntry>): List<SessionReport> {

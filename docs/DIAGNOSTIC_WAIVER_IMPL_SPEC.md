@@ -218,3 +218,7 @@ Two kinds join `PCRX-v0`'s eleven: `coverage_waived` (`confirmed_capabilities`, 
 If accepted, 13F becomes `VDWX-v0 / D-104` and **AŞAMA 13 is complete**.
 
 Next numbered step: **14A — Tutor davranış sözleşmesi**. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**16H note (2026-10-26, `D-132`):** the fast path is requested and withdrawn from the Topic detail (user decision); a request replans today with a new trigger `diagnostic_requested` (declared extension of `PDT-v0` §15, reasoned with §8.7's fast-path code), keeping started work; a planned check opens only while its diagnostic is the open one, and its attempts carry the diagnostic's session. Only Skills new learning may start on are requested. Details: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.

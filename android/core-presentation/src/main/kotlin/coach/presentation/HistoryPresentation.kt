@@ -43,6 +43,18 @@ object HistoryCopy {
     const val STATE_UNCHANGED = "Bu oturum becerilerinin durumunu değiştirmedi."
     const val UNANSWERED_SLOT = "yanıtlanmamış slot"
 
+    /**
+     * 16H: why a corrected row counts as it does — the correction's reason (13D), in plain words. A reason the vocabulary
+     * does not know is named by its code rather than guessed at.
+     */
+    fun disposition(disposition: String, reason: String?): String = when {
+        disposition == "contested" -> "itiraz edildi: soru gözden geçirilene kadar sayılmıyor"
+        disposition == "invalidated" && reason == "prerequisite_contaminated" -> "ön koşul eksik göründüğü için hedefine karşı sayılmadı"
+        disposition == "invalidated" -> "geçersiz sayıldı" + (reason?.let { " ($it)" } ?: "")
+        disposition == "superseded" -> "yerine yeni bir kayıt geçti"
+        else -> disposition
+    }
+
     val scopeLabels: Map<String, String> = mapOf("daily" to "Günlük ölçme", "weekly" to "Haftalık ölçme", "monthly" to "Aylık ölçme")
 
     /** `ASUX-v0`'s family names, the same words the in-session result uses. */
@@ -122,6 +134,7 @@ object HistoryPresentation {
             add(ProgressCopy.evidenceLabels.getValue(entry.kind))
             add(HistoryCopy.outcomeLabels.getValue(entry.outcome))
             if (entry.assistance.isNotEmpty()) add("${HistoryCopy.ASSISTANCE}: ${entry.assistance.sortedBy(AssistanceLevel::ordinal).joinToString(", ") { it.id }}")
+            entry.disposition?.let { add(HistoryCopy.disposition(it, entry.dispositionReason)) }
         }.joinToString(" · ")
         val name = { ref: VersionedRef -> facts.skillNames[ref] ?: ref.logicalId }
         return HistoryLine(

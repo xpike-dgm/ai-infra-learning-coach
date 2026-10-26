@@ -1172,12 +1172,24 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 31/31, validator mutation 50/50; 105/105 QA PASS,
 - **T6 ve canlı sağlayıcı çağrısı çalıştırılmadı; koşu cihazda görülmedi**.
 
-### [ ] 16H — Uçtan uca günlük döngü: ölçme oturumları — D-131 ile eklendi — **AKTİF**
+### [x] 16H — Uçtan uca günlük döngü: ölçme oturumları — D-131 ile eklendi — ASRX-v0 / D-132
+
+**16H final coverage:**
+- bugün için planlanan bir ölçme — günlük ölçme görevi, haftanın ya da ayın bir slotu, hızlı yolun bir kontrolü — onu neyin kurduğundan bağımsız olarak tek ölçme iç yüzünde koşar ve türü ek ağırlık değildir; giriş tahmin etmez ve hiçbir şey yazmaz; her deneme oturumunu taşır, günlük ölçmenin oturumu öğrenci başlarken açılır ve bir slotun cevabı o slotun kanıtıdır; boş bırakılan soru yanlış değildir, cevaplanmış bir soru bildirilebilir ve kanıtı eklenen bir dispozisyonla itirazlı tutulur, satır düzenlenmez; sonuçta not, yüzde ya da geçti/kaldı yoktur; hızlı yolu yalnız öğrenci bir konudan açar, bugünün planına hemen girer ve başlanan işi korur, bırakmak hiçbir şey borçlandırmaz,
+- giriş: planlanan slot (`weekly:`/`monthly:`), hızlı yol kontrolü (`diagnostic:`) ve `assess` görevi ölçme olarak girer; slot bu döngünün saklı blueprint'inden, kontrol açık tanıdan okunur; giriş hiçbir şey yazmaz,
+- oturum: her deneme `assessment_session_id` taşır; günlük ölçme oturumunu öğrenci başlarken açar; slot kanıtı `RecordSlotEvidence` ile, sonda geriye dönük contamination; boş bırakma yazılmaz; bildirme `contested` dispozisyonu ekler,
+- hızlı yol: konu ayrıntısında istenir ve bırakılır; `diagnostic_requested` ile bugünün planı başlanan işi koruyarak yenilenir,
+- Progress `assessment_opportunity`'yi üretiyor; geçmiş düzeltmenin nedenini söylüyor,
+- bulgu: haftalık/aylık blueprint 16D'den beri açılışta kuruluyordu ve slotlar plana giriyor ama açılamıyordu; yazılı bir görev ve bir slot aynı ihtiyaca hizmet edince planner birini seçiyor; hızlı yol isteği için bir yeniden plan olayı yoktu (`diagnostic_requested`, D-132); Learn sekmesinin ekranı yok; giriş yerleştirme akışı ve onun tanısal kaynağı yok (18A); düzeltmenin nedeni uygulanıyor ama satırda taşınmıyordu,
+- Kotlin mutation 26/26, validator mutation 50/50; 89/89 QA PASS,
+- **T6 çalıştırılmadı; oturumlar cihazda görülmedi**.
+
+**AŞAMA 16 TAMAMLANDI** — SKAX-v0 → LHRX-v0 → PWPX-v0 → STGX-v0 → RMDX-v0 → E2EX-v0 → HLPX-v0 → ASRX-v0.
 
 ---
 
 # AŞAMA 17 — UI/UX Polish
-### [ ] 17A — Görsel polish
+### [ ] 17A — Görsel polish — **AKTİF**
 ### [ ] 17B — Motion
 ### [ ] 17C — Kullanılabilirlik
 ### [ ] 17D — Accessibility
@@ -1240,8 +1252,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16G`  
-**Son tamamlanan:** **`16G — HLPX-v0 / D-130`**  
-**Aktif:** **`16H — Uçtan uca günlük döngü: ölçme oturumları`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`  
+**Son tamamlanan:** **`16H — ASRX-v0 / D-132`**  
+**Aktif:** **`17A — Görsel polish`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **16H fresh PRE-STEP + kullanıcının yeni açık onayı → Ölçme oturumları → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **17A fresh PRE-STEP + kullanıcının yeni açık onayı → Görsel polish → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

@@ -251,6 +251,30 @@ internal object BlueprintSlots {
     }
 }
 
+/**
+ * `SPWX-v0` §7.2's `assessment_opportunity` (16H): the Skills an assessment session could measure now — a ready slot of
+ * **this** cycle's weekly or monthly blueprint whose item has not been shown, or an Objective the learner's open
+ * diagnostic still checks. Read from what the sessions stored, never composed here; an earlier cycle's slot is not one.
+ */
+internal object AssessmentOpportunities {
+    fun of(persistence: PersistencePort, studyDay: String): Set<VersionedRef> {
+        val slots = BlueprintScopes.COMPOSED.flatMap { scope ->
+            val row = persistence.latestAssessmentSession(scope) ?: return@flatMap emptyList()
+            val blueprint = row.record.payload["blueprint"]?.let { BlueprintCodecs.decode(scope, it) } ?: return@flatMap emptyList()
+            if (blueprint.cycleId != BlueprintScopes.cycleOf(scope, studyDay)) return@flatMap emptyList()
+            val ready = blueprint.readySlots.filter { it.item != null }
+            val served = if (ready.isEmpty()) emptySet() else persistence.exposuresFor(ready.mapNotNull { it.item }, emptyList()).map { it.resource }.toSet()
+            ready.filterNot { it.item in served }.map { it.targetSkill }
+        }
+        val diagnostic = DiagnosticSessions.active(persistence)?.let { active ->
+            active.scope.targets.filter { target ->
+                CoverageRows.read(persistence, target.objective)?.diagnosis(target, active.sessionId)?.state?.open == true
+            }.map { it.skill }
+        }.orEmpty()
+        return (slots + diagnostic).toSet()
+    }
+}
+
 /** Skill state as need generation reads it; the planner and the blueprint composers read it the same way. */
 internal object PlanningStates {
 

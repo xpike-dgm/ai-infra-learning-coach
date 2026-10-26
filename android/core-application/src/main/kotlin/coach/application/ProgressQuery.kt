@@ -15,6 +15,7 @@ import coach.model.SkillRow
 import coach.model.TechnicalEnglishAnchors
 import coach.model.VersionedRef
 import coach.model.WeaknessSignal
+import coach.ports.ClockPort
 import coach.ports.ContentPort
 import coach.ports.PersistencePort
 
@@ -31,6 +32,8 @@ import coach.ports.PersistencePort
 class ProgressQuery(
     private val persistence: PersistencePort,
     private val content: ContentPort? = null,
+    /** 16H: which day's cycle the assessment opportunities belong to; without it none is claimed. */
+    private val clock: ClockPort? = null,
 ) {
     fun load(): ProgressFacts {
         val curriculumLoaded = persistence.curriculumPublished()
@@ -39,6 +42,7 @@ class ProgressQuery(
         return ProgressFacts(
             curriculumLoaded = true,
             skills = persistence.publishedSkills().map { skill -> row(skill, gate, evidenceOf(skill.ref)) },
+            assessmentOpportunities = clock?.let { AssessmentOpportunities.of(persistence, it.now().studyDay) }.orEmpty(),
         )
     }
 

@@ -38,6 +38,9 @@ data class HistoryEntry(
     /** Raw facts the report names a not-measured reason with (`ASUX-v0` §13.3). */
     val contested: Boolean = false,
     val solutionExposed: Boolean = false,
+    /** 16H: the correction appended to the row and its reason (13D), so the history can say why it does not count. */
+    val disposition: String? = null,
+    val dispositionReason: String? = null,
 )
 
 /**

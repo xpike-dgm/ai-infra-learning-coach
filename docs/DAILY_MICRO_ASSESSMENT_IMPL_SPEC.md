@@ -206,3 +206,7 @@ Next numbered step: **11E — Gün sonu**. It must receive a fresh PRE-STEP and 
 ---
 
 **15B note (2026-10-02, `D-113`, user decision):** a second package ships (`curriculum_package_v2.txt`). An entity's version is its own semantic revision, not the package's: a later package brings its new entities at version 1 and pins its references to what earlier packages published. The store therefore no longer requires every entity to carry the package's version; it refuses any package that carries an already-published domain, module, topic, Skill, Objective, misconception or resource — a published version is never overwritten. `FileContentSource` reads all shipped packages together or serves none; `IngestCurriculum.ingestAll` publishes them oldest first and stops at the first refusal. `E11D-07_version_mismatch_refused` and `E11D-09_failed_parse_serves_nothing` were narrowed to these rules. Details: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`.
+
+---
+
+**16H note (2026-10-26, `D-132`):** an `assess` task now runs as a daily assessment: its items are offered for the verification intent, it shows no lesson first, and its `daily` session row opens when the learner begins (entry still writes nothing). Details: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.
