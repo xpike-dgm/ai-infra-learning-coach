@@ -1,0 +1,29 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.pointer_dereference.read_pointed_value.g09@v1",
+  "item": "item.c.pointer_dereference.read_pointed_value.g09@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nint arada_mi(int *alt, int *ust, int *x);\n\nint main(void) {\n    int a = 0, u = 0, x = 0;\n    while (scanf(\"%d %d %d\", &a, &u, &x) == 3) {\n        printf(\"%d\", arada_mi(&a, &u, &x));\n    }\n    printf(\"\\n\");\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -c ders_test.c -o ders_test.o && gcc -g -fsanitize=address,undefined cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0",
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "cases",
+      "stdin": "1 10 5\n1 10 1\n1 10 10\n1 10 11\n1 10 0\n",
+      "expected_stdout": "11100\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

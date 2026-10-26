@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.while_iteration.demonstrate_capability.g10@v1",
+  "item": "item.c.while_iteration.demonstrate_capability.g10@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "one_vs_hundred",
+      "stdin": "1 100\n",
+      "expected_stdout": "11\n"
+    },
+    {
+      "id": "already",
+      "stdin": "50 20\n",
+      "expected_stdout": "0\n"
+    },
+    {
+      "id": "close",
+      "stdin": "60 100\n",
+      "expected_stdout": "3\n"
+    },
+    {
+      "id": "equal_start",
+      "stdin": "100 100\n",
+      "expected_stdout": "0\n"
+    }
+  ]
+}

@@ -315,14 +315,15 @@ PEM-v0:
 - 16D ✅ STGX-v0 / D-126
 - 16E ✅ RMDX-v0 / D-127
 - 16F ✅ E2EX-v0 / D-128
-- 16G 🟡 active-not-executed (added by D-129)
+- 16G ✅ HLPX-v0 / D-130
+- 16H 🟡 active-not-executed (added by D-131)
 - 16–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `16F — E2EX-v0 / D-128`  
-**Aktif:** `16G — Uçtan uca günlük döngü: yardım ve ölçüm`  
-**16G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `16G — HLPX-v0 / D-130`  
+**Aktif:** `16H — Uçtan uca günlük döngü: ölçme oturumları`  
+**16H henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1654,3 +1655,22 @@ E2EX-v0:
 ## 104. 16G handoff
 
 16G — Uçtan uca günlük döngü: yardım ve ölçüm (D-129). 16F ran on the user's explicit approval; 16G needs a fresh PRE and the user's new explicit approval. Inputs: 16F's `moved_to_16g` — the tutor panel, the alternative-explanation menu and the comprehension check inside the run; the wrong-answer analysis; code items (importing the PC runner's report, moving files, the code evaluation route); open responses through the evaluator and the self-check; the fast path's entry; weekly, monthly and daily assessment sessions from Today and slots carrying the session id; dispositions from the app and `assessment_opportunity`; resuming a started task from a checkpoint. Carried: run and notification polish (17), theme and accessibility preferences (17D), focus preference (18B), the run, the reminder and the pickers on a device and T6 (19).
+
+## 105. D-130 / D-131 / 16G final özeti
+
+Canonical: `docs/RUN_HELP_SPEC.md`.
+Contract/QA: `arch/16g_run_help/` (contract, QA report, stale audit).
+Synthesis: `research/16g_run_help_research.md`.
+Code: `core-ports` (`codeSuiteText`, `codeRunnerText`, defaulted), `data-curriculum` (`FileContentSource` suite and runner readers), `core-model` (`RunItemKind`, `RunAnswer`, `AnsweredItem.pending`/`artifactId`/`independence`), `core-application` (`RunTask.kt` — `RunItems`, `answerCode`, `answerOpen`, `reevaluate`, `selfCheck`; `RunHelp.kt`), `core-presentation` (`TaskRunPresentation.kt`, `RunHelpPresentation.kt`), `app-ui` (`TaskRunnerScreen.kt`), `app-wiring` (`TaskRunFlow`, `TaskRunSession`, `CoachApplication`, `MainActivity`; assets `code_suites/`, `code_test_runner.py`). Tool `tools/ship_code_suites.py`. Validator `tools/validate_run_help.py`.
+
+HLPX-v0:
+- inside a run every judgement stays the course's: code by the course's tests from a pasted report (nothing written for a report that measures nothing), open answers frozen first and judged by their rubric, provisional at most, pending with no evaluator and judged again only on request; help one action away, sent only when `TutorRules.prepare` is ready, recorded once where `TRUX-v0` §8.5 says and never when not shown; the wrong answer read from the stored attribution; the comprehension check after code the learner did not write alone; a durable pause only where `PausePolicy` confirms, high-stakes marked,
+- approval: the user's explicit approval of 2026-10-26 ("merge et ve 16G ye başla"); user decisions: everything inside the run, measurement from Today in a new step 16H (D-131); code by copy-paste, no network or file permission,
+- found: every Skill now has a runnable task (36 → 60); 618 answer-key, 480 code-test and 14 rubric items, none unjudged; no package authors a written comprehension check; all 14 rubric items allow a provisional result; a pause resumes only where the need is `continue_learning`; the first draft evaluated an open answer before freezing it, and was fixed,
+- narrowed: two 16F checks and one 15B check, each "Narrowed at 16G",
+- Mutation Kotlin 31/31, validator 50/50; independent QA 105/105 PASS,
+- T6 and a live provider call were not run; the run has not been seen on a device.
+
+## 106. 16H handoff
+
+16H — Uçtan uca günlük döngü: ölçme oturumları (D-131). 16G ran on the user's explicit approval; 16H needs a fresh PRE and the user's new explicit approval. Inputs: 16G's `moved_to_16h` — daily, weekly and monthly assessment sessions started from Today and slots carrying the session id; the fast path's entry and entry placement as a diagnostic source; dispositions from the app and the disposition reason in traces; `assessment_opportunity`. Carried: run polish (17), written comprehension checks in a package (20I), the run, the Copy buttons and the tutor on a device and T6 (19).

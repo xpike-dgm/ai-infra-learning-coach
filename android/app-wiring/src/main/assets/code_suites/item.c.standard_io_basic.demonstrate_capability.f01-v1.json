@@ -1,0 +1,40 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.standard_io_basic.demonstrate_capability.f01@v1",
+  "item": "item.c.standard_io_basic.demonstrate_capability.f01@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "nine",
+      "stdin": "9\n",
+      "expected_stdout": "81\n"
+    },
+    {
+      "id": "negative",
+      "stdin": "-4\n",
+      "expected_stdout": "16\n"
+    },
+    {
+      "id": "zero",
+      "stdin": "0\n",
+      "expected_stdout": "0\n"
+    }
+  ]
+}

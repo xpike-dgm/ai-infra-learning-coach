@@ -1,0 +1,29 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.compile_link_run_basic.compile_and_run_small_program.g03@v1",
+  "item": "item.c.compile_link_run_basic.compile_and_run_small_program.g03@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two_lines",
+      "expected_stdout": "Kirmizi\nMavi\n"
+    }
+  ]
+}

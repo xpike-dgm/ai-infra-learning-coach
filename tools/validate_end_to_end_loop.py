@@ -172,7 +172,10 @@ check("A16F-03_content_read_not_assumed", "AuthoredTask.refOfCandidate(entry.can
       and "persistence.skill(entry.primarySkill) != null" in open_, "")
 servable = body(run_src, "private fun servable(")
 check("A16F-03_assess_is_16g", "if (task.purpose == TaskPurpose.ASSESS) return" in servable and "CapabilityGap.ASSESSMENT_INTERIOR_NOT_AVAILABLE" in servable, "")
-check("A16F-03_answer_key_only", "content.answerKeyFor(it) != null && server.usable(it, INTENT, evaluatorAvailable)" in servable
+# Narrowed at 16G (`HLPX-v0 / D-130`): an item is servable when the app can judge it at all — an answer key, the course's
+# tests with a shipped suite, or a rubric the evaluator may judge (`RunItems.kind`), still only when usable.
+check("A16F-03_answer_key_only", ("content.answerKeyFor(it) != null && server.usable(it, INTENT, evaluatorAvailable)" in servable
+       or "RunItems.kind(it, content) } != null && server.usable(ref, INTENT, evaluatorAvailable)" in servable)
       and "CapabilityGap.NO_ITEM_THIS_APP_CAN_EVALUATE" in servable and "CapabilityGap.NO_UNSEEN_ITEM" in servable, "")
 check("A16F-03_entry_writes_nothing", not re.search(r"appendTruth|inTransaction|\.build\(|\.replan\(|offer\(", open_), "")
 check("A16F-03_runs_only_when_all_confirmed", "require((run != null) == startable)" in facts
@@ -193,7 +196,8 @@ answer = body(runtask, "fun answer(")
 check("A16F-04_blank_is_a_skip", "if (response.isBlank()) return null" in answer and run_cfg.get("blank_answer_writes_nothing") is True, "")
 check("A16F-04_one_action_with_its_task", "AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId)" in answer
       and answer.find("SubmitAttempt(persistence, clock).submit(submission)") < answer.find("RecordEvidence(persistence, clock).record("), "")
-check("A16F-04_judged_by_the_key_only", "OpenResponse.byKey(item, key, response.trim())" in answer and "evaluator" not in runtask.replace("evaluatorAvailable", "")
+# Narrowed at 16G (`HLPX-v0 / D-130`): the answer-key path still asks no AI; code and rubric answers are 16G's own paths.
+check("A16F-04_judged_by_the_key_only", "OpenResponse.byKey(item, key, response.trim())" in answer and "evaluator" not in answer.replace("evaluatorAvailable", "")
       and run_cfg.get("evaluation") == "answer_key_only", "no AI judges an answer here")
 check("A16F-04_independence_derived", "independence = submission.independence(run.purpose)," in answer, "never decided by the runner")
 check("A16F-04_contamination_named", "PrerequisiteSnapshot.CONTAMINATED" in answer and "gate.eligibility.waits" in answer, "")

@@ -1,0 +1,40 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.tuple_immutable_sequence.demonstrate_capability.f03@v1",
+  "item": "item.python.tuple_immutable_sequence.demonstrate_capability.f03@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.yer_degistir((sys.argv[1], sys.argv[2])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "numbers",
+      "args": [
+        "1",
+        "2"
+      ],
+      "expected_stdout": "('2', '1')\n"
+    },
+    {
+      "id": "words",
+      "args": [
+        "sol",
+        "sağ"
+      ],
+      "expected_stdout": "('sağ', 'sol')\n"
+    }
+  ]
+}

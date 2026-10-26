@@ -1160,7 +1160,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 29/29, validator mutation 44/44; 104/104 QA PASS,
 - **T6 çalıştırılmadı; koşu cihazda görülmedi**.
 
-### [ ] 16G — Uçtan uca günlük döngü: yardım ve ölçüm — D-129 ile eklendi — **AKTİF**
+### [x] 16G — Uçtan uca günlük döngü: yardım ve ölçüm — D-129 ile eklendi — HLPX-v0 / D-130
+
+**16G final coverage:**
+- bir görevin içinde her hüküm dersin, her kural önceki bir adımındır: kod yalnız dersin testleriyle, öğrencinin bilgisayarında, uygulamanın kopyalamak için verdiği suite ve koşucuyla değerlendirilir ve hiçbir şey ölçmeyen rapor hiçbir şey yazmaz; açık cevap önce donar, sonra rubric'iyle en çok provisional değerlendirilir, değerlendirici yoksa bekler ve yalnız öğrenci isteyince yeniden değerlendirilir; yardım her zaman bir adım uzaktadır, kurallar hazır demeden gönderilmez, gösterilen yardım bir kez ve doğru denemeye kaydedilir, gösterilmeyen hiçbir yerde; yanlış cevap motorların atfından okunur, tek başına yazılmayan kodun ardından anlama kontrolü gelir ve duraklatma yalnız politikanın doğruladığı bir sınırda tek checkpoint olarak kaydedilir,
+- kod: 480 suite ve koşucu varlık olarak, Kopyala düğmeleri, yapıştırılan rapor `EvaluateCode` ile; ölçmeyen rapor hiçbir şey yazmaz; artık 60 Skill'in hepsinin çalıştırılabilir bir görevi var,
+- açık cevap: önce donar, rubric'le en çok provisional; değerlendirici yoksa `evaluation_pending`, yalnız istenince yeniden; öz-kontrol,
+- yardım: tutor, alternatif anlatım, yanlış cevap özeti, anlama kontrolü; donduktan sonraki yardım o denemeye kaydedilir; gloss tahmin edilmez,
+- duraklatma: yalnız sorular arasında, `PausePolicy` karar verir; yüksek riskli işaretlenir,
+- bulgu: kullanıcı döngünün geri kalanını yeniden böldü ve Today'den ölçme yeni 16H'ye gitti (D-131); artık 60 Skill'in hepsinin uygulamanın çalıştırabildiği bir görevi var (yalnız cevap anahtarıyla 36'ydı) ve 1112 item'ın 618'i anahtarla, 480'i testlerle, 14'ü rubric'le değerlendiriliyor; hiçbir sevk edilen paket yazılı bir anlama kontrolü içermiyor; on dört rubric item'ının hepsi provisional sonuca izin veriyor; bir duraklatma yalnız ihtiyaç `continue_learning` olduğunda sürdürülen iş olur; açık cevap ilk taslakta donmadan önce değerlendiriliyordu ve düzeltildi,
+- Kotlin mutation 31/31, validator mutation 50/50; 105/105 QA PASS,
+- **T6 ve canlı sağlayıcı çağrısı çalıştırılmadı; koşu cihazda görülmedi**.
+
+### [ ] 16H — Uçtan uca günlük döngü: ölçme oturumları — D-131 ile eklendi — **AKTİF**
 
 ---
 
@@ -1228,8 +1240,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16F`  
-**Son tamamlanan:** **`16F — E2EX-v0 / D-128`**  
-**Aktif:** **`16G — Uçtan uca günlük döngü: yardım ve ölçüm`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16G`  
+**Son tamamlanan:** **`16G — HLPX-v0 / D-130`**  
+**Aktif:** **`16H — Uçtan uca günlük döngü: ölçme oturumları`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **16G fresh PRE-STEP + kullanıcının yeni açık onayı → Yardım ve ölçüm → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **16H fresh PRE-STEP + kullanıcının yeni açık onayı → Ölçme oturumları → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

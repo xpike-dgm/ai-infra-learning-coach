@@ -1,0 +1,35 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.standard_io_basic.demonstrate_capability.g06@v1",
+  "item": "item.c.standard_io_basic.demonstrate_capability.g06@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "spaced",
+      "stdin": "E K\n",
+      "expected_stdout": "E.K.\n"
+    },
+    {
+      "id": "lines",
+      "stdin": "\nA\n  Y\n",
+      "expected_stdout": "A.Y.\n"
+    }
+  ]
+}

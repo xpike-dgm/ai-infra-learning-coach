@@ -1,0 +1,52 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.string_text_operations.demonstrate_capability.g06@v1",
+  "item": "item.python.string_text_operations.demonstrate_capability.g06@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.maskele(sys.argv[1]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "sixteen",
+      "args": [
+        "1234567812345678"
+      ],
+      "expected_stdout": "************5678\n"
+    },
+    {
+      "id": "five",
+      "args": [
+        "98765"
+      ],
+      "expected_stdout": "*8765\n"
+    },
+    {
+      "id": "short",
+      "args": [
+        "123"
+      ],
+      "expected_stdout": "123\n"
+    },
+    {
+      "id": "four",
+      "args": [
+        "4321"
+      ],
+      "expected_stdout": "4321\n"
+    }
+  ]
+}

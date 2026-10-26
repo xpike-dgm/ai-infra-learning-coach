@@ -1,0 +1,40 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.tuple_immutable_sequence.demonstrate_capability.f01@v1",
+  "item": "item.python.tuple_immutable_sequence.demonstrate_capability.f01@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.nokta(int(sys.argv[1]), int(sys.argv[2])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "positive",
+      "args": [
+        "3",
+        "4"
+      ],
+      "expected_stdout": "(3, 4)\n"
+    },
+    {
+      "id": "negative",
+      "args": [
+        "-1",
+        "0"
+      ],
+      "expected_stdout": "(-1, 0)\n"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.standard_io_basic.demonstrate_capability.f05@v1",
+  "item": "item.c.standard_io_basic.demonstrate_capability.f05@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "plain",
+      "stdin": "B 85\n",
+      "expected_stdout": "Harf: B, Puan: 85\n"
+    },
+    {
+      "id": "leading_space",
+      "stdin": "  A 97\n",
+      "expected_stdout": "Harf: A, Puan: 97\n"
+    },
+    {
+      "id": "leading_newline",
+      "stdin": "\nC\n70\n",
+      "expected_stdout": "Harf: C, Puan: 70\n"
+    }
+  ]
+}

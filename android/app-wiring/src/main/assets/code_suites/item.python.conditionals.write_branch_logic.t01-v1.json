@@ -1,0 +1,43 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.conditionals.write_branch_logic.t01@v1",
+  "item": "item.python.conditionals.write_branch_logic.t01@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "python_file",
+      "stdin": "oyun.py\n",
+      "expected_stdout": "python\n"
+    },
+    {
+      "id": "c_file",
+      "stdin": "main.c\n",
+      "expected_stdout": "c\n"
+    },
+    {
+      "id": "other",
+      "stdin": "notlar.txt\n",
+      "expected_stdout": "bilinmiyor\n"
+    },
+    {
+      "id": "py_inside",
+      "stdin": "veri.pyc\n",
+      "expected_stdout": "bilinmiyor\n"
+    }
+  ]
+}

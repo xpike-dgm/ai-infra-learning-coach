@@ -1,0 +1,31 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.functions_basic.write_and_call_function.g06@v1",
+  "item": "item.c.functions_basic.write_and_call_function.g06@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nint gun_sayisi(int ay);\n\nint main(void) {\n    int ay = 0;\n    while (scanf(\"%d\", &ay) == 1) {\n        printf(\"%d\\n\", gun_sayisi(ay));\n    }\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -c ders_test.c -o ders_test.o && gcc cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "all_months",
+      "stdin": "1 2 3 4 5 6 7 8 9 10 11 12\n",
+      "expected_stdout": "31\n28\n31\n30\n31\n30\n31\n31\n30\n31\n30\n31\n"
+    },
+    {
+      "id": "invalid",
+      "stdin": "0 13\n",
+      "expected_stdout": "0\n0\n"
+    }
+  ]
+}

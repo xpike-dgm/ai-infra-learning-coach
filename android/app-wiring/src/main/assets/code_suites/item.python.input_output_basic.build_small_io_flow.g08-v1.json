@@ -1,0 +1,38 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.input_output_basic.build_small_io_flow.g08@v1",
+  "item": "item.python.input_output_basic.build_small_io_flow.g08@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "example",
+      "stdin": "bir\niki\nüç\n",
+      "expected_stdout": "üç - iki - bir\n"
+    },
+    {
+      "id": "names",
+      "stdin": "Ali\nAyşe\nCan\n",
+      "expected_stdout": "Can - Ayşe - Ali\n"
+    },
+    {
+      "id": "same_word",
+      "stdin": "x\ny\nx\n",
+      "expected_stdout": "x - y - x\n"
+    }
+  ]
+}

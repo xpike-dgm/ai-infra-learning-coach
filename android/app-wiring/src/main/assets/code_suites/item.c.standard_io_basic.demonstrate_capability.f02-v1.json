@@ -1,0 +1,40 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.standard_io_basic.demonstrate_capability.f02@v1",
+  "item": "item.c.standard_io_basic.demonstrate_capability.f02@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "ten",
+      "stdin": "10\n",
+      "expected_stdout": "6.21\n"
+    },
+    {
+      "id": "fraction",
+      "stdin": "42.195\n",
+      "expected_stdout": "26.22\n"
+    },
+    {
+      "id": "one",
+      "stdin": "1\n",
+      "expected_stdout": "0.62\n"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.input_output_basic.build_small_io_flow.f05@v1",
+  "item": "item.python.input_output_basic.build_small_io_flow.f05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "hours_and_minutes",
+      "stdin": "135\n",
+      "expected_stdout": "2 saat 15 dakika\n"
+    },
+    {
+      "id": "under_an_hour",
+      "stdin": "59\n",
+      "expected_stdout": "0 saat 59 dakika\n"
+    },
+    {
+      "id": "whole_hours",
+      "stdin": "120\n",
+      "expected_stdout": "2 saat 0 dakika\n"
+    }
+  ]
+}

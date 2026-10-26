@@ -1,0 +1,53 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.conditionals.write_branch_logic.f03@v1",
+  "item": "item.python.conditionals.write_branch_logic.f03@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "top_boundary",
+      "stdin": "85\n",
+      "expected_stdout": "A\n"
+    },
+    {
+      "id": "just_below_a",
+      "stdin": "84\n",
+      "expected_stdout": "B\n"
+    },
+    {
+      "id": "b_boundary",
+      "stdin": "70\n",
+      "expected_stdout": "B\n"
+    },
+    {
+      "id": "c_boundary",
+      "stdin": "50\n",
+      "expected_stdout": "C\n"
+    },
+    {
+      "id": "fail",
+      "stdin": "49\n",
+      "expected_stdout": "F\n"
+    },
+    {
+      "id": "perfect",
+      "stdin": "100\n",
+      "expected_stdout": "A\n"
+    }
+  ]
+}

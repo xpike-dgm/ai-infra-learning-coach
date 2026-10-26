@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.files_paths_basic.demonstrate_capability.g11@v1",
+  "item": "item.python.files_paths_basic.demonstrate_capability.g11@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, tempfile, cozum\nfrom pathlib import Path\nwith tempfile.TemporaryDirectory() as d:\n    yol = Path(d) / \"sayac.txt\"\n    if sys.argv[1] != \"YOK\":\n        yol.write_bytes(sys.argv[1].encode(\"utf-8\"))\n    birinci = cozum.sayaci_artir(yol)\n    ikinci = cozum.sayaci_artir(yol)\n    with open(yol, encoding=\"utf-8\") as f:\n        print(birinci, ikinci, f.read().strip())"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "missing",
+      "args": [
+        "YOK"
+      ],
+      "expected_stdout": "1 2 2\n"
+    },
+    {
+      "id": "existing",
+      "args": [
+        "41"
+      ],
+      "expected_stdout": "42 43 43\n"
+    },
+    {
+      "id": "zero",
+      "args": [
+        "0"
+      ],
+      "expected_stdout": "1 2 2\n"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.pointer_formation.demonstrate_capability.g06@v1",
+  "item": "item.c.pointer_formation.demonstrate_capability.g06@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nint *tekrar_eden(int *a, int *b, int *c);\n\nstatic const char *ad(int *p, int *x, int *y, int *z) {\n    if (p == NULL) {\n        return \"NULL\";\n    }\n    if (p == x) {\n        return \"x\";\n    }\n    if (p == y) {\n        return \"y\";\n    }\n    if (p == z) {\n        return \"z\";\n    }\n    return \"?\";\n}\n\nint main(void) {\n    int x = 1, y = 1, z = 1;\n    printf(\"%s \", ad(tekrar_eden(&x, &y, &x), &x, &y, &z));\n    printf(\"%s \", ad(tekrar_eden(&x, &y, &y), &x, &y, &z));\n    printf(\"%s \", ad(tekrar_eden(&z, &z, &y), &x, &y, &z));\n    printf(\"%s \", ad(tekrar_eden(&y, &y, &y), &x, &y, &z));\n    printf(\"%s\\n\", ad(tekrar_eden(&x, &y, &z), &x, &y, &z));\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -c ders_test.c -o ders_test.o && gcc -g -fsanitize=address,undefined cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0",
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "pairs_and_none",
+      "expected_stdout": "x y z y NULL\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

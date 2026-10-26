@@ -55,4 +55,16 @@ class TaskRunFactsTest {
         val alternative = ExplanationVariant(VersionedRef("explanation.computing.alt", 1), objective, ExplanationForm.entries.first { it != ExplanationForm.CANONICAL && it != ExplanationForm.MISCONCEPTION_CONTRAST }, AssistanceLevel.H2, "metin")
         assertFailsWith<IllegalArgumentException> { run().copy(lesson = listOf(alternative)) }
     }
+
+    // 16G (`HLPX-v0`)
+
+    @Test
+    fun `a pending evaluation is recorded with no evidence, and an answer is either recorded or says why nothing was`() {
+        val item = VersionedRef("item.computing.program_execution_model.explain_pipeline.f01", 1)
+        val pending = AnsweredItem(item, 1, AnswerResult.NOT_MEASURED, emptyList(), pending = true)
+        assertTrue(pending.pending)
+        assertFailsWith<IllegalArgumentException> { AnsweredItem(item, 1, AnswerResult.NOT_MEASURED, listOf(9), pending = true) }
+        assertEquals(ComprehensionOffer.NotOffered, RunAnswer.Recorded(pending).offer, "nothing follows unless the run says so")
+        assertEquals(listOf(RunItemKind.ANSWER_KEY, RunItemKind.CODE_TESTS, RunItemKind.RUBRIC), RunItemKind.entries)
+    }
 }

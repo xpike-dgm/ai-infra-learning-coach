@@ -1,0 +1,51 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.tuple_immutable_sequence.demonstrate_capability.f05@v1",
+  "item": "item.python.tuple_immutable_sequence.demonstrate_capability.f05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nt = tuple(int(x) for x in sys.argv[2:])\nprint(cozum.sonuncuyu_degistir(t, int(sys.argv[1])), t)"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "three",
+      "args": [
+        "9",
+        "1",
+        "2",
+        "3"
+      ],
+      "expected_stdout": "(1, 2, 9) (1, 2, 3)\n"
+    },
+    {
+      "id": "single",
+      "args": [
+        "0",
+        "5"
+      ],
+      "expected_stdout": "(0,) (5,)\n"
+    },
+    {
+      "id": "two",
+      "args": [
+        "7",
+        "4",
+        "8"
+      ],
+      "expected_stdout": "(4, 7) (4, 8)\n"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.pointer_formation.demonstrate_capability.g09@v1",
+  "item": "item.c.pointer_formation.demonstrate_capability.g09@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n#include <stddef.h>\n\nint *uc_secim(int *a, int *b, int *c, int kod);\n\nint main(void) {\n    int x = 0, y = 0, z = 0;\n    int kod = 0;\n    while (scanf(\"%d\", &kod) == 1) {\n        int *r = uc_secim(&x, &y, &z, kod);\n        printf(\"%c\\n\", r == &x ? 'a' : r == &y ? 'b' : r == &z ? 'c' : r == NULL ? 'N' : '?');\n    }\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -c ders_test.c -o ders_test.o && gcc -g -fsanitize=address,undefined cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0",
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "all_codes",
+      "stdin": "0 1 2 3 -1\n",
+      "expected_stdout": "a\nb\nc\nN\nN\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

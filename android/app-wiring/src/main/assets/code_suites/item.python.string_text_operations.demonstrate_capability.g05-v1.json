@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.string_text_operations.demonstrate_capability.g05@v1",
+  "item": "item.python.string_text_operations.demonstrate_capability.g05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.csv_toplam(sys.argv[1]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "three",
+      "args": [
+        "3,5,10"
+      ],
+      "expected_stdout": "18\n"
+    },
+    {
+      "id": "one",
+      "args": [
+        "42"
+      ],
+      "expected_stdout": "42\n"
+    },
+    {
+      "id": "negative",
+      "args": [
+        "-1,1,7"
+      ],
+      "expected_stdout": "7\n"
+    }
+  ]
+}

@@ -269,3 +269,7 @@ Next numbered step: **14B — Yanlış analizi**. It must receive a fresh PRE-ST
 ---
 
 **14G note (2026-10-02, `D-111`):** the first provider call is in code, as decided at 14A: `AiTutor` sends `TutorInstructions` unchanged and reads only a reply with exactly the schema's four fields; core still decides what is shown. Details: `docs/PROVIDER_ADAPTER_IMPL_SPEC.md`.
+
+---
+
+**16G note (2026-10-26, `D-130`):** the tutor is reachable from the run. The asks offered are a hint, the concept another way and a question while the answer is open, and explain my answer, the concept another way and a question once it froze; a gloss is not offered, because no task declares which segment is the target. The instruction mode is `turkish_primary`, the course's. Help shown after the answer froze is appended as an `assistance_event` on that attempt. Details: `docs/RUN_HELP_SPEC.md`.

@@ -877,4 +877,264 @@ class ShippedCourseTest {
         val built = assertIs<BuildDailyPlan.Built.Planned>(PlanToday(store, withContentQa, clock).ensure())
         assertEquals(built.trace.needs.map { it.needKey }.toSet(), BuildDailyPlan(store, withContentQa, clock).openNeeds().map { it.needKey }.toSet())
     }
+
+    // ---------------------------------------------------------------- 16G — yardım ve ölçüm (HLPX-v0)
+
+    /** The shipped course with its shipped suites and runner, exactly as `CoachApplication` reads them. */
+    private val withSuites = FileContentSource(
+        later = { listOf(python, c, memory, shellGit, english, assessment, contentQa) },
+        codeSuites = { name -> File("src/main/assets/code_suites/$name").takeIf { it.isFile }?.readText() },
+        codeRunner = { File("src/main/assets/code_test_runner.py").readText() },
+        source = { first },
+    )
+
+    private fun shippedItems(): List<coach.model.AssessmentItem> =
+        withSuites.curriculumPackages().flatMap { it.resources }.mapNotNull { withSuites.assessmentItem(it.ref) }
+
+    /** What the course's runner prints when every test of the suite passes (`code_test_runner.py`, 14D). */
+    private fun allPassed(suite: coach.model.CodeTestSuite): String = buildString {
+        appendLine(coach.model.CodeTestReports.FORMAT)
+        appendLine("item: ${suite.item}")
+        appendLine("suite: ${suite.ref}")
+        appendLine(if (suite.buildObjective != null) "build: ok" else "build: not_required")
+        suite.tests.forEach { appendLine("test: ${it.id} passed") }
+        appendLine("end")
+    }
+
+    /** A run of today's first task, aimed at [item]'s own Skill and Objectives: how the planner would hand it over. */
+    private fun runFor(item: coach.model.AssessmentItem): coach.model.RunnableTask {
+        IngestCurriculum(store, withSuites, clock).ingestAll()
+        PlanToday(store, withSuites, clock).ensure()
+        val run = assertNotNull(OpenTask(store, withSuites, clock).open(firstTaskId()).run)
+        return run.copy(skill = item.targetSkills.first(), targetObjectives = item.targetObjectives, items = listOf(item.ref))
+    }
+
+    private class Tutor(private val text: String) : coach.ports.TutorPort {
+        val asked = mutableListOf<coach.model.TutorRequest>()
+        override fun assist(request: coach.model.TutorRequest): coach.model.TutorReply {
+            asked += request
+            return coach.model.TutorReply.Delivered(
+                coach.model.TutorContent(request.intent, text, request.ceiling ?: coach.model.AssistanceLevel.H1, request.instructionMode),
+                coach.model.TutorRef("test", "scripted", "tutor_instructions/3"),
+            )
+        }
+    }
+
+    @Test
+    fun `every shipped suite is served for exactly its item version, and the runner ships as the course authored it`() {
+        assertNull(withSuites.failure)
+        val withTests = shippedItems().filter { withSuites.codeTestsFor(it.ref) != null }
+        assertTrue(withTests.isNotEmpty())
+        assertTrue(withTests.all { withSuites.codeSuiteText(it.ref) != null }, withTests.filter { withSuites.codeSuiteText(it.ref) == null }.map { it.ref }.toString())
+        assertEquals(File("src/main/assets/code_suites").listFiles()!!.size, withTests.size, "no suite ships that no item version uses")
+        assertEquals(File("../../tools/code_test_runner.py").readText(), withSuites.codeRunnerText())
+        // A suite is never served for another version of its item, nor for an item with no tests.
+        val item = withTests.first()
+        assertNull(withSuites.codeSuiteText(item.ref.copy(version = item.ref.version + 100)))
+        assertTrue(shippedItems().filter { withSuites.codeTestsFor(it.ref) == null }.all { withSuites.codeSuiteText(it.ref) == null })
+        // Without the shipped suites a code item cannot be judged here, so it is not served (16F's reading).
+        assertNull(coach.application.RunItems.kind(item, withContentQa))
+        assertEquals(coach.model.RunItemKind.CODE_TESTS, coach.application.RunItems.kind(item, withSuites))
+    }
+
+    /** The Skills with at least one task whose items the app can serve and judge, read the way entry reads them. */
+    private fun runnableSkills(content: ContentPort): Set<VersionedRef> {
+        val server = coach.application.ServeDailyMicroItem(store, content, clock)
+        return store.publishedSkills().map { it.ref }.filter { skill ->
+            NeedTrigger.entries.flatMap { trigger -> content.taskCandidates(LearningNeed("${trigger.id}:$skill", trigger, listOf(skill), Criticality.REQUIRED)) }
+                .mapNotNull { AuthoredTask.refOfCandidate(it.id)?.let(content::authoredTask) }
+                .filter { it.purpose != TaskPurpose.ASSESS }
+                .any { task -> task.items.any { ref -> content.assessmentItem(ref)?.let { coach.application.RunItems.kind(it, content) } != null &&
+                    server.usable(ref, coach.application.OpenTask.INTENT, false) } }
+        }.toSet()
+    }
+
+    @Test
+    fun `how each shipped item is judged, by its key, the course's tests or a rubric, and a rubric that needs a verified result is not served`() {
+        val kinds = shippedItems().groupingBy { coach.application.RunItems.kind(it, withSuites) }.eachCount()
+        assertEquals(mapOf<coach.model.RunItemKind?, Int>(coach.model.RunItemKind.ANSWER_KEY to 618, coach.model.RunItemKind.RUBRIC to 14,
+            coach.model.RunItemKind.CODE_TESTS to 480), kinds)
+        // A rubric item whose task needs a verified result is not served: no AI is asked for it (14F).
+        val rubric = shippedItems().first { coach.application.RunItems.kind(it, withSuites) == coach.model.RunItemKind.RUBRIC }
+        val verified = object : ContentPort by withSuites {
+            override fun assessmentItem(ref: VersionedRef) = withSuites.assessmentItem(ref)?.let {
+                it.copy(evaluatorRequirement = it.evaluatorRequirement.copy(requiredStatus = coach.model.EvaluatorStatusRequirement.VERIFIED))
+            }
+        }
+        assertNull(coach.application.RunItems.kind(verified.assessmentItem(rubric.ref)!!, verified))
+    }
+
+    @Test
+    fun `with the shipped suites every Skill has a task the app can run, where an answer key alone left the coding Skills out`() {
+        IngestCurriculum(store, withSuites, clock).ingestAll()
+        val withKeys = runnableSkills(withContentQa)
+        val withTests = runnableSkills(withSuites)
+        val all = store.publishedSkills().map { it.ref }.toSet()
+        assertEquals(60, all.size)
+        assertEquals(36, withKeys.size, "16F: only answer-key items")
+        assertEquals(all, withTests, (all - withTests).toString())
+        assertTrue((withTests - withKeys).all { it.logicalId.startsWith("skill.python.") || it.logicalId.startsWith("skill.c.") })
+    }
+
+    @Test
+    fun `a code answer is judged by the course's tests from the pasted report, and a report that measures nothing writes nothing`() {
+        val item = shippedItems().first { withSuites.codeTestsFor(it.ref) != null && it.targetSkills.first().logicalId.startsWith("skill.python.") }
+        val suite = assertNotNull(withSuites.codeTestsFor(item.ref))
+        val run = runFor(item)
+        val runner = RunTask(store, withSuites, clock, evaluatorAvailable = false)
+        val code = "print(input())"
+        val before = store.truthWatermark()
+        assertIs<coach.model.RunAnswer.NotRecorded>(runner.answerCode(run, item, "  ", allPassed(suite), ProvenanceOrigin.USER_AUTHORED, emptyList())).also { assertTrue(it.blank) }
+        assertIs<coach.model.RunAnswer.NotRecorded>(runner.answerCode(run, item, code, "not a report", ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        val other = shippedItems().first { it.ref != item.ref && withSuites.codeTestsFor(it.ref) != null }
+        assertIs<coach.model.RunAnswer.NotRecorded>(runner.answerCode(run, item, code, allPassed(withSuites.codeTestsFor(other.ref)!!), ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        val environment = allPassed(suite).replace(Regex("build: \\w+"), "build: environment_error")
+        if (suite.buildObjective != null) assertIs<coach.model.RunAnswer.NotRecorded>(runner.answerCode(run, item, code, environment, ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        assertEquals(before, store.truthWatermark(), "a report that measures nothing writes nothing")
+
+        val recorded = assertIs<coach.model.RunAnswer.Recorded>(runner.answerCode(run, item, code, allPassed(suite), ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        assertEquals(AnswerResult.RIGHT, recorded.answered.result)
+        assertEquals(false, recorded.answered.pending)
+        assertNotNull(recorded.answered.artifactId, "the code is the attempt's artifact")
+        assertEquals(setOf(run.plannedTaskId), store.startedPlannedTasks(listOf(run.plannedTaskId)))
+        val rows = item.targetObjectives.flatMap { store.evidenceFor(it) }.filter { it.id in recorded.answered.evidenceIds }
+        assertTrue(rows.isNotEmpty() && rows.all { it.evaluatorStatus.id == "verified" && it.outcome.id == "positive" }, rows.toString())
+        assertEquals(coach.model.ComprehensionOffer.NotOffered, recorded.offer, "the learner wrote it: nothing to check")
+    }
+
+    /** The shipped course plus one written comprehension check for [item], as a later package would author it. */
+    private class WithCheck(val base: ContentPort, val check: coach.model.ComprehensionCheck) : ContentPort by base {
+        override fun comprehensionChecksFor(item: VersionedRef) = if (item == check.item) listOf(check) else base.comprehensionChecksFor(item)
+    }
+
+    @Test
+    fun `code the learner did not write alone is followed by the comprehension check, and a right written choice is evidence of its own kind`() {
+        val item = shippedItems().first { withSuites.codeTestsFor(it.ref) != null && it.targetSkills.first().logicalId.startsWith("skill.python.") }
+        val run = runFor(item)
+        // No shipped package authors a written check yet, so what follows is the tutor's practice (14E): never evidence.
+        assertTrue(shippedItems().all { withSuites.comprehensionChecksFor(it.ref).isEmpty() })
+        val practice = assertIs<coach.model.RunAnswer.Recorded>(RunTask(store, withSuites, clock).answerCode(run, item, "print(1)",
+            allPassed(withSuites.codeTestsFor(item.ref)!!), ProvenanceOrigin.GENERATED_OR_COPIED, emptyList()))
+        assertEquals(coach.model.ComprehensionOffer.TutorPractice, practice.offer)
+
+        val authored = coach.model.ComprehensionCheck(
+            VersionedRef("comprehension.test.line_purpose", 1), item.ref, item.targetObjectives.first(), coach.model.ComprehensionKind.LINE_PURPOSE,
+            "explanation", "Bu satır ne yapar?", mapOf("a" to "Girdiyi yazdırır.", "b" to "Hiçbir şey yapmaz."), "a",
+        )
+        val content = WithCheck(withSuites, authored)
+        val recorded = assertIs<coach.model.RunAnswer.Recorded>(RunTask(store, content, clock).answerCode(run, item, "print(2)",
+            allPassed(withSuites.codeTestsFor(item.ref)!!), ProvenanceOrigin.GENERATED_OR_COPIED, emptyList()))
+        val offer = assertIs<coach.model.ComprehensionOffer.Written>(recorded.offer)
+        val check = offer.checks.first()
+        val help = coach.application.RunHelp(store, content, clock, coach.application.NullTutor)
+        val before = store.truthWatermark()
+        assertIs<coach.model.ComprehensionResult.Skipped>(help.comprehensionAnswer(run, item, check, null, recorded.answered.attemptId))
+        assertEquals(before, store.truthWatermark(), "a skip writes nothing")
+        val measured = assertIs<coach.model.ComprehensionResult.Measured>(help.comprehensionAnswer(run, item, check, check.answer, recorded.answered.attemptId))
+        assertTrue(measured.correct)
+        val row = store.evidenceFor(check.objective).single { it.evidenceType == check.evidenceType && it.sequence > before }
+        // Answered alone, with no help; a teaching task is still practice by design (`2D` §6).
+        assertEquals(if (run.purpose == TaskPurpose.TEACH) "practice_only" else "independent", row.independenceClass.id)
+    }
+
+    @Test
+    fun `an open answer waits when no evaluator answers, is judged again only when asked, and the rubric is the learner's own check`() {
+        val item = shippedItems().first {
+            withSuites.answerKeyFor(it.ref) == null && withSuites.codeTestsFor(it.ref) == null &&
+                coach.application.RunItems.kind(it, withSuites) == coach.model.RunItemKind.RUBRIC
+        }
+        val run = runFor(item)
+        val pending = assertIs<coach.model.RunAnswer.Recorded>(RunTask(store, withSuites, clock, evaluatorAvailable = true)
+            .answerOpen(run, item, "Kendi cümlelerimle bir açıklama.", ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        assertTrue(pending.answered.pending)
+        assertEquals(AnswerResult.NOT_MEASURED, pending.answered.result)
+        assertTrue(pending.answered.evidenceIds.isEmpty(), "no evaluator: no evidence, and not a wrong answer")
+
+        val criteria = assertNotNull(withSuites.rubricFor(item.ref)).criteria
+        val ai = object : coach.ports.EvaluatorPort {
+            override fun evaluate(request: coach.ports.EvaluationRequest) = coach.model.EvaluationResult.Provisional(
+                item.targetObjectives.map { coach.model.ComponentResult(it, coach.model.OutcomeSignal.MET) },
+                coach.model.EvaluatorRef("test", "scripted", "open_response_evaluation/1"),
+                rubricFindings = criteria.map { coach.model.RubricFinding(it.id, coach.model.CriterionVerdict.MET) },
+            )
+        }
+        val judged = assertIs<coach.model.RunAnswer.Recorded>(RunTask(store, withSuites, clock, evaluatorAvailable = true, evaluator = ai)
+            .reevaluate(run, item, pending.answered, "Kendi cümlelerimle bir açıklama."))
+        assertEquals(pending.answered.attemptId, judged.answered.attemptId, "the same frozen attempt, never a second answer")
+        assertTrue(judged.answered.evidenceIds.isNotEmpty() && !judged.answered.pending)
+        val rows = item.targetObjectives.flatMap { store.evidenceFor(it) }.filter { it.id in judged.answered.evidenceIds }
+        assertTrue(rows.all { it.evaluatorStatus.id == "provisional" }, "an AI's judgement is provisional at most")
+        assertTrue(rows.all { it.independenceClass == pending.answered.independence }, "judged later with the independence recorded with it")
+
+        // The answer is frozen before any evaluator is asked: the attempt is already in the store when it judges.
+        val before = store.truthWatermark()
+        var storedWhenAsked = false
+        val watching = object : coach.ports.EvaluatorPort {
+            override fun evaluate(request: coach.ports.EvaluationRequest) = ai.evaluate(request).also { storedWhenAsked = store.truthWatermark() > before }
+        }
+        val direct = assertIs<coach.model.RunAnswer.Recorded>(RunTask(store, withSuites, clock, evaluatorAvailable = true, evaluator = watching)
+            .answerOpen(run, item, "Başka bir açıklama.", ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        assertTrue(storedWhenAsked, "frozen first")
+        assertTrue(!direct.answered.pending && direct.answered.evidenceIds.isNotEmpty())
+
+        val shown = RunTask(store, withSuites, clock).selfCheck(item, pending.answered.attemptId)
+        assertEquals(criteria, shown)
+        assertTrue(store.exposuresFor(listOf(item.ref), listOf(item.variantFamilyId)).any { it.kind == ExposureFact.SOLUTION_EXPOSURE })
+    }
+
+    @Test
+    fun `help after an answer froze is recorded on that attempt, and help that was not shown is recorded nowhere`() {
+        IngestCurriculum(store, withSuites, clock).ingestAll()
+        PlanToday(store, withSuites, clock).ensure()
+        val run = assertNotNull(OpenTask(store, withSuites, clock).open(firstTaskId()).run)
+        val runner = RunTask(store, withSuites, clock)
+        val item = assertNotNull(runner.serve(run, emptySet()))
+        val prompt = withSuites.resource(item.ref)?.body.orEmpty()
+        val wrong = assertNotNull(runner.answer(run, item, "zzz", ProvenanceOrigin.USER_AUTHORED, emptyList()))
+        val ask = coach.application.RunHelp.askFor(run, item, prompt, coach.model.TutorIntent.EXPLAIN_MISTAKE, wrong, "zzz")
+        assertEquals(coach.model.AssistanceTiming.AFTER_FAILURE, ask.timing)
+        assertNull(ask.ceiling, "no level is asked once the answer froze")
+        assertEquals("zzz", ask.context.learnerWork)
+
+        val before = store.truthWatermark()
+        val unavailable = coach.application.RunHelp(store, withSuites, clock, coach.application.NullTutor).ask(ask.copy(consequenceAcknowledged = true), item, wrong.attemptId)
+        assertIs<coach.model.TutorOutcome.NotShown>(assertIs<coach.application.RunHelp.Asked.Answered>(unavailable).outcome)
+        assertEquals(before, store.truthWatermark(), "nothing shown, nothing recorded")
+
+        // After the answer froze the explanation may show the solution, so the consequence is said first (14A).
+        val tutor = Tutor("Şu adımı karıştırdın.")
+        val help = coach.application.RunHelp(store, withSuites, clock, tutor)
+        assertIs<coach.application.RunHelp.Asked.NotReady>(help.ask(ask, item, wrong.attemptId))
+        assertTrue(tutor.asked.isEmpty(), "nothing is sent before the rules say the ask is ready")
+        assertIs<coach.model.TutorOutcome.Shown>(assertIs<coach.application.RunHelp.Asked.Answered>(help.ask(ask.copy(consequenceAcknowledged = true), item, wrong.attemptId)).outcome)
+        val events = generateSequence(1L) { it + 1 }.map { store.readTruth("assistance_event", it) }.takeWhile { it != null }.filterNotNull().toList()
+        assertEquals(listOf(wrong.attemptId.toString()), events.map { it.payload["attempt_id"] })
+        assertEquals("after_failure", events.single().payload["timing"])
+        // The frozen answer keeps what it showed.
+        assertEquals("negative", item.targetObjectives.flatMap { store.evidenceFor(it) }.single { it.id == wrong.evidenceIds.first() }.outcome.id)
+    }
+
+    @Test
+    fun `a pause between questions writes one checkpoint the planner can read, and nothing is written when nothing is left`() {
+        IngestCurriculum(store, withSuites, clock).ingestAll()
+        PlanToday(store, withSuites, clock).ensure()
+        val run = assertNotNull(OpenTask(store, withSuites, clock).open(firstTaskId()).run)
+        val help = coach.application.RunHelp(store, withSuites, clock, coach.application.NullTutor)
+        val a = VersionedRef("item.x.one", 1)
+        val b = VersionedRef("item.x.two", 1)
+        val before = store.truthWatermark()
+        assertNull(help.pause(run, coach.model.CheckpointKind.CHECKPOINT_PAUSE, listOf(a), emptyList()))
+        assertNull(help.pause(run, coach.model.CheckpointKind.CHECKPOINT_PAUSE, emptyList(), listOf(a)))
+        assertEquals(before, store.truthWatermark())
+        val id = assertNotNull(help.pause(run, coach.model.CheckpointKind.CHECKPOINT_PAUSE, listOf(a), listOf(b)))
+        val context = assertNotNull(coach.application.ResumeCheckpoints(store, clock).read(id)?.context)
+        assertEquals(run.needKey, context.learningNeedKey)
+        assertEquals(listOf(a.toString()), context.completedSegments)
+        assertEquals(listOf(b.toString()), context.remainingSegments)
+        assertEquals("planned_task:${run.plannedTaskId}", context.sourceTaskId)
+        assertEquals(coach.model.CheckpointKind.CHECKPOINT_PAUSE, context.kind)
+        // High-stakes work pauses marked, as PausePolicy decided — never continued as the same independent attempt.
+        val marked = assertNotNull(help.pause(run, coach.model.CheckpointKind.HIGH_STAKES_PAUSE, listOf(a), listOf(b)))
+        assertEquals(coach.model.CheckpointKind.HIGH_STAKES_PAUSE, coach.application.ResumeCheckpoints(store, clock).read(marked)?.context?.kind)
+    }
 }

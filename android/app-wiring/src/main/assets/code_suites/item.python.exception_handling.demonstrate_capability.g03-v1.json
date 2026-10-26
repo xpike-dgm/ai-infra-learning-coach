@@ -1,0 +1,59 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.exception_handling.demonstrate_capability.g03@v1",
+  "item": "item.python.exception_handling.demonstrate_capability.g03@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nmetin = None if sys.argv[1] == \"<yok>\" else sys.argv[1]\ntry:\n    print(cozum.int_mi(metin))\nexcept Exception as e:\n    print(\"yukarıya geldi\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "digits",
+      "args": [
+        "123"
+      ],
+      "expected_stdout": "True\n"
+    },
+    {
+      "id": "word",
+      "args": [
+        "on"
+      ],
+      "expected_stdout": "False\n"
+    },
+    {
+      "id": "negative",
+      "args": [
+        "-4"
+      ],
+      "expected_stdout": "True\n"
+    },
+    {
+      "id": "spaced",
+      "args": [
+        " 8 "
+      ],
+      "expected_stdout": "True\n"
+    },
+    {
+      "id": "none_propagates",
+      "args": [
+        "<yok>"
+      ],
+      "expected_stdout": "yukarıya geldi\n"
+    }
+  ]
+}

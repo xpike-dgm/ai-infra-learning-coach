@@ -194,3 +194,7 @@ Next numbered step: **14E — AI-generated code comprehension check**. It must r
 ---
 
 **15C note (2026-10-03, `D-114`):** the first C suites ship (`curriculum/content/15c_c_foundations/suites/`). The runner is unchanged — its commands were already arbitrary — and runs inside Linux (WSL Ubuntu, gcc). An item that asks for a function builds the course's own `main` beside the learner's file through `bash -c`. Details: `docs/C_FOUNDATIONS_CONTENT_SPEC.md`.
+
+---
+
+**16G note (2026-10-26, `D-130`):** the app now carries the course's 480 suites and the runner as assets, byte for byte (`tools/ship_code_suites.py`), and gives them to the learner with Copy buttons (user decision: copy-paste, no network or file permission). The pasted report is read by `EvaluateCode` and is not stored; the code is the attempt's artifact and the evidence names the suite version. A report that measures nothing writes no attempt. Details: `docs/RUN_HELP_SPEC.md`.

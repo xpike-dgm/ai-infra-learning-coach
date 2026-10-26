@@ -13,6 +13,17 @@ import coach.model.AssistanceTiming
 import coach.model.AttemptSubmission
 import coach.model.AuthoredTask
 import coach.model.CapabilityGap
+import coach.model.CodeEvaluation
+import coach.model.CodeEvaluationRoute
+import coach.model.CodeNotMeasured
+import coach.model.CodeVerdict
+import coach.model.Comprehension
+import coach.model.OpenResponseNotMeasured
+import coach.model.OpenResponseRoute
+import coach.model.RubricCriterion
+import coach.model.RunAnswer
+import coach.model.RunItemKind
+import coach.ports.EvaluatorPort
 import coach.model.EvaluationResult
 import coach.model.ExplanationForm
 import coach.model.ExposureFact
@@ -52,6 +63,22 @@ object StartedTasks {
         val stored = persistence.latestPlan() ?: return emptySet()
         val read = PlanReading.read(stored, clock.now().studyDay) as? PlanReading.Read.Today ?: return emptySet()
         return positions(persistence, stored, read.trace)
+    }
+}
+
+/**
+ * How the app can judge one item (16G), or `null` when it cannot: an answer key (14F), the course's tests with their
+ * shipped suite (14D; the learner runs them on their computer), or a rubric the evaluator may judge provisionally (14F).
+ * A rubric item whose task needs a verified result is not served — no AI is asked for it.
+ */
+object RunItems {
+    fun kind(item: AssessmentItem, content: ContentPort): RunItemKind? {
+        if (content.answerKeyFor(item.ref) != null) return RunItemKind.ANSWER_KEY
+        val suite = content.codeTestsFor(item.ref)
+        if (suite != null) {
+            return RunItemKind.CODE_TESTS.takeIf { CodeEvaluation.route(item, suite) == CodeEvaluationRoute.TESTS && content.codeSuiteText(item.ref) != null }
+        }
+        return RunItemKind.RUBRIC.takeIf { OpenResponse.route(item, null, content.rubricFor(item.ref)) == OpenResponseRoute.AI_RUBRIC }
     }
 }
 
@@ -97,7 +124,8 @@ class OpenTask(
     private fun servable(task: AuthoredTask): Pair<List<VersionedRef>, CapabilityGap?> {
         if (task.purpose == TaskPurpose.ASSESS) return emptyList<VersionedRef>() to CapabilityGap.ASSESSMENT_INTERIOR_NOT_AVAILABLE
         val server = ServeDailyMicroItem(persistence, content, clock)
-        val judgeable = task.items.filter { content.answerKeyFor(it) != null && server.usable(it, INTENT, evaluatorAvailable) }
+        // 16G: an answer key, the course's tests or a rubric the evaluator may judge — not only an answer key (16F).
+        val judgeable = task.items.filter { ref -> content.assessmentItem(ref)?.let { RunItems.kind(it, content) } != null && server.usable(ref, INTENT, evaluatorAvailable) }
         if (judgeable.isEmpty()) return judgeable to CapabilityGap.NO_ITEM_THIS_APP_CAN_EVALUATE
         val unseen = judgeable.filterNot { seen(it) }
         return if (unseen.isEmpty()) unseen to CapabilityGap.NO_UNSEEN_ITEM else unseen to null
@@ -144,6 +172,8 @@ class RunTask(
     private val content: ContentPort,
     private val clock: ClockPort,
     private val evaluatorAvailable: Boolean = false,
+    /** 16G: judges a rubric answer (provisional at most) and asks nothing for keys or tests. */
+    private val evaluator: EvaluatorPort = NullEvaluator,
 ) {
     /** The next unseen item of the run not yet served in it, recorded as seen when shown; `null` when none is left. */
     fun serve(run: RunnableTask, served: Set<VersionedRef>): AssessmentItem? {
@@ -193,6 +223,87 @@ class RunTask(
             ).evidenceIds
         }.orEmpty()
         return AnsweredItem(item.ref, recorded.attemptId, AnswerResult.of(signals), evidence)
+    }
+
+    /**
+     * Records one code answer and what the course's tests say it showed (16G; 14D). The learner ran the tests on their
+     * computer and pasted the report: a report that cannot be read, is for another item or suite, or reports an
+     * environment error measures nothing, and **nothing is written** — the learner fixes it and sends again. Only a
+     * report the suite can judge freezes an attempt (the code is its artifact) and becomes evidence.
+     */
+    fun answerCode(run: RunnableTask, item: AssessmentItem, code: String, report: String, provenance: ProvenanceOrigin, assistance: List<AssistanceEvent>): RunAnswer {
+        if (code.isBlank()) return RunAnswer.NotRecorded(code = CodeNotMeasured.NOTHING_SUBMITTED, blank = true)
+        val body = ArtifactBody.store(code) as? ArtifactBody.Stored.Inline ?: return RunAnswer.NotRecorded(tooLong = true)
+        val verdict = EvaluateCode(content, evaluator).evaluate(item, code, report)
+        if (verdict is CodeVerdict.NotMeasured && verdict.reason != CodeNotMeasured.EVALUATOR_DID_NOT_ANSWER) return RunAnswer.NotRecorded(code = verdict.reason)
+        val submission = AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId)
+        val answered = record(run, item, submission, body, (verdict as? CodeVerdict.Measured)?.result)
+        // 14E: code the learner did not write alone is followed by a comprehension check, written ones first.
+        return RunAnswer.Recorded(answered, code = verdict, offer = Comprehension.offer(submission, content.comprehensionChecksFor(item.ref)))
+    }
+
+    /**
+     * Records one open answer, then has the evaluator judge it by the rubric, criterion by criterion — provisional at
+     * most (16G; 14F). The answer freezes first: if no evaluator answers, the attempt stays `evaluation_pending` with no
+     * evidence, and it is judged again only when the learner asks ([reevaluate]).
+     */
+    fun answerOpen(run: RunnableTask, item: AssessmentItem, response: String, provenance: ProvenanceOrigin, assistance: List<AssistanceEvent>): RunAnswer {
+        if (response.isBlank()) return RunAnswer.NotRecorded(blank = true)
+        val body = ArtifactBody.store(response.trim()) as? ArtifactBody.Stored.Inline ?: return RunAnswer.NotRecorded(tooLong = true)
+        // Frozen first: the learner's answer is in the store before any evaluator is asked.
+        val submission = AttemptSubmission(item.ref, body.contentRef, provenance, assistance, plannedTaskId = run.plannedTaskId)
+        val frozen = record(run, item, submission, body, result = null)
+        return judge(run, item, frozen, response)
+    }
+
+    /**
+     * Judges a pending open answer again, only because the learner asked (14F: nothing retries on its own). A result now
+     * becomes evidence for the **same** frozen attempt; no evaluator again leaves it pending.
+     */
+    fun reevaluate(run: RunnableTask, item: AssessmentItem, pending: AnsweredItem, response: String): RunAnswer {
+        require(pending.pending) { "only a pending evaluation is asked again" }
+        return judge(run, item, pending, response)
+    }
+
+    /** The evaluator's judgement of a frozen open answer, as evidence for that same attempt; none leaves it pending. */
+    private fun judge(run: RunnableTask, item: AssessmentItem, pending: AnsweredItem, response: String): RunAnswer {
+        val verdict = EvaluateOpenResponse(content, persistence, clock, evaluator).evaluate(item, response.trim())
+        val result = (verdict as? OpenResponseVerdict.Measured)?.result ?: return RunAnswer.Recorded(pending, open = verdict, criteria = content.rubricFor(item.ref)?.criteria.orEmpty())
+        val evidence = evidence(run, item, pending.attemptId, pending.artifactId, result, checkNotNull(pending.independence) { "the attempt's independence was recorded with it" })
+        return RunAnswer.Recorded(pending.copy(result = AnswerResult.of(signals(result)), evidenceIds = evidence, pending = false), open = verdict,
+            criteria = content.rubricFor(item.ref)?.criteria.orEmpty())
+    }
+
+    /** The rubric, for the learner to check a frozen answer against (14F): practice, recorded as a solution exposure. */
+    fun selfCheck(item: AssessmentItem, attemptId: Long): List<RubricCriterion> =
+        EvaluateOpenResponse(content, persistence, clock, evaluator).selfCheck(item, attemptId).orEmpty()
+
+    /** Freezes the attempt (one action, 11B) and, when there is a result, hands it to the evidence pipeline. */
+    private fun record(run: RunnableTask, item: AssessmentItem, submission: AttemptSubmission, body: ArtifactBody.Stored.Inline,
+                       result: EvaluationResult?): AnsweredItem {
+        require(submission.artifactContentRef == body.contentRef) { "the submission carries this body" }
+        val recorded = SubmitAttempt(persistence, clock).submit(submission)
+        val independence = submission.independence(run.purpose)
+        if (result == null) return AnsweredItem(item.ref, recorded.attemptId, AnswerResult.NOT_MEASURED, emptyList(), pending = true, artifactId = recorded.artifactId, independence = independence)
+        val evidence = evidence(run, item, recorded.attemptId, recorded.artifactId, result, independence)
+        return AnsweredItem(item.ref, recorded.attemptId, AnswerResult.of(signals(result)), evidence, artifactId = recorded.artifactId, independence = independence)
+    }
+
+    private fun evidence(run: RunnableTask, item: AssessmentItem, attemptId: Long, artifactId: Long?, result: EvaluationResult,
+                         independence: coach.model.IndependenceClass): List<Long> {
+        val skill = run.skill.takeIf { it in item.targetSkills } ?: item.targetSkills.first()
+        val gate = ResolvePrerequisites(persistence).resolve(PrerequisiteCandidate("run:${run.plannedTaskId}", skill, item.requiredSkills))
+        return RecordEvidence(persistence, clock).record(
+            attemptId = attemptId, skill = skill, evidenceType = item.evidenceType, evaluation = result, independence = independence,
+            artifactId = artifactId, resource = item.ref, variantFamilyId = item.variantFamilyId,
+            prerequisiteSnapshot = if (gate.eligibility.waits) PrerequisiteSnapshot.CONTAMINATED else gate.readinessSnapshotRefs.joinToString(";").ifEmpty { null },
+        ).evidenceIds
+    }
+
+    private fun signals(result: EvaluationResult) = when (result) {
+        is EvaluationResult.Verified -> result.componentResults.map { it.signal }
+        is EvaluationResult.Provisional -> result.componentResults.map { it.signal }
+        is EvaluationResult.EvaluationPending -> emptyList()
     }
 
     /**

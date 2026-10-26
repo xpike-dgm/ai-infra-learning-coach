@@ -1,0 +1,38 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.for_iteration.iterate_sequence.g04@v1",
+  "item": "item.python.for_iteration.iterate_sequence.g04@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "kitap",
+      "stdin": "kitap\n",
+      "expected_stdout": "patik\n"
+    },
+    {
+      "id": "single",
+      "stdin": "a\n",
+      "expected_stdout": "a\n"
+    },
+    {
+      "id": "turkish",
+      "stdin": "çiçek\n",
+      "expected_stdout": "keçiç\n"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.functions_parameters_return.write_small_function.g03@v1",
+  "item": "item.python.functions_parameters_return.write_small_function.g03@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.gecerli_saat(int(sys.argv[1]), int(sys.argv[2])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "last_minute",
+      "args": [
+        "23",
+        "59"
+      ],
+      "expected_stdout": "True\n"
+    },
+    {
+      "id": "midnight",
+      "args": [
+        "0",
+        "0"
+      ],
+      "expected_stdout": "True\n"
+    },
+    {
+      "id": "hour_too_big",
+      "args": [
+        "24",
+        "0"
+      ],
+      "expected_stdout": "False\n"
+    },
+    {
+      "id": "minute_too_big",
+      "args": [
+        "12",
+        "60"
+      ],
+      "expected_stdout": "False\n"
+    },
+    {
+      "id": "negative_hour",
+      "args": [
+        "-1",
+        "5"
+      ],
+      "expected_stdout": "False\n"
+    }
+  ]
+}

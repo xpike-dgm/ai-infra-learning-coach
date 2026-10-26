@@ -83,6 +83,7 @@ import coach.presentation.AssistancePolicy
 import coach.presentation.TaskRunCopy
 import coach.presentation.TaskRunPresentation
 import coach.presentation.TaskRunStage
+import coach.model.RunItemKind
 import coach.ui.TaskRunActions
 import android.Manifest
 import android.content.Intent
@@ -346,22 +347,21 @@ private fun Shell(
                 // list: each question is the next unseen one the task holds (`TRUX-v0` §6.6).
                 fun serveNext(current: TaskRunSession) {
                     runStage = TaskRunStage.Working
-                    app.serveNext(current.run, current.shown.map { it.ref }.toSet()) { item, prompt ->
+                    app.serveNext(current.run, current.shown.map { it.ref }.toSet()) { item, prompt, served ->
                         if (item == null) {
                             finishRun(app, current, onTodayFacts) { lines -> runStage = TaskRunStage.Finished(listOf(TaskRunCopy.NO_MORE_QUESTIONS) + lines) }
                         } else {
-                            current.shown += item
-                            current.current = item
-                            current.currentPrompt = prompt.orEmpty()
-                            current.lessonShown = false
-                            runStage = TaskRunStage.Question(current.shown.size, current.currentPrompt, null, disclosure = false, notice = null)
+                            // 16G: how it is answered (key, tests or rubric) and, for code, what the learner copies.
+                            current.newQuestion(item, prompt.orEmpty(), served)
+                            runStage = current.questionStage()
                         }
                     }
                 }
-                fun question(current: TaskRunSession, disclosure: Boolean = false, notice: String? = null) = TaskRunStage.Question(
-                    current.shown.size, current.currentPrompt,
-                    if (current.lessonShown) current.run.lesson.map { it.text } else null, disclosure, notice,
-                )
+                fun question(current: TaskRunSession, disclosure: Boolean = false, notice: String? = null) = current.questionStage(disclosure, notice)
+                // 16G: judged answers, help, the comprehension check and a durable pause; every rule stays in core.
+                val flow = run?.let { current ->
+                    TaskRunFlow(app, current, show = { stage -> runStage = stage }, finish = { onLines -> finishRun(app, current, onTodayFacts, onLines) })
+                }
                 TaskRunnerScreen(
                     state = runStage?.state ?: RunnerRevalidation.stateAtEntry(entry),
                     entry = entry,
@@ -377,7 +377,7 @@ private fun Shell(
                         selected = Destination.TODAY
                     },
                     stage = runStage,
-                    actions = if (run == null) TaskRunActions() else TaskRunActions(
+                    actions = if (run == null || flow == null) TaskRunActions() else TaskRunActions(
                         onBegin = { provenance ->
                             run.provenance = provenance
                             if (run.run.lesson.isNotEmpty()) runStage = TaskRunStage.Lesson(run.run.lesson.map { it.text }) else serveNext(run)
@@ -400,12 +400,12 @@ private fun Shell(
                         onSubmit = { typed ->
                             val item = run.current
                             val provenance = run.provenance
-                            if (item != null && provenance != null) {
-                                // The lesson seen again is recorded as the concept help it was (`TRUX-v0` §8.5).
-                                val help = if (!run.lessonShown) emptyList() else listOfNotNull(
-                                    (AssistancePolicy.request(AssistanceLevel.H2, AssistanceTiming.DURING_ATTEMPT, AssistanceScope.TARGET_OBJECTIVE,
-                                        AssistanceSource.DETERMINISTIC_CONTENT, consequenceAcknowledged = false) as? AssistanceOutcome.Granted)?.event
-                                )
+                            if (item != null && provenance != null && run.kind == RunItemKind.RUBRIC) {
+                                // 16G: an open answer is judged by its rubric (14F), provisional at most.
+                                flow.submitJudged(typed, report = "")
+                            } else if (item != null && provenance != null) {
+                                // The lesson seen again, and help shown while the answer was open, go with it (`TRUX-v0` §8.5).
+                                val help = run.helpWithAnswer()
                                 runStage = TaskRunStage.Working
                                 app.answerItem(run.run, item, typed, provenance, help) { answered ->
                                     if (answered == null) {
@@ -413,7 +413,9 @@ private fun Shell(
                                     } else {
                                         run.answered += answered
                                         run.lastAnswer = answered
-                                        runStage = TaskRunStage.Answered(TaskRunPresentation.resultLine(answered.result), revealed = null)
+                                        val stage = TaskRunStage.Answered(TaskRunPresentation.resultLine(answered.result), revealed = null)
+                                        runStage = stage
+                                        flow.keyAnswered(answered, typed, stage)
                                     }
                                 }
                             }
@@ -422,10 +424,28 @@ private fun Shell(
                             val item = run.current
                             val answered = run.lastAnswer
                             if (item != null && answered != null) app.revealAnswer(item, answered.attemptId) { answers ->
-                                runStage = TaskRunStage.Answered(TaskRunPresentation.resultLine(answered.result), TaskRunPresentation.revealed(answers))
+                                val shown = (run.answeredStage ?: TaskRunStage.Answered(TaskRunPresentation.resultLine(answered.result), revealed = null))
+                                    .copy(revealed = TaskRunPresentation.revealed(answers))
+                                run.answeredStage = shown
+                                flow.redraw()
                             }
                         },
                         onNext = { serveNext(run) },
+                        onSubmitCode = { code, report -> flow.submitJudged(code, report) },
+                        onReevaluate = { flow.reevaluate() },
+                        onSelfCheck = { flow.selfCheck() },
+                        onOpenHelp = { flow.openHelp() },
+                        onCloseHelp = { flow.closeHelp() },
+                        onHelpIntent = { flow.intent(it) },
+                        onHelpLevel = { flow.level(it) },
+                        onHelpAcknowledge = { flow.acknowledge() },
+                        onHelpQuestion = { flow.question(it) },
+                        onExplanationForm = { flow.form(it) },
+                        onCheckChoice = { flow.checkChoice(it) },
+                        onNextCheck = { flow.nextCheck() },
+                        onPracticeAsk = { flow.practiceAsk() },
+                        onPracticeAnswer = { flow.practiceAnswer(it) },
+                        onPause = { flow.pause() },
                         onFinish = {
                             runStage = TaskRunStage.Working
                             finishRun(app, run, onTodayFacts) { lines -> runStage = TaskRunStage.Finished(lines) }

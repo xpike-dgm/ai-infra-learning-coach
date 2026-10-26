@@ -38,7 +38,7 @@ data class RunnableTask(
     val needKey: String,
     /** The course's own explanation of each target Objective (`ExplanationForm.CANONICAL`), in the task's order. */
     val lesson: List<ExplanationVariant>,
-    /** Unseen items the app can judge by their answer key, in the task's authored order. */
+    /** Unseen items the app can judge — by an answer key, the course's tests or a rubric (16G) — in the task's authored order. */
     val items: List<VersionedRef>,
 ) {
     init {
@@ -94,4 +94,44 @@ data class AnsweredItem(
     val attemptId: Long,
     val result: AnswerResult,
     val evidenceIds: List<Long>,
-)
+    /**
+     * 16G: the attempt is recorded but no evaluator answered (`TRUX-v0` §12.2): `evaluation_pending`, neither passed nor
+     * failed, and no evidence is written. [result] is then [AnswerResult.NOT_MEASURED].
+     */
+    val pending: Boolean = false,
+    val artifactId: Long? = null,
+    /** 16G: the independence its recorded help and provenance gave it (`2D` §6), kept so a later judgement uses the same. */
+    val independence: IndependenceClass? = null,
+) {
+    init {
+        require(!pending || evidenceIds.isEmpty()) { "a pending evaluation writes no evidence" }
+    }
+}
+
+/**
+ * How the app can judge an item it serves (16G). An answer key judges a short answer on the device (14F); the course's
+ * tests judge code, run by the learner on their computer and pasted back (14D); a rubric is judged by the evaluator,
+ * at most provisionally (14F). An item none of these can judge is not served.
+ */
+enum class RunItemKind(val id: String) {
+    ANSWER_KEY("answer_key"),
+    CODE_TESTS("code_tests"),
+    RUBRIC("rubric"),
+}
+
+/**
+ * What submitting an answer did (16G). [Recorded] froze an attempt; [NotRecorded] wrote nothing at all — a code answer
+ * whose report cannot be read is sent back to be fixed, never counted against the learner (14D).
+ */
+sealed interface RunAnswer {
+    data class Recorded(
+        val answered: AnsweredItem,
+        val code: CodeVerdict? = null,
+        val open: OpenResponseVerdict? = null,
+        val criteria: List<RubricCriterion> = emptyList(),
+        /** 14E: what follows code the learner did not write alone; nothing for an open answer or code they wrote. */
+        val offer: ComprehensionOffer = ComprehensionOffer.NotOffered,
+    ) : RunAnswer
+
+    data class NotRecorded(val code: CodeNotMeasured? = null, val tooLong: Boolean = false, val blank: Boolean = false) : RunAnswer
+}

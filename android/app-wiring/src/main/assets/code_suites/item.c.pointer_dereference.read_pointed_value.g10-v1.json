@@ -1,0 +1,29 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.pointer_dereference.read_pointed_value.g10@v1",
+  "item": "item.c.pointer_dereference.read_pointed_value.g10@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n#include <stddef.h>\n\nint ilk_gecerli(int *a, int *b, int varsayilan);\n\nint main(void) {\n    int x = 0, y = 0, v = 0, maske = 0;\n    while (scanf(\"%d %d %d %d\", &x, &y, &v, &maske) == 4) {\n        printf(\"%d\\n\", ilk_gecerli(maske & 1 ? &x : NULL, maske & 2 ? &y : NULL, v));\n    }\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -c ders_test.c -o ders_test.o && gcc -g -fsanitize=address,undefined cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0",
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "cases",
+      "stdin": "1 2 9 3\n1 2 9 2\n1 2 9 1\n1 2 9 0\n",
+      "expected_stdout": "1\n2\n1\n9\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

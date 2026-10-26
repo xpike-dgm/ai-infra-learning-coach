@@ -121,7 +121,7 @@ narrowed_gates:
 moved_to_16g:
   - the tutor panel, the alternative-explanation menu and the comprehension check inside the run
   - the wrong-answer analysis after a wrong answer
-  - code items: importing the PC runner's report, moving files between phone and computer, the code evaluation route
+  - importing the PC runner's report for code items, moving files between phone and computer, the code evaluation route
   - open responses judged by a rubric through the evaluator, and the self-check
   - the fast path's entry and its use cases; entry placement as a diagnostic source
   - weekly, monthly and daily assessment sessions from Today; slots carrying the session id

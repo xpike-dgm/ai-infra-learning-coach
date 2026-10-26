@@ -1,0 +1,56 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.modules_imports_basic.import_and_use_module_member.f04@v1",
+  "item": "item.python.modules_imports_basic.import_and_use_module_member.f04@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.gun_farki(sys.argv[1], sys.argv[2]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two_months",
+      "args": [
+        "2026-01-01",
+        "2026-03-01"
+      ],
+      "expected_stdout": "59\n"
+    },
+    {
+      "id": "leap_year",
+      "args": [
+        "2028-02-01",
+        "2028-03-01"
+      ],
+      "expected_stdout": "29\n"
+    },
+    {
+      "id": "same_day",
+      "args": [
+        "2026-10-02",
+        "2026-10-02"
+      ],
+      "expected_stdout": "0\n"
+    },
+    {
+      "id": "across_year",
+      "args": [
+        "2026-12-30",
+        "2027-01-02"
+      ],
+      "expected_stdout": "3\n"
+    }
+  ]
+}

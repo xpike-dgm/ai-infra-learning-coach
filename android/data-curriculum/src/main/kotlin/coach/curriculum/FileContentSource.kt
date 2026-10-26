@@ -40,6 +40,10 @@ import coach.ports.ContentPort
  */
 class FileContentSource(
     private val later: () -> List<String> = { emptyList() },
+    /** 16G: a shipped suite's text by its asset name (`<item logical id>-v<N>.json`), or `null`. */
+    private val codeSuites: (String) -> String? = { null },
+    /** 16G: the shipped PC runner's text, or `null`. */
+    private val codeRunner: () -> String? = { null },
     // Last, so `FileContentSource { text }` still means "this one package".
     private val source: () -> String? = { null },
 ) : ContentPort {
@@ -100,6 +104,19 @@ class FileContentSource(
 
     /** The items of every teach task targeting exactly this Objective version, every task version included (16C). */
     override fun authoredTask(ref: VersionedRef): AuthoredTask? = parsed?.tasks.orEmpty().singleOrNull { it.ref == ref }
+
+    /**
+     * The shipped suite for exactly this item version (16G), only when the text names this item version **and** the suite
+     * version the package declares for it — a suite for another version would run tests the course does not judge by.
+     */
+    override fun codeSuiteText(item: VersionedRef): String? {
+        val suite = codeTestsFor(item) ?: return null
+        val text = codeSuites("${item.logicalId}-v${item.version}.json") ?: return null
+        fun field(key: String) = Regex(""""$key"\s*:\s*"([^"]+)"""").find(text)?.groupValues?.get(1)
+        return text.takeIf { field("format") == "code_test_suite/1" && field("item") == item.toString() && field("suite") == suite.ref.toString() }
+    }
+
+    override fun codeRunnerText(): String? = codeRunner()
 
     override fun lessonItemsFor(objective: VersionedRef): List<VersionedRef> =
         parsed?.tasks.orEmpty().filter { it.purpose == TaskPurpose.TEACH && objective in it.targetObjectives }

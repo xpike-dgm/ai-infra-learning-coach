@@ -1,0 +1,33 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.input_output_basic.build_small_io_flow.g01@v1",
+  "item": "item.python.input_output_basic.build_small_io_flow.g01@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "ali_bursa",
+      "stdin": "Ali\nBursa\n",
+      "expected_stdout": "Ali, Bursa şehrinden.\n"
+    },
+    {
+      "id": "zeynep_van",
+      "stdin": "Zeynep\nVan\n",
+      "expected_stdout": "Zeynep, Van şehrinden.\n"
+    }
+  ]
+}
