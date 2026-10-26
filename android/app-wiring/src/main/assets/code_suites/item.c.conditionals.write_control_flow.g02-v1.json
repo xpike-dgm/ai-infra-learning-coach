@@ -1,0 +1,40 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.conditionals.write_control_flow.g02@v1",
+  "item": "item.c.conditionals.write_control_flow.g02@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "equal",
+      "stdin": "4 4\n",
+      "expected_stdout": "esit\n"
+    },
+    {
+      "id": "different",
+      "stdin": "4 5\n",
+      "expected_stdout": "farkli\n"
+    },
+    {
+      "id": "negatives",
+      "stdin": "-1 -1\n",
+      "expected_stdout": "esit\n"
+    }
+  ]
+}

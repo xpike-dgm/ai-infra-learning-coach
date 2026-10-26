@@ -79,7 +79,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] Hatırlatmanın 'bugün çalışma kaydedildi' kuralı: 16F'de 'bugünün planındaki her görev başladı' oldu (D-128).
 - [ ] Hatırlatma (alarm, alıcılar, izin istemi, bildirim) cihazda → 19.
 - [x] 16F Uçtan uca günlük döngü: E2EX-v0 / D-128 ile tamamlandı; çekirdek döngü, şema v11 `attempt.planned_task_id`.
-- [ ] 16G — Uçtan uca günlük döngü: yardım ve ölçüm **AKTİF** (D-129 ile eklendi) — girdileri 16F kontratının `moved_to_16g` listesi; kullanıcının yeni açık onayı gerekir.
+- [x] 16G — Uçtan uca günlük döngü: yardım ve ölçüm: HLPX-v0 / D-130 ile tamamlandı; kod raporu, açık cevap, yardım, anlama kontrolü, duraklatma.
+- [ ] 16H — Uçtan uca günlük döngü: ölçme oturumları **AKTİF** (D-131 ile eklendi) — girdileri 16G kontratının `moved_to_16h` listesi; kullanıcının yeni açık onayı gerekir.
+- [ ] Paketlerde yazılı anlama kontrolleri (hiçbir paket yazmıyor) → 20I.
+- [ ] Koşu, Kopyala düğmeleri ve tutor cihazda → 19.
 - [ ] Koşu (görev çalıştırıcı) cihazda → 19.
 - [ ] Tema ve erişilebilirlik tercihleri → 17D.
 - [ ] Dosya seçicileri ve geri yükleme cihazda → 19.
@@ -90,9 +93,9 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] `TEIP-v0` entegrasyon bağlamı (görev–Skill eşlemesi saklanmıyor) → 18D.
 - [ ] Geçmişin tekrar oynatma maliyeti (Skill'in satırlarında karesel; içteki mastery oynatması da) cihazda ölçülecek → 18E.
 - [ ] Mastery öncesi pencerede kalan bir çelişki, sonraki bir doğrulamayı açanlar arasında sayılabiliyor → 18C.
-- [ ] Haftalık slotlar yalnız oturumun kimliğini taşıyan kanıtla yanıtlanmış sayılıyor; slotları sunan uygulama yolu kimliği geçmeli → 16G.
-- [ ] Satırdan sonra eklenen bir düzeltme (`evidence_disposition`) yeni kanıt gibi görünmüyor, yani Progress bunu bayatlık saymıyor; düzeltmeyi uygulamadan kaydeden yol yeniden hesaplamalı → 16G.
-- [ ] Dikkat setinin `assessment_opportunity` grubunun üreticisi yok (uygulama bir Skill için oturum kurmuyor) → 16G.
+- [ ] Haftalık slotlar yalnız oturumun kimliğini taşıyan kanıtla yanıtlanmış sayılıyor; slotları sunan uygulama yolu kimliği geçmeli → 16H.
+- [ ] Satırdan sonra eklenen bir düzeltme (`evidence_disposition`) yeni kanıt gibi görünmüyor, yani Progress bunu bayatlık saymıyor; düzeltmeyi uygulamadan kaydeden yol yeniden hesaplamalı → 16H.
+- [ ] Dikkat setinin `assessment_opportunity` grubunun üreticisi yok (uygulama bir Skill için oturum kurmuyor) → 16H.
 - [ ] `skill_detail → planner_explanation` kabul edilmiş bir IA kenarı değil; Objective'lerin depoda açıklama metni yok (etiket id'nin eylemi) → 17.
 - [ ] Progress ekranı cihazda görülmedi → 19 (T6).
 - [x] **15G havuz eksikleri** → 15H'de kapandı (D-121): üç teknik Objective 16'ya çıktı (6 yeni item); sekiz İngilizce Objective 10–12 kullanıcı kararıyla kayıtlı — aşağıda.
@@ -113,57 +116,58 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] Gösterim `in`, `is`, `pass`, `break`/`continue`, `as` → 15H'de kapandı (D-121): `notation_overlay.yaml`; ders kodu satır satır taranıyor; 3 item alternatif referansla, 2 item revizyonla.
 - [ ] `path_handling` Objective'inin eylem adı (`read_write_small_text_file`) cümlesiyle uyuşmuyor; kimlik değiştirilemez (LFPS-v0), yalnız yeni bir Objective sürümü düzeltebilir → 20I (sürekli curriculum QA).
 - [ ] Unicode normal biçimleri (NFC/NFD) öğretilmedi → 20A.
-- [ ] cozum.py'nin ve test raporunun telefon ile bilgisayar arasında taşınması → 16G.
+- [x] cozum.py'nin ve test raporunun telefon ile bilgisayar arasında taşınması: 16G'de kopyala-yapıştır — suite ve koşucu Kopyala düğmeleriyle, rapor yapıştırılır (D-130).
 - [x] `requires_transfer` → 15H'de kapandı (D-121) (kullanıcı kararı): standard Objective'de transfer kapısı yok (`GRE-v0` §8); üretici `GRE-v0` kapı alanları saklanana kadar critical Objective'i reddeder; yayımlanmış 65 Objective'in hepsi standard.
 - [x] `iteration_reasoning` ← `expression_boolean_reasoning` → 15H'de kapandı (D-121): soft `lesson` kenarı.
-- [x] Runner'ın görevin anlatımlarını sunması ve havuzundan görülmemiş item seçmesi: 16F'de dersin kendi anlatımı ve görülmemiş cevap anahtarlı sorular, yazıldığı sırayla (D-128). Alternatif anlatımlar → 16G.
+- [x] Runner'ın görevin anlatımlarını sunması ve havuzundan görülmemiş item seçmesi: 16F'de dersin kendi anlatımı ve görülmemiş cevap anahtarlı sorular, yazıldığı sırayla (D-128). Alternatif anlatımlar 16G'de (D-130).
 - [ ] Görev ve item dakikalarının kalibrasyonu → 18B.
 - [ ] Sevk edilen paketin cihazda ilk SQLite ingestion'ı ve T6 → öğrenci, cihazda.
 - [ ] İlk canlı sağlayıcı çağrısı ve Keystore yolu cihazda (Profile → 'Bağlantıyı dene') → öğrenci (T6).
-- [ ] Tutor ve değerlendiricileri görev ekranlarından çağırmak; kullanım/maliyet görünürlüğü → 16G.
+- [x] Tutor ve değerlendiricileri görev ekranlarından çağırmak: 16G (D-130).
+- [ ] Kullanım/maliyet görünürlüğü → 17.
 - [x] Gerçek item'lar için kabul edilen cevaplar ve rubric'ler → AŞAMA 15'te kapandı: yayımlanmış 65 Objective'in hepsi için yazıldı (D-112…D-119), 15G ve 15H genişletti; sonraki içerik kendi paketinde yazar (20).
 - [x] `open_response_evaluation/1` için adaptör çağrı noktası: 14G'de kuruldu (D-111).
-- [ ] Cevapları saklamak, `EvaluateOpenResponse`'u uygulamadan çağırmak, öz-kontrol ekranı → 16G.
+- [x] Cevapları saklamak, `EvaluateOpenResponse`'u uygulamadan çağırmak, öz-kontrol ekranı: 16G (D-130).
 - [ ] Değerlendiricinin hiç `verified` olabilmesi için kalibrasyon → 18.
 - [ ] Gerçek görevler için yazılı anlama kontrolleri: AŞAMA 15 hiç `[comprehension_check]` yazmadı; tutor pratiği yedek yol (D-109) → 20I.
-- [ ] Anlama kontrolünü çizmek ve `CheckUnderstanding`'i uygulamadan çağırmak → 16G.
+- [x] Anlama kontrolünü çizmek ve `CheckUnderstanding`'i uygulamadan çağırmak: 16G (D-130).
 - [x] `check_understanding` için adaptör istemi ve çağrı noktası: 14G'de tutor çağrı noktası kuruldu (D-111); görev ekranından çağrı 16D.
 - [x] Serbest metin anlama cevaplarının değerlendirilmesi: 14F'nin genel yolu (rubric'li açık uçlu item) kuruldu (D-110); gerçek kontrollerin yazılması 15.
 - [ ] Tutor'un yazdığı soruların güvenilir sayılabilmesi için kalibrasyon → 18.
 - [x] Gerçek kod görevlerinin test suite'leri ve koşucu dosyaları → AŞAMA 15'te kapandı (15B–15D, 15G, 15H; `tools/code_test_runner.py`).
-- [ ] Yapıştırılan raporu artifact olarak saklamak, `EvaluateCode`'u uygulamadan çağırmak, suite dosyasını öğrenciye vermek → 16G.
+- [x] `EvaluateCode`'u uygulamadan çağırmak, suite dosyasını öğrenciye vermek: 16G (D-130). Rapor saklanmıyor: artifact koddur ve kanıt suite sürümünü adlandırır.
 - [x] AI kod değerlendiricisinin istemi ve çağrı noktası: `code_evaluation_instructions/1` core'da, çağrı noktası 14G'de (D-111).
 - [ ] AI kod değerlendiricisinin kalibrasyonu (provisional'ın ötesine geçebilmesi için) → 18.
 - [x] C suite'lerinin bir C derleyicisi olan makinede koşulması → 15C'de kapandı (WSL Ubuntu + gcc, D-114).
 - [x] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → AŞAMA 15'te kapandı: yayımlanmış 65 Objective'in hepsi için (D-112…D-119); 15H ders metinlerini kod satırı satırı denetledi.
-- [ ] Alternatif anlatım menüsünü çizmek ve `ExplainDifferently`'yi uygulamadan çağırmak → 16G.
+- [x] Alternatif anlatım menüsünü çizmek ve `ExplainDifferently`'yi uygulamadan çağırmak: 16G (D-130).
 - [ ] Hangi biçimin öğrenciye daha çok yardım ettiğinin kalibrasyonu → 18.
 - [x] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15G'de kapandı (D-120): seçenek düzeyinde `[answer_misconception]`, 144 anahtar (66 eklenen, 78 yayımlanmış item'da), yalnız bağımsız incelemenin geçirdiği eşleme.
-- [ ] Misconception hafızasının item seçiminde kullanımı → 16G (runner'ın havuzdan item seçmesiyle). `misconception_contrast` içeriği AŞAMA 15'te yazıldı.
+- [ ] Misconception hafızasının item seçiminde kullanımı → 16H (runner'ın havuzdan item seçmesiyle). `misconception_contrast` içeriği AŞAMA 15'te yazıldı.
 - [x] Destekli/doğrulanmış misconception'ların Progress görünümü → 16C'de Skill detayında (D-124).
-- [ ] Yanlış analizini gerçek bir oturumdan sonra uygulamadan çağırmak → 16G.
+- [x] Yanlış analizini gerçek bir koşudan sonra uygulamadan çağırmak: 16G (D-130).
 - [ ] Katalogun gerçek öğrenci hatalarıyla genişletilmesi ve yükselme kalibrasyonu → 18.
 - [x] Tutor adaptörünün gerçek çağrı noktası, router ve model kimliklerinin güncel kaynakla doğrulanması: 14G'de yapıldı (D-111; kaynak 2026-10-02, build'e kayıtlı).
 - [ ] Yazılmış ipucu basamakları ve her görevin instruction mode'u: AŞAMA 15 yazmadı (paketlerde alan yok) → 20I.
 - [x] `AttemptSubmission.independence`'ı uygulamanın kanıt yolundan çağırmak: 16F'de her cevabın kanıtı kaydedilen yardım ve kökenden türetiliyor (D-128).
-- [ ] Tutor panelini çizmek ve `AskTutor`'ı uygulamadan çağırmak → 16G.
+- [x] Tutor panelini çizmek ve `AskTutor`'ı uygulamadan çağırmak: 16G (D-130).
 - [x] Tutor konuşmalarının öğrenme geçmişi olarak saklanması → 16B'de kapandı (D-123, kullanıcı kararı): metin saklanmaz; geçmiş kaydedilmiş yardım seviyelerini gösterir.
 - [ ] Tutor yanıtlarının beyan ettikleri seviyeye karşı kalibrasyonu → 18D.
 - [x] Topic `available → mastered` geçişi Objective waiver'larından → 16C'de kapsam kapısı (D-124).
-- [ ] Hızlı yol girişini (Learn) sunmak, istek/geri çekme/sonucu ve oturum sonrası yeniden hesaplamayı uygulamadan çağırmak → 16G; giriş yerleşimi tanısal kaynağı → 16G.
+- [ ] Hızlı yol girişini (Learn) sunmak, istek/geri çekme/sonucu ve oturum sonrası yeniden hesaplamayı uygulamadan çağırmak → 16H; giriş yerleşimi tanısal kaynağı → 16H.
 - [ ] Planner kaynaklı tanı (kalibre edilmiş karar değeri) → 18B.
 - [ ] Waiver'ı curriculum sürümleri arasında taşımak (`KGC-v0` §26 göç kayıtları) → 19B. Objective'lerini beyan eden authored dersler ve tanı item'ları AŞAMA 15'te yazıldı.
 - [ ] Waiver replay maliyeti (bir Objective'in satırlarında karesel, yalnız yeniden kurmada) → 18E.
 - [x] Raporu ve yeniden hesaplamayı gerçek bir koşudan sonra uygulamadan çağırmak: 16F'de görev koşusunun sonunda (D-128).
-- [ ] Ölçme oturumlarından sonra rapor ve `stateChangeRefs`'i doldurmak → 16G.
+- [ ] Ölçme oturumlarından sonra rapor ve `stateChangeRefs`'i doldurmak → 16H.
 - [x] Kalıcı `assessment_report` ve boylamsal geçmiş → 16B'de kapandı (D-123): saklı kanıttan yeniden oynatılan oturum aileleri.
 - [x] Curriculum paketinde transfer/artifact kapı alanları → 15H'de kapandı (D-121): standard Objective'de kapı yok; critical bir Objective yayımlanmadan önce alanlar saklanmalı (üretici reddeder).
 - [x] Topic durum makinesi (`TSM-v0` altı durum, `RVR-v0` §15 `weakening` dahil) → 16C'de türetiliyor (D-124).
 - [ ] 11C yüksek riskli duraklatma boşluk politikası → **18D** (kullanıcı kararı, D-102); o zamana kadar devam ettirilmez.
 - [ ] Remediation strateji rotalarından içerik: AŞAMA 15 alternatif anlatım ve misconception karşılaştırması yazdı; rota başına içerik → 20I. Misconception hafızası 14B'de kapandı (D-106). Rehberliğin azalması 14A'da kapandı: tutor esirgeyerek azaltmaz, scaffold planner seçimi ve görev instruction mode'uyla kanıtla azalır (`TEIP-v0` §5.4).
-- [ ] Geriye dönük contamination'ı oturum kapanınca uygulamadan çağırmak → 16G; izlerde dispozisyon nedeni → 16G (16C konu/zayıflık/İngilizce görünümlerini kurdu, dispozisyon nedenini izlerde göstermedi; düzeltmeyi kaydeden uygulama yoluyla birlikte).
+- [ ] Geriye dönük contamination'ı oturum kapanınca uygulamadan çağırmak → 16H; izlerde dispozisyon nedeni → 16H (16C konu/zayıflık/İngilizce görünümlerini kurdu, dispozisyon nedenini izlerde göstermedi; düzeltmeyi kaydeden uygulama yoluyla birlikte).
 - [x] Motorları kanıttan sonra uygulamadan yeniden kurmak: 16F'de koşu sonunda `RecomputeSkillState` (D-128).
-- [ ] `RebuildMastery`'nin `skill_state`'e kendi watermark'ını yazması → 16G.
+- [ ] `RebuildMastery`'nin `skill_state`'e kendi watermark'ını yazması → 16H.
 - [x] `skill_state.prerequisite_axis_state` → 16A'da kapandı (D-122): `AssembleSkillState` kapının Skill'deki yeni iş için verdiği eligibility'yi yazıyor; Progress okuması kapıyı yeniden soruyor (bağımlılar yeniden birleştirilmiyor, 18E).
 - [ ] Geciken tekrar aciliyet kovaları ve başarı bandı → 18C; uzun yokluk sonrası temsili kontrol → 18B.
 - [x] Önceki exposure kayıtlarının kanıt satırına katılması: 14A'da kapandı — `evidenceFor` gösterilmiş çözümü denemenin sırasına göre okuyor (D-105).
@@ -192,7 +196,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Retention due kovaları, `at_risk` ve weakness'ten doğan ihtiyaçlar → 13.
 - [x] Authored görevler ve paket biçimindeki görev bölümü → 15A'da kapandı (`[task]`, D-112).
 - [x] Kapasite ayarının saklanması: şema v9 `preference_record` (D-126); planlı varsayılan (gün başına profil takvimi) yok, 18B'de gözlemle.
-- [ ] `skill_state`in tek watermark'ı: 16A'da sunum artık satırın eksenlerinden türetiliyor ve satır `RecomputeSkillState`'in sonunda birleştiriliyor (D-122); `RebuildMastery` hâlâ kendi watermark'ını yazıyor, diğerleri `minOf` alıyor → 16G (uygulamadan yeniden hesaplamayla).
+- [ ] `skill_state`in tek watermark'ı: 16A'da sunum artık satırın eksenlerinden türetiliyor ve satır `RecomputeSkillState`'in sonunda birleştiriliyor (D-122); `RebuildMastery` hâlâ kendi watermark'ını yazıyor, diğerleri `minOf` alıyor → 16H (uygulamadan yeniden hesaplamayla).
 - [x] Prerequisite replan tetikleri (`PRG-v0` §19) 12D'de `ReplanTrigger` sözlüğünde.
 - [ ] Bağımlıların ters invalidation'ı → 18E; replan zaten sınırlı güncel durumdan yeniden üretiyor, bu bir optimizasyon.
 - [ ] Authored 950 prerequisite kenarının çoğu `draft`: AŞAMA 15 kendi alt-grafını yayımladı (77 kenar 15A–15F, 49 kenar 15H); kalanı her içerik paketi kendi alt-grafıyla yayımlar → 20.
@@ -202,7 +206,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] Motoru tetikleyen yol: 16F'de görev koşusunun sonunda recompute zinciri uygulamadan çağrılıyor (D-128).
 - [ ] Objective gate profilleri: AŞAMA 15'in 65 Objective'i `GRE-v0` varsayılanında (hepsi standard) → 18C kalibre eder.
 - [ ] Testlet grup rubric'i (`q_g`) → 14; şimdilik grup satırlarının ortalaması stand-in.
-- [ ] Gün özetine bildirilecek gerçek değişiklikler: 12A karar veriyor, recompute zinciri 13E'de; gün özetine bağlayan uygulama yolu → 16G.
+- [ ] Gün özetine bildirilecek gerçek değişiklikler: 12A karar veriyor, recompute zinciri 13E'de; gün özetine bağlayan uygulama yolu → 16H.
 - [x] Günler arası kalıcı öğrenme geçmişi ve `assessment_report` → 16B'de kapandı (D-123).
 - [x] Haftalık blueprint kompozisyonu (`WBA-v0`) 13A'da; aylık (`MCA-v0`) 13B'de.
 - [ ] 4096 karakterden büyük artifact gövdeleri için gerçek blob store → 14/15.

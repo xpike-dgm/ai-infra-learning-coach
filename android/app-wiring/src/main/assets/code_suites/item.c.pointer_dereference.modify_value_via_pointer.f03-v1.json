@@ -1,0 +1,47 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.pointer_dereference.modify_value_via_pointer.f03@v1",
+  "item": "item.c.pointer_dereference.modify_value_via_pointer.f03@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nvoid kucuk_basa(int *a, int *b);\n\nint main(void) {\n    int x = 0, y = 0;\n    scanf(\"%d %d\", &x, &y);\n    kucuk_basa(&x, &y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -c ders_test.c -o ders_test.o && gcc -g -fsanitize=address,undefined cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0",
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "swap_needed",
+      "stdin": "9 4\n",
+      "expected_stdout": "4 9\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "already_ordered",
+      "stdin": "2 8\n",
+      "expected_stdout": "2 8\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "equal",
+      "stdin": "5 5\n",
+      "expected_stdout": "5 5\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "negatives",
+      "stdin": "-1 -6\n",
+      "expected_stdout": "-6 -1\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.set_operations.demonstrate_capability.f05@v1",
+  "item": "item.python.set_operations.demonstrate_capability.f05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.ilk_tekrar(sys.argv[1:]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "second_repeats_first",
+      "args": [
+        "elma",
+        "armut",
+        "kiraz",
+        "armut",
+        "elma"
+      ],
+      "expected_stdout": "armut\n"
+    },
+    {
+      "id": "no_repeat",
+      "args": [
+        "a",
+        "b",
+        "c"
+      ],
+      "expected_stdout": "None\n"
+    },
+    {
+      "id": "adjacent",
+      "args": [
+        "x",
+        "x"
+      ],
+      "expected_stdout": "x\n"
+    },
+    {
+      "id": "empty",
+      "args": [],
+      "expected_stdout": "None\n"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.string_text_operations.demonstrate_capability.g10@v1",
+  "item": "item.python.string_text_operations.demonstrate_capability.g10@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.kaydir(sys.argv[1], int(sys.argv[2])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "wraps",
+      "args": [
+        "abc xyz!",
+        "2"
+      ],
+      "expected_stdout": "cde zab!\n"
+    },
+    {
+      "id": "zero",
+      "args": [
+        "merhaba",
+        "0"
+      ],
+      "expected_stdout": "merhaba\n"
+    },
+    {
+      "id": "full_circle",
+      "args": [
+        "kod",
+        "26"
+      ],
+      "expected_stdout": "kod\n"
+    },
+    {
+      "id": "uppercase_kept",
+      "args": [
+        "Ab",
+        "1"
+      ],
+      "expected_stdout": "Ac\n"
+    }
+  ]
+}

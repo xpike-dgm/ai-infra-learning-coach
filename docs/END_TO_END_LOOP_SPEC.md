@@ -138,3 +138,7 @@ Assistant defaults:
 **Not run: T6.** The run has not been seen on a device; its decisions and writes were run on the JVM through the same classes, on the real store with all eight packages.
 
 **Next step:** **16G — Uçtan uca günlük döngü: yardım ve ölçüm**. It needs a fresh PRE and the user's new explicit approval.
+
+---
+
+**16G note (2026-10-26, `D-130`):** `moved_to_16g` was split again by the user: help and judged answers inside the run are 16G's (`HLPX-v0`), and measurement from Today is the new 16H's (`D-131`). `A16F-03_answer_key_only` and `A16F-04_judged_by_the_key_only` were narrowed: an item is servable when the app can judge it at all, and the answer-key path still asks no AI. Details: `docs/RUN_HELP_SPEC.md`.

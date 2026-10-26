@@ -1,0 +1,342 @@
+model: HLPX-v0
+stage_step: 16G
+decision: D-130
+result: PASS
+checks_total: 105
+checks_passed: 105
+checks_failed: 0
+checks:
+- check: A16G-00_exists_run_help.yaml
+  result: PASS
+  details: missing arch\16g_run_help\run_help.yaml
+- check: A16G-00_exists_RUN_HELP_SPEC.md
+  result: PASS
+  details: missing docs\RUN_HELP_SPEC.md
+- check: A16G-00_exists_16g_run_help_research.md
+  result: PASS
+  details: missing research\16g_run_help_research.md
+- check: A16G-00_exists_DAILY_WORKING_FLOW_SPEC.md
+  result: PASS
+  details: missing docs\DAILY_WORKING_FLOW_SPEC.md
+- check: A16G-00_exists_ship_code_suites.py
+  result: PASS
+  details: missing tools\ship_code_suites.py
+- check: A16G-00_exists_code_test_runner.py
+  result: PASS
+  details: missing tools\code_test_runner.py
+- check: A16G-00_exists_TaskRunFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\TaskRunFacts.kt
+- check: A16G-00_exists_TutorFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\TutorFacts.kt
+- check: A16G-00_exists_Ports.kt
+  result: PASS
+  details: missing android\core-ports\src\main\kotlin\coach\ports\Ports.kt
+- check: A16G-00_exists_FileContentSource.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\FileContentSource.kt
+- check: A16G-00_exists_RunTask.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\RunTask.kt
+- check: A16G-00_exists_RunHelp.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\RunHelp.kt
+- check: A16G-00_exists_SubmitAttempt.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\SubmitAttempt.kt
+- check: A16G-00_exists_TaskRunPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\TaskRunPresentation.kt
+- check: A16G-00_exists_RunHelpPresentation.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\RunHelpPresentation.kt
+- check: A16G-00_exists_SessionState.kt
+  result: PASS
+  details: missing android\core-presentation\src\main\kotlin\coach\presentation\SessionState.kt
+- check: A16G-00_exists_TaskRunnerScreen.kt
+  result: PASS
+  details: missing android\app-ui\src\main\kotlin\coach\ui\TaskRunnerScreen.kt
+- check: A16G-00_exists_CoachApplication.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
+- check: A16G-00_exists_MainActivity.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
+- check: A16G-00_exists_TaskRunSession.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\TaskRunSession.kt
+- check: A16G-00_exists_TaskRunFlow.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\TaskRunFlow.kt
+- check: A16G-00_exists_AndroidManifest.xml
+  result: PASS
+  details: missing android\app-wiring\src\main\AndroidManifest.xml
+- check: A16G-00_exists_AndroidManifest.xml
+  result: PASS
+  details: missing android\app-wiring\src\withAi\AndroidManifest.xml
+- check: A16G-00_exists_TaskRunFactsTest.kt
+  result: PASS
+  details: missing android\core-model\src\test\kotlin\coach\model\TaskRunFactsTest.kt
+- check: A16G-00_exists_RunHelpPresentationTest.kt
+  result: PASS
+  details: missing android\core-presentation\src\test\kotlin\coach\presentation\RunHelpPresentationTest.kt
+- check: A16G-00_exists_RunHelpTest.kt
+  result: PASS
+  details: missing android\core-application\src\test\kotlin\coach\application\RunHelpTest.kt
+- check: A16G-00_exists_CodeSuiteTextTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\CodeSuiteTextTest.kt
+- check: A16G-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: A16G-01_model
+  result: PASS
+  details: ''
+- check: A16G-01_user_decisions
+  result: PASS
+  details: '{''approval'': ''explicit_user_approval_2026-10-26'', ''scope'': ''everything_inside_the_task_run_code_report_import_open_response_ai_and_self_check_tutor_panel_alternative_explanation_comprehension_check_wrong_answer_analysis_resuming_a_started_task'',
+    ''new_step'': ''16H_added_like_d_099_no_renumbering_daily_weekly_monthly_assessment_sessions_from_today_slot_session_ids_fast_path_dispositions_assessment_opportunity'',
+    ''code_transport'': ''copy_paste_the_app_gives_the_suite_and_the_runner_with_copy_buttons_the_learner_runs_them_on_the_pc_and_pastes_the_report_no_network_or_file_permission''}'
+- check: A16G-01_scope
+  result: PASS
+  details: ''
+- check: A16G-01_trux_rules_are_the_source
+  result: PASS
+  details: ''
+- check: A16G-01_items_recorded
+  result: PASS
+  details: '{''shipped'': 1112, ''by_kind'': {''answer_key'': 618, ''code_tests'':
+    480, ''rubric'': 14, ''not_judged_here'': 0}, ''suites_shipped'': 480, ''skills_with_a_runnable_task'':
+    {''with_answer_keys_only'': 36, ''with_shipped_suites'': 60, ''total'': 60}, ''written_comprehension_checks_shipped'':
+    0}'
+- check: A16G-01_16f_list_items_are_strings
+  result: PASS
+  details: the 16F contract's moved_to_16g
+- check: A16G-02_suites_equal_their_sources
+  result: PASS
+  details: sources=480 shipped=480 missing=0 extra=0
+- check: A16G-02_runner_equals_its_source
+  result: PASS
+  details: ''
+- check: A16G-02_ship_tool_checks
+  result: PASS
+  details: copies bytes, never rewrites
+- check: A16G-02_ports_defaulted
+  result: PASS
+  details: ''
+- check: A16G-02_suite_only_for_its_versions
+  result: PASS
+  details: ''
+- check: A16G-02_app_reads_its_assets
+  result: PASS
+  details: ''
+- check: A16G-03_kind_rules
+  result: PASS
+  details: no AI for a task that needs a verified result
+- check: A16G-03_servable_is_judgeable_and_usable
+  result: PASS
+  details: ''
+- check: A16G-04_nothing_measured_nothing_written
+  result: PASS
+  details: ''
+- check: A16G-04_blank_and_long_refused
+  result: PASS
+  details: ''
+- check: A16G-04_report_not_stored
+  result: PASS
+  details: the code is the artifact
+- check: A16G-04_comprehension_offered_after_code
+  result: PASS
+  details: ''
+- check: A16G-04_one_action_with_its_task
+  result: PASS
+  details: independence derived, never decided
+- check: A16G-05_frozen_first
+  result: PASS
+  details: the answer is in the store before any evaluator is asked
+- check: A16G-05_pending_has_no_evidence
+  result: PASS
+  details: ''
+- check: A16G-05_same_attempt_on_request
+  result: PASS
+  details: ''
+- check: A16G-05_no_automatic_retry
+  result: PASS
+  details: ''
+- check: A16G-05_self_check_is_14f
+  result: PASS
+  details: ''
+- check: A16G-06_rules_decide_readiness
+  result: PASS
+  details: ''
+- check: A16G-06_after_freeze_recorded_on_the_attempt
+  result: PASS
+  details: only shown help, only after the answer froze
+- check: A16G-06_same_shape_as_submission
+  result: PASS
+  details: '[''attempt_id'', ''level'', ''timing'', ''target_scope'', ''source'',
+    ''requested_by_user'']'
+- check: A16G-06_during_attempt_travels_with_it
+  result: PASS
+  details: ''
+- check: A16G-06_only_tutor_context_leaves
+  result: PASS
+  details: ''
+- check: A16G-06_failure_timing
+  result: PASS
+  details: ''
+- check: A16G-06_no_gloss_guessed
+  result: PASS
+  details: ''
+- check: A16G-06_asks_that_fit
+  result: PASS
+  details: ''
+- check: A16G-06_explanation_is_14c
+  result: PASS
+  details: ''
+- check: A16G-06_not_shown_is_no_fault
+  result: PASS
+  details: ''
+- check: A16G-07_wrong_answer_is_14b
+  result: PASS
+  details: read from the stored attribution, after a wrong answer only
+- check: A16G-07_comprehension_is_14e
+  result: PASS
+  details: a skip writes nothing; teach is practice
+- check: A16G-07_practice_is_labelled
+  result: PASS
+  details: written first, the tutor's question is practice
+- check: A16G-08_boundary_only
+  result: PASS
+  details: ''
+- check: A16G-08_policy_decides
+  result: PASS
+  details: ''
+- check: A16G-08_kind_is_the_policy_s
+  result: PASS
+  details: ''
+- check: A16G-08_saved_state_only_after_durable
+  result: PASS
+  details: ''
+- check: A16G-08_high_stakes_marked
+  result: PASS
+  details: ''
+- check: A16G-08_today_offers_no_checkpoint
+  result: PASS
+  details: ''
+- check: A16G-09_no_verdict_words
+  result: PASS
+  details: '[]'
+- check: A16G-09_code_never_reveals
+  result: PASS
+  details: ''
+- check: A16G-09_unmeasured_is_not_wrong
+  result: PASS
+  details: ''
+- check: A16G-09_screen_decides_nothing
+  result: PASS
+  details: ''
+- check: A16G-09_clipboard_only
+  result: PASS
+  details: ''
+- check: A16G-09_no_permission_added
+  result: PASS
+  details: ''
+- check: A16G-09_exit_still_first
+  result: PASS
+  details: ''
+- check: A16G-09_help_always_reachable
+  result: PASS
+  details: in a question and after an answer
+- check: A16G-09_wired_in_core_order
+  result: PASS
+  details: ''
+- check: A16G-10_rest_moved_not_claimed
+  result: PASS
+  details: '4'
+- check: A16G-10_16h_in_the_plan
+  result: PASS
+  details: the step's own checklist lines
+- check: A16G-11_test_a_pending_evaluation_is_recorded_with_no
+  result: PASS
+  details: 'TaskRunFactsTest.kt: a pending evaluation is recorded with no evidence,
+    and an answer is either recorded or says why nothing was'
+- check: A16G-11_test_the_asks_that_fit_the_moment_are_offered
+  result: PASS
+  details: 'RunHelpPresentationTest.kt: the asks that fit the moment are offered,
+    and a gloss is never guessed'
+- check: A16G-11_test_what_an_ask_still_needs_is_shown_in_the
+  result: PASS
+  details: 'RunHelpPresentationTest.kt: what an ask still needs is shown in the rules''
+    order, and nothing is a fault'
+- check: A16G-11_test_an_open_help_panel_is_assistance_open_a
+  result: PASS
+  details: 'RunHelpPresentationTest.kt: an open help panel is assistance open, and
+    only a boundary between questions can be a safe checkpoint'
+- check: A16G-11_test_while_the_answer_is_open_the_ask_is_duri
+  result: PASS
+  details: 'RunHelpTest.kt: while the answer is open the ask is during the attempt,
+    keeps the learner''s level and carries no answer'
+- check: A16G-11_test_the_shipped_suite_is_served_for_its_own
+  result: PASS
+  details: 'CodeSuiteTextTest.kt: the shipped suite is served for its own item version
+    and suite version only'
+- check: A16G-11_test_every_shipped_suite_is_served_for_exactl
+  result: PASS
+  details: 'ShippedCourseTest.kt: every shipped suite is served for exactly its item
+    version, and the runner ships as the course authored it'
+- check: A16G-11_test_with_the_shipped_suites_every_skill_has
+  result: PASS
+  details: 'ShippedCourseTest.kt: with the shipped suites every Skill has a task the
+    app can run, where an answer key alone left the coding Skills out'
+- check: A16G-11_test_a_code_answer_is_judged_by_the_course_s
+  result: PASS
+  details: 'ShippedCourseTest.kt: a code answer is judged by the course''s tests from
+    the pasted report, and a report that measures nothing writes nothing'
+- check: A16G-11_test_an_open_answer_waits_when_no_evaluator_a
+  result: PASS
+  details: 'ShippedCourseTest.kt: an open answer waits when no evaluator answers,
+    is judged again only when asked, and the rubric is the learner''s own check'
+- check: A16G-11_test_help_after_an_answer_froze_is_recorded_o
+  result: PASS
+  details: 'ShippedCourseTest.kt: help after an answer froze is recorded on that attempt,
+    and help that was not shown is recorded nowhere'
+- check: A16G-11_test_a_pause_between_questions_writes_one_che
+  result: PASS
+  details: 'ShippedCourseTest.kt: a pause between questions writes one checkpoint
+    the planner can read, and nothing is written when nothing is left'
+- check: A16G-12_narrowed_gates_marked
+  result: PASS
+  details: 'one marker per narrowed check: [''tools/validate_end_to_end_loop.py'',
+    ''tools/validate_python_foundations.py'']'
+- check: A16G-13_kotlin_mutation_all_detected
+  result: PASS
+  details: 31/31
+- check: A16G-13_kotlin_crash_not_detection
+  result: PASS
+  details: ''
+- check: A16G-13_validator_mutation
+  result: PASS
+  details: '50'
+- check: A16G-13_runs_pass
+  result: PASS
+  details: ''
+- check: A16G-13_device_not_claimed
+  result: PASS
+  details: ''
+- check: A16G-13_no_claim_words
+  result: PASS
+  details: ''
+- check: A16G-14_decisions
+  result: PASS
+  details: ''
+- check: A16G-14_spec_accepted
+  result: PASS
+  details: ''
+- check: A16G-14_spec_next_is_16h
+  result: PASS
+  details: ''
+- check: A16G-14_research_sources
+  result: PASS
+  details: ''

@@ -1,0 +1,43 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.while_termination.write_terminating_loop.f05@v1",
+  "item": "item.python.while_termination.write_terminating_loop.f05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "four_months",
+      "stdin": "100\n50\n300\n",
+      "expected_stdout": "4\n"
+    },
+    {
+      "id": "already_there",
+      "stdin": "500\n10\n300\n",
+      "expected_stdout": "0\n"
+    },
+    {
+      "id": "exact_hit",
+      "stdin": "0\n25\n100\n",
+      "expected_stdout": "4\n"
+    },
+    {
+      "id": "overshoot",
+      "stdin": "10\n40\n100\n",
+      "expected_stdout": "3\n"
+    }
+  ]
+}

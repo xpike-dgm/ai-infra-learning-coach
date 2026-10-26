@@ -1,0 +1,38 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.conditionals.write_branch_logic.g03@v1",
+  "item": "item.python.conditionals.write_branch_logic.g03@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "correct",
+      "stdin": "acik123\n",
+      "expected_stdout": "giriş\n"
+    },
+    {
+      "id": "wrong",
+      "stdin": "acik12\n",
+      "expected_stdout": "red\n"
+    },
+    {
+      "id": "case_differs",
+      "stdin": "Acik123\n",
+      "expected_stdout": "red\n"
+    }
+  ]
+}

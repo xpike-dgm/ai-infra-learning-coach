@@ -331,6 +331,16 @@ interface ContentPort {
      * read is never started.
      */
     fun authoredTask(ref: VersionedRef): AuthoredTask? = null
+
+    /**
+     * The `code_test_suite/1` text the learner copies to run one pinned code item's tests on their computer (16G, user
+     * decision: copy-paste). Content (15), shipped as authored. A refinement of this port, not a new one; `null` when no
+     * suite for exactly this item version and this suite version ships, and a code item without one is not served.
+     */
+    fun codeSuiteText(item: VersionedRef): String? = null
+
+    /** The course's PC runner (`code_test_runner.py`, 14D) as shipped, for the learner to copy once (16G); `null` if absent. */
+    fun codeRunnerText(): String? = null
 }
 
 /**

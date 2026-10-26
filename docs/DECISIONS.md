@@ -2247,3 +2247,70 @@ Ayrıntı: `docs/END_TO_END_LOOP_SPEC.md`.
 - 16G, AŞAMA 16'nın sonuna, D-099 ve D-125 gibi eklenir; yeniden numaralama yoktur. Sıra: 16F → 16G → 17A.
 - 16G'nin girdileri `arch/16f_end_to_end_loop/end_to_end_loop.yaml`'ın `moved_to_16g` listesidir: tutor paneli, alternatif anlatım, anlama kontrolü, yanlış cevap analizi, kod raporu, açık uçlu AI değerlendirmesi ve öz-kontrol, hızlı yol, Today'den ölçme oturumları ve slotların oturum kimliği, dispozisyonlar ve `assessment_opportunity`, başlanmış bir görevi checkpoint'ten devam ettirmek.
 
+## D-130 — Görev içinde yardım ve değerlendirilen cevaplar = HLPX-v0
+**Durum:** Kabul edildi — 2026-10-26
+
+- 16G final modeli `HLPX-v0 — help and judged answers inside a planned task run: code judged by the course's tests from a pasted report, open answers by their rubric, the tutor, another explanation, what a wrong answer said, the comprehension check and a durable pause` oldu.
+  - Öğrenci bir görevin içinde kodunu dersin testleriyle, açık cevabını rubric'iyle değerlendirtebiliyor; yardım isteyebiliyor, başka bir anlatım seçebiliyor, yanlış cevabının ne söylediğini görebiliyor, yazmadığı kodu anladığını gösterebiliyor ve güvenli bir noktada duraklatabiliyor.
+- **Kaynaklar:**
+  - canonical spec: `docs/RUN_HELP_SPEC.md`;
+  - machine-readable contract: `arch/16g_run_help/run_help.yaml`;
+  - research: `research/16g_run_help_research.md`;
+  - validator: `tools/validate_run_help.py`;
+  - kod: `core-ports` (`codeSuiteText`, `codeRunnerText`), `data-curriculum` (`FileContentSource` suite ve koşucu okuyucuları), `core-model` (`RunItemKind`, `RunAnswer`, `AnsweredItem.pending`), `core-application` (`RunTask.kt` — `RunItems`, `answerCode`, `answerOpen`, `reevaluate`, `selfCheck`; `RunHelp.kt`), `core-presentation` (`TaskRunPresentation.kt`, `RunHelpPresentation.kt`), `app-ui` (`TaskRunnerScreen.kt`), `app-wiring` (`TaskRunFlow`, `TaskRunSession`, `CoachApplication`, `MainActivity`; varlıklar `code_suites/`, `code_test_runner.py`), `tools/ship_code_suites.py`.
+- Ana invariant: **bir görevin içinde her hüküm dersin, her kural önceki bir adımındır.**
+  - Kod yalnız dersin kendi testleriyle değerlendirilir; öğrenci testleri uygulamanın kopyalamak için verdiği suite ve koşucuyla bilgisayarında çalıştırır. Okunamayan, başka bir item ya da suite için olan, ortam hatası bildiren rapor hiçbir şey ölçmez ve hiçbir şey yazılmaz.
+  - Açık cevap önce donar, sonra rubric'iyle kriter kriter ve en çok provisional değerlendirilir; değerlendirici yoksa bekler, asla yanlış değildir ve yalnız öğrenci isteyince yeniden değerlendirilir.
+  - Yardım her zaman bir adım uzakta; kurallar hazır demeden hiçbir şey gönderilmez. Cevap açıkken gösterilen yardım denemeyle gider, donduktan sonra gösterilen o denemeye kaydedilir, gösterilmeyen hiçbir yerde kaydedilmez.
+  - Yanlış cevap motorların zaten yaptığı atıftan okunur. Öğrencinin tek başına yazmadığı kodun ardından anlama kontrolü gelir. Duraklatma yalnız duraklatma politikasının doğruladığı bir sınırda, tek checkpoint olarak kaydedilir; yüksek riskli duraklatma işaretlenir.
+- **Kullanıcı kararları (2026-10-26, açık onayla — "merge et ve 16G ye başla"):**
+  - kapsam: görev içindeki her şey — kod raporu, açık uçlu AI değerlendirmesi ve öz-kontrol, tutor paneli, alternatif anlatım, anlama kontrolü, yanlış cevap analizi, başlanmış bir görevi sürdürmek; Today'den ölçme yeni 16H'ye (D-131);
+  - kod taşıma: kopyala-yapıştır — uygulama suite metnini ve koşucuyu Kopyala düğmeleriyle verir, öğrenci PC'de çalıştırır ve raporu geri yapıştırır; ağ ya da dosya izni yok.
+- **Asistanın varsayılan seçimleri:**
+  - Suite'ler yazıldığı gibi sevk edilir: `tools/ship_code_suites.py` 480 `code_test_suite/1` dosyasını bayt bayt `<item logical id>-v<N>.json` adıyla ve 14D koşucusunu `code_test_runner.py` olarak kopyalar; `--check` sevk edilen kümeyi kaynaklara eşit tutar.
+  - Bir suite yalnız tam olarak paketin beyan ettiği item sürümü ve suite sürümü için, kendi biçiminde sunulur; sevk edilmiş suite'i olmayan kod item'ı hiç sunulmaz.
+  - Bir item uygulama onu değerlendirebildiğinde sunulabilir: cevap anahtarı, sevk edilmiş suite'iyle dersin testleri ya da görevi provisional sonuca izin veren bir rubric; 11D'nin `usable` kuralı yine geçerli.
+  - Yapıştırılan rapor okunur, saklanmaz; denemenin artifact'i koddur ve kanıt suite sürümünü adlandırır.
+  - Açık cevap önce donar, sonra değerlendiriciye sorulur; yanıt yoksa deneme kanıtsız `evaluation_pending` kalır ve yeniden istemek aynı denemeyi onunla kaydedilmiş bağımsızlıkla değerlendirir.
+  - Yardım store thread'inde koşar: tutor'un gösterdiği ve değerlendiricinin söylediği aynı işte yazılır; deponun tek yazıcısı vardır.
+  - Sunulan istekler: cevap açıkken ipucu, kavramı başka türlü, soru; donduktan sonra cevabımı açıkla, kavramı başka türlü, soru. Gloss sunulmaz: hangi parçanın öğrenme hedefi olduğu görev metadata'sıdır (`TEIP-v0` §4), hiçbir görev beyan etmiyor ve tahmin yasak.
+  - Talimat kipi `turkish_primary`: sevk edilen her görev Türkçe öncelikli ve hiçbiri başkasını beyan etmiyor.
+  - Cevap donduktan sonra zamanlama, tam eşleşmediyse `after_failure`, aksi hâlde `after_submit`; seviye sorulmaz (14A).
+  - Donduktan sonra gösterilen yardım o denemeye `SubmitAttempt`'in yazdığı biçimde bir `assistance_event` olarak eklenir; donmuş cevabın kanıtladığını değiştirmez.
+  - Tek başına cevaplanan yazılı anlama kontrolü bağımsızdır; öğretim görevinde tasarım gereği pratiktir (`AssistanceInterpretation`).
+  - Yanlış cevap özeti, kanıt yazan eşleşmeyen ya da kısmen eşleşen bir cevaptan sonra saklı atıftan okunur; hiçbir şey yazmaz.
+  - Duraklatma yalnız sorular arasında sunulur; sınır dört güvenli checkpoint koşulunu, bir yardım yanıtı yolda ya da bir değerlendirme beklemede değilse doğrular; ölçen amaç (`assess`, `retain`, `diagnose`) `high_stakes_pause` olarak duraklar.
+  - Sürdürmek planner'ındır (`TRUX-v0` §7.3, 12D): checkpoint, açık bir `continue_learning` ihtiyacını bir sonraki planda duraklatılmış iş yapar; Today checkpoint sunmaz (11C).
+- **Beyan edilmiş uzantılar:**
+  - varsayılanlı port inceltmeleri `ContentPort.codeSuiteText`, `codeRunnerText`; port sayısı değişmedi;
+  - `FileContentSource` suite ve koşucu okuyucuları; `RunItems`, `RunTask.answerCode`/`answerOpen`/`reevaluate`/`selfCheck`, `RunHelp`; `AnsweredItem.pending`/`artifactId`/`independence`, `RunAnswer`, `RunItemKind`; `TaskRunStage` alanları, `Paused`, `HelpView`, `HelpPanel`, `ComprehensionView`, `RunHelpPresentation`; `RunHelp.pause` `PausePolicy`'nin verdiği türü alır.
+- **Bulunanlar:**
+  - Kullanıcı döngünün geri kalanını yeniden böldü (→ D-131).
+  - Artık her Skill'in uygulamanın çalıştırabildiği bir görevi var: yalnız cevap anahtarıyla 60 Skill'in 36'sı, sevk edilen suite'lerle 60'ı; 1112 item'ın 618'i cevap anahtarıyla, 480'i dersin testleriyle, 14'ü rubric'le değerlendiriliyor, hiçbiri değerlendirilmeden kalmıyor.
+  - Hiçbir sevk edilen paket yazılı bir anlama kontrolü içermiyor; bugün ardından gelen tutor'un pratik sorusu (asla kanıt değil); yazılı yol tek bir yazılmış kontrolle test edildi.
+  - On dört rubric item'ının hepsi provisional sonuca izin veriyor.
+  - Bir duraklatma yalnız ihtiyaç `continue_learning` olduğunda sürdürülen iş olur (12D); öğretim görevi `new_learning`'e hizmet ettiği için checkpoint yeri kaydeder ama ihtiyacı yükseltmez.
+  - 16F kontratının `moved_to_16g` listesinde bir eşleme olarak okunan bir madde vardı; yeniden yazıldı.
+  - 16F'nin iki kontrolü (`A16F-03_answer_key_only`, `A16F-04_judged_by_the_key_only`) ve 15B'nin `E15B-10_app_reads_later_packages` kontrolü (içerik kaynağı çağrısını sabitliyordu) "Narrowed at 16G" ile daraltıldı.
+- **Doğrulama:**
+  - Kotlin mutation 31/31, validator mutation 50/50; kontrol mutantları hayatta kaldı.
+  - Validator 105/105 PASS.
+  - 1257 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS; APK'lardaki suite'ler ve koşucu kaynaklarına eşit, yeni izin yok.
+  - Sweep 69/70 (validate_content_qa.py not run: disk space; its inputs unchanged).
+- Çalıştırılmayan: **T6** ve canlı sağlayıcı çağrısı. Koşu cihazda görülmedi.
+- **Açık loop'lar:**
+  - Today'den ölçme (16H, D-131).
+  - Paketlerde yazılı anlama kontrolleri (20I).
+  - Koşu cilası (17).
+  - Koşu, Kopyala düğmeleri ve tutor cihazda ve T6 (19).
+- Sonraki numbered step `16H — Uçtan uca günlük döngü: ölçme oturumları`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/RUN_HELP_SPEC.md`.
+
+## D-131 — 16H eklendi: Uçtan uca günlük döngü — ölçme oturumları
+**Durum:** Kabul edildi — 2026-10-26 (kullanıcı kararı)
+
+- 16F'nin `moved_to_16g` listesi hem görev içindeki yardımı hem Today'den ölçmeyi taşıyordu.
+- Kullanıcı 16G'yi böldü: 16G görev içindeki her şeyi taşır (D-130); Today'den ölçme yeni bir adıma, **16H — Uçtan uca günlük döngü: ölçme oturumları**na gider.
+- 16H, AŞAMA 16'nın sonuna, D-099, D-125 ve D-129 gibi eklenir; yeniden numaralama yoktur. Sıra: 16G → 16H → 17A.
+- 16H'nin girdileri `arch/16g_run_help/run_help.yaml`'ın `moved_to_16h` listesidir: Today'den başlatılan günlük, haftalık ve aylık ölçme oturumları ve slotların oturum kimliği; hızlı yolun girişi ve kullanım durumları, tanısal kaynak olarak giriş yerleştirmesi; uygulamadan kaydedilen dispozisyonlar ve izlerdeki dispozisyon nedeni; `assessment_opportunity`.

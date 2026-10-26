@@ -1,0 +1,52 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.string_text_operations.demonstrate_capability.f05@v1",
+  "item": "item.python.string_text_operations.demonstrate_capability.f05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nsonuc = cozum.tr_buyuk(sys.argv[1])\nprint(sonuc, len(sonuc))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "dotless_and_dotted",
+      "args": [
+        "ışık izmir"
+      ],
+      "expected_stdout": "IŞIK İZMİR 10\n"
+    },
+    {
+      "id": "dotted_only",
+      "args": [
+        "inci"
+      ],
+      "expected_stdout": "İNCİ 4\n"
+    },
+    {
+      "id": "plain",
+      "args": [
+        "Ankara"
+      ],
+      "expected_stdout": "ANKARA 6\n"
+    },
+    {
+      "id": "already_upper",
+      "args": [
+        "KIŞ"
+      ],
+      "expected_stdout": "KIŞ 3\n"
+    }
+  ]
+}

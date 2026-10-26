@@ -1,0 +1,55 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.standard_io_basic.demonstrate_capability.f03@v1",
+  "item": "item.c.standard_io_basic.demonstrate_capability.f03@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "both",
+      "stdin": "9 4\n",
+      "expected_stdout": "5\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "only_one",
+      "stdin": "9\n",
+      "expected_stdout": "Eksik giris\n",
+      "expected_exit_code": 2
+    },
+    {
+      "id": "second_not_a_number",
+      "stdin": "9 dort\n",
+      "expected_stdout": "Eksik giris\n",
+      "expected_exit_code": 2
+    },
+    {
+      "id": "empty",
+      "stdin": "",
+      "expected_stdout": "Eksik giris\n",
+      "expected_exit_code": 2
+    },
+    {
+      "id": "negative_result",
+      "stdin": "3 10\n",
+      "expected_stdout": "-7\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

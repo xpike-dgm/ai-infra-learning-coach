@@ -198,3 +198,7 @@ Next numbered step: **11C — Session state**. It owns the resume checkpoint's c
 ---
 
 **16F note (2026-10-26, `D-128`):** the five entry conditions are now confirmed from engine facts (`OpenTask`: the store, the gate, the open needs, the authored task), exactly as §4.1 said they would be — the rule was not loosened. `planned_task_ref` (§5.3) is `attempt.planned_task_id` (schema v11). The runner serves a task's unseen answer-key questions and hands each frozen answer to the evidence pipeline. Details: `docs/END_TO_END_LOOP_SPEC.md`.
+
+---
+
+**16G note (2026-10-26, `D-130`):** the runner now also serves code items (judged by the course's tests from a report the learner pastes; a report that measures nothing writes nothing) and open answers (judged by their rubric, provisional at most; with no evaluator the attempt stays `evaluation_pending`). Help is one action away and `TutorRules.prepare` decides when an ask is sent; help shown after the answer froze is recorded on that attempt. A durable pause is offered between questions only, as `PausePolicy` decides. Details: `docs/RUN_HELP_SPEC.md`.

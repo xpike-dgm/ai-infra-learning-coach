@@ -1,0 +1,31 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.functions_basic.write_and_call_function.g09@v1",
+  "item": "item.c.functions_basic.write_and_call_function.g09@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nint ters(int n);\n\nint main(void) {\n    int n = 0;\n    while (scanf(\"%d\", &n) == 1) {\n        printf(\"%d %d\\n\", ters(n), ters(ters(n)));\n    }\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -c ders_test.c -o ders_test.o && gcc cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "values",
+      "stdin": "1230 456 7\n",
+      "expected_stdout": "321 123\n654 456\n7 7\n"
+    },
+    {
+      "id": "zero",
+      "stdin": "0\n",
+      "expected_stdout": "0 0\n"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.modules_imports_basic.import_and_use_module_member.g10@v1",
+  "item": "item.python.modules_imports_basic.import_and_use_module_member.g10@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.tam_kare_mi(int(sys.argv[1])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "square",
+      "args": [
+        "49"
+      ],
+      "expected_stdout": "True\n"
+    },
+    {
+      "id": "not_square",
+      "args": [
+        "50"
+      ],
+      "expected_stdout": "False\n"
+    },
+    {
+      "id": "zero",
+      "args": [
+        "0"
+      ],
+      "expected_stdout": "True\n"
+    },
+    {
+      "id": "one_below",
+      "args": [
+        "15"
+      ],
+      "expected_stdout": "False\n"
+    },
+    {
+      "id": "large",
+      "args": [
+        "1000000"
+      ],
+      "expected_stdout": "True\n"
+    }
+  ]
+}

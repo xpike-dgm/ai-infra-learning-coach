@@ -217,7 +217,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **16D — Ayarlar** — `STGX-v0 / D-126`
 - [x] **16E — Bildirimler** — `RMDX-v0 / D-127`
 - [x] **16F — Uçtan uca günlük döngü** — `D-125` ile eklendi (yeniden numaralama yok) — `E2EX-v0 / D-128`
-- [ ] **16G — Uçtan uca günlük döngü: yardım ve ölçüm** — `D-129` ile eklendi (yeniden numaralama yok) **AKTİF**
+- [x] **16G — Uçtan uca günlük döngü: yardım ve ölçüm** — `D-129` ile eklendi (yeniden numaralama yok) — `HLPX-v0 / D-130`
+- [ ] **16H — Uçtan uca günlük döngü: ölçme oturumları** — `D-131` ile eklendi (yeniden numaralama yok) **AKTİF**
 
 ---
 
@@ -265,9 +266,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16F`  
-**Son tamamlanan:** **`16F — E2EX-v0 / D-128`**  
-**Aktif:** **`16G — Uçtan uca günlük döngü: yardım ve ölçüm`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16G`  
+**Son tamamlanan:** **`16G — HLPX-v0 / D-130`**  
+**Aktif:** **`16H — Uçtan uca günlük döngü: ölçme oturumları`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -347,4 +348,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 `D-129`: `16G — Uçtan uca günlük döngü: yardım ve ölçüm` AŞAMA 16'nın sonuna eklendi; girdileri 16F kontratının `moved_to_16g` listesi.
 
-16G başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+16G `HLPX-v0` ile görev içindeki yardım ve değerlendirilen cevaplar kodda: bir görevin içinde her hüküm dersin, her kural önceki bir adımındır: kod yalnız dersin testleriyle, öğrencinin bilgisayarında, uygulamanın kopyalamak için verdiği suite ve koşucuyla değerlendirilir ve hiçbir şey ölçmeyen rapor hiçbir şey yazmaz; açık cevap önce donar, sonra rubric'iyle en çok provisional değerlendirilir, değerlendirici yoksa bekler ve yalnız öğrenci isteyince yeniden değerlendirilir; yardım her zaman bir adım uzaktadır, kurallar hazır demeden gönderilmez, gösterilen yardım bir kez ve doğru denemeye kaydedilir, gösterilmeyen hiçbir yerde; yanlış cevap motorların atfından okunur, tek başına yazılmayan kodun ardından anlama kontrolü gelir ve duraklatma yalnız politikanın doğruladığı bir sınırda tek checkpoint olarak kaydedilir. Bulunanlar: kullanıcı döngünün geri kalanını yeniden böldü ve Today'den ölçme yeni 16H'ye gitti (D-131); artık 60 Skill'in hepsinin uygulamanın çalıştırabildiği bir görevi var (yalnız cevap anahtarıyla 36'ydı) ve 1112 item'ın 618'i anahtarla, 480'i testlerle, 14'ü rubric'le değerlendiriliyor; hiçbir sevk edilen paket yazılı bir anlama kontrolü içermiyor; on dört rubric item'ının hepsi provisional sonuca izin veriyor; bir duraklatma yalnız ihtiyaç `continue_learning` olduğunda sürdürülen iş olur; açık cevap ilk taslakta donmadan önce değerlendiriliyordu ve düzeltildi. T6 çalıştırılmadı.
+
+`D-131`: `16H — Uçtan uca günlük döngü: ölçme oturumları` AŞAMA 16'nın sonuna eklendi; girdileri 16G kontratının `moved_to_16h` listesi.
+
+16H başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

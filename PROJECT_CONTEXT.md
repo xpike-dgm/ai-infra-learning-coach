@@ -253,12 +253,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **16D ✅ Ayarlar — STGX-v0 / D-126**
 - **16E ✅ Bildirimler — RMDX-v0 / D-127**
 - **16F ✅ Uçtan uca günlük döngü — E2EX-v0 / D-128**
-- **16G 🟡 Uçtan uca günlük döngü: yardım ve ölçüm — AKTİF, HENÜZ YÜRÜTÜLMEDİ (D-129 ile eklendi)**
+- **16G ✅ Uçtan uca günlük döngü: yardım ve ölçüm — HLPX-v0 / D-130**
+- **16H 🟡 Uçtan uca günlük döngü: ölçme oturumları — AKTİF, HENÜZ YÜRÜTÜLMEDİ (D-131 ile eklendi)**
 - 16–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 16G'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 16H'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -805,4 +806,14 @@ Bulunanlar: kullanıcı döngüyü yeniden böldü ve geri kalanı yeni 16G'ye g
 Onay kullanıcının 2026-10-25 açık onayı ("merge et ve 16F ye başla"). Kullanıcı kararları: yalnız çekirdek döngü, kalanı 16G'ye (D-129); gönderince yalnız doğru/yanlış, doğru cevabı görmek ayrı ve isteğe bağlı, H4 olarak kaydedilir. Şema v11 `attempt.planned_task_id`; varsayılanlı port inceltmeleri `startedPlannedTasks`, `authoredTask`. Kotlin mutation 29/29, validator mutation 44/44; 104/104 QA PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/END_TO_END_LOOP_SPEC.md` / D-128.
+
+## 12.51 16G Uçtan uca günlük döngü: yardım ve ölçüm — HLPX-v0 / D-130 (ve D-131: 16H eklendi)
+
+Öğrenci artık bir görevin içinde kodunu dersin testleriyle (suite ve koşucuyu kopyalayıp PC'de çalıştırarak, raporu yapıştırarak), açık cevabını rubric'iyle değerlendirtebiliyor; yardım isteyebiliyor, başka bir anlatım seçebiliyor, yanlış cevabının ne söylediğini görebiliyor, yazmadığı kodu anladığını gösterebiliyor ve güvenli bir noktada duraklatabiliyor. Ana invariant: **bir görevin içinde her hüküm dersin, her kural önceki bir adımındır: kod yalnız dersin testleriyle, öğrencinin bilgisayarında, uygulamanın kopyalamak için verdiği suite ve koşucuyla değerlendirilir ve hiçbir şey ölçmeyen rapor hiçbir şey yazmaz; açık cevap önce donar, sonra rubric'iyle en çok provisional değerlendirilir, değerlendirici yoksa bekler ve yalnız öğrenci isteyince yeniden değerlendirilir; yardım her zaman bir adım uzaktadır, kurallar hazır demeden gönderilmez, gösterilen yardım bir kez ve doğru denemeye kaydedilir, gösterilmeyen hiçbir yerde; yanlış cevap motorların atfından okunur, tek başına yazılmayan kodun ardından anlama kontrolü gelir ve duraklatma yalnız politikanın doğruladığı bir sınırda tek checkpoint olarak kaydedilir.**
+
+Bulunanlar: kullanıcı döngünün geri kalanını yeniden böldü ve Today'den ölçme yeni 16H'ye gitti (D-131); artık 60 Skill'in hepsinin uygulamanın çalıştırabildiği bir görevi var (yalnız cevap anahtarıyla 36'ydı) ve 1112 item'ın 618'i anahtarla, 480'i testlerle, 14'ü rubric'le değerlendiriliyor; hiçbir sevk edilen paket yazılı bir anlama kontrolü içermiyor; on dört rubric item'ının hepsi provisional sonuca izin veriyor; bir duraklatma yalnız ihtiyaç `continue_learning` olduğunda sürdürülen iş olur; açık cevap ilk taslakta donmadan önce değerlendiriliyordu ve düzeltildi.
+
+Onay kullanıcının 2026-10-26 açık onayı ("merge et ve 16G ye başla"). Kullanıcı kararları: görev içindeki her şey 16G'de, Today'den ölçme yeni 16H'de (D-131); kod taşıma kopyala-yapıştır — uygulama suite'i ve koşucuyu Kopyala düğmeleriyle verir, öğrenci PC'de çalıştırıp raporu yapıştırır, ağ ya da dosya izni yok. Şema değişmedi; varsayılanlı port inceltmeleri `codeSuiteText`, `codeRunnerText`; `tools/ship_code_suites.py`. Kotlin mutation 31/31, validator mutation 50/50; 105/105 QA PASS. T6 ve canlı sağlayıcı çağrısı çalıştırılmadı.
+
+Canonical: `docs/RUN_HELP_SPEC.md` / D-130.
 

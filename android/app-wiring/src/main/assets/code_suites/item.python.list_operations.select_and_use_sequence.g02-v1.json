@@ -1,0 +1,50 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.list_operations.select_and_use_sequence.g02@v1",
+  "item": "item.python.list_operations.select_and_use_sequence.g02@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nliste = [int(x) for x in sys.argv[1:-1]]\nsonuc = cozum.katlari(liste, int(sys.argv[-1]))\nprint(sonuc, liste)"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "example",
+      "args": [
+        "1",
+        "4",
+        "2",
+        "3"
+      ],
+      "expected_stdout": "[3, 12, 6] [1, 4, 2]\n"
+    },
+    {
+      "id": "empty",
+      "args": [
+        "5"
+      ],
+      "expected_stdout": "[] []\n"
+    },
+    {
+      "id": "zero_factor",
+      "args": [
+        "7",
+        "-2",
+        "0"
+      ],
+      "expected_stdout": "[0, 0] [7, -2]\n"
+    }
+  ]
+}

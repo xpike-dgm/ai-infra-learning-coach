@@ -174,3 +174,7 @@ A key's verdict: the answer matched an accepted answer, or did not. An AI's judg
 If accepted, 14F becomes `OREX-v0 / D-110`.
 
 Next numbered step: **14G — Provider abstraction/fallback**. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**16G note (2026-10-26, `D-130`):** the run serves rubric items only when their task allows a provisional result and an evaluator is available. The answer freezes first; with no evaluator answer it stays `evaluation_pending`, and *Yeniden değerlendirilsin* judges the same attempt only when the learner asks. The self-check shows the rubric as practice. All 14 shipped rubric items allow a provisional result. Details: `docs/RUN_HELP_SPEC.md`.

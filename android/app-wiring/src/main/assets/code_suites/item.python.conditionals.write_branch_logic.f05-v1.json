@@ -1,0 +1,43 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.conditionals.write_branch_logic.f05@v1",
+  "item": "item.python.conditionals.write_branch_logic.f05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "second_larger",
+      "stdin": "3\n7\n",
+      "expected_stdout": "7\n"
+    },
+    {
+      "id": "first_larger",
+      "stdin": "9\n2\n",
+      "expected_stdout": "9\n"
+    },
+    {
+      "id": "equal",
+      "stdin": "5\n5\n",
+      "expected_stdout": "eşit\n"
+    },
+    {
+      "id": "negatives",
+      "stdin": "-4\n-9\n",
+      "expected_stdout": "-4\n"
+    }
+  ]
+}

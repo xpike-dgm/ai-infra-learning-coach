@@ -1,0 +1,43 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.for_iteration.iterate_sequence.g11@v1",
+  "item": "item.python.for_iteration.iterate_sequence.g11@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "mixed",
+      "stdin": "4\n3\n-1\n0\n8\n",
+      "expected_stdout": "Pozitif: 2 Negatif: 1\n"
+    },
+    {
+      "id": "zeros",
+      "stdin": "2\n0\n0\n",
+      "expected_stdout": "Pozitif: 0 Negatif: 0\n"
+    },
+    {
+      "id": "negatives",
+      "stdin": "3\n-2\n-5\n-1\n",
+      "expected_stdout": "Pozitif: 0 Negatif: 3\n"
+    },
+    {
+      "id": "none",
+      "stdin": "0\n",
+      "expected_stdout": "Pozitif: 0 Negatif: 0\n"
+    }
+  ]
+}

@@ -10,7 +10,21 @@ import coach.application.CapacitySettings
 import coach.application.ReminderSettings
 import coach.application.CaptureProgramSnapshot
 import coach.application.OpenTask
+import coach.application.RunHelp
+import coach.application.RunItems
 import coach.application.RunTask
+import coach.model.AnswerResult
+import coach.model.CheckpointKind
+import coach.model.ComprehensionCheck
+import coach.model.ComprehensionResult
+import coach.model.ExplanationForm
+import coach.model.ExplanationOption
+import coach.model.RunAnswer
+import coach.model.RunItemKind
+import coach.model.TutorAsk
+import coach.presentation.RunHelpPresentation
+import coach.presentation.TaskRunPresentation
+import coach.presentation.WrongAnswerSummary
 import coach.model.AnsweredItem
 import coach.model.AssessmentItem
 import coach.model.AssistanceEvent
@@ -237,14 +251,21 @@ class CoachApplication : Application() {
         }
     }
 
-    /** The run's next unseen question and its text, recorded as seen when shown; `null` when none is left. */
-    fun serveNext(run: RunnableTask, served: Set<VersionedRef>, onDone: (AssessmentItem?, String?) -> Unit) {
+    /**
+     * The run's next unseen question and its text, recorded as seen when shown; `null` when none is left. 16G: with how
+     * it is answered and, for a code item, the runner and the item's suite to copy.
+     */
+    internal fun serveNext(run: RunnableTask, served: Set<VersionedRef>, onDone: (AssessmentItem?, String?, ServedItem?) -> Unit) {
         val opened = startup.store ?: return
         storeThread.execute {
             val graph = opened.graph
             val item = RunTask(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).serve(run, served)
             val prompt = item?.let { graph.content.resource(it.ref)?.body }
-            main.post { onDone(item, prompt) }
+            val kind = item?.let { RunItems.kind(it, graph.content) }
+            val code = if (item != null && kind == RunItemKind.CODE_TESTS) {
+                TaskRunPresentation.codeTransfer(item.ref, graph.content.codeRunnerText(), graph.content.codeSuiteText(item.ref))
+            } else null
+            main.post { onDone(item, prompt, kind?.let { ServedItem(it, code) }) }
         }
     }
 
@@ -293,6 +314,148 @@ class CoachApplication : Application() {
             val facts = TodayFactsQuery(graph.persistence, graph.clock).load()
             val day = DayCloseFacts(graph.persistence, graph.clock).load()
             main.post { onDone(lines, facts, day) }
+        }
+    }
+
+    // ---------------------------------------------------------------- judged answers and help inside a run (16G)
+    //
+    // On the store thread, tutor and evaluator calls included: what the tutor showed, and what the evaluator said, are
+    // written in the same job, and the store has one writer. The learner is waiting on that answer in any case.
+
+    private fun runTask(graph: AppGraph) = RunTask(graph.persistence, graph.content, graph.clock, evaluatorAvailable(), graph.evaluator)
+    private fun runHelp(graph: AppGraph) = RunHelp(graph.persistence, graph.content, graph.clock, graph.tutor)
+
+    /**
+     * A code answer with the pasted report, or an open answer (16G). Recorded or not, worded in core: what the tests or
+     * the rubric said per Objective, what a wrong answer said (14B), and the comprehension check (14E).
+     */
+    internal fun answerJudged(
+        run: RunnableTask, item: AssessmentItem, kind: RunItemKind, response: String, report: String,
+        provenance: ProvenanceOrigin, assistance: List<AssistanceEvent>, onDone: (Judged) -> Unit,
+    ) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            val answer = when (kind) {
+                RunItemKind.CODE_TESTS -> runTask(graph).answerCode(run, item, response, report, provenance, assistance)
+                RunItemKind.RUBRIC -> runTask(graph).answerOpen(run, item, response, provenance, assistance)
+                RunItemKind.ANSWER_KEY -> error("an answer-key item is answered by answerItem")
+            }
+            val judged = judged(graph, run, item, kind, answer)
+            main.post { onDone(judged) }
+        }
+    }
+
+    /** A pending open answer judged again, only because the learner asked (14F). */
+    internal fun reevaluate(run: RunnableTask, item: AssessmentItem, pending: AnsweredItem, response: String, onDone: (Judged) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            val judged = judged(graph, run, item, RunItemKind.RUBRIC, runTask(graph).reevaluate(run, item, pending, response))
+            main.post { onDone(judged) }
+        }
+    }
+
+    private fun judged(graph: AppGraph, run: RunnableTask, item: AssessmentItem, kind: RunItemKind, answer: RunAnswer): Judged = when (answer) {
+        is RunAnswer.NotRecorded -> Judged(answer, null, TaskRunPresentation.notRecorded(answer, kind))
+        is RunAnswer.Recorded -> Judged(
+            answer,
+            TaskRunPresentation.answered(answer, kind, TaskRunPresentation::objectiveLabel).copy(
+                wrongAnswer = wrongAnswerOn(graph, run, item, answer.answered),
+                comprehension = RunHelpPresentation.comprehension(answer.offer, 0),
+            ),
+            null,
+        )
+    }
+
+    /** What a wrong answer said, read from the engines' attribution (14B); `null` when it said nothing or was not wrong. */
+    fun wrongAnswer(run: RunnableTask, item: AssessmentItem, answered: AnsweredItem, onDone: (WrongAnswerSummary.Summary?) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val summary = wrongAnswerOn(opened.graph, run, item, answered)
+            main.post { onDone(summary) }
+        }
+    }
+
+    private fun wrongAnswerOn(graph: AppGraph, run: RunnableTask, item: AssessmentItem, answered: AnsweredItem): WrongAnswerSummary.Summary? {
+        if (answered.evidenceIds.isEmpty() || (answered.result != AnswerResult.NOT_RIGHT && answered.result != AnswerResult.PARTLY)) return null
+        val skill = run.skill.takeIf { it in item.targetSkills } ?: item.targetSkills.first()
+        val findings = runHelp(graph).wrongAnswer(skill, answered.evidenceIds)
+        return WrongAnswerSummary.of(findings, TaskRunPresentation::objectiveLabel).takeIf { it.lines.isNotEmpty() }
+    }
+
+    /** The rubric for the learner's own check of a frozen open answer (14F), recorded as the exposure it is. */
+    fun selfCheck(item: AssessmentItem, attemptId: Long, onDone: (List<String>) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val lines = TaskRunPresentation.selfCheck(runTask(opened.graph).selfCheck(item, attemptId))
+            main.post { onDone(lines) }
+        }
+    }
+
+    /** One ask of the tutor (14A); nothing is sent until the rules say it is ready. */
+    fun askHelp(ask: TutorAsk, item: AssessmentItem, attemptId: Long?, onDone: (RunHelp.Asked) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val asked = runHelp(opened.graph).ask(ask, item, attemptId)
+            main.post { onDone(asked) }
+        }
+    }
+
+    /** The forms another explanation can come in (14C), for the question's first Objective. */
+    fun explanationMenu(objective: VersionedRef, seen: Set<ExplanationForm>, onDone: (List<ExplanationOption>) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val options = runHelp(opened.graph).menu(objective, seen)
+            main.post { onDone(options) }
+        }
+    }
+
+    /** One form shown, written first (14C); `null` when the form has nothing true to show. */
+    fun explain(base: TutorAsk, objective: VersionedRef, form: ExplanationForm, item: AssessmentItem, attemptId: Long?, onDone: (RunHelp.Asked?) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val asked = runHelp(opened.graph).explain(base, objective, form, item, attemptId)
+            main.post { onDone(asked) }
+        }
+    }
+
+    /** The tutor's practice question about the learner's own code, or its response (14E): never evidence. */
+    fun practice(ask: TutorAsk, item: AssessmentItem, attemptId: Long, onDone: (RunHelp.Asked?) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val asked = runHelp(opened.graph).practice(ask, item, attemptId)
+            main.post { onDone(asked) }
+        }
+    }
+
+    /** The written checks for this code item (14E), to answer them one by one. */
+    fun comprehensionChecks(item: AssessmentItem, onDone: (List<ComprehensionCheck>) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val checks = opened.graph.content.comprehensionChecksFor(item.ref)
+            main.post { onDone(checks) }
+        }
+    }
+
+    /** One answer to a written comprehension check (14E): evidence of the kind the check declares, or a skip. */
+    fun comprehensionAnswer(
+        run: RunnableTask, item: AssessmentItem, check: ComprehensionCheck, chosen: String?, attemptId: Long,
+        onDone: (ComprehensionResult) -> Unit,
+    ) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val result = runHelp(opened.graph).comprehensionAnswer(run, item, check, chosen, attemptId)
+            main.post { onDone(result) }
+        }
+    }
+
+    /** A durable pause, written as one checkpoint (11C); `null` when nothing is left to come back to. */
+    fun pauseRun(run: RunnableTask, kind: CheckpointKind, shown: List<VersionedRef>, remaining: List<VersionedRef>, onDone: (Long?) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val id = runHelp(opened.graph).pause(run, kind, shown, remaining)
+            main.post { onDone(id) }
         }
     }
 
@@ -485,7 +648,9 @@ class CoachApplication : Application() {
         path.parentFile?.mkdirs()
         return when (val result = StoreOpener.open(path.absolutePath)) {
             is StoreOpener.Result.Opened -> {
-                val graph = AppGraph(persistence = result.store, content = FileContentSource(later = ::laterPackages, source = ::authoredPackage))
+                // 16G: the course's code-test suites and the PC runner ship as assets, for the learner to copy (copy-paste).
+                val content = FileContentSource(later = ::laterPackages, codeSuites = ::codeSuite, codeRunner = ::codeRunner, source = ::authoredPackage)
+                val graph = AppGraph(persistence = result.store, content = content)
                 // Ingestion runs here because it is disk work and because Today must be read after
                 // it: publishing is what turns "nothing is published" into a curriculum Today can
                 // report. With no authored package shipping, it publishes nothing and says so by
@@ -528,7 +693,18 @@ class CoachApplication : Application() {
             .map { (_, name) -> assets.open(name).bufferedReader().use { it.readText() } }
     }.getOrDefault(emptyList())
 
+    /** One shipped suite by its asset name (`tools/ship_code_suites.py`); `null` when none ships under that name. */
+    private fun codeSuite(name: String): String? = runCatching {
+        assets.open("$CODE_SUITES/$name").bufferedReader().use { it.readText() }
+    }.getOrNull()
+
+    private fun codeRunner(): String? = runCatching {
+        assets.open(CODE_RUNNER).bufferedReader().use { it.readText() }
+    }.getOrNull()
+
     private companion object {
+        const val CODE_SUITES = "code_suites"
+        const val CODE_RUNNER = "code_test_runner.py"
         val LATER_PACKAGE = Regex("^curriculum_package_v(\\d+)\\.txt$")
         const val AUTHORED_PACKAGE = "curriculum_package.txt"
         const val TAG = "coach.store"

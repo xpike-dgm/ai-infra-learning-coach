@@ -1,0 +1,38 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.input_output_basic.build_small_io_flow.g05@v1",
+  "item": "item.python.input_output_basic.build_small_io_flow.g05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "quarter_off",
+      "stdin": "200\n25\n",
+      "expected_stdout": "Ödenecek: 150.0\n"
+    },
+    {
+      "id": "no_discount",
+      "stdin": "80\n0\n",
+      "expected_stdout": "Ödenecek: 80.0\n"
+    },
+    {
+      "id": "free",
+      "stdin": "45\n100\n",
+      "expected_stdout": "Ödenecek: 0.0\n"
+    }
+  ]
+}

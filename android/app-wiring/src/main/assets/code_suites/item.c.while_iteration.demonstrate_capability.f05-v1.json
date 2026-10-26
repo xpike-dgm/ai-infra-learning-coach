@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.while_iteration.demonstrate_capability.f05@v1",
+  "item": "item.c.while_iteration.demonstrate_capability.f05@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "third_try",
+      "stdin": "15 0 7 3\n",
+      "expected_stdout": "Gecerli: 7 (3 deneme)\n"
+    },
+    {
+      "id": "first_try",
+      "stdin": "10\n",
+      "expected_stdout": "Gecerli: 10 (1 deneme)\n"
+    },
+    {
+      "id": "boundary_one",
+      "stdin": "11 1\n",
+      "expected_stdout": "Gecerli: 1 (2 deneme)\n"
+    },
+    {
+      "id": "none",
+      "stdin": "20 -4\n",
+      "expected_stdout": "Gecerli sayi yok\n"
+    }
+  ]
+}

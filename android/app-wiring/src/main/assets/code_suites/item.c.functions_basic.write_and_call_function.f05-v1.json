@@ -1,0 +1,41 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.functions_basic.write_and_call_function.f05@v1",
+  "item": "item.c.functions_basic.write_and_call_function.f05@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nint asal_mi(int n);\n\nint main(void) {\n    int n = 0;\n    scanf(\"%d\", &n);\n    int sayi = 0;\n    for (int i = -2; i <= n; i++) {\n        if (asal_mi(i)) {\n            sayi++;\n        }\n    }\n    printf(\"%d %d\\n\", sayi, asal_mi(n));\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -c ders_test.c -o ders_test.o && gcc cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "ten",
+      "stdin": "10\n",
+      "expected_stdout": "4 0\n"
+    },
+    {
+      "id": "thirteen",
+      "stdin": "13\n",
+      "expected_stdout": "6 1\n"
+    },
+    {
+      "id": "two",
+      "stdin": "2\n",
+      "expected_stdout": "1 1\n"
+    },
+    {
+      "id": "square_of_prime",
+      "stdin": "49\n",
+      "expected_stdout": "15 0\n"
+    }
+  ]
+}

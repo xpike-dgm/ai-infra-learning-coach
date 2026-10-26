@@ -318,7 +318,9 @@ ingest = body(strip_comments(read(INGEST_KT)), "fun ingestAll()")
 check("E15B-10_ingest_oldest_first_stops", "sortedBy { it.version }" in ingest and "if (outcome is PublishOutcome.Refused) break" in ingest, "")
 app_kt = read(APP_KT)
 check("E15B-10_app_reads_later_packages", 'Regex("^curriculum_package_v(\\\\d+)\\\\.txt$")' in app_kt and "ingestAll()" in app_kt
-      and "FileContentSource(later = ::laterPackages, source = ::authoredPackage)" in app_kt, "")
+      # Narrowed at 16G (`HLPX-v0 / D-130`): the same later-package reader, now also given the shipped suites and runner.
+      and ("FileContentSource(later = ::laterPackages, source = ::authoredPackage)" in app_kt
+           or "FileContentSource(later = ::laterPackages, codeSuites = ::codeSuite, codeRunner = ::codeRunner, source = ::authoredPackage)" in app_kt), "")
 v1_ids = set(re.findall(r"^logical_id=(\S+)$", first_asset, re.M))
 v2_ids = set(re.findall(r"^logical_id=(\S+)$", asset, re.M))
 check("E15B-10_nothing_carried_again", v1_ids & v2_ids == set(), str(sorted(v1_ids & v2_ids)[:5]))

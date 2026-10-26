@@ -1,0 +1,48 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.files_paths_basic.demonstrate_capability.g05@v1",
+  "item": "item.python.files_paths_basic.demonstrate_capability.g05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, tempfile, cozum\nfrom pathlib import Path\nicerik = sys.argv[1].replace(\"|\", chr(10))\nwith tempfile.TemporaryDirectory() as d:\n    yol = Path(d) / \"veri.txt\"\n    yol.write_bytes(icerik.encode(\"utf-8\"))\n    print(cozum.satir_numaralari(yol, sys.argv[2]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two_hits",
+      "args": [
+        "hata var|her şey yolunda|yine hata|",
+        "hata"
+      ],
+      "expected_stdout": "[1, 3]\n"
+    },
+    {
+      "id": "none",
+      "args": [
+        "a|b",
+        "c"
+      ],
+      "expected_stdout": "[]\n"
+    },
+    {
+      "id": "last_line",
+      "args": [
+        "x|y|son",
+        "son"
+      ],
+      "expected_stdout": "[3]\n"
+    }
+  ]
+}

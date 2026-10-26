@@ -1,0 +1,43 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.conditionals.write_branch_logic.g01@v1",
+  "item": "item.python.conditionals.write_branch_logic.g01@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "fever",
+      "stdin": "37.6\n",
+      "expected_stdout": "ateşli\n"
+    },
+    {
+      "id": "upper_edge",
+      "stdin": "37.5\n",
+      "expected_stdout": "olağan\n"
+    },
+    {
+      "id": "lower_edge",
+      "stdin": "36.0\n",
+      "expected_stdout": "olağan\n"
+    },
+    {
+      "id": "low",
+      "stdin": "35.9\n",
+      "expected_stdout": "üşümüş\n"
+    }
+  ]
+}

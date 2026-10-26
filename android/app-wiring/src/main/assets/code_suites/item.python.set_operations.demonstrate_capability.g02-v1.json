@@ -1,0 +1,54 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.set_operations.demonstrate_capability.g02@v1",
+  "item": "item.python.set_operations.demonstrate_capability.g02@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nayrac = sys.argv.index(\"|\")\nprint(cozum.ortak_yok_mu([int(x) for x in sys.argv[1:ayrac]], [int(x) for x in sys.argv[ayrac + 1:]]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "disjoint",
+      "args": [
+        "1",
+        "2",
+        "|",
+        "3",
+        "4"
+      ],
+      "expected_stdout": "True\n"
+    },
+    {
+      "id": "one_common",
+      "args": [
+        "1",
+        "2",
+        "|",
+        "2",
+        "9"
+      ],
+      "expected_stdout": "False\n"
+    },
+    {
+      "id": "empty",
+      "args": [
+        "|",
+        "1"
+      ],
+      "expected_stdout": "True\n"
+    }
+  ]
+}

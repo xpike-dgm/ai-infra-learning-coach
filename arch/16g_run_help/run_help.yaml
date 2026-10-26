@@ -1,0 +1,286 @@
+model: HLPX-v0
+stage_step: 16G
+status: accepted_16g
+decision: D-130
+new_step_decision: D-131
+implements: [TRUX-v0, TUTX-v0, WAAX-v0, ALEX-v0, CDEX-v0, ACCX-v0, OREX-v0, SESX-v0, E2EX-v0, D-129]
+engines_read: [WLRX-v0, MSTX-v0, PRQX-v0, RPLX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: help_and_judged_answers_inside_a_planned_task_run_code_judged_by_the_course_s_tests_from_a_pasted_report_open_answers_by_their_rubric_the_tutor_another_explanation_what_a_wrong_answer_said_the_comprehension_check_and_a_durable_pause
+
+question: Bir görevin içinde kodumu dersin testleriyle, açık cevabımı rubric'iyle değerlendirtebilir, takıldığımda yardım isteyebilir, yanlış cevabımın ne söylediğini görebilir, yazmadığım kodu anladığımı gösterebilir ve güvenli bir noktada duraklatabilir miyim — hiçbir şeyin benim hakkımda karar vermediği, gösterilmeyen hiçbir yardımın kaydedilmediği ve ölçmeyen hiçbir raporun yazılmadığı biçimde?
+
+primary_invariant: >-
+  Inside a run, every judgement stays the course's and every rule stays an earlier step's. A code answer is judged only
+  by the course's own tests, which the learner runs on their computer from the suite and the runner the app gives them
+  to copy; a report that cannot be read, is for another item or suite, or reports an environment error measures nothing
+  and nothing is written. An open answer freezes first and is judged by its rubric, criterion by criterion and
+  provisional at most; with no evaluator it waits, is never wrong, and is judged again only when the learner asks. Help
+  is always one action away; nothing is sent until the rules say the ask is ready, help shown while the answer is open
+  goes with the attempt, help shown after it froze is recorded on that attempt, and help never shown is recorded
+  nowhere. A wrong answer is read from the attribution the engines already made. Code the learner did not write alone is
+  followed by the comprehension check. A pause is saved only at a boundary the pause policy confirms, as one checkpoint,
+  and a high-stakes pause is marked.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-26
+  scope: everything_inside_the_task_run_code_report_import_open_response_ai_and_self_check_tutor_panel_alternative_explanation_comprehension_check_wrong_answer_analysis_resuming_a_started_task
+  new_step: 16H_added_like_d_099_no_renumbering_daily_weekly_monthly_assessment_sessions_from_today_slot_session_ids_fast_path_dispositions_assessment_opportunity
+  code_transport: copy_paste_the_app_gives_the_suite_and_the_runner_with_copy_buttons_the_learner_runs_them_on_the_pc_and_pastes_the_report_no_network_or_file_permission
+
+assistant_defaults:
+  - the shipped suites travel as assets byte for byte as authored (tools/ship_code_suites.py, 480 files named <item logical id>-v<N>.json) with the 14D runner as code_test_runner.py; --check holds the shipped set equal to the sources
+  - a suite text is served only when it names exactly the item version and the suite version the package declares, in the code_test_suite/1 format; a code item without its shipped suite is not served at all
+  - an item is servable when the app can judge it — an answer key (14F), the course's tests with a shipped suite (14D), or a rubric whose task allows a provisional result (14F) — and still only when 11D's usable says so
+  - the pasted report is read and not stored; the code is the attempt's artifact and the evidence names the suite version (14D expected the report could become an artifact; 16G keeps only what proves something)
+  - an open answer freezes first, then the evaluator is asked; no answer leaves it evaluation_pending with no evidence, and asking again judges the same attempt with the independence recorded with it
+  - help runs on the store thread: what the tutor showed and what the evaluator said are written in the same job, and the store has one writer
+  - the asks offered while the answer is open are a hint, the concept another way and a question; once it froze, explain my answer, the concept another way and a question; a gloss is not offered, because which segment is the learning target is task metadata no task declares (TEIP-v0 §4) and guessing it is forbidden
+  - the instruction mode is turkish_primary: every shipped task is Turkish-primary and none declares another; the tutor never picks a language
+  - after the answer froze, the timing is after_failure when it did not fully match and after_submit otherwise; no level is asked, so the record never claims less help than may have been given (14A)
+  - help shown while the answer is open travels with the attempt; help shown after it froze is appended as an assistance_event on that attempt, in the same shape SubmitAttempt writes, and changes nothing the frozen answer proved
+  - the comprehension check is offered after a code answer the learner did not write alone; a written check answered alone is independent, except in a teaching task, which is practice by design (AssistanceInterpretation)
+  - the wrong-answer summary appears after a not-right or partly-right answer that wrote evidence, read from the stored attribution (AnalyzeWrongAnswer); it writes nothing
+  - a pause is offered between questions only; the boundary confirms the four safe-checkpoint conditions unless a help reply is still on its way or an evaluation is pending; a measuring purpose pauses as high_stakes_pause; the checkpoint names the shown and remaining items and the run ends the way every run ends
+  - resuming is the planner's (TRUX-v0 §7.3, 12D): a checkpoint makes an open continue_learning need paused work at the next plan; Today offers no checkpoint (11C)
+  - working Turkish microcopy; 17 owns the polish
+
+found:
+  - every_skill_now_has_a_task_the_app_can_run
+  - no_shipped_package_authors_a_written_comprehension_check
+  - all_fourteen_rubric_items_allow_a_provisional_result
+  - a_pause_resumes_only_where_the_need_is_continue_learning
+  - the_16f_contract_had_a_list_item_that_parsed_as_a_mapping
+
+declared_extensions:
+  - {what: "ContentPort.codeSuiteText and codeRunnerText, defaulted", extends: "the port refinements since 11B (port count unchanged)", default_answer: "no suite / no runner — a code item is then not served"}
+  - {what: "FileContentSource codeSuites and codeRunner readers", extends: "15B's later-package reader: the app reads its own assets, the source checks what it serves"}
+  - {what: "RunItems, RunTask.answerCode, answerOpen, reevaluate, selfCheck; RunHelp", extends: "16F's RunTask: the same submission, evidence and exposure paths, called for code and open answers and for help"}
+  - {what: "AnsweredItem.pending, artifactId, independence; RunAnswer; RunItemKind", extends: "16F's TaskRunFacts"}
+  - {what: "TaskRunStage.Question kind/code/help, Answered details/pending/selfCheck/wrongAnswer/comprehension/help/notice, Paused; HelpView, HelpPanel, ComprehensionView; RunHelpPresentation", extends: "16F's TaskRunPresentation"}
+  - {what: "RunHelp.pause takes the checkpoint kind PausePolicy decided", extends: "11C's ResumeCheckpoints.record"}
+
+scope:
+  schema_changed: false
+  schema_version: 11
+  ports_changed: refinements_only
+  boundaries_changed: false
+  planner_rule_changed: false
+  mastery_rule_changed: false
+  evidence_rule_changed: false
+  code_report_import: true
+  code_transport: copy_paste
+  network_permission_added: false
+  file_permission_added: false
+  open_response_ai: true
+  tutor_panel: true
+  alternative_explanation: true
+  comprehension_check: true
+  wrong_answer_analysis: true
+  durable_pause: true
+  assessment_sessions_wired: false
+  fast_path_entry: false
+  dispositions_from_the_app: false
+  screen_drawn: true
+
+items:
+  shipped: 1112
+  by_kind: {answer_key: 618, code_tests: 480, rubric: 14, not_judged_here: 0}
+  suites_shipped: 480
+  skills_with_a_runnable_task: {with_answer_keys_only: 36, with_shipped_suites: 60, total: 60}
+  written_comprehension_checks_shipped: 0
+
+code:
+  suite_served_only_for: [its_item_version, its_suite_version, code_test_suite/1]
+  report_measures_nothing_writes_nothing: [report_missing, report_malformed, report_for_another_item, report_for_another_suite, report_does_not_match_suite, environment_error, nothing_submitted]
+  report_stored: false
+  artifact: the_code
+  evidence_status: verified
+  accepted_answer_shown: false
+  passing_is_not_understanding_said: true
+
+open_response:
+  route: ai_rubric_provisional_at_most
+  verified_required_served: false
+  frozen_before_evaluation: true
+  no_evaluator: evaluation_pending_no_evidence_not_wrong
+  retried_automatically: false
+  reevaluation_same_attempt: true
+  self_check: rubric_shown_as_practice_and_a_solution_exposure
+
+help:
+  intents_while_open: [hint, explain_differently, question]
+  intents_after_freeze: [explain_mistake, explain_differently, question]
+  gloss_offered: false
+  sent_only_when_ready: true
+  during_attempt_help: travels_with_the_attempt
+  after_freeze_help: assistance_event_on_that_attempt
+  not_shown_help_recorded: false
+  instruction_mode: turkish_primary
+  explanation: written_first_then_the_tutor_where_it_may_write_14c
+  comprehension: written_first_then_tutor_practice_14e
+  comprehension_independence: assistance_interpretation_teach_is_practice
+  wrong_answer: read_from_stored_attribution_writes_nothing
+
+pause:
+  offered: between_questions_only
+  policy: PausePolicy.classify
+  high_stakes_purposes: [assess, retain, diagnose]
+  not_durable_writes_nothing: true
+  checkpoint: one_resume_checkpoint_row
+  resumed_by: planner_continue_learning_need_at_the_next_plan
+  today_offers_checkpoint: false
+
+moved_to_16h:
+  - daily, weekly and monthly assessment sessions started from Today, and slots carrying the session id
+  - the fast path's entry and its use cases; entry placement as a diagnostic source
+  - dispositions recorded from the app and the disposition reason in traces
+  - assessment_opportunity
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/TaskRunFactsTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/RunHelpPresentationTest.kt}
+  application: {file: android/core-application/src/test/kotlin/coach/application/RunHelpTest.kt}
+  curriculum: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/CodeSuiteTextTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+narrowed_gates:
+  rule: an earlier check now accepts exactly the D-130 change and still fails on any other move; each narrowed line carries a "Narrowed at 16G (`HLPX-v0 / D-130`)" comment
+  gates:
+    - {file: tools/validate_end_to_end_loop.py, checks: [A16F-03_answer_key_only, A16F-04_judged_by_the_key_only]}
+    - {file: tools/validate_python_foundations.py, checks: [E15B-10_app_reads_later_packages]}
+
+open_loops:
+  measurement_from_today: {owner: 16H}
+  written_comprehension_checks: {owner: 20I, note: "no shipped package authors one; the check is the tutor's practice until a package does"}
+  run_polish: {owner: 17}
+  help_on_device: {owner: 19, note: "the run, the copy buttons and the tutor have not been seen on a device; their decisions and writes were run on the JVM through the same classes, on the real store"}
+  t6_and_device: {owner: 19}
+
+mutation_results_kotlin:
+  scope: one change per mutant to what the run serves (a suite, a verified rubric, any item), the code path (a blank, a report that measures nothing, the comprehension offer), the open path (pending, frozen first, the recorded independence), where help is recorded, a check answer's independence, the pause (nothing left, its kind, mid-question, a pending evaluation, high stakes), the ask builder (level, unsubmitted work, failure timing, other Objectives' explanation), the words (reveal, pending state, recheck, the suite's file name, not measured, a gloss, not shown, practice) and the suite reader (item, suite, runner); then the 16G JVM suites of core-model, core-presentation, core-application, data-curriculum and app-wiring (ShippedCourseTest on the real store with all eight packages and the shipped suites)
+  total: 31
+  detected: 31
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: the hardened 16C-16F runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a KDoc comment in RunHelpPresentation.kt
+  negative_control_result: survived_as_expected
+  not_mutated: "app-wiring's run flow (TaskRunFlow, MainActivity) needs Android and is held by the validator (A16G-06/08/09)"
+  earlier_runs: "a first run was stopped after seven mutants when writing the validator showed that an open answer was evaluated before it froze; the stop left one mutant (G06) in the source, which the anchor check caught and which was restored; the order was fixed, a test and a mutant (G31) were added, and the final run is a single clean run from the start"
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: G01, mutant: code_item_served_without_its_suite, result: detected}
+    - {id: G02, mutant: rubric_item_needing_verified_served, result: detected}
+    - {id: G03, mutant: servable_any_item, result: detected}
+    - {id: G04, mutant: blank_code_not_named, result: detected}
+    - {id: G05, mutant: unmeasured_report_written, result: detected}
+    - {id: G06, mutant: no_comprehension_offer, result: detected}
+    - {id: G07, mutant: pending_not_marked, result: detected}
+    - {id: G08, mutant: reevaluation_independence_redecided, result: detected}
+    - {id: G09, mutant: after_answer_help_not_recorded, result: detected}
+    - {id: G10, mutant: check_answer_always_independent, result: detected}
+    - {id: G11, mutant: pause_with_nothing_left, result: detected}
+    - {id: G12, mutant: pause_kind_ignored, result: detected}
+    - {id: G13, mutant: level_kept_after_freeze, result: detected}
+    - {id: G14, mutant: unsubmitted_work_sent, result: detected}
+    - {id: G15, mutant: failure_timing_lost, result: detected}
+    - {id: G16, mutant: other_objectives_explanation_sent, result: detected}
+    - {id: G17, mutant: code_item_reveals_an_answer, result: detected}
+    - {id: G18, mutant: pending_shown_as_resolved, result: detected}
+    - {id: G19, mutant: mid_question_pause_saved, result: detected}
+    - {id: G20, mutant: pending_pause_saved, result: detected}
+    - {id: G21, mutant: high_stakes_pause_unmarked, result: detected}
+    - {id: G22, mutant: recheck_note_dropped, result: detected}
+    - {id: G23, mutant: suite_file_misnamed, result: detected}
+    - {id: G24, mutant: unmeasured_report_called_wrong, result: detected}
+    - {id: G25, mutant: gloss_guessed, result: detected}
+    - {id: G26, mutant: not_shown_as_pending, result: detected}
+    - {id: G27, mutant: practice_unlabelled, result: detected}
+    - {id: G28, mutant: suite_for_another_item_served, result: detected}
+    - {id: G29, mutant: suite_for_another_suite_served, result: detected}
+    - {id: G30, mutant: runner_not_shipped, result: detected}
+    - {id: G31, mutant: evaluated_before_frozen, result: detected}
+
+validator_mutation:
+  tool: tools/validate_run_help.py
+  total: 50
+  detected: 50
+  scope: one change per mutant to an input the validator reads — the contract, the shipped runner, the suite reader, the port, what is served, the code path, the open path, help readiness and recording, the ask builder, a gloss, the check's independence, the pause, the words, the screen, the manifest, the wiring, a test name, the plan, DECISIONS, the spec, the research, a narrowed gate's marker and the 16F contract's list
+  detection: a FAIL line not in the baseline; a run that prints no result line is a crash and never a detection
+  crash_is_detection: false
+  baseline: the only check allowed to fail at baseline is A16G-13_validator_mutation, which reads this very result
+  negative_control: a YAML comment in the contract naming forbidden fragments (banana, survived, streak, 100%)
+  negative_control_result: survived_as_expected
+  earlier_runs: "none — the first run detected every mutant"
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: V01, mutant: contract_model, result: detected}
+    - {id: V02, mutant: contract_claims_sessions, result: detected}
+    - {id: V03, mutant: contract_adds_network, result: detected}
+    - {id: V04, mutant: contract_device_claimed, result: detected}
+    - {id: V05, mutant: contract_provider_claimed, result: detected}
+    - {id: V06, mutant: contract_mutant_survived, result: detected}
+    - {id: V07, mutant: contract_run_failed, result: detected}
+    - {id: V08, mutant: contract_no_16h, result: detected}
+    - {id: V09, mutant: contract_items_inflated, result: detected}
+    - {id: V10, mutant: contract_report_stored, result: detected}
+    - {id: V11, mutant: runner_asset_drifts, result: detected}
+    - {id: V12, mutant: suite_any_version, result: detected}
+    - {id: V13, mutant: port_not_defaulted, result: detected}
+    - {id: V14, mutant: code_without_suite_served, result: detected}
+    - {id: V15, mutant: verified_rubric_sent_to_ai, result: detected}
+    - {id: V16, mutant: servable_any_item, result: detected}
+    - {id: V17, mutant: unmeasured_report_written, result: detected}
+    - {id: V18, mutant: report_stored, result: detected}
+    - {id: V19, mutant: no_comprehension_offer, result: detected}
+    - {id: V20, mutant: open_evaluated_before_frozen, result: detected}
+    - {id: V21, mutant: pending_with_evidence, result: detected}
+    - {id: V22, mutant: reevaluation_without_request, result: detected}
+    - {id: V23, mutant: automatic_retry, result: detected}
+    - {id: V24, mutant: help_sent_unprepared, result: detected}
+    - {id: V25, mutant: after_freeze_help_anywhere, result: detected}
+    - {id: V26, mutant: help_payload_shape_drift, result: detected}
+    - {id: V27, mutant: during_help_dropped, result: detected}
+    - {id: V28, mutant: unsubmitted_work_sent, result: detected}
+    - {id: V29, mutant: gloss_guessed, result: detected}
+    - {id: V30, mutant: check_always_independent, result: detected}
+    - {id: V31, mutant: mid_question_pause, result: detected}
+    - {id: V32, mutant: pause_without_policy, result: detected}
+    - {id: V33, mutant: high_stakes_unmarked, result: detected}
+    - {id: V34, mutant: verdict_word, result: detected}
+    - {id: V35, mutant: code_reveals_answer, result: detected}
+    - {id: V36, mutant: screen_decides, result: detected}
+    - {id: V37, mutant: file_export, result: detected}
+    - {id: V38, mutant: permission_added, result: detected}
+    - {id: V39, mutant: help_unreachable_after_answer, result: detected}
+    - {id: V40, mutant: pause_unwired, result: detected}
+    - {id: V41, mutant: assets_unread, result: detected}
+    - {id: V42, mutant: test_renamed, result: detected}
+    - {id: V43, mutant: 16h_dropped_from_plan, result: detected}
+    - {id: V44, mutant: decision_missing, result: detected}
+    - {id: V45, mutant: spec_not_accepted, result: detected}
+    - {id: V46, mutant: spec_wrong_next, result: detected}
+    - {id: V47, mutant: research_source_dropped, result: detected}
+    - {id: V48, mutant: narrowed_gate_unmarked, result: detected}
+    - {id: V49, mutant: f16_item_a_mapping, result: detected}
+    - {id: V50, mutant: moved_list_emptied, result: detected}
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew test (every module's JVM tests, the AI adapter's included)", tier: T1-T3, result: PASS}
+  - {id: RUN-02, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-03, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-04, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-05, command: "read both built APKs: the eight curriculum packages, the 480 suites and the runner equal their source assets byte for byte; the manifests keep 16E's permissions, no INTERNET without the AI adapter and no storage permission in either", tier: T5, result: PASS}
+  - {id: RUN-06, command: "ShippedCourseTest's 16G section and CodeSuiteTextTest: the real SQLite store with all eight packages and the shipped suites; every suite served for exactly its item version, every Skill runnable, a code answer judged from the report and nothing written for a report that measures nothing, an open answer frozen first, pending, then judged on request, help after the answer recorded on its attempt and help not shown nowhere, a pause checkpoint", tier: T2, result: PASS}
+  - {id: RUN-07, command: "python tools/ship_code_suites.py --check", tier: T1, result: PASS}
+jvm_tests: 1257
+validator_sweep: {glob: "tools/validate_*.py", total: 70, run: 69, passed: 69, not_run: [validate_content_qa.py], note: "validate_content_qa.py was not run: it rebuilds the eight packages and needs about 10 GB of temporary space with 3.5-8 GB free; its inputs (the eight packages, tools/content_qa.py, tools/build_curriculum_package.py, curriculum/) are byte-identical to main. validate_python_foundations.py failed once on E15B-10_app_reads_later_packages, which pinned the content source call 16G extends; it was narrowed (Narrowed at 16G) and passed 254/254 when run again, as did validate_run_help.py (105/105); the frozen QA reports earlier validators rewrite were restored from git"}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  run_seen_on_device: false
+  live_provider_called: false
+  sqlite_read_on_jvm_run: true

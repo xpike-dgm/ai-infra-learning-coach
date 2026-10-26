@@ -1,0 +1,52 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.exception_handling.demonstrate_capability.g10@v1",
+  "item": "item.python.exception_handling.demonstrate_capability.g10@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nx = sys.argv[1][1:-1] if sys.argv[1].startswith(\"<\") else float(sys.argv[1])\ntry:\n    print(cozum.guvenli_karekok(x))\nexcept Exception as e:\n    print(\"yukarıya geldi\")"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "sixteen",
+      "args": [
+        "16"
+      ],
+      "expected_stdout": "4.0\n"
+    },
+    {
+      "id": "two",
+      "args": [
+        "2"
+      ],
+      "expected_stdout": "1.41\n"
+    },
+    {
+      "id": "negative",
+      "args": [
+        "-9"
+      ],
+      "expected_stdout": "None\n"
+    },
+    {
+      "id": "text_propagates",
+      "args": [
+        "<dokuz>"
+      ],
+      "expected_stdout": "yukarıya geldi\n"
+    }
+  ]
+}

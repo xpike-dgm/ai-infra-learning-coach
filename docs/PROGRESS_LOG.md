@@ -1539,3 +1539,20 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `16F tamamlandı; 16G eklendi, aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `16G — Uçtan uca günlük döngü: yardım ve ölçüm`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-26 — 16G — Uçtan uca günlük döngü: yardım ve ölçüm tamamlandı — HLPX-v0 / D-130 (D-131: 16H eklendi)
+
+- Kullanıcı "merge et ve 16G ye başla" dedi; 16F (#65) merge edildi (798cc4e). Fresh 16G PRE yapıldı ve kanonik kaynaklar `16F ✅ / 16G active-not-executed` gösterdi.
+- **Bulgu (PRE):** 16F'nin `moved_to_16g` listesi hem görev içindeki yardımı hem Today'den ölçmeyi taşıyordu. Kullanıcı böldü: 16G görev içi; ölçme yeni `16H — Uçtan uca günlük döngü: ölçme oturumları` (D-131, D-099 gibi, yeniden numaralama yok).
+- **Kullanıcı kararları (2026-10-26):** görev içindeki her şey 16G'de, Today'den ölçme yeni 16H'de (D-131); kod taşıma kopyala-yapıştır — uygulama suite'i ve koşucuyu Kopyala düğmeleriyle verir, öğrenci PC'de çalıştırıp raporu yapıştırır, ağ ya da dosya izni yok.
+- **Bulgu (yürütme):** kullanıcı döngünün geri kalanını yeniden böldü ve Today'den ölçme yeni 16H'ye gitti (D-131); artık 60 Skill'in hepsinin uygulamanın çalıştırabildiği bir görevi var (yalnız cevap anahtarıyla 36'ydı) ve 1112 item'ın 618'i anahtarla, 480'i testlerle, 14'ü rubric'le değerlendiriliyor; hiçbir sevk edilen paket yazılı bir anlama kontrolü içermiyor; on dört rubric item'ının hepsi provisional sonuca izin veriyor; bir duraklatma yalnız ihtiyaç `continue_learning` olduğunda sürdürülen iş olur; açık cevap ilk taslakta donmadan önce değerlendiriliyordu ve düzeltildi.
+- **Kod:** yeni `RunHelp.kt`, `RunHelpPresentation.kt`, `TaskRunFlow.kt`, `tools/ship_code_suites.py`; `RunTask.kt`'ye `RunItems`, `answerCode`, `answerOpen`, `reevaluate`, `selfCheck`; `codeSuiteText` ve `codeRunnerText` varsayılanlı port inceltmeleri; 480 suite ve koşucu varlık olarak; görev çalıştırıcıda kod, açık cevap, yardım paneli, anlama kontrolü ve duraklatma.
+- **Araştırma:** iç sözleşmeler `TRUX-v0`, `TUTX-v0`, `WAAX-v0`, `ALEX-v0`, `CDEX-v0`, `ACCX-v0`, `OREX-v0`, `SESX-v0`, `RPLX-v0`; dış: Shute 2008, Aleven ve ark. 2003, Lister ve ark. 2004.
+- **Daraltılan kapılar:** 16F'nin iki kontrolü ve 15B'nin bir kontrolü (sweep buldu) ("Narrowed at 16G"); 16F kontratındaki eşleme olarak okunan madde yeniden yazıldı.
+- **Mutation:** Kotlin 31/31.
+- **Validator mutation:** 50/50.
+- **Validator:** 105/105 PASS; sweep 69/70 (validate_content_qa.py not run: disk space; its inputs unchanged); 1257 JVM testi.
+- **T6 ve canlı sağlayıcı çağrısı çalıştırılmadı; koşu cihazda görülmedi**.
+- D-050 POST living-memory accepted state'i `16G tamamlandı; 16H eklendi, aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `16H — Uçtan uca günlük döngü: ölçme oturumları`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

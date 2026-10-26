@@ -1,0 +1,80 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.conditionals.write_control_flow.f03@v1",
+  "item": "item.c.conditionals.write_control_flow.f03@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "top",
+      "stdin": "95\n",
+      "expected_stdout": "A\n"
+    },
+    {
+      "id": "boundary_90",
+      "stdin": "90\n",
+      "expected_stdout": "A\n"
+    },
+    {
+      "id": "boundary_89",
+      "stdin": "89\n",
+      "expected_stdout": "B\n"
+    },
+    {
+      "id": "boundary_60",
+      "stdin": "60\n",
+      "expected_stdout": "D\n"
+    },
+    {
+      "id": "fail",
+      "stdin": "59\n",
+      "expected_stdout": "F\n"
+    },
+    {
+      "id": "too_high",
+      "stdin": "101\n",
+      "expected_stdout": "Gecersiz\n"
+    },
+    {
+      "id": "negative",
+      "stdin": "-1\n",
+      "expected_stdout": "Gecersiz\n"
+    },
+    {
+      "id": "boundary_80",
+      "stdin": "80\n",
+      "expected_stdout": "B\n"
+    },
+    {
+      "id": "boundary_79",
+      "stdin": "79\n",
+      "expected_stdout": "C\n"
+    },
+    {
+      "id": "boundary_70",
+      "stdin": "70\n",
+      "expected_stdout": "C\n"
+    },
+    {
+      "id": "boundary_69",
+      "stdin": "69\n",
+      "expected_stdout": "D\n"
+    }
+  ]
+}

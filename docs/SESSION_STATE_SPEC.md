@@ -200,3 +200,7 @@ The first regression sweep then failed a **standing** check, not a new one: 10C'
 If accepted, 11C becomes `SESX-v0 / D-089`.
 
 Next numbered step: **11D — Günlük mikro quiz**. It must receive a fresh PRE-STEP and explicit user approval before execution. Open loops carried: artifact body storage, segment boundaries and the first runnable activity (11D and 15), the facts that confirm entry and resume and the `continue_learning` re-entry (12), the high-stakes gap policy (13, 18D), durable session history (16B), and the T6 device run.
+
+---
+
+**16G note (2026-10-26, `D-130`):** a durable pause is now reachable from the app. The run offers it between questions only; the boundary confirms the four safe-checkpoint conditions unless a help reply is still on its way or an evaluation is pending, and `PausePolicy.classify` decides. A measuring purpose pauses as `high_stakes_pause`. A pause that is not durable writes nothing. Today still offers no checkpoint; the planner reads it as paused work at the next plan (12D). Details: `docs/RUN_HELP_SPEC.md`.

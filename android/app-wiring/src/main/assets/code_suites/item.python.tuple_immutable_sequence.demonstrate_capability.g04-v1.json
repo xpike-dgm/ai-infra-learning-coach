@@ -1,0 +1,54 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.tuple_immutable_sequence.demonstrate_capability.g04@v1",
+  "item": "item.python.tuple_immutable_sequence.demonstrate_capability.g04@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\na = [int(x) for x in sys.argv[1:]]\nprint(cozum.mesafe_kare((a[0], a[1]), (a[2], a[3])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "three_four",
+      "args": [
+        "0",
+        "0",
+        "3",
+        "4"
+      ],
+      "expected_stdout": "25\n"
+    },
+    {
+      "id": "same",
+      "args": [
+        "2",
+        "5",
+        "2",
+        "5"
+      ],
+      "expected_stdout": "0\n"
+    },
+    {
+      "id": "negative",
+      "args": [
+        "-1",
+        "2",
+        "2",
+        "-2"
+      ],
+      "expected_stdout": "25\n"
+    }
+  ]
+}

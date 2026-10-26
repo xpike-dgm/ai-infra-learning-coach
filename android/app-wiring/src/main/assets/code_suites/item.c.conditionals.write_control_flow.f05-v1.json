@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.conditionals.write_control_flow.f05@v1",
+  "item": "item.c.conditionals.write_control_flow.f05@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "div_by_4",
+      "stdin": "2024\n",
+      "expected_stdout": "artik\n"
+    },
+    {
+      "id": "not_div_by_4",
+      "stdin": "2023\n",
+      "expected_stdout": "degil\n"
+    },
+    {
+      "id": "century",
+      "stdin": "1900\n",
+      "expected_stdout": "degil\n"
+    },
+    {
+      "id": "four_hundred",
+      "stdin": "2000\n",
+      "expected_stdout": "artik\n"
+    }
+  ]
+}

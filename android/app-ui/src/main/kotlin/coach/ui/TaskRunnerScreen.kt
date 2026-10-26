@@ -26,7 +26,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import android.content.ClipData
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.ClipEntry
+import androidx.compose.ui.platform.LocalClipboard
+import kotlinx.coroutines.launch
+import coach.model.AssistanceLevel
+import coach.model.ExplanationForm
 import coach.model.ProvenanceOrigin
+import coach.model.RunItemKind
+import coach.model.TutorIntent
+import coach.presentation.ComprehensionView
+import coach.presentation.HelpPanel
+import coach.presentation.HelpView
+import coach.presentation.OpenResponseCopy
+import coach.presentation.RunHelpCopy
 import coach.presentation.TaskOrientationView
 import coach.presentation.TaskRunCopy
 import coach.presentation.TaskRunStage
@@ -95,6 +109,22 @@ class TaskRunActions(
     val onReveal: () -> Unit = {},
     val onNext: () -> Unit = {},
     val onFinish: () -> Unit = {},
+    // 16G: judged answers, help, the comprehension check and a durable pause.
+    val onSubmitCode: (code: String, report: String) -> Unit = { _, _ -> },
+    val onReevaluate: () -> Unit = {},
+    val onSelfCheck: () -> Unit = {},
+    val onOpenHelp: () -> Unit = {},
+    val onCloseHelp: () -> Unit = {},
+    val onHelpIntent: (TutorIntent) -> Unit = {},
+    val onHelpLevel: (AssistanceLevel) -> Unit = {},
+    val onHelpAcknowledge: () -> Unit = {},
+    val onHelpQuestion: (String) -> Unit = {},
+    val onExplanationForm: (ExplanationForm) -> Unit = {},
+    val onCheckChoice: (String?) -> Unit = {},
+    val onNextCheck: () -> Unit = {},
+    val onPracticeAsk: () -> Unit = {},
+    val onPracticeAnswer: (String) -> Unit = {},
+    val onPause: () -> Unit = {},
 )
 
 @Composable
@@ -176,18 +206,9 @@ private fun TaskRunInterior(stage: TaskRunStage, actions: TaskRunActions) {
             NextOrFinish(actions)
         }
         TaskRunStage.Working -> Unit
-        is TaskRunStage.Answered -> {
-            Text(stage.result, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
-            val revealed = stage.revealed
-            if (revealed != null) {
-                Text(revealed, style = MaterialTheme.typography.bodyMedium)
-            } else {
-                // Seeing the answer is a separate step the learner chooses (user decision, 2026-10-26).
-                TextButton(onClick = actions.onReveal, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_ANSWER) }
-            }
-            NextOrFinish(actions)
-        }
+        is TaskRunStage.Answered -> AnsweredInterior(stage, actions)
         is TaskRunStage.Finished -> stage.lines.forEach { Text(it, style = MaterialTheme.typography.bodyLarge) }
+        is TaskRunStage.Paused -> stage.lines.forEach { Text(it, style = MaterialTheme.typography.bodyLarge) }
     }
 }
 
@@ -214,29 +235,179 @@ private fun OrientationInterior(view: TaskOrientationView, onStart: (ProvenanceO
 private fun QuestionInterior(stage: TaskRunStage.Question, actions: TaskRunActions) {
     Text("Soru ${stage.number}", style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
     Text(stage.prompt, style = MaterialTheme.typography.bodyLarge)
-    stage.notice?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+    stage.notice?.let { Text(it, style = MaterialTheme.typography.bodySmall, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }) }
     if (stage.disclosure) {
         ConsequenceDisclosure(onAcknowledge = actions.onAcknowledgeSolution, onDecline = actions.onDeclineSolution)
         return
     }
-    var typed by remember(stage.number) { mutableStateOf("") }
-    OutlinedTextField(
-        value = typed,
-        onValueChange = { typed = it },
-        label = { Text(TaskRunCopy.ANSWER_LABEL) },
-        modifier = Modifier.fillMaxWidth(),
-    )
-    OutlinedButton(onClick = { actions.onSubmit(typed) }, enabled = typed.isNotBlank(), modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
-        Text(TaskRunCopy.SUBMIT)
+    when (stage.kind) {
+        RunItemKind.CODE_TESTS -> CodeAnswer(stage, actions)
+        RunItemKind.RUBRIC, RunItemKind.ANSWER_KEY -> {
+            var typed by remember(stage.number) { mutableStateOf("") }
+            OutlinedTextField(
+                value = typed,
+                onValueChange = { typed = it },
+                label = { Text(if (stage.kind == RunItemKind.RUBRIC) TaskRunCopy.OPEN_LABEL else TaskRunCopy.ANSWER_LABEL) },
+                minLines = if (stage.kind == RunItemKind.RUBRIC) 4 else 1,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            OutlinedButton(onClick = { actions.onSubmit(typed) }, enabled = typed.isNotBlank(), modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+                Text(TaskRunCopy.SUBMIT)
+            }
+        }
     }
-    // Help is always requestable (`TRUX-v0` §8.1): the lesson again, or — after the consequence is said — the answer.
+    // Help is always requestable (`TRUX-v0` §8.1): the lesson again, the tutor, or — after the consequence is said — the answer.
     val lesson = stage.lessonShown
     if (lesson == null) {
         TextButton(onClick = actions.onShowLesson, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_LESSON) }
     } else {
         lesson.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
     }
-    TextButton(onClick = actions.onRequestSolution, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_SOLUTION_BEFORE) }
+    HelpSection(stage.help, actions)
+    // Only an answer key has an accepted answer to show (14F); a code item and an open answer do not.
+    if (stage.kind == RunItemKind.ANSWER_KEY) {
+        TextButton(onClick = actions.onRequestSolution, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_SOLUTION_BEFORE) }
+    }
+}
+
+/** A code item (16G): the learner copies the runner and the suite, runs them on their computer and pastes the report. */
+@Composable
+private fun CodeAnswer(stage: TaskRunStage.Question, actions: TaskRunActions) {
+    // The system clipboard only: no file or network permission (user decision, 2026-10-26).
+    val clipboard = LocalClipboard.current
+    val scope = rememberCoroutineScope()
+    fun copy(text: String) = scope.launch { clipboard.setClipEntry(ClipEntry(ClipData.newPlainText(TaskRunCopy.CODE_LABEL, text))) }
+    stage.code?.let { transfer ->
+        transfer.steps.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
+        OutlinedButton(onClick = { copy(transfer.runner) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+            Text(TaskRunCopy.COPY_RUNNER)
+        }
+        OutlinedButton(onClick = { copy(transfer.suite) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+            Text(TaskRunCopy.COPY_SUITE)
+        }
+    }
+    var code by remember(stage.number) { mutableStateOf("") }
+    var report by remember(stage.number) { mutableStateOf("") }
+    OutlinedTextField(value = code, onValueChange = { code = it }, label = { Text(TaskRunCopy.CODE_LABEL) }, minLines = 4, modifier = Modifier.fillMaxWidth())
+    OutlinedTextField(value = report, onValueChange = { report = it }, label = { Text(TaskRunCopy.REPORT_LABEL) }, minLines = 3, modifier = Modifier.fillMaxWidth())
+    OutlinedButton(
+        onClick = { actions.onSubmitCode(code, report) },
+        enabled = code.isNotBlank() && report.isNotBlank(),
+        modifier = Modifier.fillMaxWidth().minimumTouchTarget(),
+    ) { Text(TaskRunCopy.SUBMIT) }
+}
+
+@Composable
+private fun AnsweredInterior(stage: TaskRunStage.Answered, actions: TaskRunActions) {
+    Text(stage.result, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+    stage.details.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
+    stage.notice?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+    if (stage.canReveal) {
+        val revealed = stage.revealed
+        if (revealed != null) {
+            Text(revealed, style = MaterialTheme.typography.bodyMedium)
+        } else {
+            // Seeing the answer is a separate step the learner chooses (user decision, 2026-10-26).
+            TextButton(onClick = actions.onReveal, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_ANSWER) }
+        }
+    }
+    if (stage.pending) {
+        // 14F: nothing retries on its own; the learner may ask again.
+        Text(OpenResponseCopy.ASK_AGAIN, style = MaterialTheme.typography.bodyMedium)
+        OutlinedButton(onClick = actions.onReevaluate, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.REEVALUATE) }
+    }
+    val selfCheck = stage.selfCheck
+    if (selfCheck != null) {
+        selfCheck.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
+    } else if (stage.canSelfCheck) {
+        TextButton(onClick = actions.onSelfCheck, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SELF_CHECK) }
+    }
+    stage.wrongAnswer?.let { summary ->
+        Text(summary.headline, style = MaterialTheme.typography.bodyMedium)
+        (summary.lines + summary.named + summary.openQuestions).forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
+    }
+    stage.comprehension?.let { ComprehensionInterior(it, actions) }
+    HelpSection(stage.help, actions)
+    TextButton(onClick = actions.onPause, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.PAUSE) }
+    NextOrFinish(actions)
+}
+
+/** The comprehension check after code the learner did not write alone (14E): optional, and skipping is not wrong. */
+@Composable
+private fun ComprehensionInterior(view: ComprehensionView, actions: TaskRunActions) {
+    when (view) {
+        is ComprehensionView.Check -> {
+            Text(view.offer, style = MaterialTheme.typography.bodyMedium)
+            Text(view.prompt, style = MaterialTheme.typography.bodyLarge)
+            view.choices.forEach { (key, text) ->
+                OutlinedButton(onClick = { actions.onCheckChoice(key) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text("$key) $text") }
+            }
+            TextButton(onClick = { actions.onCheckChoice(null) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(RunHelpCopy.SKIP_CHECK) }
+        }
+        is ComprehensionView.Result -> {
+            view.lines.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
+            if (view.more) TextButton(onClick = actions.onNextCheck, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(RunHelpCopy.NEXT_CHECK) }
+        }
+        is ComprehensionView.TutorPractice -> {
+            Text(view.offer, style = MaterialTheme.typography.bodyMedium)
+            TextButton(onClick = actions.onPracticeAsk, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(RunHelpCopy.PRACTICE_ASK) }
+        }
+    }
+}
+
+/** Help inside the run (16G): always one action away, and every panel only says what core decided. */
+@Composable
+private fun HelpSection(help: HelpView?, actions: TaskRunActions) {
+    if (help == null) {
+        TextButton(onClick = actions.onOpenHelp, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(RunHelpCopy.HELP) }
+        return
+    }
+    help.intents.forEach { (intent, label) ->
+        OutlinedButton(onClick = { actions.onHelpIntent(intent) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(label) }
+    }
+    when (val panel = help.panel) {
+        null -> Unit
+        is HelpPanel.ChooseLevel -> {
+            Text(panel.prompt, style = MaterialTheme.typography.bodyMedium)
+            panel.levels.forEach { (level, label) ->
+                OutlinedButton(onClick = { actions.onHelpLevel(level) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(label) }
+            }
+        }
+        is HelpPanel.Disclose -> {
+            Text(panel.text, style = MaterialTheme.typography.bodyLarge)
+            OutlinedButton(onClick = actions.onHelpAcknowledge, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(RunHelpCopy.ACKNOWLEDGE) }
+            OutlinedButton(onClick = actions.onCloseHelp, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(RunHelpCopy.DECLINE) }
+        }
+        is HelpPanel.AskQuestion -> {
+            var question by remember { mutableStateOf("") }
+            OutlinedTextField(value = question, onValueChange = { question = it }, label = { Text(RunHelpCopy.QUESTION_LABEL) }, modifier = Modifier.fillMaxWidth())
+            OutlinedButton(onClick = { actions.onHelpQuestion(question) }, enabled = question.isNotBlank(), modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+                Text(RunHelpCopy.ASK)
+            }
+        }
+        is HelpPanel.Menu -> {
+            Text(panel.prompt, style = MaterialTheme.typography.bodyMedium)
+            panel.options.forEach { (form, label) ->
+                OutlinedButton(onClick = { actions.onExplanationForm(form) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(label) }
+            }
+        }
+        is HelpPanel.Message -> Text(panel.text, style = MaterialTheme.typography.bodyMedium)
+        HelpPanel.Waiting -> Text(RunHelpCopy.WAITING, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+        is HelpPanel.Shown -> {
+            Text(panel.text, style = MaterialTheme.typography.bodyLarge)
+            panel.notes.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
+        }
+        is HelpPanel.Practice -> {
+            Text(panel.question, style = MaterialTheme.typography.bodyLarge)
+            panel.notes.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
+            var answer by remember(panel.question) { mutableStateOf("") }
+            OutlinedTextField(value = answer, onValueChange = { answer = it }, label = { Text(RunHelpCopy.PRACTICE_ANSWER_LABEL) }, modifier = Modifier.fillMaxWidth())
+            OutlinedButton(onClick = { actions.onPracticeAnswer(answer) }, enabled = answer.isNotBlank(), modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+                Text(RunHelpCopy.PRACTICE_SEND)
+            }
+        }
+    }
+    TextButton(onClick = actions.onCloseHelp, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(RunHelpCopy.CLOSE) }
 }
 
 @Composable

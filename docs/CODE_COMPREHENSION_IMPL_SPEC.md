@@ -167,3 +167,7 @@ The offer names what happened without accusing anyone and says skipping is fine;
 If accepted, 14E becomes `ACCX-v0 / D-109`.
 
 Next numbered step: **14F — Açık uçlu cevap değerlendirme**. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**16G note (2026-10-26, `D-130`):** the check is offered in the run after a code answer the learner did not write alone. No shipped package authors a written check yet, so what follows today is the tutor's practice question (never evidence); the written path is tested with one authored check. A written check answered alone is independent, except in a teaching task (practice by design). Details: `docs/RUN_HELP_SPEC.md`.

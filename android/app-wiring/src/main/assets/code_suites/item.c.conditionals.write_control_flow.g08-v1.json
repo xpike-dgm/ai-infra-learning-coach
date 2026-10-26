@@ -1,0 +1,50 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.conditionals.write_control_flow.g08@v1",
+  "item": "item.c.conditionals.write_control_flow.g08@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "equilateral",
+      "stdin": "5 5 5\n",
+      "expected_stdout": "eskenar\n"
+    },
+    {
+      "id": "first_two",
+      "stdin": "5 5 3\n",
+      "expected_stdout": "ikizkenar\n"
+    },
+    {
+      "id": "outer_two",
+      "stdin": "4 6 4\n",
+      "expected_stdout": "ikizkenar\n"
+    },
+    {
+      "id": "last_two",
+      "stdin": "3 7 7\n",
+      "expected_stdout": "ikizkenar\n"
+    },
+    {
+      "id": "scalene",
+      "stdin": "3 4 5\n",
+      "expected_stdout": "cesitkenar\n"
+    }
+  ]
+}
