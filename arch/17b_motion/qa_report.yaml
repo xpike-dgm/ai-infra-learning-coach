@@ -1,0 +1,115 @@
+model: MOTX-v0
+stage_step: 17B
+decision: D-134
+result: PASS
+checks_total: 36
+checks_failed: 0
+checks:
+- check: A17B-01_files_exist
+  result: PASS
+  details: '[]'
+- check: A17B-01_contract_identity
+  result: PASS
+  details: MOTX-v0 D-134
+- check: A17B-02_purposes_are_vdsx
+  result: PASS
+  details: '[''orientation'', ''continuity'', ''feedback'', ''state_change''] vs [''orientation'', ''continuity'', ''feedback'', ''state_change'']'
+- check: A17B-03_one_band_per_purpose
+  result: PASS
+  details: '[(''FEEDBACK'', ''FEEDBACK'', ''100''), (''ORIENTATION'', ''ORIENTATION'', ''200''), (''CONTINUITY'', ''CONTINUITY'', ''250''), (''STATE_CHANGE'', ''STATE_CHANGE'', ''200'')]'
+- check: A17B-03_ceiling_is_short
+  result: PASS
+  details: '[(''FEEDBACK'', ''FEEDBACK'', ''100''), (''ORIENTATION'', ''ORIENTATION'', ''200''), (''CONTINUITY'', ''CONTINUITY'', ''250''), (''STATE_CHANGE'', ''STATE_CHANGE'', ''200'')] ceiling 300'
+- check: A17B-03_feedback_briefest
+  result: PASS
+  details: '[100]'
+- check: A17B-04_reduced_is_immediate
+  result: PASS
+  details: MotionPolicy.spec
+- check: A17B-04_platform_setting_read
+  result: PASS
+  details: ANIMATOR_DURATION_SCALE
+- check: A17B-04_theme_provides_it
+  result: PASS
+  details: CoachTheme
+- check: A17B-04_zero_is_snap
+  result: PASS
+  details: motionSpec
+- check: A17B-05_animation_specs_only_in_motion_helper
+  result: PASS
+  details: '{}'
+- check: A17B-05_nothing_repeats
+  result: PASS
+  details: '[]'
+- check: A17B-05_animations_only_through_helpers
+  result: PASS
+  details: '{}'
+- check: A17B-05_motion_helper_uses_only_fade_and_size
+  result: PASS
+  details: '[''Animatable'', ''animateContentSize'', ''animateTo'']'
+- check: A17B-05_theme_animates_only_the_chip_colour
+  result: PASS
+  details: '[''animateColorAsState'']'
+- check: A17B-05_chip_restarts_for_a_new_subject
+  result: PASS
+  details: StateChip subject
+- check: A17B-05_no_scale_rotation_or_travel
+  result: PASS
+  details: '[]'
+- check: A17B-06_no_celebration
+  result: PASS
+  details: no celebration
+- check: A17B-06_forbidden_named
+  result: PASS
+  details: '[''countdown_or_urgency'', ''pressure_pulse'', ''celebration_on_completion'', ''decay_or_loss'', ''streak_combo_or_score'', ''sole_indicator_of_change'', ''blocks_exit'']'
+- check: A17B-07_arrival_only_fades
+  result: PASS
+  details: ArriveOnChange
+- check: A17B-07_reduced_arrival_visible_from_first_frame
+  result: PASS
+  details: no blank frame
+- check: A17B-07_result_announced_outside_the_fade
+  result: PASS
+  details: the live region is not on the faded node
+- check: A17B-07_chip_text_is_not_animated
+  result: PASS
+  details: the label says the state
+- check: A17B-07_focused_flow_never_faded
+  result: PASS
+  details: a focused flow's exit is visible from the first frame
+- check: A17B-07_exit_first_in_the_runner
+  result: PASS
+  details: exit first, never behind motion
+- check: A17B-07_destinations_orient
+  result: PASS
+  details: AppShell
+- check: A17B-07_panels_are_continuity
+  result: PASS
+  details: only the help panel and grouping blocks grow
+- check: A17B-08_test_the purposes are VDSX-v0's four
+  result: PASS
+  details: the purposes are VDSX-v0's four
+- check: 'A17B-08_test_nothing is long enough to delay the '
+  result: PASS
+  details: nothing is long enough to delay the next action
+- check: 'A17B-08_test_with motion reduced every change is '
+  result: PASS
+  details: with motion reduced every change is immediate
+- check: A17B-08_test_nothing celebrates
+  result: PASS
+  details: nothing celebrates
+- check: A17B-09_decision_recorded
+  result: PASS
+  details: DECISIONS
+- check: A17B-09_execution_index
+  result: PASS
+  details: 17B checked
+- check: A17B-09_spec_accepted
+  result: PASS
+  details: spec
+- check: A17B-09_kotlin_mutation_all_detected
+  result: PASS
+  details: 10/10
+- check: A17B-09_validator_mutation_all_detected
+  result: PASS
+  details: 18/18

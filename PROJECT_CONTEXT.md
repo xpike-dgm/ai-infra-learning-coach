@@ -257,12 +257,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **16H ✅ Uçtan uca günlük döngü: ölçme oturumları — ASRX-v0 / D-132**
 - **AŞAMA 16 ✅ TAMAMLANDI**
 - **17A ✅ Görsel polish — VPLX-v0 / D-133**
-- **17B 🟡 Motion — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 17C–20 ⬜
+- **17B ✅ Motion — MOTX-v0 / D-134**
+- **17C 🟡 Kullanılabilirlik — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 17D–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 17B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 17C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -839,3 +840,13 @@ Bulunanlar: uygulama ilk kez bir emülatörde (Pixel 7 AVD, API 34; T6 değil) �
 Onay kullanıcının 2026-10-27 açık onayı ("17A ya başla"). Kullanıcı kararları: tasarım sistemi + Learn ekranı (koşu/bildirim cilası ve gün özetindeki gerçek değişiklikler 17C'ye); ilk açılış çökmesi 17A içinde; doğrulama emülatör ekran görüntüleriyle, açık/koyu tema ve %200 yazı. Şema değişmedi (v11); `ContentPort.lessonTitleFor` varsayılanlı port inceltmesi. Kotlin mutation 27/27, validator mutation 31/31; 95/95 QA PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/VISUAL_POLISH_SPEC.md` / D-133.
+
+## 12.54 17B Motion — MOTX-v0 / D-134
+
+Uygulamanın hareketi artık yalnız yön gösteriyor, aynı nesnenin büyüdüğünü söylüyor, girdinin alındığını ve durumun gerçekten değiştiğini onaylıyor. Ana invariant: hareketin yalnız dört amacı var — yönlendirme, süreklilik, geri bildirim ve durum değişimi — her biri kısa, bildirilmiş bir süre bandı ve hiçbiri bir sonraki eylemi geciktirmiyor; hiçbir şey tekrarlamıyor, nabız gibi atmıyor, geri saymıyor ya da kutlamıyor (kanonik durum gerçekten değişse bile); hareket bir değişikliğin tek işareti değil ve odaklı akışın çıkışının önüne hiç geçmiyor; Android 'Animasyonları kaldır' açıkken her değişiklik anında ve hiçbir bilgi kaybolmuyor.
+
+Bulunanlar: uygulamanın kendi hiçbir animasyonu yoktu; bağımsız inceleme ilk sürümde iki engelleyici sorun buldu — odaklı akış bütünüyle soluk başlıyordu, yani çıkış düğmesi görünmezken tıklanabiliyordu, ve azaltılmış harekette her geçişte bir boş kare çiziliyordu — ikisi de düzeltildi; ayrıca başka bir beceri için yeniden kullanılan çipin renk geçişi, görev aşamalarının tek nesne gibi büyümesi ve sonucun saydam bir düğümden duyurulması düzeltildi.
+
+Onay kullanıcının 2026-10-27 açık onayı ("17B ye başla"). Kullanıcı kararları: politika + uygulama (hedef/ayrıntı gelişi, yardım paneli, cevap sonucu, çip durum geçişi); hiç kutlama yok; azaltılmış hareket sistem ayarından (uygulama içi tercih 17D'nin). Şema değişmedi (v11). Kotlin mutation 10/10, validator mutation 18/18; 36/36 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/MOTION_SPEC.md` / D-134.

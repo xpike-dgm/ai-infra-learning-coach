@@ -319,14 +319,15 @@ PEM-v0:
 - 16H ✅ ASRX-v0 / D-132
 - **AŞAMA 16 TAMAMLANDI**
 - 17A ✅ VPLX-v0 / D-133
-- 17B 🟡 active-not-executed
-- 17C–20 ⬜
+- 17B ✅ MOTX-v0 / D-134
+- 17C 🟡 active-not-executed
+- 17D–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `17A — VPLX-v0 / D-133`  
-**Aktif:** `17B — Motion`  
-**17B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `17B — MOTX-v0 / D-134`  
+**Aktif:** `17C — Kullanılabilirlik`  
+**17C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1718,3 +1719,21 @@ VPLX-v0:
 ## 110. 17B handoff
 
 17B — Motion. 17A ran on the user's explicit approval; 17B needs a fresh PRE and the user's new explicit approval. Inputs: `VDSX-v0` §10 (purpose classes, duration bands, forbidden motion, reduced motion) and 17A's components. Moved to 17C: run and notification polish, the day summary naming a run's real changes, usage/cost visibility, the `skill_detail -> planner_explanation` and `technical_english_profile -> skill_detail` edges. Elsewhere: content markup for code (20I), the Progress load time (18E), theme and accessibility preferences (17D), T6 (19).
+
+## 111. D-134 / 17B final özeti
+
+Canonical: `docs/MOTION_SPEC.md`.
+Contract/QA: `arch/17b_motion/` (contract, QA report, stale audit).
+Synthesis: `research/17b_motion_research.md`.
+Code: `core-presentation` (`Motion.kt` — `MotionPurpose`, `MotionSpec`, `MotionEasing`, `MotionPolicy`, `ForbiddenMotion`, `ReducedMotion`), `app-ui` (`Motion.kt` — `LocalReducedMotion`, `platformReducedMotion`, `motionSpec`, `ArriveOnChange`, `continuousSize`; `CoachTheme.kt` — `StateChip(subject)`; `AppShell.kt`; `Components.kt`; `TaskRunnerScreen.kt`). Schema v11 unchanged.
+
+MOTX-v0:
+- motion by purpose: orientation, continuity, feedback and state change, each a short declared band; nothing repeats, pulses, counts down or celebrates; motion is never the only sign of a change and never stands before the exit; with the platform's animations removed every change is immediate,
+- approval: the user's explicit approval of 2026-10-27 ("17B ye başla"); user decisions: policy plus application; no celebration at all; reduced motion from the platform setting (an in-app preference is 17D's),
+- found: the app had no motion of its own; the independent review found the focused flow faded in as a whole (its exit invisible but clickable) and a blank frame on every arrival with motion reduced — both fixed — and a chip animating when reused, a stage swap animated as one object and the result announced from a transparent node — fixed,
+- Mutation Kotlin 10/10, validator 18/18; independent QA 36/36 PASS,
+- T6 was not run; the motion was seen on an emulator (Pixel 7 AVD, API 34), with the platform animations on and off.
+
+## 112. 17C handoff
+
+17C — Kullanılabilirlik. 17B ran on the user's explicit approval; 17C needs a fresh PRE and the user's new explicit approval. Inputs carried to 17C: run and notification polish (the focused-flow exit staying in view on a long lesson; the history's assistance levels shown as H1, H3), the day summary naming a run's real changes, usage/cost visibility, the `skill_detail -> planner_explanation` and `technical_english_profile -> skill_detail` edges. Elsewhere: theme, accessibility and reduced-motion preferences (17D), calibration (18), T6 (19).

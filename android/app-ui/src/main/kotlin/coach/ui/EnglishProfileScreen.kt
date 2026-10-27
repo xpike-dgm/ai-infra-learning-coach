@@ -60,7 +60,7 @@ fun EnglishProfileScreen(
             group.skills.forEach { chip ->
                 Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
                     Text(chip.name, style = MaterialTheme.typography.bodyLarge)
-                    StateChip(label = chip.label, tone = chip.tone)
+                    StateChip(label = chip.label, tone = chip.tone, subject = chip.skill)
                     group.sources[chip.skill]?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
                     chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
                 }

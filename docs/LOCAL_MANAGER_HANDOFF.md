@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113 / 15C ✅ CFNX-v0 / D-114 / 15D ✅ MMFX-v0 / D-116 / 15E ✅ LGSX-v0 / D-118 / 15F ✅ EAAX-v0 / D-119 / 15G ✅ ACNX-v0 / D-120 / 15H ✅ CQAX-v0 / D-121 / 16A ✅ SKAX-v0 / D-122 / 16B ✅ LHRX-v0 / D-123 / 16C ✅ PWPX-v0 / D-124 / 16D ✅ STGX-v0 / D-126 / 16E ✅ RMDX-v0 / D-127 / 16F ✅ E2EX-v0 / D-128 / 16G ✅ HLPX-v0 / D-130 / 16H ✅ ASRX-v0 / D-132`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13, AŞAMA 14 ve AŞAMA 15'in kapandığını, AŞAMA 16'nın da kapandığını, `VPLX-v0 / D-133` ile Görsel polish adımının kapandığını ve aktif adımın `17B active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113 / 15C ✅ CFNX-v0 / D-114 / 15D ✅ MMFX-v0 / D-116 / 15E ✅ LGSX-v0 / D-118 / 15F ✅ EAAX-v0 / D-119 / 15G ✅ ACNX-v0 / D-120 / 15H ✅ CQAX-v0 / D-121 / 16A ✅ SKAX-v0 / D-122 / 16B ✅ LHRX-v0 / D-123 / 16C ✅ PWPX-v0 / D-124 / 16D ✅ STGX-v0 / D-126 / 16E ✅ RMDX-v0 / D-127 / 16F ✅ E2EX-v0 / D-128 / 16G ✅ HLPX-v0 / D-130 / 16H ✅ ASRX-v0 / D-132`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13, AŞAMA 14 ve AŞAMA 15'in kapandığını, AŞAMA 16'nın da kapandığını, `MOTX-v0 / D-134` ile Motion adımının kapandığını ve aktif adımın `17C active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1172,14 +1172,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 16H ✅ ASRX-v0 / D-132
 - **AŞAMA 16 TAMAMLANDI**
 - AŞAMA 17A ✅ VPLX-v0 / D-133
-- AŞAMA 17B 🟡 active-not-executed
-- 17C–20 ⬜
+- AŞAMA 17B ✅ MOTX-v0 / D-134
+- AŞAMA 17C 🟡 active-not-executed
+- 17D–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `17A — Görsel polish`  
-**Final:** `VPLX-v0 — the accepted design system applied: every Material role a measured token, every type slot a VDSX-v0 role with mono for code, a 4dp rhythm, a surface under every screen, outlined state chips with a mark per tone, words instead of identifiers, and the Learn tab's learning map` / D-133  
-**Canonical:** `docs/VISUAL_POLISH_SPEC.md` + `arch/17a_visual_polish/`
+**Son tamamlanan numaralı adım:** `17B — Motion`  
+**Final:** `MOTX-v0 — motion by purpose: orientation, continuity, feedback and state change, each a short declared band; nothing repeats, pulses, counts down or celebrates; motion is never the only sign of a change and never stands before the exit; with the platform's animations removed every change is immediate` / D-134  
+**Canonical:** `docs/MOTION_SPEC.md` + `arch/17b_motion/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1249,17 +1250,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 16G:** ✅ TAMAMLANDI  
 **AŞAMA 16H:** ✅ TAMAMLANDI — **AŞAMA 16 TAMAMLANDI**  
 **AŞAMA 17A:** ✅ TAMAMLANDI
-**Aktif adım:** `17B — Motion`  
+**AŞAMA 17B:** ✅ TAMAMLANDI
+**Aktif adım:** `17C — Kullanılabilirlik`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-17B için:
+17C için:
 
 ```text
-fresh 17B PRE-STEP GitHub refresh
+fresh 17C PRE-STEP GitHub refresh
 → user explicit approval verification (D-117 ended with 15F)
-→ 17B execution
+→ 17C execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1863,8 +1865,9 @@ AŞAMA 14 ✅ TAMAMLANDI
 16H ✅ ASRX-v0 / D-132
 AŞAMA 16 ✅
 17A ✅ VPLX-v0 / D-133
-17B 🟡 active-not-executed
-17C–20 ⬜
+17B ✅ MOTX-v0 / D-134
+17C 🟡 active-not-executed
+17D–20 ⬜
 ```
 
 10D final:
@@ -2061,9 +2064,9 @@ AŞAMA 16 ✅
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `17B — Motion`.
+**Sıradaki gerçek numbered work:** `17C — Kullanılabilirlik`.
 
-**17B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**17C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2113,8 +2116,8 @@ AŞAMA 16 ✅
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `17B — Motion`.  
-**17B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `17C — Kullanılabilirlik`.  
+**17C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2591,4 +2594,15 @@ Bulunanlar: uygulama ilk kez bir emülatörde (Pixel 7 AVD, API 34; T6 değil) �
 
 **AŞAMA 17A ✅ VPLX-v0 / D-133.** Kotlin mutation 27/27, validator mutation 31/31; 95/95 QA PASS. T6 çalıştırılmadı.
 
-**Aktif adım:** `17B — Motion` — henüz yürütülmedi; fresh PRE + kullanıcının yeni açık onayı zorunlu (D-117'nin sürekli onayı 15F ile bitti).
+---
+## 17B completion addendum — D-134
+
+17B `MOTX-v0 — motion by purpose: orientation, continuity, feedback and state change, each a short declared band; nothing repeats, pulses, counts down or celebrates; motion is never the only sign of a change and never stands before the exit; with the platform's animations removed every change is immediate`.
+
+Ana invariant: hareketin yalnız dört amacı var — yönlendirme, süreklilik, geri bildirim ve durum değişimi — her biri kısa, bildirilmiş bir süre bandı ve hiçbiri bir sonraki eylemi geciktirmiyor; hiçbir şey tekrarlamıyor, nabız gibi atmıyor, geri saymıyor ya da kutlamıyor (kanonik durum gerçekten değişse bile); hareket bir değişikliğin tek işareti değil ve odaklı akışın çıkışının önüne hiç geçmiyor; Android 'Animasyonları kaldır' açıkken her değişiklik anında ve hiçbir bilgi kaybolmuyor.
+
+Bulunanlar: uygulamanın kendi hiçbir animasyonu yoktu; bağımsız inceleme ilk sürümde iki engelleyici sorun buldu — odaklı akış bütünüyle soluk başlıyordu, yani çıkış düğmesi görünmezken tıklanabiliyordu, ve azaltılmış harekette her geçişte bir boş kare çiziliyordu — ikisi de düzeltildi; ayrıca başka bir beceri için yeniden kullanılan çipin renk geçişi, görev aşamalarının tek nesne gibi büyümesi ve sonucun saydam bir düğümden duyurulması düzeltildi.
+
+**AŞAMA 17B ✅ MOTX-v0 / D-134.** Kotlin mutation 10/10, validator mutation 18/18; 36/36 QA PASS. T6 çalıştırılmadı.
+
+**Aktif adım:** `17C — Kullanılabilirlik` — henüz yürütülmedi; fresh PRE + kullanıcının yeni açık onayı zorunlu (D-117'nin sürekli onayı 15F ile bitti).

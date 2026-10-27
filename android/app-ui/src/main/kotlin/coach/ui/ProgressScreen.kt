@@ -92,7 +92,7 @@ private fun CountLine(label: String, count: Int) = CountRow(label, count.toStrin
 @Composable
 private fun SkillLine(chip: SkillChip, onOpenSkill: (VersionedRef) -> Unit) {
     NavRow(chip.name, onClick = { onOpenSkill(chip.skill) }) {
-        StateChip(label = chip.label, tone = chip.tone)
+        StateChip(label = chip.label, tone = chip.tone, subject = chip.skill)
         // Qualifiers are text beside the state, never a replacement for it (`SPWX-v0` §5.1).
         chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
     }
@@ -112,7 +112,7 @@ fun SkillDetailScreen(
         BackButton(onBack)
         ScreenTitle(view.name)
         Text(view.statement, style = MaterialTheme.typography.bodyMedium)
-        StateChip(label = view.chip.label, tone = view.chip.tone)
+        StateChip(label = view.chip.label, tone = view.chip.tone, subject = view.skill)
         view.chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
         onOpenHistory?.let { open -> NavRow("Bu becerinin geçmişi", open) }
 

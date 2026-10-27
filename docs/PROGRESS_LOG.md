@@ -1590,3 +1590,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `17A tamamlandı; 17B aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `17B — Motion`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-27 — 17B — Motion tamamlandı — MOTX-v0 / D-134
+
+- Kullanıcı 17A'yı (#68) CI yeşil olunca merge ettirdi (99a5141) ve "17B ye başla" dedi. Fresh 17B PRE yapıldı ve kanonik kaynaklar `17A ✅ / 17B active-not-executed` gösterdi.
+- **Kullanıcı kararları (2026-10-27):** politika + uygulama (hedef/ayrıntı gelişi, yardım paneli, cevap sonucu, çip durum geçişi); hiç kutlama yok; azaltılmış hareket sistem ayarından (uygulama içi tercih 17D'nin).
+- **Bulgu:** uygulamanın kendi hiçbir animasyonu yoktu; bağımsız inceleme ilk sürümde iki engelleyici sorun buldu — odaklı akış bütünüyle soluk başlıyordu, yani çıkış düğmesi görünmezken tıklanabiliyordu, ve azaltılmış harekette her geçişte bir boş kare çiziliyordu — ikisi de düzeltildi; ayrıca başka bir beceri için yeniden kullanılan çipin renk geçişi, görev aşamalarının tek nesne gibi büyümesi ve sonucun saydam bir düğümden duyurulması düzeltildi.
+- **Kod:** core `Motion.kt` (`MotionPurpose`, `MotionPolicy`, `ForbiddenMotion`, `ReducedMotion`); app-ui `Motion.kt` (`motionSpec`, `ArriveOnChange`, `continuousSize`, `LocalReducedMotion`); `StateChip(subject)`; `AppShell`, `Components`, `TaskRunnerScreen`.
+- **Araştırma:** iç sözleşme `VDSX-v0` §§10, 12, `TRUX-v0`; dış: Material 3 hareket belirteçleri, WCAG 2.2 2.3.3, Android animatör süre ölçeği.
+- **Bağımsız inceleme:** ayrı bir ajan iki engelleyici bulgu ve dört öneri verdi; hepsi düzeltildi.
+- **Mutation:** Kotlin 10/10.
+- **Validator mutation:** 18/18.
+- **Validator:** 36/36 PASS; hızlı tarama geçti; 1291 JVM testi.
+- **T6 çalıştırılmadı; hareket emülatörde görüldü (Pixel 7 AVD, API 34), animasyonlar açık ve kapalı**.
+- D-050 POST living-memory accepted state'i `17B tamamlandı; 17C aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `17C — Kullanılabilirlik`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

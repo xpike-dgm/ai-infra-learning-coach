@@ -1201,8 +1201,17 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 27/27, validator mutation 31/31; 95/95 QA PASS,
 - **T6 çalıştırılmadı; uygulama emülatörde görüldü (Pixel 7 AVD, API 34)**.
 
-### [ ] 17B — Motion — **AKTİF**
-### [ ] 17C — Kullanılabilirlik
+### [x] 17B — Motion — MOTX-v0 / D-134
+
+**17B final coverage:**
+- hareketin yalnız dört amacı var — yönlendirme, süreklilik, geri bildirim ve durum değişimi — her biri kısa, bildirilmiş bir süre bandı ve hiçbiri bir sonraki eylemi geciktirmiyor; hiçbir şey tekrarlamıyor, nabız gibi atmıyor, geri saymıyor ya da kutlamıyor (kanonik durum gerçekten değişse bile); hareket bir değişikliğin tek işareti değil ve odaklı akışın çıkışının önüne hiç geçmiyor; Android 'Animasyonları kaldır' açıkken her değişiklik anında ve hiçbir bilgi kaybolmuyor,
+- politika core'da: dört amaç, süre bantları (geri bildirim 100, yönlendirme ve durum değişimi 200, süreklilik 250 ms; tavan 300), yasak hareketler, `CELEBRATION_ALLOWED = false`, sistem animatör ölçeği 0 iken her şey anında,
+- uygulamada: hedef ve ayrıntı gelişi (yönlendirme), yardım paneli ve gruplama blokları (süreklilik), cevap sonucu (geri bildirim, duyuru solan katmanın dışında), çip rengi aynı konunun yeni durumunu izliyor (durum değişimi); odaklı akış hiç soluklaştırılmıyor,
+- bulgu: uygulamanın kendi hiçbir animasyonu yoktu; bağımsız inceleme ilk sürümde iki engelleyici sorun buldu — odaklı akış bütünüyle soluk başlıyordu, yani çıkış düğmesi görünmezken tıklanabiliyordu, ve azaltılmış harekette her geçişte bir boş kare çiziliyordu — ikisi de düzeltildi; ayrıca başka bir beceri için yeniden kullanılan çipin renk geçişi, görev aşamalarının tek nesne gibi büyümesi ve sonucun saydam bir düğümden duyurulması düzeltildi,
+- Kotlin mutation 10/10, validator mutation 18/18; 36/36 QA PASS,
+- **T6 çalıştırılmadı; hareket emülatörde görüldü (Pixel 7 AVD, API 34)**.
+
+### [ ] 17C — Kullanılabilirlik — **AKTİF**
 ### [ ] 17D — Accessibility
 
 ---
@@ -1263,8 +1272,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A`  
-**Son tamamlanan:** **`17A — VPLX-v0 / D-133`**  
-**Aktif:** **`17B — Motion`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17B`  
+**Son tamamlanan:** **`17B — MOTX-v0 / D-134`**  
+**Aktif:** **`17C — Kullanılabilirlik`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **17B fresh PRE-STEP + kullanıcının yeni açık onayı → Motion → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **17C fresh PRE-STEP + kullanıcının yeni açık onayı → Kullanılabilirlik → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

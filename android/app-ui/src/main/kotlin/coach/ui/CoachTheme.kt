@@ -1,6 +1,7 @@
 package coach.ui
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +29,8 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coach.presentation.DesignTokens
 import coach.presentation.MaterialColorRoles
+import coach.presentation.MotionPurpose
 import coach.presentation.Spacing
 import coach.presentation.Theme
 import coach.presentation.Tone
@@ -176,7 +180,8 @@ fun CoachTheme(
     content: @Composable () -> Unit,
 ) {
     val theme = if (dark) Theme.DARK else Theme.LIGHT
-    CompositionLocalProvider(LocalToneColors provides toneColors(theme)) {
+    // 17B: reduced motion follows the platform (`ReducedMotion`); every motion in app-ui reads it.
+    CompositionLocalProvider(LocalToneColors provides toneColors(theme), LocalReducedMotion provides platformReducedMotion()) {
         MaterialTheme(colorScheme = colorScheme(theme), typography = typography()) {
             // 17A: every screen sits on the measured surface. Before 17A a focused flow had no surface of its own and
             // drew dark text on the window's default dark background.
@@ -216,9 +221,12 @@ fun StateChip(
     label: String,
     tone: Tone,
     modifier: Modifier = Modifier,
-) {
+    // 17B: what the chip is about. A new subject starts a new chip, so moving from one Skill to another, a list
+    // reloading or a row reused is never shown as a state change (`VDSX-v0` §10.2 state_change).
+    subject: Any? = null,
+) = key(subject) {
     // The tone's own colour as label, mark and border (`ChipColors`): measured against the surface beneath.
-    val color = LocalToneColors.current.getValue(tone).container
+    val color by animateColorAsState(LocalToneColors.current.getValue(tone).container, motionSpec(MotionPurpose.STATE_CHANGE), label = "state_chip")
     Row(
         modifier = modifier
             .border(BorderStroke(HAIRLINE, color), RoundedCornerShape(Spacing.XXS.dp))

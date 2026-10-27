@@ -1,0 +1,111 @@
+model: MOTX-v0
+stage_step: 17B
+status: accepted_17b
+decision: D-134
+implements: [VDSX-v0, TRUX-v0, VPLX-v0]
+boundaries: MSBX-v0
+persistence: none_schema_v11_unchanged
+purpose: motion_by_purpose_orientation_continuity_feedback_state_change_short_declared_bands_nothing_repeats_pulses_counts_down_or_celebrates_never_the_only_sign_never_before_the_exit_immediate_when_the_platform_removes_animations
+
+question: Uygulamadaki hareket bana yalnız nereye geldiğimi, aynı şeyin büyüdüğünü, girdimin alındığını ve durumun gerçekten değiştiğini mi söylüyor — beni acele ettirmeden, ödüllendirmeden, hiçbir şeyi yalnız hareketle söylemeden ve hareketi kapattığımda hiçbir bilgiyi kaybetmeden?
+
+primary_invariant: >-
+  Motion has four purposes — orientation, continuity, feedback and state change — each a short declared band, and
+  nothing is long enough to delay the next action. Nothing repeats, pulses, counts down or celebrates, not even when
+  canonical state genuinely changed. Motion is never the only sign of a change: the text beside it already says so and
+  it is announced; leaving a focused flow is never animated. With the platform's animations removed every change is
+  immediate and nothing is lost.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-27
+  scope: core_motion_policy_plus_application_destinations_and_details_arriving_focused_flow_entered_panels_opening_result_arriving_chip_following_its_state
+  celebration: none_at_all_even_on_a_genuine_canonical_change
+  reduced_motion: the_platform_setting_animator_duration_scale_zero_in_app_preference_is_17d
+
+assistant_defaults:
+  - bands follow Material 3's duration tokens — feedback 100 ms, orientation and state change 200 ms, continuity 250 ms; ceiling 300 ms; declared defaults and calibration inputs for 18
+  - easing — decelerate for arrival (orientation), standard otherwise
+  - arrival is a fade only; no scale, rotation or travel, which could read as falling or rising
+  - a chip animates its colour only; its label and announced state change at once
+
+found:
+  - id: no_motion_existed
+    what: the app made no animation of its own; only Material components' defaults moved
+  - id: keyed_fade_not_crossfade
+    what: the shell's content is one lambda reading the current state, so a cross-fade would draw the new screen twice
+    resolution: an arriving surface fades in on its key and nothing animates its leaving, which also keeps the exit free
+  - id: compose_scales_by_platform
+    what: Compose already scales durations by the animator duration scale
+    resolution: the rule is made explicit (ReducedMotion, snap) so it holds by construction
+  - id: review_blocking_exit_faded
+    what: the independent review found the focused flow faded in as a whole, so its exit started invisible though clickable
+    resolution: a focused flow is never faded; the validator now reads AppShell's focused branch
+  - id: review_blocking_blank_frame
+    what: with motion reduced every arrival drew one blank frame (Animatable started at 0)
+    resolution: an arrival starts visible when motion is reduced and no effect runs
+  - id: review_suggestions
+    what: a chip animated when reused for another subject; a stage swap animated as one object; the result announced from a transparent node; validator gaps
+    resolution: StateChip(subject) with key; continuity only on the help panel and grouping blocks; the live region outside the fade; the validator scans generic specs, more animation APIs, frame loops and app-wiring
+  - id: emulator_system_ui_anr
+    what: the emulator's System UI stopped responding once after boot; not the app
+
+policy:
+  purposes: [orientation, continuity, feedback, state_change]
+  bands_ms: {feedback: 100, orientation: 200, state_change: 200, continuity: 250}
+  ceiling_ms: 300
+  reduced: every duration 0 (snap) when the platform's animator duration scale is 0
+  celebration_allowed: false
+  forbidden: [countdown_or_urgency, pressure_pulse, celebration_on_completion, decay_or_loss, streak_combo_or_score, sole_indicator_of_change, blocks_exit]
+
+application:
+  orientation: AppShell — a destination or a detail fades in on its surface id
+  continuity: SectionBlock and the run's help panel grow and shrink (animateContentSize); a stage swap is not continuity
+  feedback: TaskRunnerScreen — an answer's result fades in; the polite live region sits outside the fading layer
+  state_change: StateChip(subject) — its colour follows a new state of the same subject; a new subject starts a new chip; the label and stateDescription change at once
+  focused_flow: never faded in or out; its exit is the first item, visible and acting from the first frame
+  reduced: an arrival is visible from its first frame (no blank frame)
+
+moved_on:
+  - an in-app reduced-motion preference and theme preferences (17D)
+  - calibrating the bands with real use (18)
+  - the focused-flow exit staying in view on a long lesson (17C)
+  - motion on the Poco M6 Pro (19)
+
+verification:
+  kotlin_tests: [MotionTest (4)]
+  validator: tools/validate_motion.py
+  independent_review: a separate agent; 2 blocking findings and 4 suggestions fixed
+  emulator: Pixel_7 AVD API 34 — motion on, and the animator, transition and window scales at 0; every screen complete, no crash
+  t6_run: false
+
+acceptance_criteria:
+  - the purposes are VDSX-v0 §10.2's four, each with one band
+  - every band is short, feedback is the briefest and nothing exceeds the ceiling
+  - with the platform's animations removed every change is immediate
+  - animation specs are made in one place, from a purpose
+  - nothing repeats, pulses, counts down, scales, rotates, travels or celebrates
+  - motion is never the only sign of a change, and the focused-flow exit is never behind motion
+  - earlier gates still pass
+
+
+mutation_results_kotlin:
+  scope: one change per mutant to the bands (feedback, orientation, the ceiling), a band's purpose, reduced motion (no zero, the threshold twice), celebration, a forbidden motion and a purpose id; then MotionTest
+  total: 10
+  detected: 10
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: the hardened runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a comment in Motion.kt
+  negative_control_result: survived_as_expected
+  final_run_is_a_single_clean_run: true
+
+mutation_results_validator:
+  scope: one change per mutant to what the validator exists to catch — a repeating spec, a frame loop, a raw tween in a screen and in the wiring, the theme's reduced-motion provider, the snap, a long band, the chip's purpose and subject, an AnimatedVisibility, the announcement on the faded node, a faded focused flow, celebration, scale in the arrival, the wrong platform setting, a blank first frame, the grouping block's continuity, a forbidden motion removed
+  total: 18
+  detected: 18
+  detection: the validator fails and names the expected check (only the living-record checks A17B-09 may fail in the baseline before POST)
+  negative_control: V00 changes a comment in Motion.kt
+  negative_control_result: survived_as_expected
+  final_run_is_a_single_clean_run: true
+
+next_step: 17C — Kullanılabilirlik
