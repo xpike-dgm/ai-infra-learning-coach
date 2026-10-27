@@ -256,12 +256,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **16G ✅ Uçtan uca günlük döngü: yardım ve ölçüm — HLPX-v0 / D-130**
 - **16H ✅ Uçtan uca günlük döngü: ölçme oturumları — ASRX-v0 / D-132**
 - **AŞAMA 16 ✅ TAMAMLANDI**
-- **17A 🟡 Görsel polish — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 17–20 ⬜
+- **17A ✅ Görsel polish — VPLX-v0 / D-133**
+- **17B 🟡 Motion — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 17C–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 17A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 17B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -829,3 +830,12 @@ Onay kullanıcının 2026-10-26 açık onayı ("merge et ve 16H ye başla"). Kul
 
 Canonical: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md` / D-132.
 
+## 12.53 17A Görsel polish — VPLX-v0 / D-133
+
+Uygulama artık kabul edilmiş tasarım sisteminin söylediği gibi görünüyor ve Öğren sekmesi öğrenme haritasını gösteriyor. Ana invariant: tasarım sistemi uygulandı ve hiçbir anlam eklemedi: her Material renk rolü ölçülmüş bir token, her yazı yuvası `VDSX-v0`'ın sekiz rolünden biri ve kod `mono`; yazıldığı hiçbir satır değişmeden kod paragrafları mono bloklarda; durum çipi çerçeveli, tonunun işaretini taşıyor ve düğmeye benzemiyor; etkinlik türü, iz, çalışma günü, konu, beceri ve hedef Türkçe söyleniyor ya da hiç gösterilmiyor — kimlik ya da tahmin değil; Öğren sekmesi öğrenme haritası: alanlar ve konular, İlerleme'nin aynı çipleriyle, her biri konu ayrıntısını açıyor ve sırası ön koşul zinciri değil.
+
+Bulunanlar: uygulama ilk kez bir emülatörde (Pixel 7 AVD, API 34; T6 değil) çalıştırıldı: ilk açılışta çöküyordu (engelleyici ekran hiçbir şey engellemezken çiziliyordu; `AppHealth.atStartup`), odaklı akışın yüzeyi yoktu (koyu pencere üstünde koyu metin, ~1.4:1), gezinme çubuğu Material'ın varsayılan morunu taşıyordu, kod gövde yazısıyla çiziliyordu, çipler düğmeye benziyordu, ekranda ham kimlikler vardı (`content_explanation`, `learn_overview · study day`, 'Expressions Io', 'explain pipeline') ve hedef cihaz (API 36) edge-to-edge'i zorluyor; bağımsız inceleme ilk geçişte geçmişte ve ölçme raporunda ham tarihi, beceri ayrıntısında, geçmişte ve hızlı yolda hedef kimliklerini, beceri ayrıntısında İngilizce konu adlarını ve Profil'de yanlış yazılan bir sayıya arıza rengi verildiğini buldu (hepsi düzeltildi); beş test ve bir 16B kontrolü 17A'nın değiştirdiğini sabitliyordu ('Narrowed at 17A').
+
+Onay kullanıcının 2026-10-27 açık onayı ("17A ya başla"). Kullanıcı kararları: tasarım sistemi + Learn ekranı (koşu/bildirim cilası ve gün özetindeki gerçek değişiklikler 17C'ye); ilk açılış çökmesi 17A içinde; doğrulama emülatör ekran görüntüleriyle, açık/koyu tema ve %200 yazı. Şema değişmedi (v11); `ContentPort.lessonTitleFor` varsayılanlı port inceltmesi. Kotlin mutation 27/27, validator mutation 31/31; 95/95 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/VISUAL_POLISH_SPEC.md` / D-133.

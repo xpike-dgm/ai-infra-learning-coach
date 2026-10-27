@@ -2,24 +2,18 @@ package coach.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.heading
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import coach.model.VersionedRef
-import androidx.compose.material3.OutlinedButton
 import coach.presentation.FastPathView
+import coach.presentation.Spacing
+import coach.presentation.TopicChip
 import coach.presentation.TopicCopy
 import coach.presentation.TopicDetailView
 import coach.presentation.TopicOverviewView
@@ -31,28 +25,21 @@ import coach.presentation.TopicOverviewView
  */
 @Composable
 fun TopicsSection(view: TopicOverviewView, onOpenTopic: (VersionedRef) -> Unit) {
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(TopicCopy.TITLE, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+    Column(verticalArrangement = Arrangement.spacedBy(Spacing.XS.dp)) {
+        SectionHeader(TopicCopy.TITLE)
         Text(TopicCopy.INVENTORY_NOTE, style = MaterialTheme.typography.bodySmall)
-        view.inventory.forEach { TopicCount(it.label, it.count) }
-        if (view.recomputing > 0) TopicCount(TopicCopy.RECOMPUTING, view.recomputing)
-        view.topics.forEach { chip ->
-            // `progress -> topic_detail` is an accepted edge (`UXIA-v0`).
-            TextButton(onClick = { onOpenTopic(chip.topic) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
-                Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text(chip.name, style = MaterialTheme.typography.bodyLarge)
-                    StateChip(label = chip.label, tone = chip.tone)
-                }
-            }
-        }
+        view.inventory.forEach { CountRow(it.label, it.count.toString()) }
+        if (view.recomputing > 0) CountRow(TopicCopy.RECOMPUTING, view.recomputing.toString())
+        // `progress -> topic_detail` is an accepted edge (`UXIA-v0`).
+        view.topics.forEach { chip -> TopicLine(chip, onOpenTopic) }
     }
 }
 
+/** One Topic that opens `topic_detail`: its name and its state chip — the same line in Progress and in Learn (17A). */
 @Composable
-private fun TopicCount(label: String, count: Int) {
-    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-        Text(label, style = MaterialTheme.typography.bodyMedium)
-        Text(count.toString(), style = MaterialTheme.typography.bodyMedium)
+fun TopicLine(chip: TopicChip, onOpenTopic: (VersionedRef) -> Unit) {
+    NavRow(chip.name, onClick = { onOpenTopic(chip.topic) }) {
+        StateChip(label = chip.label, tone = chip.tone)
     }
 }
 
@@ -68,55 +55,45 @@ fun TopicDetailScreen(
     onRequestFastPath: () -> Unit = {},
     onWithdrawFastPath: () -> Unit = {},
 ) {
-    Column(
-        modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        TextButton(onClick = onBack, modifier = Modifier.minimumTouchTarget()) { Text("Geri") }
-        Text(view.name, style = MaterialTheme.typography.titleLarge, modifier = Modifier.semantics { heading() })
+    ScreenColumn(modifier = modifier) {
+        BackButton(onBack)
+        ScreenTitle(view.name)
         StateChip(label = view.chip.label, tone = view.chip.tone)
+        Text(view.text, style = MaterialTheme.typography.bodyMedium)
+        view.metadataNote?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+        view.reasons.forEach { reason ->
+            SectionHeader(reason.title)
+            // `topic_detail -> skill_detail` is an accepted edge; a named Skill is always reachable.
+            reason.skills.forEach { (ref, name) -> NavRow(name, onClick = { onOpenSkill(ref) }) }
+        }
         when (fastPath) {
             null -> Unit
-            is FastPathView.Offer -> {
+            is FastPathView.Offer -> SectionBlock {
                 Text(fastPath.text, style = MaterialTheme.typography.bodyMedium)
                 OutlinedButton(onClick = onRequestFastPath, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(fastPath.action) }
             }
-            is FastPathView.Open -> {
+            is FastPathView.Open -> SectionBlock {
                 Text(fastPath.headline, style = MaterialTheme.typography.bodyLarge)
                 fastPath.lines.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
                 TextButton(onClick = onWithdrawFastPath, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(fastPath.action) }
             }
             is FastPathView.Said -> Text(fastPath.text, style = MaterialTheme.typography.bodyMedium)
         }
-        Text(view.text, style = MaterialTheme.typography.bodyMedium)
-        view.metadataNote?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
-        view.reasons.forEach { reason ->
-            Text(reason.title, style = MaterialTheme.typography.bodyLarge)
-            // `topic_detail -> skill_detail` is an accepted edge; a named Skill is always reachable.
-            reason.skills.forEach { (ref, name) ->
-                TextButton(onClick = { onOpenSkill(ref) }, modifier = Modifier.minimumTouchTarget()) { Text(name) }
-            }
-        }
 
-        HorizontalDivider()
-        Text(TopicCopy.SKILLS, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+        SectionHeader(TopicCopy.SKILLS)
         Text(view.placementNote, style = MaterialTheme.typography.bodySmall)
         view.skills.forEach { chip ->
-            TextButton(onClick = { onOpenSkill(chip.skill) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
-                Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text(chip.name, style = MaterialTheme.typography.bodyLarge)
-                    StateChip(label = chip.label, tone = chip.tone)
-                    chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
-                }
+            NavRow(chip.name, onClick = { onOpenSkill(chip.skill) }) {
+                StateChip(label = chip.label, tone = chip.tone)
+                chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
             }
         }
 
-        HorizontalDivider()
-        Text(TopicCopy.COVERAGE, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+        SectionHeader(TopicCopy.COVERAGE)
         view.coverage.forEach { line ->
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
                 Text(line.label, style = MaterialTheme.typography.bodyMedium)
-                Text(line.coverage, style = MaterialTheme.typography.bodyMedium)
+                Text(line.coverage, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }

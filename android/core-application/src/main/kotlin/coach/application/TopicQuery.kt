@@ -43,7 +43,9 @@ class TopicQuery(
         val members = row.projection.reading.members.mapNotNull { bySkill[it.skill.logicalId] }
         val named = (members.map { it.skill } + row.projection.reading.members.flatMap { it.externalBlockers + it.externalUncertain })
             .distinct().associateWith { persistence.skill(it)?.canonicalName ?: it.logicalId }
-        return TopicDetailFacts(row = row, members = members, skillNames = named)
+        val titles = row.projection.reading.members.flatMap { it.objectives.map { (objective, _) -> objective } }
+            .mapNotNull { objective -> content.lessonTitleFor(objective)?.let { objective to it } }.toMap()
+        return TopicDetailFacts(row = row, members = members, skillNames = named, objectiveTitles = titles)
     }
 
     /** The newest version of every authored Topic, in a stable order. */

@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
@@ -37,8 +37,10 @@ private val labelsTr: Map<Destination, String> = mapOf(
 
 private val icons: Map<Destination, ImageVector> = mapOf(
     Destination.TODAY to Icons.Filled.DateRange,
-    Destination.LEARN to Icons.Filled.Menu,
-    Destination.PROGRESS to Icons.Filled.Star,
+    // 17A: Learn is the learning map, and Progress an inventory. A star read as a rating or a reward, which
+    // `VDSX-v0` §11.1 excludes from every surface, and a menu glyph named no destination at all.
+    Destination.LEARN to Icons.Filled.LocationOn,
+    Destination.PROGRESS to Icons.AutoMirrored.Filled.List,
     Destination.PROFILE to Icons.Filled.Person,
 )
 

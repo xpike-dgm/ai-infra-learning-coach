@@ -114,6 +114,8 @@ data class SkillDetailFacts(
     val topics: List<NamedEntity>,
     /** 16C: a Technical English Skill's `TECP-v0` anchor band; `null` for every other Skill. */
     val englishBand: CefrBand? = null,
+    /** 17A: each Objective's lesson title, as authored; an Objective with no lesson is absent and named by its Skill. */
+    val objectiveTitles: Map<VersionedRef, String> = emptyMap(),
 )
 
 /** Everything the store can say about Progress right now. */

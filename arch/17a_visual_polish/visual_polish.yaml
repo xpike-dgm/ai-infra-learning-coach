@@ -1,0 +1,164 @@
+model: VPLX-v0
+stage_step: 17A
+status: accepted_17a
+decision: D-133
+implements: [VDSX-v0, WFPX-v0, DSIX-v0, UXIA-v0, NSHX-v0, PWPX-v0]
+boundaries: MSBX-v0
+persistence: none_schema_v11_unchanged
+purpose: the_accepted_design_system_applied_every_material_role_a_measured_token_every_type_slot_a_vdsx_role_mono_for_code_a_4dp_rhythm_a_surface_under_every_screen_outlined_chips_with_a_mark_per_tone_words_not_identifiers_and_the_learn_tab_learning_map
+
+question: Uygulama, kabul edilmiş tasarım sisteminin söylediği gibi görünüyor mu — ölçülmüş renkler, rollerine göre yazı, kod için mono, düzenli aralık, durumu düğmeyle karıştırmayan çipler, kimlik değil kelime — ve Öğren sekmesi bana öğrenme haritasını gösteriyor mu, hiçbir görünüm bir durum, bir anlam ya da bir ilerleme iddiası eklemeden?
+
+primary_invariant: >-
+  The design system is applied and adds no meaning. Every Material colour role is a measured token and every Material
+  type slot one of VDSX-v0's eight roles; no Material default reaches the screen. A paragraph that reads as code is
+  drawn in the mono role and every authored line comes back exactly as written. A state chip is outlined, carries its
+  tone's colour as label, mark and border, and one mark per tone says it without colour; it never reads as a button.
+  Activity kinds, tracks, study days, Topics, Skills and Objectives are said in Turkish or left out — never an
+  identifier, never a guess. Learn is the learning map: areas and Topics with the very chip Progress shows, each opening
+  topic_detail; its order is orientation, never a prerequisite chain.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-27
+  scope: design_system_applied_type_roles_with_mono_4dp_rhythm_focused_flow_surface_system_bar_and_navigation_colours_from_the_palette_chip_not_button_identifiers_to_turkish_labels_date_plus_the_learn_tab_screen
+  moved_to_17c: run_and_notification_polish_and_the_day_summary_naming_a_runs_real_changes
+  first_launch_crash: fixed_inside_17a_as_a_finding
+  verification: emulator_screenshots_pixel_7_avd_api_34_light_dark_and_200_percent_text_with_a_report_in_the_repo_not_t6
+
+assistant_defaults:
+  - the type scale follows Material 3's baseline sizes (nothing below 12sp, body 16sp) with heavier titles; a declared product default and a calibration input for 18 (VDSX-v0 §6.2)
+  - mono is the platform monospace face; no font file is shipped
+  - the chip is outlined, with the tone's own tone_* colour as label, mark and border on the surface beneath; every tone colour measured as text on surface and surface_variant in both themes (lowest 5.45:1, light pending on surface_variant)
+  - one mark per tone — info neutral, play active, check positive_confirmed, look attention (not an alarm), refresh pending_unresolved, warning system_fault only
+  - navigation icons — Learn a map pin, Progress a list; the star read as a rating or a reward (VDSX-v0 §11.1)
+  - Topic and Skill display names are presentation copy keyed by logical id and follow the lessons' own terms; a Topic keeps its canonical scope even where only part of it is published; an Objective is named by its newest teach task's own title, or by its Skill, on every surface that names it
+  - Learn groups Topics by the area in their logical id (topic.<area>.<name>) in a declared order, with the parallel-English note (UXIA-v0 §13)
+  - the selected navigation item uses the active pair (secondaryContainer)
+  - every screen pads itself to WindowInsets.safeDrawing and the activity asks for edge to edge on every level (Android 15+ enforces it for target SDK 35+)
+
+found:
+  - id: first_launch_crash
+    what: the store reported Ready a moment before the opened store and today's facts reached the activity, so HealthBlockingSurface was asked to render with nothing blocking (requireNotNull) and the app crashed on its first launch
+    resolution: AppHealth.atStartup keeps the app opening until the store and today's facts are both in hand
+  - id: focused_flow_without_surface
+    what: the task runner drew dark text straight on the launch theme's dark window background (android:Theme.Material), about 1.4:1
+    resolution: CoachTheme wraps every screen in a Surface of the measured background; the launch theme is Theme.Material.Light with the light surface token, and values-night the dark one
+  - id: material_baseline_purple
+    what: the navigation bar and its indicator wore Material's baseline colours, close to the violet attention tone
+    resolution: MaterialColorRoles maps all 36 Material colour roles to measured tokens and the theme copies the map
+  - id: code_in_body_font
+    what: VDSX-v0's mono role was used nowhere; lessons and prompts drew code in the body font
+    resolution: TextBlocks finds code paragraphs (no markup ships) and AuthoredText draws them in mono; code and report fields are mono
+  - id: chip_reads_as_button
+    what: a filled rounded chip of an action's weight
+    resolution: an outlined compact chip with a mark per tone
+  - id: identifiers_on_screen
+    what: content_explanation on Today, "learn_overview · study day 2026-10-26" as the Learn tab, Topics as "Expressions Io", Skills as "Standard Io Basic", Objectives as "explain pipeline", the study day as 2026-10-26
+    resolution: DisplayCopy, CurriculumNames, ContentPort.lessonTitleFor, LearnScreen
+  - id: off_rhythm_spacing
+    what: 2dp and 6dp, and lists of blue text buttons
+    resolution: Spacing steps only; NavRow
+  - id: edge_to_edge_on_api_36
+    what: the target device (API 36) enforces edge to edge for this target SDK while the emulator (API 34) did not, so the device would draw under the status bar
+    resolution: enableEdgeToEdge on every level and ScreenColumn pads to the safe drawing area
+  - id: identifiers_left_after_the_first_pass
+    what: the independent review found the study day raw in the learning history and the assessment report, Objectives named by identifier on Skill detail, in the history, on the fast path and in a run's result, and Topics by English name on Skill detail
+    resolution: HistoryDay.label and SessionReportView.dayLabel (DisplayCopy), SkillDetailFacts.objectiveTitles and HistoryFacts.objectiveTitles (ProgressQuery, LearningHistoryQuery with the content port), CoachApplication.objectiveName (lessonTitleFor), CurriculumNames.topic on Skill detail
+  - id: fault_colour_on_input_validation
+    what: Profile's minute and time fields painted Material's error colour (the fault tone) on a mistyped number, which is not a technical fault
+    resolution: isError removed; the hint below the field already says what is wrong
+  - id: gates_pinned_what_17a_changed
+    what: three explanation tests asserted the English name of a shipped Skill, two tests the identifier label "trace loop", and one 16B check the history query's exact constructor
+    resolution: narrowed, each marked "Narrowed at 17A"
+
+code_paragraph_rule:
+  paragraph: a run of non-blank lines; blank lines separate paragraphs and are not returned
+  code_line: indented, starts with "$ " or ">>>", or has a code character (= ( ) { } [ ] ; < > | $ # * + / " ' `)
+  prose_line: a multiple-choice option "A) ", four or more words of letters in a row, or a sentence ending (. ? !) with three or more words
+  code_paragraph: at least one code line and at most half as many prose lines
+  text_preserved: every non-blank line returned exactly as authored, in order
+  prototype: 1481 shipped prompts and explanations; 56 paragraphs a first version called code were sentences about code and the sentence-ending rule moved all 56 to prose
+
+theme:
+  material_colour_roles: 36
+  text_pairs_recomputed: 19
+  non_text_pairs_recomputed: 4
+  chip_pairs_recomputed: 6 tones x 2 surfaces x 2 themes
+  fault_tone_roles: [error, errorContainer]
+  material_type_slots: 15
+  type_roles: [display, title_large, title, body_large, body, label, caption, mono]
+  spacing_steps_dp: [4, 8, 12, 16, 24, 32, 48]
+  only_other_dp_literal: the chip's 1dp hairline border (HAIRLINE)
+  dynamic_colour: never consulted
+
+learn:
+  surface: learn_overview
+  edge: learn -> topic_detail
+  chip: TopicPresentation.chip, the very chip Progress shows
+  grouping: area from the Topic's logical id, declared order python, c, linux, shell, git, english; an unknown area is "Diğer"
+  forbidden: [count, ratio, n_of_m, percentage, area_state, completion, prerequisite_claim]
+
+ports_and_facts:
+  ContentPort.lessonTitleFor: a refinement of the content port with a default (null); FileContentSource reads the newest teach task's title
+  TopicDetailFacts.objectiveTitles: defaulted; TopicQuery.detail fills it
+  SkillDetailFacts.objectiveTitles: defaulted; ProgressQuery.detail fills it
+  HistoryFacts.objectiveTitles: defaulted; LearningHistoryQuery fills it when given the content port
+
+moved_on:
+  - the focused-flow exit scrolls out of view in a long lesson; keeping it in view is usability (17C)
+  - run and notification polish (17C), including the assistance levels the history shows as H1, H3
+  - the day summary naming a run's real changes (17C)
+  - usage and cost visibility (17C)
+  - skill_detail -> planner_explanation and technical_english_profile -> skill_detail edges with their micro text (17C)
+  - inline code inside a prose sentence and content markup for code (20I)
+  - motion (17B)
+  - theme and accessibility preferences (17D)
+  - the Progress load time on the emulator, about 10 s (18E)
+  - T6 and the app on the Poco M6 Pro (19)
+
+verification:
+  kotlin_tests: [VisualPolishTest (14), VisualPolishCourseTest (4, the eight shipped packages)]
+  narrowed_tests: [ExplanationCopyTest, PlannerExplanationTest (2 checks), VirtualUserExplanationsTest, HistoryPresentationTest, ProgressPresentationTest]
+  narrowed_gates: [validate_learning_history.py A16B-09]
+  independent_review: a separate agent reviewed the names against the shipped capability statements and lessons and the visual layer against VDSX-v0; 3 blocking findings fixed, suggestions taken where right (names, Learn copy, Beceri ayrıntısı, no fault colour on input, SectionHeader)
+  validator: tools/validate_visual_polish.py
+  emulator: arch/17a_visual_polish/emulator_report.yaml and arch/17a_visual_polish/screens/
+  t6_run: false
+
+acceptance_criteria:
+  - every Material colour role is a measured token in both themes and the fault tone is Material's error role alone
+  - every drawn Material pair and every chip colour is recomputed against the WCAG anchor in both themes
+  - every Material type slot is one of VDSX-v0's eight roles, in sp; mono is the code role
+  - code paragraphs are drawn in mono and no authored line changes
+  - a state chip is outlined, has its tone's mark and states its label as text; only the fault tone has the warning mark
+  - no identifier reaches the screen where 17A found one; an unknown value is left out or falls back to the authored name
+  - Learn shows areas and Topics with Progress's chips, opens topic_detail through the accepted edge and claims no order, count or completion
+  - the app does not crash on first launch; a shell-less health always has something blocking
+  - every screen sits on a measured surface and the safe drawing area; edge to edge is asked for on every level
+  - nothing adds a state, a severity, a percentage, a progress bar, a rank or a streak
+  - earlier gates still pass, narrowed only where 17A changed what they pinned
+
+
+mutation_results_kotlin:
+  scope: one change per mutant to the theme map (fault role, a drawn pair's token), the tone marks, the type scale (mono, body size), the rhythm, the code rule (sentence ending, options, the code vote, the last paragraph), the study-day words, the activity labels, the names (fallback order, a missing Skill, the area rule), Learn (chip, English note, order), Objective names (Topic detail, Skill detail, the lesson title's version and purpose), Topic names on Skill detail, the history's day, the startup gate and the chip colour; then VisualPolishTest (core-presentation) and VisualPolishCourseTest (app-wiring, the eight shipped packages)
+  total: 27
+  detected: 27
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: the hardened runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a comment in VisualSystem.kt
+  negative_control_result: survived_as_expected
+  earlier_runs: "in the first full run K21 (the lesson title from the oldest teach-task version) survived: no shipped Objective has two teach-task versions. The rule moved to core-model (LessonTitles.of), a synthetic test with two versions and a practice task was added, and the whole set was run again"
+  final_run_is_a_single_clean_run: true
+
+mutation_results_validator:
+  scope: one change per mutant to what the validator exists to catch — edge to edge, the launch surface, the chip (filled, no state text), a dp literal, a raw activity kind, the fault role, a role the theme does not copy, a pair below the anchor, the warning mark, the code rule, a code field, a missing Skill name, an Objective identifier, Learn's chip, edge, copy and a progress bar, the startup gate and its use, the surface, the star icon, the rhythm, mono, a screen's own scroll, the narrowing note, a missing activity label, the history's day, a run's Objective name, the error colour on input, Topic names on Skill detail
+  total: 31
+  detected: 31
+  detection: the validator fails and names the expected check (only the living-record checks A17A-15 may fail in the baseline before POST)
+  negative_control: V00 changes a comment in VisualSystem.kt
+  negative_control_result: survived_as_expected
+  earlier_runs: "in the first run V10 (the sentence-ending rule weakened to 30 words) survived: the check's string was a prefix of the mutant. The check now includes the arrow and the result, and the whole set was run again"
+  final_run_is_a_single_clean_run: true
+
+next_step: 17B — Motion

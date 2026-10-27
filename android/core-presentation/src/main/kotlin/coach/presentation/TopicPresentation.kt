@@ -111,7 +111,7 @@ object TopicPresentation {
     fun detail(facts: TopicDetailFacts): TopicDetailView {
         val row = facts.row
         fun named(title: String, refs: List<VersionedRef>) =
-            if (refs.isEmpty()) null else NamedSkills(title, refs.map { it to (facts.skillNames[it] ?: it.logicalId) })
+            if (refs.isEmpty()) null else NamedSkills(title, refs.map { it to CurriculumNames.skill(it, facts.skillNames[it]) })
         val projection = row.projection
         val (text, reasons, metadata) = when (projection) {
             is TopicProjection.Recomputing -> Triple(
@@ -131,13 +131,16 @@ object TopicPresentation {
             )
         }
         val coverage = row.projection.reading.members.flatMap { member ->
+            // 17A: an Objective is named by its lesson's own title, or by its Skill when no lesson is authored — never by
+            // its identifier.
             member.objectives.map { (objective, c) ->
-                CoverageLine(objective, objective.logicalId.substringAfterLast('.').replace('_', ' '), TopicCopy.coverageLabels.getValue(c))
+                val label = facts.objectiveTitles[objective] ?: CurriculumNames.skill(member.skill, facts.skillNames[member.skill])
+                CoverageLine(objective, label, TopicCopy.coverageLabels.getValue(c))
             }
         }
         return TopicDetailView(
             topic = row.topic,
-            name = row.name,
+            name = CurriculumNames.topic(row.topic, row.name),
             chip = chip(row),
             text = text,
             reasons = reasons,
@@ -149,7 +152,7 @@ object TopicPresentation {
     }
 
     fun chip(row: TopicRow): TopicChip = when (val p = row.projection) {
-        is TopicProjection.Derived -> TopicChip(row.topic, row.name, p.state, TopicCopy.stateLabels.getValue(p.state), p.state.tone.tone)
-        is TopicProjection.Recomputing -> TopicChip(row.topic, row.name, null, TopicCopy.RECOMPUTING, ProgressState.RECOMPUTING_PROJECTION.tone)
+        is TopicProjection.Derived -> TopicChip(row.topic, CurriculumNames.topic(row.topic, row.name), p.state, TopicCopy.stateLabels.getValue(p.state), p.state.tone.tone)
+        is TopicProjection.Recomputing -> TopicChip(row.topic, CurriculumNames.topic(row.topic, row.name), null, TopicCopy.RECOMPUTING, ProgressState.RECOMPUTING_PROJECTION.tone)
     }
 }

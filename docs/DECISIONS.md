@@ -2372,3 +2372,35 @@ Ayrıntı: `docs/RUN_HELP_SPEC.md`.
 - **AŞAMA 16 TAMAMLANDI.** Sonraki numbered step `17A — Görsel polish`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.
+
+## D-133 — Görsel polish = VPLX-v0
+**Durum:** Kabul edildi — 2026-10-27
+
+- 17A final modeli `VPLX-v0 — the accepted design system applied: every Material role a measured token, every type slot a VDSX-v0 role with mono for code, a 4dp rhythm, a surface under every screen, outlined state chips with a mark per tone, words instead of identifiers, and the Learn tab's learning map` oldu.
+- **Ana invariant:** tasarım sistemi uygulandı ve hiçbir anlam eklemedi: her Material renk rolü ölçülmüş bir token, her yazı yuvası `VDSX-v0`'ın sekiz rolünden biri ve kod `mono`; yazıldığı hiçbir satır değişmeden kod paragrafları mono bloklarda; durum çipi çerçeveli, tonunun işaretini taşıyor ve düğmeye benzemiyor; etkinlik türü, iz, çalışma günü, konu, beceri ve hedef Türkçe söyleniyor ya da hiç gösterilmiyor — kimlik ya da tahmin değil; Öğren sekmesi öğrenme haritası: alanlar ve konular, İlerleme'nin aynı çipleriyle, her biri konu ayrıntısını açıyor ve sırası ön koşul zinciri değil.
+- **Kullanıcı kararları (2026-10-27, "17A ya başla"):**
+  - kapsam: tasarım sistemi uygulanır (`VDSX-v0` yazı rolleri ve kod için mono, 4dp ritim, odaklı akış yüzeyi, sistem çubukları ve gezinme renkleri paletten, çip ≠ düğme, kimlikler Türkçe etikete, tarih) + Öğren sekmesinin ekranı; koşu ve bildirim cilası ile gün özetinde bir koşunun gerçek değişiklikleri 17C'ye;
+  - ilk açılış çökmesi 17A içinde, bulgu olarak düzeltilir;
+  - doğrulama emülatör ekran görüntüleriyle (Pixel 7 AVD, API 34), açık/koyu tema ve %200 yazı; T6 değildir.
+- **Asistanın varsayılan seçimleri:**
+  - yazı ölçeği Material 3 temel boyutları (12sp altı yok, gövde 16sp), başlıklar daha kalın; beyan edilmiş ürün varsayılanı, 18'in kalibrasyon girdisi;
+  - `mono` platformun eş aralıklı yazı tipi; yazı tipi dosyası sevk edilmez;
+  - çip çerçeveli: tonun kendi `tone_*` rengi etiket, işaret ve kenarlık olarak; altı ton rengi iki yüzeyde, iki temada metin olarak ölçüldü (en düşük 5.45:1);
+  - ton başına bir işaret (bilgi, oynat, onay, bak, yenile, uyarı — uyarı yalnız sistem arızasında);
+  - gezinme ikonları: Öğren harita iğnesi, İlerleme liste; yıldız bir puan ya da ödül gibi okunuyordu (`VDSX-v0` §11.1);
+  - konu ve beceri gösterim adları mantıksal kimliğe bağlı sunum metni; hedef dersinin kendi başlığıyla adlandırılır;
+  - Öğren konuları mantıksal kimlikteki alana göre beyan edilmiş sırayla gruplar, paralel İngilizce notuyla;
+  - her ekran güvenli çizim alanına göre boşluk bırakır; edge-to-edge her API düzeyinde istenir.
+- **Bulunanlar:**
+  - uygulama ilk kez bir emülatörde (Pixel 7 AVD, API 34; T6 değil) çalıştırıldı: ilk açılışta çöküyordu (engelleyici ekran hiçbir şey engellemezken çiziliyordu; `AppHealth.atStartup`), odaklı akışın yüzeyi yoktu (koyu pencere üstünde koyu metin, ~1.4:1), gezinme çubuğu Material'ın varsayılan morunu taşıyordu, kod gövde yazısıyla çiziliyordu, çipler düğmeye benziyordu, ekranda ham kimlikler vardı (`content_explanation`, `learn_overview · study day`, 'Expressions Io', 'explain pipeline') ve hedef cihaz (API 36) edge-to-edge'i zorluyor; bağımsız inceleme ilk geçişte geçmişte ve ölçme raporunda ham tarihi, beceri ayrıntısında, geçmişte ve hızlı yolda hedef kimliklerini, beceri ayrıntısında İngilizce konu adlarını ve Profil'de yanlış yazılan bir sayıya arıza rengi verildiğini buldu (hepsi düzeltildi); beş test ve bir 16B kontrolü 17A'nın değiştirdiğini sabitliyordu ('Narrowed at 17A').
+- **Port:** `ContentPort.lessonTitleFor` varsayılanlı port inceltmesi (yeni port değil); `TopicDetailFacts.objectiveTitles` varsayılanlı. Şema değişmedi (v11).
+- **Doğrulama:**
+  - Kotlin mutation 27/27, validator mutation 31/31; kontrol mutantları hayatta kaldı.
+  - Validator 95/95 PASS.
+  - 1287 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Sweep 71/72 (validate_content_qa.py çalıştırılmadı: disk alanı, girdileri değişmedi; validate_assessment_content.py önceki yeniden kurulumlar olmadan).
+- Çalıştırılmayan: **T6**. Uygulama Poco M6 Pro'da görülmedi; emülatörde görüldü.
+- **Devredilenler:** koşu ve bildirim cilası, gün özetinde bir koşunun gerçek değişiklikleri, kullanım/maliyet görünürlüğü ve iki IA kenarı (17C); hareket (17B); tema ve erişilebilirlik tercihleri (17D); kod için içerik işaretlemesi ve satır içi kod (20I); Progress/Learn yüklenme süresi (18E); T6 (19).
+- Sonraki numbered step `17B — Motion`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/VISUAL_POLISH_SPEC.md`.

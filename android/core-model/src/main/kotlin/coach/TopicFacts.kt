@@ -187,4 +187,6 @@ data class TopicDetailFacts(
     val members: List<SkillProgressRow>,
     /** The names of every Skill the detail names — its own and the outside ones its entry waits for. */
     val skillNames: Map<VersionedRef, String>,
+    /** Each Objective's lesson title, as authored (17A); an Objective with no lesson is absent and named by its Skill. */
+    val objectiveTitles: Map<VersionedRef, String> = emptyMap(),
 )

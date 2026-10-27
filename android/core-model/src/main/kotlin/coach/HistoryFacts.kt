@@ -76,4 +76,6 @@ data class HistoryFacts(
     val sessions: List<SessionReport>,
     /** The published name of every Skill an entry or a change names. */
     val skillNames: Map<VersionedRef, String> = emptyMap(),
+    /** 17A: each named Objective's lesson title, as authored; absent when no lesson is authored. */
+    val objectiveTitles: Map<VersionedRef, String> = emptyMap(),
 )

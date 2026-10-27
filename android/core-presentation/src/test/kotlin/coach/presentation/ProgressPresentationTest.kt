@@ -228,7 +228,8 @@ class ProgressPresentationTest {
         assertEquals(listOf(basics to "Basics"), view.prerequisite.single().skills)
         assertEquals(ProgressCopy.BLOCKED_BY, view.prerequisite.single().title)
         val line = view.objectives.single()
-        assertEquals("trace loop", line.label)
+        // Narrowed at 17A: an Objective with no lesson title is named by its Skill, never by its identifier.
+        assertEquals("loops", line.label)
         assertEquals("Açık bir soru var", line.weakness)
         assertEquals(listOf(EvidenceKind.INDEPENDENT, EvidenceKind.ASSISTED, EvidenceKind.PROVISIONAL, EvidenceKind.NOT_COUNTED),
             line.evidence.map { it.kind })

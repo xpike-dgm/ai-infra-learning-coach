@@ -18,6 +18,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import coach.presentation.Spacing
 import coach.model.AllowedToolsPolicy
 import coach.model.AssistanceLevel
 import coach.presentation.AssessmentSessionView
@@ -96,10 +97,7 @@ fun AssessmentSessionScreen(
     onExit: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
+    ScreenColumn(modifier = modifier) {
         // The inherited frame: one deliberate action out, from every state, with no guilt gate.
         OutlinedButton(onClick = onExit, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
             Text("Bugün'e dön")
@@ -172,7 +170,7 @@ fun AssessmentSessionScreen(
 /** The semantic result: families as text, never a banner, a grade or a percentage. */
 @Composable
 fun AssessmentResultView(result: SessionResult, modifier: Modifier = Modifier) {
-    Column(modifier = modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Column(modifier = modifier.padding(Spacing.M.dp), verticalArrangement = Arrangement.spacedBy(Spacing.S.dp)) {
         StateChip(
             label = stateLabelsTr.getValue(result.state),
             tone = result.state.tone,

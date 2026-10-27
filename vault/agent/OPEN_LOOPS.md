@@ -81,7 +81,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 16F Uçtan uca günlük döngü: E2EX-v0 / D-128 ile tamamlandı; çekirdek döngü, şema v11 `attempt.planned_task_id`.
 - [x] 16G — Uçtan uca günlük döngü: yardım ve ölçüm: HLPX-v0 / D-130 ile tamamlandı; kod raporu, açık cevap, yardım, anlama kontrolü, duraklatma.
 - [x] 16H — Uçtan uca günlük döngü: ölçme oturumları: ASRX-v0 / D-132 ile tamamlandı; Today'den ölçme oturumları, slot oturum kimliği, hızlı yol, bildirme, `assessment_opportunity`. **AŞAMA 16 tamamlandı.**
-- [ ] 17A — Görsel polish **AKTİF** — kullanıcının yeni açık onayı gerekir.
+- [x] 17A — Görsel polish: VPLX-v0 / D-133 ile tamamlandı; tasarım sistemi uygulandı, Öğren sekmesi öğrenme haritası, ilk açılış çökmesi düzeltildi.
+- [ ] 17B — Motion **AKTİF** — kullanıcının yeni açık onayı gerekir.
+- [ ] 17C'ye taşınanlar: koşu ve bildirim cilası, gün özetinde bir koşunun gerçek değişiklikleri, kullanım/maliyet görünürlüğü, `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları.
+- [ ] Kod için içerik işaretlemesi ve düzyazı içindeki satır içi kod → 20I; Progress/Learn yüklenme süresi (~10 sn, emülatör) → 18E.
 - [ ] Ölçme oturumları ve hızlı yol cihazda → 19.
 - [ ] Paketlerde yazılı anlama kontrolleri (hiçbir paket yazmıyor) → 20I.
 - [ ] Koşu, Kopyala düğmeleri ve tutor cihazda → 19.

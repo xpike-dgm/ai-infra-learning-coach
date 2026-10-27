@@ -175,3 +175,7 @@ The comment was reworded rather than the gate loosened. Strict absence is the st
 If accepted, 10C becomes `DSIX-v0 / D-084`.
 
 Next numbered step: **10D — Local database**. 10D implements `DDM-v0`'s physical schema on the `androidx.sqlite` bundled driver pinned at 10A: the three store regions, `(logical_id, version)` composite keys with version-carrying foreign keys, truth tables with **no UPDATE or DELETE path** enforced by the storage layer and proven by attempted violation, the four evidence axes as four columns, three-value time on every timestamped row, projection provenance with policy version and truth watermark, indexed and permanent exposure records, and forward-only migrations testable against populated fixtures. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**17A note (2026-10-27, `D-133`):** `MaterialColorRoles` maps all 36 Material colour roles to measured tokens and the theme copies the map; 19 text and 4 non-text pairs and every tone's chip colour are recomputed in both themes; the type scale is `TypeScale`. The fault tone is still `error` and `errorContainer` alone. Details: `docs/VISUAL_POLISH_SPEC.md`.

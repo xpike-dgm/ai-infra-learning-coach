@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import coach.presentation.Spacing
 import coach.presentation.EnglishProfileCopy
 import coach.presentation.EnglishProfileView
 
@@ -34,19 +35,14 @@ fun EnglishProfileScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        TextButton(onClick = onBack, modifier = Modifier.minimumTouchTarget()) { Text("Geri") }
-        Text(EnglishProfileCopy.TITLE, style = MaterialTheme.typography.titleLarge, modifier = Modifier.semantics { heading() })
+    ScreenColumn(modifier = modifier) {
+        BackButton(onBack)
+        ScreenTitle(EnglishProfileCopy.TITLE)
         Text(view.headline, style = MaterialTheme.typography.bodyLarge)
         view.unevenNote?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
         view.historicalNote?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
         Text(view.scopeNote, style = MaterialTheme.typography.bodySmall)
         Text(view.gateNote, style = MaterialTheme.typography.bodySmall)
-
-        HorizontalDivider()
         view.bands.forEach { band ->
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                 Text(band.band.id, style = MaterialTheme.typography.bodyLarge)
@@ -60,10 +56,9 @@ fun EnglishProfileScreen(
 
         // The uneven profile is first-class: every Skill's own state, band by band (`TEPM-v0` §8).
         view.groups.forEach { group ->
-            HorizontalDivider()
-            Text(group.label, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            SectionHeader(group.label)
             group.skills.forEach { chip ->
-                Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
                     Text(chip.name, style = MaterialTheme.typography.bodyLarge)
                     StateChip(label = chip.label, tone = chip.tone)
                     group.sources[chip.skill]?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
@@ -73,8 +68,7 @@ fun EnglishProfileScreen(
         }
 
         if (view.extensions.isNotEmpty()) {
-            HorizontalDivider()
-            Text(EnglishProfileCopy.EXTENSION_TITLE, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            SectionHeader(EnglishProfileCopy.EXTENSION_TITLE)
             view.extensions.forEach { (name, state) ->
                 Text(name, style = MaterialTheme.typography.bodyMedium)
                 Text(state, style = MaterialTheme.typography.bodySmall)

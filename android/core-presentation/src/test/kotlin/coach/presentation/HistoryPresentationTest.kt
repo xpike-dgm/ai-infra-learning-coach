@@ -68,7 +68,8 @@ class HistoryPresentationTest {
         assertEquals("Destekli · beklenen sonuç · Açılan yardım: H1, H3", first.happened)
         assertEquals(listOf(HistoryCopy.NO_CHANGE), first.changed)
         assertEquals("Loops", first.skillName)
-        assertEquals("trace loop", first.objectiveLabel)
+        // Narrowed at 17A: an Objective with no lesson title is named by its Skill, never by its identifier.
+        assertEquals("Loops", first.objectiveLabel)
     }
 
     @Test

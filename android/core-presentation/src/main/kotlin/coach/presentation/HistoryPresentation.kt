@@ -21,6 +21,7 @@ import coach.model.VersionedRef
 
 /** Working Turkish microcopy (17 owns its polish); the change sentences are 13E's. */
 object HistoryCopy {
+    const val NO_DAY = "Günü kayıtlı değil"
     val familyLabels: Map<HistoryFamily, String> = mapOf(
         HistoryFamily.ASSESSMENT to "Ölçme",
         HistoryFamily.REMEDIATION to "Pekiştirme",
@@ -90,7 +91,10 @@ data class HistoryLine(
 )
 
 /** One study day that has entries. A day without any is not a line here, so it cannot be drawn as missed. */
-data class HistoryDay(val studyDay: String, val lines: List<HistoryLine>)
+/** [label] is the day in words (17A); a row with no recorded day says so rather than showing an empty heading. */
+data class HistoryDay(val studyDay: String, val lines: List<HistoryLine>) {
+    val label: String get() = if (studyDay.isBlank()) HistoryCopy.NO_DAY else DisplayCopy.studyDay(studyDay)
+}
 
 data class LearningHistoryView(val state: ProgressState, val text: String, val days: List<HistoryDay>)
 
@@ -100,6 +104,8 @@ data class SessionReportView(
     val sessionId: Long,
     val title: String,
     val studyDay: String,
+    /** The day in words (17A). */
+    val dayLabel: String = DisplayCopy.studyDay(studyDay),
     /** Only the families this session filled, in `ASUX-v0`'s order; [summary] stands in when no state or plan changed. */
     val families: List<ReportFamilyBlock>,
     val summary: String?,
@@ -136,21 +142,22 @@ object HistoryPresentation {
             if (entry.assistance.isNotEmpty()) add("${HistoryCopy.ASSISTANCE}: ${entry.assistance.sortedBy(AssistanceLevel::ordinal).joinToString(", ") { it.id }}")
             entry.disposition?.let { add(HistoryCopy.disposition(it, entry.dispositionReason)) }
         }.joinToString(" · ")
-        val name = { ref: VersionedRef -> facts.skillNames[ref] ?: ref.logicalId }
+        val name = { ref: VersionedRef -> CurriculumNames.skill(ref, facts.skillNames[ref]) }
         return HistoryLine(
             sequence = entry.sequence,
             family = entry.family,
             familyLabel = HistoryCopy.familyLabels.getValue(entry.family),
             skill = entry.skill,
             skillName = name(entry.skill),
-            objectiveLabel = entry.objective.logicalId.substringAfterLast('.').replace('_', ' '),
+            // 17A: the lesson's own title, or the Skill's name — never the identifier.
+            objectiveLabel = facts.objectiveTitles[entry.objective] ?: name(entry.skill),
             happened = happened,
             changed = entry.changes.map { ProgramChangeCopy.stateTemplates.getValue(it.kind) }.ifEmpty { listOf(HistoryCopy.NO_CHANGE) },
         )
     }
 
     fun session(report: SessionReport, facts: HistoryFacts): SessionReportView {
-        val name = { ref: VersionedRef -> facts.skillNames[ref] ?: ref.logicalId }
+        val name = { ref: VersionedRef -> CurriculumNames.skill(ref, facts.skillNames[ref]) }
         val blocks = linkedMapOf<ResultFamily, MutableList<String>>()
         report.stateChanges.forEach { change ->
             blocks.getOrPut(ResultFamily.entries.single { it.id == change.kind.family }) { mutableListOf() } +=

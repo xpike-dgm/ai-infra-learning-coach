@@ -3,6 +3,9 @@ package coach.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -25,6 +28,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import coach.presentation.Spacing
 import coach.presentation.AiSettingsCopy
 import coach.presentation.AiSettingsView
 
@@ -45,10 +49,10 @@ fun AiSettingsScreen(
 ) {
     var typed by remember { mutableStateOf("") }
     Column(
-        modifier = if (embedded) modifier.fillMaxWidth() else modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = if (embedded) modifier.fillMaxWidth() else modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).verticalScroll(rememberScrollState()).padding(Spacing.M.dp),
+        verticalArrangement = Arrangement.spacedBy(Spacing.S.dp),
     ) {
-        Text(text = view.title, style = MaterialTheme.typography.titleLarge, modifier = Modifier.semantics { heading() })
+        if (embedded) SectionHeader(view.title) else ScreenTitle(view.title)
         view.lines.forEach { Text(text = it, style = MaterialTheme.typography.bodyMedium) }
         Text(text = view.status, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
         if (view.showKeyField) {

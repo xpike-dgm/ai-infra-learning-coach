@@ -318,14 +318,15 @@ PEM-v0:
 - 16G ✅ HLPX-v0 / D-130
 - 16H ✅ ASRX-v0 / D-132
 - **AŞAMA 16 TAMAMLANDI**
-- 17A 🟡 active-not-executed
-- 17–20 ⬜
+- 17A ✅ VPLX-v0 / D-133
+- 17B 🟡 active-not-executed
+- 17C–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `16H — ASRX-v0 / D-132`  
-**Aktif:** `17A — Görsel polish`  
-**17A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `17A — VPLX-v0 / D-133`  
+**Aktif:** `17B — Motion`  
+**17B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1697,3 +1698,23 @@ ASRX-v0:
 ## 108. 17A handoff
 
 17A — Görsel polish. 16H ran on the user's explicit approval; 17A needs a fresh PRE and the user's new explicit approval. Carried into AŞAMA 17: run and notification polish, the Learn tab's own screen, the day summary naming a run's real changes, usage/cost visibility. Carried elsewhere: entry placement as a diagnostic source (18A), misconception memory in item selection and a blueprint result's stateChangeRefs (18D), `RebuildMastery`'s own watermark (18E), written comprehension checks (20I), the run, the sessions and the fast path on a device and T6 (19).
+
+## 109. D-133 / 17A final özeti
+
+Canonical: `docs/VISUAL_POLISH_SPEC.md`.
+Contract/QA: `arch/17a_visual_polish/` (contract, QA report, emulator report and screenshots, stale audit).
+Synthesis: `research/17a_visual_polish_research.md`.
+Code: `core-presentation` (`VisualSystem.kt` — `TypeRole`, `TypeScale`, `Spacing`, `MaterialColorRoles`, `ChipColors`, `ToneMark`; `TextLayout.kt` — `TextBlocks`, `DisplayCopy`; `CurriculumNames.kt`; `LearnPresentation.kt`; `AppHealth.atStartup`), `core-ports` (`ContentPort.lessonTitleFor`), `core-model` (`TopicDetailFacts.objectiveTitles`), `core-application` (`TopicQuery.detail`), `data-curriculum` (`FileContentSource.lessonTitleFor`), `app-ui` (`CoachTheme.kt`, `Components.kt`, `LearnScreen.kt` and every screen), `app-wiring` (`MainActivity`, `res/values*/themes.xml`). Schema v11 unchanged.
+
+VPLX-v0:
+- the accepted design system applied: every Material role a measured token, every type slot a VDSX-v0 role with mono for code, a 4dp rhythm, a surface under every screen, outlined state chips with a mark per tone, words instead of identifiers, and the Learn tab's learning map,
+- approval: the user's explicit approval of 2026-10-27 ("17A ya başla"); user decisions: the design system applied plus the Learn screen (run and notification polish and the day summary's real changes to 17C); the first-launch crash fixed inside 17A; verification with emulator screenshots, light, dark and 200% text,
+- found: the app crashed on its first launch; the focused flow had no surface (dark text on a dark window, about 1.4:1); Material's purple baseline on the navigation bar; code in the body font; chips that read as buttons; identifiers on screen; edge to edge enforced on the target device's API 36,
+- found by the independent review and fixed: the raw study day in the history and the report, Objective identifiers on Skill detail, in the history, on the fast path and in a run, English Topic names on Skill detail, the fault colour on a mistyped number,
+- narrowed: five tests and one 16B check that pinned what 17A changed, each "Narrowed at 17A",
+- Mutation Kotlin 27/27, validator 31/31; independent QA 95/95 PASS,
+- T6 was not run; the app was seen on an emulator (Pixel 7 AVD, API 34), not on the Poco M6 Pro.
+
+## 110. 17B handoff
+
+17B — Motion. 17A ran on the user's explicit approval; 17B needs a fresh PRE and the user's new explicit approval. Inputs: `VDSX-v0` §10 (purpose classes, duration bands, forbidden motion, reduced motion) and 17A's components. Moved to 17C: run and notification polish, the day summary naming a run's real changes, usage/cost visibility, the `skill_detail -> planner_explanation` and `technical_english_profile -> skill_detail` edges. Elsewhere: content markup for code (20I), the Progress load time (18E), theme and accessibility preferences (17D), T6 (19).

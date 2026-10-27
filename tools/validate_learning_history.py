@@ -225,7 +225,9 @@ check("A16B-09_wired_on_accepted_edges", all(s in activity for s in (
     "NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.LearningHistory.id)",
     "NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.AssessmentReport.id)",
     "NavigationGraph.canOpen(Surface.SkillDetail.id, Surface.LearningHistory.id)",
-    "NavigationGraph.canOpen(Surface.AssessmentReport.id, Surface.LearningHistory.id)")) and "LearningHistoryQuery(opened.graph.persistence)" in read(APPLICATION), "")
+    "NavigationGraph.canOpen(Surface.AssessmentReport.id, Surface.LearningHistory.id)"))
+      # Narrowed at 17A: the query also takes the content port, to name each Objective by its lesson's title.
+      and re.search(r"LearningHistoryQuery\(opened\.graph\.persistence(?:, opened\.graph\.content)?\)", read(APPLICATION)) is not None, "")
 
 # ---------------------------------------------------------------- tests name what they guard
 for path, names in ((ENGINE_TEST, ["the row that opened a verification is never its own recheck, however often it is decided",
