@@ -1,0 +1,273 @@
+step: 17E
+model: RUXX-v0
+checks: 88
+passed: 88
+results:
+- check: A17E-01_contract
+  result: PASS
+  details: '{''model'': ''RUXX-v0'', ''decision'': ''D-138''}'
+- check: A17E-01_spec_accepted
+  result: PASS
+  details: ''
+- check: A17E-01_research
+  result: PASS
+  details: ''
+- check: A17E-01_user_decisions
+  result: PASS
+  details: ''
+- check: A17E-02_change_words_are_13e
+  result: PASS
+  details: a day change not in 13E's sentence, or not from an engine's change
+- check: A17E-02_that_day_only
+  result: PASS
+  details: a change from another day
+- check: A17E-02_named_by_skill
+  result: PASS
+  details: ''
+- check: A17E-02_unread_is_named
+  result: PASS
+  details: unread changes are not named
+- check: A17E-02_unread_is_not_nothing_changed
+  result: PASS
+  details: the summary says nothing changed when it could not read the changes
+- check: A17E-02_unread_has_words
+  result: PASS
+  details: ''
+- check: A17E-02_day_close_invents_none
+  result: PASS
+  details: the day's facts build a change of their own, or do not read the history's replay
+- check: A17E-02_replay_is_the_history
+  result: PASS
+  details: the day is not the history's replay for that day
+- check: A17E-02_reads_only
+  result: PASS
+  details: reading a day writes
+- check: A17E-02_refreshed_after_a_run
+  result: PASS
+  details: the day summary stays stale after a run
+- check: A17E-02_summary_built_in_core
+  result: PASS
+  details: ''
+- check: A17E-03_edges_in_graph
+  result: PASS
+  details: ''
+- check: A17E-03_one_way_only
+  result: PASS
+  details: ''
+- check: A17E-03_edges_in_ia_contract
+  result: PASS
+  details: '[(''assessment_report'', ''learning_history''), (''skill_detail'', ''planner_explanation''), (''technical_english_profile'', ''skill_detail'')]'
+- check: A17E-03_graph_equals_contract
+  result: PASS
+  details: code=17 ia=17
+- check: A17E-03_amendment_recorded
+  result: PASS
+  details: ''
+- check: A17E-03_wired_through_the_graph
+  result: PASS
+  details: ''
+- check: A17E-03_narrowed_not_new
+  result: PASS
+  details: a Skill's plan is built some other way than the whole plan narrowed
+- check: A17E-03_no_new_sentence
+  result: PASS
+  details: forSkill adds a statement
+- check: A17E-03_nothing_recorded_said
+  result: PASS
+  details: ''
+- check: A17E-03_back_says_where
+  result: PASS
+  details: ''
+- check: A17E-03_entry_row
+  result: PASS
+  details: ''
+- check: A17E-03_english_rows_open_skill
+  result: PASS
+  details: ''
+- check: A17E-04_counts_only_columns
+  result: PASS
+  details: columns=['id', 'call_use', 'model', 'outcome', 'attempts', 'input_usage', 'output_usage']
+- check: A17E-04_no_content_or_credential_column
+  result: PASS
+  details: '[''id'', ''call_use'', ''model'', ''outcome'', ''attempts'', ''input_usage'', ''output_usage'']'
+- check: A17E-04_tokens_nullable_never_negative
+  result: PASS
+  details: ''
+- check: A17E-04_counted_once_when_it_left
+  result: PASS
+  details: a call that never left is counted, or counted twice
+- check: A17E-04_not_sent_is_not_a_call
+  result: PASS
+  details: ''
+- check: A17E-04_no_key_not_counted
+  result: PASS
+  details: ''
+- check: A17E-04_every_end_counted
+  result: PASS
+  details: returns=['ProviderOutcome.NotDelivered(PendingReason.UNAVAILABLE)', 'outcome']
+- check: A17E-04_listener_cannot_fail_the_call
+  result: PASS
+  details: ''
+- check: A17E-04_tokens_as_reported
+  result: PASS
+  details: ''
+- check: A17E-04_call_carries_nothing
+  result: PASS
+  details: ''
+- check: A17E-04_unreported_is_not_zero
+  result: PASS
+  details: ''
+- check: A17E-04_written_after_the_job
+  result: PASS
+  details: ''
+- check: A17E-04_no_ai_build_counts_nothing
+  result: PASS
+  details: ''
+- check: A17E-04_connection_check_is_its_own_use
+  result: PASS
+  details: ''
+- check: A17E-04_no_money_field
+  result: PASS
+  details: 'val use: AiCallUse, val label: String, val calls: String, val tokens: String? val title: String, val lines: List<AiUsageLine> val title: String, val text: String?, val periods: List<AiUsagePeriod>,
+    val notes: List<String>'
+- check: A17E-04_no_currency_on_screen
+  result: PASS
+  details: ''
+- check: A17E-04_price_not_invented_said
+  result: PASS
+  details: ''
+- check: A17E-04_inventory_by_study_day
+  result: PASS
+  details: ''
+- check: A17E-05_theme_values
+  result: PASS
+  details: ''
+- check: A17E-05_motion_only_adds
+  result: PASS
+  details: ''
+- check: A17E-05_theme_applied
+  result: PASS
+  details: ''
+- check: A17E-05_system_until_read
+  result: PASS
+  details: ''
+- check: A17E-05_bars_follow_app_theme
+  result: PASS
+  details: ''
+- check: A17E-05_choice_is_one_group
+  result: PASS
+  details: ''
+- check: A17E-05_note_says_which_setting
+  result: PASS
+  details: ''
+- check: A17E-05_replans_nothing
+  result: PASS
+  details: ''
+- check: A17E-06_ring_on_every_target
+  result: PASS
+  details: ''
+- check: A17E-06_measured_token
+  result: PASS
+  details: ''
+- check: A17E-06_only_while_focused
+  result: PASS
+  details: ''
+- check: A17E-06_outside_the_target
+  result: PASS
+  details: ''
+- check: A17E-06_not_animated
+  result: PASS
+  details: ''
+- check: A17E-06_tabs_carry_the_ring
+  result: PASS
+  details: ''
+- check: A17E-06_navrow_ring_sees_focus
+  result: PASS
+  details: ''
+- check: A17E-07_version
+  result: PASS
+  details: ''
+- check: A17E-07_only_adds
+  result: PASS
+  details: ''
+- check: A17E-07_guarded_append_only
+  result: PASS
+  details: ''
+- check: A17E-07_owned
+  result: PASS
+  details: '{''from'': 11, ''to'': 12, ''owner'': ''17E'', ''tables'': [''display_preference'', ''ai_call_record''], ''truth_altered'': False, ''decision'': ''D-138''}'
+- check: A17E-07_reads_known_values
+  result: PASS
+  details: ''
+- check: A17E-08_tests_RemainingUxTest
+  result: PASS
+  details: 10 < 9
+- check: A17E-08_tests_AiCallCountingTest
+  result: PASS
+  details: 8 < 8
+- check: A17E-08_tests_DisplayAndUsageStorageTest
+  result: PASS
+  details: 7 < 7
+- check: A17E-08_tests_day_replay
+  result: PASS
+  details: ''
+- check: A17E-08_tests_cover_the_rules
+  result: PASS
+  details: ''
+- check: A17E-09_report_100_passed
+  result: PASS
+  details: PASS
+- check: A17E-09_report_100_font_scale
+  result: PASS
+  details: '1.0'
+- check: A17E-09_report_100_new_screens
+  result: PASS
+  details: '[''today_overview'', ''today_capacity_dialog'', ''planner_explanation'', ''learn_overview'', ''topic_detail'', ''progress_overview'', ''learning_history'', ''assessment_report'', ''technical_english_profile'',
+    ''skill_detail'', ''skill_plan_explanation'', ''profile_overview'', ''task_runner_orientation'', ''task_runner_lesson'', ''task_runner_question'', ''task_runner_help'']'
+- check: A17E-09_report_100_reached_and_whole
+  result: PASS
+  details: ''
+- check: A17E-09_report_200_passed
+  result: PASS
+  details: PASS
+- check: A17E-09_report_200_font_scale
+  result: PASS
+  details: '2.0'
+- check: A17E-09_report_200_new_screens
+  result: PASS
+  details: '[''today_overview'', ''today_capacity_dialog'', ''planner_explanation'', ''learn_overview'', ''topic_detail'', ''progress_overview'', ''learning_history'', ''assessment_report'', ''technical_english_profile'',
+    ''skill_detail'', ''skill_plan_explanation'', ''profile_overview'', ''task_runner_orientation'', ''task_runner_lesson'', ''task_runner_question'', ''task_runner_help'']'
+- check: A17E-09_report_200_reached_and_whole
+  result: PASS
+  details: ''
+- check: A17E-09_tool_visits_new_screens
+  result: PASS
+  details: ''
+- check: A17E-10_not_claimed
+  result: PASS
+  details: ''
+- check: A17E-10_found_recorded
+  result: PASS
+  details: '[''audit_did_not_reach_skill_detail'', ''audit_offset_from_a_repeated_name'', ''day_summary_never_refreshed_after_a_run'', ''disk_full_and_flinging_swipes'', ''first_run_report_and_day_summary_disagree'',
+    ''review_non_blocking_taken'', ''review_tabs_had_no_ring'', ''review_unsent_calls_counted'', ''ring_on_the_text'', ''system_bars_followed_the_system'', ''token_column_looks_like_a_credential'', ''trailing_lambda_moved'']'
+- check: A17E-10_open_loop_named
+  result: PASS
+  details: ''
+- check: A17E-11_mutation_results_kotlin
+  result: PASS
+  details: '{''total'': 22, ''detected'': 22}'
+- check: A17E-11_mutation_results_validator
+  result: PASS
+  details: '{''total'': 36, ''detected'': 36}'
+- check: A17E-11_independent_review
+  result: PASS
+  details: ''
+- check: A17E-11_decision_recorded
+  result: PASS
+  details: ''
+- check: A17E-11_execution_index
+  result: PASS
+  details: ''
+- check: A17E-11_master_plan
+  result: PASS
+  details: ''

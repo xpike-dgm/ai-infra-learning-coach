@@ -14,6 +14,12 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Switch
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.ui.semantics.Role
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -34,6 +40,10 @@ import coach.presentation.Spacing
 import coach.model.CapacityProfile
 import coach.model.TodayCapacityChoice
 import coach.presentation.AiSettingsView
+import coach.presentation.AiUsageView
+import coach.presentation.AppearanceCopy
+import coach.presentation.AppearanceView
+import coach.model.ThemeChoice
 import coach.presentation.BackupView
 import coach.presentation.CapacitySettingsView
 import coach.presentation.ReminderCopy
@@ -67,10 +77,16 @@ fun ProfileScreen(
     onRemoveKey: () -> Unit,
     onCheckKey: () -> Unit,
     modifier: Modifier = Modifier,
+    // 17E: the theme and motion setting, and the AI calls counted (no money).
+    appearance: AppearanceView? = null,
+    onAppearance: (ThemeChoice, Boolean) -> Unit = { _, _ -> },
+    aiUsage: AiUsageView? = null,
 ) {
     ScreenColumn(modifier = modifier) {
         ScreenTitle("Profil")
         capacity?.let { CapacitySection(it, onSetLength) }
+
+        appearance?.let { AppearanceSection(it, onAppearance) }
 
         reminder?.let {
             ReminderSection(it, onReminderOn, onReminderOff, onReminderTime, onOpenNotificationSettings)
@@ -93,7 +109,57 @@ fun ProfileScreen(
             }
         }
         AiSettingsScreen(view = ai, onSave = onSaveKey, onRemove = onRemoveKey, onCheck = onCheckKey, embedded = true)
+        aiUsage?.let { AiUsageSection(it) }
     }
+}
+
+/**
+ * 17E: how the app looks and moves. The theme is one choice of three, announced as one group; the motion switch is a row
+ * whose whole width toggles it. Neither replans anything.
+ */
+@Composable
+private fun AppearanceSection(view: AppearanceView, onChange: (ThemeChoice, Boolean) -> Unit) {
+    SectionHeader(AppearanceCopy.TITLE)
+    Text(AppearanceCopy.THEME, style = MaterialTheme.typography.bodyLarge)
+    Column(modifier = Modifier.selectableGroup()) {
+        view.themeOptions.forEach { (choice, label) ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth().minimumTouchTarget()
+                    .selectable(selected = view.theme == choice, onClick = { onChange(choice, view.reduceMotion) }, role = Role.RadioButton),
+            ) {
+                RadioButton(selected = view.theme == choice, onClick = null)
+                Text(label, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(start = Spacing.S.dp))
+            }
+        }
+    }
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth().minimumTouchTarget()
+            .toggleable(value = view.reduceMotion, onValueChange = { onChange(view.theme, it) }, role = Role.Switch),
+    ) {
+        Text(AppearanceCopy.MOTION, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+        Switch(checked = view.reduceMotion, onCheckedChange = null)
+    }
+    Text(view.motionNote, style = MaterialTheme.typography.bodySmall, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+}
+
+/** 17E: the AI calls the app made, counted per use; tokens as the provider reported them, and no money. */
+@Composable
+private fun AiUsageSection(view: AiUsageView) {
+    SectionHeader(view.title)
+    view.text?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+    view.periods.forEach { period ->
+        Text(period.title, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+        period.lines.forEach { line ->
+            Column(verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
+                Text(line.label, style = MaterialTheme.typography.bodyLarge)
+                Text(line.calls, style = MaterialTheme.typography.bodyMedium)
+                line.tokens?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+            }
+        }
+    }
+    view.notes.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
 }
 
 @Composable

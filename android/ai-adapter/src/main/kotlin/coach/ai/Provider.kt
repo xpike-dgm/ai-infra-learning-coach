@@ -54,7 +54,14 @@ data class ProviderConfig(
 
 data class HttpResponse(val status: Int, val body: String)
 
-/** One HTTP POST. A timeout is thrown as [SocketTimeoutException]; any other failure to talk as [IOException]. */
+/** 17E: the connection never opened, so not one byte of the request was sent. [timedOut] when connecting ran out of time. */
+class NotSentException(val timedOut: Boolean, cause: java.io.IOException) : java.io.IOException(cause)
+
+/**
+ * One HTTP POST. A timeout is thrown as [SocketTimeoutException]; any other failure to talk as [IOException]. A failure
+ * before the connection was open — no host, no route, no connection, a connect timeout — is thrown as [NotSentException]:
+ * nothing of the request left the device (17E: such an attempt is not a counted call).
+ */
 fun interface HttpTransport {
     fun post(url: String, headers: Map<String, String>, body: String, timeoutMillis: Long): HttpResponse
 }
@@ -75,6 +82,12 @@ class UrlConnectionTransport : HttpTransport {
             connection.doOutput = true
             connection.useCaches = false
             headers.forEach { (name, value) -> connection.setRequestProperty(name, value) }
+            // 17E: connecting is apart from sending, so a request that never left the device can be told apart.
+            try {
+                connection.connect()
+            } catch (failure: java.io.IOException) {
+                throw NotSentException(timedOut = failure is java.net.SocketTimeoutException, cause = failure)
+            }
             connection.outputStream.use { it.write(body.toByteArray(Charsets.UTF_8)) }
             val status = connection.responseCode
             val stream = if (status in 200..299) connection.inputStream else connection.errorStream

@@ -43,7 +43,9 @@ import coach.presentation.TaskRunCopy
 import coach.model.ReminderPreference
 import coach.model.StoreStatus
 import coach.presentation.NotificationAccess
+import coach.application.AiUsage
 import coach.application.DayCloseFacts
+import coach.application.DisplaySettings
 import coach.application.PlanToday
 import coach.model.CapacityPreferences
 import coach.model.CapacityProfile
@@ -72,6 +74,9 @@ import coach.model.ProgressFacts
 import coach.model.SkillDetailFacts
 import coach.model.VersionedRef
 import coach.model.TodayFacts
+import coach.model.AiCallRecord
+import coach.model.DisplayPreference
+import coach.model.ThemeChoice
 import coach.curriculum.FileContentSource
 import coach.persistence.StoreOpener
 import java.io.File
@@ -126,6 +131,13 @@ class CoachApplication : Application() {
         super.onCreate()
         // Only resolves where the key would live; nothing is read here (14G).
         initAi(this)
+        // 17E: every AI call that left the device is counted on the store thread, after whatever job made it, so a count
+        // never lands inside another action's transaction. A count that cannot be written is lost, never a failure.
+        listenForAiCalls { call ->
+            storeThread.execute {
+                startup.store?.let { opened -> runCatching { AiUsage(opened.graph.persistence, opened.graph.clock).record(call) } }
+            }
+        }
         if (BuildConfig.DEBUG) {
             // Debug builds log any disk read or write on the main thread, so a regression that
             // moves store work back onto it shows up in logcat on the device.
@@ -147,16 +159,20 @@ class CoachApplication : Application() {
      * that stayed open past midnight would otherwise keep yesterday's study day — and a stale study
      * day is exactly how a stale plan gets shown as today's (`SRR-v0`).
      */
-    fun refreshToday(onLoaded: (TodayFacts, DayCloseFacts.Loaded) -> Unit) {
+    fun refreshToday(onLoaded: (TodayFacts) -> Unit, onDay: (DayCloseFacts.Loaded) -> Unit) {
         val opened = startup.store ?: return
         storeThread.execute {
             // 16D: a new study day gets its plan before Today is read — re-entry, never yesterday's plan replayed.
             planToday(opened.graph)
+            // The day is read once, and both Today and the day's own record are read for it, so a process kept open past
+            // midnight reports the new day rather than yesterday's (11E).
+            val studyDay = opened.graph.clock.now().studyDay
             val facts = TodayFactsQuery(opened.graph.persistence, opened.graph.clock).load()
-            // The day's own record is read on the same thread and against the same clock, so a
-            // process kept open past midnight reports the new day rather than yesterday's (11E).
-            val day = DayCloseFacts(opened.graph.persistence, opened.graph.clock).load()
-            main.post { onLoaded(facts, day) }
+            main.post { onLoaded(facts) }
+            // 17E: the day's record now replays the engines for the day's Skills, so Today is shown first and does not
+            // wait for it; the record follows on the same thread.
+            val day = DayCloseFacts(opened.graph.persistence, opened.graph.clock, opened.graph.content).load(studyDay)
+            main.post { onDay(day) }
         }
     }
 
@@ -326,7 +342,7 @@ class CoachApplication : Application() {
             val lines = if (measurement == null) reportedLines else MeasurementPresentation.lines(
                 MeasurementPresentation.result(measurement.scope, items.map { it.ref }, answered, skipped, contested), reportedLines)
             val facts = TodayFactsQuery(graph.persistence, graph.clock).load()
-            val day = DayCloseFacts(graph.persistence, graph.clock).load()
+            val day = DayCloseFacts(graph.persistence, graph.clock, graph.content).load()
             main.post { onDone(lines, facts, day) }
         }
     }
@@ -588,6 +604,36 @@ class CoachApplication : Application() {
             if (preference.enabled) Reminders.ensureChannel(this)
             Reminders.applySetting(this, preference, opened.graph.clock.now().instantEpochMillis)
             main.post { onDone(preference, Reminders.access(this)) }
+        }
+    }
+
+    /** The theme and motion setting, off the main thread (17E). */
+    fun loadDisplay(onLoaded: (DisplayPreference) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val preference = runCatching { DisplaySettings(opened.graph.persistence, opened.graph.clock).read() }.getOrDefault(DisplayPreference.SYSTEM_DEFAULT)
+            main.post { onLoaded(preference) }
+        }
+    }
+
+    /** Records the learner's theme and motion setting (17E); it replans nothing. */
+    fun setDisplay(theme: ThemeChoice, reduceMotion: Boolean, onDone: (DisplayPreference) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val settings = DisplaySettings(opened.graph.persistence, opened.graph.clock)
+            settings.set(theme, reduceMotion)
+            val preference = settings.read()
+            main.post { onDone(preference) }
+        }
+    }
+
+    /** The recorded AI calls, counts only, off the main thread (17E). */
+    fun loadAiUsage(onLoaded: (List<AiCallRecord>, String) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val calls = AiUsage(opened.graph.persistence, opened.graph.clock).read()
+            val today = opened.graph.clock.now().studyDay
+            main.post { onLoaded(calls, today) }
         }
     }
 

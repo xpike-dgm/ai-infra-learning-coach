@@ -127,6 +127,24 @@ class LearningHistoryQuery(
             }.orEmpty())
     }
 
+    /**
+     * 17E (`D-138`): one study day's entries, for the day summary — the same replay as the history, run only for the Skills
+     * that have evidence recorded on [studyDay] (a Skill with none that day cannot have changed that day). Each Skill is
+     * still replayed from its first row, so the state before the day's first row is what the engines said then. Only rows
+     * whose own recorded day is [studyDay] are returned; the day is never recomputed from an instant (11E).
+     */
+    fun day(studyDay: String): HistoryFacts {
+        if (!persistence.curriculumPublished()) return HistoryFacts(curriculumLoaded = false, entries = emptyList(), sessions = emptyList())
+        val skills = persistence.publishedSkills().filter { skill ->
+            persistence.objectivesOf(skill.ref).any { o -> persistence.evidenceFor(o.ref).any { it.studyDay == studyDay } }
+        }
+        val entries = skills.flatMap { HistoryReplay.steps(persistence, it.ref, persistence.objectivesOf(it.ref)) }
+            .filter { it.row.studyDay == studyDay }
+            .map(::entry)
+            .sortedBy { it.sequence }
+        return HistoryFacts(curriculumLoaded = true, entries = entries, sessions = emptyList(), skillNames = skills.associate { it.ref to it.canonicalName })
+    }
+
     private fun entry(step: HistoryReplay.Step) = HistoryEntry(
         sequence = step.row.sequence,
         studyDay = step.row.studyDay,

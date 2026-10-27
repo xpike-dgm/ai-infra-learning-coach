@@ -139,9 +139,10 @@ fun NavRow(title: String, onClick: () -> Unit, modifier: Modifier = Modifier, co
     Row(
         modifier = modifier
             .fillMaxWidth()
+            // 17E: before the clickable, so the target's focus ring sees the row's focus.
+            .minimumTouchTarget()
             .clip(RoundedCornerShape(Spacing.XS.dp))
             .clickable(onClickLabel = title, role = Role.Button, onClick = onClick)
-            .minimumTouchTarget()
             .padding(vertical = Spacing.XXS.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Spacing.S.dp),

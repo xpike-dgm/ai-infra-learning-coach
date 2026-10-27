@@ -3,6 +3,9 @@ package coach.presentation
 import coach.model.DayChange
 import coach.model.DayInventory
 import coach.model.DayRecord
+import coach.model.HistoryEventFamily
+import coach.model.HistoryFacts
+import coach.model.HistoryFamily
 
 /**
  * The end of the day as a projection (11E).
@@ -113,6 +116,43 @@ object EndOfDay {
             unreadKinds = input.unreadKinds,
             contexts = contexts,
         )
+    }
+}
+
+/**
+ * 17E (`D-138`): the day's changes in words. Each is an engine's own transition, replayed from the evidence recorded on
+ * that day exactly as the learning history replays it, said in 13E's sentence and named by its Skill — so the summary can
+ * only say what an engine changed, and a day with activity but no change still says nothing changed. When the changes
+ * could not be read, that is named ([UNREAD_KIND]) and never reported as "nothing changed".
+ */
+object DayChanges {
+    const val UNREAD_KIND = "state_changes"
+
+    fun of(facts: HistoryFacts, studyDay: String): List<DayChange> =
+        facts.entries.filter { it.studyDay == studyDay }.sortedBy { it.sequence }.flatMap { entry ->
+            entry.changes.map { change ->
+                DayChange(
+                    family = familyOf(entry.family),
+                    statement = CurriculumNames.skill(change.skill, facts.skillNames[change.skill]) + ": " +
+                        ProgramChangeCopy.stateTemplates.getValue(change.kind),
+                    subject = change.skill,
+                )
+            }
+        }
+
+    /** The summary's input: the counted record, with the day's replayed changes, or the changes named as unread. */
+    fun input(record: DayRecord, unreadKinds: Set<String>, changes: HistoryFacts?, health: AppHealth): DaySummaryInput =
+        DaySummaryInput(
+            record = record.copy(changes = changes?.let { of(it, record.studyDay) }.orEmpty()),
+            health = health,
+            unreadKinds = if (changes == null) unreadKinds + UNREAD_KIND else unreadKinds,
+        )
+
+    private fun familyOf(family: HistoryFamily): HistoryEventFamily = when (family) {
+        HistoryFamily.LEARNING -> HistoryEventFamily.LEARNING
+        HistoryFamily.ASSESSMENT -> HistoryEventFamily.ASSESSMENT
+        HistoryFamily.REVIEW -> HistoryEventFamily.REVIEW
+        HistoryFamily.REMEDIATION -> HistoryEventFamily.REMEDIATION
     }
 }
 

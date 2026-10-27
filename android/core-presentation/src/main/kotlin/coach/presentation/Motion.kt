@@ -79,8 +79,11 @@ object MotionPolicy {
 /**
  * Reduced motion follows the platform (17B user decision): Android's "remove animations" sets the animator duration
  * scale to 0, and then every motion is immediate. Any other scale keeps the declared bands; Compose itself scales its
- * durations by the same setting. An in-app preference is 17D's.
+ * durations by the same setting.
+ *
+ * 17E (`D-138`): the learner may also turn the app's own motion off in Profile. The two only add up: the preference
+ * can reduce motion the platform allows, never bring back motion the platform removed.
  */
 object ReducedMotion {
-    fun of(animatorDurationScale: Float): Boolean = animatorDurationScale <= 0f
+    fun of(animatorDurationScale: Float, inApp: Boolean = false): Boolean = inApp || animatorDurationScale <= 0f
 }

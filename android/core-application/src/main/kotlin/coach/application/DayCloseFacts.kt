@@ -3,7 +3,9 @@ package coach.application
 import coach.model.DayInventory
 import coach.model.DayRecord
 import coach.model.DayRecordKind
+import coach.model.HistoryFacts
 import coach.ports.ClockPort
+import coach.ports.ContentPort
 import coach.ports.PersistencePort
 
 /**
@@ -20,8 +22,15 @@ import coach.ports.PersistencePort
 class DayCloseFacts(
     private val persistence: PersistencePort,
     private val clock: ClockPort,
+    // 17E: names each changed Skill; without it a change is still read, and the Skill is named by its published name.
+    private val content: ContentPort? = null,
 ) {
-    data class Loaded(val record: DayRecord, val unreadKinds: Set<String>)
+    /**
+     * [changes] (17E, `D-138`) is what the engines changed on this day, replayed from the stored evidence exactly as the
+     * learning history replays it ([LearningHistoryQuery.day]) — `null` when it could not be read, which is not the same
+     * claim as "nothing changed".
+     */
+    data class Loaded(val record: DayRecord, val unreadKinds: Set<String>, val changes: HistoryFacts? = null)
 
     fun load(studyDay: String = clock.now().studyDay): Loaded {
         val counts = mutableMapOf<DayRecordKind, Int>()
@@ -34,9 +43,10 @@ class DayCloseFacts(
                 .onFailure { unread += kind.id }
         }
         return Loaded(
-            // Changes stay empty: only a canonical engine may report one, and none exists yet (12).
+            // The record carries no change of its own: a change is the engines', read below and worded in core-presentation.
             record = DayRecord(studyDay = studyDay, inventory = DayInventory(counts)),
             unreadKinds = unread,
+            changes = runCatching { LearningHistoryQuery(persistence, content).day(studyDay) }.getOrNull(),
         )
     }
 }

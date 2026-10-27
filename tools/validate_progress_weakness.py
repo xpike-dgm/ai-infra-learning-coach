@@ -290,14 +290,21 @@ check("A16C-08_lessons_are_teach_tasks", "it.purpose == TaskPurpose.TEACH && obj
 # ---------------------------------------------------------------- 8. screens and edges (UXIA-v0)
 edges = [tuple(e) for e in (ia.get("navigation_edges") or {}).get("contextual", [])] or \
         [tuple(e) for e in re.findall(r"- \[(\w+), (\w+)\]", read(IA))]
+# Narrowed at 17E (`RUXX-v0` / `D-138`): technical_english_profile -> skill_detail was added to UXIA-v0 by the user's
+# decision, recorded as an amendment in 17E's contract; without that record the edge still fails.
+_amended = "technical_english_profile -> skill_detail" in read(ROOT / "arch/17e_remaining_ux/remaining_ux.yaml")
 check("A16C-09_edges_accepted", all(e in edges for e in (("progress", "topic_detail"), ("topic_detail", "skill_detail"),
-      ("progress", "technical_english_profile"))) and ("technical_english_profile", "skill_detail") not in edges, "")
+      ("progress", "technical_english_profile"))) and (("technical_english_profile", "skill_detail") not in edges or _amended), "")
 check("A16C-09_wired_on_accepted_edges", all(s in activity for s in (
     "NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.TopicDetail.id)",
     "NavigationGraph.canOpen(Surface.TopicDetail.id, Surface.SkillDetail.id)",
     "NavigationGraph.canOpen(Destination.PROGRESS.id, Surface.TechnicalEnglishProfile.id)")), "")
 english_screen = strip_comments(read(ENGLISH_SCREEN))
-check("A16C-09_english_profile_links_no_skill", "onOpenSkill" not in english_screen, "no accepted technical_english_profile -> skill_detail edge")
+# Narrowed at 17E (`D-138`): the profile links a Skill only through the accepted edge, and the activity asks the graph.
+check("A16C-09_english_profile_links_no_skill", "onOpenSkill" not in english_screen
+      or (("technical_english_profile", "skill_detail") in edges and _amended
+          and "NavigationGraph.canOpen(Surface.TechnicalEnglishProfile.id, Surface.SkillDetail.id)" in activity),
+      "no accepted technical_english_profile -> skill_detail edge")
 for path in (TOPIC_SCREEN, ENGLISH_SCREEN, PROGRESS_SCREEN):
     s = strip_comments(read(path))
     check(f"A16C-09_screen_decides_nothing_{path.stem}", "coach.application" not in s

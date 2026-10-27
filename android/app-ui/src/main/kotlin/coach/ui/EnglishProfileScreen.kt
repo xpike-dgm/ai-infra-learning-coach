@@ -2,6 +2,7 @@ package coach.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,20 +21,22 @@ import androidx.compose.ui.unit.dp
 import coach.presentation.Spacing
 import coach.presentation.EnglishProfileCopy
 import coach.presentation.EnglishProfileView
+import coach.model.VersionedRef
 
 /**
  * `technical_english_profile` (16C), as `TEPM-v0` defines it. This file renders and decides nothing: the headline, every
  * band and every Skill's state were settled in `EnglishProfilePresentation` in core. Bands are words, never a meter, and
  * the profile is never a general or official English level.
  *
- * Skills are named, not linked: `UXIA-v0` accepts no `technical_english_profile -> skill_detail` edge, and a surface
- * opens only what an accepted edge allows.
+ * 17E (`D-138`): every Skill opens its own `skill_detail` — `technical_english_profile -> skill_detail` is an accepted edge
+ * now — so the profile's uneven states lead to the one Skill truth rather than repeating it.
  */
 @Composable
 fun EnglishProfileScreen(
     view: EnglishProfileView,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    onOpenSkill: ((VersionedRef) -> Unit)? = null,
 ) {
     ScreenColumn(modifier = modifier) {
         BackButton(onBack)
@@ -58,11 +61,18 @@ fun EnglishProfileScreen(
         view.groups.forEach { group ->
             SectionHeader(group.label)
             group.skills.forEach { chip ->
-                Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
-                    Text(chip.name, style = MaterialTheme.typography.bodyLarge)
+                val details: @Composable ColumnScope.() -> Unit = {
                     StateChip(label = chip.label, tone = chip.tone, subject = chip.skill)
                     group.sources[chip.skill]?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
                     chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
+                }
+                if (onOpenSkill != null) {
+                    NavRow(chip.name, onClick = { onOpenSkill(chip.skill) }, content = details)
+                } else {
+                    Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
+                        Text(chip.name, style = MaterialTheme.typography.bodyLarge)
+                        details()
+                    }
                 }
             }
         }

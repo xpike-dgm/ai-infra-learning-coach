@@ -8,6 +8,7 @@ import coach.ai.ConnectionCheck
 import coach.ai.ConnectionResult
 import coach.ai.OpenAiResponses
 import coach.ai.ProviderConfig
+import coach.model.AiCall
 import coach.presentation.AiCheckState
 import coach.presentation.AiKeyState
 import java.io.File
@@ -124,7 +125,11 @@ internal object AiWiring {
 
     val config = ProviderConfig()
 
-    val client: OpenAiResponses by lazy { OpenAiResponses(config, keys) }
+    // 17E: told of every call that left the device; set once by the application before any call can be made.
+    @Volatile
+    var onCall: (AiCall) -> Unit = {}
+
+    val client: OpenAiResponses by lazy { OpenAiResponses(config, keys, onCall = { onCall(it) }) }
 
     /** Called from `CoachApplication.onCreate`; only resolves the no-backup directory, reads nothing. */
     fun init(context: Context) {
@@ -153,5 +158,6 @@ internal object AiWiring {
 }
 
 internal fun initAi(context: Context) = AiWiring.init(context)
+internal fun listenForAiCalls(listener: (AiCall) -> Unit) { AiWiring.onCall = listener }
 internal fun primeAi() = AiWiring.prime()
 internal fun provideAiSettings(): AiSettings = AiWiring.settings

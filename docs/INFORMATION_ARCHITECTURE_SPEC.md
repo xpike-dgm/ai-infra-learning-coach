@@ -304,6 +304,8 @@ Progress -> learning_history
 Profile -> settings/data-control details
 ```
 
+**17E amendment (`D-138`, user decision 2026-10-27):** two contextual edges were added — `skill_detail -> planner_explanation` (today's plan as it concerns that Skill: the same explanation narrowed, nothing added) and `technical_english_profile -> skill_detail` (each Skill of the profile opens the one shared Skill detail). Both are listed in `ux/8a_information_architecture/ia.yaml`; nothing else in this contract changed. Details: `docs/REMAINING_UX_SPEC.md`.
+
 Shared detail routes preserve origin context for Back/Up behavior; they do not clone the underlying entity.
 
 ## 9.3 Focus-flow return rule

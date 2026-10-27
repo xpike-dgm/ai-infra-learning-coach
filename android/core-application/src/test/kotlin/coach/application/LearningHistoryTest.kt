@@ -178,6 +178,41 @@ class LearningHistoryTest {
     }
 
     @Test
+    fun `a day's changes are the history's own for that day, replayed from the Skill's first row (17E)`() {
+        val (store, _, _) = mastered()
+        val day = LearningHistoryQuery(store).day("2026-10-01")
+        assertEquals(listOf("2026-10-01"), day.entries.map { it.studyDay })
+        assertEquals(listOf(StateChangeKind.CAPABILITY_CONFIRMED), day.entries.single().changes.map { it.kind })
+        val whole = LearningHistoryQuery(store).load().entries.filter { it.studyDay == "2026-10-01" }
+        assertEquals(whole.map { it.changes }, day.entries.map { it.changes }, "the day replays exactly as the history does")
+        assertEquals(emptyList(), LearningHistoryQuery(store).day("2026-09-30").entries.flatMap { it.changes })
+        assertEquals(emptyList(), LearningHistoryQuery(store).day("2026-10-02").entries, "a day with no evidence has no entries")
+    }
+
+    @Test
+    fun `the day's facts carry its changes, read only (17E)`() {
+        val (store, clock, _) = mastered()
+        val watermark = store.truthWatermark()
+        val loaded = DayCloseFacts(store, clock).load("2026-10-01")
+        assertEquals(listOf(StateChangeKind.CAPABILITY_CONFIRMED), loaded.changes!!.entries.flatMap { it.changes }.map { it.kind })
+        assertEquals(emptyList(), loaded.record.changes, "the counted record names no change of its own")
+        assertEquals(watermark, store.truthWatermark(), "reading a day writes nothing")
+    }
+
+    @Test
+    fun `an AI call is appended as counts, and a token count the provider did not report is left out, never zero (17E)`() {
+        val (store, clock, _) = world()
+        AiUsage(store, clock).record(coach.model.AiCall(coach.model.AiCallUse.TUTOR_HELP, "gpt-6-astra", coach.model.AiCallOutcome.ANSWERED, 2, 120, null))
+        val row = store.appended("ai_call_record").single().record
+        assertEquals(mapOf("call_use" to "tutor_help", "model" to "gpt-6-astra", "outcome" to "answered", "attempts" to "2", "input_usage" to "120"), row.payload)
+        assertEquals("2026-10-01", row.recordedAt.studyDay)
+        AiUsage(store, clock).record(coach.model.AiCall(coach.model.AiCallUse.CONNECTION_CHECK, "gpt-6-astra", coach.model.AiCallOutcome.TRANSPORT_ERROR, 1, null, null))
+        val unreported = store.appended("ai_call_record").last().record.payload
+        assertTrue("input_usage" !in unreported && "output_usage" !in unreported, "an unreported count is not stored as zero: $unreported")
+        assertEquals(coach.model.ThemeChoice.SYSTEM, DisplaySettings(store, clock).read().theme, "nothing stored: the system's theme")
+    }
+
+    @Test
     fun `a learner who has done nothing has an empty history and no reports`() {
         val (store, _, _) = world()
         val facts = LearningHistoryQuery(store).load()

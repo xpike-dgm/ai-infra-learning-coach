@@ -36,7 +36,8 @@ class TaskLinkStorageTest {
         Fixtures.populated(file, version = 10)
         val before = SqlitePersistence.openWithoutMigrating(file.absolutePath).use { Fixtures.truthContent(it) }
         SqlitePersistence.open(file.absolutePath).use { db ->
-            assertEquals(11, Schema.VERSION)
+            // Narrowed at 17E (`D-138`): version 12 adds the display and AI-usage tables; v11's link is what this checks.
+            assertTrue(Schema.VERSION >= 11)
             assertEquals(Schema.VERSION, db.query("SELECT schema_version FROM schema_metadata") { it.getLong(0).toInt() }.single())
             // Every stored row is the same, with the new column empty on each: nothing was rewritten.
             val after = Fixtures.truthContent(db)

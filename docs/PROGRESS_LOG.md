@@ -1638,3 +1638,20 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `17D tamamlandı; 17E aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `17E — Kalan UX parçaları`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-27 — 17E — Kalan UX parçaları tamamlandı — RUXX-v0 / D-138; AŞAMA 17 tamamlandı
+
+- Kullanıcı 17D'yi (#71) CI yeşil olunca merge ettirdi (76f8f0d) ve "17E ye başla" dedi. Fresh 17E PRE yapıldı ve kanonik kaynaklar `17D ✅ / 17E active-not-executed` gösterdi.
+- **Kullanıcı kararı (2026-10-27):** 17C'den kalan üç parçanın hepsi (gün özetinde gerçek değişiklikler, iki gezinme kenarı, AI kullanım görünürlüğü) ve 17D'den kalan üç tercihin hepsi (görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket); AI kullanımı çağrı + sağlayıcının token'ları, para tutarı yok; UXIA-v0'a iki kenar eklendi.
+- **Bulgu:** gün özeti 11E'den beri hiçbir değişikliği adlandırmıyordu ve 16F'den beri bir koşunun sonunda okunan günü atıyordu, bu yüzden uygulama yeniden açılana kadar 'Bugün kayıt yok' diyordu; yeni bir öğrencinin ilk yanlış cevabında koşunun sonu (13E) 'değişmedi', gün özeti (16B'nin yeniden oynatması) 'bir zorluk sorusu açıldı' diyor — açık döngü olarak kaydedildi; koyu tema açık sistemde durum çubuğunu koyu üstünde koyu bırakıyordu; ilk odak halkası satırın metnine değiyordu; token sütun adı yedekteki kimlik bilgisi taramasına takıldı (input_usage/output_usage); bağımsız inceleme iki engelleyici sorun buldu — gezinme sekmelerinde odak halkası yoktu ve bağlantısı hiç açılmamış (çevrimdışı) çağrılar sayılıyordu — ikisi de düzeltildi; 17D'nin denetimi beceri ayrıntısına hiç girmiyordu, artık giriyor.
+- **Kod:** core `AiUsageFacts`, `DisplayFacts`, `DayCloseFacts` + `LearningHistoryQuery.day`, `DisplaySettings`, `AiUsage`, `DayChanges`, `PlannerExplanationPresentation.forSkill`, `AiUsagePresentation`, `AppearancePresentation`, `ReducedMotion`, `DesignTokens.FOCUS_RING_*`; ai-adapter sayım ve `NotSentException`; app-ui odak halkası, Profil'in Görünüm ve AI kullanımı bölümleri; şema v12; UXIA-v0'a iki kenar; önceki kontroller 'Narrowed at 17E'.
+- **Araştırma:** iç sözleşmeler `EODX-v0`, `LHRX-v0`, `PCRX-v0`, `PDT-v0`, `UXIA-v0`, `TEPM-v0`, `AIAX-v0` §11, `MOTX-v0`, `A11X-v0`; dış: openai-python SDK tipleri (`ResponseUsage`), WCAG 2.2 (2.4.7, 2.4.11, 2.4.13).
+- **Bağımsız inceleme:** ayrı bir ajan iki engelleyici sorun buldu (gezinme sekmelerinde odak halkası yoktu; bağlantısı hiç açılmamış çağrılar sayılıyordu) ve on bir öneri yaptı; iki sorun ve dokuz öneri düzeltildi, denetimler düzeltilmiş derlemede yeniden koşuldu.
+- **Mutation:** Kotlin 22/22.
+- **Validator mutation:** 36/36.
+- **Validator:** 88/88 PASS; emülatör denetimi iki metin boyutunda PASS; hızlı tarama geçti; 1325 JVM testi.
+- **T6 ve canlı sağlayıcı çağrısı çalıştırılmadı; uygulama emülatörde (Pixel 7 AVD, API 34)**.
+- **AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
+- D-050 POST living-memory accepted state'i `17E tamamlandı; AŞAMA 17 tamamlandı; 18A aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `18A — Pilot başlangıcı`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

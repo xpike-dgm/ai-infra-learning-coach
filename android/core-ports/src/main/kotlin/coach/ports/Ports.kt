@@ -20,6 +20,8 @@ import coach.model.ObjectiveRow
 import coach.model.PreferenceRecord
 import coach.model.PrerequisiteEdge
 import coach.model.ReminderPreferenceRecord
+import coach.model.DisplayPreferenceRecord
+import coach.model.AiCallRecord
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
@@ -245,6 +247,18 @@ interface PersistencePort {
      * scheduled.
      */
     fun reminderPreferences(): List<ReminderPreferenceRecord> = emptyList()
+
+    /**
+     * Every stored display setting — theme and motion — oldest first (17E). The newest row is the setting; with none,
+     * both follow the system. A refinement of this port, not a new one; an adapter that keeps none answers with nothing.
+     */
+    fun displayPreferences(): List<DisplayPreferenceRecord> = emptyList()
+
+    /**
+     * Every recorded AI call, oldest first (17E): counts only, never content. A refinement of this port, not a new one;
+     * an adapter that keeps none answers with nothing, and the app says no call is recorded.
+     */
+    fun aiCalls(): List<AiCallRecord> = emptyList()
 
     /**
      * Which of these planned tasks have an attempt made for them (16F) — the learner started them. A refinement of this

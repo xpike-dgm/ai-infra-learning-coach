@@ -148,7 +148,9 @@ check("A16F-01_entry_conditions_are_trux", run_cfg.get("entry_conditions") == ["
 
 # ---------------------------------------------------------------- 1. the attempt names its planned task (schema v11)
 v11 = schema[schema.find("val v11: List<String>"):schema.find("const val MISCONCEPTION_SOURCES")]
-check("A16F-02_schema_v11", "const val VERSION = 11" in schema and "10 to Schema.v11," in strip_comments(read(MIGRATIONS)), "")
+# Narrowed at 17E (`RUXX-v0` / `D-138`): version 12 adds the display and AI-usage tables; v11's migration is what this checks.
+_version = re.search(r"const val VERSION = (\d+)", schema)
+check("A16F-02_schema_v11", _version is not None and int(_version.group(1)) >= 11 and "10 to Schema.v11," in strip_comments(read(MIGRATIONS)), "")
 check("A16F-02_one_added_column", '"ALTER TABLE attempt ADD COLUMN planned_task_id INTEGER REFERENCES planned_task (id)"' in v11
       and len(re.findall(r"ALTER TABLE", v11)) == 1 and not re.search(r"DROP|UPDATE|DELETE", v11), "an added nullable column, nothing rewritten")
 check("A16F-02_migration_owned", (contract.get("schema_migration") or {}) == {"from": 10, "to": 11, "owner": "16F", "tables": ["attempt"],
@@ -246,7 +248,8 @@ check("A16F-06_today_does_not_offer_started", "val started: Boolean = false," in
       and "StartedTasks.positions(persistence, stored, read.trace)" in read(TODAY_QUERY), "")
 check("A16F-06_no_cached_list", "current.shown.map { it.ref }.toSet()" in activity and "NextTaskSource.RECOMPUTED_PLANNER_SELECTION" in
       read(ANDROID / "core-presentation/src/main/kotlin/coach/presentation/TaskRunner.kt") and run_cfg.get("next_task_source") == "recomputed_planner_selection", "")
-check("A16F-06_processed_once_even_on_exit", "if (run.finished) return" in activity and "run?.let { finishRun(app, it, onTodayFacts) {} }" in activity, "")
+# Narrowed at 17E (`D-138`): the run's end also hands the day's record back (onDayFacts); processed once, even on exit, is unchanged.
+check("A16F-06_processed_once_even_on_exit", "if (run.finished) return" in activity and "run?.let { finishRun(app, it, onTodayFacts, onDayFacts) {} }" in activity, "")
 check("A16F-06_report_words_from_13e", "ProgramChangeResults.summary(reported.report)" in application and "ProgramChangeResults.canonicalChanges(reported.report, label)" in application
       and "TaskRunCopy.NOTHING_ANSWERED" in application, "")
 

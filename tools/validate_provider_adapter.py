@@ -151,7 +151,8 @@ check("E14G-03_open_sends_core", "OpenResponseInstructions.TEXT, schemaName(Open
       and "OpenResponseInstructions.userMessage(request.objectiveRefs, request.promptText, request.rubric, request.learnerResponse, request.misconceptionCatalog)" in evaluator, "")
 check("E14G-03_code_sends_core", "CodeEvaluationInstructions.TEXT, schemaName(CodeEvaluationInstructions.REPLY_SCHEMA_ID)" in evaluator
       and "CodeEvaluationInstructions.userMessage(request.objectiveRefs, request.promptText, request.learnerResponse, request.misconceptionCatalog)" in evaluator, "")
-check("E14G-03_check_sends_nothing_personal", 'const val MESSAGE = "ping"' in conn and "client.call(TaskClass.TUTOR_HELP, INSTRUCTIONS, SCHEMA_NAME, SCHEMA, MESSAGE)" in conn, "")
+# Narrowed at 17E (`D-138`): the check is counted as its own use (AiCallUse.CONNECTION_CHECK); what it sends is unchanged.
+check("E14G-03_check_sends_nothing_personal", 'const val MESSAGE = "ping"' in conn and "client.call(TaskClass.TUTOR_HELP, INSTRUCTIONS, SCHEMA_NAME, SCHEMA, MESSAGE, AiCallUse.CONNECTION_CHECK)" in conn, "")
 
 # ---------------------------------------------------------------- reading the reply, in the order AIAX-v0 §6 requires
 reader = between(client, "private fun read(", "\n}\n") or client[client.find("private fun read("):]
@@ -170,6 +171,11 @@ check("E14G-04_json_strict", all(f in json_src for f in ("duplicate key", "trail
 check("E14G-04_no_free_text", not re.search(r"\.contains\(\"(met|correct|yes|pass)|Regex\(\"(met|correct)", adapter_all, re.I), "no verdict read out of free text")
 
 # ---------------------------------------------------------------- failure mapping, budget, retries
+# Narrowed at 17E (`RUXX-v0` / `D-138`): every way a call ends now passes through `ended(...)`, which counts a call that left
+# the device and returns the same outcome; the mapping is read with that wrapper removed, so each rule below is unchanged.
+call = re.sub(r"return ended\((ProviderOutcome\.NotDelivered\((?:[^()]|\([^()]*\))*\))\)", r"return \1", call)
+# ... and the count of requests that really left the device (`sent`) is bookkeeping beside each rule, not a rule.
+call = re.sub(r"\n[ \t]*sent\+\+", "", call).replace(".also { sent++ }", "")
 check("E14G-05_key_rejected", "response.status == 401 || response.status == 403 -> return ProviderOutcome.NotDelivered(PendingReason.UNAVAILABLE, keyRejected = true)" in call, "")
 check("E14G-05_retried_only", "response.status == 408 || response.status == 429 || response.status >= 500 -> {" in call
       and "response.status !in 200..299 -> return ProviderOutcome.NotDelivered(PendingReason.TRANSPORT_ERROR)" in call, "")

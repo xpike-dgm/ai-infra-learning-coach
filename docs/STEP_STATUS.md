@@ -95,8 +95,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **17B — Motion** | ✅ | MOTX-v0 / D-134. Hareket amacına göre ve kısa; hiçbir şey kutlamıyor, tekrarlamıyor ya da çıkışın önüne geçmiyor; azaltılmış hareket sistem ayarına uyuyor. Kotlin mutation 10/10, validator mutation 18/18; 36/36 QA PASS. T6 çalıştırılmadı. |
 | **17C — Kullanılabilirlik** | ✅ | USBX-v0 / D-135. Çıkış hep görünür, konum olgusal ('Soru 2 / 5'), cevap/kod/rapor alanlarında klavye önerisi yok, geçmiş yardımı kelimelerle söylüyor, hatırlatma uygulamanın kendi ikonuyla. Kotlin mutation 10/10, validator mutation 20/20; 31/31 QA PASS. T6 çalıştırılmadı. |
 | **17D — Accessibility** | ✅ | A11X-v0 / D-137. Her kontrol adlı, rollü ve durumlu; aynı adlı iki kontrol yok; 48dp; başlıklar; alanın hatası kendi; gerçek uygulama emülatörde 100% ve 200% metinle on dört ekranda denetlendi. Kotlin mutation 10/10, validator mutation 35/35; 59/59 QA PASS. T6 çalıştırılmadı. |
-| **17E — Kalan UX parçaları** | 🟡 Aktif | D-136 ile eklendi. Henüz yürütülmedi; önceki adım (17D) tamamlandı. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
-| **18–20** | ⬜ Bekliyor | 17E sonrası canonical sırada. |
+| **17E — Kalan UX parçaları** | ✅ | RUXX-v0 / D-138. Gün özeti gerçek değişiklikleri söylüyor; iki gezinme kenarı; AI çağrıları token'larla sayılıyor, para yok; odak halkası, tema, uygulama içi azaltılmış hareket. Şema v12. Kotlin mutation 22/22, validator mutation 36/36; 88/88 QA PASS. T6 çalıştırılmadı. |
+| **18A — Pilot başlangıcı** | 🟡 Aktif | Henüz yürütülmedi; önceki adım (17E) tamamlandı ve AŞAMA 17 bitti. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
+| **18B–20** | ⬜ Bekliyor | 18A sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -115,7 +116,22 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 17D
+## Son tamamlanan numaralı adım — 17E
+
+**Final:** `RUXX-v0 — the day summary says what the engines changed that day; skill_detail -> planner_explanation and technical_english_profile -> skill_detail; AI calls counted with the provider's tokens and no money; a visible focus ring; a theme choice; an in-app reduced-motion switch that only adds`
+**Ana çıktı:** `docs/REMAINING_UX_SPEC.md` + `arch/17e_remaining_ux/` + `tools/validate_remaining_ux.py` + `android/`.
+
+17E sonucu:
+- gün özeti yalnız motorların o gün gerçekten değiştirdiğini söylüyor — her değişiklik o günün kanıtından, öğrenme geçmişinin yeniden oynattığı gibi, 13E'nin cümlesiyle ve becerisinin adıyla — ve değişiklikler okunamadıysa 'değişiklik olmadı' değil 'okunamadı' diyor; bir becerinin bugünkü planı, planlayıcının kendi izinin o beceriye daraltılmışı, hiçbir şey eklenmeden; İngilizce profilindeki her beceri tek beceri ayrıntısını açıyor; cihazdan çıkan her AI çağrısı bir kez, sağlayıcının bildirdiği token'larla ve taşıdığı hiçbir şey saklanmadan sayılıyor ve fiyat uydurulmuyor; tema ve 'Hareketi azalt' yalnız görünüşü ve hareketi değiştiriyor, anahtar Android'in ayarına yalnız ekler; klavye odağı her zaman görünür,
+- onay kullanıcının 2026-10-27 açık onayı; kullanıcı kararları: 17C'den kalan üç parçanın hepsi (gün özetinde gerçek değişiklikler, iki gezinme kenarı, AI kullanım görünürlüğü) ve 17D'den kalan üç tercihin hepsi (görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket); AI kullanımı çağrı + sağlayıcının token'ları, para tutarı yok; UXIA-v0'a iki kenar eklendi,
+- **bulgu:** gün özeti 11E'den beri hiçbir değişikliği adlandırmıyordu ve 16F'den beri bir koşunun sonunda okunan günü atıyordu, bu yüzden uygulama yeniden açılana kadar 'Bugün kayıt yok' diyordu; yeni bir öğrencinin ilk yanlış cevabında koşunun sonu (13E) 'değişmedi', gün özeti (16B'nin yeniden oynatması) 'bir zorluk sorusu açıldı' diyor — açık döngü olarak kaydedildi; koyu tema açık sistemde durum çubuğunu koyu üstünde koyu bırakıyordu; ilk odak halkası satırın metnine değiyordu; token sütun adı yedekteki kimlik bilgisi taramasına takıldı (input_usage/output_usage); bağımsız inceleme iki engelleyici sorun buldu — gezinme sekmelerinde odak halkası yoktu ve bağlantısı hiç açılmamış (çevrimdışı) çağrılar sayılıyordu — ikisi de düzeltildi; 17D'nin denetimi beceri ayrıntısına hiç girmiyordu, artık giriyor,
+- şema v12 (`display_preference`, `ai_call_record`),
+- Mutation Kotlin 22/22, validator 36/36; independent validator **88/88 PASS**,
+- **T6 ve canlı sağlayıcı çağrısı çalıştırılmadı; uygulama emülatörde (Pixel 7 AVD, API 34)**.
+
+**AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
+
+## Önceki numaralı adım — 17D
 
 **Final:** `A11X-v0 — accessibility: every control has a name, a role and its state for a screen reader, no two controls share a spoken name, every target is at least 48dp, no identifier or help code reaches the screen, every surface has a heading, controls are in reading order, a field's error is its own, and the real app is audited through the accessibility tree on an emulator at 100% and 200% text`
 **Ana çıktı:** `docs/ACCESSIBILITY_SPEC.md` + `arch/17d_accessibility/` + `tools/validate_accessibility.py` + `tools/audit_a11y_emulator.py` + `android/`.
@@ -645,6 +661,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 17E — Kalan UX parçaları
+## Aktif adım — 18A — Pilot başlangıcı
 
-**17E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H ve 17A–17D her biri ayrı açık onayla yürütüldü). 17E D-136 ile eklendi; girdileri: gün özetinde bir koşunun gerçek değişiklikleri; `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları; AI kullanım/maliyet görünürlüğü; PRE'de sorulacaklar: görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket tercihi. Ayrıca açık: yardım seviyelerinin iki ifadesinin tek kaynağı, bağlanmamış `AssessmentSessionScreen`.
+**18A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H ve 17A–17E her biri ayrı açık onayla yürütüldü). 18'e taşınanlar: ilk koşudan sonra öğrencinin hangi 'ne değişti'yi gördüğü (koşunun 13E raporu ya da geçmişin yeniden oynatması); günün yeniden oynatma maliyeti (18E); kalibrasyon (18C/18D); giriş yerleştirme akışı ve tanısal kaynağı (16H'den). Ayrıca açık: yardım seviyelerinin iki ifadesinin tek kaynağı, bağlanmamış `AssessmentSessionScreen`.
