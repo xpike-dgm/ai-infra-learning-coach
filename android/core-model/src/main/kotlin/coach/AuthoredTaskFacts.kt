@@ -122,3 +122,14 @@ object TaskServing {
         "language_activity",
     )
 }
+
+/**
+ * 17A (`VPLX-v0`): the title an Objective is named by on screen — the title of the newest version of the teach task that
+ * targets it, as authored. A practice or assessment task never names an Objective, and an Objective no lesson teaches
+ * has no title, so nothing is guessed in its place.
+ */
+object LessonTitles {
+    fun of(tasks: List<AuthoredTask>, objective: VersionedRef): String? =
+        tasks.filter { it.purpose == TaskPurpose.TEACH && objective in it.targetObjectives }
+            .sortedWith(compareByDescending<AuthoredTask> { it.ref.version }.thenBy { it.ref.logicalId }).firstOrNull()?.title
+}

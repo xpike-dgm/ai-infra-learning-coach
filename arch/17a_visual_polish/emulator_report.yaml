@@ -1,0 +1,51 @@
+step: 17A
+model: VPLX-v0
+decision: D-133
+purpose: the first run of the app anywhere but the JVM, to see the visual layer; it is not T6
+device: Pixel_7 AVD (Android Studio), system image android-34 google_apis_playstore x86_64, 1080x2400, WHPX acceleration
+api: 34
+target_device_not_used: Poco M6 Pro, API 36 (T6, 19)
+t6_run: false
+how:
+  - emulator -avd Pixel_7 -no-window -no-audio -no-snapshot-save -gpu swiftshader_indirect
+  - adb install -r app-wiring-debug.apk (the default build, with the AI adapter and no key, so AI is unavailable)
+  - a fresh install with an empty store; the eight packages ingested on the first launch; the after screenshots were taken again from a cleared install (pm clear) with the final build, after the independent review's fixes
+  - adb shell monkey to launch, uiautomator dump to find nodes, input tap, adb exec-out screencap
+  - dark theme with cmd uimode night yes; 200% text with settings put system font_scale 2.0
+  - screenshots downscaled to 360px wide for the repo
+seen_before:
+  - the first launch crashed (IllegalArgumentException "nothing is blocking; render the shell instead" from HealthBlockingSurface)
+  - the task runner drew dark text on a dark window
+  - code in the body font; chips like buttons; Material purple on the navigation bar
+  - identifiers on screen (content_explanation; learn_overview · study day 2026-10-26; Expressions Io; explain pipeline; 2026-10-26)
+seen_after:
+  - no crash on a fresh launch, a relaunch, or a relaunch in dark mode or at 200% text
+  - Today, Learn, Progress, Profile, topic_detail, the runner's orientation and lesson, on the measured surface
+  - code paragraphs in mono blocks; the sentence "Kopyalama: b = a …" first read as code and was fixed (TextBlocks)
+  - outlined chips with a mark; the selected navigation item in the active pair
+  - Learn opens topic_detail; Objectives named by their lessons
+  - dark theme on the measured dark surface; at 200% text nothing is cut and every screen scrolls
+not_seen:
+  - the focused-flow exit scrolls out of view in a long lesson (it is first in the column); keeping it in view is usability, 17C
+  - the Poco M6 Pro and API 36 (edge to edge is asked for on every level, so the emulator shows the same insets)
+  - TalkBack (17D)
+  - a code item, an open response, the tutor, a weekly or monthly slot, a recovery state
+  - the expanded and medium window classes
+observed_but_not_17a:
+  - Progress and Learn take about 10 s to load on the emulator (18E)
+screens:
+  - {file: before_today.png, when: before, surface: today_overview, theme: light, font_scale: 1.0}
+  - {file: before_learn.png, when: before, surface: learn_overview, theme: light, font_scale: 1.0}
+  - {file: before_progress.png, when: before, surface: progress_overview, theme: light, font_scale: 1.0}
+  - {file: before_runner_orientation.png, when: before, surface: task_runner_flow, theme: light, font_scale: 1.0}
+  - {file: before_runner_lesson.png, when: before, surface: task_runner_flow, theme: light, font_scale: 1.0}
+  - {file: after_today.png, when: after, surface: today_overview, theme: light, font_scale: 1.0}
+  - {file: after_learn.png, when: after, surface: learn_overview, theme: light, font_scale: 1.0}
+  - {file: after_progress.png, when: after, surface: progress_overview, theme: light, font_scale: 1.0}
+  - {file: after_topic_detail.png, when: after, surface: topic_detail, theme: light, font_scale: 1.0}
+  - {file: after_runner_orientation.png, when: after, surface: task_runner_flow, theme: light, font_scale: 1.0}
+  - {file: after_runner_lesson.png, when: after, surface: task_runner_flow, theme: light, font_scale: 1.0}
+  - {file: after_profile.png, when: after, surface: profile_overview, theme: light, font_scale: 1.0}
+  - {file: after_learn_dark.png, when: after, surface: learn_overview, theme: dark, font_scale: 1.0}
+  - {file: after_today_dark.png, when: after, surface: today_overview, theme: dark, font_scale: 1.0}
+  - {file: after_today_text_200.png, when: after, surface: today_overview, theme: light, font_scale: 2.0}

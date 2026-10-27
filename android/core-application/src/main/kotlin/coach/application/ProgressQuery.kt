@@ -77,6 +77,8 @@ class ProgressQuery(
             skillNames = named,
             topics = topicsOf(skill),
             englishBand = TechnicalEnglishAnchors.bandOf(skill.logicalId),
+            // 17A: an Objective is named by its lesson's own title, never by its identifier.
+            objectiveTitles = content?.let { c -> objectives.mapNotNull { o -> c.lessonTitleFor(o.objective)?.let { o.objective to it } }.toMap() }.orEmpty(),
         )
     }
 

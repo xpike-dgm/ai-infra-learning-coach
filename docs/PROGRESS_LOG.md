@@ -1573,3 +1573,20 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `16H tamamlandı; AŞAMA 16 kapandı; 17A aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `17A — Görsel polish`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-27 — 17A — Görsel polish tamamlandı — VPLX-v0 / D-133
+
+- Kullanıcı "17A ya başla" dedi; 16H (#67) kullanıcı tarafından merge edilmişti (bed5482). Fresh 17A PRE yapıldı ve kanonik kaynaklar `16H ✅ / 17A active-not-executed` gösterdi.
+- **Kullanıcı kararları (2026-10-27):** tasarım sistemi + Learn ekranı (koşu/bildirim cilası ve gün özetindeki gerçek değişiklikler 17C'ye); ilk açılış çökmesi 17A içinde; doğrulama emülatör ekran görüntüleriyle, açık/koyu tema ve %200 yazı.
+- **Bulgu:** uygulama ilk kez bir emülatörde (Pixel 7 AVD, API 34; T6 değil) çalıştırıldı: ilk açılışta çöküyordu (engelleyici ekran hiçbir şey engellemezken çiziliyordu; `AppHealth.atStartup`), odaklı akışın yüzeyi yoktu (koyu pencere üstünde koyu metin, ~1.4:1), gezinme çubuğu Material'ın varsayılan morunu taşıyordu, kod gövde yazısıyla çiziliyordu, çipler düğmeye benziyordu, ekranda ham kimlikler vardı (`content_explanation`, `learn_overview · study day`, 'Expressions Io', 'explain pipeline') ve hedef cihaz (API 36) edge-to-edge'i zorluyor; bağımsız inceleme ilk geçişte geçmişte ve ölçme raporunda ham tarihi, beceri ayrıntısında, geçmişte ve hızlı yolda hedef kimliklerini, beceri ayrıntısında İngilizce konu adlarını ve Profil'de yanlış yazılan bir sayıya arıza rengi verildiğini buldu (hepsi düzeltildi); beş test ve bir 16B kontrolü 17A'nın değiştirdiğini sabitliyordu ('Narrowed at 17A').
+- **Kod:** `VisualSystem.kt` (`TypeRole`, `TypeScale`, `Spacing`, `MaterialColorRoles`, `ChipColors`, `ToneMark`), `TextLayout.kt` (`TextBlocks`, `DisplayCopy`), `CurriculumNames.kt`, `LearnPresentation.kt`, `AppHealth.atStartup`, `ContentPort.lessonTitleFor`, `TopicDetailFacts.objectiveTitles`; `CoachTheme.kt`, `Components.kt`, `LearnScreen.kt` ve her ekran; `MainActivity` (edge-to-edge, başlangıç kapısı, Öğren); `res/values*/themes.xml`.
+- **Araştırma:** iç sözleşmeler `VDSX-v0`, `WFPX-v0`, `DSIX-v0`, `UXIA-v0`, `NSHX-v0`, `PWPX-v0`; dış: WCAG 2.2 (1.4.1, 1.4.3, 1.4.4, 1.4.11), Material 3 yazı ölçeği, Android 15 edge-to-edge davranış değişikliği.
+- **Daraltılan kapılar:** beş test ve 16B'nin bir kontrolü ("Narrowed at 17A").
+- **Bağımsız inceleme:** ayrı bir ajan adları sevk edilen yetenek tanımları ve derslere, görsel katmanı `VDSX-v0`'a karşı okudu; üç engelleyici bulgu düzeltildi, doğru olan öneriler alındı.
+- **Mutation:** Kotlin 27/27.
+- **Validator mutation:** 31/31.
+- **Validator:** 95/95 PASS; sweep 71/72 (validate_content_qa.py çalıştırılmadı: disk alanı, girdileri değişmedi; validate_assessment_content.py önceki yeniden kurulumlar olmadan); 1287 JVM testi.
+- **T6 çalıştırılmadı; uygulama emülatörde görüldü (Pixel 7 AVD, API 34)**.
+- D-050 POST living-memory accepted state'i `17A tamamlandı; 17B aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `17B — Motion`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

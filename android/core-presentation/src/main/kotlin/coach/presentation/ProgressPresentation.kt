@@ -333,7 +333,8 @@ object ProgressPresentation {
         val objectives = facts.objectives.map { o ->
             ObjectiveLine(
                 objective = o.objective,
-                label = o.objective.logicalId.substringAfterLast('.').replace('_', ' '),
+                // 17A: the lesson's own title, or the Skill's name — never the identifier.
+                label = facts.objectiveTitles[o.objective] ?: CurriculumNames.skill(row.skill, row.name),
                 required = o.required,
                 shown = when (o.gatesPassed) {
                     true -> ProgressCopy.OBJECTIVE_SHOWN
@@ -346,7 +347,7 @@ object ProgressPresentation {
             )
         }
         val context = row.prerequisite
-        fun named(refs: List<VersionedRef>) = refs.map { it to (facts.skillNames[it] ?: it.logicalId) }
+        fun named(refs: List<VersionedRef>) = refs.map { it to CurriculumNames.skill(it, facts.skillNames[it]) }
         val prerequisite = buildList {
             if (context.hardBlockers.isNotEmpty()) add(PrerequisiteLine(ProgressCopy.BLOCKED_BY, named(context.hardBlockers)))
             if (context.uncertain.isNotEmpty()) add(PrerequisiteLine(ProgressCopy.UNCERTAIN, named(context.uncertain)))
@@ -359,7 +360,7 @@ object ProgressPresentation {
         }
         return SkillDetailView(
             skill = row.skill,
-            name = row.name,
+            name = CurriculumNames.skill(row.skill, row.name),
             statement = facts.capabilityStatement,
             chip = chip(row),
             axes = axes,
@@ -367,7 +368,7 @@ object ProgressPresentation {
             evidence = evidenceLines(facts.evidence),
             prerequisite = prerequisite,
             prerequisiteNote = note,
-            topics = facts.topics.map { it.name },
+            topics = facts.topics.map { CurriculumNames.topic(VersionedRef(it.logicalId, it.version), it.name) },
             remediation = ProgressCopy.remediationTexts[reading.weakness]?.let { text ->
                 RemediationView(
                     title = ProgressCopy.REMEDIATION_TITLE,
@@ -382,7 +383,7 @@ object ProgressPresentation {
     fun chip(row: SkillProgressRow): SkillChip = when (val p = row.projection) {
         is SkillStateProjection.Derived -> SkillChip(
             skill = row.skill,
-            name = row.name,
+            name = CurriculumNames.skill(row.skill, row.name),
             state = p.state,
             label = ProgressCopy.stateLabels.getValue(p.state),
             tone = p.state.tone.tone,
@@ -390,7 +391,7 @@ object ProgressPresentation {
         )
         is SkillStateProjection.Recomputing -> SkillChip(
             skill = row.skill,
-            name = row.name,
+            name = CurriculumNames.skill(row.skill, row.name),
             state = null,
             label = ProgressCopy.RECOMPUTING,
             tone = ProgressState.RECOMPUTING_PROJECTION.tone,

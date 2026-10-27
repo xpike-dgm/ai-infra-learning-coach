@@ -2,15 +2,10 @@ package coach.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.LiveRegionMode
@@ -31,6 +26,8 @@ import coach.presentation.TodayState
 import coach.presentation.TodayTaskRow
 import coach.presentation.TodayView
 import coach.presentation.tone
+import coach.presentation.DisplayCopy
+import coach.presentation.Spacing
 
 /**
  * Today, as `THUX-v0` ordered it and `WFPX-v0` placed it. This file renders and decides nothing:
@@ -103,7 +100,7 @@ private val attentionLabelsTr: Map<AttentionFamily, String> = mapOf(
 
 private val routeLabelsTr: Map<String, String> = mapOf(
     "planner_explanation" to "Bu plan neden böyle?",
-    "skill_detail" to "Yetkinlik ayrıntısı",
+    "skill_detail" to "Beceri ayrıntısı",
     "topic_detail" to "Konu ayrıntısı",
     "progress_overview" to "İlerleme",
     "profile_overview" to "Profil ve süre ayarları",
@@ -121,27 +118,18 @@ fun TodayScreen(
     // 16D: `THUX-v0`'s `change_today_capacity` — Today's one capacity action; the lengths themselves live in Profile.
     onChangeTodayCapacity: (() -> Unit)? = null,
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
+    ScreenColumn(modifier = modifier) {
         // 1. primary_action — the highest-emphasis region in every window class.
         PrimaryAction(view, onStart, onOpen)
 
         // 2. day_plan_context
         view.capacity?.let { CapacityLine(it) }
-        onChangeTodayCapacity?.let { change ->
-            TextButton(onClick = change, modifier = Modifier.minimumTouchTarget()) { Text(SettingsCopy.TODAY_ACTION) }
-        }
+        onChangeTodayCapacity?.let { change -> NavRow(SettingsCopy.TODAY_ACTION, change) }
         daySummary?.let { EndOfDayView(it) }
 
         // 3. remaining_plan
         if (view.remainingPlan.isNotEmpty()) {
-            Text("Sıradaki planlanan işler", style = MaterialTheme.typography.titleSmall,
-                modifier = Modifier.semantics { heading() })
+            SectionHeader("Sıradaki planlanan işler")
             view.remainingPlan.forEach { TaskLine(it) }
         }
 
@@ -149,17 +137,13 @@ fun TodayScreen(
         view.attention.forEach { AttentionLine(it, onOpen) }
 
         // 5. supporting_navigation — never a precondition for starting work, so it comes last.
-        view.supportingNavigation.forEach { surface ->
-            TextButton(onClick = { onOpen(surface) }, modifier = Modifier.minimumTouchTarget()) {
-                Text(routeLabelsTr.getValue(surface.id))
-            }
-        }
+        view.supportingNavigation.forEach { surface -> NavRow(routeLabelsTr.getValue(surface.id), onClick = { onOpen(surface) }) }
     }
 }
 
 @Composable
 private fun PrimaryAction(view: TodayView, onStart: () -> Unit, onOpen: (Surface) -> Unit) {
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Spacing.S.dp)) {
         // The state is always available as text and announced when it changes; colour never carries
         // it alone (`VDSX-v0`, `THUX-v0` §14).
         StateChip(
@@ -173,21 +157,21 @@ private fun PrimaryAction(view: TodayView, onStart: () -> Unit, onOpen: (Surface
 
         when (view.primaryActionKind) {
             PrimaryActionKind.SELECTED_NEXT_PLANNED_TASK -> view.primaryTask?.let { task ->
-                TaskHeadline(task)
-                Button(onClick = onStart, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
-                    Text("Başla")
+                // 17A: the dominant task and its start action are one group (`THUX-v0` primary_action_block).
+                SectionBlock {
+                    TaskHeadline(task)
+                    Button(onClick = onStart, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+                        Text("Başla")
+                    }
                 }
-                TextButton(
-                    onClick = { onOpen(Surface.PlannerExplanation) },
-                    modifier = Modifier.minimumTouchTarget(),
-                ) {
-                    Text(routeLabelsTr.getValue("planner_explanation"))
-                }
+                NavRow(routeLabelsTr.getValue("planner_explanation"), onClick = { onOpen(Surface.PlannerExplanation) })
             }
             PrimaryActionKind.VALID_RESUMABLE_FOCUSED_SESSION -> view.resumable?.let { session ->
-                Text(session.displayTitle, style = MaterialTheme.typography.titleMedium)
-                Button(onClick = onStart, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
-                    Text("Devam et")
+                SectionBlock {
+                    Text(session.displayTitle, style = MaterialTheme.typography.titleLarge)
+                    Button(onClick = onStart, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+                        Text("Devam et")
+                    }
                 }
             }
             else -> stateExplanationsTr[view.state]?.let { explanation ->
@@ -199,13 +183,13 @@ private fun PrimaryAction(view: TodayView, onStart: () -> Unit, onOpen: (Surface
 
 @Composable
 private fun TaskHeadline(task: TodayTaskRow) {
-    Text(task.displayTitle, style = MaterialTheme.typography.titleMedium)
+    Text(task.displayTitle, style = MaterialTheme.typography.titleLarge)
     // Purpose, activity and track stay separate labels; none of them becomes the other
-    // (`THUX-v0` §6.1).
+    // (`THUX-v0` §6.1). 17A: activity and track are words or nothing, never an identifier.
     val context = listOfNotNull(
         purposeLabelsTr[task.primaryPurpose],
-        task.activityKind,
-        task.curriculumTrack,
+        DisplayCopy.activityKind(task.activityKind),
+        DisplayCopy.track(task.curriculumTrack),
         task.estimatedMinutes?.let { "yaklaşık $it dk" },
     )
     if (context.isNotEmpty()) {
@@ -219,7 +203,7 @@ private fun TaskHeadline(task: TodayTaskRow) {
 
 @Composable
 private fun TaskLine(task: TodayTaskRow) {
-    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
         Text(task.displayTitle, style = MaterialTheme.typography.bodyLarge)
         val context = listOfNotNull(
             purposeLabelsTr[task.primaryPurpose],
@@ -253,8 +237,6 @@ private fun AttentionLine(item: AttentionItem, onOpen: (Surface) -> Unit) {
     if (item.link == null) {
         Text(label, style = MaterialTheme.typography.bodyMedium)
     } else {
-        TextButton(onClick = { onOpen(item.link!!) }, modifier = Modifier.minimumTouchTarget()) {
-            Text(label)
-        }
+        NavRow(label, onClick = { onOpen(item.link!!) })
     }
 }

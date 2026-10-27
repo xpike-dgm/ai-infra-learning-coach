@@ -56,6 +56,15 @@ data class AppHealth(
          * `ai_unavailable_core_available` is named for a working core, so it is only produced
          * when the core actually works; it never supersedes normal use (`THUX-v0` precedence).
          */
+        /**
+         * 17A: the health the activity renders while it is still being handed what the shell needs. The store can report
+         * Ready a moment before the opened store and today's facts reach the activity; that moment is still opening.
+         * Before 17A the activity rendered the blocking surface with nothing blocking, and the app crashed on its first
+         * launch on a device — found on the emulator, the first time the app was run there.
+         */
+        fun atStartup(store: StoreStatus, evaluator: EvaluatorAvailability, storeInHand: Boolean, todayInHand: Boolean): AppHealth =
+            of(if (store == StoreStatus.Ready && !(storeInHand && todayInHand)) StoreStatus.Opening else store, evaluator)
+
         fun of(store: StoreStatus, evaluator: EvaluatorAvailability): AppHealth = when (store) {
             is StoreStatus.RecoveryRequired -> AppHealth(
                 blocking = CrossCuttingState.DATA_RECOVERY_REQUIRED,

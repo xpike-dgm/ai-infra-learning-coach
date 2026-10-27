@@ -326,6 +326,13 @@ interface ContentPort {
     fun lessonItemsFor(objective: VersionedRef): List<VersionedRef> = emptyList()
 
     /**
+     * The title of the lesson that teaches [objective] — its newest teach task's own Turkish title — so `topic_detail`
+     * can name an Objective in words rather than by its identifier (17A). Content (15), shown as authored. A refinement
+     * of this port, not a new one; `null` when no lesson is authored, and nothing is guessed in its place.
+     */
+    fun lessonTitleFor(objective: VersionedRef): String? = null
+
+    /**
      * One authored task version as written (16F): its explanations and its item pool, which the runner serves. Content
      * (15). A refinement of this port, not a new one; `null` when no such version is authored, and a task nothing can
      * read is never started.

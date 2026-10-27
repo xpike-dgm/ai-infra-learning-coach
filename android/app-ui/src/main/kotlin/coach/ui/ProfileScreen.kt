@@ -22,12 +22,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import coach.presentation.Spacing
 import coach.model.CapacityProfile
 import coach.model.TodayCapacityChoice
 import coach.presentation.AiSettingsView
@@ -65,19 +67,15 @@ fun ProfileScreen(
     onCheckKey: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
+    ScreenColumn(modifier = modifier) {
+        ScreenTitle("Profil")
         capacity?.let { CapacitySection(it, onSetLength) }
 
         reminder?.let {
-            HorizontalDivider()
             ReminderSection(it, onReminderOn, onReminderOff, onReminderTime, onOpenNotificationSettings)
         }
 
-        HorizontalDivider()
-        Text(backup.title, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+        SectionHeader(backup.title)
         Text(backup.note, style = MaterialTheme.typography.bodySmall)
         OutlinedButton(onClick = onExport, enabled = !backup.busy, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
             Text(SettingsCopy.EXPORT_ACTION)
@@ -88,33 +86,30 @@ fun ProfileScreen(
         backup.status?.let { Text(it, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }) }
         if (backup.confirming) {
             // Replacing a profile is explicit (`LFPS-v0` §11.2): nothing happens until the learner says so here.
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.XS.dp)) {
                 OutlinedButton(onClick = onConfirmRestore, modifier = Modifier.minimumTouchTarget()) { Text(SettingsCopy.RESTORE_CONFIRM_ACTION) }
                 TextButton(onClick = onCancelRestore, modifier = Modifier.minimumTouchTarget()) { Text(SettingsCopy.CANCEL) }
             }
         }
-
-        HorizontalDivider()
         AiSettingsScreen(view = ai, onSave = onSaveKey, onRemove = onRemoveKey, onCheck = onCheckKey, embedded = true)
     }
 }
 
 @Composable
 private fun CapacitySection(view: CapacitySettingsView, onSetLength: (CapacityProfile, Int) -> Unit) {
-    Text(view.title, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+    SectionHeader(view.title)
     Text(view.note, style = MaterialTheme.typography.bodySmall)
     view.lengths.forEach { line ->
         var typed by remember(line.minutes) { mutableStateOf(line.minutes.toString()) }
         val parsed = SettingsPresentation.parseMinutes(typed)
-        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Column(verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
             Text("${line.label}: ${line.value} · ${line.source}", style = MaterialTheme.typography.bodyLarge)
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.XS.dp), verticalAlignment = Alignment.CenterVertically) {
                 OutlinedTextField(
                     value = typed,
                     onValueChange = { typed = it.filter(Char::isDigit).take(4) },
                     label = { Text("dk") },
                     singleLine = true,
-                    isError = parsed == null,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier.weight(1f),
                 )
@@ -143,18 +138,17 @@ private fun ReminderSection(
     onTime: (Int) -> Unit,
     onOpenSystemSettings: () -> Unit,
 ) {
-    Text(view.title, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+    SectionHeader(view.title)
     Text(view.note, style = MaterialTheme.typography.bodySmall)
     Text(view.status, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
     var typed by remember(view.time) { mutableStateOf(view.time) }
     val parsed = ReminderPresentation.parseTime(typed)
-    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+    Row(horizontalArrangement = Arrangement.spacedBy(Spacing.XS.dp), verticalAlignment = Alignment.CenterVertically) {
         OutlinedTextField(
             value = typed,
             onValueChange = { typed = it.filter { c -> c.isDigit() || c == ':' }.take(5) },
             label = { Text(ReminderCopy.TIME_LABEL) },
             singleLine = true,
-            isError = parsed == null,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.weight(1f),
         )
@@ -192,7 +186,7 @@ fun TodayCapacityDialog(
         onDismissRequest = onDismiss,
         title = { Text(SettingsCopy.TODAY_DIALOG_TITLE) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(Spacing.XS.dp)) {
                 Text(SettingsCopy.TODAY_DIALOG_NOTE, style = MaterialTheme.typography.bodySmall)
                 options.forEach { option ->
                     TextButton(onClick = { onChoose(option.choice) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(option.label) }

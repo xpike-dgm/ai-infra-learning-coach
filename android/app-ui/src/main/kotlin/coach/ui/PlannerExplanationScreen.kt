@@ -16,6 +16,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import coach.presentation.Spacing
 import coach.presentation.ExplanationCopy
 import coach.presentation.NotTodayExplanation
 import coach.presentation.PlannerExplanationView
@@ -35,13 +36,8 @@ fun PlannerExplanationScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
+    ScreenColumn(modifier = modifier) {
+        BackButton(onBack)
         Text(
             "Bu plan neden böyle?",
             style = MaterialTheme.typography.titleLarge,
@@ -75,12 +71,12 @@ fun PlannerExplanationScreen(
 
 @Composable
 private fun SectionHeading(text: String) {
-    Text(text, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+    SectionHeader(text)
 }
 
 @Composable
 private fun TaskWhy(task: TaskExplanation) {
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
         Text(task.title, style = MaterialTheme.typography.bodyLarge)
         Text(ExplanationCopy.text(task.why), style = MaterialTheme.typography.bodyMedium)
         task.supporting.forEach { Text(ExplanationCopy.text(it), style = MaterialTheme.typography.bodySmall) }
@@ -89,7 +85,7 @@ private fun TaskWhy(task: TaskExplanation) {
 
 @Composable
 private fun NotTodayWhy(item: NotTodayExplanation) {
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
         Text(ExplanationCopy.shortNames(item.skills), style = MaterialTheme.typography.bodyLarge)
         Text(ExplanationCopy.text(item.need), style = MaterialTheme.typography.bodySmall)
         Text(ExplanationCopy.text(item.whyNot), style = MaterialTheme.typography.bodyMedium)

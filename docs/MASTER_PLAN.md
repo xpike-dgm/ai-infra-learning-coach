@@ -1189,8 +1189,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 ---
 
 # AŞAMA 17 — UI/UX Polish
-### [ ] 17A — Görsel polish — **AKTİF**
-### [ ] 17B — Motion
+### [x] 17A — Görsel polish — VPLX-v0 / D-133
+
+**17A final coverage:**
+- tasarım sistemi uygulandı ve hiçbir anlam eklemedi: her Material renk rolü ölçülmüş bir token, her yazı yuvası `VDSX-v0`'ın sekiz rolünden biri ve kod `mono`; yazıldığı hiçbir satır değişmeden kod paragrafları mono bloklarda; durum çipi çerçeveli, tonunun işaretini taşıyor ve düğmeye benzemiyor; etkinlik türü, iz, çalışma günü, konu, beceri ve hedef Türkçe söyleniyor ya da hiç gösterilmiyor — kimlik ya da tahmin değil; Öğren sekmesi öğrenme haritası: alanlar ve konular, İlerleme'nin aynı çipleriyle, her biri konu ayrıntısını açıyor ve sırası ön koşul zinciri değil,
+- tema: 36 Material renk rolü ölçülmüş token, 19 metin ve 4 metin dışı çift ile 6 tonun çip rengi iki temada yeniden hesaplanıyor; 15 yazı yuvası `VDSX-v0` rolü; ekranlar yalnız `Spacing` adımlarıyla aralıklanıyor,
+- kod: sevk edilen içerikte işaretleme yok; deterministik paragraf kuralı yazılan hiçbir satırı değiştirmeden kod paragraflarını mono çiziyor; kod ve rapor alanları mono,
+- adlar: 27 konu ve 60 beceri Türkçe gösterim adıyla (mantıksal kimliğe bağlı), hedef dersin kendi başlığıyla (`ContentPort.lessonTitleFor`), çalışma günü Türkçe; bilinmeyen değer gösterilmez ya da yazıldığı adla gösterilir,
+- Öğren: `learn_overview` alanlar ve konular, İlerleme'nin aynı çipleri, `learn -> topic_detail`; sıra yön bulmadır, ön koşul değil,
+- bulgu: uygulama ilk kez bir emülatörde (Pixel 7 AVD, API 34; T6 değil) çalıştırıldı: ilk açılışta çöküyordu (engelleyici ekran hiçbir şey engellemezken çiziliyordu; `AppHealth.atStartup`), odaklı akışın yüzeyi yoktu (koyu pencere üstünde koyu metin, ~1.4:1), gezinme çubuğu Material'ın varsayılan morunu taşıyordu, kod gövde yazısıyla çiziliyordu, çipler düğmeye benziyordu, ekranda ham kimlikler vardı (`content_explanation`, `learn_overview · study day`, 'Expressions Io', 'explain pipeline') ve hedef cihaz (API 36) edge-to-edge'i zorluyor; bağımsız inceleme ilk geçişte geçmişte ve ölçme raporunda ham tarihi, beceri ayrıntısında, geçmişte ve hızlı yolda hedef kimliklerini, beceri ayrıntısında İngilizce konu adlarını ve Profil'de yanlış yazılan bir sayıya arıza rengi verildiğini buldu (hepsi düzeltildi); beş test ve bir 16B kontrolü 17A'nın değiştirdiğini sabitliyordu ('Narrowed at 17A'),
+- Kotlin mutation 27/27, validator mutation 31/31; 95/95 QA PASS,
+- **T6 çalıştırılmadı; uygulama emülatörde görüldü (Pixel 7 AVD, API 34)**.
+
+### [ ] 17B — Motion — **AKTİF**
 ### [ ] 17C — Kullanılabilirlik
 ### [ ] 17D — Accessibility
 
@@ -1252,8 +1263,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`  
-**Son tamamlanan:** **`16H — ASRX-v0 / D-132`**  
-**Aktif:** **`17A — Görsel polish`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A`  
+**Son tamamlanan:** **`17A — VPLX-v0 / D-133`**  
+**Aktif:** **`17B — Motion`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **17A fresh PRE-STEP + kullanıcının yeni açık onayı → Görsel polish → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **17B fresh PRE-STEP + kullanıcının yeni açık onayı → Motion → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

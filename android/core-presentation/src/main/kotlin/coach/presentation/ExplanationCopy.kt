@@ -198,7 +198,7 @@ object ExplanationCopy {
     fun text(state: ExplanationState): String = stateTemplates.getValue(state)
 
     /** A Skill is named by its published name, and by its reference when none is published. */
-    fun names(skills: List<SkillMention>): String = skills.joinToString(", ") { it.name ?: it.ref.logicalId }
+    fun names(skills: List<SkillMention>): String = skills.joinToString(", ") { CurriculumNames.skill(it.ref, it.name) }
 
     /**
      * A grouped entry's Skills for a screen: the first [shown] by name and the rest as a labelled count

@@ -2,6 +2,7 @@ package coach.curriculum
 
 import coach.model.AssessmentItem
 import coach.model.AuthoredTask
+import coach.model.LessonTitles
 import coach.model.CodeTestSuite
 import coach.model.ComprehensionCheck
 import coach.model.AcceptedAnswers
@@ -121,6 +122,8 @@ class FileContentSource(
     override fun lessonItemsFor(objective: VersionedRef): List<VersionedRef> =
         parsed?.tasks.orEmpty().filter { it.purpose == TaskPurpose.TEACH && objective in it.targetObjectives }
             .flatMap { it.items }.distinct().sortedBy { it.toString() }
+
+    override fun lessonTitleFor(objective: VersionedRef): String? = LessonTitles.of(parsed?.tasks.orEmpty(), objective)
 
     private fun checkSequence(packages: List<PackageFormat.Parsed>) {
         val reasons = buildList {

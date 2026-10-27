@@ -224,7 +224,7 @@ class CoachApplication : Application() {
     fun loadHistory(skill: VersionedRef?, onLoaded: (HistoryFacts) -> Unit) {
         val opened = startup.store ?: return
         storeThread.execute {
-            val facts = LearningHistoryQuery(opened.graph.persistence).load(skill)
+            val facts = LearningHistoryQuery(opened.graph.persistence, opened.graph.content).load(skill)
             main.post { onLoaded(facts) }
         }
     }
@@ -374,13 +374,20 @@ class CoachApplication : Application() {
         is RunAnswer.NotRecorded -> Judged(answer, null, TaskRunPresentation.notRecorded(answer, kind))
         is RunAnswer.Recorded -> Judged(
             answer,
-            TaskRunPresentation.answered(answer, kind, TaskRunPresentation::objectiveLabel).copy(
+            TaskRunPresentation.answered(answer, kind, ::objectiveName).copy(
                 wrongAnswer = wrongAnswerOn(graph, run, item, answer.answered),
                 comprehension = RunHelpPresentation.comprehension(answer.offer, 0),
             ),
             null,
         )
     }
+
+    /**
+     * 17A: an Objective in words — its lesson's own title, read from the content — and the identifier's words only when no
+     * lesson is authored. The store is read on the store thread; the content is in memory.
+     */
+    private fun objectiveName(ref: VersionedRef): String =
+        startup.store?.graph?.content?.lessonTitleFor(ref) ?: TaskRunPresentation.objectiveLabel(ref)
 
     /** What a wrong answer said, read from the engines' attribution (14B); `null` when it said nothing or was not wrong. */
     fun wrongAnswer(run: RunnableTask, item: AssessmentItem, answered: AnsweredItem, onDone: (WrongAnswerSummary.Summary?) -> Unit) {
@@ -395,7 +402,7 @@ class CoachApplication : Application() {
         if (answered.evidenceIds.isEmpty() || (answered.result != AnswerResult.NOT_RIGHT && answered.result != AnswerResult.PARTLY)) return null
         val skill = run.skill.takeIf { it in item.targetSkills } ?: item.targetSkills.first()
         val findings = runHelp(graph).wrongAnswer(skill, answered.evidenceIds)
-        return WrongAnswerSummary.of(findings, TaskRunPresentation::objectiveLabel).takeIf { it.lines.isNotEmpty() }
+        return WrongAnswerSummary.of(findings, ::objectiveName).takeIf { it.lines.isNotEmpty() }
     }
 
     /** The rubric for the learner's own check of a frozen open answer (14F), recorded as the exposure it is. */
@@ -500,7 +507,7 @@ class CoachApplication : Application() {
             val graph = opened.graph
             val view = when (val read = FastPath(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).result()) {
                 is ReadDiagnosticResult.Read.Result ->
-                    if (read.result.scope.skills.any { it in skills }) FastPathView.open(read.result, TaskRunPresentation::objectiveLabel) else FastPathView.offer()
+                    if (read.result.scope.skills.any { it in skills }) FastPathView.open(read.result, ::objectiveName) else FastPathView.offer()
                 ReadDiagnosticResult.Read.NothingOpen -> FastPathView.offer()
                 is ReadDiagnosticResult.Read.Unreadable -> FastPathView.Said(MeasurementCopy.FAST_PATH_UNREADABLE)
             }

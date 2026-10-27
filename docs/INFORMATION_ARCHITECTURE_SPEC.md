@@ -540,3 +540,7 @@ Validate the complete route graph and user jobs with concrete wireframes/prototy
 15. 8B–8G boundaries are explicit and no final visual implementation is prematurely locked.
 
 Independent 8A QA passed; D-050 POST living-memory and stale-reference audit are the final closure gates for the accepted step state.
+
+---
+
+**17A note (2026-10-27, `D-133`):** `learn_overview` has its screen (`VPLX-v0`): the curriculum's areas and their Topics with the very chip Progress shows, each opening `topic_detail`; the screen says its order is orientation, not a prerequisite chain (§10.2), and that English is parallel (§13). Details: `docs/VISUAL_POLISH_SPEC.md`.

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 17A (VPLX-v0): the dark launch theme, on the measured dark `surface` token. -->
+<resources>
+    <style name="Theme.Coach" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/coach_surface</item>
+    </style>
+    <color name="coach_surface">#121417</color>
+</resources>

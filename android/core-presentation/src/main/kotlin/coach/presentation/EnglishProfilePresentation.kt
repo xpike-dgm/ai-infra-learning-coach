@@ -80,7 +80,7 @@ object EnglishProfilePresentation {
             BaseProfileStatus.COMPLETE_VERIFICATION_DUE -> EnglishProfileCopy.completeVerificationDue(current!!)
         }
         val rows: Map<VersionedRef, SkillProgressRow> = profile.reading.skills.mapNotNull { it.row }.associateBy { it.skill }
-        fun name(ref: VersionedRef) = rows[ref]?.name ?: ref.logicalId
+        fun name(ref: VersionedRef) = CurriculumNames.skill(ref, rows[ref]?.name)
         // The band above the complete one, when the profile is uneven: the exact next gap, never a broadcast failure.
         val next = CefrBand.entries.firstOrNull { current == null || it > current }
         val uneven = if ("TECHNICAL_ENGLISH_UNEVEN_PROFILE" in profile.reasonCodes && next != null) EnglishProfileCopy.uneven(current, next) else null

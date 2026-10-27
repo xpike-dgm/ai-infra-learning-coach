@@ -1,7 +1,5 @@
 package coach.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -10,11 +8,11 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import coach.model.DayRecordKind
 import coach.presentation.DayCopy
 import coach.presentation.DaySummaryState
 import coach.presentation.DaySummaryView
+import coach.presentation.DisplayCopy
 import coach.presentation.tone
 
 /**
@@ -53,7 +51,8 @@ private val unreadLabelsTr: Map<String, String> = DayRecordKind.entries.associat
 
 @Composable
 fun EndOfDayView(view: DaySummaryView, modifier: Modifier = Modifier) {
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    // 17A: the day's own context is one group, apart from the plan above it.
+    SectionBlock(modifier = modifier) {
         StateChip(
             label = stateLabelsTr.getValue(view.state),
             tone = view.state.tone,
@@ -62,11 +61,11 @@ fun EndOfDayView(view: DaySummaryView, modifier: Modifier = Modifier) {
                 liveRegion = LiveRegionMode.Polite
             },
         )
-        Text(view.studyDay, style = MaterialTheme.typography.bodySmall)
+        Text(DisplayCopy.studyDay(view.studyDay), style = MaterialTheme.typography.bodySmall)
 
         when (view.state) {
             DaySummaryState.EMPTY_NO_EVIDENCE_YET ->
-                Text(DayCopy.NOTHING_RECORDED, style = MaterialTheme.typography.bodyLarge)
+                Text(DayCopy.NOTHING_RECORDED, style = MaterialTheme.typography.bodyMedium)
 
             DaySummaryState.READY_WITH_EVIDENCE, DaySummaryState.PARTIAL_PROJECTION_AVAILABLE -> {
                 // Labelled as inventory, in text, and never divided into a ratio (SPWX-v0).
@@ -84,8 +83,7 @@ fun EndOfDayView(view: DaySummaryView, modifier: Modifier = Modifier) {
                 if (view.changes.isEmpty()) {
                     Text(DayCopy.NOTHING_CHANGED, style = MaterialTheme.typography.bodyMedium)
                 } else {
-                    Text("Bugün değişenler", style = MaterialTheme.typography.titleSmall,
-                        modifier = Modifier.semantics { heading() })
+                    SectionHeader("Bugün değişenler")
                     view.changes.forEach { change ->
                         Text("• ${change.statement}", style = MaterialTheme.typography.bodyMedium)
                     }

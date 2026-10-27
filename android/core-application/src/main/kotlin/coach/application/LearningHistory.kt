@@ -20,6 +20,7 @@ import coach.model.StateChange
 import coach.model.StudyTimestamp
 import coach.model.VersionedRef
 import coach.ports.ClockPort
+import coach.ports.ContentPort
 import coach.ports.PersistencePort
 import coach.ports.ProjectionRecord
 import coach.ports.StoredTruth
@@ -106,7 +107,11 @@ internal object HistoryReplay {
  * changes are the engines' own, replayed over the stored evidence ([HistoryReplay]); the plan changes are the
  * difference between two recorded plan versions, found by the replan's own trace watermark.
  */
-class LearningHistoryQuery(private val persistence: PersistencePort) {
+class LearningHistoryQuery(
+    private val persistence: PersistencePort,
+    // 17A: the content port names each Objective by its lesson's title; without it Objectives are named by their Skill.
+    private val content: ContentPort? = null,
+) {
 
     /** The whole history, or one Skill's ([skill], for `skill_detail`'s history entry). Newest first. */
     fun load(skill: VersionedRef? = null): HistoryFacts {
@@ -116,7 +121,10 @@ class LearningHistoryQuery(private val persistence: PersistencePort) {
         val entries = steps.map(::entry).sortedByDescending { it.sequence }
         val sessions = if (skill != null) emptyList() else reports(steps, entries)
         return HistoryFacts(curriculumLoaded = true, entries = entries, sessions = sessions.sortedByDescending { it.sessionId },
-            skillNames = skills.associate { it.ref to it.canonicalName })
+            skillNames = skills.associate { it.ref to it.canonicalName },
+            objectiveTitles = content?.let { c ->
+                entries.map { it.objective }.distinct().mapNotNull { o -> c.lessonTitleFor(o)?.let { o to it } }.toMap()
+            }.orEmpty())
     }
 
     private fun entry(step: HistoryReplay.Step) = HistoryEntry(

@@ -1,0 +1,296 @@
+model: VPLX-v0
+stage_step: 17A
+decision: D-133
+result: PASS
+checks_total: 95
+checks_failed: 0
+checks:
+- check: A17A-01_files_exist
+  result: PASS
+  details: 'missing: []'
+- check: A17A-01_contract_identity
+  result: PASS
+  details: VPLX-v0 D-133
+- check: A17A-02_type_roles_are_vdsx
+  result: PASS
+  details: '[''display'', ''title_large'', ''title'', ''body_large'', ''body'', ''label'', ''caption'', ''mono''] vs [''display'', ''title_large'', ''title'', ''body_large'', ''body'', ''label'', ''caption'',
+    ''mono'']'
+- check: A17A-02_every_role_has_a_spec
+  result: PASS
+  details: 8 specs
+- check: A17A-02_only_mono_is_monospace
+  result: PASS
+  details: '[(''DISPLAY'', ''32'', ''40'', ''400'', ''''), (''TITLE_LARGE'', ''22'', ''28'', ''500'', ''''), (''TITLE'', ''18'', ''24'', ''600'', ''''), (''BODY_LARGE'', ''16'', ''24'', ''400'', ''''),
+    (''BODY'', ''14'', ''20'', ''400'', ''''), (''LABEL'', ''14'', ''20'', ''500'', ''''), (''CAPTION'', ''12'', ''16'', ''400'', ''''), (''MONO'', ''14'', ''20'', ''400'', '', monospace = true'')]'
+- check: A17A-02_every_material_slot_mapped_never_to_mono
+  result: PASS
+  details: '[(''displayLarge'', ''DISPLAY''), (''displayMedium'', ''DISPLAY''), (''displaySmall'', ''DISPLAY''), (''headlineLarge'', ''TITLE_LARGE''), (''headlineMedium'', ''TITLE_LARGE''), (''headlineSmall'',
+    ''TITLE_LARGE''), (''titleLarge'', ''TITLE_LARGE''), (''titleMedium'', ''TITLE''), (''titleSmall'', ''LABEL''), (''bodyLarge'', ''BODY_LARGE''), (''bodyMedium'', ''BODY''), (''bodySmall'', ''CAPTION''),
+    (''labelLarge'', ''LABEL''), (''labelMedium'', ''CAPTION''), (''labelSmall'', ''CAPTION'')]'
+- check: A17A-02_theme_builds_every_slot_from_the_map
+  result: PASS
+  details: 15 slots in the theme
+- check: A17A-02_sizes_are_sp
+  result: PASS
+  details: roleStyle
+- check: A17A-02_mono_is_monospace_family
+  result: PASS
+  details: roleStyle
+- check: A17A-03_spacing_is_vdsx_rhythm
+  result: PASS
+  details: '[4, 8, 12, 16, 24, 32, 48] vs [4, 8, 12, 16, 24, 32, 48]'
+- check: A17A-03_no_dp_literal_but_the_hairline
+  result: PASS
+  details: '[(''CoachTheme.kt'', 204, ''1'')]'
+- check: A17A-03_hairline_is_only_a_border
+  result: PASS
+  details: HAIRLINE
+- check: A17A-04_thirty_six_roles
+  result: PASS
+  details: '36'
+- check: A17A-04_every_role_a_measured_token
+  result: PASS
+  details: 'unmeasured: []'
+- check: A17A-04_fault_tone_is_error_alone
+  result: PASS
+  details: '[''error'', ''errorContainer'']'
+- check: A17A-04_theme_copies_every_role
+  result: PASS
+  details: 'missing: [] extra: []'
+- check: A17A-04_error_is_fault
+  result: PASS
+  details: error role
+- check: A17A-04_no_dynamic_colour
+  result: PASS
+  details: '[]'
+- check: A17A-05_drawn_pairs_meet_the_anchor
+  result: PASS
+  details: '19 text, 4 non-text, below: []'
+- check: A17A-05_pair_listed_onPrimary_on_primary
+  result: PASS
+  details: ('onPrimary', 'primary')
+- check: A17A-05_pair_listed_onSurface_on_surface
+  result: PASS
+  details: ('onSurface', 'surface')
+- check: A17A-05_pair_listed_onSurface_on_surfaceVariant
+  result: PASS
+  details: ('onSurface', 'surfaceVariant')
+- check: A17A-05_pair_listed_onSurfaceVariant_on_surface
+  result: PASS
+  details: ('onSurfaceVariant', 'surface')
+- check: A17A-05_pair_listed_primary_on_surface
+  result: PASS
+  details: ('primary', 'surface')
+- check: A17A-05_pair_listed_onSecondaryContainer_on_secondaryContainer
+  result: PASS
+  details: ('onSecondaryContainer', 'secondaryContainer')
+- check: A17A-05_chip_colour_reads_on_both_surfaces
+  result: PASS
+  details: '[]'
+- check: A17A-05_chip_surfaces_declared
+  result: PASS
+  details: ChipColors
+- check: A17A-05_kotlin_recomputes_too
+  result: PASS
+  details: VisualPolishTest
+- check: A17A-06_chip_outlined_not_filled
+  result: PASS
+  details: StateChip
+- check: A17A-06_chip_has_mark_and_text
+  result: PASS
+  details: StateChip
+- check: A17A-06_chip_not_clickable
+  result: PASS
+  details: StateChip
+- check: A17A-06_one_distinct_mark_per_tone
+  result: PASS
+  details: '{''NEUTRAL'': ''INFO'', ''ACTIVE'': ''PLAY'', ''POSITIVE_CONFIRMED'': ''CHECK'', ''ATTENTION'': ''LOOK'', ''PENDING_UNRESOLVED'': ''REFRESH'', ''SYSTEM_FAULT'': ''WARNING''}'
+- check: A17A-06_warning_only_for_fault
+  result: PASS
+  details: '{''NEUTRAL'': ''INFO'', ''ACTIVE'': ''PLAY'', ''POSITIVE_CONFIRMED'': ''CHECK'', ''ATTENTION'': ''LOOK'', ''PENDING_UNRESOLVED'': ''REFRESH'', ''SYSTEM_FAULT'': ''WARNING''}'
+- check: A17A-06_every_mark_drawn
+  result: PASS
+  details: '{''INFO'': ''Info'', ''PLAY'': ''PlayArrow'', ''CHECK'': ''CheckCircle'', ''LOOK'': ''Search'', ''REFRESH'': ''Refresh'', ''WARNING'': ''Warning''}'
+- check: A17A-07_kotlin_rule_matches_contract
+  result: PASS
+  details: TextBlocks rules
+- check: A17A-07_shipped_code_paragraphs_found
+  result: PASS
+  details: 841 code paragraphs in 1481 shipped prompts and explanations
+- check: A17A-07_sentence_about_code_is_prose
+  result: PASS
+  details: rule examples
+- check: A17A-07_lines_preserved_by_construction
+  result: PASS
+  details: split keeps lines; the course test compares them
+- check: A17A-07_code_block_is_mono_unwrapped_selectable
+  result: PASS
+  details: CodeBlock
+- check: A17A-07_runner_draws_authored_text
+  result: PASS
+  details: TaskRunnerScreen
+- check: A17A-07_code_fields_are_mono
+  result: PASS
+  details: code and report fields
+- check: A17A-08_every_shipped_activity_kind_labelled
+  result: PASS
+  details: '[''code_reading_trace'', ''coding_production'', ''content_explanation'', ''debugging_diagnosis'', ''explanation_justification'', ''hands_on_system_task'', ''recognition_selection'']'
+- check: A17A-08_today_says_words
+  result: PASS
+  details: TaskHeadline
+- check: A17A-08_unknown_is_left_out
+  result: PASS
+  details: DisplayCopy
+- check: A17A-08_study_day_in_words
+  result: PASS
+  details: no device locale
+- check: A17A-08_every_shipped_topic_named
+  result: PASS
+  details: 27 shipped, 27 named
+- check: A17A-08_every_shipped_skill_named
+  result: PASS
+  details: 60 shipped, 60 named
+- check: A17A-08_names_claim_nothing
+  result: PASS
+  details: '[]'
+- check: A17A-08_names_fall_back_to_authored
+  result: PASS
+  details: CurriculumNames
+- check: A17A-08_every_topic_in_a_known_area
+  result: PASS
+  details: '[''python'', ''c'', ''linux'', ''shell'', ''git'', ''english'']'
+- check: A17A-08_objective_named_by_lesson
+  result: PASS
+  details: TopicPresentation
+- check: A17A-08_lesson_title_port_refinement
+  result: PASS
+  details: ContentPort.lessonTitleFor
+- check: A17A-08_no_objective_identifier_label_in_presentation
+  result: PASS
+  details: '[]'
+- check: A17A-08_skill_detail_objectives_and_topics_in_words
+  result: PASS
+  details: ProgressPresentation.detail
+- check: A17A-08_history_objectives_and_days_in_words
+  result: PASS
+  details: HistoryPresentation, HistoryScreen
+- check: A17A-08_run_and_fast_path_name_objectives_by_lesson
+  result: PASS
+  details: CoachApplication
+- check: A17A-08_input_validation_not_fault_tone
+  result: PASS
+  details: ProfileScreen
+- check: A17A-08_presentation_names_go_through_curriculum_names
+  result: PASS
+  details: '[]'
+- check: A17A-09_learn_uses_progress_chip
+  result: PASS
+  details: LearnPresentation
+- check: A17A-09_learn_edge_accepted
+  result: PASS
+  details: learn -> topic_detail
+- check: A17A-09_learn_replaces_placeholder
+  result: PASS
+  details: MainActivity
+- check: A17A-09_learn_says_order_is_not_prerequisite
+  result: PASS
+  details: LearnCopy
+- check: A17A-09_learn_claims_nothing
+  result: PASS
+  details: '[]'
+- check: A17A-09_learn_counts_nothing
+  result: PASS
+  details: no count in LearnPresentation
+- check: A17A-09_unloaded_said
+  result: PASS
+  details: LearnScreen
+- check: A17A-10_startup_gate
+  result: PASS
+  details: AppHealth.atStartup
+- check: A17A-10_activity_uses_gate
+  result: PASS
+  details: MainActivity
+- check: A17A-10_gate_tested
+  result: PASS
+  details: VisualPolishTest
+- check: A17A-11_surface_under_every_screen
+  result: PASS
+  details: CoachTheme
+- check: A17A-11_launch_theme_is_measured_surface
+  result: PASS
+  details: '#FFFFFF #121417'
+- check: A17A-11_edge_to_edge
+  result: PASS
+  details: MainActivity, ScreenColumn
+- check: A17A-11_screens_scroll_through_screen_column
+  result: PASS
+  details: '[]'
+- check: A17A-12_no_restricted_shapes
+  result: PASS
+  details: '[]'
+- check: A17A-12_no_star_icon
+  result: PASS
+  details: AppShell
+- check: A17A-12_group_block_has_no_tone
+  result: PASS
+  details: SectionBlock
+- check: A17A-12_navrow_is_one_target
+  result: PASS
+  details: NavRow
+- check: A17A-13_test_the type scale has exactly VDSX-v0's eig
+  result: PASS
+  details: the type scale has exactly VDSX-v0's eight roles
+- check: A17A-13_test_every Material role pair the theme draws
+  result: PASS
+  details: every Material role pair the theme draws meets the WCAG anchor
+- check: A17A-13_test_a chip's tone colour reads as text and a
+  result: PASS
+  details: a chip's tone colour reads as text and as a border
+- check: A17A-13_test_text blocks keep every line as authored
+  result: PASS
+  details: text blocks keep every line as authored
+- check: A17A-13_test_learn groups Topics by area
+  result: PASS
+  details: learn groups Topics by area
+- check: A17A-13_test_an Objective is named by its lesson titl
+  result: PASS
+  details: an Objective is named by its lesson title
+- check: A17A-13_course_test_every shipped Topic and Skill has a Turk
+  result: PASS
+  details: every shipped Topic and Skill has a Turkish name
+- check: A17A-13_course_test_every shipped activity kind has a Turkis
+  result: PASS
+  details: every shipped activity kind has a Turkish label
+- check: A17A-13_course_test_every Objective a lesson teaches is name
+  result: PASS
+  details: every Objective a lesson teaches is named by that lesson's own title
+- check: A17A-13_course_test_code blocks in shipped lessons and promp
+  result: PASS
+  details: code blocks in shipped lessons and prompts keep every line
+- check: A17A-13_narrowed_marked
+  result: PASS
+  details: '[''ExplanationCopyTest.kt'', ''PlannerExplanationTest.kt'', ''VirtualUserExplanationsTest.kt'']'
+- check: A17A-14_emulator_not_t6
+  result: PASS
+  details: Pixel_7 AVD (Android Studio), system image android-34 google_apis_playstore x86_64, 1080x2400, WHPX acceleration
+- check: A17A-14_screens_exist
+  result: PASS
+  details: 15 screens
+- check: A17A-14_light_dark_and_200
+  result: PASS
+  details: coverage
+- check: A17A-15_decision_recorded
+  result: PASS
+  details: DECISIONS
+- check: A17A-15_spec_acceptance_matches_contract
+  result: PASS
+  details: acceptance criteria
+- check: A17A-15_execution_index
+  result: PASS
+  details: 17A checked
+- check: A17A-15_kotlin_mutation_all_detected
+  result: PASS
+  details: 27/27
+- check: A17A-15_validator_mutation_all_detected
+  result: PASS
+  details: 31/31

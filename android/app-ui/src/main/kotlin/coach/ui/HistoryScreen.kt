@@ -17,6 +17,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import coach.presentation.Spacing
 import coach.presentation.AssessmentReportView
 import coach.presentation.LearningHistoryView
 
@@ -34,18 +35,14 @@ fun LearningHistoryScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        TextButton(onClick = onBack, modifier = Modifier.minimumTouchTarget()) { Text("Geri") }
-        Text(title, style = MaterialTheme.typography.titleLarge, modifier = Modifier.semantics { heading() })
+    ScreenColumn(modifier = modifier) {
+        BackButton(onBack)
+        ScreenTitle(title)
         StateChip(label = view.text, tone = view.state.tone, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
         view.days.forEach { day ->
-            HorizontalDivider()
-            Text(day.studyDay, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            SectionHeader(day.label)
             day.lines.forEach { line ->
-                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                Column(verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
                     Text("${line.familyLabel} · ${line.skillName}", style = MaterialTheme.typography.bodyLarge)
                     Text(line.objectiveLabel, style = MaterialTheme.typography.bodySmall)
                     Text(line.happened, style = MaterialTheme.typography.bodyMedium)
@@ -64,18 +61,14 @@ fun AssessmentReportScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        TextButton(onClick = onBack, modifier = Modifier.minimumTouchTarget()) { Text("Geri") }
-        Text("Ölçme raporu", style = MaterialTheme.typography.titleLarge, modifier = Modifier.semantics { heading() })
+    ScreenColumn(modifier = modifier) {
+        BackButton(onBack)
+        ScreenTitle("Ölçme raporu")
         StateChip(label = view.text, tone = view.state.tone, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
         // `assessment_report -> learning_history` is an accepted edge (`UXIA-v0`).
         TextButton(onClick = onOpenHistory, modifier = Modifier.minimumTouchTarget()) { Text("Öğrenme geçmişi") }
         view.sessions.forEach { session ->
-            HorizontalDivider()
-            Text("${session.title} · ${session.studyDay}", style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            SectionHeader("${session.title} · ${session.dayLabel}")
             session.summary?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
             session.families.forEach { block ->
                 Text(block.label, style = MaterialTheme.typography.bodyLarge)

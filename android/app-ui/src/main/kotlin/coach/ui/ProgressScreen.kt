@@ -2,28 +2,21 @@ package coach.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import coach.model.VersionedRef
 import coach.presentation.ProgressCopy
 import coach.presentation.ProgressOverview
 import coach.presentation.SkillChip
 import coach.presentation.SkillDetailView
+import coach.presentation.Spacing
+import androidx.compose.ui.unit.dp
 import coach.presentation.TopicOverviewView
 
 /**
@@ -46,13 +39,8 @@ fun ProgressScreen(
     onOpenTopic: ((VersionedRef) -> Unit)? = null,
     onOpenEnglish: (() -> Unit)? = null,
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
+    ScreenColumn(modifier = modifier) {
+        ScreenTitle("İlerleme")
         // The state is always said in words and announced when it changes (`SPWX-v0` §17).
         StateChip(
             label = ProgressCopy.stateTexts.getValue(view.state),
@@ -66,13 +54,13 @@ fun ProgressScreen(
             Text(view.text, style = MaterialTheme.typography.bodyLarge)
         }
         view.contexts.forEach { Text(ProgressCopy.stateTexts.getValue(it), style = MaterialTheme.typography.bodySmall) }
-        onOpenHistory?.let { open -> TextButton(onClick = open, modifier = Modifier.minimumTouchTarget()) { Text("Öğrenme geçmişi") } }
-        onOpenReport?.let { open -> TextButton(onClick = open, modifier = Modifier.minimumTouchTarget()) { Text("Ölçme raporu") } }
-        onOpenEnglish?.let { open -> TextButton(onClick = open, modifier = Modifier.minimumTouchTarget()) { Text("Teknik İngilizce profili") } }
+        onOpenHistory?.let { open -> NavRow("Öğrenme geçmişi", open) }
+        onOpenReport?.let { open -> NavRow("Ölçme raporu", open) }
+        onOpenEnglish?.let { open -> NavRow("Teknik İngilizce profili", open) }
 
         // 1. demonstrated_capability_inventory
         if (view.inventory.isNotEmpty() || view.recomputing > 0) {
-            Text(ProgressCopy.INVENTORY_TITLE, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            SectionHeader(ProgressCopy.INVENTORY_TITLE)
             Text(ProgressCopy.INVENTORY_NOTE, style = MaterialTheme.typography.bodySmall)
             view.inventory.forEach { CountLine(it.label, it.count) }
             if (view.recomputing > 0) CountLine(ProgressCopy.RECOMPUTING, view.recomputing)
@@ -80,47 +68,33 @@ fun ProgressScreen(
 
         // 2. attention_set, grouped by reason
         if (view.inventory.isNotEmpty()) {
-            HorizontalDivider()
-            Text(ProgressCopy.ATTENTION_TITLE, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            SectionHeader(ProgressCopy.ATTENTION_TITLE)
             if (view.attention.isEmpty()) Text(ProgressCopy.ATTENTION_EMPTY, style = MaterialTheme.typography.bodyMedium)
             view.attention.forEach { CountLine(it.label, it.count) }
         }
 
         // 16C: the Topics, each a state in words that opens topic_detail.
         if (topics != null && onOpenTopic != null && topics.topics.isNotEmpty()) {
-            HorizontalDivider()
             TopicsSection(topics, onOpenTopic)
         }
 
         // The Skills themselves, grouped for orientation; each opens the one shared skill_detail.
         view.groups.forEach { group ->
-            HorizontalDivider()
-            Text(group.label, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            SectionHeader(group.label)
             group.skills.forEach { SkillLine(it, onOpenSkill) }
         }
     }
 }
 
 @Composable
-private fun CountLine(label: String, count: Int) {
-    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-        Text(label, style = MaterialTheme.typography.bodyMedium)
-        Text(count.toString(), style = MaterialTheme.typography.bodyMedium)
-    }
-}
+private fun CountLine(label: String, count: Int) = CountRow(label, count.toString())
 
 @Composable
 private fun SkillLine(chip: SkillChip, onOpenSkill: (VersionedRef) -> Unit) {
-    TextButton(
-        onClick = { onOpenSkill(chip.skill) },
-        modifier = Modifier.fillMaxWidth().minimumTouchTarget(),
-    ) {
-        Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text(chip.name, style = MaterialTheme.typography.bodyLarge)
-            StateChip(label = chip.label, tone = chip.tone)
-            // Qualifiers are text beside the state, never a replacement for it (`SPWX-v0` §5.1).
-            chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
-        }
+    NavRow(chip.name, onClick = { onOpenSkill(chip.skill) }) {
+        StateChip(label = chip.label, tone = chip.tone)
+        // Qualifiers are text beside the state, never a replacement for it (`SPWX-v0` §5.1).
+        chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
     }
 }
 
@@ -134,36 +108,29 @@ fun SkillDetailScreen(
     // 16B: `skill_detail -> learning_history` (`UXIA-v0`), the evidence history entry 16A deferred.
     onOpenHistory: (() -> Unit)? = null,
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        TextButton(onClick = onBack, modifier = Modifier.minimumTouchTarget()) { Text("Geri") }
-        Text(view.name, style = MaterialTheme.typography.titleLarge, modifier = Modifier.semantics { heading() })
+    ScreenColumn(modifier = modifier) {
+        BackButton(onBack)
+        ScreenTitle(view.name)
         Text(view.statement, style = MaterialTheme.typography.bodyMedium)
         StateChip(label = view.chip.label, tone = view.chip.tone)
         view.chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
-        onOpenHistory?.let { open -> TextButton(onClick = open, modifier = Modifier.minimumTouchTarget()) { Text("Bu becerinin geçmişi") } }
+        onOpenHistory?.let { open -> NavRow("Bu becerinin geçmişi", open) }
 
-        HorizontalDivider()
-        view.axes.forEach { axis -> CountLineText(axis.title, axis.value) }
+        SectionBlock {
+            view.axes.forEach { axis -> CountRow(axis.title, axis.value) }
+        }
         view.englishContext?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
 
         // 16C: remediation_context — a located gap and what closes it, never a verdict about the learner.
         view.remediation?.let { r ->
-            HorizontalDivider()
-            Text(r.title, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            SectionHeader(r.title)
             Text(r.text, style = MaterialTheme.typography.bodyMedium)
             r.closure?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
         }
 
-        HorizontalDivider()
-        Text("Objective kırılımı", style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+        SectionHeader("Hedef kırılımı")
         view.objectives.forEach { objective ->
-            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
                 val required = if (objective.required) " · ${ProgressCopy.OBJECTIVE_REQUIRED}" else ""
                 Text(objective.label + required, style = MaterialTheme.typography.bodyLarge)
                 Text(objective.shown, style = MaterialTheme.typography.bodyMedium)
@@ -174,33 +141,20 @@ fun SkillDetailScreen(
             }
         }
 
-        HorizontalDivider()
-        Text("Kanıt özeti", style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+        SectionHeader("Kanıt özeti")
         view.evidence.forEach { CountLine(it.label, it.count) }
 
-        HorizontalDivider()
-        Text("Ön koşul bağlamı", style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+        SectionHeader("Ön koşul bağlamı")
         view.prerequisiteNote?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
         view.prerequisite.forEach { line ->
             Text(line.title, style = MaterialTheme.typography.bodyMedium)
             // A blocker is named and linked to its own skill_detail (`SPWX-v0` §8).
-            line.skills.forEach { (ref, name) ->
-                TextButton(onClick = { onOpenSkill(ref) }, modifier = Modifier.minimumTouchTarget()) { Text(name) }
-            }
+            line.skills.forEach { (ref, name) -> NavRow(name, onClick = { onOpenSkill(ref) }) }
         }
 
         if (view.topics.isNotEmpty()) {
-            HorizontalDivider()
-            Text("Yer aldığı konular", style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            SectionHeader("Yer aldığı konular")
             view.topics.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
         }
-    }
-}
-
-@Composable
-private fun CountLineText(title: String, value: String) {
-    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-        Text(title, style = MaterialTheme.typography.bodyMedium)
-        Text(value, style = MaterialTheme.typography.bodyMedium)
     }
 }

@@ -153,10 +153,12 @@ class PlannerExplanationTest {
         assertEquals(listOf(SkillMention(pointer, "Pointer dereference"), SkillMention(address, "Adres operatörü")), waiting.whyNot.skills)
         assertEquals(Reconsideration.WHEN_PREREQUISITE_READY, waiting.reconsideration)
         val text = ExplanationCopy.text(waiting.whyNot)
-        assertTrue("Pointer dereference" in text && "Adres operatörü" in text, text)
-        // With no published name, the reference is shown rather than nothing.
+        // Narrowed at 17A: a published Skill is said by its Turkish display name (`CurriculumNames`).
+        assertTrue("İşaretçinin gösterdiği değere erişme" in text && "Adres operatörü" in text, text)
+        // With no published name, the reference is shown rather than nothing. Narrowed at 17A: a shipped Skill always
+        // has its Turkish display name, so the Skill outside the shipped course carries this check.
         val unnamed = explain(day(), emptyMap()).notToday.single { it.needKeys.single() == "lists" }
-        assertTrue(pointer.logicalId in ExplanationCopy.text(unnamed.whyNot))
+        assertTrue(address.logicalId in ExplanationCopy.text(unnamed.whyNot))
         // The branch that waited did not stop the day, and the plan says so.
         assertTrue(explain(day()).plan.any { it.code == "independent_branch_available" })
     }

@@ -2,11 +2,13 @@ package coach.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.material3.Button
+import androidx.compose.ui.semantics.Role
+import coach.presentation.Spacing
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -141,13 +143,7 @@ fun TaskRunnerScreen(
     stage: TaskRunStage? = null,
     actions: TaskRunActions = TaskRunActions(),
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
+    ScreenColumn(modifier = modifier) {
         // The safe exit: first, always present, one action, 48dp (TRUX-v0, WFPX-v0).
         OutlinedButton(onClick = onExit, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
             Text("Bugün'e dön")
@@ -200,13 +196,13 @@ private fun TaskRunInterior(stage: TaskRunStage, actions: TaskRunActions) {
         is TaskRunStage.Blocked -> stage.capabilityLine?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
         is TaskRunStage.Orient -> OrientationInterior(stage.view, actions.onBegin)
         is TaskRunStage.Lesson -> {
-            Text(TaskRunCopy.LESSON_TITLE, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
-            stage.texts.forEach { Text(it, style = MaterialTheme.typography.bodyLarge) }
-            OutlinedButton(onClick = actions.onToQuestions, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.TO_QUESTIONS) }
+            SectionHeader(TaskRunCopy.LESSON_TITLE)
+            stage.texts.forEach { AuthoredText(it) }
+            Button(onClick = actions.onToQuestions, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.TO_QUESTIONS) }
         }
         is TaskRunStage.Question -> QuestionInterior(stage, actions)
         is TaskRunStage.ShownBeforeAnswer -> {
-            Text(stage.text, style = MaterialTheme.typography.bodyLarge)
+            AuthoredText(stage.text)
             NextOrFinish(actions)
         }
         TaskRunStage.Working -> Unit
@@ -218,29 +214,36 @@ private fun TaskRunInterior(stage: TaskRunStage, actions: TaskRunActions) {
 
 @Composable
 private fun OrientationInterior(view: TaskOrientationView, onStart: (ProvenanceOrigin) -> Unit) {
-    Text(view.title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.semantics { heading() })
+    ScreenTitle(view.title)
     Text(view.purpose + (view.minutes?.let { " · $it" } ?: ""), style = MaterialTheme.typography.bodyMedium)
     // 16H: which session this is and what independence means here, before any work (`ASUX-v0` §6).
     view.measurement.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
     view.teachNote?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
     Text(view.provenanceQuestion, style = MaterialTheme.typography.bodyLarge)
     var chosen by remember { mutableStateOf<ProvenanceOrigin?>(null) }
-    view.provenanceOptions.forEach { (origin, label) ->
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
-            RadioButton(selected = chosen == origin, onClick = { chosen = origin })
-            Text(label, style = MaterialTheme.typography.bodyMedium)
+    // 17A: the whole row selects, not only the radio, and the group is announced as one choice.
+    Column(modifier = Modifier.selectableGroup()) {
+        view.provenanceOptions.forEach { (origin, label) ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth().minimumTouchTarget()
+                    .selectable(selected = chosen == origin, onClick = { chosen = origin }, role = Role.RadioButton),
+            ) {
+                RadioButton(selected = chosen == origin, onClick = null)
+                Text(label, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(start = Spacing.S.dp))
+            }
         }
     }
     // Nothing is preselected: the learner's own answer is recorded, never a default (`TRUX-v0` §9).
-    OutlinedButton(onClick = { chosen?.let(onStart) }, enabled = chosen != null, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+    Button(onClick = { chosen?.let(onStart) }, enabled = chosen != null, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
         Text(TaskRunCopy.START)
     }
 }
 
 @Composable
 private fun QuestionInterior(stage: TaskRunStage.Question, actions: TaskRunActions) {
-    Text("Soru ${stage.number}", style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
-    Text(stage.prompt, style = MaterialTheme.typography.bodyLarge)
+    SectionHeader("Soru ${stage.number}")
+    AuthoredText(stage.prompt)
     stage.notice?.let { Text(it, style = MaterialTheme.typography.bodySmall, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }) }
     if (stage.disclosure) {
         ConsequenceDisclosure(onAcknowledge = actions.onAcknowledgeSolution, onDecline = actions.onDeclineSolution)
@@ -257,7 +260,7 @@ private fun QuestionInterior(stage: TaskRunStage.Question, actions: TaskRunActio
                 minLines = if (stage.kind == RunItemKind.RUBRIC) 4 else 1,
                 modifier = Modifier.fillMaxWidth(),
             )
-            OutlinedButton(onClick = { actions.onSubmit(typed) }, enabled = typed.isNotBlank(), modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+            Button(onClick = { actions.onSubmit(typed) }, enabled = typed.isNotBlank(), modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
                 Text(TaskRunCopy.SUBMIT)
             }
         }
@@ -267,7 +270,7 @@ private fun QuestionInterior(stage: TaskRunStage.Question, actions: TaskRunActio
     if (lesson == null) {
         TextButton(onClick = actions.onShowLesson, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_LESSON) }
     } else {
-        lesson.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
+        lesson.forEach { AuthoredText(it, style = MaterialTheme.typography.bodyMedium) }
     }
     HelpSection(stage.help, actions)
     // 16H: in a measurement a question may be left unanswered; that is not incorrect.
@@ -296,9 +299,11 @@ private fun CodeAnswer(stage: TaskRunStage.Question, actions: TaskRunActions) {
     }
     var code by remember(stage.number) { mutableStateOf("") }
     var report by remember(stage.number) { mutableStateOf("") }
-    OutlinedTextField(value = code, onValueChange = { code = it }, label = { Text(TaskRunCopy.CODE_LABEL) }, minLines = 4, modifier = Modifier.fillMaxWidth())
-    OutlinedTextField(value = report, onValueChange = { report = it }, label = { Text(TaskRunCopy.REPORT_LABEL) }, minLines = 3, modifier = Modifier.fillMaxWidth())
-    OutlinedButton(
+    OutlinedTextField(value = code, onValueChange = { code = it }, label = { Text(TaskRunCopy.CODE_LABEL) }, minLines = 4,
+        textStyle = codeFieldStyle, modifier = Modifier.fillMaxWidth())
+    OutlinedTextField(value = report, onValueChange = { report = it }, label = { Text(TaskRunCopy.REPORT_LABEL) }, minLines = 3,
+        textStyle = codeFieldStyle, modifier = Modifier.fillMaxWidth())
+    Button(
         onClick = { actions.onSubmitCode(code, report) },
         enabled = code.isNotBlank() && report.isNotBlank(),
         modifier = Modifier.fillMaxWidth().minimumTouchTarget(),
@@ -307,13 +312,13 @@ private fun CodeAnswer(stage: TaskRunStage.Question, actions: TaskRunActions) {
 
 @Composable
 private fun AnsweredInterior(stage: TaskRunStage.Answered, actions: TaskRunActions) {
-    Text(stage.result, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+    Text(stage.result, style = MaterialTheme.typography.titleMedium, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
     stage.details.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
     stage.notice?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
     if (stage.canReveal) {
         val revealed = stage.revealed
         if (revealed != null) {
-            Text(revealed, style = MaterialTheme.typography.bodyMedium)
+            AuthoredText(revealed, style = MaterialTheme.typography.bodyMedium)
         } else {
             // Seeing the answer is a separate step the learner chooses (user decision, 2026-10-26).
             TextButton(onClick = actions.onReveal, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.SHOW_ANSWER) }
@@ -348,7 +353,7 @@ private fun ComprehensionInterior(view: ComprehensionView, actions: TaskRunActio
     when (view) {
         is ComprehensionView.Check -> {
             Text(view.offer, style = MaterialTheme.typography.bodyMedium)
-            Text(view.prompt, style = MaterialTheme.typography.bodyLarge)
+            AuthoredText(view.prompt)
             view.choices.forEach { (key, text) ->
                 OutlinedButton(onClick = { actions.onCheckChoice(key) }, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text("$key) $text") }
             }
@@ -404,7 +409,7 @@ private fun HelpSection(help: HelpView?, actions: TaskRunActions) {
         is HelpPanel.Message -> Text(panel.text, style = MaterialTheme.typography.bodyMedium)
         HelpPanel.Waiting -> Text(RunHelpCopy.WAITING, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
         is HelpPanel.Shown -> {
-            Text(panel.text, style = MaterialTheme.typography.bodyLarge)
+            AuthoredText(panel.text)
             panel.notes.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
         }
         is HelpPanel.Practice -> {
@@ -422,14 +427,14 @@ private fun HelpSection(help: HelpView?, actions: TaskRunActions) {
 
 @Composable
 private fun NextOrFinish(actions: TaskRunActions) {
-    OutlinedButton(onClick = actions.onNext, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.NEXT) }
+    Button(onClick = actions.onNext, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.NEXT) }
     TextButton(onClick = actions.onFinish, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(TaskRunCopy.FINISH) }
 }
 
 /** Shown before H3 or H4 is granted, in measurement terms (`TRUX-v0` §8.3). */
 @Composable
 fun ConsequenceDisclosure(onAcknowledge: () -> Unit, onDecline: () -> Unit) {
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(Spacing.XS.dp)) {
         Text(RunnerCopy.CONSEQUENCE_DISCLOSURE, style = MaterialTheme.typography.bodyLarge)
         OutlinedButton(onClick = onAcknowledge, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
             Text("Anladım, yardımı göster")

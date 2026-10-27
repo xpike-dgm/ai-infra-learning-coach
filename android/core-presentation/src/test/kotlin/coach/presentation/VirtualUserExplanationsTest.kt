@@ -65,7 +65,8 @@ class VirtualUserExplanationsTest {
         assertEquals(listOf(SkillMention(pointer, "Pointer dereference")), waiting.whyNot.skills)
         assertEquals(trace.candidates.single { it.candidateId == "linked-list" }.relatedSkills, waiting.whyNot.skills.map { it.ref })
         val text = ExplanationCopy.text(waiting.whyNot)
-        assertTrue("Pointer dereference" in text, text)
+        // Narrowed at 17A: a published Skill is said by its Turkish display name (`CurriculumNames`).
+        assertTrue("İşaretçinin gösterdiği değere erişme" in text, text)
         assertEquals(Reconsideration.WHEN_PREREQUISITE_READY, waiting.reconsideration)
         // The pointer verification is explained by its need and the dependent work it holds, never by its band.
         val verify = explain(trace).today.first()

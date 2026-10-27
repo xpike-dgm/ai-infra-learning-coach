@@ -70,9 +70,16 @@ class ExplanationCopyTest {
         fun waiting(name: String?) = ExplanationCopy.text(
             requireNotNull(Statement.ofCode("eligibility.blocked_hard_prerequisite", setOf("eligibility.blocked_hard_prerequisite"),
                 listOf(SkillMention(skill, name)))))
-        assertTrue("Pointer dereference" in waiting("Pointer dereference"))
-        assertTrue("skill.c.pointer_dereference" in waiting(null))
-        assertTrue("Pointer dereference hazır olduğunda" in
+        // Narrowed at 17A: a published Skill is named by its Turkish display name (`CurriculumNames`); an unknown one
+        // by its authored name, and by its reference when it has none.
+        assertTrue("İşaretçinin gösterdiği değere erişme" in waiting("Pointer dereference"))
+        val unknown = VersionedRef("skill.x.unknown", 1)
+        fun waitingOn(name: String?) = ExplanationCopy.text(
+            requireNotNull(Statement.ofCode("eligibility.blocked_hard_prerequisite", setOf("eligibility.blocked_hard_prerequisite"),
+                listOf(SkillMention(unknown, name)))))
+        assertTrue("Unknown skill" in waitingOn("Unknown skill"))
+        assertTrue("skill.x.unknown" in waitingOn(null))
+        assertTrue("İşaretçinin gösterdiği değere erişme hazır olduğunda" in
             ExplanationCopy.text(Reconsideration.WHEN_PREREQUISITE_READY, listOf(SkillMention(skill, "Pointer dereference"))))
         // With no Skill, the sentence says only that a prerequisite is not ready.
         val bare = ExplanationCopy.text(requireNotNull(Statement.ofCode("eligibility.blocked_hard_prerequisite",

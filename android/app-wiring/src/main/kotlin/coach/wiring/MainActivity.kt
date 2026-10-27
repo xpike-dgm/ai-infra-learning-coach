@@ -2,6 +2,7 @@ package coach.wiring
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -38,6 +39,8 @@ import coach.presentation.EnglishProfileView
 import coach.presentation.TopicDetailView
 import coach.presentation.TopicOverviewView
 import coach.presentation.TopicPresentation
+import coach.presentation.LearnPresentation
+import coach.presentation.LearnView
 import coach.presentation.Revalidation
 import coach.presentation.RunnerFlow
 import coach.presentation.RunnerRevalidation
@@ -63,6 +66,7 @@ import coach.ui.ProgressScreen
 import coach.ui.SkillDetailScreen
 import coach.ui.EnglishProfileScreen
 import coach.ui.TopicDetailScreen
+import coach.ui.LearnScreen
 import coach.ui.TaskRunnerScreen
 import coach.ui.TodayScreen
 import coach.ui.ProfileScreen
@@ -128,6 +132,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 17A: the app draws edge to edge on every API level, as Android 15+ enforces for this target SDK, so the
+        // emulator and the target device (API 36) lay out the same; every screen pads itself to the safe drawing area.
+        enableEdgeToEdge()
         // The store is opened by the process on its own thread. The activity only observes, so
         // the first frame never waits for disk work and a failure is a state, not a crash.
         startup.observe(listener)
@@ -138,8 +145,8 @@ class MainActivity : ComponentActivity() {
             // always has a state to render.
             val current = opened.value
             val facts = todayFacts.value
-            val status = if (current == null && storeStatus.value == StoreStatus.Ready) StoreStatus.Opening else storeStatus.value
-            val health = AppHealth.of(status, evaluatorAvailability())
+            // 17A: until the store and today's facts are both in hand the app is still opening (`AppHealth.atStartup`).
+            val health = AppHealth.atStartup(storeStatus.value, evaluatorAvailability(), storeInHand = current != null, todayInHand = facts != null)
 
             CoachTheme {
                 if (!health.showsShell || current == null || facts == null) {
@@ -219,6 +226,9 @@ private fun Shell(
     var report by remember { mutableStateOf<AssessmentReportView?>(null) }
     // 16C: the Topics shown on Progress, the one topic_detail opened from it, and the Technical English profile.
     var topics by remember { mutableStateOf<TopicOverviewView?>(null) }
+    // 17A: `learn_overview` — the learning map, from the same Topic facts Progress reads.
+    var learn by remember { mutableStateOf<LearnView?>(null) }
+    var learnMissing by remember { mutableStateOf(false) }
     var topicDetail by remember { mutableStateOf<TopicDetailView?>(null) }
     // 16H: the open Topic's Skills, and the fast path as it stands for them.
     var topicSkills by remember { mutableStateOf<List<VersionedRef>>(emptyList()) }
@@ -297,6 +307,13 @@ private fun Shell(
         topicDetail = null
         english = null
         if (destination == Destination.PROFILE) app.loadCapacity { capacity = it }
+        if (destination == Destination.LEARN) {
+            learn = null
+            app.loadProgress { _, topicFacts ->
+                learn = LearnPresentation.overview(topicFacts)
+                learnMissing = !topicFacts.curriculumLoaded
+            }
+        }
         if (destination == Destination.PROGRESS) {
             progress = null
             topics = null
@@ -600,14 +617,23 @@ private fun Shell(
                     app.aiWork({ app.aiSettings.check() }) { aiCheck = it }
                 },
             )
-            else -> Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                // Non-blocking context, only ever produced alongside a working core.
-                health.contexts.forEach { HealthContextLine(it) }
-                AppRoot(statusLine = "${state.surface.id} · study day ${opened.graph.clock.now().studyDay}")
-            }
+            // 17A: `learn_overview`. `learn -> topic_detail` is an accepted edge (`UXIA-v0`).
+            else -> LearnScreen(
+                view = learn,
+                curriculumMissing = learnMissing,
+                onOpenTopic = { ref ->
+                    if (NavigationGraph.canOpen(Destination.LEARN.id, Surface.TopicDetail.id)) {
+                        app.loadTopicDetail(ref) { facts ->
+                            facts?.let {
+                                topicDetail = TopicPresentation.detail(it)
+                                topicSkills = it.members.map { member -> member.skill }
+                                fastPath = null
+                                app.loadFastPath(topicSkills) { view -> fastPath = view }
+                            }
+                        }
+                    }
+                },
+            )
         }
     }
 }

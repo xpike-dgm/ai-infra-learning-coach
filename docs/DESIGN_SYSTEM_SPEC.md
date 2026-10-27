@@ -410,3 +410,7 @@ Next numbered step:
 **8G — Wireframe/prototip**
 
 8G will produce concrete wireframes and prototype geometry using this design system and the accepted 8A–8E semantics, without altering any state, label, tone or truth ownership. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**17A note (2026-10-27, `D-133`):** the design system is now applied in code (`VPLX-v0`): every Material role a measured token, every type slot one of §6.1's roles with `mono` for code, the §8 rhythm as `Spacing`, an outlined state chip with one mark per tone (§§7.3, 9), and no Material default on screen. The type scale is a declared default and stays a calibration input for 18. Details: `docs/VISUAL_POLISH_SPEC.md`.
