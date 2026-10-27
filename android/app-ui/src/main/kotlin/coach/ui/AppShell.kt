@@ -17,6 +17,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.semantics.traversalIndex
 import coach.presentation.Destination
+import coach.presentation.MotionPurpose
 import coach.presentation.ShellState
 
 /**
@@ -54,6 +55,8 @@ fun AppShell(
     if (!state.showsShell) {
         // A focused flow suspends the shell. Its own safe exit belongs to the flow chrome
         // (`TRUX-v0`), so the shell must not draw navigation over it.
+        // 17B: a focused flow is never faded in or out. Its exit is the first thing in it and must be visible and act
+        // from the first frame (`TRUX-v0`, `VDSX-v0` §10.3).
         Box(modifier.fillMaxSize()) { content() }
         return
     }
@@ -80,6 +83,7 @@ fun AppShell(
                 )
             }
         },
-        content = content,
+        // 17B: a destination or a detail arriving is orientation.
+        content = { ArriveOnChange(state.surface.id, MotionPurpose.ORIENTATION) { content() } },
     )
 }

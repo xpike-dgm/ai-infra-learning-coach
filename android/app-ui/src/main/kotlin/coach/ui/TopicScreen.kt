@@ -39,7 +39,7 @@ fun TopicsSection(view: TopicOverviewView, onOpenTopic: (VersionedRef) -> Unit) 
 @Composable
 fun TopicLine(chip: TopicChip, onOpenTopic: (VersionedRef) -> Unit) {
     NavRow(chip.name, onClick = { onOpenTopic(chip.topic) }) {
-        StateChip(label = chip.label, tone = chip.tone)
+        StateChip(label = chip.label, tone = chip.tone, subject = chip.topic)
     }
 }
 
@@ -58,7 +58,7 @@ fun TopicDetailScreen(
     ScreenColumn(modifier = modifier) {
         BackButton(onBack)
         ScreenTitle(view.name)
-        StateChip(label = view.chip.label, tone = view.chip.tone)
+        StateChip(label = view.chip.label, tone = view.chip.tone, subject = view.topic)
         Text(view.text, style = MaterialTheme.typography.bodyMedium)
         view.metadataNote?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
         view.reasons.forEach { reason ->
@@ -84,7 +84,7 @@ fun TopicDetailScreen(
         Text(view.placementNote, style = MaterialTheme.typography.bodySmall)
         view.skills.forEach { chip ->
             NavRow(chip.name, onClick = { onOpenSkill(chip.skill) }) {
-                StateChip(label = chip.label, tone = chip.tone)
+                StateChip(label = chip.label, tone = chip.tone, subject = chip.skill)
                 chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
             }
         }

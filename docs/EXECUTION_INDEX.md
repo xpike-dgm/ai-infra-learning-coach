@@ -224,8 +224,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # AŞAMA 17 — UI/UX Polish ve Erişilebilirlik
 - [x] **17A — Görsel polish** — `VPLX-v0 / D-133`
-- [ ] **17B — Motion** **AKTİF**
-- [ ] **17C — Kullanılabilirlik**
+- [x] **17B — Motion** — `MOTX-v0 / D-134`
+- [ ] **17C — Kullanılabilirlik** **AKTİF**
 - [ ] **17D — Accessibility**
 
 ---
@@ -266,9 +266,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A`  
-**Son tamamlanan:** **`17A — VPLX-v0 / D-133`**  
-**Aktif:** **`17B — Motion`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17B`  
+**Son tamamlanan:** **`17B — MOTX-v0 / D-134`**  
+**Aktif:** **`17C — Kullanılabilirlik`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -358,4 +358,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 17A `VPLX-v0` ile tasarım sistemi uygulandı: tasarım sistemi uygulandı ve hiçbir anlam eklemedi: her Material renk rolü ölçülmüş bir token, her yazı yuvası `VDSX-v0`'ın sekiz rolünden biri ve kod `mono`; yazıldığı hiçbir satır değişmeden kod paragrafları mono bloklarda; durum çipi çerçeveli, tonunun işaretini taşıyor ve düğmeye benzemiyor; etkinlik türü, iz, çalışma günü, konu, beceri ve hedef Türkçe söyleniyor ya da hiç gösterilmiyor — kimlik ya da tahmin değil; Öğren sekmesi öğrenme haritası: alanlar ve konular, İlerleme'nin aynı çipleriyle, her biri konu ayrıntısını açıyor ve sırası ön koşul zinciri değil. Kotlin mutation 27/27, validator mutation 31/31; 95/95 QA PASS. T6 çalıştırılmadı.
 
-17B başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+17B `MOTX-v0` ile hareket: hareketin yalnız dört amacı var — yönlendirme, süreklilik, geri bildirim ve durum değişimi — her biri kısa, bildirilmiş bir süre bandı ve hiçbiri bir sonraki eylemi geciktirmiyor; hiçbir şey tekrarlamıyor, nabız gibi atmıyor, geri saymıyor ya da kutlamıyor (kanonik durum gerçekten değişse bile); hareket bir değişikliğin tek işareti değil ve odaklı akışın çıkışının önüne hiç geçmiyor; Android 'Animasyonları kaldır' açıkken her değişiklik anında ve hiçbir bilgi kaybolmuyor. Kotlin mutation 10/10, validator mutation 18/18; 36/36 QA PASS. T6 çalıştırılmadı.
+
+17C başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

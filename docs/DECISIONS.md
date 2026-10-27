@@ -2404,3 +2404,32 @@ Ayrıntı: `docs/ASSESSMENT_SESSIONS_RUN_SPEC.md`.
 - Sonraki numbered step `17B — Motion`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/VISUAL_POLISH_SPEC.md`.
+
+## D-134 — Motion = MOTX-v0
+**Durum:** Kabul edildi — 2026-10-27
+
+- 17B final modeli `MOTX-v0 — motion by purpose: orientation, continuity, feedback and state change, each a short declared band; nothing repeats, pulses, counts down or celebrates; motion is never the only sign of a change and never stands before the exit; with the platform's animations removed every change is immediate` oldu.
+- **Ana invariant:** hareketin yalnız dört amacı var — yönlendirme, süreklilik, geri bildirim ve durum değişimi — her biri kısa, bildirilmiş bir süre bandı ve hiçbiri bir sonraki eylemi geciktirmiyor; hiçbir şey tekrarlamıyor, nabız gibi atmıyor, geri saymıyor ya da kutlamıyor (kanonik durum gerçekten değişse bile); hareket bir değişikliğin tek işareti değil ve odaklı akışın çıkışının önüne hiç geçmiyor; Android 'Animasyonları kaldır' açıkken her değişiklik anında ve hiçbir bilgi kaybolmuyor.
+- **Kullanıcı kararları (2026-10-27, "17B ye başla"):**
+  - kapsam: core'da hareket politikası (`VDSX-v0` §10'un dört amacı, süre bantları, yasak hareketler, azaltılmış hareket) ve uygulaması: hedef/ayrıntı gelişi, yardım paneli, cevap sonucu, çipin durum geçişi;
+  - kutlama: hiç yok, kanonik durum gerçekten değişse bile; değişiklik metinle söylenir;
+  - azaltılmış hareket: sistem ayarı (animatör süre ölçeği 0, "Animasyonları kaldır"); uygulama içi tercih 17D'nin.
+- **Asistanın varsayılan seçimleri:**
+  - bantlar Material 3 süre belirteçleri: geri bildirim 100 ms, yönlendirme ve durum değişimi 200 ms, süreklilik 250 ms; tavan 300 ms; beyan edilmiş varsayılan, 18'in kalibrasyon girdisi;
+  - geliş için yavaşlayan, diğerleri için standart yumuşatma;
+  - geliş yalnız solma; ölçek, dönme ya da kayma yok;
+  - çip yalnız rengini canlandırır; etiketi ve duyurulan durumu hemen değişir; yeni bir konu için çip yeniden başlar;
+  - odaklı akış hiç soluklaştırılmaz; çıkışı ilk kareden görünür ve çalışır.
+- **Bulunanlar:**
+  - uygulamanın kendi hiçbir animasyonu yoktu; bağımsız inceleme ilk sürümde iki engelleyici sorun buldu — odaklı akış bütünüyle soluk başlıyordu, yani çıkış düğmesi görünmezken tıklanabiliyordu, ve azaltılmış harekette her geçişte bir boş kare çiziliyordu — ikisi de düzeltildi; ayrıca başka bir beceri için yeniden kullanılan çipin renk geçişi, görev aşamalarının tek nesne gibi büyümesi ve sonucun saydam bir düğümden duyurulması düzeltildi.
+- Şema değişmedi (v11).
+- **Doğrulama:**
+  - Kotlin mutation 10/10, validator mutation 18/18; kontrol mutantları hayatta kaldı.
+  - Validator 36/36 PASS.
+  - 1291 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Hızlı tarama geçti; içerik validator'ları paketler değişmediği için yeniden koşulmadı, `validate_content_qa.py` disk nedeniyle koşulmadı.
+- Çalıştırılmayan: **T6**. Hareket Poco M6 Pro'da görülmedi; emülatörde görüldü.
+- **Devredilenler:** uygulama içi azaltılmış hareket, tema ve erişilebilirlik tercihleri (17D); bantların kalibrasyonu (18); cihaz (19).
+- Sonraki numbered step `17C — Kullanılabilirlik`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/MOTION_SPEC.md`.

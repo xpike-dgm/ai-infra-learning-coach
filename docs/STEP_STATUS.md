@@ -92,8 +92,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **16G — Uçtan uca günlük döngü: yardım ve ölçüm** | ✅ | HLPX-v0 / D-130. Bir görevin içinde her hüküm dersin, her kural önceki bir adımındır: kod yalnız dersin testleriyle, öğrencinin bilgisayarında, uygulamanın kopyalamak için verdiği suite ve koşucuyla değerlendirilir ve hiçbir şey ölçmeyen rapor hiçbir şey yazmaz; açık cevap önce donar, sonra rubric'iyle en çok provisional değerlendirilir, değerlendirici yoksa bekler ve yalnız öğrenci isteyince yeniden değerlendirilir; yardım her zaman bir adım uzaktadır, kurallar hazır demeden gönderilmez, gösterilen yardım bir kez ve doğru denemeye kaydedilir, gösterilmeyen hiçbir yerde; yanlış cevap motorların atfından okunur, tek başına yazılmayan kodun ardından anlama kontrolü gelir ve duraklatma yalnız politikanın doğruladığı bir sınırda tek checkpoint olarak kaydedilir. Bulunanlar: kullanıcı döngünün geri kalanını yeniden böldü ve Today'den ölçme yeni 16H'ye gitti (D-131); artık 60 Skill'in hepsinin uygulamanın çalıştırabildiği bir görevi var (yalnız cevap anahtarıyla 36'ydı) ve 1112 item'ın 618'i anahtarla, 480'i testlerle, 14'ü rubric'le değerlendiriliyor; hiçbir sevk edilen paket yazılı bir anlama kontrolü içermiyor; on dört rubric item'ının hepsi provisional sonuca izin veriyor; bir duraklatma yalnız ihtiyaç `continue_learning` olduğunda sürdürülen iş olur; açık cevap ilk taslakta donmadan önce değerlendiriliyordu ve düzeltildi. Kullanıcı kararları: görev içindeki her şey 16G'de, Today'den ölçme yeni 16H'de (D-131); kod taşıma kopyala-yapıştır — uygulama suite'i ve koşucuyu Kopyala düğmeleriyle verir, öğrenci PC'de çalıştırıp raporu yapıştırır, ağ ya da dosya izni yok. Kotlin mutation 31/31, validator mutation 50/50; 105/105 QA PASS. |
 | **16H — Uçtan uca günlük döngü: ölçme oturumları** | ✅ | ASRX-v0 / D-132. Bugün için planlanan bir ölçme — günlük ölçme görevi, haftanın ya da ayın bir slotu, hızlı yolun bir kontrolü — onu neyin kurduğundan bağımsız olarak tek ölçme iç yüzünde koşar ve türü ek ağırlık değildir; giriş tahmin etmez ve hiçbir şey yazmaz; her deneme oturumunu taşır, günlük ölçmenin oturumu öğrenci başlarken açılır ve bir slotun cevabı o slotun kanıtıdır; boş bırakılan soru yanlış değildir, cevaplanmış bir soru bildirilebilir ve kanıtı eklenen bir dispozisyonla itirazlı tutulur, satır düzenlenmez; sonuçta not, yüzde ya da geçti/kaldı yoktur; hızlı yolu yalnız öğrenci bir konudan açar, bugünün planına hemen girer ve başlanan işi korur, bırakmak hiçbir şey borçlandırmaz. Bulunanlar: haftalık/aylık blueprint 16D'den beri açılışta kuruluyordu ve slotlar plana giriyor ama açılamıyordu; yazılı bir görev ve bir slot aynı ihtiyaca hizmet edince planner birini seçiyor; hızlı yol isteği için bir yeniden plan olayı yoktu (`diagnostic_requested`, D-132); Learn sekmesinin ekranı yok; giriş yerleştirme akışı ve onun tanısal kaynağı yok (18A); düzeltmenin nedeni uygulanıyor ama satırda taşınmıyordu. Kullanıcı kararları: kapsam `moved_to_16h`'nin tamamı; haftalık/aylık plan açılışta otomatik (16D'den beri böyle); bildirme evet, 'Bu soruda sorun var' kanıtı itirazlı tutar; hızlı yol bugünün planına hemen girer (yeni olay `diagnostic_requested`); hızlı yol girişi konu ayrıntısında. Kotlin mutation 26/26, validator mutation 50/50; 89/89 QA PASS. |
 | **17A — Görsel polish** | ✅ | VPLX-v0 / D-133. Tasarım sistemi uygulandı; kod mono, çipler çerçeveli ve işaretli, kimlik değil kelime; Öğren sekmesi öğrenme haritası. İlk açılış çökmesi emülatörde bulundu ve düzeltildi. Kotlin mutation 27/27, validator mutation 31/31; 95/95 QA PASS. T6 çalıştırılmadı. |
-| **17B — Motion** | 🟡 Aktif | Henüz yürütülmedi; önceki adım (17A) tamamlandı. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
-| **17C–20** | ⬜ Bekliyor | 17B sonrası canonical sırada. |
+| **17B — Motion** | ✅ | MOTX-v0 / D-134. Hareket amacına göre ve kısa; hiçbir şey kutlamıyor, tekrarlamıyor ya da çıkışın önüne geçmiyor; azaltılmış hareket sistem ayarına uyuyor. Kotlin mutation 10/10, validator mutation 18/18; 36/36 QA PASS. T6 çalıştırılmadı. |
+| **17C — Kullanılabilirlik** | 🟡 Aktif | Henüz yürütülmedi; önceki adım (17B) tamamlandı. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
+| **17D–20** | ⬜ Bekliyor | 17C sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -112,7 +113,20 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 17A
+## Son tamamlanan numaralı adım — 17B
+
+**Final:** `MOTX-v0 — motion by purpose: orientation, continuity, feedback and state change, each a short declared band; nothing repeats, pulses, counts down or celebrates; motion is never the only sign of a change and never stands before the exit; with the platform's animations removed every change is immediate`
+**Ana çıktı:** `docs/MOTION_SPEC.md` + `arch/17b_motion/` + `tools/validate_motion.py` + `android/`.
+
+17B sonucu:
+- hareketin yalnız dört amacı var — yönlendirme, süreklilik, geri bildirim ve durum değişimi — her biri kısa, bildirilmiş bir süre bandı ve hiçbiri bir sonraki eylemi geciktirmiyor; hiçbir şey tekrarlamıyor, nabız gibi atmıyor, geri saymıyor ya da kutlamıyor (kanonik durum gerçekten değişse bile); hareket bir değişikliğin tek işareti değil ve odaklı akışın çıkışının önüne hiç geçmiyor; Android 'Animasyonları kaldır' açıkken her değişiklik anında ve hiçbir bilgi kaybolmuyor,
+- onay kullanıcının 2026-10-27 açık onayı ("17B ye başla"); kullanıcı kararları: politika + uygulama (hedef/ayrıntı gelişi, yardım paneli, cevap sonucu, çip durum geçişi); hiç kutlama yok; azaltılmış hareket sistem ayarından (uygulama içi tercih 17D'nin),
+- **bulgu:** uygulamanın kendi hiçbir animasyonu yoktu; bağımsız inceleme ilk sürümde iki engelleyici sorun buldu — odaklı akış bütünüyle soluk başlıyordu, yani çıkış düğmesi görünmezken tıklanabiliyordu, ve azaltılmış harekette her geçişte bir boş kare çiziliyordu — ikisi de düzeltildi; ayrıca başka bir beceri için yeniden kullanılan çipin renk geçişi, görev aşamalarının tek nesne gibi büyümesi ve sonucun saydam bir düğümden duyurulması düzeltildi,
+- şema değişmedi (v11),
+- Mutation Kotlin 10/10, validator 18/18; independent validator **36/36 PASS**,
+- **T6 çalıştırılmadı; hareket emülatörde görüldü, Poco M6 Pro'da değil**.
+
+## Önceki numaralı adım — 17A
 
 **Final:** `VPLX-v0 — the accepted design system applied: every Material role a measured token, every type slot a VDSX-v0 role with mono for code, a 4dp rhythm, a surface under every screen, outlined state chips with a mark per tone, words instead of identifiers, and the Learn tab's learning map`
 **Ana çıktı:** `docs/VISUAL_POLISH_SPEC.md` + `arch/17a_visual_polish/` + `tools/validate_visual_polish.py` + `android/`.
@@ -603,6 +617,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 17B — Motion
+## Aktif adım — 17C — Kullanılabilirlik
 
-**17B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H ve 17A her biri ayrı açık onayla yürütüldü). 17A tamamlandı. 17C'ye taşınanlar: koşu ve bildirim cilası, gün özetine bir koşunun gerçek değişiklikleri, kullanım/maliyet görünürlüğü, `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları.
+**17C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H, 17A ve 17B her biri ayrı açık onayla yürütüldü). 17C'nin girdileri: koşu ve bildirim cilası, gün özetine bir koşunun gerçek değişiklikleri, kullanım/maliyet görünürlüğü, `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları.

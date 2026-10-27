@@ -86,6 +86,7 @@ fun SectionBlock(modifier: Modifier = Modifier, content: @Composable ColumnScope
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .continuousSize()
             .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(Spacing.S.dp))
             .padding(Spacing.M.dp),
         verticalArrangement = Arrangement.spacedBy(Spacing.XS.dp),

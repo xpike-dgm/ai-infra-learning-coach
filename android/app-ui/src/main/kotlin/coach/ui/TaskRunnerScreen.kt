@@ -18,6 +18,9 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.OutlinedTextField
@@ -42,6 +45,7 @@ import coach.presentation.ComprehensionView
 import coach.presentation.HelpPanel
 import coach.presentation.HelpView
 import coach.presentation.MeasurementCopy
+import coach.presentation.MotionPurpose
 import coach.presentation.OpenResponseCopy
 import coach.presentation.RunHelpCopy
 import coach.presentation.TaskOrientationView
@@ -312,7 +316,12 @@ private fun CodeAnswer(stage: TaskRunStage.Question, actions: TaskRunActions) {
 
 @Composable
 private fun AnsweredInterior(stage: TaskRunStage.Answered, actions: TaskRunActions) {
-    Text(stage.result, style = MaterialTheme.typography.titleMedium, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+    // 17B: the result arriving is feedback; it is announced and said in text, never shown by motion alone.
+    Box(Modifier.semantics { liveRegion = LiveRegionMode.Polite; contentDescription = stage.result }) {
+        ArriveOnChange(stage.result, MotionPurpose.FEEDBACK) {
+            Text(stage.result, style = MaterialTheme.typography.titleMedium, modifier = Modifier.clearAndSetSemantics {})
+        }
+    }
     stage.details.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
     stage.notice?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
     if (stage.canReveal) {
@@ -373,6 +382,12 @@ private fun ComprehensionInterior(view: ComprehensionView, actions: TaskRunActio
 /** Help inside the run (16G): always one action away, and every panel only says what core decided. */
 @Composable
 private fun HelpSection(help: HelpView?, actions: TaskRunActions) {
+    // 17B: the help panel opening and closing is one object growing (continuity); nothing else in the run is animated.
+    Column(Modifier.continuousSize(), verticalArrangement = Arrangement.spacedBy(Spacing.M.dp)) { HelpPanelContent(help, actions) }
+}
+
+@Composable
+private fun HelpPanelContent(help: HelpView?, actions: TaskRunActions) {
     if (help == null) {
         TextButton(onClick = actions.onOpenHelp, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(RunHelpCopy.HELP) }
         return

@@ -414,3 +414,7 @@ Next numbered step:
 ---
 
 **17A note (2026-10-27, `D-133`):** the design system is now applied in code (`VPLX-v0`): every Material role a measured token, every type slot one of §6.1's roles with `mono` for code, the §8 rhythm as `Spacing`, an outlined state chip with one mark per tone (§§7.3, 9), and no Material default on screen. The type scale is a declared default and stays a calibration input for 18. Details: `docs/VISUAL_POLISH_SPEC.md`.
+
+---
+
+**17B note (2026-10-27, `D-134`):** §10 is now applied in code (`MOTX-v0`): the four purposes with declared bands (feedback 100 ms, orientation and state change 200 ms, continuity 250 ms, ceiling 300 ms), no repeating, pulsing, countdown or celebration motion (the user chose no celebration at all), the focused flow never faded, and the platform's removed animations making every change immediate. Details: `docs/MOTION_SPEC.md`.
