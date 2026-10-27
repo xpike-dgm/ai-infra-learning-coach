@@ -1,0 +1,186 @@
+model: A11X-v0
+stage_step: 17D
+decision: D-137
+result: PASS
+checks_total: 59
+checks_failed: 0
+checks:
+- check: A17D-01_files_exist
+  result: PASS
+  details: '[]'
+- check: A17D-01_contract_identity
+  result: PASS
+  details: A11X-v0 D-137
+- check: A17D-02_report_100_passed
+  result: PASS
+  details: PASS 0
+- check: A17D-02_report_100_font_scale
+  result: PASS
+  details: '1.0'
+- check: A17D-02_report_100_covers_screens
+  result: PASS
+  details: missing []
+- check: A17D-02_report_100_all_rules
+  result: PASS
+  details: '[''R1_no_accessible_name'', ''R2_target_below_48dp'', ''R3_identifier_on_screen'', ''R4_image_only_control'', ''R5_checkable_unnamed'', ''R6_text_field_unnamed'', ''R7_ambiguous_duplicate_name'',
+    ''R8_reading_order'']'
+- check: A17D-02_report_100_screens_not_empty
+  result: PASS
+  details: every screen had actionable nodes (the audit read a real screen, not a blank one)
+- check: A17D-02_report_100_screens_reached
+  result: PASS
+  details: '[]'
+- check: A17D-02_report_100_every_clipped_node_judged
+  result: PASS
+  details: '[]'
+- check: A17D-02_report_100_read_whole
+  result: PASS
+  details: '[]'
+- check: A17D-02_report_100_device
+  result: PASS
+  details: sdk_gphone64_x86_64 API 34
+- check: A17D-02_report_200_passed
+  result: PASS
+  details: PASS 0
+- check: A17D-02_report_200_font_scale
+  result: PASS
+  details: '2.0'
+- check: A17D-02_report_200_covers_screens
+  result: PASS
+  details: missing []
+- check: A17D-02_report_200_all_rules
+  result: PASS
+  details: '[''R1_no_accessible_name'', ''R2_target_below_48dp'', ''R3_identifier_on_screen'', ''R4_image_only_control'', ''R5_checkable_unnamed'', ''R6_text_field_unnamed'', ''R7_ambiguous_duplicate_name'',
+    ''R8_reading_order'']'
+- check: A17D-02_report_200_screens_not_empty
+  result: PASS
+  details: every screen had actionable nodes (the audit read a real screen, not a blank one)
+- check: A17D-02_report_200_screens_reached
+  result: PASS
+  details: '[]'
+- check: A17D-02_report_200_every_clipped_node_judged
+  result: PASS
+  details: '[]'
+- check: A17D-02_report_200_read_whole
+  result: PASS
+  details: '[]'
+- check: A17D-02_report_200_device
+  result: PASS
+  details: sdk_gphone64_x86_64 API 34
+- check: A17D-02_tool_has_every_rule
+  result: PASS
+  details: rules in the audit tool
+- check: A17D-02_tool_clears_app_data
+  result: PASS
+  details: a fresh store, so every screen is reachable
+- check: A17D-02_tool_field_named_by_label
+  result: PASS
+  details: a field's name excludes its own value
+- check: A17D-02_tool_fails_on_unreached_or_unjudged
+  result: PASS
+  details: the report's result
+- check: A17D-03_icons_declare_description
+  result: PASS
+  details: '[]'
+- check: A17D-03_icon_button_named
+  result: PASS
+  details: IconButton
+- check: A17D-03_no_image_without_description
+  result: PASS
+  details: Image
+- check: A17D-03_back_button_has_word
+  result: PASS
+  details: the back arrow is decorative beside 'Geri'
+- check: A17D-04_title_is_heading
+  result: PASS
+  details: ScreenTitle
+- check: A17D-04_section_is_heading
+  result: PASS
+  details: SectionHeader
+- check: A17D-04_every_screen_has_heading
+  result: PASS
+  details: '[]'
+- check: A17D-05_buttons_48dp
+  result: PASS
+  details: '[]'
+- check: A17D-05_hand_made_targets_48dp
+  result: PASS
+  details: '[]'
+- check: A17D-05_navrow_48dp_and_role
+  result: PASS
+  details: NavRow
+- check: A17D-05_floor_is_48
+  result: PASS
+  details: 48dp
+- check: A17D-05_state_chip_one_leaf
+  result: PASS
+  details: StateChip
+- check: A17D-05_nav_says_selected
+  result: PASS
+  details: AppShell
+- check: A17D-05_radio_group
+  result: PASS
+  details: a choice is one group
+- check: A17D-06_fields_labelled
+  result: PASS
+  details: '[]'
+- check: A17D-06_no_abbreviation_label
+  result: PASS
+  details: a field named only 'dk'
+- check: A17D-06_error_belongs_to_field
+  result: PASS
+  details: loose=[] supporting=3
+- check: A17D-06_no_fault_tone_for_input
+  result: PASS
+  details: isError in app-ui
+- check: A17D-07_length_names_per_day
+  result: PASS
+  details: ProfileScreen
+- check: A17D-07_rows_not_tab_names
+  result: PASS
+  details: 'shared: []'
+- check: A17D-07_label_in_name
+  result: PASS
+  details: Kaydet inside the spoken name
+- check: A17D-08_no_assertive_live_region
+  result: PASS
+  details: '[]'
+- check: A17D-08_run_result_announced
+  result: PASS
+  details: the result is announced
+- check: A17D-08_no_help_code_in_ui
+  result: PASS
+  details: H1-H4 in UI strings
+- check: A17D-08_no_id_in_ui_template
+  result: PASS
+  details: '[]'
+- check: A17D-08_tools_in_words
+  result: PASS
+  details: allowed tools
+- check: A17D-09_tests
+  result: PASS
+  details: AccessibleNamesTest
+- check: A17D-10_talkback_not_claimed
+  result: PASS
+  details: 'False'
+- check: A17D-10_not_in_scope_named
+  result: PASS
+  details: a visible focus ring (the focus_ring token is unused) — not chosen; asked at 17E's PRE a theme preference in Profile — n
+- check: A17D-10_moved_to_17e
+  result: PASS
+  details: the day summary naming a run's real changes the skill_detail -> planner_explanation edge with its micro text the technic
+- check: A17D-11_decisions_recorded
+  result: PASS
+  details: DECISIONS
+- check: A17D-11_execution_index
+  result: PASS
+  details: 17D checked, 17E added
+- check: A17D-11_spec_accepted
+  result: PASS
+  details: spec
+- check: A17D-11_kotlin_mutation_all_detected
+  result: PASS
+  details: 10/10
+- check: A17D-11_validator_mutation_all_detected
+  result: PASS
+  details: 35/35

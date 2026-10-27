@@ -24,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
@@ -105,21 +106,23 @@ private fun CapacitySection(view: CapacitySettingsView, onSetLength: (CapacityPr
         Column(verticalArrangement = Arrangement.spacedBy(Spacing.XXS.dp)) {
             Text("${line.label}: ${line.value} · ${line.source}", style = MaterialTheme.typography.bodyLarge)
             Row(horizontalArrangement = Arrangement.spacedBy(Spacing.XS.dp), verticalAlignment = Alignment.CenterVertically) {
+                // 17D: the error belongs to its field (its supporting text), not loose text below it; in the body colour, because a
+                // mistyped number is not a fault (17A, `VDSX-v0`).
                 OutlinedTextField(
                     value = typed,
                     onValueChange = { typed = it.filter(Char::isDigit).take(4) },
-                    label = { Text("dk") },
+                    label = { Text(SettingsCopy.lengthField(line.label)) },
                     singleLine = true,
+                    supportingText = if (parsed == null) { { Text(SettingsCopy.MINUTES_INVALID) } } else null,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier.weight(1f),
                 )
                 OutlinedButton(
                     onClick = { parsed?.let { onSetLength(line.profile, it) } },
                     enabled = parsed != null && parsed != line.minutes,
-                    modifier = Modifier.minimumTouchTarget(),
+                    modifier = Modifier.minimumTouchTarget().semantics { contentDescription = SettingsCopy.saveLength(line.label) },
                 ) { Text("Kaydet") }
             }
-            if (parsed == null) Text(SettingsCopy.MINUTES_INVALID, style = MaterialTheme.typography.bodySmall)
         }
     }
     Text(view.defaultNote, style = MaterialTheme.typography.bodySmall)
@@ -149,6 +152,7 @@ private fun ReminderSection(
             onValueChange = { typed = it.filter { c -> c.isDigit() || c == ':' }.take(5) },
             label = { Text(ReminderCopy.TIME_LABEL) },
             singleLine = true,
+            supportingText = if (parsed == null) { { Text(ReminderCopy.TIME_INVALID) } } else null,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.weight(1f),
         )
@@ -160,7 +164,6 @@ private fun ReminderSection(
             ) { Text(ReminderCopy.SAVE_TIME) }
         }
     }
-    if (parsed == null) Text(ReminderCopy.TIME_INVALID, style = MaterialTheme.typography.bodySmall)
     if (view.enabled) {
         OutlinedButton(onClick = onOff, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) { Text(ReminderCopy.TURN_OFF) }
     } else {
@@ -196,10 +199,10 @@ fun TodayCapacityDialog(
                     onValueChange = { typed = it.filter(Char::isDigit).take(4) },
                     label = { Text(SettingsCopy.TODAY_CUSTOM) },
                     singleLine = true,
+                    supportingText = if (typed.isNotEmpty() && parsed == null) { { Text(SettingsCopy.MINUTES_INVALID) } } else null,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier.fillMaxWidth(),
                 )
-                if (typed.isNotEmpty() && parsed == null) Text(SettingsCopy.MINUTES_INVALID, style = MaterialTheme.typography.bodySmall)
             }
         },
         confirmButton = {

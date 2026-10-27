@@ -1,0 +1,145 @@
+model: A11X-v0
+stage_step: 17D
+status: accepted_17d
+decision: D-137
+implements: [VDSX-v0, UXIA-v0, TRUX-v0, USBX-v0]
+boundaries: MSBX-v0
+persistence: none_schema_v11_unchanged
+purpose: accessibility_every_control_named_with_role_and_state_no_two_controls_share_a_spoken_name_48dp_targets_no_identifier_on_screen_every_surface_has_a_heading_a_fields_error_is_its_own_audited_on_the_real_app_at_100_and_200_percent_text
+
+question: Ekran okuyucu, büyük metin ya da anahtarla kullanan biri her ekrana ve her kontrole ulaşabiliyor, her birinin ne olduğunu ve hangi durumda olduğunu duyabiliyor mu?
+
+primary_invariant: >-
+  Every control has a name, a role and its state for a screen reader; no two different controls on a screen share a
+  spoken name, and a spoken name contains the visible word; every target is at least 48dp at 100% and 200% text; no
+  identifier or help code reaches the screen; every surface has a heading; a field's error is its own; no live region
+  interrupts. The real app is audited through the accessibility tree on an emulator, not only read from the code.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-27
+  scope: accessibility_audit_and_tests_only
+  new_step: 17E — Kalan UX parçaları (D-136), at the end of AŞAMA 17, no renumbering
+
+not_in_scope:
+  - a visible focus ring (the focus_ring token is unused) — not chosen; asked at 17E's PRE
+  - a theme preference in Profile — not chosen; asked at 17E's PRE
+  - an in-app reduced motion preference — not chosen; asked at 17E's PRE
+
+moved_to_17e:
+  - the day summary naming a run's real changes
+  - the skill_detail -> planner_explanation edge with its micro text
+  - the technical_english_profile -> skill_detail edge with its micro text
+  - AI usage and cost visibility
+
+assistant_defaults:
+  - the audit drives the real app with adb and reads every screen with uiautomator dump, the tree an accessibility service reads; no instrumented-test dependency was added
+  - eight rules R1-R8 (name, 48dp, no identifier, no image-only control, checkable named, field named by its label, no shared spoken name across the whole screen, reading order)
+  - a node cut by a scrolling container's edge is judged on the screen where it is fully visible
+  - every audit clears the app's data first and runs at 100% and 200% text
+  - a button's spoken name contains its visible word (label in name)
+  - an input error is its field's supporting text in the body colour, never the fault tone (17A: a mistyped number is not a fault), so isError is not used
+  - a state chip is one leaf whose spoken name is its label, so its state is spoken once and a caller's heading or live region is on a focusable node
+  - the reminder time's label gives an example ("Hatırlatma saati (ör. 19:00)"), not a pattern a screen reader spells
+  - live regions are polite only
+
+audit:
+  tool: tools/audit_a11y_emulator.py
+  reports: [arch/17d_accessibility/a11y_emulator_report.yaml, arch/17d_accessibility/a11y_emulator_report_text_200.yaml]
+  screens: [today_overview, today_capacity_dialog, planner_explanation, learn_overview, topic_detail, progress_overview,
+            learning_history, assessment_report, technical_english_profile, profile_overview, task_runner_orientation,
+            task_runner_lesson, task_runner_question, task_runner_help]
+  method: every screen is read whole — scrolled in steps shorter than its viewport until two readings are the same (read_to_end must be true, and every pair of consecutive readings must share an anchor text, or the swipe may have skipped content); a node cut by the viewport must be judged on a reading where it is whole (clipped_never_judged must be empty); R7 runs over all of a screen's readings; reaching a screen is shown by a marker (text it shows in some reading, and the screen before it does not show at its top)
+  tree_carries: names, classes, clickability, checkability, bounds and order
+  checked_in_code_only: headings, state descriptions, live regions, roles and errors (the tree uiautomator writes does not carry them)
+  not_reached: the end-of-day view (needs recorded work), the assessment interior (no screen calls it) and the AI settings sub-screen; the static checks cover their code
+
+found:
+  - id: same_name_three_times
+    what: Profile's three daily-length rows each had a field labelled "dk" and a button "Kaydet"; a screen reader could not tell them apart
+    resolution: SettingsCopy.lengthField and SettingsCopy.saveLength name each row's day; the spoken name keeps "Kaydet"
+  - id: row_named_like_its_tab
+    what: Today's contextual row to Progress was named "İlerleme", the same as the shell's tab; the new R7 rule caught the two controls with one spoken name
+    resolution: the row says its action, "İlerlemeyi aç"; the validator keeps Today's rows apart from the tab names
+  - id: explanation_drawn_twice
+    what: Today drew "Bu plan neden böyle?" beside the selected task and again among the supporting rows; R7 over the whole screen caught one control heard twice
+    resolution: drawn once, beside the task; 11A's region-order check narrowed ("Narrowed at 17D")
+  - id: loose_error_text
+    what: the minutes error was loose text below the field, not the field's own error
+    resolution: supportingText on the field, in the row and in the today dialog (isError dropped, see is_error_is_the_fault_tone)
+  - id: below_the_fold_at_200
+    what: at 200% text the run's orientation choices and start button fall below the fold; the first audit stopped there because it did not scroll
+    resolution: reached by scrolling (as a learner does); the audit scrolls to tap
+  - id: dump_bounds_clipped_to_window
+    what: uiautomator clips bounds to the window, not to the scroll viewport, so a node cut by the scroll edge looked smaller than 48dp
+    resolution: a node at the same place in every reading is fixed (the tabs, a focused flow's exit bar) and judged where it is; any other node not well inside the viewport is cut — even a row whose visible part lies only outside it — and is matched to a reading where a whole node contains it and, when the cut part still has a name, carries that name
+  - id: review_reminder_error_loose
+    what: the independent review found the reminder time's error still loose text below its field, and the validator only looked at the minutes error
+    resolution: the reminder error is the field's supporting text; the validator fails on any loose *_INVALID text in app-ui
+  - id: is_error_is_the_fault_tone
+    what: the first fix used isError, which draws the field in Material's error colour; 17A's check (a mistyped number is not a fault, VDSX-v0) caught it
+    resolution: supporting text in the body colour only; the validator forbids isError in app-ui
+  - id: review_chip_spoken_twice
+    what: the state chip carried stateDescription beside the same visible text, so inside a row it could be spoken twice, and a heading or live region a caller put on it sat on a node a screen reader does not focus
+    resolution: the chip is one leaf (clearAndSetSemantics with its label as the spoken name); three earlier checks narrowed ("Narrowed at 17D")
+  - id: review_codes_in_unwired_screen
+    what: the unwired assessment interior showed "H1 yardım iste" through ${level.id} and raw tool ids; the validator only scanned string literals
+    resolution: help levels in words, tools through ToolWords; the validator fails on ${...id} in UI templates
+  - id: review_audit_holes
+    what: the independent review found that a clipped node was never re-judged, a text field was named by its own value (so R7 could not have caught the "dk" fields), R7 compared one reading only, and reaching a screen was assumed from a tap
+    resolution: every screen is read whole with overlapping readings, clipped_never_judged must be empty, fields are named by their label, R7 runs over all readings, markers prove each screen was reached, R8 reading order was added, the today dialog is audited
+  - id: validator_regex_corrupted
+    what: validator mutation found that a shell heredoc had turned a regex's word-boundary escape into a backspace character, so the loose-error check matched nothing and passed
+    resolution: the regex was rewritten with the editor, every 17D file was scanned for stray control characters, and the mutant now fails the check
+  - id: talkback_not_on_image
+    what: the emulator image has no TalkBack; an APK from outside the Play store is an untrusted download and was not fetched
+    resolution: names, sizes, order and clickability were audited from the tree; headings, state, live regions, roles and errors were checked in the code; what TalkBack says is heard on the device (19)
+
+moved_on:
+  - the three parts not chosen in 17C (17E, D-136); the focus ring, theme and in-app reduced motion preferences (asked at 17E's PRE)
+  - TalkBack's spoken output and the device (19)
+  - one source for the help levels' two wordings; AssessmentSessionScreen, which no screen calls (still open)
+  - review suggestions not taken, to hear on the device with TalkBack (19) — an explicit error() announcement for input errors without the fault colour, and whether the shell's own "seçili" state description is said twice on a tab; and wider id patterns in the validator (x.id + text, .name)
+
+verification:
+  kotlin_tests: [AccessibleNamesTest (3)]
+  narrowed_validators: [validate_design_system_impl.py E10C-14, validate_visual_polish.py A17A-06, validate_motion.py A17B-07, validate_today_interior.py E11A-14]
+  validator: tools/validate_accessibility.py
+  emulator: Pixel_7 AVD API 34 — fourteen screens at 100% and at 200% text, each read whole and reached (marker), every cut node judged, 0 findings, rules R1-R8
+  talkback_heard: false
+  talkback_reason: TalkBack is not installed on the emulator image and an APK from outside the Play store was not downloaded
+  independent_review: a separate agent; the first pass found 6 blocking problems (reminder error loose, chip spoken twice, codes in the unwired assessment interior, three audit holes), all fixed; its re-review found none blocking, and three of its suggestions were taken (a reading with no shared anchor is not read whole, a cut node must match a whole node's name as well as its place, Profile's marker is text only Profile shows)
+  t6_run: false
+
+acceptance_criteria:
+  - the emulator audit ran at 100% and 200% text over every named screen, read each whole, reached each, judged every cut node, with R1-R8, and passed
+  - every icon declares its description; every surface has a heading
+  - every button is at least 48dp; a choice is one group; the shell and the state chip say their state
+  - every field is labelled and a field's error is its own
+  - repeated controls have distinct spoken names that contain the visible word
+  - no live region is assertive; no help code is in the UI
+  - TalkBack is not claimed as heard; the unchosen items and 17E are named
+  - earlier gates still pass
+
+mutation_results_kotlin:
+  scope: one change per mutant to each length's field and save names (the day dropped, a bare "Kaydet", the visible word lost, "dk", the word moved first), two days given one label, a tool shown as its id, a repeated unnamed tool, a tool word that is an id and a tool with no word; then AccessibleNamesTest
+  total: 10
+  detected: 10
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: the hardened runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a comment in SettingsPresentation.kt
+  negative_control_result: survived_as_expected
+  earlier_runs: "the first run had six mutants (SettingsCopy only); ToolWords was added after the independent review, and the whole set was run again"
+  final_run_is_a_single_clean_run: true
+
+mutation_results_validator:
+  scope: one change per mutant to what the validator exists to catch — a field named "dk", the save names, titles and section headers not headings, a decorative icon without its declaration, a button and a hand-made target under 48dp, the chip's state description back, an input error in the fault tone or loose, a help-level or tool id on screen, a radio choice not grouped, an unlabelled field, an assertive live region, a help code, a failed or partial report (passed, screens, rules, font scale, reached, cut nodes judged, read to the end, a reading with no shared anchor), TalkBack claimed, an unchosen item dropped, the audit tool's floor, data reset, field naming and result rule, a lost word in the spoken name, a back arrow without its word, a row named like a tab and a test removed
+  total: 35
+  detected: 35
+  detection: the validator fails and names the expected check (only the living-record checks A17D-11 may fail in the baseline before POST)
+  negative_controls: [V00 changes a comment in SettingsPresentation.kt, V01 changes a comment in ProfileScreen.kt]
+  negative_control_result: survived_as_expected
+  earlier_runs: "the first full run detected 32/34: V27 (a loose error) survived because a shell heredoc had turned the regex's word-boundary escape into a backspace character, so the check matched nothing; V24 (a test removed) survived because the check asked for two tests of three. The regex was rewritten, the window widened for a longer condition, the test count raised; after the re-review a mutant for a reading with no shared anchor was added and the whole set was run again"
+  final_run_is_a_single_clean_run: true
+
+next_step: 17E — Kalan UX parçaları

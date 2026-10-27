@@ -376,7 +376,8 @@ check("E11A-14_no_locale_naive_case", not re.search(r"\.(uppercase|lowercase|cap
       "no locale-naive case transform")
 check("E11A-14_primary_action_first",
       ordered(screen_code, "PrimaryAction(view", "view.capacity?.let", "view.remainingPlan.isNotEmpty()",
-              "view.attention.forEach", "view.supportingNavigation.forEach"),
+              # Narrowed at 17D: the supporting rows drop the explanation already shown beside the selected task.
+              "view.attention.forEach", "view.supportingNavigation.filterNot"),
       "the regions must be rendered in the accepted order")
 
 # ---------------------------------------------------------------- the checks exist

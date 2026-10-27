@@ -1622,3 +1622,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `17C tamamlandı; 17D aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `17D — Accessibility`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-27 — 17D — Accessibility tamamlandı — A11X-v0 / D-137; 17E eklendi (D-136)
+
+- Kullanıcı 17C'yi (#70) CI yeşil olunca merge ettirdi (35c1eb5) ve "tamamdır kaldığın yerden devam et" dedi. Fresh 17D PRE yapıldı ve kanonik kaynaklar `17C ✅ / 17D active-not-executed` gösterdi.
+- **Kullanıcı kararı (2026-10-27):** yalnız erişilebilirlik denetimi ve testler; 17C'de seçilmeyen üç parça yeni adım 17E'ye gitti (D-136); görünür odak halkası, tema tercihi ve uygulama içi azaltılmış hareket tercihi seçilmedi ve 17E'nin PRE'sinde sorulacak.
+- **Bulgu:** Profil'in üç günlük süre alanının hepsi 'dk', üç düğmesinin hepsi 'Kaydet' adını taşıyordu ve ekran okuyucu onları ayırt edemiyordu — artık her biri kendi gününü adlandırıyor ve hata metni alanın kendi hatası; Bugün'ün İlerleme'ye giden satırı sekmeyle aynı adı ('İlerleme') taşıyordu ve yeni R7 kuralı yakaladı — artık 'İlerlemeyi aç'; 200% metinde koşunun seçenekleri ve başlat düğmesi ekranın altına iniyor ve kaydırınca ulaşılıyor; Bugün 'Bu plan neden böyle?'yi iki kez çiziyordu, artık bir kez; bağımsız inceleme dört sorun daha buldu — hatırlatma saatinin hatası alanın dışındaydı, durum çipi iki kez okunabiliyordu ve üzerindeki başlık odaklanamayan bir düğümdeydi (artık tek yaprak), bağlanmamış ölçme ekranı 'H1 yardım iste' ve araç kimlikleri gösteriyordu, ve denetimin açıkları vardı (kesik düğüm yeniden yargılanmıyor, alan yazılan değerle adlandırılıyor, R7 tek okumaya bakıyor, ekrana ulaşıldığı varsayılıyordu) — hepsi düzeltildi; hatanın alanı kırmızı çizmesi (isError) 17A'nın kuralına takıldı, çünkü yanlış yazılmış bir sayı arıza değildir; TalkBack emülatör imajında yok ve dışarıdan APK indirilmedi, bu yüzden sesli çıktı duyulmadı (19).
+- **Kod:** core `SettingsCopy.lengthField`/`saveLength`, `ReminderCopy.TIME_LABEL`, `ToolWords`; app-ui `ProfileScreen` (her süre alanı kendi gününü adlandırıyor, girdi hataları alanın kendi metni), `TodayScreen`, `StateChip` (tek yaprak), `AssessmentSessionScreen`; `tools/audit_a11y_emulator.py` (R1–R8); dört önceki kontrol 'Narrowed at 17D'.
+- **Araştırma:** iç sözleşmeler `VDSX-v0` §§8, 12, `UXIA-v0`, `TRUX-v0`, 17A–17C; dış: WCAG 2.2 (4.1.2, 2.5.3, 3.3.1, 4.1.3, 1.4.4, 2.4.6), Android erişilebilirlik ağacı ve `uiautomator`, Compose semantik.
+- **Bağımsız inceleme:** ayrı bir ajan altı engelleyici sorun buldu (hatırlatma hatası, iki kez okunan çip, bağlanmamış ölçme ekranında kodlar, denetimde üç açık); hepsi düzeltildi ve aynı ajan düzeltmeleri yeniden inceledi.
+- **Mutation:** Kotlin 10/10.
+- **Validator mutation:** 35/35.
+- **Validator:** 59/59 PASS; emülatör denetimi iki metin boyutunda PASS; hızlı tarama geçti; 1297 JVM testi.
+- **T6 ve TalkBack çalıştırılmadı; denetim emülatörde (Pixel 7 AVD, API 34)**.
+- D-050 POST living-memory accepted state'i `17D tamamlandı; 17E aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `17E — Kalan UX parçaları`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

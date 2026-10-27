@@ -22,12 +22,14 @@ import coach.presentation.Spacing
 import coach.model.AllowedToolsPolicy
 import coach.model.AssistanceLevel
 import coach.presentation.AssessmentSessionView
+import coach.presentation.AssistanceWords
 import coach.presentation.AssistanceConsequence
 import coach.presentation.BoundaryStatus
 import coach.presentation.NotReliablyMeasured
 import coach.presentation.ResultFamily
 import coach.presentation.SessionAssistance
 import coach.presentation.SessionCopy
+import coach.presentation.ToolWords
 import coach.presentation.SessionResult
 import coach.presentation.SessionState
 import coach.presentation.tone
@@ -152,7 +154,7 @@ fun AssessmentSessionScreen(
                         onClick = { onRequestHelp(level) },
                         modifier = Modifier.fillMaxWidth().minimumTouchTarget(),
                     ) {
-                        Text("${level.id} yardım iste")
+                        Text("Yardım iste: ${AssistanceWords.labels.getValue(level)}")
                     }
                 }
                 Text(consequenceTextTr(AssistanceLevel.H1), style = MaterialTheme.typography.bodySmall)
@@ -211,9 +213,9 @@ fun AssessmentResultView(result: SessionResult, modifier: Modifier = Modifier) {
 }
 
 private fun allowedToolsTextTr(policy: AllowedToolsPolicy): String {
-    val allowed = if (policy.allowed.isEmpty()) "yok" else policy.allowed.joinToString(", ")
+    val allowed = if (policy.allowed.isEmpty()) "yok" else ToolWords.of(policy.allowed)
     val prohibited = policy.prohibitedSolutionSources
-    val tail = if (prohibited.isEmpty()) "" else " İzin verilmeyen çözüm kaynakları: ${prohibited.joinToString(", ")}."
+    val tail = if (prohibited.isEmpty()) "" else " İzin verilmeyen çözüm kaynakları: ${ToolWords.of(prohibited)}."
     return "İzin verilen araçlar: $allowed.$tail"
 }
 

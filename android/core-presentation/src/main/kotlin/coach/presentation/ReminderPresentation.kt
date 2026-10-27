@@ -24,7 +24,8 @@ object ReminderCopy {
         "Saat yaklaşıktır. Hatırlatma bir yükümlülük değildir; gün saymaz, seri tutmaz, ara vermeyi borç saymaz."
     const val TURN_ON = "Hatırlatmayı aç"
     const val TURN_OFF = "Hatırlatmayı kapat"
-    const val TIME_LABEL = "Saat (SS:DD)"
+    // 17D: a screen reader spells "SS:DD" letter by letter; an example is heard as a time.
+    const val TIME_LABEL = "Hatırlatma saati (ör. 19:00)"
     const val SAVE_TIME = "Saati kaydet"
     const val TIME_INVALID = "SS:DD biçiminde bir saat gir (ör. 19:00)."
     const val OPEN_SYSTEM_SETTINGS = "Android bildirim ayarlarını aç"

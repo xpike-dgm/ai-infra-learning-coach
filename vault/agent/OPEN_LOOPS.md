@@ -84,20 +84,21 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 17A — Görsel polish: VPLX-v0 / D-133 ile tamamlandı; tasarım sistemi uygulandı, Öğren sekmesi öğrenme haritası, ilk açılış çökmesi düzeltildi.
 - [x] 17B — Motion: MOTX-v0 / D-134 ile tamamlandı; amaca göre kısa hareket, kutlama yok, azaltılmış hareket sistem ayarından.
 - [x] 17C — Kullanılabilirlik: USBX-v0 / D-135 ile tamamlandı; çıkış hep görünür, konum olgusal, klavye önerisi yok, geçmiş kelimelerle, hatırlatma ikonu.
-- [ ] 17D — Accessibility **AKTİF** — kullanıcının yeni açık onayı gerekir.
-- [ ] 17C'de seçilmeyenler (yeri kullanıcıyla belirlenecek): gün özetinde koşunun gerçek değişiklikleri; `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları; AI kullanım/maliyet görünürlüğü.
+- [x] 17D — Accessibility: A11X-v0 / D-137 ile tamamlandı; adlar, roller, durumlar, 48dp, başlıklar, alan hataları; emülatörde iki metin boyutunda denetim.
+- [ ] 17E — Kalan UX parçaları **AKTİF** (D-136) — kullanıcının yeni açık onayı gerekir. Girdileri: gün özetinde bir koşunun gerçek değişiklikleri; `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları; AI kullanım/maliyet görünürlüğü; PRE'de sorulacaklar: görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket tercihi.
+- [ ] TalkBack'in sesli çıktısı cihazda → 19 (emülatör imajında TalkBack yok).
 - [x] 17C'nin girdileri (koşu ve bildirim cilası) 17C'de yapıldı; kalan parçalar yukarıdaki satırda — gün özetinde bir koşunun gerçek değişiklikleri, kullanım/maliyet görünürlüğü, `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları.
 - [ ] Kod için içerik işaretlemesi ve düzyazı içindeki satır içi kod → 20I; Progress/Learn yüklenme süresi (~10 sn, emülatör) → 18E.
 - [ ] Ölçme oturumları ve hızlı yol cihazda → 19.
 - [ ] Paketlerde yazılı anlama kontrolleri (hiçbir paket yazmıyor) → 20I.
 - [ ] Koşu, Kopyala düğmeleri ve tutor cihazda → 19.
 - [ ] Koşu (görev çalıştırıcı) cihazda → 19.
-- [ ] Tema ve erişilebilirlik tercihleri → 17D.
+- [ ] Tema, odak halkası ve uygulama içi azaltılmış hareket tercihleri → 17E'nin PRE'sinde sorulacak (17D'de seçilmedi).
 - [ ] Dosya seçicileri ve geri yükleme cihazda → 19.
 - [ ] `topic_state` / `english_profile` projeksiyonlarını yazmak ve konu geçiş geçmişi → 18E.
 - [ ] Planner'ın konu durumunu okuması (`TSM-v0` §13) → 18B.
 - [ ] B2+ uzantı içeriği (yalnız `no_extension_evidence` üretiliyor) → 20.
-- [ ] `technical_english_profile → skill_detail` kenarı (kabul edilmiş değil; profil becerileri metin olarak adlandırıyor) → 17.
+- [ ] `technical_english_profile → skill_detail` kenarı (kabul edilmiş değil; profil becerileri metin olarak adlandırıyor) → 17E.
 - [ ] `TEIP-v0` entegrasyon bağlamı (görev–Skill eşlemesi saklanmıyor) → 18D.
 - [ ] Geçmişin tekrar oynatma maliyeti (Skill'in satırlarında karesel; içteki mastery oynatması da) cihazda ölçülecek → 18E.
 - [ ] Mastery öncesi pencerede kalan bir çelişki, sonraki bir doğrulamayı açanlar arasında sayılabiliyor → 18C.

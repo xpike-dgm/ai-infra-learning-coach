@@ -262,7 +262,8 @@ check("A17A-05_kotlin_recomputes_too", "MaterialColorRoles.textPairs.forEach" in
 chip = body(theme_src, "fun StateChip(")
 check("A17A-06_chip_outlined_not_filled", ".border(BorderStroke(HAIRLINE, color)" in chip and ".background(" not in chip, "StateChip")
 check("A17A-06_chip_has_mark_and_text", "Icon(ToneMark.of(tone).icon(), contentDescription = null" in chip
-      and "text = label" in chip and "stateDescription = label" in chip, "StateChip")
+      # Narrowed at 17D: the label is the chip leaf's spoken name instead of a stateDescription.
+      and "text = label" in chip and ("stateDescription = label" in chip or "clearAndSetSemantics { contentDescription = label }" in chip), "StateChip")
 check("A17A-06_chip_not_clickable", "clickable" not in chip and "onClick" not in chip, "StateChip")
 mark_when = block(visual, "fun of(tone: Tone): ToneMark = when (tone) {")
 marks = dict(re.findall(r"Tone\.(\w+) -> (\w+)", mark_when))

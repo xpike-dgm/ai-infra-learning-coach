@@ -321,14 +321,15 @@ PEM-v0:
 - 17A ✅ VPLX-v0 / D-133
 - 17B ✅ MOTX-v0 / D-134
 - 17C ✅ USBX-v0 / D-135
-- 17D 🟡 active-not-executed
-- 17E–20 ⬜
+- 17D ✅ A11X-v0 / D-137
+- 17E 🟡 active-not-executed (D-136)
+- 18–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `17C — USBX-v0 / D-135`  
-**Aktif:** `17D — Accessibility`  
-**17D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `17D — A11X-v0 / D-137`  
+**Aktif:** `17E — Kalan UX parçaları`  
+**17E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1757,3 +1758,21 @@ USBX-v0:
 ## 114. 17D handoff
 
 17D — Accessibility. 17C ran on the user's explicit approval; 17D needs a fresh PRE and the user's new explicit approval. Inputs: `VDSX-v0` §12 and `UXIA-v0` §17 (accessibility), theme and accessibility preferences (16E's open loop), an in-app reduced-motion preference (17B), TalkBack (never run), the help levels' two wordings, `AssessmentSessionScreen` (unwired; old patterns). Still open from 17C's PRE, place to be decided with the user: the day summary naming a run's real changes, the `skill_detail -> planner_explanation` and `technical_english_profile -> skill_detail` edges, AI usage/cost visibility. Elsewhere: calibration (18), T6 (19).
+
+## 115. D-136 / D-137 / 17D final özeti
+
+Canonical: `docs/ACCESSIBILITY_SPEC.md`.
+Contract/QA: `arch/17d_accessibility/` (contract, the two emulator audit reports, QA report, stale audit).
+Synthesis: `research/17d_accessibility_research.md`.
+Code: `core-presentation` (`SettingsCopy.lengthField`, `SettingsCopy.saveLength`, `ReminderCopy.TIME_LABEL`, `ToolWords`), `app-ui` (`ProfileScreen.kt` — each length named by its day, input errors as the field's own; `TodayScreen.kt`; `StateChip` one leaf; `AssessmentSessionScreen.kt`), `tools/audit_a11y_emulator.py` (the emulator audit, rules R1–R8). Schema v11 unchanged.
+
+A11X-v0:
+- accessibility: every control has a name, a role and its state for a screen reader, no two controls share a spoken name, every target is at least 48dp, no identifier or help code reaches the screen, every surface has a heading, controls are in reading order, a field's error is its own, and the real app is audited through the accessibility tree on an emulator at 100% and 200% text,
+- approval: the user's explicit approval of 2026-10-27; user decisions: the accessibility audit and tests only; the three parts not chosen in 17C go to a new step, 17E (D-136); a visible focus ring, a theme preference and an in-app reduced-motion preference were not chosen and are asked at 17E's PRE,
+- found: the three daily-length fields were all named "dk" and their buttons all "Kaydet"; Today's row to Progress had the tab's name and Today drew its plan explanation twice; the independent review found the reminder error loose, the state chip spoken twice with its heading on an unfocusable node, help codes and tool ids in the unwired assessment interior, and holes in the audit (cut nodes never re-judged, fields named by their value, R7 on one reading, screens assumed reached) — all fixed; isError would paint a mistyped number in the fault colour (17A); TalkBack is not on the emulator image and no APK was downloaded, so spoken output was not heard,
+- Mutation Kotlin 10/10, validator 35/35; independent QA 59/59 PASS,
+- T6 was not run; the audit ran on an emulator (Pixel 7 AVD, API 34).
+
+## 116. 17E handoff
+
+17E — Kalan UX parçaları (D-136). 17D ran on the user's explicit approval; 17E needs a fresh PRE and the user's new explicit approval. Inputs: the day summary naming a run's real changes; the `skill_detail -> planner_explanation` and `technical_english_profile -> skill_detail` edges with their micro text; AI usage/cost visibility. To ask at the PRE: a visible focus ring (the `focus_ring` token is unused), a theme preference in Profile, an in-app reduced-motion preference. Also open: one source for the help levels' two wordings; `AssessmentSessionScreen` (unwired). Elsewhere: calibration (18), TalkBack and T6 (19).

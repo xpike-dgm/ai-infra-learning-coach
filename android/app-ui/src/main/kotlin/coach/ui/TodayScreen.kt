@@ -102,7 +102,8 @@ private val routeLabelsTr: Map<String, String> = mapOf(
     "planner_explanation" to "Bu plan neden böyle?",
     "skill_detail" to "Beceri ayrıntısı",
     "topic_detail" to "Konu ayrıntısı",
-    "progress_overview" to "İlerleme",
+    // 17D: not the tab's own name — a screen reader hears this row and the "İlerleme" tab as two different controls.
+    "progress_overview" to "İlerlemeyi aç",
     "profile_overview" to "Profil ve süre ayarları",
 )
 
@@ -137,7 +138,11 @@ fun TodayScreen(
         view.attention.forEach { AttentionLine(it, onOpen) }
 
         // 5. supporting_navigation — never a precondition for starting work, so it comes last.
-        view.supportingNavigation.forEach { surface -> NavRow(routeLabelsTr.getValue(surface.id), onClick = { onOpen(surface) }) }
+        // 17D: the plan's explanation already sits beside the selected task; a second row with the same name is one
+        // control heard twice, so it is drawn once.
+        val explanationShown = view.primaryActionKind == PrimaryActionKind.SELECTED_NEXT_PLANNED_TASK && view.primaryTask != null
+        view.supportingNavigation.filterNot { explanationShown && it == Surface.PlannerExplanation }
+            .forEach { surface -> NavRow(routeLabelsTr.getValue(surface.id), onClick = { onOpen(surface) }) }
     }
 }
 

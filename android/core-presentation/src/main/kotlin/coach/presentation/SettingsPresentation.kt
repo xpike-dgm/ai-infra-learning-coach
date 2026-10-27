@@ -28,6 +28,10 @@ object SettingsCopy {
     fun todayProfile(label: String, minutes: Int) = "Bugün: $label (${minutes(minutes)})"
     fun todayMinutes(minutes: Int) = "Bugün: ${minutes(minutes)}"
     const val MINUTES_INVALID = "0 ile 1440 arasında tam bir dakika gir."
+    // 17D: each length's field and save button name their own day, so a screen reader can tell three rows apart; the
+    // spoken name contains the visible "Kaydet" (label in name).
+    fun lengthField(label: String) = "$label süresi (dakika)"
+    fun saveLength(label: String) = "$label süresini kaydet"
 
     const val TODAY_ACTION = "Bugünkü süreyi değiştir"
     const val TODAY_DIALOG_TITLE = "Bugün ne kadar zamanın var?"

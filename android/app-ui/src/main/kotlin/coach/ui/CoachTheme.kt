@@ -36,8 +36,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -232,7 +233,8 @@ fun StateChip(
             .border(BorderStroke(HAIRLINE, color), RoundedCornerShape(Spacing.XXS.dp))
             .heightIn(min = Spacing.XL.dp)
             .padding(horizontal = Spacing.XS.dp, vertical = Spacing.XXS.dp)
-            .semantics { stateDescription = label },
+            // 17D: one leaf — the label is spoken once, and a caller's heading or live region is on a focusable node.
+            .clearAndSetSemantics { contentDescription = label },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Spacing.XS.dp),
     ) {
