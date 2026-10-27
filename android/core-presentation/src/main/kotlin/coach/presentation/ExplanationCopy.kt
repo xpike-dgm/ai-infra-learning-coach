@@ -210,3 +210,17 @@ object ExplanationCopy {
     /** Every catalogue code has a sentence; a code outside the catalogue has none to be shown through. */
     fun coversCatalogue(): Boolean = codeTemplates.keys.toList() == ReasonCatalog.all
 }
+
+/**
+ * 17E (`D-138`): the words of `skill_detail -> planner_explanation`. The row's name says what it answers; the surface
+ * says only what the plan's own trace recorded for this Skill, in [ExplanationCopy]'s sentences.
+ */
+object SkillPlanCopy {
+    const val ENTRY = "Bu beceri bugün neden planda ya da neden değil?"
+    const val TITLE = "Bu beceri ve bugünün planı"
+    const val TODAY = "Bugün bu beceri için planlanan"
+    const val NOT_TODAY = "Bu beceri için bugüne alınmayan"
+    const val NOT_MENTIONED =
+        "Bugünün planı bu beceri için bir ihtiyaç kaydetmedi; bugün onun için planlanan ya da bekletilen bir iş yok."
+    const val BACK = "Beceriye dön"
+}

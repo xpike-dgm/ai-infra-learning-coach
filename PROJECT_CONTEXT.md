@@ -260,12 +260,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **17B ✅ Motion — MOTX-v0 / D-134**
 - **17C ✅ Kullanılabilirlik — USBX-v0 / D-135**
 - **17D ✅ Accessibility — A11X-v0 / D-137**
-- **17E 🟡 Kalan UX parçaları — AKTİF, HENÜZ YÜRÜTÜLMEDİ** (D-136)
-- 18–20 ⬜
+- **17E ✅ Kalan UX parçaları — RUXX-v0 / D-138**
+- **AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
+- **18A 🟡 Pilot başlangıcı — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 18B–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 17E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 18A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -872,3 +874,15 @@ Bulunanlar: Profil'in üç günlük süre alanının hepsi 'dk', üç düğmesin
 Onay kullanıcının 2026-10-27 açık onayı ("tamamdır kaldığın yerden devam et"). Kullanıcı kararları: yalnız erişilebilirlik denetimi ve testler; 17C'de seçilmeyen üç parça yeni adım 17E'ye gitti (D-136); görünür odak halkası, tema tercihi ve uygulama içi azaltılmış hareket tercihi seçilmedi ve 17E'nin PRE'sinde sorulacak. Şema değişmedi (v11). Kotlin mutation 10/10, validator mutation 35/35; 59/59 QA PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/ACCESSIBILITY_SPEC.md` / D-137. Yeni adım: `17E — Kalan UX parçaları` / D-136.
+
+## 12.57 17E Kalan UX parçaları — RUXX-v0 / D-138
+
+Gün özeti artık o gün neyin değiştiğini söylüyor, bir beceriden bugünün planına ve İngilizce profilinden bir beceriye gidiliyor, AI kullanımı uydurulmadan görülüyor ve uygulama klavyeyle, seçilen temayla ve hareket kapalıyken kullanılabiliyor. Ana invariant: gün özeti yalnız motorların o gün gerçekten değiştirdiğini söylüyor — her değişiklik o günün kanıtından, öğrenme geçmişinin yeniden oynattığı gibi, 13E'nin cümlesiyle ve becerisinin adıyla — ve değişiklikler okunamadıysa 'değişiklik olmadı' değil 'okunamadı' diyor; bir becerinin bugünkü planı, planlayıcının kendi izinin o beceriye daraltılmışı, hiçbir şey eklenmeden; İngilizce profilindeki her beceri tek beceri ayrıntısını açıyor; cihazdan çıkan her AI çağrısı bir kez, sağlayıcının bildirdiği token'larla ve taşıdığı hiçbir şey saklanmadan sayılıyor ve fiyat uydurulmuyor; tema ve 'Hareketi azalt' yalnız görünüşü ve hareketi değiştiriyor, anahtar Android'in ayarına yalnız ekler; klavye odağı her zaman görünür.
+
+Bulunanlar: gün özeti 11E'den beri hiçbir değişikliği adlandırmıyordu ve 16F'den beri bir koşunun sonunda okunan günü atıyordu, bu yüzden uygulama yeniden açılana kadar 'Bugün kayıt yok' diyordu; yeni bir öğrencinin ilk yanlış cevabında koşunun sonu (13E) 'değişmedi', gün özeti (16B'nin yeniden oynatması) 'bir zorluk sorusu açıldı' diyor — açık döngü olarak kaydedildi; koyu tema açık sistemde durum çubuğunu koyu üstünde koyu bırakıyordu; ilk odak halkası satırın metnine değiyordu; token sütun adı yedekteki kimlik bilgisi taramasına takıldı (input_usage/output_usage); bağımsız inceleme iki engelleyici sorun buldu — gezinme sekmelerinde odak halkası yoktu ve bağlantısı hiç açılmamış (çevrimdışı) çağrılar sayılıyordu — ikisi de düzeltildi; 17D'nin denetimi beceri ayrıntısına hiç girmiyordu, artık giriyor.
+
+Onay kullanıcının 2026-10-27 açık onayı ("17E ye başla"). Kullanıcı kararları: 17C'den kalan üç parçanın hepsi (gün özetinde gerçek değişiklikler, iki gezinme kenarı, AI kullanım görünürlüğü) ve 17D'den kalan üç tercihin hepsi (görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket); AI kullanımı çağrı + sağlayıcının token'ları, para tutarı yok; UXIA-v0'a iki kenar eklendi. Şema v12. Kotlin mutation 22/22, validator mutation 36/36; 88/88 QA PASS. T6 ve canlı sağlayıcı çağrısı çalıştırılmadı.
+
+**AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
+
+Canonical: `docs/REMAINING_UX_SPEC.md` / D-138. Sıradaki: `18A — Pilot başlangıcı`.

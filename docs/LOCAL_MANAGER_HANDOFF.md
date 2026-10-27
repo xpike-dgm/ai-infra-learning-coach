@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113 / 15C ✅ CFNX-v0 / D-114 / 15D ✅ MMFX-v0 / D-116 / 15E ✅ LGSX-v0 / D-118 / 15F ✅ EAAX-v0 / D-119 / 15G ✅ ACNX-v0 / D-120 / 15H ✅ CQAX-v0 / D-121 / 16A ✅ SKAX-v0 / D-122 / 16B ✅ LHRX-v0 / D-123 / 16C ✅ PWPX-v0 / D-124 / 16D ✅ STGX-v0 / D-126 / 16E ✅ RMDX-v0 / D-127 / 16F ✅ E2EX-v0 / D-128 / 16G ✅ HLPX-v0 / D-130 / 16H ✅ ASRX-v0 / D-132`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13, AŞAMA 14 ve AŞAMA 15'in kapandığını, AŞAMA 16'nın da kapandığını, `A11X-v0 / D-137` ile Accessibility adımının kapandığını ve aktif adımın `17E active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113 / 15C ✅ CFNX-v0 / D-114 / 15D ✅ MMFX-v0 / D-116 / 15E ✅ LGSX-v0 / D-118 / 15F ✅ EAAX-v0 / D-119 / 15G ✅ ACNX-v0 / D-120 / 15H ✅ CQAX-v0 / D-121 / 16A ✅ SKAX-v0 / D-122 / 16B ✅ LHRX-v0 / D-123 / 16C ✅ PWPX-v0 / D-124 / 16D ✅ STGX-v0 / D-126 / 16E ✅ RMDX-v0 / D-127 / 16F ✅ E2EX-v0 / D-128 / 16G ✅ HLPX-v0 / D-130 / 16H ✅ ASRX-v0 / D-132`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13, AŞAMA 14 ve AŞAMA 15'in kapandığını, AŞAMA 16'nın da kapandığını, `RUXX-v0 / D-138` ile Kalan UX parçaları adımının ve AŞAMA 17'nin kapandığını ve aktif adımın `18A active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1175,14 +1175,16 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 17B ✅ MOTX-v0 / D-134
 - AŞAMA 17C ✅ USBX-v0 / D-135
 - AŞAMA 17D ✅ A11X-v0 / D-137
-- AŞAMA 17E 🟡 active-not-executed (D-136)
-- 18–20 ⬜
+- AŞAMA 17E ✅ RUXX-v0 / D-138
+- AŞAMA 17 ✅ TAMAMLANDI
+- AŞAMA 18A 🟡 active-not-executed
+- 18B–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `17D — Accessibility`  
-**Final:** `A11X-v0 — accessibility: every control has a name, a role and its state for a screen reader, no two controls share a spoken name, every target is at least 48dp, no identifier or help code reaches the screen, every surface has a heading, controls are in reading order, a field's error is its own, and the real app is audited through the accessibility tree on an emulator at 100% and 200% text` / D-137  
-**Canonical:** `docs/ACCESSIBILITY_SPEC.md` + `arch/17d_accessibility/`
+**Son tamamlanan numaralı adım:** `17E — Kalan UX parçaları`  
+**Final:** `RUXX-v0 — the day summary says what the engines changed that day; skill_detail -> planner_explanation and technical_english_profile -> skill_detail; AI calls counted with the provider's tokens and no money; a visible focus ring; a theme choice; an in-app reduced-motion switch that only adds` / D-138  
+**Canonical:** `docs/REMAINING_UX_SPEC.md` + `arch/17e_remaining_ux/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1255,17 +1257,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 17B:** ✅ TAMAMLANDI
 **AŞAMA 17C:** ✅ TAMAMLANDI
 **AŞAMA 17D:** ✅ TAMAMLANDI
-**Aktif adım:** `17E — Kalan UX parçaları`  
+**AŞAMA 17E:** ✅ TAMAMLANDI — AŞAMA 17 TAMAMLANDI
+**Aktif adım:** `18A — Pilot başlangıcı`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-17E için:
+18A için:
 
 ```text
-fresh 17E PRE-STEP GitHub refresh
+fresh 18A PRE-STEP GitHub refresh
 → user explicit approval verification (D-117 ended with 15F)
-→ 17E execution
+→ 18A execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1873,8 +1876,10 @@ AŞAMA 16 ✅
 17B ✅ MOTX-v0 / D-134
 17C ✅ USBX-v0 / D-135
 17D ✅ A11X-v0 / D-137
-17E 🟡 active-not-executed (D-136)
-18–20 ⬜
+17E ✅ RUXX-v0 / D-138
+AŞAMA 17 ✅
+18A 🟡 active-not-executed
+18B–20 ⬜
 ```
 
 10D final:
@@ -2071,9 +2076,9 @@ AŞAMA 16 ✅
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `17E — Kalan UX parçaları`.
+**Sıradaki gerçek numbered work:** `18A — Pilot başlangıcı`.
 
-**17E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**18A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2123,8 +2128,8 @@ AŞAMA 16 ✅
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `17E — Kalan UX parçaları`.  
-**17E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `18A — Pilot başlangıcı`.  
+**18A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2636,4 +2641,17 @@ D-136: AŞAMA 17'nin sonuna `17E — Kalan UX parçaları` eklendi (kullanıcı 
 
 **AŞAMA 17D ✅ A11X-v0 / D-137.** Kotlin mutation 10/10, validator mutation 35/35; 59/59 QA PASS. T6 çalıştırılmadı.
 
-**Aktif adım:** `17E — Kalan UX parçaları` — henüz yürütülmedi; fresh PRE + kullanıcının yeni açık onayı zorunlu (D-117'nin sürekli onayı 15F ile bitti).
+---
+## 17E completion addendum — D-138
+
+17E `RUXX-v0 — the day summary says what the engines changed that day; skill_detail -> planner_explanation and technical_english_profile -> skill_detail; AI calls counted with the provider's tokens and no money; a visible focus ring; a theme choice; an in-app reduced-motion switch that only adds`.
+
+Ana invariant: gün özeti yalnız motorların o gün gerçekten değiştirdiğini söylüyor — her değişiklik o günün kanıtından, öğrenme geçmişinin yeniden oynattığı gibi, 13E'nin cümlesiyle ve becerisinin adıyla — ve değişiklikler okunamadıysa 'değişiklik olmadı' değil 'okunamadı' diyor; bir becerinin bugünkü planı, planlayıcının kendi izinin o beceriye daraltılmışı, hiçbir şey eklenmeden; İngilizce profilindeki her beceri tek beceri ayrıntısını açıyor; cihazdan çıkan her AI çağrısı bir kez, sağlayıcının bildirdiği token'larla ve taşıdığı hiçbir şey saklanmadan sayılıyor ve fiyat uydurulmuyor; tema ve 'Hareketi azalt' yalnız görünüşü ve hareketi değiştiriyor, anahtar Android'in ayarına yalnız ekler; klavye odağı her zaman görünür.
+
+Bulunanlar: gün özeti 11E'den beri hiçbir değişikliği adlandırmıyordu ve 16F'den beri bir koşunun sonunda okunan günü atıyordu, bu yüzden uygulama yeniden açılana kadar 'Bugün kayıt yok' diyordu; yeni bir öğrencinin ilk yanlış cevabında koşunun sonu (13E) 'değişmedi', gün özeti (16B'nin yeniden oynatması) 'bir zorluk sorusu açıldı' diyor — açık döngü olarak kaydedildi; koyu tema açık sistemde durum çubuğunu koyu üstünde koyu bırakıyordu; ilk odak halkası satırın metnine değiyordu; token sütun adı yedekteki kimlik bilgisi taramasına takıldı (input_usage/output_usage); bağımsız inceleme iki engelleyici sorun buldu — gezinme sekmelerinde odak halkası yoktu ve bağlantısı hiç açılmamış (çevrimdışı) çağrılar sayılıyordu — ikisi de düzeltildi; 17D'nin denetimi beceri ayrıntısına hiç girmiyordu, artık giriyor.
+
+**AŞAMA 17E ✅ RUXX-v0 / D-138.** Şema v12. Kotlin mutation 22/22, validator mutation 36/36; 88/88 QA PASS. T6 çalıştırılmadı.
+
+**AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
+
+**Aktif adım:** `18A — Pilot başlangıcı` — henüz yürütülmedi; fresh PRE + kullanıcının yeni açık onayı zorunlu (D-117'nin sürekli onayı 15F ile bitti).

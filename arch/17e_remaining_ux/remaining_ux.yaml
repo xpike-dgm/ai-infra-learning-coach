@@ -1,0 +1,161 @@
+model: RUXX-v0
+stage_step: 17E
+status: accepted_17e
+decision: D-138
+added_by: D-136
+implements: [EODX-v0, LHRX-v0, PCRX-v0, RSNX-v0, UXIA-v0, PWPX-v0, PRVX-v0, AIAX-v0, VDSX-v0, WFPX-v0, MOTX-v0, A11X-v0]
+boundaries: MSBX-v0
+persistence: schema_v12_display_preference_and_ai_call_record
+purpose: the_day_summary_says_what_the_engines_changed_that_day_two_navigation_edges_ai_calls_counted_with_the_providers_tokens_and_no_money_a_visible_focus_ring_a_theme_choice_and_an_in_app_reduced_motion_switch
+
+question: Gün özeti o gün gerçekten neyin değiştiğini söylüyor mu; bir beceriden bugünün planına ve İngilizce profilinden bir beceriye gidilebiliyor mu; AI'ın ne kadar kullanıldığı uydurulmadan görülebiliyor mu; ve uygulama klavyeyle, seçilen temayla ve hareket kapalıyken kullanılabiliyor mu?
+
+primary_invariant: >-
+  The day summary says only what an engine changed that day — each change replayed from the evidence recorded on that
+  day exactly as the learning history replays it, in 13E's sentence, named by its Skill — and a day whose changes could
+  not be read says so instead of "nothing changed". A Skill's plan is the planner's own trace narrowed to that Skill,
+  and a plan that recorded nothing about it says exactly that. Every AI call that left the device is counted once, with
+  the tokens the provider's reply reported and nothing it carried; there is no price, cost or budget. The theme and the
+  motion switch change how the app looks and moves, never what anyone has learned; the motion switch only ever adds to
+  Android's own setting. Keyboard focus is always visible.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-27
+  scope: all three parts left from 17C (the day summary's real changes, the two navigation edges, AI usage visibility) and all three preferences left from 17D (a visible focus ring, a theme choice, an in-app reduced-motion switch)
+  ai_usage: calls and the provider's input and output tokens per use, this month and in all; no money amount (the reply carries tokens, not a price, and no price is invented)
+
+amendments:
+  - contract: UXIA-v0 (ux/8a_information_architecture/ia.yaml)
+    what: two contextual edges added — skill_detail -> planner_explanation and technical_english_profile -> skill_detail — and the two objects' contextual lists name them; nothing else changed
+    by: user decision 2026-10-27 (D-136, D-138)
+
+schema_migration: {from: 11, to: 12, owner: 17E, tables: [display_preference, ai_call_record], truth_altered: false, decision: D-138}
+
+day_summary:
+  source: LearningHistoryQuery.day — the history's replay (16B), run only for the Skills with evidence on that study day, each from its first row
+  wording: 13E's state sentences (ProgramChangeCopy.stateTemplates), prefixed with the Skill's name
+  unread: named as an unread kind (state_changes), never reported as nothing changed
+  record_changes_written_by_day_close_facts: false
+  refreshed_after_a_run: true
+
+edges:
+  skill_detail_to_planner_explanation:
+    entry: '"Bu beceri bugün neden planda ya da neden değil?" row on skill_detail'
+    surface: the shared planner_explanation, narrowed to the needs that target the Skill and the tasks planned for it (PlannerExplanationPresentation.forSkill); plan-wide reasons are not shown; nothing is added and the planner is not asked again
+    nothing_recorded: '"Bugünün planı bu beceri için bir ihtiyaç kaydetmedi; bugün onun için planlanan ya da bekletilen bir iş yok."'
+    back: '"Beceriye dön"'
+  technical_english_profile_to_skill_detail:
+    entry: every Skill of the profile's groups is a row that opens the one shared skill_detail
+
+ai_usage:
+  counted_when: a call left the device (at least one request sent); no key or no budget is not a call
+  counted_once_per_call: true
+  fields: [use, model, outcome, attempts, input tokens as reported, output tokens as reported, study day]
+  unreported_tokens: unknown (null), never zero
+  content_stored: false
+  money: false
+  uses: [tutor_help, open_response_evaluation, code_evaluation, connection_check]
+  outcomes: [answered, refused, invalid_response, timed_out, transport_error, key_rejected]
+  written_on: the store thread, after the job that made the call, so a count never lands inside another action's transaction; a count that cannot be written is lost, never a failure
+  shown_on: Profile, under the AI settings — this month and all records, per use
+
+appearance:
+  theme: [system, light, dark]
+  default_theme: system
+  themes_use_the_measured_tokens: true
+  reduced_motion: ReducedMotion.of(scale, inApp) = inApp || scale <= 0 — the switch only ever adds to Android's setting
+  system_bars_follow_app_theme: true
+  stored: display_preference, appended, the newest row is the setting; a backup carries it
+  before_the_store_is_read: the system theme
+
+focus_ring:
+  token: focus_ring (measured >= 3:1 on surface and surface_variant in both themes)
+  where: every target that keeps the 48dp floor (minimumTouchTarget), before its clickable in the chain
+  drawn: a 2dp ring 2dp outside the target (DesignTokens.FOCUS_RING_WIDTH_DP, FOCUS_RING_OUTSET_DP; WCAG 2.2 2.4.13), only while it holds focus; touch does not move focus to a button, so a tap draws none
+  animated: false
+
+assistant_defaults:
+  - the model id RUXX-v0
+  - AI uses and outcomes are AIAX-v0's taxonomy; the connection check is its own use, though it travels the tutor's model
+  - token columns are input_usage and output_usage — no column name may read like a credential (BackupTest)
+  - the onCall parameter sits before the clock in the client's constructor, so a trailing lambda is still the clock
+  - grouping digits by three with a dot, without consulting a locale
+  - the motion note says which setting is in force (Android's or the learner's)
+
+found:
+  - id: day_summary_never_refreshed_after_a_run
+    what: since 16F the end of a run read the day's facts and dropped them, so Today's day summary stayed as it was until the app was opened again; seen on the emulator after a run
+    resolution: the run's end hands the day's record back to Today (onDayFacts)
+  - id: first_run_report_and_day_summary_disagree
+    what: on a new learner's first wrong answer the run's end (13E) said nothing changed, while the day summary (16B's replay) said a question about a difficulty opened — 13E never counts a state no engine had written as a "before", the history replays from no evidence
+    resolution: recorded, not changed — the day summary follows the history the user chose (16B, D-123); which of the two a learner should see is left open (open loop)
+  - id: system_bars_followed_the_system
+    what: with the dark theme chosen on a light system, the status bar's icons stayed dark on dark; enableEdgeToEdge takes the bars' style from the system
+    resolution: the bars' style is set from the app's own theme whenever it changes
+  - id: ring_on_the_text
+    what: the first ring was a border on the target's edge, so a row's text touched it
+    resolution: the ring is drawn 2dp outside the target
+  - id: token_column_looks_like_a_credential
+    what: BackupTest's credential scan caught input_tokens / output_tokens ("token")
+    resolution: renamed input_usage / output_usage; the scan was not loosened
+  - id: trailing_lambda_moved
+    what: adding onCall after the clock made every existing trailing-lambda clock in the tests bind to onCall; OpenAiResponsesTest caught it
+    resolution: onCall sits before the clock
+  - id: review_tabs_had_no_ring
+    what: the independent review found the four shell destinations drew no focus ring — the ring came only through the 48dp modifier, which the navigation items do not use — and the validator only checked that the modifier calls the ring
+    resolution: each destination carries focusRing(); the validator checks the tabs (A17E-06_tabs_carry_the_ring); seen on the emulator
+  - id: review_unsent_calls_counted
+    what: the independent review found that an attempt whose connection never opened (no network, no host, a connect timeout) was counted as a call, though Profile says only calls that left the device are counted
+    resolution: the transport connects apart from sending and throws NotSentException when the connection never opened; only requests really sent are attempts, and a call with none is not counted; the outcome a learner sees is unchanged
+  - id: review_non_blocking_taken
+    what: the review's suggestions — the theme read after Today on a cold start (a flash of the system theme), Today waiting for the day's replay, two quick setting changes losing the first, "Açık" both the light theme and the motion note, the explanation focus not cleared from Today, a task's Skill read by another rule than the waiting needs', an unmapped task class failing only at call time, the light bar's icons on the oldest API, the UXIA spec text not amended, "cevap döndü" for a reply the app may still reject
+    resolution: the theme is read first; Today is shown before the day's record; the change is shown at once; "Açık tema"/"Koyu tema" and notes that say what happens; cleared; a task belongs to the Skill its need targets; a test maps every task class; the platform's dark scrim; §9.2 amended; "yanıt geldi"
+  - id: audit_offset_from_a_repeated_name
+    what: the re-run audit failed once at 100% on the English profile (an R7 duplicate and two cut nodes never judged) with offsets [0, 934, 493] — a reading scrolled backwards; the profile names a Skill in a band's missing list and again as its row, so a text unique within each reading was two different nodes across them and its delta won
+    resolution: a swipe down moves content up by at most one viewport, so only such deltas are counted; both text sizes were audited again with the fixed tool
+  - id: disk_full_and_flinging_swipes
+    what: disk C was full (under 1 GB free), so the emulator first ran unstable (a System UI not responding dialog, a run that reached 7 screens) and then would not start; on a new emulator whose data is on the learner's drive D (their choice), the audit's 400 ms swipe flung the content almost a whole viewport, so at 200% text two consecutive readings could share no text and two screens were rightly not counted as read whole
+    resolution: the emulator's data lives on D (the old AVD on C untouched, nothing deleted); the swipe takes 1500 ms; both text sizes were audited again
+  - id: audit_did_not_reach_skill_detail
+    what: 17D's audit never opened skill_detail
+    resolution: the audit opens it from the English profile and the Skill's plan from it (skill_detail, skill_plan_explanation)
+
+moved_on:
+  - which "what changed" a learner sees after a first run — the run's 13E report or the history's replay (open loop)
+  - the first live AI call and its counted tokens, on the device (T6, 19)
+  - TalkBack and the focus ring heard and seen with a real keyboard or switch on the device (19); on the right-most tab the ring is cut by the screen's edge
+  - the day's record replays each Skill from its first row; its cost grows with a Skill's history (18E)
+  - one source for the help levels' two wordings; AssessmentSessionScreen, which no screen calls (still open)
+
+verification:
+  kotlin_tests: [RemainingUxTest (10), AiCallCountingTest (8), DisplayAndUsageStorageTest (7), LearningHistoryTest (+3)]
+  narrowed_tests: [TaskLinkStorageTest]
+  validator: tools/validate_remaining_ux.py
+  emulator: Pixel 7 AVD API 34 (its data on drive D; not T6) — Profile's appearance and AI usage, the dark theme and its bars, the focus ring under Tab (rows and tabs), English profile -> Skill -> the Skill's plan, a run's change in the day summary; 17D's audit extended to skill_detail and skill_plan_explanation at 100% and 200% text
+  independent_review: a separate agent found 2 blocking problems (no focus ring on the shell's tabs; calls whose connection never opened were counted) and 11 suggestions; both blocking problems and 9 suggestions were fixed, the audits were run again on the fixed build
+  t6_run: false
+  live_provider_call: false
+
+next_step: 18A — Pilot başlangıcı
+
+mutation_results_kotlin:
+  scope: one change per mutant — the day's changes from any day, unread changes not named, a change not in 13E's sentence; a Skill's plan with other Skills' tasks, needs or plan-wide reasons; the English edge dropped; reduced motion that does not add (two); digits grouped wrong, unreported tokens shown, the month not filtered, the motion note not naming Android; a negative token count accepted, a failing listener failing the call, input and output swapped, attempts not counted, the connection check counted as help, a rejected key not named; an unreported count written as zero; the day's replay from every day; the day's changes dropped — each against its own module's tests
+  total: 22
+  detected: 22
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: the hardened runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a comment in EndOfDay.kt
+  negative_control_result: survived_as_expected
+  earlier_runs: "the first run detected 19/22: K15 and K17 pointed at code the review fix had renamed (attempt -> sent), and K20 (an unreported input count written as zero) survived because the test's call reported its input; the test now records a call that reported nothing, and the whole set was run again"
+  final_run_is_a_single_clean_run: true
+
+mutation_results_validator:
+  scope: one change per mutant to what the validator exists to catch — a day change not in 13E's sentence, from another day, unread changes not named or said as nothing changed, the day not refreshed after a run, the replay from every day, the day's facts without the replay; an edge dropped, a reverse edge, the IA contract without the edge, the edge not asked of the graph, a Skill's plan not narrowed or with plan-wide reasons, nothing-recorded unsaid; a content column, a negative token count, a call counted when nothing left (twice), an end not counted, a zero for an unreported count (twice), a money field, a currency on screen, the count written on another thread; motion that does not add, bars from the system, the theme choice not a group; the ring off the targets, on the target's edge, while not focused, unseen by NavRow, off the tabs; a table not guarded; T6 claimed; a failed or partial audit report
+  total: 36
+  detected: 36
+  detection: the validator fails and names the expected check (only the living-record checks A17E-11 may fail in the baseline before POST)
+  negative_controls: [V00 changes a comment in EndOfDay.kt, V01 changes a comment in ProfileScreen.kt]
+  negative_control_result: survived_as_expected
+  earlier_runs: "the first full run detected 34/34; the two checks the review added (the tabs' ring, a request that never left) got mutants and the whole set was run again"
+  final_run_is_a_single_clean_run: true

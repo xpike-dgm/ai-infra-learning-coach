@@ -31,6 +31,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.composed
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -178,11 +188,18 @@ private fun typography(): Typography {
 @Composable
 fun CoachTheme(
     dark: Boolean = isSystemInDarkTheme(),
+    // 17E: the learner's own "reduce motion" (`DisplayPreference`); it adds to the platform's, never overrides it.
+    reduceMotionInApp: Boolean = false,
     content: @Composable () -> Unit,
 ) {
     val theme = if (dark) Theme.DARK else Theme.LIGHT
     // 17B: reduced motion follows the platform (`ReducedMotion`); every motion in app-ui reads it.
-    CompositionLocalProvider(LocalToneColors provides toneColors(theme), LocalReducedMotion provides platformReducedMotion()) {
+    CompositionLocalProvider(
+        LocalToneColors provides toneColors(theme),
+        LocalReducedMotion provides platformReducedMotion(reduceMotionInApp),
+        // 17E: the measured `focus_ring` token, 3:1 against both surfaces (`WFPX-v0`), for the keyboard focus ring.
+        LocalFocusRing provides tokenColor(theme, "focus_ring"),
+    ) {
         MaterialTheme(colorScheme = colorScheme(theme), typography = typography()) {
             // 17A: every screen sits on the measured surface. Before 17A a focused flow had no surface of its own and
             // drew dark text on the window's default dark background.
@@ -252,9 +269,48 @@ fun StateChip(
  * Every interactive target keeps the accepted floor. `VDSX-v0` adopts the stricter platform rule
  * over WCAG's 24px, and `WFPX-v0` keeps the focused-flow exit at the full target even when space
  * is tight, so this is a minimum rather than a suggestion.
+ *
+ * 17E: every target also draws the focus ring ([focusRing]), so whatever keeps the 48dp floor shows where keyboard
+ * focus is. It must come before the target's own clickable in the chain, where it can see that target's focus.
  */
 fun Modifier.minimumTouchTarget(): Modifier =
-    this.sizeIn(
+    this.focusRing().sizeIn(
         minWidth = DesignTokens.MINIMUM_TOUCH_TARGET_DP.dp,
         minHeight = DesignTokens.MINIMUM_TOUCH_TARGET_DP.dp,
     )
+
+/** The `focus_ring` colour of the theme in use (17E). */
+val LocalFocusRing = staticCompositionLocalOf { Color.Unspecified }
+
+/** The ring's width: wider than a chip's hairline, so focus never reads as a state chip's border. */
+val FOCUS_RING_WIDTH = DesignTokens.FOCUS_RING_WIDTH_DP.dp
+
+/**
+ * A visible focus ring (17E, `D-138`; WCAG 2.2 2.4.7): while the target after it in the chain holds focus — moved there
+ * by a keyboard, a D-pad or a switch — a ring in the measured `focus_ring` colour is drawn around it, just outside the
+ * target so it never covers the target's own text. Touch does not move focus to a button, so a tap draws no ring. The
+ * ring is the only change: no colour, size or layout moves, and nothing animates.
+ */
+fun Modifier.focusRing(): Modifier = composed {
+    var focused by remember { mutableStateOf(false) }
+    val ring = LocalFocusRing.current
+    this
+        .onFocusChanged { focused = it.hasFocus }
+        .drawWithContent {
+            drawContent()
+            if (focused && ring != Color.Unspecified) {
+                val width = FOCUS_RING_WIDTH.toPx()
+                val outset = FOCUS_RING_OUTSET.toPx() + width / 2
+                drawRoundRect(
+                    color = ring,
+                    topLeft = Offset(-outset, -outset),
+                    size = Size(size.width + 2 * outset, size.height + 2 * outset),
+                    cornerRadius = CornerRadius(Spacing.XS.dp.toPx() + outset),
+                    style = Stroke(width),
+                )
+            }
+        }
+}
+
+/** How far outside its target the ring is drawn; within the screen's side gutter, so it is never cut. */
+val FOCUS_RING_OUTSET = DesignTokens.FOCUS_RING_OUTSET_DP.dp

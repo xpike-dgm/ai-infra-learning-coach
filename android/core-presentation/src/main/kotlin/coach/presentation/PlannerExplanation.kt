@@ -123,6 +123,16 @@ data class PlannerExplanationView(
             notToday.flatMap { listOfNotNull(it.need, it.whyNot) }
 }
 
+/**
+ * 17E (`D-138`): `skill_detail -> planner_explanation` — today's plan as it concerns one Skill. It is the same projection
+ * of the same trace, narrowed to the needs whose target is this Skill and the tasks planned for it; nothing is added and
+ * the planner is not asked again. A plan that recorded nothing about the Skill says exactly that ([notMentioned]).
+ */
+data class SkillPlanView(val skill: SkillMention, val explanation: PlannerExplanationView) {
+    val notMentioned: Boolean
+        get() = explanation.state == ExplanationState.EXPLAINED && explanation.today.isEmpty() && explanation.notToday.isEmpty()
+}
+
 object PlannerExplanationPresentation {
 
     // `PDT-v0` §8.5: the band itself is rank bookkeeping. The user-facing reason is the decisive
@@ -169,15 +179,28 @@ object PlannerExplanationPresentation {
         is PlannerExplanationFacts.Readable -> explain(facts.trace, facts.skillNames)
     }
 
+    /** 17E: the plan as it concerns [skill] — only its own needs and tasks, explained exactly as on the whole plan. */
+    fun forSkill(facts: PlannerExplanationFacts, skill: VersionedRef, name: String?): SkillPlanView {
+        val mention = SkillMention(skill, (facts as? PlannerExplanationFacts.Readable)?.skillNames?.get(skill) ?: name)
+        val view = when (facts) {
+            is PlannerExplanationFacts.Readable -> explain(facts.trace, facts.skillNames, only = skill)
+            else -> of(facts)
+        }
+        return SkillPlanView(mention, view)
+    }
+
     private fun empty(state: ExplanationState) = PlannerExplanationView(state, emptyList(), emptyList(), emptyList())
 
-    private fun explain(trace: PlanTrace, names: Map<VersionedRef, String>): PlannerExplanationView {
+    private fun explain(trace: PlanTrace, names: Map<VersionedRef, String>, only: VersionedRef? = null): PlannerExplanationView {
         val recorded = trace.recordedReasonCodes()
         fun mention(ref: VersionedRef) = SkillMention(ref, names[ref])
         fun code(code: String, skills: List<VersionedRef> = emptyList()) = Statement.ofCode(code, recorded, skills.map(::mention))
         val needs = trace.needs.associateBy { it.needKey }
 
-        val today = trace.selected.sortedBy { it.position }.map { entry ->
+        // 17E: narrowed to one Skill, only the tasks planned for it and the needs that target it are explained.
+        // Review (17E): a task belongs to the Skill when its need targets it, the same rule the waiting needs below use.
+        val today = trace.selected.sortedBy { it.position }
+            .filter { only == null || it.primarySkill == only || needs[it.needKey]?.targetSkills?.contains(only) == true }.map { entry ->
             if (entry.preserved) {
                 return@map TaskExplanation(entry.position, entry.title, mention(entry.primarySkill), kept = true,
                     why = Statement.ofFact(TraceFact.KEPT_FROM_EARLIER_VERSION), supporting = emptyList())
@@ -197,7 +220,7 @@ object PlannerExplanationPresentation {
                 why = needStatement(need, recorded, ::mention), supporting = supporting)
         }
 
-        val notToday = trace.needs.filter { it.disposition !in SERVED }.map { need ->
+        val notToday = trace.needs.filter { it.disposition !in SERVED && (only == null || only in it.targetSkills) }.map { need ->
             val (whyNot, reconsider) = whyNot(trace, need, recorded, ::mention)
             NotTodayExplanation(
                 needKeys = listOf(need.needKey),
@@ -208,7 +231,7 @@ object PlannerExplanationPresentation {
             )
         }.let { grouped(it, recorded) }
 
-        val plan = buildList {
+        val plan = if (only != null) emptyList() else buildList {
             trace.replan?.let { replan ->
                 add(replan.trigger.reasonCode?.let { code(it) } ?: Statement.ofFact(TraceFact.PLAN_REPLACED))
                 if (trace.invariantChecks["day_within_hard_budget"] == false) add(Statement.ofFact(TraceFact.DAY_OVER_BUDGET_AFTER_KEEPING))

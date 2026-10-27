@@ -155,7 +155,9 @@ loose_targets = [f"{n}:{src[:m.start()].count(chr(10)) + 1}" for n, src in ui_al
                  for m in re.finditer(r"\.(?:clickable|selectable|toggleable)\(", src)
                  if "minimumTouchTarget()" not in src[max(0, m.start() - 160):m.end() + 200]]
 check("A17D-05_hand_made_targets_48dp", not loose_targets, str(loose_targets))
-check("A17D-05_navrow_48dp_and_role", re.search(r"\.clickable\([^)]*role = Role\.Button[^)]*\)\s*\n\s*\.minimumTouchTarget\(\)", components) is not None, "NavRow")
+# Narrowed at 17E (`RUXX-v0` / `D-138`): the 48dp target (which now draws the focus ring) comes before the clickable, so the
+# ring sees the row's focus; the floor and the role are what this checks.
+check("A17D-05_navrow_48dp_and_role", re.search(r"\.minimumTouchTarget\(\)[\s\S]{0,160}?\.clickable\([^)]*role = Role\.Button", components) is not None, "NavRow")
 check("A17D-05_floor_is_48", "MINIMUM_TOUCH_TARGET_DP" in theme and re.search(r"MINIMUM_TOUCH_TARGET_DP\s*=\s*48\b", read(ANDROID / "core-presentation/src/main/kotlin/coach/presentation/DesignTokens.kt")) is not None, "48dp")
 chip = theme[theme.find("fun StateChip("):theme.find("fun Modifier.minimumTouchTarget")]
 # One leaf: the label is spoken once, and a caller's heading or live region lands on a node a screen reader can focus.

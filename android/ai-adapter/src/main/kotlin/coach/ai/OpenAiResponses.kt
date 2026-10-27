@@ -1,5 +1,8 @@
 package coach.ai
 
+import coach.model.AiCall
+import coach.model.AiCallOutcome
+import coach.model.AiCallUse
 import coach.model.PendingReason
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -20,44 +23,105 @@ import java.net.SocketTimeoutException
  * - **One end-to-end budget** (§7.1): every attempt draws on it; a timeout ends the call as `timed_out`; only a network
  *   failure, a 408, a 429 or a 5xx is tried again, and only while attempts and budget remain. A refusal, an invalid
  *   reply or a rejected key is never retried. Nothing is retried later in the background.
+ * - **Every call that left the device is counted** (17E, `D-138`): once, when it ends, through [onCall] — what it was for,
+ *   the model, how it ended, its attempts and the tokens the provider's reply reported. Nothing it carried is handed on;
+ *   a call that never left the device (no key, no budget) is not one.
  */
 class OpenAiResponses(
     private val config: ProviderConfig,
     private val keys: ApiKeySource,
     private val transport: HttpTransport = UrlConnectionTransport(),
+    // 17E: told of every call that left the device, once, when it ends. It must not throw back into the call. Before
+    // the clock, so a trailing lambda is still the clock.
+    private val onCall: (AiCall) -> Unit = {},
     private val monotonicMillis: () -> Long = { System.nanoTime() / 1_000_000 },
 ) {
-    fun call(taskClass: TaskClass, instructions: String, schemaName: String, schema: String, message: String): ProviderOutcome {
+    fun call(
+        taskClass: TaskClass,
+        instructions: String,
+        schemaName: String,
+        schema: String,
+        message: String,
+        use: AiCallUse = AiCallUse.of(taskClass.id) ?: error("no use for ${taskClass.id}"),
+    ): ProviderOutcome {
         val key = keys.current()?.takeIf { it.isNotBlank() } ?: return ProviderOutcome.NotDelivered(PendingReason.UNAVAILABLE)
         val model = config.model(taskClass)
         val body = Json.write(requestBody(model, instructions, schemaName, schema, message))
         val headers = mapOf("Authorization" to "Bearer $key", "Content-Type" to "application/json")
         val started = monotonicMillis()
         var attempt = 0
+        // 17E: requests that actually left the device; an attempt whose connection never opened sent nothing.
+        var sent = 0
+        var tokens: Pair<Long?, Long?> = null to null
+        var answeredBy = model
+
+        // Only a call that left the device is counted, with the number of requests it really sent.
+        fun ended(outcome: ProviderOutcome): ProviderOutcome {
+            if (sent > 0) {
+                runCatching { onCall(AiCall(use, answeredBy, outcomeOf(outcome), sent, tokens.first, tokens.second)) }
+            }
+            return outcome
+        }
+
         var last: ProviderOutcome = ProviderOutcome.NotDelivered(PendingReason.TRANSPORT_ERROR)
         while (attempt < config.maxAttempts) {
             val remaining = config.budgetMillis - (monotonicMillis() - started)
-            if (remaining <= 0) return ProviderOutcome.NotDelivered(PendingReason.TIMED_OUT)
+            if (remaining <= 0) return ended(ProviderOutcome.NotDelivered(PendingReason.TIMED_OUT))
             attempt++
             val response = try {
-                transport.post(config.endpoint, headers, body, remaining)
+                transport.post(config.endpoint, headers, body, remaining).also { sent++ }
+            } catch (notSent: NotSentException) {
+                // Nothing left the device: the same outcome as before 17E, and not a sent request.
+                if (notSent.timedOut) return ended(ProviderOutcome.NotDelivered(PendingReason.TIMED_OUT))
+                last = ProviderOutcome.NotDelivered(PendingReason.TRANSPORT_ERROR)
+                continue
             } catch (timeout: SocketTimeoutException) {
-                return ProviderOutcome.NotDelivered(PendingReason.TIMED_OUT)
+                sent++
+                return ended(ProviderOutcome.NotDelivered(PendingReason.TIMED_OUT))
             } catch (failure: IOException) {
+                sent++
                 last = ProviderOutcome.NotDelivered(PendingReason.TRANSPORT_ERROR)
                 continue
             }
             when {
-                response.status == 401 || response.status == 403 -> return ProviderOutcome.NotDelivered(PendingReason.UNAVAILABLE, keyRejected = true)
+                response.status == 401 || response.status == 403 -> return ended(ProviderOutcome.NotDelivered(PendingReason.UNAVAILABLE, keyRejected = true))
                 response.status == 408 || response.status == 429 || response.status >= 500 -> {
                     last = ProviderOutcome.NotDelivered(PendingReason.TRANSPORT_ERROR)
                     continue
                 }
-                response.status !in 200..299 -> return ProviderOutcome.NotDelivered(PendingReason.TRANSPORT_ERROR)
-                else -> return read(response.body, model)
+                response.status !in 200..299 -> return ended(ProviderOutcome.NotDelivered(PendingReason.TRANSPORT_ERROR))
+                else -> {
+                    tokens = usageOf(response.body)
+                    val outcome = read(response.body, model)
+                    if (outcome is ProviderOutcome.Delivered) answeredBy = outcome.model
+                    return ended(outcome)
+                }
             }
         }
-        return last
+        return ended(last)
+    }
+
+    private fun outcomeOf(outcome: ProviderOutcome): AiCallOutcome = when (outcome) {
+        is ProviderOutcome.Delivered -> AiCallOutcome.ANSWERED
+        is ProviderOutcome.NotDelivered -> when {
+            outcome.keyRejected -> AiCallOutcome.KEY_REJECTED
+            outcome.reason == PendingReason.REFUSED -> AiCallOutcome.REFUSED
+            outcome.reason == PendingReason.TIMED_OUT -> AiCallOutcome.TIMED_OUT
+            outcome.reason == PendingReason.INVALID_RESPONSE -> AiCallOutcome.INVALID_RESPONSE
+            else -> AiCallOutcome.TRANSPORT_ERROR
+        }
+    }
+
+    /**
+     * The token counts the reply itself reports (`usage.input_tokens`, `usage.output_tokens`), read apart from the
+     * answer: a reply that is not an answer may still say what it used. A count that is absent or not a whole,
+     * non-negative number is unknown — never zero.
+     */
+    private fun usageOf(body: String): Pair<Long?, Long?> {
+        val usage = (runCatching { Json.parse(body) }.getOrNull() as? JsonValue.Obj)?.get("usage") as? JsonValue.Obj
+            ?: return null to null
+        fun count(name: String): Long? = (usage[name] as? JsonValue.Num)?.literal?.toLongOrNull()?.takeIf { it >= 0 }
+        return count("input_tokens") to count("output_tokens")
     }
 
     private fun requestBody(model: String, instructions: String, schemaName: String, schema: String, message: String): JsonValue.Obj {

@@ -1,5 +1,6 @@
 package coach.ai
 
+import coach.model.AiCallUse
 import coach.model.PendingReason
 
 /** What the learner's "test the connection" found (14G). Nothing about any learner is sent to find it. */
@@ -18,7 +19,8 @@ enum class ConnectionResult(val id: String) {
  */
 class ConnectionCheck(private val client: OpenAiResponses) {
 
-    fun run(): ConnectionResult = when (val outcome = client.call(TaskClass.TUTOR_HELP, INSTRUCTIONS, SCHEMA_NAME, SCHEMA, MESSAGE)) {
+    // 17E: counted as a connection check, not as tutor help, though it travels the tutor's model.
+    fun run(): ConnectionResult = when (val outcome = client.call(TaskClass.TUTOR_HELP, INSTRUCTIONS, SCHEMA_NAME, SCHEMA, MESSAGE, AiCallUse.CONNECTION_CHECK)) {
         is ProviderOutcome.Delivered -> if (outcome.json.fields.keys == setOf("ok") && outcome.json["ok"] == JsonValue.Bool(true)) ConnectionResult.WORKS else ConnectionResult.UNEXPECTED_REPLY
         is ProviderOutcome.NotDelivered -> when {
             outcome.keyRejected -> ConnectionResult.KEY_REJECTED

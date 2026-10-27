@@ -33,11 +33,19 @@ val LocalReducedMotion = staticCompositionLocalOf { false }
 
 /** The animator duration scale Android's "remove animations" sets to 0. */
 @Composable
-fun platformReducedMotion(): Boolean {
+fun platformReducedMotion(inApp: Boolean = false): Boolean {
     val resolver = LocalContext.current.contentResolver
-    return remember(resolver) {
-        ReducedMotion.of(Settings.Global.getFloat(resolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f))
+    // 17E: the learner's own switch only adds to the platform's ([ReducedMotion]).
+    return remember(resolver, inApp) {
+        ReducedMotion.of(Settings.Global.getFloat(resolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f), inApp)
     }
+}
+
+/** Whether Android itself removed animations, apart from the learner's switch (17E: Profile says which one is on). */
+@Composable
+fun systemReducedMotion(): Boolean {
+    val resolver = LocalContext.current.contentResolver
+    return remember(resolver) { ReducedMotion.of(Settings.Global.getFloat(resolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f)) }
 }
 
 /** The Compose animation for [purpose]: the declared band, or an immediate snap when motion is reduced. */

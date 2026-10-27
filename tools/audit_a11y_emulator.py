@@ -138,10 +138,12 @@ def swipe(viewport: tuple[int, int, int, int] | None, up: bool) -> None:
     top, bottom = (viewport[1], viewport[3]) if viewport else (400, 2000)
     step = max(200, (bottom - top) // 2)
     x = str((viewport[0] + viewport[2]) // 2 if viewport else 540)
+    # 17E: slow enough not to fling — a 400 ms swipe flung the content almost a whole viewport on the emulator, so at 200%
+    # text two readings could share no text and the screen was rightly not counted as read whole.
     if up:
-        adb("shell", "input", "swipe", x, str(top + 150), x, str(top + 150 + step), "400")
+        adb("shell", "input", "swipe", x, str(top + 150), x, str(top + 150 + step), "1500")
     else:
-        adb("shell", "input", "swipe", x, str(bottom - 150), x, str(bottom - 150 - step), "400")
+        adb("shell", "input", "swipe", x, str(bottom - 150), x, str(bottom - 150 - step), "1500")
     time.sleep(1.2)
 
 
@@ -183,6 +185,18 @@ def tap_scrolling(text: str, limit: int = 15) -> bool:
     return False
 
 
+def tap_row_scrolling(text: str, limit: int = 15) -> bool:
+    """17E: taps the clickable row that holds this text — not a plain line with the same words elsewhere on the screen."""
+    for _ in range(limit):
+        for node in dump().iter("node"):
+            if node.get("clickable") == "true" and any(c.get("text") == text for c in node.iter("node")):
+                x1, y1, x2, y2 = bounds(node)
+                adb("shell", "input", "tap", str((x1 + x2) // 2), str((y1 + y2) // 2))
+                return True
+        swipe(main_viewport(app_nodes(dump())), up=False)
+    return False
+
+
 def offsets(readings: list[list[ElementTree.Element]], viewport) -> tuple[list[int], int]:
     """Each reading's scroll offset from the first, from the text nodes two consecutive readings share, and how many
     consecutive readings shared none (a swipe that may have skipped content: the screen is then not read whole)."""
@@ -192,9 +206,13 @@ def offsets(readings: list[list[ElementTree.Element]], viewport) -> tuple[list[i
                 and viewport and viewport[1] < bounds(n)[1] < viewport[3]}
 
     result, unanchored = [0], 0
+    # 17E: a swipe down moves the content up by no more than one viewport, so only such a shift can be the reading's.
+    # A text unique within each reading may still be two different nodes across them (the English profile names a
+    # Skill in a band's missing list and again as its row); its delta then points backwards and is not counted.
+    height = (viewport[3] - viewport[1]) if viewport else None
     for prev, cur in zip(readings, readings[1:]):
         a, b = unique(prev), unique(cur)
-        deltas = Counter(a[t] - b[t] for t in a.keys() & b.keys())
+        deltas = Counter(d for d in (a[t] - b[t] for t in a.keys() & b.keys()) if height is None or 0 <= d <= height)
         unanchored += not deltas
         result.append(result[-1] + (deltas.most_common(1)[0][0] if deltas else 0))
     return result, unanchored
@@ -302,6 +320,9 @@ def audit(screen: str, marker: dict, scale: float, scroll: bool = True) -> dict:
 
 def main() -> int:
     font_scale = next((float(a.split("=", 1)[1]) for a in sys.argv[1:] if a.startswith("--font-scale=")), 1.0)
+    # 17E: a later step writes its own reports and keeps the earlier step's as they were.
+    step = next((a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--step=")), "17D")
+    report_dir = ROOT / next((a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--out-dir=")), str(REPORT_DIR.relative_to(ROOT)))
     scale = density()
     results: list[dict] = []
     adb("shell", "settings", "put", "system", "font_scale", str(font_scale))
@@ -349,6 +370,13 @@ def main() -> int:
             back_to_top()
             if tap_scrolling(target):
                 visit(surface, ["Geri", target], ["Kanıtlanmış yetkinlik"], 12)
+                # 17E: `technical_english_profile -> skill_detail -> planner_explanation`, the two edges D-138 added.
+                if surface == "technical_english_profile" and tap_row_scrolling("Temel teknik etiketleri tanıma"):
+                    visit("skill_detail", ["Geri", "Bu becerinin geçmişi"], [target], 8)
+                    if tap_row_scrolling("Bu beceri bugün neden planda ya da neden değil?"):
+                        visit("skill_plan_explanation", ["Bu beceri ve bugünün planı", "Beceriye dön"], ["Bu becerinin geçmişi"], 5)
+                        go_back()
+                    go_back()
                 go_back()
     if tap_text("Profil"):
         visit("profile_overview", ["Günlük süre", "Yedekleme"], ["Kanıtlanmış yetkinlik", "Öğrenme haritası"])
@@ -362,7 +390,7 @@ def main() -> int:
                     visit("task_runner_help", ["Yardımı kapat"])
     adb("shell", "settings", "put", "system", "font_scale", "1.0")
     report = {
-        "step": "17D",
+        "step": step,
         "font_scale": font_scale,
         "model": "A11X-v0",
         "device": adb("shell", "getprop", "ro.product.model").strip() + " API " + adb("shell", "getprop", "ro.build.version.sdk").strip(),
@@ -372,10 +400,10 @@ def main() -> int:
         "findings_total": sum(len(r["findings"]) for r in results),
         "result": "PASS" if results and not any(r["findings"] or r["clipped_never_judged"] or not r["marker_found"] or not r["read_to_end"] for r in results) else "FAIL",
     }
-    out = REPORT_DIR / ("a11y_emulator_report.yaml" if font_scale == 1.0 else f"a11y_emulator_report_text_{int(font_scale * 100)}.yaml")
+    out = report_dir / ("a11y_emulator_report.yaml" if font_scale == 1.0 else f"a11y_emulator_report_text_{int(font_scale * 100)}.yaml")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(yaml.safe_dump(report, allow_unicode=True, sort_keys=False, width=200), encoding="utf-8", newline="\n")
-    print(f"17D emulator a11y audit: {report['result']} — {len(results)} screens, {report['findings_total']} findings")
+    print(f"{step} emulator a11y audit: {report['result']} — {len(results)} screens, {report['findings_total']} findings")
     for r in results:
         if not r["marker_found"]:
             print(r["screen"], "MARKER NOT FOUND", r["marker"])

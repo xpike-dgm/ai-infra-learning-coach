@@ -1229,14 +1229,28 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 10/10, validator mutation 35/35; 59/59 QA PASS,
 - **T6 çalıştırılmadı; denetim emülatörde (Pixel 7 AVD, API 34); TalkBack duyulmadı**.
 
-### [ ] 17E — Kalan UX parçaları — **AKTİF**
+### [x] 17E — Kalan UX parçaları — RUXX-v0 / D-138
+
+**17E final coverage:**
+- gün özeti yalnız motorların o gün gerçekten değiştirdiğini söylüyor — her değişiklik o günün kanıtından, öğrenme geçmişinin yeniden oynattığı gibi, 13E'nin cümlesiyle ve becerisinin adıyla — ve değişiklikler okunamadıysa 'değişiklik olmadı' değil 'okunamadı' diyor; bir becerinin bugünkü planı, planlayıcının kendi izinin o beceriye daraltılmışı, hiçbir şey eklenmeden; İngilizce profilindeki her beceri tek beceri ayrıntısını açıyor; cihazdan çıkan her AI çağrısı bir kez, sağlayıcının bildirdiği token'larla ve taşıdığı hiçbir şey saklanmadan sayılıyor ve fiyat uydurulmuyor; tema ve 'Hareketi azalt' yalnız görünüşü ve hareketi değiştiriyor, anahtar Android'in ayarına yalnız ekler; klavye odağı her zaman görünür,
+- kapsam (kullanıcı kararı): 17C'den kalan üç parçanın hepsi (gün özetinde gerçek değişiklikler, iki gezinme kenarı, AI kullanım görünürlüğü) ve 17D'den kalan üç tercihin hepsi (görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket); AI kullanımı çağrı + sağlayıcının token'ları, para tutarı yok; UXIA-v0'a iki kenar eklendi,
+- gün özeti: 16B'nin yeniden oynatması, yalnız o gün kanıtı olan beceriler; 13E'nin cümleleri; okunamazsa 'okunamadı'; koşu bitince yenileniyor,
+- kenarlar: `skill_detail -> planner_explanation` (aynı açıklama, o beceriye daraltılmış) ve `technical_english_profile -> skill_detail`; UXIA-v0 değişikliği kayıtlı,
+- AI kullanımı: cihazdan çıkan her çağrı bir kez; kullanım, sonuç, deneme sayısı ve sağlayıcının bildirdiği token'lar; içerik ve fiyat yok,
+- görünüm: Sistemle aynı / Açık tema / Koyu tema; 'Hareketi azalt' yalnız ekler; sistem çubukları uygulamanın temasını izler; odak halkası her 48dp hedefte ve sekmelerde,
+- şema v12 (`display_preference`, `ai_call_record`),
+- bulgu: gün özeti 11E'den beri hiçbir değişikliği adlandırmıyordu ve 16F'den beri bir koşunun sonunda okunan günü atıyordu, bu yüzden uygulama yeniden açılana kadar 'Bugün kayıt yok' diyordu; yeni bir öğrencinin ilk yanlış cevabında koşunun sonu (13E) 'değişmedi', gün özeti (16B'nin yeniden oynatması) 'bir zorluk sorusu açıldı' diyor — açık döngü olarak kaydedildi; koyu tema açık sistemde durum çubuğunu koyu üstünde koyu bırakıyordu; ilk odak halkası satırın metnine değiyordu; token sütun adı yedekteki kimlik bilgisi taramasına takıldı (input_usage/output_usage); bağımsız inceleme iki engelleyici sorun buldu — gezinme sekmelerinde odak halkası yoktu ve bağlantısı hiç açılmamış (çevrimdışı) çağrılar sayılıyordu — ikisi de düzeltildi; 17D'nin denetimi beceri ayrıntısına hiç girmiyordu, artık giriyor,
+- Kotlin mutation 22/22, validator mutation 36/36; 88/88 QA PASS,
+- **T6 ve canlı sağlayıcı çağrısı çalıştırılmadı; uygulama emülatörde görüldü (Pixel 7 AVD, API 34)**.
+
+**AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
 
 D-136 ile eklendi (kullanıcı kararı, 2026-10-27; yeniden numaralama yok). Girdileri: gün özetinde bir koşunun gerçek değişiklikleri; `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları; AI kullanım/maliyet görünürlüğü; PRE'de sorulacaklar: görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket tercihi.
 
 ---
 
 # AŞAMA 18 — Pilot / Kalibrasyon / QA
-### [ ] 18A — Pilot başlangıcı
+### [ ] 18A — Pilot başlangıcı — **AKTİF**
 ### [ ] 18B — Planner gözlemi
 ### [ ] 18C — Mastery kalibrasyonu
 ### [ ] 18D — Assessment/item/exposure/validator kalibrasyonu
@@ -1291,8 +1305,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17D`  
-**Son tamamlanan:** **`17D — A11X-v0 / D-137`**  
-**Aktif:** **`17E — Kalan UX parçaları`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17E`  
+**Son tamamlanan:** **`17E — RUXX-v0 / D-138`**  
+**Aktif:** **`18A — Pilot başlangıcı`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **17E fresh PRE-STEP + kullanıcının yeni açık onayı → Kalan UX parçaları → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **18A fresh PRE-STEP + kullanıcının yeni açık onayı → Pilot başlangıcı → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

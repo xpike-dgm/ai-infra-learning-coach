@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 11
+    const val VERSION = 12
 
     // ---------------------------------------------------------------- table inventories
 
@@ -65,8 +65,20 @@ object Schema {
      */
     val reminderPreferenceTables = listOf("reminder_preference")
 
-    /** Every append-only user table: `DDM-v0`'s truth, the 16D preferences and the 16E reminder, guarded alike. */
-    val appendOnlyTables = truthTables + userPreferenceTables + reminderPreferenceTables
+    /**
+     * 17E (`D-138`): the theme and motion setting, append-only like the reminder and in its own table for the same reason
+     * — `preference_record`'s key list is a CHECK, and a new table adds and rewrites nothing.
+     */
+    val displayPreferenceTables = listOf("display_preference")
+
+    /**
+     * 17E (`D-138`): every AI call that left the device, counted. Append-only, so a count shown is a count of rows that
+     * cannot have been edited; it holds no content at all — what was asked and answered is never stored (`AIAX-v0` §11).
+     */
+    val aiUsageTables = listOf("ai_call_record")
+
+    /** Every append-only user table: `DDM-v0`'s truth, the 16D preferences, the 16E reminder and 17E's two, guarded alike. */
+    val appendOnlyTables = truthTables + userPreferenceTables + reminderPreferenceTables + displayPreferenceTables + aiUsageTables
 
     /**
      * Region 3 — projections. Droppable and rebuildable without touching truth. `DDM-v0`'s eight, plus
@@ -868,6 +880,51 @@ object Schema {
             "ALTER TABLE attempt ADD COLUMN planned_task_id INTEGER REFERENCES planned_task (id)",
             "CREATE INDEX IF NOT EXISTS attempt_by_planned_task ON attempt (planned_task_id)",
         )
+
+    /** 17E (`D-138`): the theme values, the AI call uses and outcomes there are, and no others. */
+    val themeValues = listOf("system", "light", "dark")
+    val aiCallUseValues = listOf("tutor_help", "open_response_evaluation", "code_evaluation", "connection_check")
+    val aiCallOutcomeValues = listOf("answered", "refused", "invalid_response", "timed_out", "transport_error", "key_rejected")
+
+    /**
+     * Version 12 adds `display_preference` and `ai_call_record` (17E, `D-138`). A display row is the whole setting — the
+     * theme and whether the app's own motion is off. An AI call row is a count: what it was for, the model, how it ended,
+     * its attempts and the tokens the provider reported, which stay empty when it reported none rather than becoming zero.
+     * Neither table has a column that could hold an instruction, a message, a reply or a key. The provider's token counts
+     * are `input_usage` and `output_usage`: no column name may read like a credential (`BackupTest`, `AIAX-v0` §10).
+     */
+    val v12: List<String>
+        get() = listOf(
+            """
+            CREATE TABLE IF NOT EXISTS display_preference (
+                id                     INTEGER PRIMARY KEY AUTOINCREMENT,
+                $SEQUENCE,
+                theme                  TEXT    NOT NULL,
+                reduce_motion          INTEGER NOT NULL,${time("recorded_at", "recorded_on")},
+                ${oneOf("theme", themeValues)},
+                CHECK (reduce_motion IN (0, 1))
+            )
+            """,
+            """
+            CREATE TABLE IF NOT EXISTS ai_call_record (
+                id                     INTEGER PRIMARY KEY AUTOINCREMENT,
+                $SEQUENCE,
+                call_use               TEXT    NOT NULL,
+                model                  TEXT    NOT NULL,
+                outcome                TEXT    NOT NULL,
+                attempts               INTEGER NOT NULL,
+                input_usage            INTEGER,
+                output_usage           INTEGER,${time("called_at", "called_on")},
+                ${oneOf("call_use", aiCallUseValues)},
+                ${oneOf("outcome", aiCallOutcomeValues)},
+                CHECK (length(trim(model)) > 0),
+                CHECK (attempts >= 1),
+                CHECK (input_usage IS NULL OR input_usage >= 0),
+                CHECK (output_usage IS NULL OR output_usage >= 0)
+            )
+            """,
+            "CREATE INDEX IF NOT EXISTS ai_call_record_by_day ON ai_call_record (called_on_study_day)",
+        ) + (displayPreferenceTables + aiUsageTables).flatMap(::appendOnlyGuards)
 
     /** `WLRM-v0`'s misconception sources, plus the empty value of a label nothing has carried yet. */
     const val MISCONCEPTION_SOURCES = "'', 'deterministic', 'ai_proposed'"

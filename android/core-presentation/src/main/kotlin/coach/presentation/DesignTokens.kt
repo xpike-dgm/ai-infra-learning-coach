@@ -83,6 +83,13 @@ object DesignTokens {
     /** `VDSX-v0` adopts the stricter platform rule over the 24px WCAG floor. */
     const val MINIMUM_TOUCH_TARGET_DP = 48
 
+    /**
+     * 17E (`D-138`): the keyboard focus ring. No accepted spec sized it; WCAG 2.2 2.4.13 (focus appearance) asks for an
+     * outline at least 2 CSS px thick, so it is 2dp, drawn 2dp outside its target so it never covers the target's text.
+     */
+    const val FOCUS_RING_WIDTH_DP = 2
+    const val FOCUS_RING_OUTSET_DP = 2
+
     /** Layout must survive all of these without losing content or function. */
     val supportedTextScalesPercent: List<Int> = listOf(100, 150, 200)
 

@@ -9,6 +9,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import coach.model.DayRecordKind
+import coach.presentation.DayChanges
 import coach.presentation.DayCopy
 import coach.presentation.DaySummaryState
 import coach.presentation.DaySummaryView
@@ -47,7 +48,9 @@ private val kindLabelsTr: Map<DayRecordKind, String> = mapOf(
     DayRecordKind.EVIDENCE_INTERPRETED to "değerlendirilen kanıt",
 )
 
-private val unreadLabelsTr: Map<String, String> = DayRecordKind.entries.associate { it.id to kindLabelsTr.getValue(it) }
+// 17E: the day's changes can be unread too, and are named rather than reported as "nothing changed".
+private val unreadLabelsTr: Map<String, String> =
+    DayRecordKind.entries.associate { it.id to kindLabelsTr.getValue(it) } + (DayChanges.UNREAD_KIND to "durum değişiklikleri")
 
 @Composable
 fun EndOfDayView(view: DaySummaryView, modifier: Modifier = Modifier) {
@@ -81,7 +84,7 @@ fun EndOfDayView(view: DaySummaryView, modifier: Modifier = Modifier) {
                     }
                 }
                 if (view.changes.isEmpty()) {
-                    Text(DayCopy.NOTHING_CHANGED, style = MaterialTheme.typography.bodyMedium)
+                    if (DayChanges.UNREAD_KIND !in view.unreadKinds) Text(DayCopy.NOTHING_CHANGED, style = MaterialTheme.typography.bodyMedium)
                 } else {
                     SectionHeader("Bugün değişenler")
                     view.changes.forEach { change ->

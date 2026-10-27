@@ -76,7 +76,8 @@ fun AppShell(
                         Icon(imageVector = icons.getValue(destination), contentDescription = null)
                     },
                     label = { Text(label) },
-                    modifier = Modifier.semantics {
+                    // 17E: the destinations are not 48dp-modifier targets, so they draw the keyboard focus ring themselves.
+                    modifier = Modifier.focusRing().semantics {
                         traversalIndex = destination.order.toFloat()
                         stateDescription = if (destination == state.selected) "seçili" else "seçili değil"
                     },

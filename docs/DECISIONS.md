@@ -2495,3 +2495,31 @@ Ayrıntı: `docs/USABILITY_SPEC.md`.
 - Sonraki numbered step `17E — Kalan UX parçaları`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/ACCESSIBILITY_SPEC.md`.
+
+## D-138 — Kalan UX parçaları = RUXX-v0
+**Durum:** Kabul edildi — 2026-10-27
+
+- 17E final modeli `RUXX-v0 — the day summary says what the engines changed that day; skill_detail -> planner_explanation and technical_english_profile -> skill_detail; AI calls counted with the provider's tokens and no money; a visible focus ring; a theme choice; an in-app reduced-motion switch that only adds` oldu.
+- **Ana invariant:** gün özeti yalnız motorların o gün gerçekten değiştirdiğini söylüyor — her değişiklik o günün kanıtından, öğrenme geçmişinin yeniden oynattığı gibi, 13E'nin cümlesiyle ve becerisinin adıyla — ve değişiklikler okunamadıysa 'değişiklik olmadı' değil 'okunamadı' diyor; bir becerinin bugünkü planı, planlayıcının kendi izinin o beceriye daraltılmışı, hiçbir şey eklenmeden; İngilizce profilindeki her beceri tek beceri ayrıntısını açıyor; cihazdan çıkan her AI çağrısı bir kez, sağlayıcının bildirdiği token'larla ve taşıdığı hiçbir şey saklanmadan sayılıyor ve fiyat uydurulmuyor; tema ve 'Hareketi azalt' yalnız görünüşü ve hareketi değiştiriyor, anahtar Android'in ayarına yalnız ekler; klavye odağı her zaman görünür.
+- **Kullanıcı kararı (2026-10-27, "17E ye başla"):** 17C'den kalan üç parçanın hepsi (gün özetinde gerçek değişiklikler, iki gezinme kenarı, AI kullanım görünürlüğü) ve 17D'den kalan üç tercihin hepsi (görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket); AI kullanımı çağrı + sağlayıcının token'ları, para tutarı yok; UXIA-v0'a iki kenar eklendi.
+- **UXIA-v0 değişikliği (kullanıcı kararı):** `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları `ux/8a_information_architecture/ia.yaml`a ve `docs/INFORMATION_ARCHITECTURE_SPEC.md` §9.2'ye eklendi; başka hiçbir şey değişmedi.
+- **Asistanın varsayılan seçimleri:**
+  - model kimliği `RUXX-v0`; AI çağrısının sonuçları `AIAX-v0` taksonomisi; bağlantı denemesi kendi kullanımı;
+  - token sütunları `input_usage`/`output_usage` (hiçbir sütun adı kimlik bilgisine benzeyemez);
+  - odak halkası 2dp, hedefin 2dp dışında (WCAG 2.2 2.4.13; kabul edilmiş bir spec boyut vermiyordu); `focus_ring` token'ı;
+  - rakamlar yerel ayara bakılmadan üçerli noktayla;
+  - hareket notu hangi ayarın geçerli olduğunu söyler.
+- **Bulunanlar:**
+  - gün özeti 11E'den beri hiçbir değişikliği adlandırmıyordu ve 16F'den beri bir koşunun sonunda okunan günü atıyordu, bu yüzden uygulama yeniden açılana kadar 'Bugün kayıt yok' diyordu; yeni bir öğrencinin ilk yanlış cevabında koşunun sonu (13E) 'değişmedi', gün özeti (16B'nin yeniden oynatması) 'bir zorluk sorusu açıldı' diyor — açık döngü olarak kaydedildi; koyu tema açık sistemde durum çubuğunu koyu üstünde koyu bırakıyordu; ilk odak halkası satırın metnine değiyordu; token sütun adı yedekteki kimlik bilgisi taramasına takıldı (input_usage/output_usage); bağımsız inceleme iki engelleyici sorun buldu — gezinme sekmelerinde odak halkası yoktu ve bağlantısı hiç açılmamış (çevrimdışı) çağrılar sayılıyordu — ikisi de düzeltildi; 17D'nin denetimi beceri ayrıntısına hiç girmiyordu, artık giriyor.
+- Şema v12 (`display_preference`, `ai_call_record`; dolu v11'e karşı, hiçbir satır yeniden yazılmadı).
+- **Doğrulama:**
+  - Kotlin mutation 22/22, validator mutation 36/36; kontrol mutantları hayatta kaldı.
+  - Validator 88/88 PASS; emülatör denetimi 100% ve 200% metinde on altı ekran, 0 bulgu.
+  - 1325 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Hızlı tarama geçti; içerik validator'ları paketler değişmediği için yeniden koşulmadı.
+- Çalıştırılmayan: **T6** ve **canlı sağlayıcı çağrısı**.
+- **Açık döngüler:** ilk koşudan sonra hangi 'ne değişti' (18); günün yeniden oynatma maliyeti (18E); TalkBack, gerçek klavyeyle odak halkası ve ilk canlı AI çağrısı (19); yardım seviyelerinin tek kaynağı ve bağlanmamış `AssessmentSessionScreen`.
+- **AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
+- Sonraki numbered step `18A — Pilot başlangıcı`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/REMAINING_UX_SPEC.md`.

@@ -129,9 +129,11 @@ check("A17B-03_feedback_briefest", feedback and all(feedback[0] <= int(ms) for _
 # --- A17B-04: reduced motion follows the platform and makes every change immediate.
 check("A17B-04_reduced_is_immediate", "return if (reduced) band.copy(durationMs = 0) else band" in core, "MotionPolicy.spec")
 check("A17B-04_platform_setting_read", "Settings.Global.ANIMATOR_DURATION_SCALE" in ui_motion
-      and "ReducedMotion.of(" in ui_motion and "fun of(animatorDurationScale: Float): Boolean = animatorDurationScale <= 0f" in core,
+      # Narrowed at 17E (`D-138`): the learner's in-app switch only adds to the platform's setting.
+      and "ReducedMotion.of(" in ui_motion and "fun of(animatorDurationScale: Float, inApp: Boolean = false): Boolean = inApp || animatorDurationScale <= 0f" in core,
       "ANIMATOR_DURATION_SCALE")
-check("A17B-04_theme_provides_it", "LocalReducedMotion provides platformReducedMotion()" in theme, "CoachTheme")
+# Narrowed at 17E (`D-138`): the theme passes the learner's switch to the platform reading.
+check("A17B-04_theme_provides_it", "LocalReducedMotion provides platformReducedMotion(reduceMotionInApp)" in theme, "CoachTheme")
 spec_fn = body(ui_motion, "fun <T> motionSpec(")
 check("A17B-04_zero_is_snap", "MotionPolicy.spec(purpose, LocalReducedMotion.current)" in spec_fn and "return snap()" in spec_fn, "motionSpec")
 

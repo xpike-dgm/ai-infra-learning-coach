@@ -322,14 +322,16 @@ PEM-v0:
 - 17B ✅ MOTX-v0 / D-134
 - 17C ✅ USBX-v0 / D-135
 - 17D ✅ A11X-v0 / D-137
-- 17E 🟡 active-not-executed (D-136)
-- 18–20 ⬜
+- 17E ✅ RUXX-v0 / D-138
+- AŞAMA 17 ✅ TAMAMLANDI
+- 18A 🟡 active-not-executed
+- 18B–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `17D — A11X-v0 / D-137`  
-**Aktif:** `17E — Kalan UX parçaları`  
-**17E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `17E — RUXX-v0 / D-138`  
+**Aktif:** `18A — Pilot başlangıcı`  
+**18A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1776,3 +1778,23 @@ A11X-v0:
 ## 116. 17E handoff
 
 17E — Kalan UX parçaları (D-136). 17D ran on the user's explicit approval; 17E needs a fresh PRE and the user's new explicit approval. Inputs: the day summary naming a run's real changes; the `skill_detail -> planner_explanation` and `technical_english_profile -> skill_detail` edges with their micro text; AI usage/cost visibility. To ask at the PRE: a visible focus ring (the `focus_ring` token is unused), a theme preference in Profile, an in-app reduced-motion preference. Also open: one source for the help levels' two wordings; `AssessmentSessionScreen` (unwired). Elsewhere: calibration (18), TalkBack and T6 (19).
+
+## 117. D-138 / 17E final özeti
+
+Canonical: `docs/REMAINING_UX_SPEC.md`.
+Contract/QA: `arch/17e_remaining_ux/` (contract, the two emulator audit reports, QA report, stale audit).
+Synthesis: `research/17e_remaining_ux_research.md`.
+Code: `core-model` (`AiUsageFacts.kt`, `DisplayFacts.kt`), `core-application` (`DayCloseFacts` reads `LearningHistoryQuery.day`, `DisplaySettings`, `AiUsage`), `core-presentation` (`DayChanges`, `PlannerExplanationPresentation.forSkill`, `SkillPlanCopy`, `AiUsagePresentation`, `AppearancePresentation`, `ReducedMotion`, `DesignTokens.FOCUS_RING_*`, `NavigationGraph`), `ai-adapter` (`OpenAiResponses` counts each sent call; `NotSentException`), `app-ui` (focus ring, Profile's Görünüm and AI kullanımı, the narrowed plan, the English profile's Skill rows), `app-wiring`; `ux/8a_information_architecture/ia.yaml` amended. Schema v12.
+
+RUXX-v0:
+- the day summary says what the engines changed that day; skill_detail -> planner_explanation and technical_english_profile -> skill_detail; AI calls counted with the provider's tokens and no money; a visible focus ring; a theme choice; an in-app reduced-motion switch that only adds,
+- approval: the user's explicit approval of 2026-10-27; user decisions: all three parts left from 17C and all three preferences left from 17D; AI usage as calls and the provider's tokens, no money; UXIA-v0 amended with two edges,
+- found: the day summary never named a change and was not refreshed after a run (since 16F); a first run's 13E report and the day summary disagree (open loop); the status bar stayed dark on the dark theme; the first focus ring touched the row's text; a token column looked like a credential; the independent review found no ring on the tabs and unsent calls counted — all fixed but the open loop,
+- Mutation Kotlin 22/22, validator 36/36; independent QA 88/88 PASS,
+- T6 and a live provider call were not run; the app ran on an emulator (Pixel 7 AVD, API 34).
+
+**AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
+
+## 118. 18A handoff
+
+18A — Pilot başlangıcı. 17E ran on the user's explicit approval; 18A needs a fresh PRE and the user's new explicit approval. Carried to 18: which "what changed" a learner sees after a first run (the run's 13E report or the history's replay); the day replay's cost (18E); calibration (18C/18D); the placement flow and its diagnostic source (18A, from 16H). Elsewhere: TalkBack, the focus ring with a real keyboard, the first live AI call and T6 (19); one source for the help levels' two wordings and `AssessmentSessionScreen` (still open).

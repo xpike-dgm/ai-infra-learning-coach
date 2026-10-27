@@ -3,6 +3,9 @@ package coach.wiring
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.SystemBarStyle
+import androidx.compose.runtime.LaunchedEffect
+import android.graphics.Color as AndroidColor
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,12 +25,20 @@ import coach.model.StoreStatus
 import coach.model.PlannerExplanationFacts
 import coach.model.TodayFacts
 import coach.presentation.AppHealth
-import coach.presentation.DaySummaryInput
+import coach.presentation.DayChanges
 import coach.presentation.Destination
 import coach.presentation.HealthAction
 import coach.presentation.NavigationGraph
 import coach.presentation.PlannerExplanationPresentation
+import coach.presentation.AiKeyState
+import coach.presentation.AiUsagePresentation
+import coach.presentation.AiUsageView
+import coach.presentation.AppearancePresentation
+import coach.model.DisplayPreference
+import coach.ui.systemReducedMotion
+import androidx.compose.foundation.isSystemInDarkTheme
 import coach.presentation.PlannerExplanationView
+import coach.presentation.SkillPlanView
 import coach.presentation.AssessmentReportView
 import coach.presentation.HistoryPresentation
 import coach.presentation.LearningHistoryView
@@ -111,6 +122,8 @@ class MainActivity : ComponentActivity() {
     // 16E: the reminder setting and what Android allows. Read again on every start, because the learner may have
     // changed this app's notifications in Android's own settings in the meantime.
     private val reminderState = mutableStateOf<Pair<ReminderPreference, NotificationAccess>?>(null)
+    // 17E: the theme and motion setting. Until the store is read the system's own are used.
+    private val displayState = mutableStateOf<DisplayPreference?>(null)
     private val listener = StoreStartup.Listener<OpenedApp> { status, store ->
         storeStatus.value = status
         opened.value = store
@@ -119,10 +132,10 @@ class MainActivity : ComponentActivity() {
         todayFacts.value = null
         dayFacts.value = null
         if (store != null) {
-            app.refreshToday { today, day ->
-                todayFacts.value = today
-                dayFacts.value = day
-            }
+            // 17E: the theme and motion setting is read first, so the shell's first frame is already in the learner's
+            // theme; before the store is open the system's theme is used.
+            app.loadDisplay { displayState.value = it }
+            app.refreshToday({ todayFacts.value = it }, { dayFacts.value = it })
             app.loadReminder { preference, access -> reminderState.value = preference to access }
         }
     }
@@ -148,7 +161,17 @@ class MainActivity : ComponentActivity() {
             // 17A: until the store and today's facts are both in hand the app is still opening (`AppHealth.atStartup`).
             val health = AppHealth.atStartup(storeStatus.value, evaluatorAvailability(), storeInHand = current != null, todayInHand = facts != null)
 
-            CoachTheme {
+            // 17E: the learner's theme and motion setting, or the system's own until the store is read.
+            val display = displayState.value ?: DisplayPreference.SYSTEM_DEFAULT
+            val dark = display.dark(isSystemInDarkTheme())
+            // 17E: the system bars' icons follow the app's theme, not the system's — with a dark theme chosen on a light
+            // system the clock and battery would otherwise be dark on dark.
+            LaunchedEffect(dark) {
+                // On the oldest supported API a light bar cannot draw dark icons; the platform's dark scrim keeps them legible.
+                val bars = if (dark) SystemBarStyle.dark(AndroidColor.TRANSPARENT) else SystemBarStyle.light(AndroidColor.TRANSPARENT, AndroidColor.argb(0x80, 0x1b, 0x1b, 0x1b))
+                enableEdgeToEdge(statusBarStyle = bars, navigationBarStyle = bars)
+            }
+            CoachTheme(dark = dark, reduceMotionInApp = display.reduceMotion) {
                 if (!health.showsShell || current == null || facts == null) {
                     HealthBlockingSurface(
                         health = health,
@@ -160,7 +183,9 @@ class MainActivity : ComponentActivity() {
                     )
                 } else {
                     Shell(health, current, facts, dayFacts.value, explain = app::loadExplanation, app = app,
-                        onTodayFacts = { todayFacts.value = it }, backupState = backupState, reminderState = reminderState,
+                        onTodayFacts = { todayFacts.value = it }, onDayFacts = { dayFacts.value = it },
+                        backupState = backupState, reminderState = reminderState,
+                        displayState = displayState,
                         openNotificationSettings = {
                             startActivity(Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE, packageName))
                         })
@@ -172,10 +197,7 @@ class MainActivity : ComponentActivity() {
     override fun onStart() {
         super.onStart()
         // A process kept open past midnight would otherwise keep yesterday's study day.
-        app.refreshToday { today, day ->
-            todayFacts.value = today
-            dayFacts.value = day
-        }
+        app.refreshToday({ todayFacts.value = it }, { dayFacts.value = it })
         app.loadReminder { preference, access -> reminderState.value = preference to access }
     }
 
@@ -195,9 +217,13 @@ private fun Shell(
     app: CoachApplication,
     // 16D: a capacity change replans today; Today's facts are the activity's, so the new ones are handed back.
     onTodayFacts: (TodayFacts) -> Unit,
+    // 17E: the day's own record after a run. Before 17E the end of a run read it and dropped it, so the day summary
+    // stayed as it was until the app was opened again.
+    onDayFacts: (DayCloseFacts.Loaded) -> Unit,
     backupState: MutableState<BackupState>,
     reminderState: MutableState<Pair<ReminderPreference, NotificationAccess>?>,
     openNotificationSettings: () -> Unit,
+    displayState: MutableState<DisplayPreference?>,
 ) {
     var selected by remember { mutableStateOf(Destination.start) }
     // The focused flow in front of the shell, if any. Its entry decision is made in core.
@@ -213,6 +239,8 @@ private fun Shell(
     var runStage by remember { mutableStateOf<TaskRunStage?>(null) }
     // The shared planner explanation opened from Today (12E); its facts are read on the store thread.
     var explanation by remember { mutableStateOf<PlannerExplanationView?>(null) }
+    // 17E: the same surface opened from `skill_detail`, narrowed to that Skill; `null` when opened from Today.
+    var explanationFocus by remember { mutableStateOf<SkillPlanView?>(null) }
     // The AI settings on Profile (14G). The key state is read from memory; saving, removing and checking run off the
     // main thread, and the key itself is never held here beyond the moment it is handed over to be stored.
     var aiKey by remember { mutableStateOf(app.aiSettings.state()) }
@@ -236,6 +264,11 @@ private fun Shell(
     var english by remember { mutableStateOf<EnglishProfileView?>(null) }
     // 16D: the capacity preferences (Profile and Today's capacity dialog) and the backup controls' state.
     var capacity by remember { mutableStateOf<CapacityPreferences?>(null) }
+    // 17E: the theme and motion setting (the activity's, so the theme applies above the shell) and the AI calls counted.
+    var display by displayState
+    var aiUsage by remember { mutableStateOf<AiUsageView?>(null) }
+    val aiInBuild = app.aiSettings.state() != AiKeyState.NOT_IN_BUILD
+    val loadAiUsage = { app.loadAiUsage { calls, today -> aiUsage = AiUsagePresentation.of(calls, today, aiInBuild) } }
     var todayDialog by remember { mutableStateOf(false) }
     var backup by backupState
     // The system's own file pickers: the learner chooses where a backup goes and which one comes back (`LFPS-v0` §11).
@@ -301,12 +334,16 @@ private fun Shell(
     AppShell(state = state, onSelect = { destination ->
         selected = destination
         explanation = null
+        explanationFocus = null
         skillDetail = null
         history = null
         report = null
         topicDetail = null
         english = null
-        if (destination == Destination.PROFILE) app.loadCapacity { capacity = it }
+        if (destination == Destination.PROFILE) {
+            app.loadCapacity { capacity = it }
+            loadAiUsage()
+        }
         if (destination == Destination.LEARN) {
             learn = null
             app.loadProgress { _, topicFacts ->
@@ -326,7 +363,7 @@ private fun Shell(
         val entry = runnerEntry
         val shown = explanation
         when {
-            shown != null -> PlannerExplanationScreen(view = shown, onBack = { explanation = null })
+            shown != null -> PlannerExplanationScreen(view = shown, onBack = { explanation = null; explanationFocus = null }, focus = explanationFocus)
             history != null -> LearningHistoryScreen(
                 view = history!!.second,
                 title = history!!.first,
@@ -352,6 +389,17 @@ private fun Shell(
                 // A blocker opens its own skill_detail: the same surface, never a second Skill truth.
                 onOpenSkill = { ref -> app.loadSkillDetail(ref) { facts -> facts?.let { skillDetail = ProgressPresentation.detail(it) } } },
                 onBack = { skillDetail = null },
+                // 17E: `skill_detail -> planner_explanation` — today's stored plan, read again and narrowed to this Skill.
+                onOpenPlan = {
+                    val shown = skillDetail!!
+                    if (NavigationGraph.canOpen(Surface.SkillDetail.id, Surface.PlannerExplanation.id)) {
+                        explain { facts ->
+                            val focused = PlannerExplanationPresentation.forSkill(facts, shown.skill, shown.name)
+                            explanationFocus = focused
+                            explanation = focused.explanation
+                        }
+                    }
+                },
             )
             topicDetail != null -> TopicDetailScreen(
                 view = topicDetail!!,
@@ -366,7 +414,16 @@ private fun Shell(
                 onRequestFastPath = { app.requestFastPath(topicSkills) { view, facts -> fastPath = view; onTodayFacts(facts) } },
                 onWithdrawFastPath = { app.withdrawFastPath { view -> fastPath = view } },
             )
-            english != null -> EnglishProfileScreen(view = english!!, onBack = { english = null })
+            english != null -> EnglishProfileScreen(
+                view = english!!,
+                onBack = { english = null },
+                // 17E: `technical_english_profile -> skill_detail` — each Skill opens the one shared Skill detail.
+                onOpenSkill = { ref ->
+                    if (NavigationGraph.canOpen(Surface.TechnicalEnglishProfile.id, Surface.SkillDetail.id)) {
+                        app.loadSkillDetail(ref) { facts -> facts?.let { skillDetail = ProgressPresentation.detail(it) } }
+                    }
+                },
+            )
             entry != null -> {
                 val run = runSession
                 // 16F: the next question, or the end of the run when none is left. The runner never advances a cached
@@ -375,7 +432,7 @@ private fun Shell(
                     runStage = TaskRunStage.Working
                     app.serveNext(current.run, current.shown.map { it.ref }.toSet()) { item, prompt, served ->
                         if (item == null) {
-                            finishRun(app, current, onTodayFacts) { lines -> runStage = TaskRunStage.Finished(listOf(TaskRunCopy.NO_MORE_QUESTIONS) + lines) }
+                            finishRun(app, current, onTodayFacts, onDayFacts) { lines -> runStage = TaskRunStage.Finished(listOf(TaskRunCopy.NO_MORE_QUESTIONS) + lines) }
                         } else {
                             // 16G: how it is answered (key, tests or rubric) and, for code, what the learner copies.
                             current.newQuestion(item, prompt.orEmpty(), served)
@@ -386,7 +443,7 @@ private fun Shell(
                 fun question(current: TaskRunSession, disclosure: Boolean = false, notice: String? = null) = current.questionStage(disclosure, notice)
                 // 16G: judged answers, help, the comprehension check and a durable pause; every rule stays in core.
                 val flow = run?.let { current ->
-                    TaskRunFlow(app, current, show = { stage -> runStage = stage }, finish = { onLines -> finishRun(app, current, onTodayFacts, onLines) })
+                    TaskRunFlow(app, current, show = { stage -> runStage = stage }, finish = { onLines -> finishRun(app, current, onTodayFacts, onDayFacts, onLines) })
                 }
                 TaskRunnerScreen(
                     state = runStage?.state ?: RunnerRevalidation.stateAtEntry(entry),
@@ -396,7 +453,7 @@ private fun Shell(
                     // is processed once, so the plan reflects it (`TRUX-v0` §7.4).
                     onExit = {
                         session = session?.let { WorkingSessions.on(it, SessionEvent.LearnerExited) }
-                        run?.let { finishRun(app, it, onTodayFacts) {} }
+                        run?.let { finishRun(app, it, onTodayFacts, onDayFacts) {} }
                         runSession = null
                         runStage = null
                         runnerEntry = null
@@ -480,7 +537,7 @@ private fun Shell(
                         onContest = { flow.contest() },
                         onFinish = {
                             runStage = TaskRunStage.Working
-                            finishRun(app, run, onTodayFacts) { lines -> runStage = TaskRunStage.Finished(lines) }
+                            finishRun(app, run, onTodayFacts, onDayFacts) { lines -> runStage = TaskRunStage.Finished(lines) }
                         },
                     ),
                 )
@@ -488,7 +545,8 @@ private fun Shell(
             selected == Destination.TODAY -> TodayScreen(
                 // The day's own record, projected in core: what today recorded, never how it went.
                 daySummary = day?.let {
-                    EndOfDay.of(DaySummaryInput(record = it.record, health = health, unreadKinds = it.unreadKinds))
+                    // 17E: with the day's changes the engines replay from its evidence (`DayChanges`).
+                    EndOfDay.of(DayChanges.input(it.record, it.unreadKinds, it.changes, health))
                 },
                 // Today's own projection: which state applies and which task may be offered is
                 // decided in core, never here (MSBX-v0).
@@ -534,7 +592,7 @@ private fun Shell(
                     if (surface == Surface.PlannerExplanation &&
                         NavigationGraph.canOpen(Destination.TODAY.id, surface.id)
                     ) {
-                        explain { facts -> explanation = PlannerExplanationPresentation.of(facts) }
+                        explain { facts -> explanationFocus = null; explanation = PlannerExplanationPresentation.of(facts) }
                     }
                 },
             )
@@ -600,6 +658,8 @@ private fun Shell(
                         backup = outcome
                         app.loadCapacity { capacity = it }
                         app.loadReminder { preference, access -> reminder = preference to access }
+                        app.loadDisplay { display = it }
+                        loadAiUsage()
                     }
                 },
                 onCancelRestore = { app.cancelRestore(); backup = BackupState.Idle },
@@ -614,8 +674,16 @@ private fun Shell(
                 },
                 onCheckKey = {
                     aiCheck = AiCheckState.CHECKING
-                    app.aiWork({ app.aiSettings.check() }) { aiCheck = it }
+                    // 17E: a check that reached the provider is a counted call; the count is read again after it.
+                    app.aiWork({ app.aiSettings.check() }) { aiCheck = it; loadAiUsage() }
                 },
+                appearance = display?.let { AppearancePresentation.of(it, systemReducedMotion()) },
+                // 17E: shown at once, so a second change made before the first is stored builds on it, not on the old one.
+                onAppearance = { theme, reduceMotion ->
+                    display = (display ?: DisplayPreference.SYSTEM_DEFAULT).copy(theme = theme, reduceMotion = reduceMotion, recorded = true)
+                    app.setDisplay(theme, reduceMotion) { display = it }
+                },
+                aiUsage = aiUsage,
             )
             // 17A: `learn_overview`. `learn -> topic_detail` is an accepted edge (`UXIA-v0`).
             else -> LearnScreen(
@@ -642,11 +710,18 @@ private fun Shell(
 // state changed — and Today's facts come back, because the plan may have changed. A run with nothing answered changes
 // nothing, and says so. Line comments on purpose: earlier gates strip block comments, and the restore picker's MIME pattern
 // above reads to them as the start of one.
-private fun finishRun(app: CoachApplication, run: TaskRunSession, onTodayFacts: (TodayFacts) -> Unit, onLines: (List<String>) -> Unit) {
+private fun finishRun(
+    app: CoachApplication,
+    run: TaskRunSession,
+    onTodayFacts: (TodayFacts) -> Unit,
+    onDayFacts: (DayCloseFacts.Loaded) -> Unit,
+    onLines: (List<String>) -> Unit,
+) {
     if (run.finished) return
     run.finished = true
-    app.finishRun(run.run, run.before, run.answered.toList(), run.shown.toList(), run.skipped.toSet(), run.contested.toSet()) { lines, facts, _ ->
+    app.finishRun(run.run, run.before, run.answered.toList(), run.shown.toList(), run.skipped.toSet(), run.contested.toSet()) { lines, facts, day ->
         onTodayFacts(facts)
+        onDayFacts(day)
         onLines(lines)
     }
 }

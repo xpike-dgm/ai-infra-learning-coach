@@ -176,7 +176,7 @@ information_ownership:
     setting_home: profile
   - object: planner_reason
     primary_home: planner_explanation
-    contextual: [today, task_runner_flow]
+    contextual: [today, task_runner_flow, skill_detail]  # skill_detail: 17E (D-138)
   - object: curriculum_hierarchy
     primary_home: learn
   - object: topic_state
@@ -184,7 +184,7 @@ information_ownership:
     contextual: [learn, today, progress]
   - object: exact_skill_state
     primary_home: skill_detail
-    contextual: [progress, today, learn]
+    contextual: [progress, today, learn, technical_english_profile]  # technical_english_profile: 17E (D-138)
   - object: weakness_remediation
     primary_home: progress
     contextual: [today]
@@ -235,6 +235,9 @@ navigation_edges:
     - [progress, learning_history]
     - [skill_detail, learning_history]
     - [assessment_report, learning_history]
+    # 17E (D-138, user decision 2026-10-27): two edges added after 8A, recorded as an amendment, nothing else changed.
+    - [skill_detail, planner_explanation]
+    - [technical_english_profile, skill_detail]
 
 focus_flow_return_semantics:
   task_runner_normal: today

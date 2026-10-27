@@ -23,6 +23,12 @@ import coach.model.PrerequisiteEdge
 import coach.model.PrerequisiteSnapshot
 import coach.model.PreferenceRecord
 import coach.model.ReminderPreferenceRecord
+import coach.model.AiCall
+import coach.model.AiCallOutcome
+import coach.model.AiCallRecord
+import coach.model.AiCallUse
+import coach.model.DisplayPreferenceRecord
+import coach.model.ThemeChoice
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
@@ -530,6 +536,32 @@ class SqlitePersistence private constructor(
     override fun reminderPreferences(): List<ReminderPreferenceRecord> =
         query("SELECT reminder_enabled, minute_of_day, sequence FROM reminder_preference ORDER BY sequence") {
             ReminderPreferenceRecord(enabled = it.getLong(0) == 1L, minuteOfDay = it.getLong(1).toInt(), sequence = it.getLong(2))
+        }
+
+    /** Every `display_preference` row, oldest first (17E). A theme the schema does not know cannot be stored. */
+    override fun displayPreferences(): List<DisplayPreferenceRecord> =
+        query("SELECT theme, reduce_motion, sequence FROM display_preference ORDER BY sequence") {
+            DisplayPreferenceRecord(theme = requireNotNull(ThemeChoice.of(it.getText(0))), reduceMotion = it.getLong(1) == 1L, sequence = it.getLong(2))
+        }
+
+    /** Every `ai_call_record` row, oldest first (17E). A token count the provider did not report stays unknown. */
+    override fun aiCalls(): List<AiCallRecord> =
+        query(
+            "SELECT call_use, model, outcome, attempts, input_usage, output_usage, called_on_study_day, sequence " +
+                "FROM ai_call_record ORDER BY sequence"
+        ) {
+            AiCallRecord(
+                call = AiCall(
+                    use = requireNotNull(AiCallUse.of(it.getText(0))),
+                    model = it.getText(1),
+                    outcome = requireNotNull(AiCallOutcome.of(it.getText(2))),
+                    attempts = it.getLong(3).toInt(),
+                    inputTokens = if (it.isNull(4)) null else it.getLong(4),
+                    outputTokens = if (it.isNull(5)) null else it.getLong(5),
+                ),
+                studyDay = it.getText(6),
+                sequence = it.getLong(7),
+            )
         }
 
     /** Which of these planned tasks have at least one `attempt` made for them (16F). */

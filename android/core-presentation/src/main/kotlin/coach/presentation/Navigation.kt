@@ -174,6 +174,9 @@ object NavigationGraph {
         "progress" to "learning_history",
         "skill_detail" to "learning_history",
         "assessment_report" to "learning_history",
+        // 17E (`D-138`): two edges added to the accepted IA contract by the user's decision, each its own row there.
+        "skill_detail" to "planner_explanation",
+        "technical_english_profile" to "skill_detail",
     )
 
     /** Any shell root may switch to any other shell root (`UXIA-v0` §9.1). */

@@ -15,6 +15,7 @@ import coach.presentation.ProgressCopy
 import coach.presentation.ProgressOverview
 import coach.presentation.SkillChip
 import coach.presentation.SkillDetailView
+import coach.presentation.SkillPlanCopy
 import coach.presentation.Spacing
 import androidx.compose.ui.unit.dp
 import coach.presentation.TopicOverviewView
@@ -107,6 +108,8 @@ fun SkillDetailScreen(
     modifier: Modifier = Modifier,
     // 16B: `skill_detail -> learning_history` (`UXIA-v0`), the evidence history entry 16A deferred.
     onOpenHistory: (() -> Unit)? = null,
+    // 17E: `skill_detail -> planner_explanation` (`D-138`), today's plan as it concerns this Skill.
+    onOpenPlan: (() -> Unit)? = null,
 ) {
     ScreenColumn(modifier = modifier) {
         BackButton(onBack)
@@ -115,6 +118,7 @@ fun SkillDetailScreen(
         StateChip(label = view.chip.label, tone = view.chip.tone, subject = view.skill)
         view.chip.qualifiers.forEach { Text(it, style = MaterialTheme.typography.bodySmall) }
         onOpenHistory?.let { open -> NavRow("Bu becerinin geçmişi", open) }
+        onOpenPlan?.let { open -> NavRow(SkillPlanCopy.ENTRY, open) }
 
         SectionBlock {
             view.axes.forEach { axis -> CountRow(axis.title, axis.value) }

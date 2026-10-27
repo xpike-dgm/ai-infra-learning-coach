@@ -20,6 +20,8 @@ import coach.presentation.Spacing
 import coach.presentation.ExplanationCopy
 import coach.presentation.NotTodayExplanation
 import coach.presentation.PlannerExplanationView
+import coach.presentation.SkillPlanCopy
+import coach.presentation.SkillPlanView
 import coach.presentation.TaskExplanation
 
 /**
@@ -35,18 +37,22 @@ fun PlannerExplanationScreen(
     view: PlannerExplanationView,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    // 17E: opened from `skill_detail`, the same surface narrowed to one Skill ([SkillPlanView]); back returns to it.
+    focus: SkillPlanView? = null,
 ) {
     ScreenColumn(modifier = modifier) {
         BackButton(onBack)
         Text(
-            "Bu plan neden böyle?",
+            if (focus == null) "Bu plan neden böyle?" else SkillPlanCopy.TITLE,
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.semantics {
                 heading()
                 liveRegion = LiveRegionMode.Polite
             },
         )
+        focus?.let { Text(ExplanationCopy.names(listOf(it.skill)), style = MaterialTheme.typography.bodyLarge) }
         Text(ExplanationCopy.text(view.state), style = MaterialTheme.typography.bodyMedium)
+        if (focus?.notMentioned == true) Text(SkillPlanCopy.NOT_MENTIONED, style = MaterialTheme.typography.bodyMedium)
 
         if (view.plan.isNotEmpty()) {
             SectionHeading("Plan hakkında")
@@ -54,17 +60,17 @@ fun PlannerExplanationScreen(
         }
 
         if (view.today.isNotEmpty()) {
-            SectionHeading("Bugün neden bu işler?")
+            SectionHeading(if (focus == null) "Bugün neden bu işler?" else SkillPlanCopy.TODAY)
             view.today.forEach { TaskWhy(it) }
         }
 
         if (view.notToday.isNotEmpty()) {
-            SectionHeading("Bugüne alınmayanlar ve bekleyenler")
+            SectionHeading(if (focus == null) "Bugüne alınmayanlar ve bekleyenler" else SkillPlanCopy.NOT_TODAY)
             view.notToday.forEach { NotTodayWhy(it) }
         }
 
         TextButton(onClick = onBack, modifier = Modifier.minimumTouchTarget()) {
-            Text("Bugün'e dön")
+            Text(if (focus == null) "Bugün'e dön" else SkillPlanCopy.BACK)
         }
     }
 }
