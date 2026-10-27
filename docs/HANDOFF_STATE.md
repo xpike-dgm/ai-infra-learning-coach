@@ -324,14 +324,15 @@ PEM-v0:
 - 17D ✅ A11X-v0 / D-137
 - 17E ✅ RUXX-v0 / D-138
 - AŞAMA 17 ✅ TAMAMLANDI
-- 18A 🟡 active-not-executed
-- 18B–20 ⬜
+- 18A ✅ ISTX-v0 / D-139
+- 18B 🟡 active-not-executed
+- 18C–18F, 18G (D-140), 19–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `17E — RUXX-v0 / D-138`  
-**Aktif:** `18A — Pilot başlangıcı`  
-**18A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `18A — ISTX-v0 / D-139`  
+**Aktif:** `18B — Planner gözlemi`  
+**18B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1798,3 +1799,21 @@ RUXX-v0:
 ## 118. 18A handoff
 
 18A — Pilot başlangıcı. 17E ran on the user's explicit approval; 18A needs a fresh PRE and the user's new explicit approval. Carried to 18: which "what changed" a learner sees after a first run (the run's 13E report or the history's replay); the day replay's cost (18E); calibration (18C/18D); the placement flow and its diagnostic source (18A, from 16H). Elsewhere: TalkBack, the focus ring with a real keyboard, the first live AI call and T6 (19); one source for the help levels' two wordings and `AssessmentSessionScreen` (still open).
+
+## 119. D-139 / D-140 / 18A final özeti
+
+Canonical: `docs/INITIAL_SETUP_SPEC.md`.
+Contract/QA: `arch/18a_initial_setup/` (contract, the two emulator audit reports, QA report, stale audit).
+Synthesis: `research/18a_initial_setup_research.md`.
+Code: `core-model` (`SetupFacts.kt`, `DiagnosticSource.CURRICULUM_ENTRY_PLACEMENT`), `core-application` (`InitialSetup`; `ReportProgramChanges` replays an unwritten before through `HistoryReplay.axesAt`), `core-presentation` (`SetupPresentation`, `Surface.InitialSetupFlow`), `app-ui` (`SetupScreen.kt`), `app-wiring` (setup state before Today; Turkish names in the run report), `tools/audit_a11y_emulator.py` (reads the setup). Schema v13 `setup_record`.
+
+ISTX-v0:
+- the first-run setup: shown once, pre-shell, before any plan, on a store no one has used; it records the normal day as a preference and, only for the areas the learner ticks, one diagnostic whose source is the entry placement — never evidence, never mandatory; skipping records only that it was done; and a run's report reads an unwritten before the way the history does,
+- approval: the user's explicit approval of 2026-10-28; user decisions: the first-run setup only; the run report replays an unwritten before like the history (13E amended); the pilot journal and the phone install go to a new step, 18G (D-140),
+- found: no setup existed in code; a plan could have been made while the setup was open; the run report named Skills in English once first runs reported a change; the accessibility audit waited at the setup — all fixed,
+- Mutation Kotlin 11/11, validator 26/26; independent QA 69/69 PASS,
+- T6 was not run; the app ran on an emulator (Pixel 7 AVD, API 34; data on drive D).
+
+## 120. 18B handoff
+
+18B — Planner gözlemi. 18A ran on the user's explicit approval; 18B needs a fresh PRE and the user's new explicit approval. 18G (D-140) runs the pilot itself (the journal and the 14-day pilot on the phone); which of 18B–18F needs the pilot's data first is a PRE question. Carried: a calibrated `planner_diagnostic_opportunity` (18B), the day replay's cost (18E), calibration (18C/18D). Elsewhere: TalkBack, the focus ring with a real keyboard, the first live AI call and T6 (19).

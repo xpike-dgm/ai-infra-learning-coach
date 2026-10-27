@@ -265,8 +265,11 @@ check("A17E-06_tabs_carry_the_ring", "modifier = Modifier.focusRing().semantics 
 check("A17E-06_navrow_ring_sees_focus", re.search(r"\.minimumTouchTarget\(\)[\s\S]{0,160}?\.clickable\(", segment(components, "fun NavRow(", "fun BackButton(")) is not None, "")
 
 # ---------------------------------------------------------------- 7. schema v12
-v12 = schema[schema.find("val v12: List<String>"):schema.find("const val MISCONCEPTION_SOURCES")]
-check("A17E-07_version", "const val VERSION = 12" in schema and "11 to Schema.v12," in code_only(read(MIGRATIONS)), "")
+# Narrowed at 18A (`D-139`): version 13 adds the setup record after v12; v12 itself is what this checks.
+_v12_end = schema.find("val v13: List<String>") if "val v13: List<String>" in schema else schema.find("const val MISCONCEPTION_SOURCES")
+v12 = schema[schema.find("val v12: List<String>"):_v12_end]
+_version = re.search(r"const val VERSION = (\d+)", schema)
+check("A17E-07_version", _version is not None and int(_version.group(1)) >= 12 and "11 to Schema.v12," in code_only(read(MIGRATIONS)), "")
 check("A17E-07_only_adds", len(re.findall(r"CREATE TABLE IF NOT EXISTS", v12)) == 2 and not re.search(r"\b(ALTER|DROP|UPDATE|DELETE)\b", code_only(v12).replace("appendOnlyGuards", "")), "")
 check("A17E-07_guarded_append_only", "(displayPreferenceTables + aiUsageTables).flatMap(::appendOnlyGuards)" in v12
       and "+ displayPreferenceTables + aiUsageTables" in schema, "")

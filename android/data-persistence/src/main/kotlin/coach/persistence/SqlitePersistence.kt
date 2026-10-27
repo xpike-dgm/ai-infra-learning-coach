@@ -29,6 +29,8 @@ import coach.model.AiCallRecord
 import coach.model.AiCallUse
 import coach.model.DisplayPreferenceRecord
 import coach.model.ThemeChoice
+import coach.model.SetupOutcome
+import coach.model.SetupRecord
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
@@ -562,6 +564,12 @@ class SqlitePersistence private constructor(
                 studyDay = it.getText(6),
                 sequence = it.getLong(7),
             )
+        }
+
+    /** Every `setup_record` row, oldest first (18A). */
+    override fun setupRecords(): List<SetupRecord> =
+        query("SELECT setup_outcome, recorded_on_study_day, sequence FROM setup_record ORDER BY sequence") {
+            SetupRecord(outcome = requireNotNull(SetupOutcome.of(it.getText(0))), studyDay = it.getText(1), sequence = it.getLong(2))
         }
 
     /** Which of these planned tasks have at least one `attempt` made for them (16F). */

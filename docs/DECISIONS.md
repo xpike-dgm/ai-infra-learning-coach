@@ -2523,3 +2523,40 @@ Ayrıntı: `docs/ACCESSIBILITY_SPEC.md`.
 - Sonraki numbered step `18A — Pilot başlangıcı`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/REMAINING_UX_SPEC.md`.
+
+## D-139 — Pilot başlangıcı: ilk açılış kurulumu = ISTX-v0
+**Durum:** Kabul edildi — 2026-10-28
+
+- 18A final modeli `ISTX-v0 — the first-run setup: shown once, pre-shell, before any plan, on a store no one has used; it records the normal day as a preference and, only for the areas the learner ticks, one diagnostic whose source is the entry placement — never evidence, never mandatory; skipping records only that it was done; and a run's report reads an unwritten before the way the history does` oldu.
+- **Ana invariant:** ilk açılış kurulumu kullanılmamış bir depoda, Bugün'den ve herhangi bir plandan önce bir kez gösteriliyor; öğrencinin normal gün süresini bir tercih olarak kaydediyor ve yalnız işaretlediği alanlar için kaynağı giriş yerleştirmesi olan tek bir tanı açıyor — 'biliyorum' kanıt sayılmaz, hiçbir şey atlatmaz ve hiçbir tanı zorunlu değil; atlamak yalnız kurulumun yapıldığını kaydediyor; Bugün kurulumdan sonra planlanıyor; ve bir koşunun sonu, hiçbir motorun yazmadığı bir 'önce'yi geçmişin okuduğu gibi kanıttan yeniden oynatarak okuyor, böylece koşu sonu, geçmiş ve gün özeti aynı değişikliği söylüyor.
+- **Kullanıcı kararı (2026-10-28, "18A ya başla"):** yalnız ilk açılış kurulumu; koşu sonu raporu da geçmiş gibi kanıttan yeniden oynatsın (13E'nin kuralı açıkça değişti); pilot günlüğü ve telefona kurulum yeni adım 18G'ye gitti (D-140).
+- **Değişiklikler (kullanıcı kararı):**
+  - `PCRX-v0` (13E): koşu sonu raporu, dokunulan bir becerinin hiçbir motorun yazmadığı eksenini anlık görüntünün gördüğü kanıt üzerinde motorları yeniden oynatarak okur (`HistoryReplay.axesAt`); yazılmış bir eksen asla değiştirilmez. Motorun kendi kuralı ('yazılmamış eksen bir önce değildir') değişmedi.
+  - `VDW-v0` / `VDWX-v0` (13F): `curriculum_entry_placement` temsil edilebilir — ilk açılış kurulumunda öğrencinin bir alanı işaretlemesi; `planner_diagnostic_opportunity` hâlâ edilemez.
+- **Asistanın varsayılan seçimleri:**
+  - model kimliği `ISTX-v0`;
+  - 'biliyorum'un birimi konu değil alan (müfredatın kendi gruplaması, Öğren'in sırası);
+  - kurulum yalnız normal günü sorar; kısa ve yoğun gün Profil'de;
+  - planı olan bir depo kullanılmış sayılır ve sorulmaz;
+  - kurulum satırı en son eklenir, yarıda kalan kurulum yeniden sunulur;
+  - koşu sonu raporu becerileri Türkçe adıyla yazar (17A).
+- **Bulunanlar:**
+  - UXIA-v0 §7.4'ün ilk açılış akışı ve VDW-v0'ın giriş yerleştirme kaynağı yalnız spec'teydi — yeni bir kurulum doğrudan önayarlarla kurulmuş bir plana gidiyordu; etkinlik her başlangıçta Bugün'ü yeniliyordu, yani kurulum açıkken plan yazılabilirdi; ilk koşu artık değişiklik raporlayınca rapor beceriyi İngilizce kanonik adıyla yazıyordu ('State Assignment Model') — artık Türkçe; erişilebilirlik denetimi uygulama verisini sildiği için kuruluma takılıp kabuğu sonsuza dek bekliyordu — artık kurulumu kendi ekranı olarak okuyup güvenli çıkışından çıkıyor.
+- Şema v13 (`setup_record`; dolu v12'ye karşı, hiçbir satır yeniden yazılmadı).
+- **Doğrulama:**
+  - Kotlin mutation 11/11, validator mutation 26/26; kontrol mutantları hayatta kaldı.
+  - Validator 69/69 PASS; emülatör denetimi 100% ve 200% metinde on yedi ekran (kurulum dahil), 0 bulgu.
+  - 1334 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Hızlı tarama geçti; içerik validator'ları paketler değişmediği için yeniden koşulmadı.
+- Çalıştırılmayan: **T6**.
+- **Devredilenler:** pilot günlüğü ve telefonda 14 günlük pilot (18G, D-140); kalibre edilmiş `planner_diagnostic_opportunity` (18B); TalkBack ve T6 (19).
+- Sonraki numbered step `18B — Planner gözlemi`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/INITIAL_SETUP_SPEC.md`.
+
+## D-140 — 18G eklendi: Pilotun yürütülmesi
+**Durum:** Kabul edildi — 2026-10-28 (kullanıcı kararı)
+
+- 18A'nın PRE'sinde kullanıcı 18A'yı ilk açılış kurulumuna ayırdı; pilot günlüğü ve uygulamayı telefona kurup pilotu başlatmak seçilmedi.
+- Bu ikisi yeni bir adıma, **18G — Pilotun yürütülmesi**ye gider; AŞAMA 18'in sonuna, D-099, D-125, D-129, D-131 ve D-136 gibi eklenir; yeniden numaralama yoktur.
+- 18G'nin girdileri: pilot günlüğü (uygulamada 'planı elle düzelttim' ve 'kural ihlali gördüm' kayıtları; PC'de yedekten pilot raporu; SC-048/049) ve uygulamayı telefona (Poco M6 Pro) kurup en az 14 günlük pilotu başlatmak.

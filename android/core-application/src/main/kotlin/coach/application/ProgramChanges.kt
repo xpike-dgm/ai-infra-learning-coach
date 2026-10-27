@@ -105,7 +105,12 @@ class ReportProgramChanges(
      * [keptPositions] are today's tasks the learner started (16F, `StartedTasks`): a replan keeps them and re-resolves only
      * the rest (`TRUX-v0` §10.1, 12D).
      */
-    fun report(before: ProgramSnapshot, touched: List<VersionedRef>, capacity: DailyCapacityInput, keptPositions: Set<Int> = emptySet()): Reported {
+    fun report(captured: ProgramSnapshot, touched: List<VersionedRef>, capacity: DailyCapacityInput, keptPositions: Set<Int> = emptySet()): Reported {
+        // 18A (user decision, `D-139`): an axis no engine had written before the run is read the way the learning history
+        // reads it — the engines replayed over the evidence the snapshot saw — so the run's report and the history (and the
+        // day summary) say the same change. Before 18A such an axis was not a "before" at all, and a first wrong answer
+        // reported nothing here while the history said a question about a difficulty had opened.
+        val before = replayedBefore(captured, touched.distinct())
         val recompute = RecomputeSkillState(persistence, clock)
         touched.distinct().forEach { recompute.recompute(it) }
         val capture = CaptureProgramSnapshot(persistence, clock)
@@ -116,6 +121,22 @@ class ReportProgramChanges(
             BuildDailyPlan(persistence, content, clock).replan(BuildDailyPlan.ReplanRequest(trigger = it, capacity = capacity, keptPositions = keptPositions))
         }
         return Reported(ProgramChangeEngine.report(before, capture.capture()), built)
+    }
+
+    private fun replayedBefore(captured: ProgramSnapshot, touched: List<VersionedRef>): ProgramSnapshot {
+        val unwritten = ResolvePrerequisites.NOT_YET_EVALUATED
+        val filled = touched.mapNotNull { skill ->
+            val axes = captured.skills[skill] ?: return@mapNotNull null
+            if (listOf(axes.mastery, axes.retention, axes.weakness).none { it == unwritten }) return@mapNotNull null
+            val replayed = HistoryReplay.axesAt(persistence, skill, persistence.objectivesOf(skill), captured.truthWatermark, captured.studyDay)
+            // Only what no engine had written is taken from the replay; a written axis stays exactly as it was read.
+            skill to axes.copy(
+                mastery = axes.mastery.takeUnless { it == unwritten } ?: replayed.mastery,
+                retention = axes.retention.takeUnless { it == unwritten } ?: replayed.retention,
+                weakness = axes.weakness.takeUnless { it == unwritten } ?: replayed.weakness,
+            )
+        }.toMap()
+        return if (filled.isEmpty()) captured else captured.copy(skills = captured.skills + filled)
     }
 
     internal companion object {

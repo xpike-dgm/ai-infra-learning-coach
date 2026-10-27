@@ -175,9 +175,13 @@ check("A16B-05_replay_writes_nothing", 'override fun appendTruth(record: TruthRe
 check("A16B-05_replay_cuts_evidence", "evidence[objective].orEmpty().filter { it.sequence <= cutoff }" in prefix
       and "override fun truthWatermark(): Long = cutoff" in prefix, "")
 steps = body(history, "fun steps(")
-check("A16B-05_replay_same_rebuilds", all(s in steps for s in ("RebuildMastery(overlay, clock).rebuild(skill, profiles)",
-      "RebuildRetention(overlay, clock).rebuild(skill, profiles)", "RebuildWeakness(overlay, clock).rebuild(skill, profiles)")), "")
-check("A16B-05_known_start_and_own_day", "read(rows.first().sequence - 1" in steps and "StudyTimestamp(0L, day, 0)" in steps
+# Narrowed at 18A (`D-139`): the replay's reading is one function (`read`) shared by the steps and by `axesAt`, which the run's
+# report uses for a "before" no engine had written; the same three rebuilds, on the row's own day, are what this checks.
+replay_read = body(history, "private fun read(overlay: PrefixPersistence")
+check("A16B-05_replay_same_rebuilds", all(s in replay_read for s in ("RebuildMastery(overlay, clock).rebuild(skill, profiles)",
+      "RebuildRetention(overlay, clock).rebuild(skill, profiles)", "RebuildWeakness(overlay, clock).rebuild(skill, profiles)"))
+      and "fun read(cutoff: Long, day: String): SkillAxes = read(overlay, skill, profiles, cutoff, day)" in steps, "")
+check("A16B-05_known_start_and_own_day", "read(rows.first().sequence - 1" in steps and "StudyTimestamp(0L, day, 0)" in replay_read
       and "read(row.sequence" in steps, "")
 check("A16B-05_changes_are_13e", "ProgramChangeEngine.stateChanges(previous, after)" in steps, "")
 query = body(history, "class LearningHistoryQuery(")

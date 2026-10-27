@@ -213,7 +213,14 @@ capture = body(app, "fun capture(")
 check("E13E-06_watermark_first", 0 <= capture.find("persistence.truthWatermark()") < capture.find("persistence.publishedSkills()") < capture.find("persistence.latestPlan()"),
       "the watermark is read after state")
 check("E13E-06_unwritten_axis", "axes[column]?.ifEmpty { null } ?: ResolvePrerequisites.NOT_YET_EVALUATED" in capture, "an empty axis reads as written")
-report_app = body(app, "fun report(before: ProgramSnapshot")
+# Narrowed at 18A (`ISTX-v0` / `D-139`, user decision): the caller's snapshot is `captured`; the report's `before` is that
+# snapshot with only the axes no engine had written replayed from the evidence it saw, so the run's report says the change
+# the learning history says. The engine's own rule (an unwritten axis is not a before) is unchanged and checked above.
+report_app = body(app, "fun report(captured: ProgramSnapshot") or body(app, "fun report(before: ProgramSnapshot")
+check("E13E-06_before_is_the_snapshot_replayed", "val before = replayedBefore(captured, touched.distinct())" in report_app
+      and report_app.find("replayedBefore(") < report_app.find("recompute.recompute(")
+      and "HistoryReplay.axesAt(persistence, skill, persistence.objectivesOf(skill), captured.truthWatermark, captured.studyDay)" in app
+      and "axes.mastery.takeUnless { it == unwritten } ?: replayed.mastery" in app, "the before is not the snapshot, replayed only where unwritten")
 check("E13E-06_replan_only_on_change", "val built = trigger?.let {" in report_app and "kinds.isEmpty() -> null" in app, "a replan with nothing changed")
 # Narrowed at 16F (`E2EX-v0` / `D-128`): the replan now keeps the tasks the learner started (`keptPositions`, read by
 # the caller from the store); it is still the planner's own replan with the event the change names.
@@ -300,7 +307,8 @@ named_tests = {
     "application": ["a contradiction opens a verification and the next plan carries it",
                     "a failed re-check confirms a remediation and the next plan repairs it",
                     "evidence that changes no state changes no plan, and the report says nothing changed",
-                    "the first reading of a Skill claims no change from a state nobody had written",
+                    # Narrowed at 18A (`D-139`): the first reading now reports what the history reports.
+                    "the first reading of a Skill reports what the history reports",
                     "recomputing writes every axis from the published Objectives"],
     "presentation": ["each change lands in its own family and nowhere else", "a weakness question is never filed or worded as a gap",
                      "plan changes are their own section and a first plan is not a change",

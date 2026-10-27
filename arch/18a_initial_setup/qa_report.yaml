@@ -1,0 +1,214 @@
+step: 18A
+model: ISTX-v0
+checks: 69
+passed: 69
+results:
+- check: A18A-01_contract
+  result: PASS
+  details: '{''model'': ''ISTX-v0'', ''decision'': ''D-139''}'
+- check: A18A-01_spec_accepted
+  result: PASS
+  details: ''
+- check: A18A-01_research
+  result: PASS
+  details: ''
+- check: A18A-01_user_decisions
+  result: PASS
+  details: ''
+- check: A18A-02_shown_once_on_an_unused_store
+  result: PASS
+  details: ''
+- check: A18A-02_surface_pre_shell
+  result: PASS
+  details: ''
+- check: A18A-02_ia_contract
+  result: PASS
+  details: ''
+- check: A18A-03_setup_plans_nothing
+  result: PASS
+  details: the setup plans
+- check: A18A-03_refresh_waits_for_setup
+  result: PASS
+  details: Today can be planned while the setup is open
+- check: A18A-03_today_after_setup
+  result: PASS
+  details: ''
+- check: A18A-03_ended_once
+  result: PASS
+  details: two taps end the setup twice
+- check: A18A-03_setup_before_shell
+  result: PASS
+  details: ''
+- check: A18A-04_placement_source
+  result: PASS
+  details: ''
+- check: A18A-04_only_when_completed_and_ticked
+  result: PASS
+  details: ''
+- check: A18A-04_only_startable
+  result: PASS
+  details: ''
+- check: A18A-04_skip_records_only_that
+  result: PASS
+  details: a skip writes a preference
+- check: A18A-04_leftover_withdrawn
+  result: PASS
+  details: a skipped setup can leave a diagnostic
+- check: A18A-04_one_call_site
+  result: PASS
+  details: '[''core-application\\src\\main\\kotlin\\coach\\application\\InitialSetup.kt'']'
+- check: A18A-04_setup_row_last
+  result: PASS
+  details: ''
+- check: A18A-04_no_evidence_written
+  result: PASS
+  details: the setup writes evidence or a waiver
+- check: A18A-04_ticked_areas_only
+  result: PASS
+  details: ''
+- check: A18A-04_source_representable
+  result: PASS
+  details: the app could open a diagnostic by itself
+- check: A18A-04_source_reason_is_the_learner
+  result: PASS
+  details: ''
+- check: A18A-05_not_evidence
+  result: PASS
+  details: ''
+- check: A18A-05_not_mandatory
+  result: PASS
+  details: ''
+- check: A18A-05_not_a_failure
+  result: PASS
+  details: ''
+- check: A18A-05_length_is_a_ceiling
+  result: PASS
+  details: ''
+- check: A18A-05_no_false_promise
+  result: PASS
+  details: ''
+- check: A18A-05_no_level_or_score
+  result: PASS
+  details: the setup speaks of a level, a score or a test
+- check: A18A-06_nothing_pre_ticked
+  result: PASS
+  details: ''
+- check: A18A-06_kept_across_recreation
+  result: PASS
+  details: ''
+- check: A18A-06_skip_first
+  result: PASS
+  details: the skip, and what it does, are not first
+- check: A18A-06_checkbox_rows
+  result: PASS
+  details: ''
+- check: A18A-06_field_error_its_own
+  result: PASS
+  details: ''
+- check: A18A-06_buttons_48dp
+  result: PASS
+  details: ''
+- check: A18A-06_decides_nothing
+  result: PASS
+  details: ''
+- check: A18A-07_version
+  result: PASS
+  details: ''
+- check: A18A-07_only_adds
+  result: PASS
+  details: ''
+- check: A18A-07_guarded
+  result: PASS
+  details: ''
+- check: A18A-07_owned
+  result: PASS
+  details: '{''from'': 12, ''to'': 13, ''owner'': ''18A'', ''tables'': [''setup_record''], ''truth_altered'': False, ''decision'': ''D-139''}'
+- check: A18A-08_before_replayed_first
+  result: PASS
+  details: the replay reads after the recompute
+- check: A18A-08_only_unwritten_replaced
+  result: PASS
+  details: a written axis may be replaced
+- check: A18A-08_replay_up_to_the_snapshot
+  result: PASS
+  details: ''
+- check: A18A-08_history_reading_shared
+  result: PASS
+  details: ''
+- check: A18A-08_report_names_in_turkish
+  result: PASS
+  details: ''
+- check: A18A-09_tests_InitialSetupCourseTest
+  result: PASS
+  details: 6 < 6
+- check: A18A-09_tests_SetupStorageTest
+  result: PASS
+  details: 3 < 3
+- check: A18A-09_report_agrees_with_history
+  result: PASS
+  details: ''
+- check: A18A-09_course_covers_review
+  result: PASS
+  details: ''
+- check: A18A-09_course_covers_rules
+  result: PASS
+  details: ''
+- check: A18A-10_report_100_passed
+  result: PASS
+  details: PASS
+- check: A18A-10_report_100_font_scale
+  result: PASS
+  details: '1.0'
+- check: A18A-10_report_100_setup_screen
+  result: PASS
+  details: '[''initial_setup'', ''today_overview'', ''today_capacity_dialog'', ''planner_explanation'', ''learn_overview'', ''topic_detail'', ''progress_overview'', ''learning_history'', ''assessment_report'',
+    ''technical_english_profile'', ''skill_detail'', ''skill_plan_explanation'', ''profile_overview'', ''task_runner_orientation'', ''task_runner_lesson'', ''task_runner_question'', ''task_runner_help'']'
+- check: A18A-10_report_100_reached_and_whole
+  result: PASS
+  details: ''
+- check: A18A-10_report_200_passed
+  result: PASS
+  details: PASS
+- check: A18A-10_report_200_font_scale
+  result: PASS
+  details: '2.0'
+- check: A18A-10_report_200_setup_screen
+  result: PASS
+  details: '[''initial_setup'', ''today_overview'', ''today_capacity_dialog'', ''planner_explanation'', ''learn_overview'', ''topic_detail'', ''progress_overview'', ''learning_history'', ''assessment_report'',
+    ''technical_english_profile'', ''skill_detail'', ''skill_plan_explanation'', ''profile_overview'', ''task_runner_orientation'', ''task_runner_lesson'', ''task_runner_question'', ''task_runner_help'']'
+- check: A18A-10_report_200_reached_and_whole
+  result: PASS
+  details: ''
+- check: A18A-10_tool_fails_a_short_run
+  result: PASS
+  details: a run that reached few screens can pass
+- check: A18A-10_tool_reads_setup
+  result: PASS
+  details: ''
+- check: A18A-11_not_claimed
+  result: PASS
+  details: ''
+- check: A18A-11_moved_to_18g
+  result: PASS
+  details: ''
+- check: A18A-11_amendments
+  result: PASS
+  details: ''
+- check: A18A-12_mutation_results_kotlin
+  result: PASS
+  details: '{''total'': 11, ''detected'': 11}'
+- check: A18A-12_mutation_results_validator
+  result: PASS
+  details: '{''total'': 26, ''detected'': 26}'
+- check: A18A-12_independent_review
+  result: PASS
+  details: ''
+- check: A18A-12_decision_recorded
+  result: PASS
+  details: ''
+- check: A18A-12_execution_index
+  result: PASS
+  details: ''
+- check: A18A-12_master_plan
+  result: PASS
+  details: ''

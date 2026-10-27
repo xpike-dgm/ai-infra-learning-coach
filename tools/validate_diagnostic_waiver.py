@@ -156,7 +156,11 @@ vdw_sources = re.search(r"# 3\. Diagnostic ne zaman açılabilir\?.*?```text\n(.
 vdw_sources = vdw_sources.group(1).split() if vdw_sources else []
 sources = re.findall(r'^\s+[A-Z_]+\("([a-z_]+)"\)', body(facts, "enum class DiagnosticSource"), re.M)
 check("E13F-02_sources_from_vdw", bool(sources) and set(sources) <= set(vdw_sources), f"{sources} vs {vdw_sources}")
-check("E13F-02_only_the_learner", "planner_diagnostic_opportunity" not in sources and "curriculum_entry_placement" not in sources,
+# Narrowed at 18A (`ISTX-v0` / `D-139`): `curriculum_entry_placement` is the learner ticking an area in the first-run setup,
+# recorded as an amendment in 18A's contract; the app opening a diagnostic by itself (`planner_diagnostic_opportunity`) still fails.
+_placement_amended = "curriculum_entry_placement is representable" in read(ROOT / "arch/18a_initial_setup/initial_setup.yaml")
+check("E13F-02_only_the_learner", "planner_diagnostic_opportunity" not in sources
+      and ("curriculum_entry_placement" not in sources or _placement_amended),
       "a source other than the learner")
 check("E13F-02_one_source_reason", 'val reasonCode: String get() = DiagnosticCodes.USER_REQUESTED_FAST_PATH' in facts, "a source invents a reason")
 vdw_stages = re.search(r"`diagnostic_stage` örnekleri:\s*```text\n(.*?)```", vdw, re.S)

@@ -22,6 +22,7 @@ import coach.model.PrerequisiteEdge
 import coach.model.ReminderPreferenceRecord
 import coach.model.DisplayPreferenceRecord
 import coach.model.AiCallRecord
+import coach.model.SetupRecord
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
@@ -259,6 +260,12 @@ interface PersistencePort {
      * an adapter that keeps none answers with nothing, and the app says no call is recorded.
      */
     fun aiCalls(): List<AiCallRecord> = emptyList()
+
+    /**
+     * Every first-run setup record, oldest first (18A). A refinement of this port, not a new one; an adapter that keeps
+     * none answers with nothing.
+     */
+    fun setupRecords(): List<SetupRecord> = emptyList()
 
     /**
      * Which of these planned tasks have an attempt made for them (16F) — the learner started them. A refinement of this

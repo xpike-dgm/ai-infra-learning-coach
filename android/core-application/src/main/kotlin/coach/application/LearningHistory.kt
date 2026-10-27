@@ -10,6 +10,7 @@ import coach.model.HistoryEntry
 import coach.model.HistoryFacts
 import coach.model.HistoryFamily
 import coach.model.NotMeasured
+import coach.model.ObjectiveGateProfile
 import coach.model.ObjectiveGateProfiles
 import coach.model.ObjectiveRow
 import coach.model.PlanTraceCodec
@@ -67,25 +68,35 @@ internal object HistoryReplay {
         if (rows.isEmpty()) return emptyList()
         val profiles = objectives.map(ObjectiveGateProfiles::of)
         val overlay = PrefixPersistence(base, evidence)
-
-        fun read(cutoff: Long, day: String): SkillAxes {
-            overlay.cutoff = cutoff
-            val clock = object : ClockPort {
-                override fun now() = StudyTimestamp(0L, day, 0)
-            }
-            RebuildMastery(overlay, clock).rebuild(skill, profiles)
-            RebuildRetention(overlay, clock).rebuild(skill, profiles)
-            RebuildWeakness(overlay, clock).rebuild(skill, profiles)
-            val axes = overlay.readProjection(ResolvePrerequisites.skillStateKey(skill))?.payload.orEmpty()
-            fun axis(column: String) = axes[column]?.ifEmpty { null } ?: ResolvePrerequisites.NOT_YET_EVALUATED
-            return SkillAxes(skill, axis(SkillStateRows.MASTERY), axis(SkillStateRows.RETENTION), axis(SkillStateRows.WEAKNESS))
-        }
+        fun read(cutoff: Long, day: String): SkillAxes = read(overlay, skill, profiles, cutoff, day)
 
         var previous = read(rows.first().sequence - 1, requireNotNull(rows.first().studyDay) { "a row without its study day cannot be replayed" })
         return rows.map { row ->
             val after = read(row.sequence, requireNotNull(row.studyDay) { "a row without its study day cannot be replayed" })
             Step(row, previous, after, ProgramChangeEngine.stateChanges(previous, after)).also { previous = after }
         }
+    }
+
+    /**
+     * 18A (user decision, `D-139`): what the engines said about [skill] over exactly the evidence up to [cutoff], on [day] —
+     * the replay's own reading, for a report whose "before" no engine had written. Writes nothing to the real store.
+     */
+    fun axesAt(base: PersistencePort, skill: VersionedRef, objectives: List<ObjectiveRow>, cutoff: Long, day: String): SkillAxes {
+        val evidence = objectives.associate { it.ref to base.evidenceFor(it.ref) }
+        return read(PrefixPersistence(base, evidence), skill, objectives.map(ObjectiveGateProfiles::of), cutoff, day)
+    }
+
+    private fun read(overlay: PrefixPersistence, skill: VersionedRef, profiles: List<ObjectiveGateProfile>, cutoff: Long, day: String): SkillAxes {
+        overlay.cutoff = cutoff
+        val clock = object : ClockPort {
+            override fun now() = StudyTimestamp(0L, day, 0)
+        }
+        RebuildMastery(overlay, clock).rebuild(skill, profiles)
+        RebuildRetention(overlay, clock).rebuild(skill, profiles)
+        RebuildWeakness(overlay, clock).rebuild(skill, profiles)
+        val axes = overlay.readProjection(ResolvePrerequisites.skillStateKey(skill))?.payload.orEmpty()
+        fun axis(column: String) = axes[column]?.ifEmpty { null } ?: ResolvePrerequisites.NOT_YET_EVALUATED
+        return SkillAxes(skill, axis(SkillStateRows.MASTERY), axis(SkillStateRows.RETENTION), axis(SkillStateRows.WEAKNESS))
     }
 
     /** `SPWX-v0` §12's families; the first that applies wins. */

@@ -215,17 +215,22 @@ class ProgramChangesTest {
     }
 
     @Test
-    fun `the first reading of a Skill claims no change from a state nobody had written`() {
+    // Narrowed at 18A (user decision, `D-139`): a state nobody had written is read the way the learning history reads it —
+    // the engines replayed over the evidence the snapshot saw — so the run's report says the very change the history says.
+    // Before 18A the first reading claimed nothing here while the history (16B) and the day summary (17E) named a change.
+    fun `the first reading of a Skill reports what the history reports`() {
         val (store, clock, _) = world()
         val before = CaptureProgramSnapshot(store, clock).capture()
         assertEquals("not_yet_evaluated", before.skills.getValue(skill).mastery)
         store.record(EvidenceOutcome.NEGATIVE, "2026-10-01")
 
         val reported = ReportProgramChanges(store, Content, clock).report(before, listOf(skill), capacity)
-        assertEquals(emptyList(), reported.report.stateChanges)
-        assertEquals(listOf(skill), reported.report.unknownBefore)
-        assertNull(reported.plan)
-        assertTrue(store.appended("plan_version").isEmpty())
+        val history = LearningHistoryQuery(store).load().entries.single()
+        assertEquals(history.changes.map { it.kind }, reported.report.stateChanges.map { it.kind })
+        assertTrue(reported.report.stateChanges.isNotEmpty(), "the first negative answer is a change the history names")
+        assertEquals(emptyList(), reported.report.unknownBefore, "a replayed before is known")
+        // A written axis is never replaced by the replay: the snapshot's own reading stands where it had one.
+        assertEquals(before.truthWatermark, reported.report.fromWatermark)
     }
 
     @Test

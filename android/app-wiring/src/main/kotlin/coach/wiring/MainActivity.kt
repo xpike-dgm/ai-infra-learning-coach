@@ -39,6 +39,10 @@ import coach.ui.systemReducedMotion
 import androidx.compose.foundation.isSystemInDarkTheme
 import coach.presentation.PlannerExplanationView
 import coach.presentation.SkillPlanView
+import coach.presentation.SetupPresentation
+import coach.presentation.SetupView
+import coach.model.SetupOutcome
+import coach.ui.SetupScreen
 import coach.presentation.AssessmentReportView
 import coach.presentation.HistoryPresentation
 import coach.presentation.LearningHistoryView
@@ -124,6 +128,9 @@ class MainActivity : ComponentActivity() {
     private val reminderState = mutableStateOf<Pair<ReminderPreference, NotificationAccess>?>(null)
     // 17E: the theme and motion setting. Until the store is read the system's own are used.
     private val displayState = mutableStateOf<DisplayPreference?>(null)
+    // 18A: the first-run setup. `null` while it is being looked up; Today is planned only once it is settled, so a plan is
+    // never made before the learner's own length and choices are recorded.
+    private val setupState = mutableStateOf<SetupState?>(null)
     private val listener = StoreStartup.Listener<OpenedApp> { status, store ->
         storeStatus.value = status
         opened.value = store
@@ -135,8 +142,25 @@ class MainActivity : ComponentActivity() {
             // 17E: the theme and motion setting is read first, so the shell's first frame is already in the learner's
             // theme; before the store is open the system's theme is used.
             app.loadDisplay { displayState.value = it }
-            app.refreshToday({ todayFacts.value = it }, { dayFacts.value = it })
+            setupState.value = null
+            app.checkSetup { view ->
+                setupState.value = if (view == null) SetupState.Settled else SetupState.Showing(view)
+                if (view == null) refreshToday()
+            }
             app.loadReminder { preference, access -> reminderState.value = preference to access }
+        }
+    }
+
+    private fun refreshToday() = app.refreshToday({ todayFacts.value = it }, { dayFacts.value = it })
+
+    /** 18A: the setup is ended — finished or skipped — then Today is planned from what it recorded. */
+    private fun endSetup(outcome: SetupOutcome, normalMinutes: Int?, ticked: Set<String>, view: SetupView) {
+        // Review (18A): two taps in one frame (Başla twice, or Başla and Şimdilik atla) end the setup once.
+        if (setupState.value !is SetupState.Showing) return
+        setupState.value = SetupState.Saving
+        app.finishSetup(outcome, normalMinutes, SetupPresentation.placement(view, ticked)) {
+            setupState.value = SetupState.Settled
+            refreshToday()
         }
     }
 
@@ -172,7 +196,15 @@ class MainActivity : ComponentActivity() {
                 enableEdgeToEdge(statusBarStyle = bars, navigationBarStyle = bars)
             }
             CoachTheme(dark = dark, reduceMotionInApp = display.reduceMotion) {
-                if (!health.showsShell || current == null || facts == null) {
+                val setup = setupState.value
+                if (current != null && setup is SetupState.Showing) {
+                    // `UXIA-v0` §7.4: pre-shell; skipping is its safe exit.
+                    SetupScreen(
+                        view = setup.view,
+                        onFinish = { minutes, ticked -> endSetup(SetupOutcome.COMPLETED, minutes, ticked, setup.view) },
+                        onSkip = { endSetup(SetupOutcome.SKIPPED, null, emptySet(), setup.view) },
+                    )
+                } else if (!health.showsShell || current == null || facts == null) {
                     HealthBlockingSurface(
                         health = health,
                         onAction = { action ->
@@ -196,8 +228,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onStart() {
         super.onStart()
-        // A process kept open past midnight would otherwise keep yesterday's study day.
-        app.refreshToday({ todayFacts.value = it }, { dayFacts.value = it })
+        // A process kept open past midnight would otherwise keep yesterday's study day. 18A: only once the setup is
+        // settled — a plan made while the learner is still in it would ignore what they are about to choose.
+        if (setupState.value == SetupState.Settled) refreshToday()
         app.loadReminder { preference, access -> reminderState.value = preference to access }
     }
 
@@ -724,4 +757,12 @@ private fun finishRun(
         onDayFacts(day)
         onLines(lines)
     }
+}
+
+// 18A: where the first-run setup stands for this activity. A line comment on purpose: a block comment here would pair
+// with the restore picker's any-type pattern above in comment-stripping checks.
+private sealed interface SetupState {
+    data class Showing(val view: SetupView) : SetupState
+    data object Saving : SetupState
+    data object Settled : SetupState
 }

@@ -1655,3 +1655,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `17E tamamlandı; AŞAMA 17 tamamlandı; 18A aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `18A — Pilot başlangıcı`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-28 — 18A — Pilot başlangıcı tamamlandı — ISTX-v0 / D-139; 18G eklendi (D-140)
+
+- Kullanıcı 17E'yi (#72) merge ettirdi (9ae13d2) ve "18A ya başla" dedi. Fresh 18A PRE yapıldı ve kanonik kaynaklar `17E ✅ / 18A active-not-executed` gösterdi.
+- **Kullanıcı kararı (2026-10-28):** yalnız ilk açılış kurulumu; koşu sonu raporu da geçmiş gibi kanıttan yeniden oynatsın (13E'nin kuralı açıkça değişti); pilot günlüğü ve telefona kurulum yeni adım 18G'ye gitti (D-140).
+- **Bulgu:** UXIA-v0 §7.4'ün ilk açılış akışı ve VDW-v0'ın giriş yerleştirme kaynağı yalnız spec'teydi — yeni bir kurulum doğrudan önayarlarla kurulmuş bir plana gidiyordu; etkinlik her başlangıçta Bugün'ü yeniliyordu, yani kurulum açıkken plan yazılabilirdi; ilk koşu artık değişiklik raporlayınca rapor beceriyi İngilizce kanonik adıyla yazıyordu ('State Assignment Model') — artık Türkçe; erişilebilirlik denetimi uygulama verisini sildiği için kuruluma takılıp kabuğu sonsuza dek bekliyordu — artık kurulumu kendi ekranı olarak okuyup güvenli çıkışından çıkıyor.
+- **Kod:** core `SetupFacts`, `DiagnosticSource.CURRICULUM_ENTRY_PLACEMENT`, `InitialSetup`, `ReportProgramChanges` + `HistoryReplay.axesAt`, `SetupPresentation`, `Surface.InitialSetupFlow`; app-ui `SetupScreen`; wiring kurulum durumu; şema v13; denetim aracı kurulumu okuyor; önceki kontroller 'Narrowed at 18A'.
+- **Araştırma:** iç sözleşmeler `UXIA-v0` §7.4, `VDW-v0` §3–4, `STGX-v0`, `PCRX-v0`, `LHRX-v0`, V1 SC-048/049; dış araştırma gerekmedi.
+- **Bağımsız inceleme:** ayrı bir ajan iki engelleyici sorun buldu (yarıda kalan bir kurulumun açtığı tanı sonraki atlamada kapanmıyordu; metin çoğu alanın veremeyeceği 'bugün' kontrollerini vaat ediyordu) ve on bir öneri yaptı; iki sorun ve dört öneri düzeltildi, kalanı kayda geçti.
+- **Mutation:** Kotlin 11/11.
+- **Validator mutation:** 26/26.
+- **Validator:** 69/69 PASS; emülatör denetimi iki metin boyutunda PASS; hızlı tarama geçti; 1334 JVM testi.
+- **T6 çalıştırılmadı; uygulama emülatörde (Pixel 7 AVD, API 34)**.
+- D-050 POST living-memory accepted state'i `18A tamamlandı; 18B aktif ve henüz yürütülmedi; 18G eklendi` konumuna taşır.
+
+**Sonraki kesin adım:** `18B — Planner gözlemi`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

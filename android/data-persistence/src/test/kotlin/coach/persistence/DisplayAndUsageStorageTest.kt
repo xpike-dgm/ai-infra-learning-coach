@@ -107,7 +107,8 @@ class DisplayAndUsageStorageTest {
         Fixtures.populated(file, version = 11)
         val before = SqlitePersistence.openWithoutMigrating(file.absolutePath).use { Fixtures.truthContent(it) }
         SqlitePersistence.open(file.absolutePath).use { db ->
-            assertEquals(12, Schema.VERSION)
+            // Narrowed at 18A (`D-139`): version 13 adds the setup record; v12's tables are what this checks.
+            assertTrue(Schema.VERSION >= 12)
             assertEquals(Schema.VERSION, db.query("SELECT schema_version FROM schema_metadata") { it.getLong(0).toInt() }.single())
             val after = Fixtures.truthContent(db)
             Schema.appendOnlyTables.forEach { assertEquals(before[it], after[it], it) }
