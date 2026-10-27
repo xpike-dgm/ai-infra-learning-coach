@@ -135,6 +135,7 @@ internal fun TaskRunSession.questionStage(disclosure: Boolean = false, notice: S
     shown.size, currentPrompt, if (lessonShown) run.lesson.map { it.text } else null, disclosure, notice,
     kind = kind, code = code, help = helpView(frozen = false),
     canSkip = run.measurement != null,
+    total = run.items.size,
 )
 
 /** How a served question is answered, and what a code item's learner copies (16G). */

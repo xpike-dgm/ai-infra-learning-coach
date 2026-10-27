@@ -65,7 +65,8 @@ class HistoryPresentationTest {
         val (second, first) = view.days.single().lines
         assertEquals("Bağımsız · beklenen sonuç", second.happened)
         assertEquals(listOf(ProgramChangeCopy.stateTemplates.getValue(StateChangeKind.CAPABILITY_CONFIRMED)), second.changed)
-        assertEquals("Destekli · beklenen sonuç · Açılan yardım: H1, H3", first.happened)
+        // Narrowed at 17C: the levels are said in words (`AssistanceWords`), never as H1/H3.
+        assertEquals("Destekli · beklenen sonuç · Açılan yardım: yön ipucu, kısmi çözüm", first.happened)
         assertEquals(listOf(HistoryCopy.NO_CHANGE), first.changed)
         assertEquals("Loops", first.skillName)
         // Narrowed at 17A: an Objective with no lesson title is named by its Skill, never by its identifier.

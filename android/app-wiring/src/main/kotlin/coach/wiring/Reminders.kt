@@ -18,9 +18,11 @@ import coach.application.ReminderSettings
 import coach.model.ReminderDecision
 import coach.model.ReminderPreference
 import coach.model.ReminderSchedule
+import coach.presentation.DesignTokens
 import coach.presentation.NotificationAccess
 import coach.presentation.ReminderCopy
 import coach.presentation.ReminderPresentation
+import coach.presentation.Theme
 import java.time.Instant
 import java.time.ZoneId
 import java.util.concurrent.atomic.AtomicBoolean
@@ -43,6 +45,10 @@ internal object Reminders {
     private const val TAG = "coach.reminder"
     const val CHANNEL_ID = "daily_reminder"
     private const val NOTIFICATION_ID = 1601
+
+    /** 17C: the notification's accent is the design system's `active` tone token (light theme), never a colour picked
+     * here. Android adjusts notification colours for contrast itself; this was measured against the app's surfaces only. */
+    private val REMINDER_ACCENT: Int = (DesignTokens.hex(Theme.LIGHT, "tone_active").removePrefix("#").toLong(16) or 0xFF000000L).toInt()
     private const val ACTION_REMIND = "coach.wiring.action.REMIND"
     private const val EXTRA_SCHEDULED_AT = "scheduled_at"
 
@@ -182,7 +188,11 @@ internal object Reminders {
             PendingIntent.FLAG_IMMUTABLE,
         )
         val notification = Notification.Builder(context, CHANNEL_ID)
-            .setSmallIcon(android.R.drawable.ic_popup_reminder)
+            // 17C: the app's own monochrome mark (a day of the calendar, Today's icon), tinted with the active tone token,
+            // and filed as a reminder so Android treats it as one (it may then pass Do Not Disturb if the learner allows reminders).
+            .setSmallIcon(R.drawable.ic_stat_today)
+            .setColor(REMINDER_ACCENT)
+            .setCategory(Notification.CATEGORY_REMINDER)
             .setContentTitle(text.title)
             .setContentText(text.body)
             .setContentIntent(open)

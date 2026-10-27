@@ -139,7 +139,7 @@ object HistoryPresentation {
         val happened = buildList {
             add(ProgressCopy.evidenceLabels.getValue(entry.kind))
             add(HistoryCopy.outcomeLabels.getValue(entry.outcome))
-            if (entry.assistance.isNotEmpty()) add("${HistoryCopy.ASSISTANCE}: ${entry.assistance.sortedBy(AssistanceLevel::ordinal).joinToString(", ") { it.id }}")
+            if (entry.assistance.isNotEmpty()) add("${HistoryCopy.ASSISTANCE}: ${AssistanceWords.of(entry.assistance)}")
             entry.disposition?.let { add(HistoryCopy.disposition(it, entry.dispositionReason)) }
         }.joinToString(" · ")
         val name = { ref: VersionedRef -> CurriculumNames.skill(ref, facts.skillNames[ref]) }

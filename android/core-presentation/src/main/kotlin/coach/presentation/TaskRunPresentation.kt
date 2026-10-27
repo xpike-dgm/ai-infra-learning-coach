@@ -263,6 +263,8 @@ sealed interface TaskRunStage {
         val help: HelpView? = null,
         /** 16H: in a measurement the learner may leave a question unanswered; that is not incorrect (`ASUX-v0` §7.3). */
         val canSkip: Boolean = false,
+        /** 17C: how many questions this run can serve, for the learner's position ("Soru 2 / 5"); `null` when unknown. */
+        val total: Int? = null,
     ) : TaskRunStage {
         override val state = if (lessonShown != null || disclosure || help?.panel != null) RunnerState.ASSISTANCE_OPEN else RunnerState.ACTIVE_WORK
     }

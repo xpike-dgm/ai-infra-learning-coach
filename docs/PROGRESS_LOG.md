@@ -1606,3 +1606,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `17B tamamlandı; 17C aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `17C — Kullanılabilirlik`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-27 — 17C — Kullanılabilirlik tamamlandı — USBX-v0 / D-135
+
+- Kullanıcı 17B'yi (#69) CI yeşil olunca merge ettirdi (42e9622) ve "17C ye başla" dedi. Fresh 17C PRE yapıldı ve kanonik kaynaklar `17B ✅ / 17C active-not-executed` gösterdi.
+- **Kullanıcı kararı (2026-10-27):** yalnız koşu kullanılabilirliği; gün özetinde koşunun gerçek değişiklikleri, iki gezinme kenarı ve AI kullanım/maliyet görünürlüğü seçilmedi ve açık kaldı, yerleri sonraki bir PRE'de belirlenecek.
+- **Bulgu:** çıkış uzun derste kayboluyordu; bağımsız inceleme ilk sürümde Compose'un autoCorrectEnabled=false ayarının çok satırlı alanda klavyeye otomatik düzeltmeyi kapattırmadığını buldu — alanlara TYPE_TEXT_FLAG_NO_SUGGESTIONS eklendi ve emülatörde editörün inputType=0xa0001 olduğu doğrulandı; büyük harf zaten kapalıydı; pencere klavye için yeniden boyutlanmıyordu (adjustResize) ve AI'lı varsayılan derleme kendi tam manifest kopyasını kullandığı için ayar iki manifeste de eklendi; geçmiş 'H1, H3' diyordu; hatırlatma sistemin genel ikonunu ödünç alıyordu.
+- **Kod:** core `RunUsability.kt` (`RunPosition`, `AnswerInput`, `AssistanceWords`); app-ui `ExactTextInput.kt`, `TaskRunnerScreen` (sabit çıkış çubuğu, konum, klavye), `Components` (`ScreenColumn(insets)`); app-wiring `Reminders.kt` (ikon, kategori, vurgu), `ic_stat_today.xml`, iki manifestte `adjustResize`.
+- **Araştırma:** iç sözleşmeler `TRUX-v0`, `VDSX-v0` §§9, 11.1, 14F, `LHRX-v0`, `RMDX-v0`; dış: Android EditorInfo bayrakları (NO_SUGGESTIONS, AUTO_CORRECT, MULTI_LINE), AOSP LatinIME, `adjustResize`, bildirim küçük ikonu ve kategorisi.
+- **Bağımsız inceleme:** ayrı bir ajan bir engelleyici bulgu (otomatik düzeltme gerçekte kapanmıyordu) ve öneriler verdi; hepsi düzeltildi ve emülatörde doğrulandı.
+- **Mutation:** Kotlin 10/10.
+- **Validator mutation:** 20/20.
+- **Validator:** 31/31 PASS; hızlı tarama geçti; 1294 JVM testi.
+- **T6 çalıştırılmadı; görev emülatörde görüldü (Pixel 7 AVD, API 34)**.
+- D-050 POST living-memory accepted state'i `17C tamamlandı; 17D aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `17D — Accessibility`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

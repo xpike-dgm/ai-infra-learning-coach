@@ -52,12 +52,14 @@ import coach.presentation.TypeRole
 fun ScreenColumn(
     modifier: Modifier = Modifier,
     spacing: Int = Spacing.M,
+    // 17C: a focused flow pads its frame to the safe area itself, so its column does not pad twice.
+    insets: Boolean = true,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .windowInsetsPadding(WindowInsets.safeDrawing)
+            .then(if (insets) Modifier.windowInsetsPadding(WindowInsets.safeDrawing) else Modifier)
             .verticalScroll(rememberScrollState())
             .padding(horizontal = Spacing.M.dp, vertical = Spacing.L.dp),
         verticalArrangement = Arrangement.spacedBy(spacing.dp),

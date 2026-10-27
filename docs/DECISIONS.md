@@ -2433,3 +2433,29 @@ Ayrıntı: `docs/VISUAL_POLISH_SPEC.md`.
 - Sonraki numbered step `17C — Kullanılabilirlik`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/MOTION_SPEC.md`.
+
+## D-135 — Kullanılabilirlik = USBX-v0
+**Durum:** Kabul edildi — 2026-10-27
+
+- 17C final modeli `USBX-v0 — run usability: the focused-flow exit stays in view above the scrolling run, the learner's position is said as a bounded fact ("Soru 2 / 5"), answers, code and reports keep exactly what was typed, the history names help in words, and the reminder is the app's own` oldu.
+- **Ana invariant:** bir görevde çıkış her zaman görünür (kaydırılan alanın üstünde sabit; klavye açıkken de), kaçıncı soruda olunduğu bir puan değil olgusal bir konum olarak yazılıyor ('Soru 2 / 5'; ekran okuyucuya kelimelerle), kısa cevap, kod ve rapor alanları klavyeden hiç öneri istemiyor ve otomatik büyük harf yok (açık cevap klavyenin yardımını koruyor), geçmiş yardımı kelimelerle söylüyor ve hatırlatma uygulamanın kendi tek renkli ikonu, tasarım tokenının vurgusu ve hatırlatma kategorisiyle geliyor.
+- **Kullanıcı kararı (2026-10-27, "17C ye başla"):** yalnız koşu kullanılabilirliği. Gün özetinde bir koşunun gerçek değişiklikleri, `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları ve AI kullanım/maliyet görünürlüğü seçilmedi; açık kaldılar, yerleri sonraki bir PRE'de kullanıcıyla belirlenecek.
+- **Asistanın varsayılan seçimleri:**
+  - çıkış kaydırılan alanın üstünde sabit bir çubuk; koşunun tek kaydırması var;
+  - toplam, koşunun sunabileceği sorular (`RunnableTask.items`); tek soruda ya da toplam numaradan küçükse yalnız "Soru n"; ekran okuyucuya "Soru 2, toplam 5 soru";
+  - kısa cevap, kod ve rapor alanlarında klavye önerisi yok (`TYPE_TEXT_FLAG_NO_SUGGESTIONS`) ve büyük harf yok; açık cevap cümle büyük harfi ve klavyenin yardımını alır; tutor'a giden yardım sorusu ve pratik cevabı düzyazıdır;
+  - geçmişin kelimeleri: yön ipucu, kavram yardımı, kısmi çözüm, tam çözüm;
+  - hatırlatma ikonu Today'in takvim günü, durum çubuğu için beyaz; vurgu açık temanın `tone_active` tokenı; hatırlatma kategorisi.
+- **Bulunanlar:**
+  - çıkış uzun derste kayboluyordu; bağımsız inceleme ilk sürümde Compose'un autoCorrectEnabled=false ayarının çok satırlı alanda klavyeye otomatik düzeltmeyi kapattırmadığını buldu — alanlara TYPE_TEXT_FLAG_NO_SUGGESTIONS eklendi ve emülatörde editörün inputType=0xa0001 olduğu doğrulandı; büyük harf zaten kapalıydı; pencere klavye için yeniden boyutlanmıyordu (adjustResize) ve AI'lı varsayılan derleme kendi tam manifest kopyasını kullandığı için ayar iki manifeste de eklendi; geçmiş 'H1, H3' diyordu; hatırlatma sistemin genel ikonunu ödünç alıyordu.
+- Şema değişmedi (v11).
+- **Doğrulama:**
+  - Kotlin mutation 10/10, validator mutation 20/20; kontrol mutantları hayatta kaldı.
+  - Validator 31/31 PASS.
+  - 1294 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Hızlı tarama geçti; içerik validator'ları paketler değişmediği için yeniden koşulmadı, `validate_content_qa.py` disk nedeniyle koşulmadı.
+- Çalıştırılmayan: **T6**. Görev emülatörde görüldü; bildirim görülmedi.
+- **Devredilenler:** erişilebilirlik, TalkBack, tema ve uygulama içi azaltılmış hareket tercihleri, yardım seviyelerinin tek kaynağı, `AssessmentSessionScreen` (17D); kalibrasyon (18); cihaz (19).
+- Sonraki numbered step `17D — Accessibility`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/USABILITY_SPEC.md`.

@@ -4,6 +4,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import coach.presentation.AnswerField
+import coach.presentation.AnswerInput
+import coach.presentation.RunPosition
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.Button
@@ -147,11 +156,15 @@ fun TaskRunnerScreen(
     stage: TaskRunStage? = null,
     actions: TaskRunActions = TaskRunActions(),
 ) {
-    ScreenColumn(modifier = modifier) {
-        // The safe exit: first, always present, one action, 48dp (TRUX-v0, WFPX-v0).
-        OutlinedButton(onClick = onExit, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
-            Text("Bugün'e dön")
+    Column(modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
+        // The safe exit: first, always present, one action, 48dp (TRUX-v0, WFPX-v0). 17C: it sits above the scrolling
+        // run, so it stays in view however long the lesson is.
+        Box(Modifier.fillMaxWidth().padding(horizontal = Spacing.M.dp, vertical = Spacing.XS.dp)) {
+            OutlinedButton(onClick = onExit, modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
+                Text("Bugün'e dön")
+            }
         }
+        ScreenColumn(modifier = Modifier.weight(1f), insets = false) {
 
         StateChip(
             label = stateLabelsTr.getValue(state),
@@ -191,6 +204,7 @@ fun TaskRunnerScreen(
         }
 
         stage?.let { TaskRunInterior(it, actions) }
+        }
     }
 }
 
@@ -246,7 +260,9 @@ private fun OrientationInterior(view: TaskOrientationView, onStart: (ProvenanceO
 
 @Composable
 private fun QuestionInterior(stage: TaskRunStage.Question, actions: TaskRunActions) {
-    SectionHeader("Soru ${stage.number}")
+    // 17C: where the learner is among this run's questions — a position, never a score.
+    SectionHeader(RunPosition.label(stage.number, stage.total),
+        modifier = Modifier.semantics { contentDescription = RunPosition.spoken(stage.number, stage.total) })
     AuthoredText(stage.prompt)
     stage.notice?.let { Text(it, style = MaterialTheme.typography.bodySmall, modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }) }
     if (stage.disclosure) {
@@ -257,13 +273,15 @@ private fun QuestionInterior(stage: TaskRunStage.Question, actions: TaskRunActio
         RunItemKind.CODE_TESTS -> CodeAnswer(stage, actions)
         RunItemKind.RUBRIC, RunItemKind.ANSWER_KEY -> {
             var typed by remember(stage.number) { mutableStateOf("") }
-            OutlinedTextField(
+            val field = if (stage.kind == RunItemKind.RUBRIC) AnswerField.OPEN else AnswerField.ANSWER
+            ExactTextInput(field) { OutlinedTextField(
                 value = typed,
                 onValueChange = { typed = it },
                 label = { Text(if (stage.kind == RunItemKind.RUBRIC) TaskRunCopy.OPEN_LABEL else TaskRunCopy.ANSWER_LABEL) },
                 minLines = if (stage.kind == RunItemKind.RUBRIC) 4 else 1,
+                keyboardOptions = answerKeyboard(field),
                 modifier = Modifier.fillMaxWidth(),
-            )
+            ) }
             Button(onClick = { actions.onSubmit(typed) }, enabled = typed.isNotBlank(), modifier = Modifier.fillMaxWidth().minimumTouchTarget()) {
                 Text(TaskRunCopy.SUBMIT)
             }
@@ -303,10 +321,10 @@ private fun CodeAnswer(stage: TaskRunStage.Question, actions: TaskRunActions) {
     }
     var code by remember(stage.number) { mutableStateOf("") }
     var report by remember(stage.number) { mutableStateOf("") }
-    OutlinedTextField(value = code, onValueChange = { code = it }, label = { Text(TaskRunCopy.CODE_LABEL) }, minLines = 4,
-        textStyle = codeFieldStyle, modifier = Modifier.fillMaxWidth())
-    OutlinedTextField(value = report, onValueChange = { report = it }, label = { Text(TaskRunCopy.REPORT_LABEL) }, minLines = 3,
-        textStyle = codeFieldStyle, modifier = Modifier.fillMaxWidth())
+    ExactTextInput(AnswerField.CODE) { OutlinedTextField(value = code, onValueChange = { code = it }, label = { Text(TaskRunCopy.CODE_LABEL) }, minLines = 4,
+        textStyle = codeFieldStyle, keyboardOptions = answerKeyboard(AnswerField.CODE), modifier = Modifier.fillMaxWidth()) }
+    ExactTextInput(AnswerField.REPORT) { OutlinedTextField(value = report, onValueChange = { report = it }, label = { Text(TaskRunCopy.REPORT_LABEL) }, minLines = 3,
+        textStyle = codeFieldStyle, keyboardOptions = answerKeyboard(AnswerField.REPORT), modifier = Modifier.fillMaxWidth()) }
     Button(
         onClick = { actions.onSubmitCode(code, report) },
         enabled = code.isNotBlank() && report.isNotBlank(),
@@ -459,3 +477,12 @@ fun ConsequenceDisclosure(onAcknowledge: () -> Unit, onDecline: () -> Unit) {
         }
     }
 }
+
+/**
+ * 17C: the keyboard options for a run's field. An exact field ([AnswerInput.exact]) keeps capitalisation off (Compose's
+ * default already) and asks for no autocorrect — which most keyboards ignore on a multi-line field, so [ExactTextInput]
+ * also asks for no suggestions at all. An open answer gets sentence capitals and the keyboard's help.
+ */
+private fun answerKeyboard(field: AnswerField): KeyboardOptions =
+    if (AnswerInput.exact(field)) KeyboardOptions(capitalization = KeyboardCapitalization.None, autoCorrectEnabled = false)
+    else KeyboardOptions(capitalization = KeyboardCapitalization.Sentences)

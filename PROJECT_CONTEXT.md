@@ -258,12 +258,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **AŞAMA 16 ✅ TAMAMLANDI**
 - **17A ✅ Görsel polish — VPLX-v0 / D-133**
 - **17B ✅ Motion — MOTX-v0 / D-134**
-- **17C 🟡 Kullanılabilirlik — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 17D–20 ⬜
+- **17C ✅ Kullanılabilirlik — USBX-v0 / D-135**
+- **17D 🟡 Accessibility — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 17E–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 17C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 17D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -850,3 +851,13 @@ Bulunanlar: uygulamanın kendi hiçbir animasyonu yoktu; bağımsız inceleme il
 Onay kullanıcının 2026-10-27 açık onayı ("17B ye başla"). Kullanıcı kararları: politika + uygulama (hedef/ayrıntı gelişi, yardım paneli, cevap sonucu, çip durum geçişi); hiç kutlama yok; azaltılmış hareket sistem ayarından (uygulama içi tercih 17D'nin). Şema değişmedi (v11). Kotlin mutation 10/10, validator mutation 18/18; 36/36 QA PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/MOTION_SPEC.md` / D-134.
+
+## 12.55 17C Kullanılabilirlik — USBX-v0 / D-135
+
+Bir görev artık daha kolay kullanılıyor ve kaydedilen, değerlendirilen ya da iddia edilen hiçbir şey değişmedi. Ana invariant: bir görevde çıkış her zaman görünür (kaydırılan alanın üstünde sabit; klavye açıkken de), kaçıncı soruda olunduğu bir puan değil olgusal bir konum olarak yazılıyor ('Soru 2 / 5'; ekran okuyucuya kelimelerle), kısa cevap, kod ve rapor alanları klavyeden hiç öneri istemiyor ve otomatik büyük harf yok (açık cevap klavyenin yardımını koruyor), geçmiş yardımı kelimelerle söylüyor ve hatırlatma uygulamanın kendi tek renkli ikonu, tasarım tokenının vurgusu ve hatırlatma kategorisiyle geliyor.
+
+Bulunanlar: çıkış uzun derste kayboluyordu; bağımsız inceleme ilk sürümde Compose'un autoCorrectEnabled=false ayarının çok satırlı alanda klavyeye otomatik düzeltmeyi kapattırmadığını buldu — alanlara TYPE_TEXT_FLAG_NO_SUGGESTIONS eklendi ve emülatörde editörün inputType=0xa0001 olduğu doğrulandı; büyük harf zaten kapalıydı; pencere klavye için yeniden boyutlanmıyordu (adjustResize) ve AI'lı varsayılan derleme kendi tam manifest kopyasını kullandığı için ayar iki manifeste de eklendi; geçmiş 'H1, H3' diyordu; hatırlatma sistemin genel ikonunu ödünç alıyordu.
+
+Onay kullanıcının 2026-10-27 açık onayı ("17C ye başla"). Kullanıcı kararları: yalnız koşu kullanılabilirliği; gün özetinde koşunun gerçek değişiklikleri, iki gezinme kenarı ve AI kullanım/maliyet görünürlüğü seçilmedi ve açık kaldı, yerleri sonraki bir PRE'de belirlenecek. Şema değişmedi (v11). Kotlin mutation 10/10, validator mutation 20/20; 31/31 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/USABILITY_SPEC.md` / D-135.
