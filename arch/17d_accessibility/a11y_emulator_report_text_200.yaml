@@ -1,0 +1,346 @@
+step: 17D
+font_scale: 2.0
+model: A11X-v0
+device: sdk_gphone64_x86_64 API 34
+density_scale: 2.625
+rules:
+- R1_no_accessible_name
+- R2_target_below_48dp
+- R3_identifier_on_screen
+- R4_image_only_control
+- R5_checkable_unnamed
+- R6_text_field_unnamed
+- R7_ambiguous_duplicate_name
+- R8_reading_order
+screens:
+- screen: today_overview
+  marker:
+    present:
+    - Başla
+    absent:
+    - Öğrenme haritası
+  marker_found: true
+  readings: 4
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 882
+  - 2276
+  - 2543
+  nodes: 58
+  actionable: 8
+  clipped_skipped: 1
+  clipped_never_judged: []
+  findings: []
+- screen: today_capacity_dialog
+  marker:
+    present:
+    - Bugün ne kadar zamanın var?
+    absent: []
+  marker_found: true
+  readings: 1
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  nodes: 29
+  actionable: 6
+  clipped_skipped: 0
+  clipped_never_judged: []
+  findings: []
+- screen: planner_explanation
+  marker:
+    present:
+    - Bu plan neden böyle?
+    - Geri
+    absent:
+    - Başla
+  marker_found: true
+  readings: 44
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 1444
+  - 2817
+  - 4202
+  - 5643
+  - 7028
+  - 8451
+  - 9811
+  - 11216
+  - 12084
+  - 13522
+  - 14904
+  - 16299
+  - 17718
+  - 19139
+  - 20533
+  - 21910
+  - 23340
+  - 24750
+  - 26128
+  - 27576
+  - 28543
+  - 29899
+  - 31252
+  - 32189
+  - 33590
+  - 34539
+  - 35926
+  - 37382
+  - 38798
+  - 40217
+  - 41603
+  - 43002
+  - 44384
+  - 45781
+  - 47194
+  - 48588
+  - 49987
+  - 51380
+  - 52833
+  - 54261
+  - 55722
+  - 57169
+  - 57642
+  nodes: 48
+  actionable: 4
+  clipped_skipped: 0
+  clipped_never_judged: []
+  findings: []
+- screen: learn_overview
+  marker:
+    present:
+    - Öğrenme haritası
+    absent: []
+  marker_found: true
+  readings: 7
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 1421
+  - 2850
+  - 4272
+  - 5708
+  - 7083
+  - 7393
+  nodes: 68
+  actionable: 11
+  clipped_skipped: 9
+  clipped_never_judged: []
+  findings: []
+- screen: topic_detail
+  marker:
+    present:
+    - Geri
+    absent:
+    - Öğrenme haritası
+  marker_found: true
+  readings: 3
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 1407
+  - 2553
+  nodes: 56
+  actionable: 7
+  clipped_skipped: 1
+  clipped_never_judged: []
+  findings: []
+- screen: progress_overview
+  marker:
+    present:
+    - Kanıtlanmış yetkinlik
+    absent: []
+  marker_found: true
+  readings: 22
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 1374
+  - 2800
+  - 4214
+  - 5649
+  - 7051
+  - 8418
+  - 9832
+  - 11212
+  - 12629
+  - 13496
+  - 14953
+  - 16391
+  - 17795
+  - 19217
+  - 20651
+  - 22078
+  - 23510
+  - 24909
+  - 26337
+  - 27776
+  - 28165
+  nodes: 73
+  actionable: 13
+  clipped_skipped: 33
+  clipped_never_judged: []
+  findings: []
+- screen: learning_history
+  marker:
+    present:
+    - Geri
+    - Öğrenme geçmişi
+    absent:
+    - Kanıtlanmış yetkinlik
+  marker_found: true
+  readings: 1
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  nodes: 41
+  actionable: 4
+  clipped_skipped: 0
+  clipped_never_judged: []
+  findings: []
+- screen: assessment_report
+  marker:
+    present:
+    - Geri
+    - Ölçme raporu
+    absent:
+    - Kanıtlanmış yetkinlik
+  marker_found: true
+  readings: 1
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  nodes: 44
+  actionable: 5
+  clipped_skipped: 0
+  clipped_never_judged: []
+  findings: []
+- screen: technical_english_profile
+  marker:
+    present:
+    - Geri
+    - Teknik İngilizce profili
+    absent:
+    - Kanıtlanmış yetkinlik
+  marker_found: true
+  readings: 5
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 1406
+  - 2839
+  - 4296
+  - 5095
+  nodes: 52
+  actionable: 4
+  clipped_skipped: 0
+  clipped_never_judged: []
+  findings: []
+- screen: profile_overview
+  marker:
+    present:
+    - Günlük süre
+    - Yedekleme
+    absent:
+    - Kanıtlanmış yetkinlik
+    - Öğrenme haritası
+  marker_found: true
+  readings: 5
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 1433
+  - 2841
+  - 4281
+  - 5158
+  nodes: 60
+  actionable: 8
+  clipped_skipped: 2
+  clipped_never_judged: []
+  findings: []
+- screen: task_runner_orientation
+  marker:
+    present:
+    - Bu görevdeki cevaplarını nasıl veriyorsun?
+    absent: []
+  marker_found: true
+  readings: 2
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 977
+  nodes: 33
+  actionable: 7
+  clipped_skipped: 0
+  clipped_never_judged: []
+  findings: []
+- screen: task_runner_lesson
+  marker:
+    present:
+    - Sorulara geç
+    absent:
+    - Bu görevdeki cevaplarını nasıl veriyorsun?
+  marker_found: true
+  readings: 5
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 1474
+  - 2940
+  - 3807
+  - 5216
+  nodes: 18
+  actionable: 2
+  clipped_skipped: 0
+  clipped_never_judged: []
+  findings: []
+- screen: task_runner_question
+  marker:
+    present:
+    - Soru 1
+    absent:
+    - Sorulara geç
+  marker_found: true
+  readings: 2
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 186
+  nodes: 31
+  actionable: 6
+  clipped_skipped: 1
+  clipped_never_judged: []
+  findings: []
+- screen: task_runner_help
+  marker:
+    present:
+    - Yardımı kapat
+    absent: []
+  marker_found: true
+  readings: 2
+  read_to_end: true
+  unanchored_readings: 0
+  offsets:
+  - 0
+  - 732
+  nodes: 38
+  actionable: 9
+  clipped_skipped: 1
+  clipped_never_judged: []
+  findings: []
+findings_total: 0
+result: PASS

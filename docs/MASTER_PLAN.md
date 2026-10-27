@@ -1220,7 +1220,18 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 10/10, validator mutation 20/20; 31/31 QA PASS,
 - **T6 çalıştırılmadı; görev emülatörde görüldü (Pixel 7 AVD, API 34)**.
 
-### [ ] 17D — Accessibility — **AKTİF**
+### [x] 17D — Accessibility — A11X-v0 / D-137
+
+**17D final coverage:**
+- her kontrolün ekran okuyucunun okuyabildiği bir adı, rolü ve durumu var; aynı sözlü adı taşıyan iki farklı kontrol yok; her hedef en az 48dp; ekrana hiçbir kimlik ya da yardım kodu çıkmıyor; her ekranın bir başlığı var; kontroller okuma sırasında; bir alanın hatası kendi alanının metni ve arıza rengi değil; hiçbir duyuru öğrencinin sözünü kesmiyor — ve gerçek uygulama emülatörde 100% ve 200% metinle on dört ekranda, her biri baştan sona okunarak erişilebilirlik ağacından denetleniyor; başlık, durum, canlı bölge ve rol kodda denetleniyor,
+- kapsam (kullanıcı kararı): yalnız erişilebilirlik denetimi ve testler; 17C'de seçilmeyen üç parça 17E'ye gitti (D-136); odak halkası, tema ve uygulama içi azaltılmış hareket tercihleri 17E'nin PRE'sinde sorulacak,
+- bulgu: Profil'in üç günlük süre alanının hepsi 'dk', üç düğmesinin hepsi 'Kaydet' adını taşıyordu ve ekran okuyucu onları ayırt edemiyordu — artık her biri kendi gününü adlandırıyor ve hata metni alanın kendi hatası; Bugün'ün İlerleme'ye giden satırı sekmeyle aynı adı ('İlerleme') taşıyordu ve yeni R7 kuralı yakaladı — artık 'İlerlemeyi aç'; 200% metinde koşunun seçenekleri ve başlat düğmesi ekranın altına iniyor ve kaydırınca ulaşılıyor; Bugün 'Bu plan neden böyle?'yi iki kez çiziyordu, artık bir kez; bağımsız inceleme dört sorun daha buldu — hatırlatma saatinin hatası alanın dışındaydı, durum çipi iki kez okunabiliyordu ve üzerindeki başlık odaklanamayan bir düğümdeydi (artık tek yaprak), bağlanmamış ölçme ekranı 'H1 yardım iste' ve araç kimlikleri gösteriyordu, ve denetimin açıkları vardı (kesik düğüm yeniden yargılanmıyor, alan yazılan değerle adlandırılıyor, R7 tek okumaya bakıyor, ekrana ulaşıldığı varsayılıyordu) — hepsi düzeltildi; hatanın alanı kırmızı çizmesi (isError) 17A'nın kuralına takıldı, çünkü yanlış yazılmış bir sayı arıza değildir; TalkBack emülatör imajında yok ve dışarıdan APK indirilmedi, bu yüzden sesli çıktı duyulmadı (19),
+- Kotlin mutation 10/10, validator mutation 35/35; 59/59 QA PASS,
+- **T6 çalıştırılmadı; denetim emülatörde (Pixel 7 AVD, API 34); TalkBack duyulmadı**.
+
+### [ ] 17E — Kalan UX parçaları — **AKTİF**
+
+D-136 ile eklendi (kullanıcı kararı, 2026-10-27; yeniden numaralama yok). Girdileri: gün özetinde bir koşunun gerçek değişiklikleri; `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları; AI kullanım/maliyet görünürlüğü; PRE'de sorulacaklar: görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket tercihi.
 
 ---
 
@@ -1280,8 +1291,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17C`  
-**Son tamamlanan:** **`17C — USBX-v0 / D-135`**  
-**Aktif:** **`17D — Accessibility`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17D`  
+**Son tamamlanan:** **`17D — A11X-v0 / D-137`**  
+**Aktif:** **`17E — Kalan UX parçaları`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **17D fresh PRE-STEP + kullanıcının yeni açık onayı → Accessibility → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **17E fresh PRE-STEP + kullanıcının yeni açık onayı → Kalan UX parçaları → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

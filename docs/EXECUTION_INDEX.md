@@ -226,7 +226,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **17A — Görsel polish** — `VPLX-v0 / D-133`
 - [x] **17B — Motion** — `MOTX-v0 / D-134`
 - [x] **17C — Kullanılabilirlik** — `USBX-v0 / D-135`
-- [ ] **17D — Accessibility** **AKTİF**
+- [x] **17D — Accessibility** — `A11X-v0 / D-137`
+- [ ] **17E — Kalan UX parçaları** **AKTİF** — D-136 ile eklendi
 
 ---
 
@@ -266,9 +267,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17C`  
-**Son tamamlanan:** **`17C — USBX-v0 / D-135`**  
-**Aktif:** **`17D — Accessibility`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17D`  
+**Son tamamlanan:** **`17D — A11X-v0 / D-137`**  
+**Aktif:** **`17E — Kalan UX parçaları`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -362,4 +363,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 17C `USBX-v0` ile kullanılabilirlik: bir görevde çıkış her zaman görünür (kaydırılan alanın üstünde sabit; klavye açıkken de), kaçıncı soruda olunduğu bir puan değil olgusal bir konum olarak yazılıyor ('Soru 2 / 5'; ekran okuyucuya kelimelerle), kısa cevap, kod ve rapor alanları klavyeden hiç öneri istemiyor ve otomatik büyük harf yok (açık cevap klavyenin yardımını koruyor), geçmiş yardımı kelimelerle söylüyor ve hatırlatma uygulamanın kendi tek renkli ikonu, tasarım tokenının vurgusu ve hatırlatma kategorisiyle geliyor. Kotlin mutation 10/10, validator mutation 20/20; 31/31 QA PASS. T6 çalıştırılmadı.
 
-17D başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+17D `A11X-v0` ile erişilebilirlik: her kontrolün ekran okuyucunun okuyabildiği bir adı, rolü ve durumu var; aynı sözlü adı taşıyan iki farklı kontrol yok; her hedef en az 48dp; ekrana hiçbir kimlik ya da yardım kodu çıkmıyor; her ekranın bir başlığı var; kontroller okuma sırasında; bir alanın hatası kendi alanının metni ve arıza rengi değil; hiçbir duyuru öğrencinin sözünü kesmiyor — ve gerçek uygulama emülatörde 100% ve 200% metinle on dört ekranda, her biri baştan sona okunarak erişilebilirlik ağacından denetleniyor; başlık, durum, canlı bölge ve rol kodda denetleniyor. Kotlin mutation 10/10, validator mutation 35/35; 59/59 QA PASS. T6 çalıştırılmadı. D-136 ile AŞAMA 17'nin sonuna `17E — Kalan UX parçaları` eklendi.
+
+17E başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

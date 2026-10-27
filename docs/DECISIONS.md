@@ -2459,3 +2459,39 @@ Ayrıntı: `docs/MOTION_SPEC.md`.
 - Sonraki numbered step `17D — Accessibility`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
 
 Ayrıntı: `docs/USABILITY_SPEC.md`.
+
+## D-136 — 17E eklendi: Kalan UX parçaları
+**Durum:** Kabul edildi — 2026-10-27 (kullanıcı kararı)
+
+- 17C'nin PRE'sinde seçilmeyen üç parça (gün özetinde bir koşunun gerçek değişiklikleri, iki gezinme kenarı, AI kullanım/maliyet görünürlüğü) açık kalmış ve yerleri sonraki bir PRE'ye bırakılmıştı (D-135).
+- 17D'nin PRE'sinde kullanıcı 17D'yi erişilebilirliğe ayırdı ve bu üç parçayı yeni bir adıma, **17E — Kalan UX parçaları**na gönderdi.
+- 17E, AŞAMA 17'nin sonuna, D-099, D-125, D-129 ve D-131 gibi eklenir; yeniden numaralama yoktur. Sıra: 17D → 17E → 18A.
+- 17E'nin girdileri: gün özetinde bir koşunun gerçek değişiklikleri; `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları; AI kullanım/maliyet görünürlüğü; PRE'de sorulacaklar: görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket tercihi.
+
+## D-137 — Accessibility = A11X-v0
+**Durum:** Kabul edildi — 2026-10-27
+
+- 17D final modeli `A11X-v0 — accessibility: every control has a name, a role and its state for a screen reader, no two controls share a spoken name, every target is at least 48dp, no identifier or help code reaches the screen, every surface has a heading, controls are in reading order, a field's error is its own, and the real app is audited through the accessibility tree on an emulator at 100% and 200% text` oldu.
+- **Ana invariant:** her kontrolün ekran okuyucunun okuyabildiği bir adı, rolü ve durumu var; aynı sözlü adı taşıyan iki farklı kontrol yok; her hedef en az 48dp; ekrana hiçbir kimlik ya da yardım kodu çıkmıyor; her ekranın bir başlığı var; kontroller okuma sırasında; bir alanın hatası kendi alanının metni ve arıza rengi değil; hiçbir duyuru öğrencinin sözünü kesmiyor — ve gerçek uygulama emülatörde 100% ve 200% metinle on dört ekranda, her biri baştan sona okunarak erişilebilirlik ağacından denetleniyor; başlık, durum, canlı bölge ve rol kodda denetleniyor.
+- **Kullanıcı kararı (2026-10-27):** yalnız erişilebilirlik denetimi ve testler (erişilebilir adlar, başlıklar, metin olarak durum, 48dp hedefler, okuma sırası; emülatörde otomatik denetim; TalkBack emülatörde denenir). 17C'de seçilmeyen üç parça 17E'ye gitti (D-136). Görünür odak halkası, tema tercihi ve uygulama içi azaltılmış hareket tercihi seçilmedi; 17E'nin PRE'sinde sorulacak.
+- **Asistanın varsayılan seçimleri:**
+  - denetim gerçek uygulamayı adb ile sürer ve her ekranı `uiautomator dump` ağacından okur (TalkBack'in okuduğu ağaç); cihaz üstü test bağımlılığı eklenmedi;
+  - sekiz kural: ad (R1), 48dp (R2), ekranda kimlik ya da yardım kodu yok (R3), yalnız ikonlu kontrol yok (R4), seçilebilir kontrol adlı (R5), alan etiketiyle adlı (R6), ekranın tamamında aynı sözlü adı taşıyan iki farklı kontrol yok (R7), okuma sırası (R8);
+  - her ekran örtüşen okumalarla baştan sona okunur; kesik düğüm, tam göründüğü bir okumayla konumundan eşleştirilir; her ekrana ulaşıldığı bir işaretle gösterilir;
+  - girdi hatası alanın kendi metnidir ve arıza rengini almaz (17A); durum çipi tek yapraktır;
+  - her denetim uygulama verisini siler ve iki metin boyutunda (100%, 200%) koşar;
+  - bir düğmenin sözlü adı görünen kelimeyi içerir ('Kısa gün süresini kaydet' ⊃ 'Kaydet');
+  - hiçbir canlı bölge araya girmez (yalnız `Polite`).
+- **Bulunanlar:**
+  - Profil'in üç günlük süre alanının hepsi 'dk', üç düğmesinin hepsi 'Kaydet' adını taşıyordu ve ekran okuyucu onları ayırt edemiyordu — artık her biri kendi gününü adlandırıyor ve hata metni alanın kendi hatası; Bugün'ün İlerleme'ye giden satırı sekmeyle aynı adı ('İlerleme') taşıyordu ve yeni R7 kuralı yakaladı — artık 'İlerlemeyi aç'; 200% metinde koşunun seçenekleri ve başlat düğmesi ekranın altına iniyor ve kaydırınca ulaşılıyor; Bugün 'Bu plan neden böyle?'yi iki kez çiziyordu, artık bir kez; bağımsız inceleme dört sorun daha buldu — hatırlatma saatinin hatası alanın dışındaydı, durum çipi iki kez okunabiliyordu ve üzerindeki başlık odaklanamayan bir düğümdeydi (artık tek yaprak), bağlanmamış ölçme ekranı 'H1 yardım iste' ve araç kimlikleri gösteriyordu, ve denetimin açıkları vardı (kesik düğüm yeniden yargılanmıyor, alan yazılan değerle adlandırılıyor, R7 tek okumaya bakıyor, ekrana ulaşıldığı varsayılıyordu) — hepsi düzeltildi; hatanın alanı kırmızı çizmesi (isError) 17A'nın kuralına takıldı, çünkü yanlış yazılmış bir sayı arıza değildir; TalkBack emülatör imajında yok ve dışarıdan APK indirilmedi, bu yüzden sesli çıktı duyulmadı (19).
+- Şema değişmedi (v11).
+- **Doğrulama:**
+  - Kotlin mutation 10/10, validator mutation 35/35; kontrol mutantları hayatta kaldı.
+  - Validator 59/59 PASS; emülatör denetimi 100% ve 200% metinde on dört ekran, 0 bulgu.
+  - 1297 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Hızlı tarama geçti; içerik validator'ları paketler değişmediği için yeniden koşulmadı.
+- Çalıştırılmayan: **T6** ve **TalkBack** (emülatör imajında yok; dışarıdan APK indirilmedi).
+- **Devredilenler:** 17E (D-136); TalkBack ve cihaz (19); yardım seviyelerinin tek kaynağı ve bağlanmamış `AssessmentSessionScreen` (açık).
+- Sonraki numbered step `17E — Kalan UX parçaları`. Fresh PRE ve kullanıcının yeni açık onayı gerekir.
+
+Ayrıntı: `docs/ACCESSIBILITY_SPEC.md`.

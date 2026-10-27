@@ -94,8 +94,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **17A — Görsel polish** | ✅ | VPLX-v0 / D-133. Tasarım sistemi uygulandı; kod mono, çipler çerçeveli ve işaretli, kimlik değil kelime; Öğren sekmesi öğrenme haritası. İlk açılış çökmesi emülatörde bulundu ve düzeltildi. Kotlin mutation 27/27, validator mutation 31/31; 95/95 QA PASS. T6 çalıştırılmadı. |
 | **17B — Motion** | ✅ | MOTX-v0 / D-134. Hareket amacına göre ve kısa; hiçbir şey kutlamıyor, tekrarlamıyor ya da çıkışın önüne geçmiyor; azaltılmış hareket sistem ayarına uyuyor. Kotlin mutation 10/10, validator mutation 18/18; 36/36 QA PASS. T6 çalıştırılmadı. |
 | **17C — Kullanılabilirlik** | ✅ | USBX-v0 / D-135. Çıkış hep görünür, konum olgusal ('Soru 2 / 5'), cevap/kod/rapor alanlarında klavye önerisi yok, geçmiş yardımı kelimelerle söylüyor, hatırlatma uygulamanın kendi ikonuyla. Kotlin mutation 10/10, validator mutation 20/20; 31/31 QA PASS. T6 çalıştırılmadı. |
-| **17D — Accessibility** | 🟡 Aktif | Henüz yürütülmedi; önceki adım (17C) tamamlandı. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
-| **17E–20** | ⬜ Bekliyor | 17D sonrası canonical sırada. |
+| **17D — Accessibility** | ✅ | A11X-v0 / D-137. Her kontrol adlı, rollü ve durumlu; aynı adlı iki kontrol yok; 48dp; başlıklar; alanın hatası kendi; gerçek uygulama emülatörde 100% ve 200% metinle on dört ekranda denetlendi. Kotlin mutation 10/10, validator mutation 35/35; 59/59 QA PASS. T6 çalıştırılmadı. |
+| **17E — Kalan UX parçaları** | 🟡 Aktif | D-136 ile eklendi. Henüz yürütülmedi; önceki adım (17D) tamamlandı. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
+| **18–20** | ⬜ Bekliyor | 17E sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -114,7 +115,20 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 17C
+## Son tamamlanan numaralı adım — 17D
+
+**Final:** `A11X-v0 — accessibility: every control has a name, a role and its state for a screen reader, no two controls share a spoken name, every target is at least 48dp, no identifier or help code reaches the screen, every surface has a heading, controls are in reading order, a field's error is its own, and the real app is audited through the accessibility tree on an emulator at 100% and 200% text`
+**Ana çıktı:** `docs/ACCESSIBILITY_SPEC.md` + `arch/17d_accessibility/` + `tools/validate_accessibility.py` + `tools/audit_a11y_emulator.py` + `android/`.
+
+17D sonucu:
+- her kontrolün ekran okuyucunun okuyabildiği bir adı, rolü ve durumu var; aynı sözlü adı taşıyan iki farklı kontrol yok; her hedef en az 48dp; ekrana hiçbir kimlik ya da yardım kodu çıkmıyor; her ekranın bir başlığı var; kontroller okuma sırasında; bir alanın hatası kendi alanının metni ve arıza rengi değil; hiçbir duyuru öğrencinin sözünü kesmiyor — ve gerçek uygulama emülatörde 100% ve 200% metinle on dört ekranda, her biri baştan sona okunarak erişilebilirlik ağacından denetleniyor; başlık, durum, canlı bölge ve rol kodda denetleniyor,
+- onay kullanıcının 2026-10-27 açık onayı; kullanıcı kararları: yalnız erişilebilirlik denetimi ve testler; 17C'de seçilmeyen üç parça yeni adım 17E'ye gitti (D-136); görünür odak halkası, tema tercihi ve uygulama içi azaltılmış hareket tercihi seçilmedi ve 17E'nin PRE'sinde sorulacak,
+- **bulgu:** Profil'in üç günlük süre alanının hepsi 'dk', üç düğmesinin hepsi 'Kaydet' adını taşıyordu ve ekran okuyucu onları ayırt edemiyordu — artık her biri kendi gününü adlandırıyor ve hata metni alanın kendi hatası; Bugün'ün İlerleme'ye giden satırı sekmeyle aynı adı ('İlerleme') taşıyordu ve yeni R7 kuralı yakaladı — artık 'İlerlemeyi aç'; 200% metinde koşunun seçenekleri ve başlat düğmesi ekranın altına iniyor ve kaydırınca ulaşılıyor; Bugün 'Bu plan neden böyle?'yi iki kez çiziyordu, artık bir kez; bağımsız inceleme dört sorun daha buldu — hatırlatma saatinin hatası alanın dışındaydı, durum çipi iki kez okunabiliyordu ve üzerindeki başlık odaklanamayan bir düğümdeydi (artık tek yaprak), bağlanmamış ölçme ekranı 'H1 yardım iste' ve araç kimlikleri gösteriyordu, ve denetimin açıkları vardı (kesik düğüm yeniden yargılanmıyor, alan yazılan değerle adlandırılıyor, R7 tek okumaya bakıyor, ekrana ulaşıldığı varsayılıyordu) — hepsi düzeltildi; hatanın alanı kırmızı çizmesi (isError) 17A'nın kuralına takıldı, çünkü yanlış yazılmış bir sayı arıza değildir; TalkBack emülatör imajında yok ve dışarıdan APK indirilmedi, bu yüzden sesli çıktı duyulmadı (19),
+- şema değişmedi (v11),
+- Mutation Kotlin 10/10, validator 35/35; independent validator **59/59 PASS**,
+- **T6 çalıştırılmadı; denetim emülatörde (Pixel 7 AVD, API 34), TalkBack duyulmadı**.
+
+## Önceki numaralı adım — 17C
 
 **Final:** `USBX-v0 — run usability: the focused-flow exit stays in view above the scrolling run, the learner's position is said as a bounded fact ("Soru 2 / 5"), answers, code and reports keep exactly what was typed, the history names help in words, and the reminder is the app's own`
 **Ana çıktı:** `docs/USABILITY_SPEC.md` + `arch/17c_usability/` + `tools/validate_usability.py` + `android/`.
@@ -631,6 +645,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 17D — Accessibility
+## Aktif adım — 17E — Kalan UX parçaları
 
-**17D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H ve 17A–17C her biri ayrı açık onayla yürütüldü). 17D'nin girdileri: `VDSX-v0` §12, tema/erişilebilirlik ve uygulama içi azaltılmış hareket tercihleri, TalkBack, yardım seviyelerinin iki ifadesi, bağlanmamış `AssessmentSessionScreen`. 17C'de seçilmeyip açık kalanlar: koşu ve bildirim cilası, gün özetine bir koşunun gerçek değişiklikleri, kullanım/maliyet görünürlüğü, `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları.
+**17E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H ve 17A–17D her biri ayrı açık onayla yürütüldü). 17E D-136 ile eklendi; girdileri: gün özetinde bir koşunun gerçek değişiklikleri; `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları; AI kullanım/maliyet görünürlüğü; PRE'de sorulacaklar: görünür odak halkası, tema tercihi, uygulama içi azaltılmış hareket tercihi. Ayrıca açık: yardım seviyelerinin iki ifadesinin tek kaynağı, bağlanmamış `AssessmentSessionScreen`.

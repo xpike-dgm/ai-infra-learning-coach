@@ -259,12 +259,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **17A ✅ Görsel polish — VPLX-v0 / D-133**
 - **17B ✅ Motion — MOTX-v0 / D-134**
 - **17C ✅ Kullanılabilirlik — USBX-v0 / D-135**
-- **17D 🟡 Accessibility — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 17E–20 ⬜
+- **17D ✅ Accessibility — A11X-v0 / D-137**
+- **17E 🟡 Kalan UX parçaları — AKTİF, HENÜZ YÜRÜTÜLMEDİ** (D-136)
+- 18–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 17D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 17E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -861,3 +862,13 @@ Bulunanlar: çıkış uzun derste kayboluyordu; bağımsız inceleme ilk sürüm
 Onay kullanıcının 2026-10-27 açık onayı ("17C ye başla"). Kullanıcı kararları: yalnız koşu kullanılabilirliği; gün özetinde koşunun gerçek değişiklikleri, iki gezinme kenarı ve AI kullanım/maliyet görünürlüğü seçilmedi ve açık kaldı, yerleri sonraki bir PRE'de belirlenecek. Şema değişmedi (v11). Kotlin mutation 10/10, validator mutation 20/20; 31/31 QA PASS. T6 çalıştırılmadı.
 
 Canonical: `docs/USABILITY_SPEC.md` / D-135.
+
+## 12.56 17D Accessibility — A11X-v0 / D-137
+
+Ekran okuyucu, büyük metin ya da anahtarla kullanan biri artık her ekrana ve her kontrole ulaşıyor ve her birinin ne olduğunu ve hangi durumda olduğunu duyabiliyor. Ana invariant: her kontrolün ekran okuyucunun okuyabildiği bir adı, rolü ve durumu var; aynı sözlü adı taşıyan iki farklı kontrol yok; her hedef en az 48dp; ekrana hiçbir kimlik ya da yardım kodu çıkmıyor; her ekranın bir başlığı var; kontroller okuma sırasında; bir alanın hatası kendi alanının metni ve arıza rengi değil; hiçbir duyuru öğrencinin sözünü kesmiyor — ve gerçek uygulama emülatörde 100% ve 200% metinle on dört ekranda, her biri baştan sona okunarak erişilebilirlik ağacından denetleniyor; başlık, durum, canlı bölge ve rol kodda denetleniyor.
+
+Bulunanlar: Profil'in üç günlük süre alanının hepsi 'dk', üç düğmesinin hepsi 'Kaydet' adını taşıyordu ve ekran okuyucu onları ayırt edemiyordu — artık her biri kendi gününü adlandırıyor ve hata metni alanın kendi hatası; Bugün'ün İlerleme'ye giden satırı sekmeyle aynı adı ('İlerleme') taşıyordu ve yeni R7 kuralı yakaladı — artık 'İlerlemeyi aç'; 200% metinde koşunun seçenekleri ve başlat düğmesi ekranın altına iniyor ve kaydırınca ulaşılıyor; Bugün 'Bu plan neden böyle?'yi iki kez çiziyordu, artık bir kez; bağımsız inceleme dört sorun daha buldu — hatırlatma saatinin hatası alanın dışındaydı, durum çipi iki kez okunabiliyordu ve üzerindeki başlık odaklanamayan bir düğümdeydi (artık tek yaprak), bağlanmamış ölçme ekranı 'H1 yardım iste' ve araç kimlikleri gösteriyordu, ve denetimin açıkları vardı (kesik düğüm yeniden yargılanmıyor, alan yazılan değerle adlandırılıyor, R7 tek okumaya bakıyor, ekrana ulaşıldığı varsayılıyordu) — hepsi düzeltildi; hatanın alanı kırmızı çizmesi (isError) 17A'nın kuralına takıldı, çünkü yanlış yazılmış bir sayı arıza değildir; TalkBack emülatör imajında yok ve dışarıdan APK indirilmedi, bu yüzden sesli çıktı duyulmadı (19).
+
+Onay kullanıcının 2026-10-27 açık onayı ("tamamdır kaldığın yerden devam et"). Kullanıcı kararları: yalnız erişilebilirlik denetimi ve testler; 17C'de seçilmeyen üç parça yeni adım 17E'ye gitti (D-136); görünür odak halkası, tema tercihi ve uygulama içi azaltılmış hareket tercihi seçilmedi ve 17E'nin PRE'sinde sorulacak. Şema değişmedi (v11). Kotlin mutation 10/10, validator mutation 35/35; 59/59 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/ACCESSIBILITY_SPEC.md` / D-137. Yeni adım: `17E — Kalan UX parçaları` / D-136.

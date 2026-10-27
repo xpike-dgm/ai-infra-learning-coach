@@ -176,7 +176,8 @@ result_part = runner.split("ArriveOnChange(stage.result, MotionPurpose.FEEDBACK)
 check("A17B-07_result_announced_outside_the_fade", len(result_part) == 2
       and "Box(Modifier.semantics { liveRegion = LiveRegionMode.Polite; contentDescription = stage.result })" in result_part[0][-300:]
       and "clearAndSetSemantics" in result_part[1][:300], "the live region is not on the faded node")
-check("A17B-07_chip_text_is_not_animated", "text = label" in chip and "stateDescription = label" in chip, "the label says the state")
+# Narrowed at 17D: the label is the chip leaf's spoken name instead of a stateDescription.
+check("A17B-07_chip_text_is_not_animated", "text = label" in chip and ("stateDescription = label" in chip or "clearAndSetSemantics { contentDescription = label }" in chip), "the label says the state")
 focused = shell.split("if (!state.showsShell) {")[1].split("return")[0] if "if (!state.showsShell) {" in shell else ""
 check("A17B-07_focused_flow_never_faded", focused and "ArriveOnChange" not in focused and "Box(modifier.fillMaxSize()) { content() }" in focused,
       "a focused flow's exit is visible from the first frame")

@@ -267,7 +267,9 @@ check("E10C-13_text_scales",
       wfpx["text_scaling"]["max_supported_percent"] == 200
       and "listOf(100, 150, 200)" in tokens_src,
       "the supported text scales must reach 200%")
-check("E10C-14_state_has_text", "stateDescription = label" in theme_src,
+# Narrowed at 17D: the chip is one leaf whose spoken name is its label (it was a stateDescription beside the same text,
+# which a screen reader could hear twice); the state is still exposed as text.
+check("E10C-14_state_has_text", "stateDescription = label" in theme_src or "clearAndSetSemantics { contentDescription = label }" in theme_src,
       "a state chip must expose its state as text")
 check("E10C-14_chip_renders_text", "Text(" in theme_src and "text = label" in theme_src,
       "a state chip must render a text label")
