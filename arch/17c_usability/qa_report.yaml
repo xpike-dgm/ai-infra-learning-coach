@@ -1,0 +1,100 @@
+model: USBX-v0
+stage_step: 17C
+decision: D-135
+result: PASS
+checks_total: 31
+checks_failed: 0
+checks:
+- check: A17C-01_files_exist
+  result: PASS
+  details: '[]'
+- check: A17C-01_contract_identity
+  result: PASS
+  details: USBX-v0 D-135
+- check: A17C-02_exit_above_the_scrolling_run
+  result: PASS
+  details: 6407 6616 6776 6848
+- check: A17C-02_runner_has_one_scroll
+  result: PASS
+  details: one scrolling column
+- check: A17C-02_column_can_leave_insets_to_frame
+  result: PASS
+  details: ScreenColumn
+- check: A17C-03_position_rule
+  result: PASS
+  details: RunPosition
+- check: A17C-03_position_drawn
+  result: PASS
+  details: TaskRunnerScreen
+- check: A17C-03_total_is_this_runs_questions
+  result: PASS
+  details: TaskRunSession
+- check: A17C-03_no_bar
+  result: PASS
+  details: '[]'
+- check: A17C-03_position_words_clean
+  result: PASS
+  details: RunPosition
+- check: A17C-04_exact_fields
+  result: PASS
+  details: AnswerInput
+- check: A17C-04_exact_keyboard
+  result: PASS
+  details: answerKeyboard
+- check: A17C-04_no_suggestions_flag_set
+  result: PASS
+  details: ExactTextInput
+- check: A17C-04_every_field_has_its_keyboard
+  result: PASS
+  details: 5 fields, unwrapped []
+- check: A17C-02_window_resizes_for_the_keyboard
+  result: PASS
+  details: the exit stays on screen while typing, in the AI and the no-AI build
+- check: A17C-03_position_spoken_in_words
+  result: PASS
+  details: no fraction for a screen reader
+- check: A17C-05_history_assistance_in_words
+  result: PASS
+  details: HistoryPresentation
+- check: A17C-05_every_level_a_word
+  result: PASS
+  details: '{''H1'': ''yön ipucu'', ''H2'': ''kavram yardımı'', ''H3'': ''kısmi çözüm'', ''H4'': ''tam çözüm''}'
+- check: A17C-06_own_monochrome_icon
+  result: PASS
+  details: ic_stat_today
+- check: A17C-06_reminder_category
+  result: PASS
+  details: category
+- check: A17C-06_accent_is_measured
+  result: PASS
+  details: accent
+- check: A17C-07_test_the position is a bounded fact
+  result: PASS
+  details: the position is a bounded fact
+- check: A17C-07_test_answers, code and reports keep e
+  result: PASS
+  details: answers, code and reports keep exactly what was typed
+- check: 'A17C-07_test_the history names assistance in '
+  result: PASS
+  details: the history names assistance in words
+- check: A17C-07_narrowed_marked
+  result: PASS
+  details: HistoryPresentationTest
+- check: A17C-08_unchosen_items_named
+  result: PASS
+  details: not_in_scope
+- check: A17C-09_decision_recorded
+  result: PASS
+  details: DECISIONS
+- check: A17C-09_execution_index
+  result: PASS
+  details: 17C checked
+- check: A17C-09_spec_accepted
+  result: PASS
+  details: spec
+- check: A17C-09_kotlin_mutation_all_detected
+  result: PASS
+  details: 10/10
+- check: A17C-09_validator_mutation_all_detected
+  result: PASS
+  details: 20/20

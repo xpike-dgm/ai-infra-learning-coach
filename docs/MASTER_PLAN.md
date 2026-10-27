@@ -1211,8 +1211,16 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Kotlin mutation 10/10, validator mutation 18/18; 36/36 QA PASS,
 - **T6 çalıştırılmadı; hareket emülatörde görüldü (Pixel 7 AVD, API 34)**.
 
-### [ ] 17C — Kullanılabilirlik — **AKTİF**
-### [ ] 17D — Accessibility
+### [x] 17C — Kullanılabilirlik — USBX-v0 / D-135
+
+**17C final coverage:**
+- bir görevde çıkış her zaman görünür (kaydırılan alanın üstünde sabit; klavye açıkken de), kaçıncı soruda olunduğu bir puan değil olgusal bir konum olarak yazılıyor ('Soru 2 / 5'; ekran okuyucuya kelimelerle), kısa cevap, kod ve rapor alanları klavyeden hiç öneri istemiyor ve otomatik büyük harf yok (açık cevap klavyenin yardımını koruyor), geçmiş yardımı kelimelerle söylüyor ve hatırlatma uygulamanın kendi tek renkli ikonu, tasarım tokenının vurgusu ve hatırlatma kategorisiyle geliyor,
+- kapsam (kullanıcı kararı): yalnız koşu kullanılabilirliği; gün özetinde koşunun gerçek değişiklikleri, iki gezinme kenarı ve AI kullanım/maliyet görünürlüğü açık kaldı,
+- bulgu: çıkış uzun derste kayboluyordu; bağımsız inceleme ilk sürümde Compose'un autoCorrectEnabled=false ayarının çok satırlı alanda klavyeye otomatik düzeltmeyi kapattırmadığını buldu — alanlara TYPE_TEXT_FLAG_NO_SUGGESTIONS eklendi ve emülatörde editörün inputType=0xa0001 olduğu doğrulandı; büyük harf zaten kapalıydı; pencere klavye için yeniden boyutlanmıyordu (adjustResize) ve AI'lı varsayılan derleme kendi tam manifest kopyasını kullandığı için ayar iki manifeste de eklendi; geçmiş 'H1, H3' diyordu; hatırlatma sistemin genel ikonunu ödünç alıyordu,
+- Kotlin mutation 10/10, validator mutation 20/20; 31/31 QA PASS,
+- **T6 çalıştırılmadı; görev emülatörde görüldü (Pixel 7 AVD, API 34)**.
+
+### [ ] 17D — Accessibility — **AKTİF**
 
 ---
 
@@ -1272,8 +1280,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17B`  
-**Son tamamlanan:** **`17B — MOTX-v0 / D-134`**  
-**Aktif:** **`17C — Kullanılabilirlik`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17C`  
+**Son tamamlanan:** **`17C — USBX-v0 / D-135`**  
+**Aktif:** **`17D — Accessibility`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **17C fresh PRE-STEP + kullanıcının yeni açık onayı → Kullanılabilirlik → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **17D fresh PRE-STEP + kullanıcının yeni açık onayı → Accessibility → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

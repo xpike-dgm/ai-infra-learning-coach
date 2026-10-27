@@ -1,0 +1,107 @@
+model: USBX-v0
+stage_step: 17C
+status: accepted_17c
+decision: D-135
+implements: [TRUX-v0, VDSX-v0, OREX-v0, LHRX-v0, RMDX-v0]
+boundaries: MSBX-v0
+persistence: none_schema_v11_unchanged
+purpose: run_usability_the_exit_stays_in_view_the_position_is_a_bounded_fact_typed_answers_code_and_reports_kept_as_typed_help_named_in_words_the_reminder_is_the_apps_own
+
+question: Bir görevi yaparken çıkışı her zaman görebiliyor, kaçıncı soruda olduğumu bir puan gibi değil bir konum olarak görüyor, cevabımı klavye bozmadan yazabiliyor, geçmişte hangi yardımı aldığımı kelimelerle okuyor ve hatırlatmayı uygulamanın kendisi olarak tanıyabiliyor muyum?
+
+primary_invariant: >-
+  The exit stays in view above the scrolling run. The position is a bounded fact said in text ("Soru 2 / 5"), never a
+  score, a share or a bar. What is compared or run as typed — a short answer, code, a pasted test report — is kept as
+  typed (no autocorrect, no automatic capital); an open answer keeps the keyboard's help. The history names help in
+  words. The reminder is the app's own: its monochrome mark, the measured accent and the reminder category.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-27
+  scope: run_usability_only
+
+not_in_scope:
+  - the day summary naming a run's real changes (not chosen; a later PRE decides where)
+  - the skill_detail -> planner_explanation and technical_english_profile -> skill_detail edges with their micro text (not chosen; a later PRE decides where)
+  - AI usage and cost visibility (not chosen; a later PRE decides where)
+
+assistant_defaults:
+  - the exit is a fixed bar above the scrolling run; the run has one scroll
+  - the total is the run's servable questions (RunnableTask.items); with one question, or a total below the number, only "Soru n"
+  - an open answer gets sentence capitals and keeps the keyboard's suggestions; a short answer, code and a report get none
+  - the help question and the tutor practice answer are prose sent to the tutor and keep the keyboard's help
+  - a screen reader hears the position as words (Soru 2, toplam 5 soru)
+  - the history's words are yön ipucu, kavram yardımı, kısmi çözüm, tam çözüm
+  - the reminder's icon is Today's metaphor (a calendar day), white for the status bar; the accent is the light theme's tone_active
+
+found:
+  - id: exit_scrolled_away
+    what: the exit was the first item of a scrolling column, so a long lesson scrolled it off screen (17A's emulator run)
+    resolution: a fixed bar above the scrolling run
+  - id: keyboard_rewrites_answers
+    what: a keyboard's autocorrect could rewrite a short answer, code or a report that is compared or run as typed; capitalisation was already off (Compose's default)
+    resolution: AnswerInput.exact, answerKeyboard and ExactTextInput
+  - id: review_autocorrect_not_off
+    what: the independent review found that autoCorrectEnabled = false only drops the auto-correct flag, which keyboards ignore on a multi-line field
+    resolution: ExactTextInput adds TYPE_TEXT_FLAG_NO_SUGGESTIONS to the editor info; on the emulator inputType=0xa0001 (text, multi-line, no suggestions) and Gboard shows no suggestion strip
+  - id: window_not_resized_for_keyboard
+    what: with no windowSoftInputMode a panned window could push the fixed exit off screen while typing
+    resolution: adjustResize; on the emulator the exit stays visible with the keyboard open
+  - id: ai_build_has_its_own_manifest
+    what: the AI build (the default) uses its own full copy of the manifest (src/withAi), so a change to the main manifest alone never reaches it; 14G's check caught the copies differing
+    resolution: adjustResize in both manifests; the 17C check reads both
+  - id: history_codes
+    what: "the history said: Açılan yardım — H1, H3"
+    resolution: AssistanceWords
+  - id: borrowed_system_icon
+    what: the reminder used android.R.drawable.ic_popup_reminder and had no category
+    resolution: ic_stat_today, CATEGORY_REMINDER, the measured accent
+  - id: test_pinned_codes
+    what: one history test asserted "H1, H3"
+    resolution: narrowed, marked "Narrowed at 17C"
+
+moved_on:
+  - TalkBack and accessibility preferences (17D)
+  - the reminder seen on the device (19)
+  - AssessmentSessionScreen, which no screen calls, still has the old exit, field and H-codes; it must take 17C's patterns if ever wired
+  - one source for the help levels' two wordings
+
+verification:
+  kotlin_tests: [RunUsabilityTest (3)]
+  narrowed_tests: [HistoryPresentationTest]
+  validator: tools/validate_usability.py
+  emulator: Pixel_7 AVD API 34 — the exit stayed at the top after scrolling a long lesson and with the keyboard open; the position in the header; the answer field's editor inputType=0xa0001 and no suggestion strip; the notification not observed
+  independent_review: a separate agent; 1 blocking finding fixed and verified, suggestions taken
+  t6_run: false
+
+acceptance_criteria:
+  - the exit is above the scrolling run and the run has one scroll
+  - the position is said as text, only as a bounded fact, never as a bar
+  - short answers, code and reports ask the keyboard for no suggestions and no capitals; an open answer keeps the keyboard's help
+  - the history names help in words
+  - the reminder uses the app's own monochrome icon, the measured accent and the reminder category
+  - the unchosen items are named as open
+  - earlier gates still pass
+
+mutation_results_kotlin:
+  scope: one change per mutant to the position rule (the bound, the single question, the spoken form twice), the exact fields (two ways), the history's words (a code, order, repetition) and a percent in the position; then RunUsabilityTest
+  total: 10
+  detected: 10
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: the hardened runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a comment in RunUsability.kt
+  negative_control_result: survived_as_expected
+  earlier_runs: "in the first run two mutants did not apply: their anchor matched both the label and the spoken position. The anchors were made unique, two spoken-position mutants were added, and the whole set was run again"
+  final_run_is_a_single_clean_run: true
+
+mutation_results_validator:
+  scope: one change per mutant to what the validator exists to catch — the total, the drawn and spoken position, the rule, the keyboard options, a field without its keyboard, a field not wrapped, the exact rule, the history words, the icon (system, coloured), the category, an unmeasured accent, a second scroll, the NO_SUGGESTIONS flag (dropped, bypassed), the window resize in either manifest and the narrowing note
+  total: 20
+  detected: 20
+  detection: the validator fails and names the expected check (only the living-record checks A17C-09 may fail in the baseline before POST)
+  negative_controls: [V00 changes a comment in RunUsability.kt, V01 adds a line of text inside the scrolling run]
+  negative_control_result: survived_as_expected
+  earlier_runs: "in the first run V04 did not apply (its anchor matched twice); it was made unique and the whole set was run again"
+  final_run_is_a_single_clean_run: true
+
+next_step: 17D — Accessibility

@@ -320,14 +320,15 @@ PEM-v0:
 - **AŞAMA 16 TAMAMLANDI**
 - 17A ✅ VPLX-v0 / D-133
 - 17B ✅ MOTX-v0 / D-134
-- 17C 🟡 active-not-executed
-- 17D–20 ⬜
+- 17C ✅ USBX-v0 / D-135
+- 17D 🟡 active-not-executed
+- 17E–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `17B — MOTX-v0 / D-134`  
-**Aktif:** `17C — Kullanılabilirlik`  
-**17C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `17C — USBX-v0 / D-135`  
+**Aktif:** `17D — Accessibility`  
+**17D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1737,3 +1738,22 @@ MOTX-v0:
 ## 112. 17C handoff
 
 17C — Kullanılabilirlik. 17B ran on the user's explicit approval; 17C needs a fresh PRE and the user's new explicit approval. Inputs carried to 17C: run and notification polish (the focused-flow exit staying in view on a long lesson; the history's assistance levels shown as H1, H3), the day summary naming a run's real changes, usage/cost visibility, the `skill_detail -> planner_explanation` and `technical_english_profile -> skill_detail` edges. Elsewhere: theme, accessibility and reduced-motion preferences (17D), calibration (18), T6 (19).
+
+## 113. D-135 / 17C final özeti
+
+Canonical: `docs/USABILITY_SPEC.md`.
+Contract/QA: `arch/17c_usability/` (contract, QA report, stale audit).
+Synthesis: `research/17c_usability_research.md`.
+Code: `core-presentation` (`RunUsability.kt` — `RunPosition`, `AnswerField`, `AnswerInput`, `AssistanceWords`; `TaskRunStage.Question.total`; `HistoryPresentation`), `app-ui` (`ExactTextInput.kt`, `TaskRunnerScreen.kt`, `Components.kt` — `ScreenColumn(insets)`), `app-wiring` (`TaskRunSession`, `Reminders.kt`, `res/drawable/ic_stat_today.xml`, both manifests — `adjustResize`). Schema v11 unchanged.
+
+USBX-v0:
+- run usability: the focused-flow exit stays in view above the scrolling run, the learner's position is said as a bounded fact ("Soru 2 / 5"), answers, code and reports keep exactly what was typed, the history names help in words, and the reminder is the app's own,
+- approval: the user's explicit approval of 2026-10-27 ("17C ye başla"); user decision: run usability only — the day summary's real changes, the two IA edges and AI usage/cost visibility were not chosen and stay open for a later PRE,
+- found: the exit scrolled away; the independent review found that Compose's autoCorrectEnabled=false does not stop a keyboard correcting a multi-line field — TYPE_TEXT_FLAG_NO_SUGGESTIONS was added and the emulator's editor reports inputType=0xa0001; capitalisation was already off; the window did not resize for the keyboard, and the AI build uses its own full manifest copy, so adjustResize is in both; the history showed H-codes; the reminder borrowed a system icon,
+- narrowed: one history test, "Narrowed at 17C",
+- Mutation Kotlin 10/10, validator 20/20; independent QA 31/31 PASS,
+- T6 was not run; the run was seen on an emulator (Pixel 7 AVD, API 34); the notification was not observed.
+
+## 114. 17D handoff
+
+17D — Accessibility. 17C ran on the user's explicit approval; 17D needs a fresh PRE and the user's new explicit approval. Inputs: `VDSX-v0` §12 and `UXIA-v0` §17 (accessibility), theme and accessibility preferences (16E's open loop), an in-app reduced-motion preference (17B), TalkBack (never run), the help levels' two wordings, `AssessmentSessionScreen` (unwired; old patterns). Still open from 17C's PRE, place to be decided with the user: the day summary naming a run's real changes, the `skill_detail -> planner_explanation` and `technical_english_profile -> skill_detail` edges, AI usage/cost visibility. Elsewhere: calibration (18), T6 (19).

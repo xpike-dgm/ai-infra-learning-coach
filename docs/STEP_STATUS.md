@@ -93,8 +93,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **16H — Uçtan uca günlük döngü: ölçme oturumları** | ✅ | ASRX-v0 / D-132. Bugün için planlanan bir ölçme — günlük ölçme görevi, haftanın ya da ayın bir slotu, hızlı yolun bir kontrolü — onu neyin kurduğundan bağımsız olarak tek ölçme iç yüzünde koşar ve türü ek ağırlık değildir; giriş tahmin etmez ve hiçbir şey yazmaz; her deneme oturumunu taşır, günlük ölçmenin oturumu öğrenci başlarken açılır ve bir slotun cevabı o slotun kanıtıdır; boş bırakılan soru yanlış değildir, cevaplanmış bir soru bildirilebilir ve kanıtı eklenen bir dispozisyonla itirazlı tutulur, satır düzenlenmez; sonuçta not, yüzde ya da geçti/kaldı yoktur; hızlı yolu yalnız öğrenci bir konudan açar, bugünün planına hemen girer ve başlanan işi korur, bırakmak hiçbir şey borçlandırmaz. Bulunanlar: haftalık/aylık blueprint 16D'den beri açılışta kuruluyordu ve slotlar plana giriyor ama açılamıyordu; yazılı bir görev ve bir slot aynı ihtiyaca hizmet edince planner birini seçiyor; hızlı yol isteği için bir yeniden plan olayı yoktu (`diagnostic_requested`, D-132); Learn sekmesinin ekranı yok; giriş yerleştirme akışı ve onun tanısal kaynağı yok (18A); düzeltmenin nedeni uygulanıyor ama satırda taşınmıyordu. Kullanıcı kararları: kapsam `moved_to_16h`'nin tamamı; haftalık/aylık plan açılışta otomatik (16D'den beri böyle); bildirme evet, 'Bu soruda sorun var' kanıtı itirazlı tutar; hızlı yol bugünün planına hemen girer (yeni olay `diagnostic_requested`); hızlı yol girişi konu ayrıntısında. Kotlin mutation 26/26, validator mutation 50/50; 89/89 QA PASS. |
 | **17A — Görsel polish** | ✅ | VPLX-v0 / D-133. Tasarım sistemi uygulandı; kod mono, çipler çerçeveli ve işaretli, kimlik değil kelime; Öğren sekmesi öğrenme haritası. İlk açılış çökmesi emülatörde bulundu ve düzeltildi. Kotlin mutation 27/27, validator mutation 31/31; 95/95 QA PASS. T6 çalıştırılmadı. |
 | **17B — Motion** | ✅ | MOTX-v0 / D-134. Hareket amacına göre ve kısa; hiçbir şey kutlamıyor, tekrarlamıyor ya da çıkışın önüne geçmiyor; azaltılmış hareket sistem ayarına uyuyor. Kotlin mutation 10/10, validator mutation 18/18; 36/36 QA PASS. T6 çalıştırılmadı. |
-| **17C — Kullanılabilirlik** | 🟡 Aktif | Henüz yürütülmedi; önceki adım (17B) tamamlandı. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
-| **17D–20** | ⬜ Bekliyor | 17C sonrası canonical sırada. |
+| **17C — Kullanılabilirlik** | ✅ | USBX-v0 / D-135. Çıkış hep görünür, konum olgusal ('Soru 2 / 5'), cevap/kod/rapor alanlarında klavye önerisi yok, geçmiş yardımı kelimelerle söylüyor, hatırlatma uygulamanın kendi ikonuyla. Kotlin mutation 10/10, validator mutation 20/20; 31/31 QA PASS. T6 çalıştırılmadı. |
+| **17D — Accessibility** | 🟡 Aktif | Henüz yürütülmedi; önceki adım (17C) tamamlandı. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
+| **17E–20** | ⬜ Bekliyor | 17D sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -113,7 +114,20 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 17B
+## Son tamamlanan numaralı adım — 17C
+
+**Final:** `USBX-v0 — run usability: the focused-flow exit stays in view above the scrolling run, the learner's position is said as a bounded fact ("Soru 2 / 5"), answers, code and reports keep exactly what was typed, the history names help in words, and the reminder is the app's own`
+**Ana çıktı:** `docs/USABILITY_SPEC.md` + `arch/17c_usability/` + `tools/validate_usability.py` + `android/`.
+
+17C sonucu:
+- bir görevde çıkış her zaman görünür (kaydırılan alanın üstünde sabit; klavye açıkken de), kaçıncı soruda olunduğu bir puan değil olgusal bir konum olarak yazılıyor ('Soru 2 / 5'; ekran okuyucuya kelimelerle), kısa cevap, kod ve rapor alanları klavyeden hiç öneri istemiyor ve otomatik büyük harf yok (açık cevap klavyenin yardımını koruyor), geçmiş yardımı kelimelerle söylüyor ve hatırlatma uygulamanın kendi tek renkli ikonu, tasarım tokenının vurgusu ve hatırlatma kategorisiyle geliyor,
+- onay kullanıcının 2026-10-27 açık onayı ("17C ye başla"); kullanıcı kararları: yalnız koşu kullanılabilirliği; gün özetinde koşunun gerçek değişiklikleri, iki gezinme kenarı ve AI kullanım/maliyet görünürlüğü seçilmedi ve açık kaldı, yerleri sonraki bir PRE'de belirlenecek,
+- **bulgu:** çıkış uzun derste kayboluyordu; bağımsız inceleme ilk sürümde Compose'un autoCorrectEnabled=false ayarının çok satırlı alanda klavyeye otomatik düzeltmeyi kapattırmadığını buldu — alanlara TYPE_TEXT_FLAG_NO_SUGGESTIONS eklendi ve emülatörde editörün inputType=0xa0001 olduğu doğrulandı; büyük harf zaten kapalıydı; pencere klavye için yeniden boyutlanmıyordu (adjustResize) ve AI'lı varsayılan derleme kendi tam manifest kopyasını kullandığı için ayar iki manifeste de eklendi; geçmiş 'H1, H3' diyordu; hatırlatma sistemin genel ikonunu ödünç alıyordu,
+- şema değişmedi (v11),
+- Mutation Kotlin 10/10, validator 20/20; independent validator **31/31 PASS**,
+- **T6 çalıştırılmadı; görev emülatörde görüldü, bildirim görülmedi**.
+
+## Önceki numaralı adım — 17B
 
 **Final:** `MOTX-v0 — motion by purpose: orientation, continuity, feedback and state change, each a short declared band; nothing repeats, pulses, counts down or celebrates; motion is never the only sign of a change and never stands before the exit; with the platform's animations removed every change is immediate`
 **Ana çıktı:** `docs/MOTION_SPEC.md` + `arch/17b_motion/` + `tools/validate_motion.py` + `android/`.
@@ -617,6 +631,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 17C — Kullanılabilirlik
+## Aktif adım — 17D — Accessibility
 
-**17C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H, 17A ve 17B her biri ayrı açık onayla yürütüldü). 17C'nin girdileri: koşu ve bildirim cilası, gün özetine bir koşunun gerçek değişiklikleri, kullanım/maliyet görünürlüğü, `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları.
+**17D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H ve 17A–17C her biri ayrı açık onayla yürütüldü). 17D'nin girdileri: `VDSX-v0` §12, tema/erişilebilirlik ve uygulama içi azaltılmış hareket tercihleri, TalkBack, yardım seviyelerinin iki ifadesi, bağlanmamış `AssessmentSessionScreen`. 17C'de seçilmeyip açık kalanlar: koşu ve bildirim cilası, gün özetine bir koşunun gerçek değişiklikleri, kullanım/maliyet görünürlüğü, `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları.
