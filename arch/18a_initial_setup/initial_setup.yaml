@@ -1,0 +1,126 @@
+model: ISTX-v0
+stage_step: 18A
+status: accepted_18a
+decision: D-139
+added_step: D-140
+implements: [UXIA-v0, VDW-v0, VDWX-v0, STGX-v0, PCRX-v0, LHRX-v0, RUXX-v0]
+boundaries: MSBX-v0
+persistence: schema_v13_setup_record
+purpose: the_first_run_setup_records_the_learners_normal_day_and_only_the_areas_they_tick_open_a_diagnostic_never_evidence_never_mandatory_shown_once_before_today_and_the_runs_report_says_the_change_the_history_says
+
+question: İlk açılışta öğrenci kendi süresini ve bildiğini düşündüğü alanları, hiçbir şeyi kanıt saymadan ve zorunlu kılmadan söyleyebiliyor mu; ve bir koşunun sonu, geçmişin ve gün özetinin söylediği değişikliği söylüyor mu?
+
+primary_invariant: >-
+  The first-run setup is shown once, before Today and before any plan, on a store no one has used; it records the
+  learner's normal day as a 16D preference and, only for the areas the learner ticks, one diagnostic whose source is the
+  entry placement — "I know this" names the scope and is never evidence, nothing is waived by it, and nothing is
+  mandatory; skipping records only that the setup was done. Today is planned after it, by the planner, from what it
+  recorded. A run's end report reads a state no engine had written the way the learning history reads it, so the report,
+  the history and the day summary say the same change on a single-answer run (the report is the run's net change).
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-28
+  scope: the first-run setup only (initial_setup_flow and the curriculum_entry_placement diagnostic source)
+  what_changed: the run's end report replays an unwritten "before" from evidence, like the history (an explicit change to 13E's rule; PCRX-v0)
+  new_step: 18G — Pilotun yürütülmesi (D-140), at the end of AŞAMA 18, no renumbering — the pilot journal and installing on the phone to start the 14-day pilot
+
+amendments:
+  - contract: PCRX-v0 (13E)
+    what: a touched Skill's axis that no engine had written before the run is read as the engines replayed over the evidence the snapshot saw (HistoryReplay.axesAt), instead of not being a "before"; a written axis is never replaced
+    by: user decision 2026-10-28 (D-139)
+  - contract: VDW-v0 / VDWX-v0 (13F)
+    what: curriculum_entry_placement is representable — the learner ticking an area in the first-run setup; planner_diagnostic_opportunity still is not
+    by: user decision 2026-10-28 (D-139)
+
+schema_migration: {from: 12, to: 13, owner: 18A, tables: [setup_record], truth_altered: false, decision: D-139}
+
+setup:
+  surface: initial_setup_flow (UXIA-v0 §7.4; pre-shell; Surface.InitialSetupFlow in setupFlows)
+  shown_when: a curriculum is published, no setup_record exists and no plan was ever made (a store used before 18A, or a restored backup with work in it, is not asked)
+  safe_exit: 'the "Şimdilik atla" button, first on the screen; it records skipped and nothing else'
+  asks:
+    - the normal day's minutes (a 16D preference; the preset until changed)
+    - the areas the learner already knows something of (optional, nothing pre-ticked)
+  areas: the curriculum's own grouping (topic.<area>.<name>), in Learn's order, each with its number of Topics
+  placement: one diagnostic over the ticked areas' Skills, each only if new learning may start on it; source curriculum_entry_placement
+  plans: false — Today is planned after it
+  refresh_on_start_waits: true
+
+assistant_defaults:
+  - the model id ISTX-v0
+  - areas, not Topics, as the unit of "I know this" — the curriculum's own grouping, one row each
+  - the setup asks only the normal day; the short and intensive lengths stay presets, changeable in Profile
+  - a store with a plan is a used store and is not asked
+  - the setup record is appended last, so an interrupted setup is simply offered again
+  - the run report's Skill names are the Turkish display names (17A's rule)
+
+found:
+  - id: no_setup_in_code
+    what: UXIA-v0 §7.4's initial_setup_flow and VDW-v0's curriculum_entry_placement existed only in specs; a fresh install went straight to a plan made with the presets
+    resolution: InitialSetup, SetupPresentation, SetupScreen, Surface.InitialSetupFlow, schema v13 setup_record
+  - id: plan_before_setup_risk
+    what: the activity refreshed Today on every start, so a plan could be made while the learner was still in the setup, ignoring what they were about to choose
+    resolution: Today is refreshed only once the setup is settled
+  - id: report_named_skills_in_english
+    what: once a first run reported its change (D-139), the run's end named the Skill by its authored English name ("State Assignment Model"), against 17A's rule; seen on the emulator
+    resolution: the report names Skills through CurriculumNames.skill, like every other surface
+  - id: review_interrupted_setup_left_a_diagnostic
+    what: the independent review found that a setup interrupted after its diagnostic was written but before its row (the coverage rebuild over many Skills is the slow part) is offered again, and a skip then left the earlier placement diagnostic open — holding every lesson of the ticked areas against "skipping records only that it was done"
+    resolution: finish() first withdraws a leftover curriculum_entry_placement diagnostic when no setup row exists; a course test writes the diagnostic, skips, and finds it withdrawn and nothing held
+  - id: review_copy_promised_today
+    what: the independent review found that the copy promised short checks in today's plan, but a check joins the plan only when its Skill may start — on a fresh store 56 of 60 Skills wait, so ticking C, Git or the shell puts nothing in today's plan
+    resolution: the copy says the checks join the plan as each Skill becomes startable and that those lessons are not skipped until then; a course test ticks C alone and finds no check today, and Linux and finds one
+  - id: review_non_blocking_taken
+    what: the review's suggestions — two taps in one frame ending the setup twice, the typed minutes and ticks lost on rotation or a theme change, what skipping does placed after the start button, no check that the placement source has only one call site
+    resolution: the setup ends once; the inputs are saved state; the skip note sits under the skip button; the validator checks the single call site
+  - id: audit_passed_with_one_screen
+    what: a 100% run was cut short (the emulator under load; the setup never appeared and only Today was read) and the tool still printed PASS, because a run's result looked only at the screens it reached
+    resolution: the tool fails a run that misses any expected screen (screens_missing) and waits out Android's own "System UI isn't responding"; the 100% run was made again with it (the 200% run, 17 screens, was made just before the guard and reached every screen)
+  - id: block_comment_paired_with_a_file_pattern
+    what: 16D's validator strips block comments with a pattern that took the restore picker's any-type string in MainActivity for a comment opener; a new block comment at the end of the file closed it, and the stripped text hid the restore confirmation (A16D-06)
+    resolution: the new comment is a line comment and says why; the validator was not changed
+  - id: audit_stopped_at_setup
+    what: the accessibility audit clears the app's data, so it now meets the setup before the shell and waited for the shell forever
+    resolution: the audit reads the setup as its own screen and leaves it by its safe exit
+
+notes:
+  - a first wrong answer on a fresh Skill now changes canonical state in the run's report (a weakness question), and a change replans today with new_evidence_recorded — 13E's own rule for a change, now reached on a first run too
+  - the run's report is the net change from before the run to after it; the history speaks per row, so on a single-answer run they say the same change, while a run that moves a Skill and back may report less than the history lists
+  - Surface.InitialSetupFlow registers the setup in the surface set the IA names; the activity draws it before the shell rather than through the shell's state
+  - one open diagnostic at a time is 13F's rule: a later fast path on a Topic replaces the setup's diagnostic, and withdrawing it there withdraws all of it
+
+moved_on:
+  - the pilot journal (SC-048/049 records and a PC pilot report) and installing on the phone to start the 14-day pilot (18G, D-140)
+  - a calibrated planner_diagnostic_opportunity (18B)
+  - TalkBack and T6 (19)
+  - reading the setup's Topic-to-Skill links from the store instead of re-reading the packages on first start; saying in the Topic fast-path copy that a new fast path replaces the setup's (18F)
+
+verification:
+  kotlin_tests: [InitialSetupCourseTest (6, the eight shipped packages and the real store), SetupStorageTest (3)]
+  narrowed_tests: [ProgramChangesTest, DiagnosticFactsTest, DisplayAndUsageStorageTest]
+  validator: tools/validate_initial_setup.py
+  emulator: Pixel 7 AVD API 34 (data on drive D; not T6) — the setup on a fresh install (45 minutes and Linux ticked gave a 45-minute day with a fast-path check planned), not shown again on reopening, the skip path (the 60-minute preset), a first wrong answer whose end report now names the change; the accessibility audit extended to the setup
+  independent_review: a separate agent found 2 blocking problems (an interrupted setup could leave a diagnostic a later skip did not withdraw; the copy promised checks today that most areas cannot give) and 11 suggestions; both blocking problems and 4 suggestions were fixed, the rest recorded in notes and moved_on
+  t6_run: false
+
+next_step: 18B — Planner gözlemi
+
+mutation_results_kotlin:
+  scope: one change per mutant — the setup shown to a used store or twice, a skip writing the length or a diagnostic, the source not the placement, every area's Skills for one tick, no setup row, the run report without the replay or replaying the run's own evidence, an area named by one Topic, the leftover diagnostic not withdrawn — each against its own suite (InitialSetupCourseTest on the eight shipped packages and the real store; ProgramChangesTest)
+  total: 11
+  detected: 11
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: the hardened runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a comment in InitialSetup.kt
+  negative_control_result: survived_as_expected
+  final_run_is_a_single_clean_run: true
+
+mutation_results_validator:
+  scope: one change per mutant to what the validator exists to catch — the setup shown to a used store, its surface unregistered, it planning, Today refreshed during it, ended twice, the wrong source, a skip writing the length, the leftover not withdrawn, a second call site, every area for one tick, the app able to open a diagnostic, the words (evidence, today, a level), a pre-ticked area, the skip note moved, the fault colour on the field, a schema change beyond an added table, the guards, the run report without the replay or replacing a written axis, English names, a test removed, T6 claimed, a failed or short audit report
+  total: 26
+  detected: 26
+  detection: the validator fails and names the expected check (only the living-record checks A18A-12 may fail in the baseline before POST)
+  negative_controls: [V00 changes a comment in InitialSetup.kt, V01 changes a comment in SetupScreen.kt]
+  negative_control_result: survived_as_expected
+  final_run_is_a_single_clean_run: true

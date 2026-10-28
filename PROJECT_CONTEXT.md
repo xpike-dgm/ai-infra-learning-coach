@@ -262,12 +262,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **17D ✅ Accessibility — A11X-v0 / D-137**
 - **17E ✅ Kalan UX parçaları — RUXX-v0 / D-138**
 - **AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
-- **18A 🟡 Pilot başlangıcı — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 18B–20 ⬜
+- **18A ✅ Pilot başlangıcı — ISTX-v0 / D-139**
+- **18B 🟡 Planner gözlemi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 18C–18F, 18G (D-140), 19–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 18A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 18B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -886,3 +887,13 @@ Onay kullanıcının 2026-10-27 açık onayı ("17E ye başla"). Kullanıcı kar
 **AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
 
 Canonical: `docs/REMAINING_UX_SPEC.md` / D-138. Sıradaki: `18A — Pilot başlangıcı`.
+
+## 12.58 18A Pilot başlangıcı — ISTX-v0 / D-139
+
+İlk açılışta öğrenci kendi süresini ve bildiğini düşündüğü alanları, hiçbir şeyi kanıt saymadan ve zorunlu kılmadan söyleyebiliyor. Ana invariant: ilk açılış kurulumu kullanılmamış bir depoda, Bugün'den ve herhangi bir plandan önce bir kez gösteriliyor; öğrencinin normal gün süresini bir tercih olarak kaydediyor ve yalnız işaretlediği alanlar için kaynağı giriş yerleştirmesi olan tek bir tanı açıyor — 'biliyorum' kanıt sayılmaz, hiçbir şey atlatmaz ve hiçbir tanı zorunlu değil; atlamak yalnız kurulumun yapıldığını kaydediyor; Bugün kurulumdan sonra planlanıyor; ve bir koşunun sonu, hiçbir motorun yazmadığı bir 'önce'yi geçmişin okuduğu gibi kanıttan yeniden oynatarak okuyor, böylece koşu sonu, geçmiş ve gün özeti aynı değişikliği söylüyor.
+
+Bulunanlar: UXIA-v0 §7.4'ün ilk açılış akışı ve VDW-v0'ın giriş yerleştirme kaynağı yalnız spec'teydi — yeni bir kurulum doğrudan önayarlarla kurulmuş bir plana gidiyordu; etkinlik her başlangıçta Bugün'ü yeniliyordu, yani kurulum açıkken plan yazılabilirdi; ilk koşu artık değişiklik raporlayınca rapor beceriyi İngilizce kanonik adıyla yazıyordu ('State Assignment Model') — artık Türkçe; erişilebilirlik denetimi uygulama verisini sildiği için kuruluma takılıp kabuğu sonsuza dek bekliyordu — artık kurulumu kendi ekranı olarak okuyup güvenli çıkışından çıkıyor.
+
+Onay kullanıcının 2026-10-28 açık onayı ("18A ya başla"). Kullanıcı kararları: yalnız ilk açılış kurulumu; koşu sonu raporu da geçmiş gibi kanıttan yeniden oynatsın (13E'nin kuralı açıkça değişti); pilot günlüğü ve telefona kurulum yeni adım 18G'ye gitti (D-140). Şema v13. Kotlin mutation 11/11, validator mutation 26/26; 69/69 QA PASS. T6 çalıştırılmadı.
+
+Canonical: `docs/INITIAL_SETUP_SPEC.md` / D-139. Yeni adım: `18G — Pilotun yürütülmesi` / D-140. Sıradaki: `18B — Planner gözlemi`.

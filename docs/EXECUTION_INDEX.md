@@ -232,12 +232,13 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 ---
 
 # AŞAMA 18 — Gerçek Kullanım Pilotu, Kalibrasyon ve QA
-- [ ] **18A — Pilot başlangıcı** **AKTİF**
-- [ ] **18B — Planner gözlemi**
+- [x] **18A — Pilot başlangıcı** — `ISTX-v0 / D-139`
+- [ ] **18B — Planner gözlemi** **AKTİF**
 - [ ] **18C — Mastery kalibrasyonu**
 - [ ] **18D — Assessment/item/validator kalibrasyonu**
 - [ ] **18E — Teknik / performance QA**
 - [ ] **18F — Düzeltme döngüsü**
+- [ ] **18G — Pilotun yürütülmesi** — D-140 ile eklendi
 
 ---
 
@@ -267,9 +268,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17E`  
-**Son tamamlanan:** **`17E — RUXX-v0 / D-138`**  
-**Aktif:** **`18A — Pilot başlangıcı`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17E`, `18A`  
+**Son tamamlanan:** **`18A — ISTX-v0 / D-139`**  
+**Aktif:** **`18B — Planner gözlemi`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -369,4 +370,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 **AŞAMA 17 TAMAMLANDI** — VPLX-v0 → MOTX-v0 → USBX-v0 → A11X-v0 → RUXX-v0.
 
-18A başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+18A `ISTX-v0` ile ilk açılış kurulumu: ilk açılış kurulumu kullanılmamış bir depoda, Bugün'den ve herhangi bir plandan önce bir kez gösteriliyor; öğrencinin normal gün süresini bir tercih olarak kaydediyor ve yalnız işaretlediği alanlar için kaynağı giriş yerleştirmesi olan tek bir tanı açıyor — 'biliyorum' kanıt sayılmaz, hiçbir şey atlatmaz ve hiçbir tanı zorunlu değil; atlamak yalnız kurulumun yapıldığını kaydediyor; Bugün kurulumdan sonra planlanıyor; ve bir koşunun sonu, hiçbir motorun yazmadığı bir 'önce'yi geçmişin okuduğu gibi kanıttan yeniden oynatarak okuyor, böylece koşu sonu, geçmiş ve gün özeti aynı değişikliği söylüyor. Şema v13. Kotlin mutation 11/11, validator mutation 26/26; 69/69 QA PASS. T6 çalıştırılmadı. D-140 ile AŞAMA 18'in sonuna `18G — Pilotun yürütülmesi` eklendi.
+
+18B başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).

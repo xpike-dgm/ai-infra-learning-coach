@@ -1250,12 +1250,25 @@ D-136 ile eklendi (kullanıcı kararı, 2026-10-27; yeniden numaralama yok). Gir
 ---
 
 # AŞAMA 18 — Pilot / Kalibrasyon / QA
-### [ ] 18A — Pilot başlangıcı — **AKTİF**
-### [ ] 18B — Planner gözlemi
+### [x] 18A — Pilot başlangıcı — ISTX-v0 / D-139
+
+**18A final coverage:**
+- ilk açılış kurulumu kullanılmamış bir depoda, Bugün'den ve herhangi bir plandan önce bir kez gösteriliyor; öğrencinin normal gün süresini bir tercih olarak kaydediyor ve yalnız işaretlediği alanlar için kaynağı giriş yerleştirmesi olan tek bir tanı açıyor — 'biliyorum' kanıt sayılmaz, hiçbir şey atlatmaz ve hiçbir tanı zorunlu değil; atlamak yalnız kurulumun yapıldığını kaydediyor; Bugün kurulumdan sonra planlanıyor; ve bir koşunun sonu, hiçbir motorun yazmadığı bir 'önce'yi geçmişin okuduğu gibi kanıttan yeniden oynatarak okuyor, böylece koşu sonu, geçmiş ve gün özeti aynı değişikliği söylüyor,
+- kapsam (kullanıcı kararı): yalnız ilk açılış kurulumu; koşu sonu raporu da geçmiş gibi kanıttan yeniden oynatsın (13E'nin kuralı açıkça değişti); pilot günlüğü ve telefona kurulum yeni adım 18G'ye gitti (D-140),
+- kurulum: `initial_setup_flow` (UXIA-v0 §7.4), kabuktan önce, kullanılmamış bir depoda bir kez; normal gün süresi (16D tercihi) ve isteğe bağlı alanlar; işaretlenen alanların başlatılabilir becerileri için `curriculum_entry_placement` kaynaklı tek tanı; 'Şimdilik atla' güvenli çıkış ve önce sunuluyor; kurulum plan yapmıyor, Bugün ondan sonra planlanıyor,
+- koşu sonu raporu: yalnız hiçbir motorun yazmadığı eksenler geçmişin yeniden oynatmasıyla dolduruluyor (13E değişikliği kayıtlı),
+- şema v13 (`setup_record`),
+- bulgu: UXIA-v0 §7.4'ün ilk açılış akışı ve VDW-v0'ın giriş yerleştirme kaynağı yalnız spec'teydi — yeni bir kurulum doğrudan önayarlarla kurulmuş bir plana gidiyordu; etkinlik her başlangıçta Bugün'ü yeniliyordu, yani kurulum açıkken plan yazılabilirdi; ilk koşu artık değişiklik raporlayınca rapor beceriyi İngilizce kanonik adıyla yazıyordu ('State Assignment Model') — artık Türkçe; erişilebilirlik denetimi uygulama verisini sildiği için kuruluma takılıp kabuğu sonsuza dek bekliyordu — artık kurulumu kendi ekranı olarak okuyup güvenli çıkışından çıkıyor,
+- Kotlin mutation 11/11, validator mutation 26/26; 69/69 QA PASS,
+- **T6 çalıştırılmadı; uygulama emülatörde görüldü (Pixel 7 AVD, API 34)**.
+### [ ] 18B — Planner gözlemi — **AKTİF**
 ### [ ] 18C — Mastery kalibrasyonu
 ### [ ] 18D — Assessment/item/exposure/validator kalibrasyonu
 ### [ ] 18E — Teknik / performance QA
 ### [ ] 18F — Düzeltme döngüsü
+### [ ] 18G — Pilotun yürütülmesi — D-140 ile eklendi
+
+D-140 ile eklendi (kullanıcı kararı, 2026-10-28; yeniden numaralama yok). Girdileri: pilot günlüğü (uygulamada 'planı elle düzelttim' ve 'kural ihlali gördüm' kayıtları; PC'de yedekten pilot raporu; SC-048/049) ve uygulamayı telefona (Poco M6 Pro) kurup en az 14 günlük pilotu başlatmak.
 
 ---
 
@@ -1305,8 +1318,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17E`  
-**Son tamamlanan:** **`17E — RUXX-v0 / D-138`**  
-**Aktif:** **`18A — Pilot başlangıcı`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17E`, `18A`  
+**Son tamamlanan:** **`18A — ISTX-v0 / D-139`**  
+**Aktif:** **`18B — Planner gözlemi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **18A fresh PRE-STEP + kullanıcının yeni açık onayı → Pilot başlangıcı → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **18B fresh PRE-STEP + kullanıcının yeni açık onayı → Planner gözlemi → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

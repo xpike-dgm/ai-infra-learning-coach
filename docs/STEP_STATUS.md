@@ -96,8 +96,10 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **17C — Kullanılabilirlik** | ✅ | USBX-v0 / D-135. Çıkış hep görünür, konum olgusal ('Soru 2 / 5'), cevap/kod/rapor alanlarında klavye önerisi yok, geçmiş yardımı kelimelerle söylüyor, hatırlatma uygulamanın kendi ikonuyla. Kotlin mutation 10/10, validator mutation 20/20; 31/31 QA PASS. T6 çalıştırılmadı. |
 | **17D — Accessibility** | ✅ | A11X-v0 / D-137. Her kontrol adlı, rollü ve durumlu; aynı adlı iki kontrol yok; 48dp; başlıklar; alanın hatası kendi; gerçek uygulama emülatörde 100% ve 200% metinle on dört ekranda denetlendi. Kotlin mutation 10/10, validator mutation 35/35; 59/59 QA PASS. T6 çalıştırılmadı. |
 | **17E — Kalan UX parçaları** | ✅ | RUXX-v0 / D-138. Gün özeti gerçek değişiklikleri söylüyor; iki gezinme kenarı; AI çağrıları token'larla sayılıyor, para yok; odak halkası, tema, uygulama içi azaltılmış hareket. Şema v12. Kotlin mutation 22/22, validator mutation 36/36; 88/88 QA PASS. T6 çalıştırılmadı. |
-| **18A — Pilot başlangıcı** | 🟡 Aktif | Henüz yürütülmedi; önceki adım (17E) tamamlandı ve AŞAMA 17 bitti. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
-| **18B–20** | ⬜ Bekliyor | 18A sonrası canonical sırada. |
+| **18A — Pilot başlangıcı** | ✅ | ISTX-v0 / D-139. İlk açılış kurulumu: bir kez, plandan önce; normal gün süresi ve yalnız işaretlenen alanlar için tek tanı; kanıt değil, zorunlu değil. Koşu sonu raporu geçmişle aynı değişikliği söylüyor. Şema v13. Kotlin mutation 11/11, validator mutation 26/26; 69/69 QA PASS. T6 çalıştırılmadı. |
+| **18B — Planner gözlemi** | 🟡 Aktif | Henüz yürütülmedi; önceki adım (18A) tamamlandı. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
+| **18C–18F, 18G — Pilotun yürütülmesi (D-140)** | ⬜ Bekliyor | 18B sonrası canonical sırada. |
+| **19–20** | ⬜ Bekliyor | AŞAMA 18 sonrası. |
 
 ## Manager transition — D-055
 
@@ -116,7 +118,20 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 17E
+## Son tamamlanan numaralı adım — 18A
+
+**Final:** `ISTX-v0 — the first-run setup: shown once, pre-shell, before any plan, on a store no one has used; it records the normal day as a preference and, only for the areas the learner ticks, one diagnostic whose source is the entry placement — never evidence, never mandatory; skipping records only that it was done; and a run's report reads an unwritten before the way the history does`
+**Ana çıktı:** `docs/INITIAL_SETUP_SPEC.md` + `arch/18a_initial_setup/` + `tools/validate_initial_setup.py` + `android/`.
+
+18A sonucu:
+- ilk açılış kurulumu kullanılmamış bir depoda, Bugün'den ve herhangi bir plandan önce bir kez gösteriliyor; öğrencinin normal gün süresini bir tercih olarak kaydediyor ve yalnız işaretlediği alanlar için kaynağı giriş yerleştirmesi olan tek bir tanı açıyor — 'biliyorum' kanıt sayılmaz, hiçbir şey atlatmaz ve hiçbir tanı zorunlu değil; atlamak yalnız kurulumun yapıldığını kaydediyor; Bugün kurulumdan sonra planlanıyor; ve bir koşunun sonu, hiçbir motorun yazmadığı bir 'önce'yi geçmişin okuduğu gibi kanıttan yeniden oynatarak okuyor, böylece koşu sonu, geçmiş ve gün özeti aynı değişikliği söylüyor,
+- onay kullanıcının 2026-10-28 açık onayı; kullanıcı kararları: yalnız ilk açılış kurulumu; koşu sonu raporu da geçmiş gibi kanıttan yeniden oynatsın (13E'nin kuralı açıkça değişti); pilot günlüğü ve telefona kurulum yeni adım 18G'ye gitti (D-140),
+- **bulgu:** UXIA-v0 §7.4'ün ilk açılış akışı ve VDW-v0'ın giriş yerleştirme kaynağı yalnız spec'teydi — yeni bir kurulum doğrudan önayarlarla kurulmuş bir plana gidiyordu; etkinlik her başlangıçta Bugün'ü yeniliyordu, yani kurulum açıkken plan yazılabilirdi; ilk koşu artık değişiklik raporlayınca rapor beceriyi İngilizce kanonik adıyla yazıyordu ('State Assignment Model') — artık Türkçe; erişilebilirlik denetimi uygulama verisini sildiği için kuruluma takılıp kabuğu sonsuza dek bekliyordu — artık kurulumu kendi ekranı olarak okuyup güvenli çıkışından çıkıyor,
+- şema v13 (`setup_record`),
+- Mutation Kotlin 11/11, validator 26/26; independent validator **69/69 PASS**,
+- **T6 çalıştırılmadı; uygulama emülatörde (Pixel 7 AVD, API 34)**.
+
+## Önceki numaralı adım — 17E
 
 **Final:** `RUXX-v0 — the day summary says what the engines changed that day; skill_detail -> planner_explanation and technical_english_profile -> skill_detail; AI calls counted with the provider's tokens and no money; a visible focus ring; a theme choice; an in-app reduced-motion switch that only adds`
 **Ana çıktı:** `docs/REMAINING_UX_SPEC.md` + `arch/17e_remaining_ux/` + `tools/validate_remaining_ux.py` + `android/`.
@@ -661,6 +676,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 18A — Pilot başlangıcı
+## Aktif adım — 18B — Planner gözlemi
 
-**18A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H ve 17A–17E her biri ayrı açık onayla yürütüldü). 18'e taşınanlar: ilk koşudan sonra öğrencinin hangi 'ne değişti'yi gördüğü (koşunun 13E raporu ya da geçmişin yeniden oynatması); günün yeniden oynatma maliyeti (18E); kalibrasyon (18C/18D); giriş yerleştirme akışı ve tanısal kaynağı (16H'den). Ayrıca açık: yardım seviyelerinin iki ifadesinin tek kaynağı, bağlanmamış `AssessmentSessionScreen`.
+**18B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H, 17A–17E ve 18A her biri ayrı açık onayla yürütüldü). D-140 ile AŞAMA 18'in sonuna `18G — Pilotun yürütülmesi` eklendi; girdileri: pilot günlüğü (uygulamada 'planı elle düzelttim' ve 'kural ihlali gördüm' kayıtları; PC'de yedekten pilot raporu; SC-048/049) ve uygulamayı telefona (Poco M6 Pro) kurup en az 14 günlük pilotu başlatmak. 18B–18F'nin hangisinin önce pilot verisine ihtiyaç duyduğu PRE'de sorulacak. Ayrıca açık: kalibre edilmiş `planner_diagnostic_opportunity` (18B), günün yeniden oynatma maliyeti (18E), yardım seviyelerinin iki ifadesinin tek kaynağı, bağlanmamış `AssessmentSessionScreen`.

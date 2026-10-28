@@ -52,6 +52,11 @@ PUNCTUATION = "`'\".,;:!?()[]{}<>«»“”‘’"
 RULES = ["R1_no_accessible_name", "R2_target_below_48dp", "R3_identifier_on_screen", "R4_image_only_control",
          "R5_checkable_unnamed", "R6_text_field_unnamed", "R7_ambiguous_duplicate_name", "R8_reading_order"]
 MAX_READINGS = 60
+# 18A: every screen a run must reach; a run that reaches fewer fails.
+EXPECTED_SCREENS = ["initial_setup", "today_overview", "today_capacity_dialog", "planner_explanation", "learn_overview", "topic_detail",
+                    "progress_overview", "learning_history", "assessment_report", "technical_english_profile", "skill_detail",
+                    "skill_plan_explanation", "profile_overview", "task_runner_orientation", "task_runner_lesson",
+                    "task_runner_question", "task_runner_help"]
 SAME_NODE_PX = 40
 
 
@@ -183,6 +188,14 @@ def tap_scrolling(text: str, limit: int = 15) -> bool:
             return True
         swipe(main_viewport(app_nodes(dump())), up=False)
     return False
+
+
+def dismiss_system_dialog() -> None:
+    """18A: a loaded emulator may show Android's own "System UI isn't responding"; it is waited out, never the app's."""
+    root = dump()
+    if any("isn't responding" in (n.get("text") or "") for n in root.iter("node")):
+        tap_text("Wait", tries=1)
+        time.sleep(3)
 
 
 def tap_row_scrolling(text: str, limit: int = 15) -> bool:
@@ -332,6 +345,7 @@ def main() -> int:
     def visit(name: str, shown: list[str], absent: list[str] | None = None, wait: float = 3.0, scroll: bool = True) -> None:
         end = time.time() + 120
         while time.time() < end and not all(present(dump(), t) for t in shown):
+            dismiss_system_dialog()
             time.sleep(2)
         time.sleep(wait)
         results.append(audit(name, {"present": shown, "absent": absent or []}, scale, scroll))
@@ -342,12 +356,32 @@ def main() -> int:
         time.sleep(3)
 
     adb("shell", "monkey", "-p", PACKAGE, "-c", "android.intent.category.LAUNCHER", "1")
-    # The first start opens the store and publishes the curriculum; the shell appears when it is done.
-    if not wait_for("Öğren", 300):
+    # The first start opens the store and publishes the curriculum. 18A: a fresh store then shows the first-run setup
+    # before the shell; it is audited, and skipped (its safe exit) so the shell appears.
+    def first_screen(limit: float) -> str | None:
+        end = time.time() + limit
+        while time.time() < end:
+            dismiss_system_dialog()
+            root = dump()
+            if present(root, "Hoş geldin"):
+                return "setup"
+            if present(root, "Öğren"):
+                return "shell"
+            time.sleep(3)
+        return None
+
+    seen = first_screen(300)
+    if seen is None:
         # A cold first start can outlast the wait once; the app is started again before giving up.
         adb("shell", "monkey", "-p", PACKAGE, "-c", "android.intent.category.LAUNCHER", "1")
-        if not wait_for("Öğren", 300):
-            raise RuntimeError("the app's shell did not appear")
+        seen = first_screen(300)
+    if seen == "setup":
+        visit("initial_setup", ["Hoş geldin", "Şimdilik atla"], ["Öğren"])
+        back_to_top()
+        tap_text("Şimdilik atla")
+        seen = "shell" if wait_for("Öğren", 300) else None
+    if seen != "shell":
+        raise RuntimeError("the app's shell did not appear")
     time.sleep(30)
     visit("today_overview", ["Başla"], ["Öğrenme haritası"])
     if tap_scrolling("Bugünkü süreyi değiştir"):
@@ -398,7 +432,10 @@ def main() -> int:
         "rules": RULES,
         "screens": results,
         "findings_total": sum(len(r["findings"]) for r in results),
-        "result": "PASS" if results and not any(r["findings"] or r["clipped_never_judged"] or not r["marker_found"] or not r["read_to_end"] for r in results) else "FAIL",
+        # 18A: a run that did not reach every screen is not a pass, whatever the screens it reached said.
+        "screens_missing": [n for n in EXPECTED_SCREENS if n not in [r["screen"] for r in results]],
+        "result": "PASS" if results and all(n in [r["screen"] for r in results] for n in EXPECTED_SCREENS)
+        and not any(r["findings"] or r["clipped_never_judged"] or not r["marker_found"] or not r["read_to_end"] for r in results) else "FAIL",
     }
     out = report_dir / ("a11y_emulator_report.yaml" if font_scale == 1.0 else f"a11y_emulator_report_text_{int(font_scale * 100)}.yaml")
     out.parent.mkdir(parents=True, exist_ok=True)

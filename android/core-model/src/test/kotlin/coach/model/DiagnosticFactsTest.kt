@@ -26,10 +26,11 @@ class DiagnosticFactsTest {
 
     @Test
     fun `only the learner can open a diagnostic, and every way of asking is the same reason`() {
-        assertEquals(listOf("user_requested_fast_path", "prior_experience_claim", "resume_after_external_learning"),
+        // Narrowed at 18A (`D-139`): the first-run setup's "I already know some of this" is the learner asking too.
+        assertEquals(listOf("user_requested_fast_path", "prior_experience_claim", "resume_after_external_learning", "curriculum_entry_placement"),
             DiagnosticSource.entries.map { it.id })
-        // `planner_diagnostic_opportunity` (18B) and `curriculum_entry_placement` (16D) are not representable here.
-        assertTrue(DiagnosticSource.entries.none { it.id == "planner_diagnostic_opportunity" || it.id == "curriculum_entry_placement" })
+        // `planner_diagnostic_opportunity` (18B) is not representable here: the app never opens a diagnostic by itself.
+        assertTrue(DiagnosticSource.entries.none { it.id == "planner_diagnostic_opportunity" })
         DiagnosticSource.entries.forEach { assertEquals("diagnostic.user_requested_fast_path", it.reasonCode) }
     }
 

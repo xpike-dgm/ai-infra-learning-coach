@@ -86,8 +86,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 17C — Kullanılabilirlik: USBX-v0 / D-135 ile tamamlandı; çıkış hep görünür, konum olgusal, klavye önerisi yok, geçmiş kelimelerle, hatırlatma ikonu.
 - [x] 17D — Accessibility: A11X-v0 / D-137 ile tamamlandı; adlar, roller, durumlar, 48dp, başlıklar, alan hataları; emülatörde iki metin boyutunda denetim.
 - [x] 17E — Kalan UX parçaları: RUXX-v0 / D-138 ile tamamlandı; AŞAMA 17 tamamlandı.
-- [ ] 18A — Pilot başlangıcı **AKTİF** — kullanıcının yeni açık onayı gerekir.
-- [ ] İlk koşudan sonra öğrenci hangi 'ne değişti'yi görmeli: koşunun 13E raporu ya da geçmişin yeniden oynatması (17E'de bulundu; ikisi yeni öğrencinin ilk yanlış cevabında farklı söylüyor) → 18.
+- [x] 18A — Pilot başlangıcı: ISTX-v0 / D-139 ile tamamlandı (ilk açılış kurulumu).
+- [ ] 18B — Planner gözlemi **AKTİF** — kullanıcının yeni açık onayı gerekir.
+- [ ] 18G — Pilotun yürütülmesi (D-140): pilot günlüğü (uygulamada 'planı elle düzelttim' ve 'kural ihlali gördüm' kayıtları; PC'de yedekten pilot raporu; SC-048/049) ve uygulamayı telefona (Poco M6 Pro) kurup en az 14 günlük pilotu başlatmak.
+- [x] İlk koşudan sonra hangi 'ne değişti': 18A'da karar verildi (D-139) — koşu sonu raporu da geçmiş gibi kanıttan yeniden oynatıyor.
 - [ ] Günün yeniden oynatma maliyeti bir becerinin geçmişiyle büyüyor → 18E.
 - [ ] TalkBack'in sesli çıktısı cihazda → 19 (emülatör imajında TalkBack yok).
 - [x] 17C'nin girdileri (koşu ve bildirim cilası) 17C'de yapıldı; kalan parçalar yukarıdaki satırda — gün özetinde bir koşunun gerçek değişiklikleri, kullanım/maliyet görünürlüğü, `skill_detail -> planner_explanation` ve `technical_english_profile -> skill_detail` kenarları.
@@ -167,7 +169,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Tutor yanıtlarının beyan ettikleri seviyeye karşı kalibrasyonu → 18D.
 - [x] Topic `available → mastered` geçişi Objective waiver'larından → 16C'de kapsam kapısı (D-124).
 - [x] Hızlı yol girişi konu ayrıntısında; istek, geri çekme, sonuç ve oturum sonrası yeniden hesaplama uygulamadan (D-132).
-- [ ] Giriş yerleşimi tanısal kaynağı (giriş yerleştirme akışı yok) → 18A.
+- [x] Giriş yerleşimi tanısal kaynağı: 18A'da ilk açılış kurulumuyla yapıldı (`curriculum_entry_placement`, D-139).
 - [ ] Planner kaynaklı tanı (kalibre edilmiş karar değeri) → 18B.
 - [ ] Waiver'ı curriculum sürümleri arasında taşımak (`KGC-v0` §26 göç kayıtları) → 19B. Objective'lerini beyan eden authored dersler ve tanı item'ları AŞAMA 15'te yazıldı.
 - [ ] Waiver replay maliyeti (bir Objective'in satırlarında karesel, yalnız yeniden kurmada) → 18E.

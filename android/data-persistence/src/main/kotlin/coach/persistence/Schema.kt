@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 12
+    const val VERSION = 13
 
     // ---------------------------------------------------------------- table inventories
 
@@ -77,8 +77,14 @@ object Schema {
      */
     val aiUsageTables = listOf("ai_call_record")
 
-    /** Every append-only user table: `DDM-v0`'s truth, the 16D preferences, the 16E reminder and 17E's two, guarded alike. */
-    val appendOnlyTables = truthTables + userPreferenceTables + reminderPreferenceTables + displayPreferenceTables + aiUsageTables
+    /**
+     * 18A (`D-139`): that the learner went through the first-run setup, finished or skipped — its own table, append-only,
+     * so it is shown once and a backup carries it.
+     */
+    val setupTables = listOf("setup_record")
+
+    /** Every append-only user table: `DDM-v0`'s truth, the 16D preferences, the 16E reminder, 17E's two and 18A's, guarded alike. */
+    val appendOnlyTables = truthTables + userPreferenceTables + reminderPreferenceTables + displayPreferenceTables + aiUsageTables + setupTables
 
     /**
      * Region 3 — projections. Droppable and rebuildable without touching truth. `DDM-v0`'s eight, plus
@@ -925,6 +931,26 @@ object Schema {
             """,
             "CREATE INDEX IF NOT EXISTS ai_call_record_by_day ON ai_call_record (called_on_study_day)",
         ) + (displayPreferenceTables + aiUsageTables).flatMap(::appendOnlyGuards)
+
+    /** 18A (`D-139`): how the first-run setup ended. */
+    val setupOutcomeValues = listOf("completed", "skipped")
+
+    /**
+     * Version 13 adds `setup_record` (18A, `D-139`): one row when the learner finishes or skips the first-run setup. It
+     * holds how it ended and when; the length chosen is a 16D preference and an area ticked is a diagnostic request, each
+     * stored where it already belongs.
+     */
+    val v13: List<String>
+        get() = listOf(
+            """
+            CREATE TABLE IF NOT EXISTS setup_record (
+                id                     INTEGER PRIMARY KEY AUTOINCREMENT,
+                $SEQUENCE,
+                setup_outcome          TEXT    NOT NULL,${time("recorded_at", "recorded_on")},
+                ${oneOf("setup_outcome", setupOutcomeValues)}
+            )
+            """,
+        ) + setupTables.flatMap(::appendOnlyGuards)
 
     /** `WLRM-v0`'s misconception sources, plus the empty value of a label nothing has carried yet. */
     const val MISCONCEPTION_SOURCES = "'', 'deterministic', 'ai_proposed'"

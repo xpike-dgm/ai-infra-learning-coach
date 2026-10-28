@@ -13,14 +13,16 @@ package coach.model
  */
 
 /**
- * `VDW-v0` §3: what opened a diagnostic. Only the learner can (13F, user decision): the three sources here are
- * all the learner asking. `planner_diagnostic_opportunity` needs a calibrated decision-value rule (18B) and
- * `curriculum_entry_placement` an entry flow (16D); neither is representable until its owner builds it.
+ * `VDW-v0` §3: what opened a diagnostic. Only the learner can (13F, user decision): every source here is the learner
+ * asking. `curriculum_entry_placement` is the first-run setup's "I already know some of this" (18A, `D-139`) — the learner
+ * ticking an area, never the app deciding; `planner_diagnostic_opportunity` needs a calibrated decision-value rule (18B)
+ * and is not representable until its owner builds it.
  */
 enum class DiagnosticSource(val id: String) {
     USER_REQUESTED_FAST_PATH("user_requested_fast_path"),
     PRIOR_EXPERIENCE_CLAIM("prior_experience_claim"),
     RESUME_AFTER_EXTERNAL_LEARNING("resume_after_external_learning"),
+    CURRICULUM_ENTRY_PLACEMENT("curriculum_entry_placement"),
     ;
 
     /** `PDT-v0` §8.7: every source here is the learner asking for the fast path, so the reason is one code. */

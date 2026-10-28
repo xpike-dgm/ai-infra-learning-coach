@@ -46,6 +46,11 @@ import coach.presentation.NotificationAccess
 import coach.application.AiUsage
 import coach.application.DayCloseFacts
 import coach.application.DisplaySettings
+import coach.application.InitialSetup
+import coach.model.SetupOutcome
+import coach.presentation.SetupPresentation
+import coach.presentation.CurriculumNames
+import coach.presentation.SetupView
 import coach.application.PlanToday
 import coach.model.CapacityPreferences
 import coach.model.CapacityProfile
@@ -331,7 +336,9 @@ class CoachApplication : Application() {
         storeThread.execute {
             val graph = opened.graph
             val reported = RunTask(graph.persistence, graph.content, graph.clock, evaluatorAvailable()).finish(run, before, answered, items)
-            val label: (VersionedRef) -> String = { ref -> graph.persistence.skill(ref)?.canonicalName ?: ref.logicalId }
+            // 18A: the Skill's Turkish name, as everywhere else since 17A — first runs now report a change, which showed the
+            // authored English name here.
+            val label: (VersionedRef) -> String = { ref -> CurriculumNames.skill(ref, graph.persistence.skill(ref)?.canonicalName) }
             val reportedLines = when (reported) {
                 null -> listOf(TaskRunCopy.NOTHING_ANSWERED)
                 else -> ProgramChangeResults.summary(reported.report)?.let(::listOf)
@@ -604,6 +611,32 @@ class CoachApplication : Application() {
             if (preference.enabled) Reminders.ensureChannel(this)
             Reminders.applySetting(this, preference, opened.graph.clock.now().instantEpochMillis)
             main.post { onDone(preference, Reminders.access(this)) }
+        }
+    }
+
+    /**
+     * Whether the first-run setup is to be shown, and what it offers (18A), off the main thread. `null` when it is not:
+     * the learner went through it, or the store was used before (`InitialSetup.needed`).
+     */
+    fun checkSetup(onLoaded: (SetupView?) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val graph = opened.graph
+            val setup = InitialSetup(graph.persistence, graph.content, graph.clock)
+            val view = if (!setup.needed()) null else SetupPresentation.of(
+                setup.topics().map { it.topic to it.skills },
+                CapacitySettings(graph.persistence, graph.clock).read().normalMinutes,
+            )
+            main.post { onLoaded(view) }
+        }
+    }
+
+    /** Records how the setup ended (18A); Today is planned after it, by the caller's refresh. */
+    fun finishSetup(outcome: SetupOutcome, normalMinutes: Int?, placement: List<VersionedRef>, onDone: () -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            InitialSetup(opened.graph.persistence, opened.graph.content, opened.graph.clock).finish(outcome, normalMinutes, placement)
+            main.post { onDone() }
         }
     }
 

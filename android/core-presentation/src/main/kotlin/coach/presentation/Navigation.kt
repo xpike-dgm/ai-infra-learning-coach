@@ -84,6 +84,15 @@ sealed interface Surface {
         override val isFocusedFlow = true
     }
 
+    /**
+     * 18A (`D-139`): `UXIA-v0` §7.4's first-run setup — pre-shell, so it suspends the shell like a focused flow, and its
+     * safe exit is skipping it. Shown once, before Today; it is not a destination and no contextual edge opens it.
+     */
+    data object InitialSetupFlow : Surface {
+        override val id = "initial_setup_flow"
+        override val isFocusedFlow = true
+    }
+
     companion object {
         // These are computed on access rather than held as initialised fields. A `val` here is
         // filled while the companion initialises, which can run before the nested objects it names
@@ -102,8 +111,12 @@ sealed interface Surface {
         val focusedFlows: List<Surface>
             get() = listOf(TaskRunnerFlow, AssessmentSessionFlow)
 
+        /** 18A: `UXIA-v0` §7.4's setup family, apart from the focused workflows of §7.3. */
+        val setupFlows: List<Surface>
+            get() = listOf(InitialSetupFlow)
+
         val all: List<Surface>
-            get() = shellRoots + sharedDetails + focusedFlows
+            get() = shellRoots + sharedDetails + focusedFlows + setupFlows
 
         fun rootOf(destination: Destination): ShellRoot =
             shellRoots.first { it.destination == destination }
