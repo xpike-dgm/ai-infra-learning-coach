@@ -433,7 +433,9 @@ check("A17A-11_launch_theme_is_measured_surface", lx and dx and lx.group(1) == l
       and "@color/coach_surface" in light_xml and "@color/coach_surface" in dark_xml, f"{lx and lx.group(1)} {dx and dx.group(1)}")
 check("A17A-11_edge_to_edge", "enableEdgeToEdge()" in activity and "WindowInsets.safeDrawing" in body(components, "fun ScreenColumn("), "MainActivity, ScreenColumn")
 scrollers = [f.name for f in UI.glob("*.kt") if "verticalScroll(rememberScrollState())" in read(f)
-             and f.name not in ("Components.kt",) and not (f.name == "AiSettingsScreen.kt" and "WindowInsets.safeDrawing" in read(f))]
+             and f.name not in ("Components.kt",) and not (f.name == "AiSettingsScreen.kt" and "WindowInsets.safeDrawing" in read(f))
+             # Narrowed at 18G: a dialog is not a screen; its text slot scrolls inside AlertDialog, which keeps itself in the safe area.
+             and not (f.name.endswith("Dialog.kt") and "AlertDialog(" in read(f) and "ScreenColumn(" not in read(f))]
 check("A17A-11_screens_scroll_through_screen_column", not scrollers, str(scrollers))
 
 # --- A17A-12: nothing adds a state, a severity or a progress claim.
