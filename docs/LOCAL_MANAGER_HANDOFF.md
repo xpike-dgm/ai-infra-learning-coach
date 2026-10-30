@@ -1178,14 +1178,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 17E ✅ RUXX-v0 / D-138
 - AŞAMA 17 ✅ TAMAMLANDI
 - AŞAMA 18A ✅ ISTX-v0 / D-139
+- AŞAMA 18G ✅ PLTX-v0 / D-141 (D-140; 18B'den önce)
 - AŞAMA 18B 🟡 active-not-executed
-- 18C–18F, 18G (D-140), 19–20 ⬜
+- 18C–18F, 19–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `18A — Pilot başlangıcı`  
-**Final:** `ISTX-v0 — the first-run setup: shown once, pre-shell, before any plan, on a store no one has used; it records the normal day as a preference and, only for the areas the learner ticks, one diagnostic whose source is the entry placement — never evidence, never mandatory; skipping records only that it was done; and a run's report reads an unwritten before the way the history does` / D-139  
-**Canonical:** `docs/INITIAL_SETUP_SPEC.md` + `arch/18a_initial_setup/`
+**Son tamamlanan numaralı adım:** `18G — Pilotun yürütülmesi`  
+**Final:** `PLTX-v0 — the pilot journal: a Today row where the learner reports a plan problem in SC-049's own words (or a preference, never counted, or an SC-048 rule violation) with an optional note, appended and never acted on; a PC report reads an exported backup read-only for SC-048, SC-049 and the planner observation; the AI build was installed on the POCO M6 Pro and the pilot's first study day (2026-10-30) planned on the phone`  
+**Canonical:** `docs/PILOT_RUN_SPEC.md` + `arch/18g_pilot_run/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1260,6 +1261,7 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 17D:** ✅ TAMAMLANDI
 **AŞAMA 17E:** ✅ TAMAMLANDI — AŞAMA 17 TAMAMLANDI
 **AŞAMA 18A:** ✅ TAMAMLANDI
+**AŞAMA 18G:** ✅ TAMAMLANDI (D-141 ile 18B'den önce)
 **Aktif adım:** `18B — Planner gözlemi`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
@@ -1269,8 +1271,8 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 
 ```text
 fresh 18B PRE-STEP GitHub refresh
-→ user explicit approval verification (D-117 ended with 15F)
-→ 18B execution
+→ approval: D-142 standing approval (2026-10-29; D-117 ended with 15F)
+→ 18B execution (reads the pilot's 14 days)
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1882,8 +1884,9 @@ AŞAMA 16 ✅
 17E ✅ RUXX-v0 / D-138
 AŞAMA 17 ✅
 18A ✅ ISTX-v0 / D-139
+18G ✅ PLTX-v0 / D-141
 18B 🟡 active-not-executed
-18C–18F, 18G (D-140), 19–20 ⬜
+18C–18F, 19–20 ⬜
 ```
 
 10D final:
@@ -2082,7 +2085,7 @@ AŞAMA 17 ✅
 
 **Sıradaki gerçek numbered work:** `18B — Planner gözlemi`.
 
-**18B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**18B henüz yürütülmedi. Fresh PRE-STEP zorunludur; onay D-142'nin sürekli onayıdır.**
 
 
 ---
@@ -2133,7 +2136,7 @@ AŞAMA 17 ✅
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
 **Sıradaki gerçek numbered work:** `18B — Planner gözlemi`.  
-**18B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**18B henüz yürütülmedi. Fresh PRE-STEP zorunludur; onay D-142'nin sürekli onayıdır.**
 
 
 ---
@@ -2672,3 +2675,18 @@ D-140: AŞAMA 18'in sonuna `18G — Pilotun yürütülmesi` eklendi (kullanıcı
 **AŞAMA 18A ✅ ISTX-v0 / D-139.** Şema v13. Kotlin mutation 11/11, validator mutation 26/26; 69/69 QA PASS. T6 çalıştırılmadı.
 
 **Aktif adım:** `18B — Planner gözlemi` — henüz yürütülmedi; fresh PRE + kullanıcının yeni açık onayı zorunlu (D-117'nin sürekli onayı 15F ile bitti).
+
+---
+## 18G completion addendum — D-141 / D-142
+
+18G `PLTX-v0 — the learner reports a plan problem from Today in SC-049's own words; the journal records one row and never acts; a PC report reads an exported backup read-only for SC-048, SC-049 and the planner observation 18B reads`.
+
+Ana invariant: öğrenci planla ilgili bir sorunu Bugün'den, SC-049'un kendi sözleriyle (ön koşul yüzünden imkânsız, süre tamamen yanlış, yanlış dala götürüyor), kişisel tercih (sayılmaz) ya da kural ihlali (SC-048) olarak ve isteğe bağlı kısa bir notla bildirir; bildirim tek satır olarak eklenir ve başka hiçbir şey değişmez — plan yazılmaz ya da yeniden planlanmaz, tercih değişmez, hiçbir şey kanıt değildir; PC'deki rapor dışa aktarılan yedeği yalnız okuyarak açar ve yalnız satırların söylediğini söyler: SC-049 günleri sayar, yapısal bildirimi olan bir gün bir kez ve bildirimin adlandırdığı planın gününde sayılır; SC-048 bildirileni listeler ve bildirim olmamasının kanıt olmadığını söyler; planner gözlemi her planlı görevin tahminini ilk ve son cevabı arasındaki aralığın yanına koyar ve planner'ın geride bırakıp durduğu ihtiyaçları adlandırır; uygulamanın kendi codec'inin çözmeyeceği bir iz okunamadı diye adlandırılır, tahmin edilmez.
+
+Bulunanlar: adaptör sayıya benzeyen her değeri tamsayı olarak bağlıyordu, bu yüzden bir notun '007'si '7' olarak saklanıyordu — TEXT sütunları artık metin olarak bağlanıyor; 18A'nın doğrulayıcısı şemayı v13'e sabitliyordu (daraltıldı); PC raporu yalnız izin başlığına bakıp uygulamanın codec'inin reddettiği izleri okuyordu — artık her kullandığı alanda codec kadar katı ve kapalı listeleri Kotlin enum'larıyla karşılaştırılıyor; ilk ve son cevap arasındaki süre bir alt sınır değil (arka planda geçen süreyi içerebilir) — aralık diye ve neyi dışarıda bıraktığıyla söyleniyor; gün dönümünden sonra kaydedilen bir bildirim yeni günde sayılıyordu — artık planının gününde; başarısız bir kayıt sessizdi — artık söyleniyor; emülatör denetimi başarısız bir ekran dökümünde önceki koşunun dosyasını okuyup kurulumu atlanmış sanıyordu — dosya artık her dökümden önce siliniyor; repo adımın ortasında başka bir araç tarafından başka bir sürücüye taşındı — geri taşındı ve doğrulandı (`git fsck`), taşıma sırasında koşan tarama atıldı.
+
+`D-142`: kullanıcının ikinci sürekli onayı (2026-10-29) — kullanıcı durdurana kadar her adım tam protokolle biter, PR'ı asistan CI yeşil olunca kendisi merge eder (yeşil değilse 10 dakika sonra yeniden bakar) ve sonraki adım soru sormadan, asistanın önerdiği seçeneklerle başlar; bu seçimler "asistanın varsayılan seçimi (D-142)" olarak kaydedilir; şifre/ödeme/hesap ayarı, geri alınamaz işlemler ve yalnız kullanıcının yapabileceği fiziksel işler yine durdurur.
+
+**AŞAMA 18G ✅ PLTX-v0 / D-141.** Şema v14 (`pilot_journal_entry`). Kotlin mutation 15/15, validator mutation 24/24; 66/66 QA PASS. Uygulama (AI'lı build) Poco M6 Pro'ya USB ile kuruldu ve pilotun ilk günü 2026-10-30 kaydedildi. T6 çalıştırılmadı.
+
+**Aktif adım:** `18B — Planner gözlemi` — henüz yürütülmedi; fresh PRE zorunlu, onay D-142'nin sürekli onayı; pilotun 14 gününü okur.

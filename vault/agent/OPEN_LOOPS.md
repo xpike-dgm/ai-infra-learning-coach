@@ -87,8 +87,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 17D — Accessibility: A11X-v0 / D-137 ile tamamlandı; adlar, roller, durumlar, 48dp, başlıklar, alan hataları; emülatörde iki metin boyutunda denetim.
 - [x] 17E — Kalan UX parçaları: RUXX-v0 / D-138 ile tamamlandı; AŞAMA 17 tamamlandı.
 - [x] 18A — Pilot başlangıcı: ISTX-v0 / D-139 ile tamamlandı (ilk açılış kurulumu).
-- [ ] 18B — Planner gözlemi **AKTİF** — kullanıcının yeni açık onayı gerekir.
-- [ ] 18G — Pilotun yürütülmesi (D-140): pilot günlüğü (uygulamada 'planı elle düzelttim' ve 'kural ihlali gördüm' kayıtları; PC'de yedekten pilot raporu; SC-048/049) ve uygulamayı telefona (Poco M6 Pro) kurup en az 14 günlük pilotu başlatmak.
+- [ ] 18B — Planner gözlemi **AKTİF** — D-142'nin sürekli onayıyla; pilotun 14 gününü okur.
+- [x] 18G — Pilotun yürütülmesi: PLTX-v0 / D-141 ile tamamlandı (pilot günlüğü, PC raporu, telefona kurulum; pilot 2026-10-30 başladı).
 - [x] İlk koşudan sonra hangi 'ne değişti': 18A'da karar verildi (D-139) — koşu sonu raporu da geçmiş gibi kanıttan yeniden oynatıyor.
 - [ ] Günün yeniden oynatma maliyeti bir becerinin geçmişiyle büyüyor → 18E.
 - [ ] TalkBack'in sesli çıktısı cihazda → 19 (emülatör imajında TalkBack yok).

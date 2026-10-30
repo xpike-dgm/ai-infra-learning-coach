@@ -105,6 +105,17 @@ found:
     what: the file URI broke on a "?", "#" or "%" in the path; older backups' branches were untested; the targets check only counted
     resolution: the path is a percent-escaped file URI (the validator uses "#" and "%" in the name); v13 and v10 backups are built and read; each control's 48dp is checked where it is
 
+pilot_start:
+  installed_on: POCO M6 Pro (2312FPCA6G), Android 16, API 36
+  installed_at: 2026-10-30, over USB with adb install -r (no earlier copy on the phone)
+  build: ai
+  setup: completed by the learner (normal day 60 minutes)
+  first_study_day: 2026-10-30
+  first_plan_written: true
+  first_plan: plan_version 1 (PLNX-v0) with three planned tasks — state_assignment_model, program_execution_model, recognize_core_technical_labels
+  read_from: the phone's own store, copied with run-as (debug build) and read on the PC
+  window: 14 study days from the first; 18B reads them from an exported backup
+
 notes:
   - the journal is read on the PC only; the app shows no count of it, so reporting is never a score
 

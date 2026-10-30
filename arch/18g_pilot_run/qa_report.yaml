@@ -1,8 +1,8 @@
 model: PLTX-v0
 stage_step: 18G
 checks: 66
-passed: 65
-result: FAIL
+passed: 66
+result: PASS
 results:
 - id: A18G-01_kinds_closed
   result: PASS
@@ -131,8 +131,7 @@ results:
 - id: A18G-09_a11y_emulator_report_text_200.yaml
   result: PASS
 - id: A18G-09_pilot_started
-  result: FAIL
-  detail: '{}'
+  result: PASS
 - id: A18G-09_mutation_results_kotlin
   result: PASS
 - id: A18G-09_mutation_results_validator

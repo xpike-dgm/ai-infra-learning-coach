@@ -97,8 +97,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **17D — Accessibility** | ✅ | A11X-v0 / D-137. Her kontrol adlı, rollü ve durumlu; aynı adlı iki kontrol yok; 48dp; başlıklar; alanın hatası kendi; gerçek uygulama emülatörde 100% ve 200% metinle on dört ekranda denetlendi. Kotlin mutation 10/10, validator mutation 35/35; 59/59 QA PASS. T6 çalıştırılmadı. |
 | **17E — Kalan UX parçaları** | ✅ | RUXX-v0 / D-138. Gün özeti gerçek değişiklikleri söylüyor; iki gezinme kenarı; AI çağrıları token'larla sayılıyor, para yok; odak halkası, tema, uygulama içi azaltılmış hareket. Şema v12. Kotlin mutation 22/22, validator mutation 36/36; 88/88 QA PASS. T6 çalıştırılmadı. |
 | **18A — Pilot başlangıcı** | ✅ | ISTX-v0 / D-139. İlk açılış kurulumu: bir kez, plandan önce; normal gün süresi ve yalnız işaretlenen alanlar için tek tanı; kanıt değil, zorunlu değil. Koşu sonu raporu geçmişle aynı değişikliği söylüyor. Şema v13. Kotlin mutation 11/11, validator mutation 26/26; 69/69 QA PASS. T6 çalıştırılmadı. |
-| **18B — Planner gözlemi** | 🟡 Aktif | Henüz yürütülmedi; önceki adım (18A) tamamlandı. Fresh PRE + kullanıcının yeni açık onayı gerekir. |
-| **18C–18F, 18G — Pilotun yürütülmesi (D-140)** | ⬜ Bekliyor | 18B sonrası canonical sırada. |
+| **18G — Pilotun yürütülmesi** | ✅ | PLTX-v0 / D-141 (D-140 ile eklendi; 18B'den önce yürütüldü). Bugün'den plan sorunu bildirimi (SC-049'un üç yapısal türü, kişisel tercih, kural ihlali; isteğe bağlı not), tek satır ve hiçbir şeyi değiştirmez; PC raporu yedeği yalnız okur (SC-048/049, planner gözlemi). Şema v14. Kotlin mutation 15/15, validator mutation 24/24; 66/66 QA PASS. Telefona kuruldu, ilk gün 2026-10-30. T6 çalıştırılmadı. |
+| **18B — Planner gözlemi** | 🟡 Aktif | Henüz yürütülmedi; önceki adım (18G) tamamlandı. Fresh PRE gerekir; onay D-142'nin sürekli onayı. Pilotun 14 gününü okur. |
+| **18C–18F** | ⬜ Bekliyor | 18B sonrası canonical sırada. |
 | **19–20** | ⬜ Bekliyor | AŞAMA 18 sonrası. |
 
 ## Manager transition — D-055
@@ -118,7 +119,22 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 18A
+## Son tamamlanan numaralı adım — 18G
+
+**Final:** `PLTX-v0 — the learner reports a plan problem from Today in SC-049's own words; the journal records one row and never acts; a PC report reads an exported backup read-only for SC-048, SC-049 and the planner observation 18B reads`
+**Ana çıktı:** `docs/PILOT_RUN_SPEC.md` + `arch/18g_pilot_run/` + `tools/pilot_report.py` + `tools/validate_pilot_run.py` + `android/`.
+
+18G sonucu:
+- öğrenci planla ilgili bir sorunu Bugün'den, SC-049'un kendi sözleriyle (ön koşul yüzünden imkânsız, süre tamamen yanlış, yanlış dala götürüyor), kişisel tercih (sayılmaz) ya da kural ihlali (SC-048) olarak ve isteğe bağlı kısa bir notla bildirir; bildirim tek satır olarak eklenir ve başka hiçbir şey değişmez — plan yazılmaz ya da yeniden planlanmaz, tercih değişmez, hiçbir şey kanıt değildir; PC'deki rapor dışa aktarılan yedeği yalnız okuyarak açar ve yalnız satırların söylediğini söyler: SC-049 günleri sayar, yapısal bildirimi olan bir gün bir kez ve bildirimin adlandırdığı planın gününde sayılır; SC-048 bildirileni listeler ve bildirim olmamasının kanıt olmadığını söyler; planner gözlemi her planlı görevin tahminini ilk ve son cevabı arasındaki aralığın yanına koyar ve planner'ın geride bırakıp durduğu ihtiyaçları adlandırır; uygulamanın kendi codec'inin çözmeyeceği bir iz okunamadı diye adlandırılır, tahmin edilmez,
+- onay kullanıcının 2026-10-28 açık onayı; kullanıcı kararları: 18G 18B–18F'den önce yürütülür, çünkü onlar pilot verisini okur (numaralama değişmedi); 18G pilot başlayınca biter (günlük, PC raporu, telefona kurulum ve ilk günün kaydı); bildirim Bugün'den bir satır, beş tür ve isteğe bağlı not; kurulumu asistan USB ile yapar,
+- **bulgu:** adaptör sayıya benzeyen her değeri tamsayı olarak bağlıyordu, bu yüzden bir notun '007'si '7' olarak saklanıyordu — TEXT sütunları artık metin olarak bağlanıyor; 18A'nın doğrulayıcısı şemayı v13'e sabitliyordu (daraltıldı); PC raporu yalnız izin başlığına bakıp uygulamanın codec'inin reddettiği izleri okuyordu — artık her kullandığı alanda codec kadar katı ve kapalı listeleri Kotlin enum'larıyla karşılaştırılıyor; ilk ve son cevap arasındaki süre bir alt sınır değil (arka planda geçen süreyi içerebilir) — aralık diye ve neyi dışarıda bıraktığıyla söyleniyor; gün dönümünden sonra kaydedilen bir bildirim yeni günde sayılıyordu — artık planının gününde; başarısız bir kayıt sessizdi — artık söyleniyor; emülatör denetimi başarısız bir ekran dökümünde önceki koşunun dosyasını okuyup kurulumu atlanmış sanıyordu — dosya artık her dökümden önce siliniyor; repo adımın ortasında başka bir araç tarafından başka bir sürücüye taşındı — geri taşındı ve doğrulandı (`git fsck`), taşıma sırasında koşan tarama atıldı,
+- şema v14 (`pilot_journal_entry`),
+- Mutation Kotlin 15/15, validator 24/24; independent validator **66/66 PASS**,
+- uygulama Poco M6 Pro'ya kuruldu ve pilotun ilk günü 2026-10-30 kaydedildi,
+- `D-142`: kullanıcının ikinci sürekli onayı (2026-10-29) — kullanıcı durdurana kadar her adım tam protokolle biter, PR'ı asistan CI yeşil olunca kendisi merge eder (yeşil değilse 10 dakika sonra yeniden bakar) ve sonraki adım soru sormadan, asistanın önerdiği seçeneklerle başlar; bu seçimler "asistanın varsayılan seçimi (D-142)" olarak kaydedilir; şifre/ödeme/hesap ayarı, geri alınamaz işlemler ve yalnız kullanıcının yapabileceği fiziksel işler yine durdurur.,
+- **T6 çalıştırılmadı**.
+
+## Önceki numaralı adım — 18A
 
 **Final:** `ISTX-v0 — the first-run setup: shown once, pre-shell, before any plan, on a store no one has used; it records the normal day as a preference and, only for the areas the learner ticks, one diagnostic whose source is the entry placement — never evidence, never mandatory; skipping records only that it was done; and a run's report reads an unwritten before the way the history does`
 **Ana çıktı:** `docs/INITIAL_SETUP_SPEC.md` + `arch/18a_initial_setup/` + `tools/validate_initial_setup.py` + `android/`.
@@ -678,4 +694,4 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 ## Aktif adım — 18B — Planner gözlemi
 
-**18B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H, 17A–17E ve 18A her biri ayrı açık onayla yürütüldü). D-140 ile AŞAMA 18'in sonuna `18G — Pilotun yürütülmesi` eklendi; girdileri: pilot günlüğü (uygulamada 'planı elle düzelttim' ve 'kural ihlali gördüm' kayıtları; PC'de yedekten pilot raporu; SC-048/049) ve uygulamayı telefona (Poco M6 Pro) kurup en az 14 günlük pilotu başlatmak. 18B–18F'nin hangisinin önce pilot verisine ihtiyaç duyduğu PRE'de sorulacak. Ayrıca açık: kalibre edilmiş `planner_diagnostic_opportunity` (18B), günün yeniden oynatma maliyeti (18E), yardım seviyelerinin iki ifadesinin tek kaynağı, bağlanmamış `AssessmentSessionScreen`.
+**18B henüz yürütülmedi.** Fresh PRE-STEP zorunludur; onay D-142'nin sürekli onayıdır (D-117'nin sürekli onayı 15F ile bitti; 15G, 15H, 16A–16H, 17A–17E, 18A ve 18G her biri ayrı açık onayla yürütüldü). 18B pilotun 14 gününü okur. D-140 ile AŞAMA 18'in sonuna `18G — Pilotun yürütülmesi` eklendi; girdileri: pilot günlüğü (uygulamada 'planı elle düzelttim' ve 'kural ihlali gördüm' kayıtları; PC'de yedekten pilot raporu; SC-048/049) ve uygulamayı telefona (Poco M6 Pro) kurup en az 14 günlük pilotu başlatmak. 18B–18F'nin hangisinin önce pilot verisine ihtiyaç duyduğu PRE'de sorulacak. Ayrıca açık: kalibre edilmiş `planner_diagnostic_opportunity` (18B), günün yeniden oynatma maliyeti (18E), yardım seviyelerinin iki ifadesinin tek kaynağı, bağlanmamış `AssessmentSessionScreen`.
