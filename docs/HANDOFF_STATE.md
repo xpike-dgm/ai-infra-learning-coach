@@ -333,7 +333,7 @@ PEM-v0:
 
 **Son tamamlanan:** `18G — PLTX-v0 / D-141`  
 **Aktif:** `18B — Planner gözlemi`  
-**18B henüz yürütülmedi. Fresh PRE-STEP zorunludur; onay D-142'nin sürekli onayıdır.**
+**18B henüz yürütülmedi. Fresh PRE-STEP zorunludur; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi).**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1837,4 +1837,4 @@ D-142: the user's second standing approval (2026-10-29) — until the user says 
 
 ## 122. 18B handoff
 
-18B — Planner gözlemi. 18G ran on the user's explicit approval; 18B runs under D-142's standing approval after a fresh PRE. 18B reads the pilot's 14 days from an exported backup with `tools/pilot_report.py` (the pilot started 2026-10-30). Carried: a calibrated `planner_diagnostic_opportunity`, minute calibration, the focus preference (18B); the day replay's cost (18E); calibration (18C/18D). Elsewhere: TalkBack, the focus ring with a real keyboard, the first live AI call and T6 (19).
+18B — Planner gözlemi. 18G ran on the user's explicit approval; 18B needs a fresh PRE and the user's new explicit approval (D-142's standing approval ended 2026-10-30 after 18G, at the user's request). 18B reads the pilot's 14 days from an exported backup with `tools/pilot_report.py` (the pilot started 2026-10-30). Carried: a calibrated `planner_diagnostic_opportunity`, minute calibration, the focus preference (18B); the day replay's cost (18E); calibration (18C/18D). Elsewhere: TalkBack, the focus ring with a real keyboard, the first live AI call and T6 (19).

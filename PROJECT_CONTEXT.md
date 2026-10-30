@@ -269,7 +269,7 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 18B'dir.** Fresh PRE-STEP olmadan yürütülmez; onay D-142'nin sürekli onayıdır.
+**Sıradaki numaralı çalışma 18B'dir.** Fresh PRE-STEP olmadan yürütülmez; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi).
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 

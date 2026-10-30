@@ -1271,7 +1271,7 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 
 ```text
 fresh 18B PRE-STEP GitHub refresh
-→ approval: D-142 standing approval (2026-10-29; D-117 ended with 15F)
+→ approval: the user's new explicit approval (D-142's standing approval ended 2026-10-30 after 18G; D-117 ended with 15F)
 → 18B execution (reads the pilot's 14 days)
 → independent QA
 → D-050 POST sync
@@ -2085,7 +2085,7 @@ AŞAMA 17 ✅
 
 **Sıradaki gerçek numbered work:** `18B — Planner gözlemi`.
 
-**18B henüz yürütülmedi. Fresh PRE-STEP zorunludur; onay D-142'nin sürekli onayıdır.**
+**18B henüz yürütülmedi. Fresh PRE-STEP zorunludur; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi).**
 
 
 ---
@@ -2136,7 +2136,7 @@ AŞAMA 17 ✅
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
 **Sıradaki gerçek numbered work:** `18B — Planner gözlemi`.  
-**18B henüz yürütülmedi. Fresh PRE-STEP zorunludur; onay D-142'nin sürekli onayıdır.**
+**18B henüz yürütülmedi. Fresh PRE-STEP zorunludur; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi).**
 
 
 ---
@@ -2689,4 +2689,4 @@ Bulunanlar: adaptör sayıya benzeyen her değeri tamsayı olarak bağlıyordu, 
 
 **AŞAMA 18G ✅ PLTX-v0 / D-141.** Şema v14 (`pilot_journal_entry`). Kotlin mutation 15/15, validator mutation 24/24; 66/66 QA PASS. Uygulama (AI'lı build) Poco M6 Pro'ya USB ile kuruldu ve pilotun ilk günü 2026-10-30 kaydedildi. T6 çalıştırılmadı.
 
-**Aktif adım:** `18B — Planner gözlemi` — henüz yürütülmedi; fresh PRE zorunlu, onay D-142'nin sürekli onayı; pilotun 14 gününü okur.
+**Aktif adım:** `18B — Planner gözlemi` — henüz yürütülmedi; fresh PRE + kullanıcının yeni açık onayı zorunlu (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi); pilotun 14 gününü okur.

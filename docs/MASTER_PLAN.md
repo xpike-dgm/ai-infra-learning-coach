@@ -1336,4 +1336,4 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 **Son tamamlanan:** **`18G — PLTX-v0 / D-141`**  
 **Aktif:** **`18B — Planner gözlemi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **18B fresh PRE-STEP (D-142 sürekli onayı) → Planner gözlemi (pilotun 14 günü) → independent QA → D-050 POST sync + stale audit → CI yeşilse merge.** D-117'nin sürekli onayı 15F ile bitti; D-142 2026-10-29'dan beri geçerli.
+Bir sonraki yürütme: **18B fresh PRE-STEP + kullanıcının yeni açık onayı → Planner gözlemi (pilotun 14 günü) → independent QA → D-050 POST sync + stale audit → CI yeşilse merge.** D-117'nin sürekli onayı 15F ile bitti; D-142 2026-10-29'da verildi ve 2026-10-30'da, 18G'den sonra sona erdi.

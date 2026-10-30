@@ -58,8 +58,8 @@ historical_non_blocking_hits:
 blocking_findings: []
 historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
   future/candidate language; current/living sources must agree on 18G complete (the
-  pilot started on the phone), 18B active-not-executed under the standing approval
-  (D-142); no open loop may still point at 18G.
+  pilot started on the phone), 18B active-not-executed and waiting for the user's
+  new explicit approval (D-142 ended after 18G); no open loop may still point at 18G.
 closure_gate_note: This is a one-time closure gate per PROJECT_MEMORY_PROTOCOL 4.4.
   It is expected to fail once 18B completes and must not be re-run afterwards; its
   stored report is the durable evidence.

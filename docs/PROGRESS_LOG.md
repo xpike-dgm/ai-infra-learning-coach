@@ -1681,6 +1681,6 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - Kotlin mutation 15/15, validator mutation 24/24; 66/66 QA PASS; 1344 JVM testi.
 - Uygulama Poco M6 Pro'ya kuruldu; pilotun ilk günü 2026-10-30.
 - `D-142`: kullanıcının ikinci sürekli onayı (2026-10-29) — kullanıcı durdurana kadar her adım tam protokolle biter, PR'ı asistan CI yeşil olunca kendisi merge eder (yeşil değilse 10 dakika sonra yeniden bakar) ve sonraki adım soru sormadan, asistanın önerdiği seçeneklerle başlar; bu seçimler "asistanın varsayılan seçimi (D-142)" olarak kaydedilir; şifre/ödeme/hesap ayarı, geri alınamaz işlemler ve yalnız kullanıcının yapabileceği fiziksel işler yine durdurur.
-- D-050 POST living-memory accepted state'i `18G tamamlandı; 18B aktif ve henüz yürütülmedi (D-142 altında)` konumuna taşır.
+- D-050 POST living-memory accepted state'i `18G tamamlandı; 18B aktif ve henüz yürütülmedi` konumuna taşır.
 
-**Sonraki kesin adım:** `18B — Planner gözlemi`. Fresh PRE-STEP zorunludur; onay D-142'nin sürekli onayıdır.
+**Sonraki kesin adım:** `18B — Planner gözlemi`. Fresh PRE-STEP zorunludur; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi).

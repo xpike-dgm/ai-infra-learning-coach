@@ -2586,7 +2586,7 @@ Ayrıntı: `docs/INITIAL_SETUP_SPEC.md`.
 - **Pilot:** AI'lı build Poco M6 Pro'ya USB ile kuruldu ve pilotun ilk günü 2026-10-30 kaydedildi; 14 gün kendi başına sürer, verisini 18B okur.
 - Çalıştırılmayan: **T6**.
 - **Devredilenler:** pilotun 14 gününü okumak (18B); TalkBack ve T6 (19).
-- Sonraki numbered step `18B — Planner gözlemi`. Fresh PRE gerekir; onay D-142'nin sürekli onayıdır.
+- Sonraki numbered step `18B — Planner gözlemi`. Fresh PRE gerekir; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi).
 
 Ayrıntı: `docs/PILOT_RUN_SPEC.md`.
 
@@ -2598,3 +2598,4 @@ Ayrıntı: `docs/PILOT_RUN_SPEC.md`.
 - PRE'deki ürün kararlarında asistan kendi önerdiği seçeneği alır ve bunu "asistanın varsayılan seçimi (D-142)" olarak kaydeder (D-117 gibi).
 - Şifre/ödeme/hesap ayarı, geri alınamaz işlemler (merge dışında), gerçek bir arıza ve yalnız kullanıcının yapabileceği fiziksel işler (ör. telefonda USB hata ayıklama) yine durdurur.
 - D-117 15F ile sona ermişti; D-142 yeni ve ayrı bir onaydır.
+- **Sona erdi (2026-10-30):** kullanıcı 18G'nin PR'ı açıldıktan sonra "o dediğim durmadan devam et döngüsünden çıkabilirsin" dedi. 18G'nin PR'ı ve 18B'nin başlaması kullanıcının ayrı açık onayına bağlıdır; varsayılan yine adım başına onaydır (D-117'nin sonu gibi).

@@ -40,6 +40,8 @@ STALE_PATTERNS = [
     re.compile(r"\*\*(?:Son tamamlanan|Son tamamlanan numaralı adım):\*\*[^\n]{0,100}\b18A\b", re.I),
     # An open loop may not still point at 18G once it is closed.
     re.compile(r"^- \[ \][^\n]*→ \*{0,2}18G\b", re.M),
+    # D-142's standing approval ended after 18G; no current source may still say 18B runs under it.
+    re.compile(r"onay D-142'nin sürekli onay|D-142'nin sürekli onayı altında|D-142's standing approval after", re.I),
     re.compile(r"__(?:KOTLIN_MUTATION|VALIDATOR_MUTATION|SWEEP|QA|JVM|KOTLIN|VALIDATOR|PHONE|PILOT_DAY)__"),
 ]
 
@@ -114,6 +116,7 @@ if repeated:
 # Durable decisions must exist.
 decisions = (ROOT / "docs/DECISIONS.md").read_text(encoding="utf-8")
 for marker, kind in [("## D-142 — Kullanıcının ikinci sürekli onayı", "D-142_missing"),
+                     ("- **Sona erdi (2026-10-30):**", "D-142_end_missing"),
                      ("## D-141 — Pilotun yürütülmesi = PLTX-v0", "D-141_missing"),
                      ("## D-140 — 18G eklendi: Pilotun yürütülmesi", "D-140_missing"),
                      ("## D-139 — Pilot başlangıcı: ilk açılış kurulumu = ISTX-v0", "D-139_missing"),
@@ -306,7 +309,7 @@ report = {
     "checked_current_files": checked,
     "historical_non_blocking_hits": historical_hits[:40],
     "blocking_findings": blocking,
-    "historical_scope_policy": "Historical specs/research/logs/tools may preserve at-the-time future/candidate language; current/living sources must agree on 18G complete (the pilot started on the phone), 18B active-not-executed under the standing approval (D-142); no open loop may still point at 18G.",
+    "historical_scope_policy": "Historical specs/research/logs/tools may preserve at-the-time future/candidate language; current/living sources must agree on 18G complete (the pilot started on the phone), 18B active-not-executed and waiting for the user's new explicit approval (D-142 ended after 18G); no open loop may still point at 18G.",
     "closure_gate_note": "This is a one-time closure gate per PROJECT_MEMORY_PROTOCOL 4.4. It is expected to fail once 18B completes and must not be re-run afterwards; its stored report is the durable evidence.",
 }
 REPORT.parent.mkdir(parents=True, exist_ok=True)

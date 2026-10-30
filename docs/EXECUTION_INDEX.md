@@ -376,4 +376,4 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 `D-142`: kullanıcının ikinci sürekli onayı (2026-10-29) — kullanıcı durdurana kadar her adım tam protokolle biter, PR'ı asistan CI yeşil olunca kendisi merge eder (yeşil değilse 10 dakika sonra yeniden bakar) ve sonraki adım soru sormadan, asistanın önerdiği seçeneklerle başlar; bu seçimler "asistanın varsayılan seçimi (D-142)" olarak kaydedilir; şifre/ödeme/hesap ayarı, geri alınamaz işlemler ve yalnız kullanıcının yapabileceği fiziksel işler yine durdurur.
 
-18B başlamadan fresh PRE-STEP GitHub refresh zorunludur; onay D-142'nin sürekli onayıdır. 18B pilotun 14 gününü okur.
+18B başlamadan fresh PRE-STEP GitHub refresh zorunludur; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi). 18B pilotun 14 gününü okur.
