@@ -166,8 +166,25 @@ check("A18A-06_buttons_48dp", screen.count("minimumTouchTarget()") >= 3, "")
 check("A18A-06_decides_nothing", "coach.application" not in screen and "SettingsPresentation.parseMinutes(typed)" in screen, "")
 
 # ---------------------------------------------------------------- 7. schema v13
-v13 = segment(schema, "val v13: List<String>", "const val MISCONCEPTION_SOURCES")
-check("A18A-07_version", "const val VERSION = 13" in schema and "12 to Schema.v13," in code_only(read(MIGRATIONS)), "")
+# Narrowed at 18G (`D-141`): version 14 adds the pilot journal after v13, so v13's segment ends where v14 begins, and the
+# version may be later when every later version is owned by an accepted contract's `schema_migration`.
+v13 = segment(schema, "val v13: List<String>", "val v14: List<String>" if "val v14: List<String>" in schema else "const val MISCONCEPTION_SOURCES")
+
+
+def _v13_or_owned_later(text: str) -> bool:
+    found = re.search(r"const val VERSION = (\d+)", text)
+    if not found:
+        return False
+    owned = set()
+    for path in (ROOT / "arch").glob("*/*.yaml"):
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        migration = data.get("schema_migration") if isinstance(data, dict) else None
+        if isinstance(migration, dict) and isinstance(migration.get("to"), int):
+            owned.add(migration["to"])
+    return int(found.group(1)) >= 13 and all(v in owned for v in range(14, int(found.group(1)) + 1))
+
+
+check("A18A-07_version", _v13_or_owned_later(schema) and "12 to Schema.v13," in code_only(read(MIGRATIONS)), "")
 check("A18A-07_only_adds", len(re.findall(r"CREATE TABLE IF NOT EXISTS", v13)) == 1 and not re.search(r"\b(ALTER|DROP|UPDATE|DELETE)\b", code_only(v13)), "")
 check("A18A-07_guarded", "setupTables.flatMap(::appendOnlyGuards)" in v13 and "+ setupTables" in schema
       and 'val setupOutcomeValues = listOf("completed", "skipped")' in schema, "")

@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 13
+    const val VERSION = 14
 
     // ---------------------------------------------------------------- table inventories
 
@@ -83,8 +83,15 @@ object Schema {
      */
     val setupTables = listOf("setup_record")
 
-    /** Every append-only user table: `DDM-v0`'s truth, the 16D preferences, the 16E reminder, 17E's two and 18A's, guarded alike. */
-    val appendOnlyTables = truthTables + userPreferenceTables + reminderPreferenceTables + displayPreferenceTables + aiUsageTables + setupTables
+    /**
+     * 18G (`D-141`): the pilot journal — the learner's record that a plan needed a correction or that a rule was broken.
+     * Append-only, so a count in the pilot report is a count of rows that cannot have been edited, and a backup carries it.
+     */
+    val pilotJournalTables = listOf("pilot_journal_entry")
+
+    /** Every append-only user table: `DDM-v0`'s truth, the 16D preferences, the 16E reminder, 17E's two, 18A's and 18G's, guarded alike. */
+    val appendOnlyTables = truthTables + userPreferenceTables + reminderPreferenceTables + displayPreferenceTables + aiUsageTables +
+        setupTables + pilotJournalTables
 
     /**
      * Region 3 — projections. Droppable and rebuildable without touching truth. `DDM-v0`'s eight, plus
@@ -951,6 +958,30 @@ object Schema {
             )
             """,
         ) + setupTables.flatMap(::appendOnlyGuards)
+
+    /** 18G (`D-141`): what a journal entry reports (SC-048/049). */
+    val pilotJournalKindValues = listOf("prerequisite_impossible", "time_wrong", "wrong_branch", "personal_preference", "rule_violation")
+
+    /**
+     * Version 14 adds `pilot_journal_entry` (18G, `D-141`): one row each time the learner reports a plan problem. It holds
+     * the kind, the plan they were looking at (when there was one) and their optional short note, trimmed and at most 200
+     * characters; it changes nothing else.
+     */
+    val v14: List<String>
+        get() = listOf(
+            """
+            CREATE TABLE IF NOT EXISTS pilot_journal_entry (
+                id                     INTEGER PRIMARY KEY AUTOINCREMENT,
+                $SEQUENCE,
+                entry_kind             TEXT    NOT NULL,
+                plan_version_id        INTEGER,
+                note                   TEXT    NOT NULL,${time("recorded_at", "recorded_on")},
+                ${oneOf("entry_kind", pilotJournalKindValues)},
+                CHECK (length(note) <= 200 AND note = trim(note)),
+                FOREIGN KEY (plan_version_id) REFERENCES plan_version (id)
+            )
+            """,
+        ) + pilotJournalTables.flatMap(::appendOnlyGuards)
 
     /** `WLRM-v0`'s misconception sources, plus the empty value of a label nothing has carried yet. */
     const val MISCONCEPTION_SOURCES = "'', 'deterministic', 'ai_proposed'"

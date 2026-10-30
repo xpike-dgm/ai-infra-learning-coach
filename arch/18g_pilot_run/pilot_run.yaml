@@ -1,0 +1,152 @@
+model: PLTX-v0
+stage_step: 18G
+status: accepted_18g
+decision: D-141
+added_by: D-140
+implements: [V1_SUCCESS_CRITERIA SC-048, V1_SUCCESS_CRITERIA SC-049, STGX-v0, SESX-v0, PDT-v0, THUX-v0, A11X-v0]
+boundaries: MSBX-v0
+persistence: schema_v14_pilot_journal_entry
+purpose: the_learner_reports_a_plan_problem_from_today_in_sc049s_own_words_the_journal_records_and_never_acts_and_a_pc_report_reads_an_exported_backup_for_sc048_sc049_and_the_planner_observation_18b_reads
+
+question: Öğrenci planla ilgili bir sorunu, planı değiştirmeden ve kendisi hakkında hiçbir şey söylemeden kaydedebiliyor mu; ve pilotun sayıları yalnız saklanan satırlardan, PC'de okunabiliyor mu?
+
+primary_invariant: >-
+  A journal entry is the learner's own report about the plan they were looking at — one of SC-049's three structural
+  corrections in its own words (a prerequisite makes it impossible, the time is totally wrong, it leads down the wrong
+  branch), a personal preference (recorded, never counted) or a rule violation (SC-048) — with an optional short note. It
+  is appended in one row and nothing else changes: no plan is written or replanned, no preference changes, nothing is
+  evidence. The PC report opens an exported backup read-only and says only what the rows say: SC-049 counts days, a day
+  with any structural report once, on the day of the plan it names; SC-048 lists what was reported and says that no
+  report is not proof; the planner observation sets each planned task's estimate beside the interval between its first
+  and last answer (reading before the first answer is not stored, time in the background may be inside it, a one-answer
+  task has none and a task with no answer is not listed) and names the needs the planner kept passing over. A trace the
+  app's own codec would not decode is named as unreadable, never guessed at.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-28 ("18B ye başla", then the order below)
+  order: 18G runs before 18B–18F, because they read pilot data; the numbering does not change
+  done_when: the pilot starts — the journal, the PC report, the phone install and the first day's record are ready; the 14 days then run on their own and their data is read in 18B
+  journal_entry: one Today row, "Planla ilgili bir sorun bildir" — prerequisite impossible / time totally wrong / wrong branch / personal preference (not counted) / rule violation, and an optional short note
+  install: the assistant installs the AI build over USB with adb once the learner enables USB debugging; the learner approves on the phone
+
+schema_migration: {from: 13, to: 14, owner: 18G, tables: [pilot_journal_entry], truth_altered: false, decision: D-141}
+
+journal:
+  surface: a row on Today (today_overview), after its supporting navigation, opening a dialog
+  kinds:
+    - {id: prerequisite_impossible, counted_for: SC-049}
+    - {id: time_wrong, counted_for: SC-049}
+    - {id: wrong_branch, counted_for: SC-049}
+    - {id: personal_preference, counted_for: none}
+    - {id: rule_violation, counted_for: SC-048}
+  note: optional, trimmed, at most 200 characters
+  names_the_plan: the latest plan version when there is one
+  acts: false — no plan written or replanned, no preference, no evidence
+  saved_is_said: '"Bildirimin kaydedildi. Plan değiştirilmedi." as a polite live region'
+
+pc_report:
+  tool: tools/pilot_report.py
+  input: a backup the learner exported (16D), opened read-only
+  sc049: of the counted days (planned days and days a structural report names), those with no structural report; the 90% starting target is stated, never claimed met before the 14-day window
+  sc048: every rule violation reported, with its day, plan and note; no report is not proof
+  planner_observation: estimate beside the first-to-last answer interval per planned task (no interval for one answer; tasks with no answer not listed); needs eligible but not selected on each day's last plan, with the longest run of planned days; replan triggers
+  sc049_day: a report naming a plan is counted on that plan's study day, even when saved after the day rolled over
+  unknown_trace: a trace the codec would not decode (format, section, required field, escape, or an id the report reads outside its closed list) is counted as unreadable, never guessed
+
+assistant_defaults:
+  - the model id PLTX-v0 and one decision (D-141) for the step and its order
+  - the row's place — last on Today, after everything about doing the work
+  - the kinds' words are SC-049's own ("Ön koşul yüzünden imkânsız", "Süre tamamen yanlış", "Yanlış dala götürüyor")
+  - a 200-character note, trimmed
+  - SC-049's day counted once however many structural reports it has
+  - the planner observation's lower-bound span, since the working session is not stored (11C)
+
+found:
+  - id: numeric_text_lost_its_form
+    what: the adapter bound any value that parsed as a number as an integer, so a TEXT column holding "007" (a learner's note) stored "7"
+    resolution: appendTruth and writeProjection bind a TEXT column as text; canonical numbers read the same as before (TEXT affinity), only non-canonical ones ("007", "+5") now keep their form
+  - id: old_scratchpad_cleared
+    what: the session's earlier scratch directory was removed by another process mid-step, taking the sweep, the emulator helper and the mutation runners with it
+    resolution: rewritten in the session's scratchpad; nothing in the repo depended on them
+  - id: review_18a_validator_broke_at_v14
+    what: the independent review found 18A's validator pinned the schema at version 13 and read v13's segment up to the end, so v14's table counted as v13's
+    resolution: narrowed at 18G — v13's segment ends at v14, and a later version is accepted when an accepted contract owns it
+  - id: review_tool_more_lenient_than_the_codec
+    what: the review found the PC report checked only the header, so it read traces the app's own codec refuses (unknown sections, missing fields, malformed escapes, unknown ids), and the validator's hand-written trace used ids that do not exist
+    resolution: the report reads traces as strictly as PlanTraceCodec for every field it uses; the validator runs it on a trace the app wrote on the emulator, a malformed-but-known-header copy, and compares its closed lists with the Kotlin enums
+  - id: review_interval_not_a_lower_bound
+    what: the review found the first-to-last answer span is not a lower bound — it can include time in the background — a one-answer task showed 0.0, and tasks without answers were silently absent
+    resolution: called an interval with what it leaves out and may include; one answer shows —; the exclusion is said
+  - id: review_report_on_the_wrong_day
+    what: a report saved after the study day rolled over counted on the new day, leaving the plan's own day clean and growing the denominator
+    resolution: a report naming a plan is counted on that plan's study day
+  - id: review_failed_save_silent
+    what: with the store closed or a failed write, the dialog closed and nothing was said; the saved notice stayed after leaving Today
+    resolution: a failed save says "Bildirim kaydedilemedi. Plan değiştirilmedi…"; the notice is cleared on changing tab
+  - id: review_audit_missed_the_note_field
+    what: the audit read the dialog without scrolling (the note field is below the fold at 200%) and never reached the saved notice
+    resolution: the dialog is read to its end, one report is saved, and the notice is its own screen (pilot_journal_saved)
+  - id: audit_read_a_stale_screen
+    what: the emulator audit's screen dump kept the previous file when `uiautomator dump` failed (the freshly started app not idle yet), so a run read an earlier, interrupted run's shell, took the first-run setup as already skipped and stopped after one screen
+    resolution: the old dump file is removed before every dump, so a failed dump reads nothing and is retried; a window still opening (no focused window, every dump failing) reads as an empty screen, so the waits keep waiting and a screen that never comes still fails on its own timeout (the 200% run met it; the change touches only the failure path, so the 100% report stands)
+  - id: audit_cut_the_last_field_at_the_scroll_end
+    what: at 200% the journal dialog's note field, scrolled to the end, sits exactly on its scroll area's bottom edge; the audit counted any node touching the edge as cut, so the field was never judged although nothing lay below it
+    resolution: in the last reading, when the screen was read to its end, a node whose bottom is on the viewport's bottom edge is whole; the 100% report was made under the stricter rule and passed, so it stands
+  - id: repository_moved_mid_step
+    what: another tool moved the repository to another drive (robocopy /MOVE) while the sweep was running, so that sweep's failures were the move's, not the code's
+    resolution: the repository was moved back at the user's request and verified (`git status`, `git fsck`); the sweep was discarded and run again; the emulator device was copied to the system drive
+  - id: validator_crashed_instead_of_failing
+    what: validator mutation showed a fixture the schema refuses and a trace parser that raises both crashed the validator instead of failing a named check
+    resolution: the fixture and report run inside one guarded block that fails `A18G-08_fixture_and_report_ran`; a parser that raises fails `A18G-08_trace_strict`; the T6 check moved out of the living-record group so the mutation runner exempts only the living records
+  - id: sweep_17a_took_the_dialog_for_a_screen
+    what: the full sweep found 17A's check that every scrolling screen goes through ScreenColumn counted the journal dialog, whose text slot scrolls inside AlertDialog
+    resolution: narrowed at 18G — a *Dialog.kt file that scrolls inside AlertDialog and draws no ScreenColumn is a dialog, not a screen; 17A's own report stays frozen
+  - id: review_non_blocking_taken
+    what: the file URI broke on a "?", "#" or "%" in the path; older backups' branches were untested; the targets check only counted
+    resolution: the path is a percent-escaped file URI (the validator uses "#" and "%" in the name); v13 and v10 backups are built and read; each control's 48dp is checked where it is
+
+pilot_start:
+  installed_on: POCO M6 Pro (2312FPCA6G), Android 16, API 36
+  installed_at: 2026-10-30, over USB with adb install -r (no earlier copy on the phone)
+  build: ai
+  setup: completed by the learner (normal day 60 minutes)
+  first_study_day: 2026-10-30
+  first_plan_written: true
+  first_plan: plan_version 1 (PLNX-v0) with three planned tasks — state_assignment_model, program_execution_model, recognize_core_technical_labels
+  read_from: the phone's own store, copied with run-as (debug build) and read on the PC
+  window: 14 study days from the first; 18B reads them from an exported backup
+
+notes:
+  - the journal is read on the PC only; the app shows no count of it, so reporting is never a score
+
+moved_on:
+  - reading the pilot's 14 days (18B)
+  - TalkBack and T6 (19)
+
+verification:
+  kotlin_tests: [PilotJournalCourseTest (2, the eight shipped packages and the real store), PilotJournalStorageTest (3), PilotJournalPresentationTest (3), PilotJournalFactsTest (2)]
+  narrowed_tests: [SetupStorageTest]
+  narrowed_validators: [tools/validate_initial_setup.py, tools/validate_visual_polish.py]
+  validator: tools/validate_pilot_run.py
+  t6_run: false
+
+mutation_results_kotlin:
+  scope: one change per mutant — a note over the limit written, the note stored untrimmed, the plan not named, a report that writes a plan, numeric text bound as a number, the note's length and trim checks, the append-only guards, an extra kind, the plan's foreign key, the saving gate without a kind, a kind's words, a structural kind not counted, an untrimmed note accepted, a missing plan read as plan 0 — each against its own suite (PilotJournalCourseTest on the eight shipped packages and the real store; PilotJournalStorageTest; PilotJournalPresentationTest; PilotJournalFactsTest)
+  total: 15
+  detected: 15
+  detection: Gradle reached the tests and a test failed (a test-results file with failures)
+  crash_is_detection: false
+  runner: the hardened runner — a baseline that is not exit 0, or a run that writes no test results, is refused; every mutant is checked to have changed its file (CRLF-safe)
+  negative_control: N00 changes a comment in PilotJournalFacts.kt
+  negative_control_result: survived_as_expected
+
+mutation_results_validator:
+  scope: one change per mutant to what the validator exists to catch — a rule violation counted as structural, a kind missing from the schema, a kind's words, the schema version, the guards, the note's trim check, the journal planning, a long note written, the app replanning after a report, the row's role, the save gate outside core, the saved words, the preference counted, numeric text bound as a number, SC-049's day counted twice or with preferences, the trace read loosely, the backup opened writable, every need counted as passed over, the interval in seconds, the row moved, T6 claimed, the 18A narrowing unmarked, the migration missing
+  total: 24
+  detected: 24
+  detection: the validator fails and names a check outside the living records (only the a11y reports, the pilot start and the mutation results may fail in the baseline before POST); a crash is not a detection
+  negative_controls: [V00 changes a line of the PC report's docstring]
+  negative_control_result: survived_as_expected
+  final_run_is_a_single_clean_run: true
+
+next_step: 18B — Planner gözlemi

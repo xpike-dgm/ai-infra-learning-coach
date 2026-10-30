@@ -47,6 +47,7 @@ import coach.application.AiUsage
 import coach.application.DayCloseFacts
 import coach.application.DisplaySettings
 import coach.application.InitialSetup
+import coach.application.RecordPilotJournal
 import coach.model.SetupOutcome
 import coach.presentation.SetupPresentation
 import coach.presentation.CurriculumNames
@@ -55,6 +56,7 @@ import coach.application.PlanToday
 import coach.model.CapacityPreferences
 import coach.model.CapacityProfile
 import coach.model.EvaluatorAvailability
+import coach.model.PilotJournalKind
 import coach.model.TodayCapacityChoice
 import coach.persistence.Backup
 import coach.persistence.ProfileReplacement
@@ -637,6 +639,19 @@ class CoachApplication : Application() {
         storeThread.execute {
             InitialSetup(opened.graph.persistence, opened.graph.content, opened.graph.clock).finish(outcome, normalMinutes, placement)
             main.post { onDone() }
+        }
+    }
+
+    /**
+     * One pilot journal entry (18G); it changes no plan, so nothing is refreshed after it. [onDone] hears whether it was
+     * saved: a closed store or a failed write is said, never passed over in silence.
+     */
+    fun recordPilotJournal(kind: PilotJournalKind, note: String, onDone: (Boolean) -> Unit) {
+        val opened = startup.store ?: return onDone(false)
+        storeThread.execute {
+            val saved = runCatching { RecordPilotJournal(opened.graph.persistence, opened.graph.clock).record(kind, note) }
+                .getOrNull() is RecordPilotJournal.Result.Recorded
+            main.post { onDone(saved) }
         }
     }
 

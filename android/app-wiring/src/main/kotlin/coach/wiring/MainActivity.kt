@@ -85,6 +85,7 @@ import coach.ui.LearnScreen
 import coach.ui.TaskRunnerScreen
 import coach.ui.TodayScreen
 import coach.ui.ProfileScreen
+import coach.ui.PilotJournalDialog
 import coach.ui.TodayCapacityDialog
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -303,6 +304,9 @@ private fun Shell(
     val aiInBuild = app.aiSettings.state() != AiKeyState.NOT_IN_BUILD
     val loadAiUsage = { app.loadAiUsage { calls, today -> aiUsage = AiUsagePresentation.of(calls, today, aiInBuild) } }
     var todayDialog by remember { mutableStateOf(false) }
+    // 18G (`D-141`): the pilot journal's dialog, and whether the last report was saved (null: nothing to say).
+    var journalDialog by remember { mutableStateOf(false) }
+    var journalSaved by remember { mutableStateOf<Boolean?>(null) }
     var backup by backupState
     // The system's own file pickers: the learner chooses where a backup goes and which one comes back (`LFPS-v0` §11).
     val exportTo = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/octet-stream")) { uri ->
@@ -363,9 +367,16 @@ private fun Shell(
             onDismiss = { todayDialog = false },
         )
     }
+    if (journalDialog) {
+        PilotJournalDialog(
+            onSave = { kind, note -> journalDialog = false; app.recordPilotJournal(kind, note) { journalSaved = it } },
+            onDismiss = { journalDialog = false },
+        )
+    }
 
     AppShell(state = state, onSelect = { destination ->
         selected = destination
+        journalSaved = null
         explanation = null
         explanationFocus = null
         skillDetail = null
@@ -588,6 +599,8 @@ private fun Shell(
                 onChangeTodayCapacity = {
                     app.loadCapacity { capacity = it; todayDialog = true }
                 },
+                onReportPlanProblem = { journalSaved = null; journalDialog = true },
+                journalSaved = journalSaved,
                 // Entry is revalidated in core against what can actually be confirmed; nothing
                 // unconfirmed is assumed to hold (TRUX-v0 entry_revalidation).
                 onStart = {

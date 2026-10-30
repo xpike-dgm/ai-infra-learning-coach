@@ -238,7 +238,7 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [ ] **18D — Assessment/item/validator kalibrasyonu**
 - [ ] **18E — Teknik / performance QA**
 - [ ] **18F — Düzeltme döngüsü**
-- [ ] **18G — Pilotun yürütülmesi** — D-140 ile eklendi
+- [x] **18G — Pilotun yürütülmesi** — `PLTX-v0 / D-141` (D-140 ile eklendi; 18B'den önce yürütüldü)
 
 ---
 
@@ -268,8 +268,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17E`, `18A`  
-**Son tamamlanan:** **`18A — ISTX-v0 / D-139`**  
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17E`, `18A`, `18G`  
+**Son tamamlanan:** **`18G — PLTX-v0 / D-141`**  
 **Aktif:** **`18B — Planner gözlemi`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
@@ -372,4 +372,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 18A `ISTX-v0` ile ilk açılış kurulumu: ilk açılış kurulumu kullanılmamış bir depoda, Bugün'den ve herhangi bir plandan önce bir kez gösteriliyor; öğrencinin normal gün süresini bir tercih olarak kaydediyor ve yalnız işaretlediği alanlar için kaynağı giriş yerleştirmesi olan tek bir tanı açıyor — 'biliyorum' kanıt sayılmaz, hiçbir şey atlatmaz ve hiçbir tanı zorunlu değil; atlamak yalnız kurulumun yapıldığını kaydediyor; Bugün kurulumdan sonra planlanıyor; ve bir koşunun sonu, hiçbir motorun yazmadığı bir 'önce'yi geçmişin okuduğu gibi kanıttan yeniden oynatarak okuyor, böylece koşu sonu, geçmiş ve gün özeti aynı değişikliği söylüyor. Şema v13. Kotlin mutation 11/11, validator mutation 26/26; 69/69 QA PASS. T6 çalıştırılmadı. D-140 ile AŞAMA 18'in sonuna `18G — Pilotun yürütülmesi` eklendi.
 
-18B başlamadan fresh PRE-STEP GitHub refresh + kullanıcının yeni açık onayı zorunludur (D-117 15F ile bitti).
+18G `PLTX-v0` ile pilotun yürütülmesi: öğrenci planla ilgili bir sorunu Bugün'den, SC-049'un kendi sözleriyle (ön koşul yüzünden imkânsız, süre tamamen yanlış, yanlış dala götürüyor), kişisel tercih (sayılmaz) ya da kural ihlali (SC-048) olarak ve isteğe bağlı kısa bir notla bildirir; bildirim tek satır olarak eklenir ve başka hiçbir şey değişmez — plan yazılmaz ya da yeniden planlanmaz, tercih değişmez, hiçbir şey kanıt değildir; PC'deki rapor dışa aktarılan yedeği yalnız okuyarak açar ve yalnız satırların söylediğini söyler: SC-049 günleri sayar, yapısal bildirimi olan bir gün bir kez ve bildirimin adlandırdığı planın gününde sayılır; SC-048 bildirileni listeler ve bildirim olmamasının kanıt olmadığını söyler; planner gözlemi her planlı görevin tahminini ilk ve son cevabı arasındaki aralığın yanına koyar ve planner'ın geride bırakıp durduğu ihtiyaçları adlandırır; uygulamanın kendi codec'inin çözmeyeceği bir iz okunamadı diye adlandırılır, tahmin edilmez. Şema v14 (`pilot_journal_entry`). Kotlin mutation 15/15, validator mutation 24/24; 66/66 QA PASS. Uygulama (AI'lı build) Poco M6 Pro'ya USB ile kuruldu ve pilotun ilk günü 2026-10-30 kaydedildi. T6 çalıştırılmadı.
+
+`D-142`: kullanıcının ikinci sürekli onayı (2026-10-29) — kullanıcı durdurana kadar her adım tam protokolle biter, PR'ı asistan CI yeşil olunca kendisi merge eder (yeşil değilse 10 dakika sonra yeniden bakar) ve sonraki adım soru sormadan, asistanın önerdiği seçeneklerle başlar; bu seçimler "asistanın varsayılan seçimi (D-142)" olarak kaydedilir; şifre/ödeme/hesap ayarı, geri alınamaz işlemler ve yalnız kullanıcının yapabileceği fiziksel işler yine durdurur.
+
+18B başlamadan fresh PRE-STEP GitHub refresh zorunludur; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi). 18B pilotun 14 gününü okur.

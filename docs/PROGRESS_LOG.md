@@ -1671,3 +1671,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `18A tamamlandı; 18B aktif ve henüz yürütülmedi; 18G eklendi` konumuna taşır.
 
 **Sonraki kesin adım:** `18B — Planner gözlemi`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.
+
+## 2026-10-29 — 18G — Pilotun yürütülmesi tamamlandı — PLTX-v0 / D-141; D-142 sürekli onay
+
+- Kullanıcı "18B ye başla" dedi ve "Önce 18G, sonra 18B"yi seçti (18B–18F pilot verisini okur). Fresh PRE yapıldı ve kanonik kaynaklar `18A ✅ / 18B active-not-executed / 18G eklendi` gösterdi.
+- **Kullanıcı kararları (2026-10-28):** 18G 18B–18F'den önce yürütülür, çünkü onlar pilot verisini okur (numaralama değişmedi); 18G pilot başlayınca biter (günlük, PC raporu, telefona kurulum ve ilk günün kaydı); bildirim Bugün'den bir satır, beş tür ve isteğe bağlı not; kurulumu asistan USB ile yapar.
+- **Kod:** core `PilotJournalFacts`, `RecordPilotJournal`, `PilotJournalPresentation`, `Persistence.pilotJournalEntries`; app-ui `PilotJournalDialog` ve Bugün satırı; wiring `recordPilotJournal`; şema v14 `pilot_journal_entry`; adaptör TEXT sütunlarını metin olarak bağlar; `tools/pilot_report.py`; `tools/audit_a11y_emulator.py` diyaloğu okur.
+- **Bulgu:** adaptör sayıya benzeyen her değeri tamsayı olarak bağlıyordu, bu yüzden bir notun '007'si '7' olarak saklanıyordu — TEXT sütunları artık metin olarak bağlanıyor; 18A'nın doğrulayıcısı şemayı v13'e sabitliyordu (daraltıldı); PC raporu yalnız izin başlığına bakıp uygulamanın codec'inin reddettiği izleri okuyordu — artık her kullandığı alanda codec kadar katı ve kapalı listeleri Kotlin enum'larıyla karşılaştırılıyor; ilk ve son cevap arasındaki süre bir alt sınır değil (arka planda geçen süreyi içerebilir) — aralık diye ve neyi dışarıda bıraktığıyla söyleniyor; gün dönümünden sonra kaydedilen bir bildirim yeni günde sayılıyordu — artık planının gününde; başarısız bir kayıt sessizdi — artık söyleniyor; emülatör denetimi başarısız bir ekran dökümünde önceki koşunun dosyasını okuyup kurulumu atlanmış sanıyordu — dosya artık her dökümden önce siliniyor; repo adımın ortasında başka bir araç tarafından başka bir sürücüye taşındı — geri taşındı ve doğrulandı (`git fsck`), taşıma sırasında koşan tarama atıldı.
+- Kotlin mutation 15/15, validator mutation 24/24; 66/66 QA PASS; 1344 JVM testi.
+- Uygulama Poco M6 Pro'ya kuruldu; pilotun ilk günü 2026-10-30.
+- `D-142`: kullanıcının ikinci sürekli onayı (2026-10-29) — kullanıcı durdurana kadar her adım tam protokolle biter, PR'ı asistan CI yeşil olunca kendisi merge eder (yeşil değilse 10 dakika sonra yeniden bakar) ve sonraki adım soru sormadan, asistanın önerdiği seçeneklerle başlar; bu seçimler "asistanın varsayılan seçimi (D-142)" olarak kaydedilir; şifre/ödeme/hesap ayarı, geri alınamaz işlemler ve yalnız kullanıcının yapabileceği fiziksel işler yine durdurur.
+- D-050 POST living-memory accepted state'i `18G tamamlandı; 18B aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `18B — Planner gözlemi`. Fresh PRE-STEP zorunludur; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi).

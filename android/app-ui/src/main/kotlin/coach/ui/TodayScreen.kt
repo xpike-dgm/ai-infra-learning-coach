@@ -18,6 +18,7 @@ import coach.model.ReasonFamily
 import coach.model.TaskPurpose
 import coach.presentation.AttentionFamily
 import coach.presentation.AttentionItem
+import coach.presentation.PilotJournalCopy
 import coach.presentation.PrimaryActionKind
 import coach.presentation.DaySummaryView
 import coach.presentation.SettingsCopy
@@ -118,6 +119,9 @@ fun TodayScreen(
     daySummary: DaySummaryView? = null,
     // 16D: `THUX-v0`'s `change_today_capacity` — Today's one capacity action; the lengths themselves live in Profile.
     onChangeTodayCapacity: (() -> Unit)? = null,
+    // 18G (`D-141`): the pilot journal — a report about the plan, kept beside it; reporting changes nothing.
+    onReportPlanProblem: (() -> Unit)? = null,
+    journalSaved: Boolean? = null,
 ) {
     ScreenColumn(modifier = modifier) {
         // 1. primary_action — the highest-emphasis region in every window class.
@@ -143,6 +147,13 @@ fun TodayScreen(
         val explanationShown = view.primaryActionKind == PrimaryActionKind.SELECTED_NEXT_PLANNED_TASK && view.primaryTask != null
         view.supportingNavigation.filterNot { explanationShown && it == Surface.PlannerExplanation }
             .forEach { surface -> NavRow(routeLabelsTr.getValue(surface.id), onClick = { onOpen(surface) }) }
+
+        // 6. 18G: the pilot journal comes after everything that is about doing the work.
+        onReportPlanProblem?.let { report -> NavRow(PilotJournalCopy.ROW, report) }
+        journalSaved?.let { saved ->
+            Text(if (saved) PilotJournalCopy.SAVED else PilotJournalCopy.NOT_SAVED, style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+        }
     }
 }
 

@@ -1266,9 +1266,23 @@ D-136 ile eklendi (kullanıcı kararı, 2026-10-27; yeniden numaralama yok). Gir
 ### [ ] 18D — Assessment/item/exposure/validator kalibrasyonu
 ### [ ] 18E — Teknik / performance QA
 ### [ ] 18F — Düzeltme döngüsü
-### [ ] 18G — Pilotun yürütülmesi — D-140 ile eklendi
+### [x] 18G — Pilotun yürütülmesi — PLTX-v0 / D-141
 
-D-140 ile eklendi (kullanıcı kararı, 2026-10-28; yeniden numaralama yok). Girdileri: pilot günlüğü (uygulamada 'planı elle düzelttim' ve 'kural ihlali gördüm' kayıtları; PC'de yedekten pilot raporu; SC-048/049) ve uygulamayı telefona (Poco M6 Pro) kurup en az 14 günlük pilotu başlatmak.
+**18G final coverage:**
+- öğrenci planla ilgili bir sorunu Bugün'den, SC-049'un kendi sözleriyle (ön koşul yüzünden imkânsız, süre tamamen yanlış, yanlış dala götürüyor), kişisel tercih (sayılmaz) ya da kural ihlali (SC-048) olarak ve isteğe bağlı kısa bir notla bildirir; bildirim tek satır olarak eklenir ve başka hiçbir şey değişmez — plan yazılmaz ya da yeniden planlanmaz, tercih değişmez, hiçbir şey kanıt değildir; PC'deki rapor dışa aktarılan yedeği yalnız okuyarak açar ve yalnız satırların söylediğini söyler: SC-049 günleri sayar, yapısal bildirimi olan bir gün bir kez ve bildirimin adlandırdığı planın gününde sayılır; SC-048 bildirileni listeler ve bildirim olmamasının kanıt olmadığını söyler; planner gözlemi her planlı görevin tahminini ilk ve son cevabı arasındaki aralığın yanına koyar ve planner'ın geride bırakıp durduğu ihtiyaçları adlandırır; uygulamanın kendi codec'inin çözmeyeceği bir iz okunamadı diye adlandırılır, tahmin edilmez,
+- kapsam (kullanıcı kararı): 18G 18B–18F'den önce yürütülür, çünkü onlar pilot verisini okur (numaralama değişmedi); 18G pilot başlayınca biter (günlük, PC raporu, telefona kurulum ve ilk günün kaydı); bildirim Bugün'den bir satır, beş tür ve isteğe bağlı not; kurulumu asistan USB ile yapar,
+- günlük: Bugün'de son satır 'Planla ilgili bir sorun bildir'; beş tür (radyo satırları) ve en çok 200 karakterlik kırpılmış not; en son plan sürümünü adlandırır; hiçbir şey planlanmaz,
+- PC raporu: `tools/pilot_report.py`, yalnız standart kütüphane, yedeği salt okunur URI ile açar; iz `PlanTraceCodec` kadar katı okunur,
+- sıra: 18G 18B–18F'den önce (D-141), numaralama değişmedi,
+- şema v14 (`pilot_journal_entry`),
+- bulgu: adaptör sayıya benzeyen her değeri tamsayı olarak bağlıyordu, bu yüzden bir notun '007'si '7' olarak saklanıyordu — TEXT sütunları artık metin olarak bağlanıyor; 18A'nın doğrulayıcısı şemayı v13'e sabitliyordu (daraltıldı); PC raporu yalnız izin başlığına bakıp uygulamanın codec'inin reddettiği izleri okuyordu — artık her kullandığı alanda codec kadar katı ve kapalı listeleri Kotlin enum'larıyla karşılaştırılıyor; ilk ve son cevap arasındaki süre bir alt sınır değil (arka planda geçen süreyi içerebilir) — aralık diye ve neyi dışarıda bıraktığıyla söyleniyor; gün dönümünden sonra kaydedilen bir bildirim yeni günde sayılıyordu — artık planının gününde; başarısız bir kayıt sessizdi — artık söyleniyor; emülatör denetimi başarısız bir ekran dökümünde önceki koşunun dosyasını okuyup kurulumu atlanmış sanıyordu — dosya artık her dökümden önce siliniyor; repo adımın ortasında başka bir araç tarafından başka bir sürücüye taşındı — geri taşındı ve doğrulandı (`git fsck`), taşıma sırasında koşan tarama atıldı,
+- Kotlin mutation 15/15, validator mutation 24/24; 66/66 QA PASS,
+- uygulama Poco M6 Pro'ya USB ile kuruldu ve pilotun ilk günü 2026-10-30 kaydedildi,
+- **T6 çalıştırılmadı**.
+
+D-140 ile eklendi (kullanıcı kararı, 2026-10-28; yeniden numaralama yok); D-141 ile 18B'den önce yürütüldü. `D-142`: kullanıcının ikinci sürekli onayı (2026-10-29) — kullanıcı durdurana kadar her adım tam protokolle biter, PR'ı asistan CI yeşil olunca kendisi merge eder (yeşil değilse 10 dakika sonra yeniden bakar) ve sonraki adım soru sormadan, asistanın önerdiği seçeneklerle başlar; bu seçimler "asistanın varsayılan seçimi (D-142)" olarak kaydedilir; şifre/ödeme/hesap ayarı, geri alınamaz işlemler ve yalnız kullanıcının yapabileceği fiziksel işler yine durdurur.
+
+Girdileri: pilot günlüğü (uygulamada 'planı elle düzelttim' ve 'kural ihlali gördüm' kayıtları; PC'de yedekten pilot raporu; SC-048/049) ve uygulamayı telefona (Poco M6 Pro) kurup en az 14 günlük pilotu başlatmak.
 
 ---
 
@@ -1318,8 +1332,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17E`, `18A`  
-**Son tamamlanan:** **`18A — ISTX-v0 / D-139`**  
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15H`, `16A–16H`, `17A–17E`, `18A`, `18G`  
+**Son tamamlanan:** **`18G — PLTX-v0 / D-141`**  
 **Aktif:** **`18B — Planner gözlemi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **18B fresh PRE-STEP + kullanıcının yeni açık onayı → Planner gözlemi → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **18B fresh PRE-STEP + kullanıcının yeni açık onayı → Planner gözlemi (pilotun 14 günü) → independent QA → D-050 POST sync + stale audit → CI yeşilse merge.** D-117'nin sürekli onayı 15F ile bitti; D-142 2026-10-29'da verildi ve 2026-10-30'da, 18G'den sonra sona erdi.

@@ -22,6 +22,7 @@ import coach.model.PrerequisiteEdge
 import coach.model.ReminderPreferenceRecord
 import coach.model.DisplayPreferenceRecord
 import coach.model.AiCallRecord
+import coach.model.PilotJournalEntry
 import coach.model.SetupRecord
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
@@ -266,6 +267,12 @@ interface PersistencePort {
      * none answers with nothing.
      */
     fun setupRecords(): List<SetupRecord> = emptyList()
+
+    /**
+     * Every pilot journal entry, oldest first (18G). A refinement of this port, not a new one; an adapter that keeps none
+     * answers with nothing.
+     */
+    fun pilotJournalEntries(): List<PilotJournalEntry> = emptyList()
 
     /**
      * Which of these planned tasks have an attempt made for them (16F) — the learner started them. A refinement of this

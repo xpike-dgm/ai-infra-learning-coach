@@ -53,7 +53,8 @@ RULES = ["R1_no_accessible_name", "R2_target_below_48dp", "R3_identifier_on_scre
          "R5_checkable_unnamed", "R6_text_field_unnamed", "R7_ambiguous_duplicate_name", "R8_reading_order"]
 MAX_READINGS = 60
 # 18A: every screen a run must reach; a run that reaches fewer fails.
-EXPECTED_SCREENS = ["initial_setup", "today_overview", "today_capacity_dialog", "planner_explanation", "learn_overview", "topic_detail",
+EXPECTED_SCREENS = ["initial_setup", "today_overview", "today_capacity_dialog", "pilot_journal_dialog", "pilot_journal_saved",
+                    "planner_explanation", "learn_overview", "topic_detail",
                     "progress_overview", "learning_history", "assessment_report", "technical_english_profile", "skill_detail",
                     "skill_plan_explanation", "profile_overview", "task_runner_orientation", "task_runner_lesson",
                     "task_runner_question", "task_runner_help"]
@@ -73,12 +74,17 @@ def density() -> float:
 
 def dump() -> ElementTree.Element:
     for _ in range(4):
+        # 18G: a dump that fails (the screen not idle yet) leaves the previous file in place, and reading it took an
+        # earlier run's screen for this one; the old file is removed first, so a failed dump reads nothing.
+        adb("shell", "rm", "-f", "/sdcard/a11y.xml")
         adb("shell", "uiautomator", "dump", "/sdcard/a11y.xml")
         xml = adb("exec-out", "cat", "/sdcard/a11y.xml")
         if xml.strip().startswith("<?xml"):
             return ElementTree.fromstring(xml.encode("utf-8"))
         time.sleep(2)
-    raise RuntimeError("uiautomator dump failed")
+    # 18G: with the stale file gone, a window still opening (no focused window yet) fails every dump; it reads as an
+    # empty screen, so a wait keeps waiting and a screen that never comes still fails on its own timeout.
+    return ElementTree.fromstring(b"<hierarchy/>")
 
 
 def bounds(node: ElementTree.Element) -> tuple[int, int, int, int]:
@@ -257,16 +263,20 @@ def audit(screen: str, marker: dict, scale: float, scroll: bool = True) -> dict:
     # focused flow's exit bar) and is judged where it is.
     fixed = set.intersection(*({(spoken_name(n), bounds(n)) for n in r} for r in readings)) if readings else set()
 
-    def inside(b) -> bool:
-        return viewport is not None and b[1] > viewport[1] + 2 and b[3] < viewport[3] - 2
+    def inside(b, at_end: bool = False) -> bool:
+        # 18G: in the last reading the content has nothing left below it, so a node whose bottom sits on the viewport's
+        # bottom edge (a dialog's last field, with no padding under it) is whole, not cut.
+        bottom_ok = b[3] <= viewport[3] if at_end and viewport is not None else viewport is not None and b[3] < viewport[3] - 2
+        return viewport is not None and b[1] > viewport[1] + 2 and bottom_ok
 
-    def is_clipped(n) -> bool:
+    def is_clipped(n, at_end: bool = False) -> bool:
         # The dump clips bounds to the window, not to the viewport, so scrolled content that touches or leaves the viewport
         # (even a row whose visible part is only above or below it) may be cut, in size and in name.
         b = bounds(n)
-        return viewport is not None and not inside(b) and (spoken_name(n), b) not in fixed
+        return viewport is not None and not inside(b, at_end) and (spoken_name(n), b) not in fixed
 
     for k, nodes in enumerate(readings):
+        at_end = read_to_end and k == len(readings) - 1
         code = [bounds(n) for n in nodes if n.get("scrollable") == "true" and bounds(n) != viewport]
         actionable = [n for n in nodes if n.get("clickable") == "true" or n.get("checkable") == "true" or n.get("long-clickable") == "true"]
         actionable_total = max(actionable_total, len(actionable))
@@ -274,8 +284,8 @@ def audit(screen: str, marker: dict, scale: float, scroll: bool = True) -> dict:
         for n in actionable:
             b = bounds(n)
             name, spoken = name_of(n), spoken_name(n)
-            scrolled = inside(b)
-            if is_clipped(n):
+            scrolled = inside(b, at_end)
+            if is_clipped(n, at_end):
                 # Its visible part, placed in the screen's content; its name may be cut too, so it is matched by place.
                 clipped.append((spoken, (b[0], b[1] + shift[k], b[2], b[3] + shift[k])))
                 continue
@@ -297,7 +307,7 @@ def audit(screen: str, marker: dict, scale: float, scroll: bool = True) -> dict:
             if top_b < top_a - 4 and bottom_b <= top_a:
                 add({"rule": "R8_reading_order", "node": f"a control at y={top_b} follows one at y={top_a}"})
         for n in nodes:
-            if n.get("class", "").endswith("EditText") and not is_clipped(n) and not name_of(n):
+            if n.get("class", "").endswith("EditText") and not is_clipped(n, at_end) and not name_of(n):
                 add({"rule": "R6_text_field_unnamed", "node": n.get("bounds")})
         for n in nodes:
             b = bounds(n)
@@ -388,6 +398,19 @@ def main() -> int:
         visit("today_capacity_dialog", ["Bugün ne kadar zamanın var?"], None, 3.0, scroll=False)
         tap_text("Vazgeç")
         time.sleep(2)
+    # 18G: the pilot journal's dialog, opened from its Today row and read to its end (the note field sits below the fold
+    # at 200%), then one report saved so the notice Today says after it is read too.
+    back_to_top()
+    if tap_scrolling("Planla ilgili bir sorun bildir"):
+        visit("pilot_journal_dialog", ["Planla ilgili ne oldu?", "Kural ihlali gördüm"], None, 3.0)
+        back_to_top()
+        if tap_scrolling("Kişisel tercih") and tap_scrolling("Bildirimi kaydet"):
+            saved = "Bildirimin kaydedildi. Plan değiştirilmedi."
+            for _ in range(15):
+                if present(dump(), saved):
+                    break
+                swipe(main_viewport(app_nodes(dump())), up=False)
+            visit("pilot_journal_saved", [saved], ["Planla ilgili ne oldu?"], 2.0, scroll=False)
     back_to_top()
     if tap_scrolling("Bu plan neden böyle?"):
         visit("planner_explanation", ["Bu plan neden böyle?", "Geri"], ["Başla"])

@@ -2560,3 +2560,42 @@ Ayrıntı: `docs/INITIAL_SETUP_SPEC.md`.
 - 18A'nın PRE'sinde kullanıcı 18A'yı ilk açılış kurulumuna ayırdı; pilot günlüğü ve uygulamayı telefona kurup pilotu başlatmak seçilmedi.
 - Bu ikisi yeni bir adıma, **18G — Pilotun yürütülmesi**ye gider; AŞAMA 18'in sonuna, D-099, D-125, D-129, D-131 ve D-136 gibi eklenir; yeniden numaralama yoktur.
 - 18G'nin girdileri: pilot günlüğü (uygulamada 'planı elle düzelttim' ve 'kural ihlali gördüm' kayıtları; PC'de yedekten pilot raporu; SC-048/049) ve uygulamayı telefona (Poco M6 Pro) kurup en az 14 günlük pilotu başlatmak.
+
+## D-141 — Pilotun yürütülmesi = PLTX-v0
+**Durum:** Kabul edildi — 2026-10-29
+
+- 18G final modeli `PLTX-v0 — the learner reports a plan problem from Today in SC-049's own words; the journal records one row and never acts; a PC report reads an exported backup read-only for SC-048, SC-049 and the planner observation 18B reads` oldu.
+- **Ana invariant:** öğrenci planla ilgili bir sorunu Bugün'den, SC-049'un kendi sözleriyle (ön koşul yüzünden imkânsız, süre tamamen yanlış, yanlış dala götürüyor), kişisel tercih (sayılmaz) ya da kural ihlali (SC-048) olarak ve isteğe bağlı kısa bir notla bildirir; bildirim tek satır olarak eklenir ve başka hiçbir şey değişmez — plan yazılmaz ya da yeniden planlanmaz, tercih değişmez, hiçbir şey kanıt değildir; PC'deki rapor dışa aktarılan yedeği yalnız okuyarak açar ve yalnız satırların söylediğini söyler: SC-049 günleri sayar, yapısal bildirimi olan bir gün bir kez ve bildirimin adlandırdığı planın gününde sayılır; SC-048 bildirileni listeler ve bildirim olmamasının kanıt olmadığını söyler; planner gözlemi her planlı görevin tahminini ilk ve son cevabı arasındaki aralığın yanına koyar ve planner'ın geride bırakıp durduğu ihtiyaçları adlandırır; uygulamanın kendi codec'inin çözmeyeceği bir iz okunamadı diye adlandırılır, tahmin edilmez.
+- **Kullanıcı kararı (2026-10-28, "18B ye başla", ardından "Önce 18G, sonra 18B"):** 18G 18B–18F'den önce yürütülür, çünkü onlar pilot verisini okur (numaralama değişmedi); 18G pilot başlayınca biter (günlük, PC raporu, telefona kurulum ve ilk günün kaydı); bildirim Bugün'den bir satır, beş tür ve isteğe bağlı not; kurulumu asistan USB ile yapar.
+- **Sıra (kullanıcı kararı):** 18B–18F pilot verisini okuduğu için 18G önce yürütüldü; numaralama değişmedi.
+- **Asistanın varsayılan seçimleri:**
+  - model kimliği `PLTX-v0`; adım ve sırası için tek karar (D-141);
+  - satırın yeri — Bugün'de son, işi yapmakla ilgili her şeyden sonra;
+  - türlerin sözleri SC-049'un kendi sözleri ("Ön koşul yüzünden imkânsız", "Süre tamamen yanlış", "Yanlış dala götürüyor");
+  - en çok 200 karakterlik, kırpılmış not;
+  - SC-049'un günü kaç yapısal bildirim olursa olsun bir kez sayılır;
+  - planner gözleminde ilk-son cevap aralığı, çünkü çalışma oturumu saklanmaz (11C).
+- **Bulunanlar:**
+  - adaptör sayıya benzeyen her değeri tamsayı olarak bağlıyordu, bu yüzden bir notun '007'si '7' olarak saklanıyordu — TEXT sütunları artık metin olarak bağlanıyor; 18A'nın doğrulayıcısı şemayı v13'e sabitliyordu (daraltıldı); PC raporu yalnız izin başlığına bakıp uygulamanın codec'inin reddettiği izleri okuyordu — artık her kullandığı alanda codec kadar katı ve kapalı listeleri Kotlin enum'larıyla karşılaştırılıyor; ilk ve son cevap arasındaki süre bir alt sınır değil (arka planda geçen süreyi içerebilir) — aralık diye ve neyi dışarıda bıraktığıyla söyleniyor; gün dönümünden sonra kaydedilen bir bildirim yeni günde sayılıyordu — artık planının gününde; başarısız bir kayıt sessizdi — artık söyleniyor; emülatör denetimi başarısız bir ekran dökümünde önceki koşunun dosyasını okuyup kurulumu atlanmış sanıyordu — dosya artık her dökümden önce siliniyor; repo adımın ortasında başka bir araç tarafından başka bir sürücüye taşındı — geri taşındı ve doğrulandı (`git fsck`), taşıma sırasında koşan tarama atıldı.
+- Şema v14 (`pilot_journal_entry`; dolu v13'e karşı, hiçbir satır yeniden yazılmadı).
+- **Doğrulama:**
+  - Kotlin mutation 15/15, validator mutation 24/24; kontrol mutantları hayatta kaldı.
+  - Validator 66/66 PASS; emülatör denetimi 100% ve 200% metinde pilot günlüğü diyaloğu ve kaydedildi bildirimi dahil, 0 bulgu.
+  - 1344 JVM testi, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+  - Hızlı tarama geçti; içerik validator'ları paketler değişmediği için yeniden koşulmadı.
+- **Pilot:** AI'lı build Poco M6 Pro'ya USB ile kuruldu ve pilotun ilk günü 2026-10-30 kaydedildi; 14 gün kendi başına sürer, verisini 18B okur.
+- Çalıştırılmayan: **T6**.
+- **Devredilenler:** pilotun 14 gününü okumak (18B); TalkBack ve T6 (19).
+- Sonraki numbered step `18B — Planner gözlemi`. Fresh PRE gerekir; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi).
+
+Ayrıntı: `docs/PILOT_RUN_SPEC.md`.
+
+## D-142 — Kullanıcının ikinci sürekli onayı
+**Durum:** Kabul edildi — 2026-10-29 (kullanıcı kararı)
+
+- Kullanıcı 18G sürerken şunu söyledi: "ben durdurana kadar her adım bittiğinde kendin merge et; CI yeşil değilse kendine 10 dk sonrasına tetikleyici zamanlayıcı koy, tekrar bak, merge et ve diğer adıma otomatik başla; şimdiki ve sonraki adımlarda bana soru sormadan kendi önerdiğin işlemleri yaparak devam et."
+- Kullanıcı durdurana kadar her adım tam protokolle (PRE → uygulama → bağımsız değerlendirme → POST → bayatlık denetimi) biter; PR'ı asistan CI yeşil olunca kendisi merge eder, yeşil değilse 10 dakika sonra yeniden bakar; sonraki adım soru sormadan başlar.
+- PRE'deki ürün kararlarında asistan kendi önerdiği seçeneği alır ve bunu "asistanın varsayılan seçimi (D-142)" olarak kaydeder (D-117 gibi).
+- Şifre/ödeme/hesap ayarı, geri alınamaz işlemler (merge dışında), gerçek bir arıza ve yalnız kullanıcının yapabileceği fiziksel işler (ör. telefonda USB hata ayıklama) yine durdurur.
+- D-117 15F ile sona ermişti; D-142 yeni ve ayrı bir onaydır.
+- **Sona erdi (2026-10-30):** kullanıcı 18G'nin PR'ı açıldıktan sonra "o dediğim durmadan devam et döngüsünden çıkabilirsin" dedi. 18G'nin PR'ı ve 18B'nin başlaması kullanıcının ayrı açık onayına bağlıdır; varsayılan yine adım başına onaydır (D-117'nin sonu gibi).

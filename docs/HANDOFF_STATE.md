@@ -325,14 +325,15 @@ PEM-v0:
 - 17E ✅ RUXX-v0 / D-138
 - AŞAMA 17 ✅ TAMAMLANDI
 - 18A ✅ ISTX-v0 / D-139
+- 18G ✅ PLTX-v0 / D-141 (D-140; run before 18B)
 - 18B 🟡 active-not-executed
-- 18C–18F, 18G (D-140), 19–20 ⬜
+- 18C–18F, 19–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `18A — ISTX-v0 / D-139`  
+**Son tamamlanan:** `18G — PLTX-v0 / D-141`  
 **Aktif:** `18B — Planner gözlemi`  
-**18B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**18B henüz yürütülmedi. Fresh PRE-STEP zorunludur; kullanıcının yeni açık onayı zorunludur (D-142'nin sürekli onayı 2026-10-30'da, 18G'den sonra kullanıcının isteğiyle sona erdi).**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1817,3 +1818,23 @@ ISTX-v0:
 ## 120. 18B handoff
 
 18B — Planner gözlemi. 18A ran on the user's explicit approval; 18B needs a fresh PRE and the user's new explicit approval. 18G (D-140) runs the pilot itself (the journal and the 14-day pilot on the phone); which of 18B–18F needs the pilot's data first is a PRE question. Carried: a calibrated `planner_diagnostic_opportunity` (18B), the day replay's cost (18E), calibration (18C/18D). Elsewhere: TalkBack, the focus ring with a real keyboard, the first live AI call and T6 (19).
+
+## 121. D-141 / D-142 / 18G final özeti
+
+Canonical: `docs/PILOT_RUN_SPEC.md`.
+Contract/QA: `arch/18g_pilot_run/` (contract, the real planner trace fixture, the two emulator audit reports, QA report, stale audit).
+Synthesis: `research/18g_pilot_run_research.md`.
+Code: `core-model` (`PilotJournalFacts.kt`), `core-ports` (`pilotJournalEntries`), `core-application` (`RecordPilotJournal`), `core-presentation` (`PilotJournalPresentation`), `app-ui` (`PilotJournalDialog.kt`, the Today row), `app-wiring` (dialog state, `recordPilotJournal`), `data-persistence` (schema v14 `pilot_journal_entry`; TEXT columns bound as text), `tools/pilot_report.py`, `tools/audit_a11y_emulator.py` (reads the dialog). Schema v14.
+
+PLTX-v0:
+- a journal entry is the learner's own report about the plan they were looking at — SC-049's three structural corrections in its own words, a personal preference (never counted) or a rule violation (SC-048), with an optional short note; one row is appended and nothing else changes; the PC report reads an exported backup read-only and says only what the rows say (SC-049 days, SC-048 reports, the estimate beside the first-to-last answer interval, needs passed over); a trace the codec would not decode is named unreadable,
+- approval: the user's explicit approval of 2026-10-28 ("18B ye başla", then "Önce 18G, sonra 18B"); user decisions: 18G before 18B–18F (D-141, no renumbering); done when the pilot starts; a Today row with five kinds and a note; the assistant installs over USB,
+- found: numeric-looking text stored as integers ("007" → "7"); 18A's validator pinned v13; the PC report was more lenient than the codec; the interval is not a lower bound; a report after the day rolled over counted on the wrong day; a failed save was silent; the repository was moved to another drive by another tool mid-step and moved back (verified) — all fixed,
+- Mutation Kotlin 15/15, validator 24/24; independent QA 66/66 PASS,
+- the AI build was installed on the Poco M6 Pro over USB and the pilot's first day (2026-10-30) was recorded; T6 was not run.
+
+D-142: the user's second standing approval (2026-10-29) — until the user says stop, each step ends with the full protocol, the assistant merges its PR on green CI (re-checking after 10 minutes when it is not green) and starts the next step without asking, taking its own recommended options ("asistanın varsayılan seçimi (D-142)"); passwords, payments, account settings, irreversible actions and physical actions only the user can do still stop.
+
+## 122. 18B handoff
+
+18B — Planner gözlemi. 18G ran on the user's explicit approval; 18B needs a fresh PRE and the user's new explicit approval (D-142's standing approval ended 2026-10-30 after 18G, at the user's request). 18B reads the pilot's 14 days from an exported backup with `tools/pilot_report.py` (the pilot started 2026-10-30). Carried: a calibrated `planner_diagnostic_opportunity`, minute calibration, the focus preference (18B); the day replay's cost (18E); calibration (18C/18D). Elsewhere: TalkBack, the focus ring with a real keyboard, the first live AI call and T6 (19).

@@ -30,6 +30,8 @@ import coach.model.AiCallUse
 import coach.model.DisplayPreferenceRecord
 import coach.model.ThemeChoice
 import coach.model.SetupOutcome
+import coach.model.PilotJournalEntry
+import coach.model.PilotJournalKind
 import coach.model.SetupRecord
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
@@ -101,7 +103,7 @@ class SqlitePersistence private constructor(
         }
     }
 
-    private data class Column(val name: String, val notNull: Boolean, val hasDefault: Boolean)
+    private data class Column(val name: String, val notNull: Boolean, val hasDefault: Boolean, val text: Boolean = false)
 
     private val columnCache = mutableMapOf<String, List<Column>>()
 
@@ -109,7 +111,7 @@ class SqlitePersistence private constructor(
 
     private fun columns(table: String): List<Column> = columnCache.getOrPut(table) {
         query("PRAGMA table_info($table)") { s ->
-            Column(name = s.getText(1), notNull = s.getLong(3) == 1L, hasDefault = !s.isNull(4))
+            Column(name = s.getText(1), notNull = s.getLong(3) == 1L, hasDefault = !s.isNull(4), text = s.getText(2).equals("TEXT", ignoreCase = true))
         }
     }
 
@@ -172,8 +174,12 @@ class SqlitePersistence private constructor(
 
         connection.prepare(sql).use { statement ->
             var index = 1
+            // 18G: a TEXT column is bound as text, so a value that only looks like a number ("007", a learner's note) is
+            // stored exactly as given rather than as the number SQLite would read it as.
+            val textColumns = all.filter { it.text }.map { it.name }.toSet()
             payloadColumns.forEach { column ->
-                bindValue(statement, index++, record.payload.getValue(column))
+                val value = record.payload.getValue(column)
+                if (column in textColumns) statement.bindText(index++, value) else bindValue(statement, index++, value)
             }
             statement.bindLong(index++, sequence)
             if (timeColumns.isNotEmpty()) {
@@ -271,7 +277,12 @@ class SqlitePersistence private constructor(
 
         connection.prepare(sql).use { statement ->
             var index = target.bind(statement) + 1
-            provided.forEach { bindValue(statement, index++, record.payload.getValue(it)) }
+            // 18G: a TEXT column is bound as text here too, as in appendTruth.
+            val textColumns = columns(target.table).filter { it.text }.map { it.name }.toSet()
+            provided.forEach {
+                val value = record.payload.getValue(it)
+                if (it in textColumns) statement.bindText(index++, value) else bindValue(statement, index++, value)
+            }
             statement.bindText(index++, record.policyVersion)
             statement.bindLong(index++, record.truthWatermark)
             statement.bindLong(index++, record.builtAtInstant)
@@ -570,6 +581,18 @@ class SqlitePersistence private constructor(
     override fun setupRecords(): List<SetupRecord> =
         query("SELECT setup_outcome, recorded_on_study_day, sequence FROM setup_record ORDER BY sequence") {
             SetupRecord(outcome = requireNotNull(SetupOutcome.of(it.getText(0))), studyDay = it.getText(1), sequence = it.getLong(2))
+        }
+
+    /** Every `pilot_journal_entry` row, oldest first (18G). */
+    override fun pilotJournalEntries(): List<PilotJournalEntry> =
+        query("SELECT entry_kind, note, plan_version_id, recorded_on_study_day, sequence FROM pilot_journal_entry ORDER BY sequence") {
+            PilotJournalEntry(
+                kind = requireNotNull(PilotJournalKind.of(it.getText(0))),
+                note = it.getText(1),
+                planVersionId = if (it.isNull(2)) null else it.getLong(2),
+                studyDay = it.getText(3),
+                sequence = it.getLong(4),
+            )
         }
 
     /** Which of these planned tasks have at least one `attempt` made for them (16F). */
